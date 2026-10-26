@@ -14,6 +14,8 @@ import JurisLean.Candidates.SampleCalibrationConsumer20261027
 #print axioms JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_consumes_the_actual_empirical_minimizer
 #check JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound
 #print axioms JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound
+#check JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound
+#print axioms JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound
 
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.LearningConsumer20261027
@@ -60,3 +62,17 @@ def sampleFixtureRun : Result (SampleCalibration × TaskScore) :=
 #eval decide (produceCalibration {sampleFixtureProtocol with labelVersion := 99}
   ⟨sampleFixtureProtocol, [1], 2, 0⟩ sampleFixtureLoss [0, 1]
   calibrationFixture (1/10) (1/4) 100 101 = .unknown .targetMismatch)
+
+/-- info: true -/
+#guard_msgs in
+#eval decide (runSamples sampleFixtureProtocol sampleFixtureProtocol sampleFixtureLoss [[0], [1]] [0, 1]
+  trainingFixture (fun i : Fin 4000 => {calibrationFixture i with label := false})
+  0 (1/10) (1/4) 100 101 true = .unknown .missingEvidence)
+
+/-- info: true -/
+#guard_msgs in
+#eval (match runSamples sampleFixtureProtocol sampleFixtureProtocol sampleFixtureLoss [[0], [1]] [0, 1]
+  (fun i : Fin 2 => {trainingFixture i with label := false})
+  (fun i : Fin 4000 => {calibrationFixture i with label := false}) 0 (1/10) (1/4) 100 101 true with
+  | .known out => decide (out.1.fitted.table = [0] ∧ out.2.value = 0 ∧ out.2.bounds.upperRisk = 1/9)
+  | _ => false)

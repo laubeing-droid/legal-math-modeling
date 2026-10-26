@@ -24,13 +24,21 @@ structure SampleObservation (m : ℕ) (Y : Type) where
   label : Y
   deriving DecidableEq, Repr
 
+def candidateLoss {m : ℕ} {Y : Type} (loss : ℚ → Y → ℚ)
+    (candidate : List ℚ × ℚ) (row : Fin m × Y) : ℚ :=
+  tableLoss loss candidate.1 row
+
+def candidateAcceptance {m : ℕ} {Y : Type} (candidate : List ℚ × ℚ)
+    (row : Fin m × Y) : Bool :=
+  decide (candidate.2 ≤ candidate.1.getD row.1.val 0)
+
 def sampleLoss {m : ℕ} {Y : Type} (fitted : FittedTable) (loss : ℚ → Y → ℚ)
-    (_cutoff : ℚ) (row : SampleObservation m Y) : ℚ :=
-  tableLoss loss fitted.table (row.feature, row.label)
+    (cutoff : ℚ) (row : SampleObservation m Y) : ℚ :=
+  candidateLoss loss (fitted.table, cutoff) (row.feature, row.label)
 
 def tableAcceptance {m : ℕ} {Y : Type} (fitted : FittedTable)
     (cutoff : ℚ) (row : Fin m × Y) : Bool :=
-  decide (cutoff ≤ fitted.table.getD row.1.val 0)
+  candidateAcceptance (fitted.table, cutoff) row
 
 def sampleAcceptance {m : ℕ} {Y : Type} (fitted : FittedTable)
     (cutoff : ℚ) (row : SampleObservation m Y) : Bool :=
@@ -158,7 +166,7 @@ theorem actual_sample_produces_the_certificate {m n : ℕ} {Y : Type}
           | some cutoff =>
               simp only [selected] at accepted
               cases accepted
-              exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, selected⟩
+              exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 theorem query_outside_selected_rule_refused {m : ℕ} (expected : LearningProtocol)
     (calibrated : SampleCalibration) (query : Fin m) (target : ℚ) (supported : Bool)
@@ -213,11 +221,14 @@ theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type
       radius target snapshot calibrationProtocol supported = .known out) :
     Function.Injective (fun i => (calibration i).event) ∧
     (∀ i j, (training i).event ≠ (calibration j).event) ∧
+    out.1.fitted.protocol = protocol ∧
     out.1.fitted.table ∈ models ∧
     out.2.value = out.1.fitted.table.getD query.val 0 ∧
     (∀ table ∈ models,
       empiricalScore (tableLoss loss) (fun i => ((training i).feature, (training i).label)) out.1.fitted.table ≤
-        empiricalScore (tableLoss loss) (fun i => ((training i).feature, (training i).label)) table) := by
+        empiricalScore (tableLoss loss) (fun i => ((training i).feature, (training i).label)) table) ∧
+    produceCalibration sampleProtocol out.1.fitted loss cutoffs calibration radius target
+      snapshot calibrationProtocol = .known out.1 := by
   unfold runSamples at accepted
   split at accepted
   · cases accepted
@@ -252,9 +263,11 @@ theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type
                   calibration radius target snapshot calibrationProtocol calibrated calibratedResult
                 have consumed := prediction_reads_actual_fitted_table protocol calibrated query target
                   supported score prediction
-                refine ⟨identities.1, identities.2, ?_, consumed.2.1, ?_⟩
+                refine ⟨identities.1, identities.2, ?_, ?_, consumed.2.1, ?_, ?_⟩
+                · simpa only [bound.1] using best.1
                 · simpa only [bound.1] using best.2.2.2.1
                 · simpa only [bound.1] using best.2.2.2.2.2
+                · simpa only [bound.1] using calibratedResult
 
 open MeasureTheory ProbabilityTheory
 open JurisLean.Candidates.LearningFiniteClass20261027
@@ -307,5 +320,110 @@ theorem actual_certificate_consumes_population_risk_bound {Ω : Type*} [Measurab
       (first :: rest) (fun i => sample i w) radius target = some out.cutoff :=
     source.2.2.2.2.2.2.2.2
   simpa only [source.1] using safe w hw out.cutoff selected
+
+-- The entire fixed model/rule family is controlled before either is selected.
+-- Training may depend on the same random history; no independence of training
+-- from calibration is needed here because every model/rule pair is covered.
+-- The larger radius pays for BOTH model and rule selection, not only the rule.
+theorem whole_pipeline_joint_family_risk_bound {Ω : Type*} [MeasurableSpace Ω]
+    {m n trainN : ℕ} {Y : Type} [MeasurableSpace (Fin m × Y)]
+    (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (P : Measure (Fin m × Y)) [IsProbabilityMeasure P]
+    (hn : 0 < n) (protocol sampleProtocol : LearningProtocol)
+    (firstModel : List ℚ) (restModels : List (List ℚ))
+    (firstCutoff : ℚ) (restCutoffs : List ℚ)
+    (training : Fin trainN → Ω → SampleObservation m Y)
+    (sample : Fin n → Ω → Fin m × Y) (events : Fin n → Ω → EventId)
+    (sampleMeasurable : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
+    (loss : ℚ → Y → ℚ)
+    (numeratorMeasurable : ∀ h ∈
+        (firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset,
+      Measurable (fun z : Fin m × Y => (numeratorLoss (candidateLoss loss) candidateAcceptance h z : ℝ)))
+    (coverageMeasurable : ∀ h ∈
+        (firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset,
+      Measurable (fun z : Fin m × Y => (coverageLoss candidateAcceptance h z : ℝ)))
+    (lossRange : ∀ table ∈ firstModel :: restModels, ∀ z : Fin m × Y,
+      (tableLoss loss table z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
+    (hδ : 0 < (protocol.failureBudget : ℝ)) (hδ1 : (protocol.failureBudget : ℝ) < 1)
+    (query : Fin m) (radius target : ℚ)
+    (conservative : finiteRadius n (2 *
+      ((firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset).card)
+        (protocol.failureBudget : ℝ) ≤ (radius : ℝ))
+    (snapshot calibrationProtocol : Nat) (supported : Bool) :
+    ∃ confidence : Set Ω, MeasurableSet confidence ∧
+      1 - (protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
+      ∀ w ∈ confidence, ∀ out,
+        runSamples protocol sampleProtocol loss (firstModel :: restModels) (firstCutoff :: restCutoffs)
+          (fun i => training i w) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
+          query radius target snapshot calibrationProtocol supported = .known out →
+        0 < ∫ z, (coverageLoss candidateAcceptance (out.1.fitted.table, out.1.cutoff) z : ℝ) ∂P ∧
+        (∫ z, (numeratorLoss (candidateLoss loss) candidateAcceptance
+          (out.1.fitted.table, out.1.cutoff) z : ℝ) ∂P) /
+          (∫ z, (coverageLoss candidateAcceptance (out.1.fitted.table, out.1.cutoff) z : ℝ) ∂P) ≤
+            (target : ℝ) := by
+  let family := (firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset
+  have familyNonempty : family.Nonempty := ⟨(firstModel, firstCutoff), by simp [family]⟩
+  have pairRange : ∀ candidate ∈ family, ∀ z : Fin m × Y,
+      (candidateLoss loss candidate z : ℝ) ∈ Set.Icc (0 : ℝ) 1 := by
+    intro candidate member z
+    exact lossRange candidate.1 (List.mem_toFinset.mp (Finset.mem_product.mp member).1) z
+  have uniform := q05_3_simultaneous_numerator_and_coverage μ P hn family familyNonempty
+    sample sampleMeasurable independent law (candidateLoss loss) candidateAcceptance
+    numeratorMeasurable coverageMeasurable pairRange (protocol.failureBudget : ℝ) hδ hδ1
+  refine ⟨_, q05_3_joint_confidence_event_measurable P family sample sampleMeasurable
+    (candidateLoss loss) candidateAcceptance numeratorMeasurable coverageMeasurable _, uniform, ?_⟩
+  intro w hw out accepted
+  obtain ⟨_, _, _, modelMember, _, _, produced⟩ := pipeline_consumes_the_actual_empirical_minimizer
+    protocol sampleProtocol loss (firstModel :: restModels) (firstCutoff :: restCutoffs)
+    (fun i => training i w) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
+    query radius target snapshot calibrationProtocol supported out accepted
+  have receipt := actual_sample_produces_the_certificate sampleProtocol out.1.fitted loss
+    (firstCutoff :: restCutoffs) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
+    radius target snapshot calibrationProtocol out.1 produced
+  have selected := receipt.2.2.2.2.2.2.2.2
+  unfold calibrate at selected
+  split at selected
+  · cases selected
+  · have pass := q05_3_selectPassing_spec _ _ _ _ out.1.cutoff selected
+    let chosen := (out.1.fitted.table, out.1.cutoff)
+    have member : chosen ∈ family := Finset.mem_product.mpr
+      ⟨List.mem_toFinset.mpr modelMember, List.mem_toFinset.mpr pass.1⟩
+    have deviation := hw chosen member
+    have lowerPositiveQ : 0 < lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen :=
+      pass.2.1
+    have gateQ : upperNumerator (candidateLoss loss) candidateAcceptance (fun i => sample i w) radius chosen /
+        lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen ≤ target := pass.2.2
+    have numeratorBound : (∫ z, (numeratorLoss (candidateLoss loss) candidateAcceptance chosen z : ℝ) ∂P) ≤
+        (upperNumerator (candidateLoss loss) candidateAcceptance (fun i => sample i w) radius chosen : ℝ) := by
+      have lower := (abs_le.mp deviation.1).1
+      simp only [upperNumerator, Rat.cast_add]
+      linarith
+    have coverageBound : (lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen : ℝ) ≤
+        ∫ z, (coverageLoss candidateAcceptance chosen z : ℝ) ∂P := by
+      have upper := (abs_le.mp deviation.2).2
+      simp only [lowerCoverage, Rat.cast_sub]
+      linarith
+    have lowerPositive : (0 : ℝ) <
+        (lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen : ℝ) := by
+      exact_mod_cast lowerPositiveQ
+    have coveragePositive := lt_of_lt_of_le lowerPositive coverageBound
+    have numeratorNonnegative : 0 ≤ ∫ z, (numeratorLoss (candidateLoss loss) candidateAcceptance chosen z : ℝ) ∂P := by
+      apply integral_nonneg
+      intro z
+      by_cases h : candidateAcceptance chosen z = true
+      · simpa [numeratorLoss, h] using (pairRange chosen member z).1
+      · simp [numeratorLoss, h]
+    have upperNonnegative := le_trans numeratorNonnegative numeratorBound
+    have ratio : (∫ z, (numeratorLoss (candidateLoss loss) candidateAcceptance chosen z : ℝ) ∂P) /
+        (∫ z, (coverageLoss candidateAcceptance chosen z : ℝ) ∂P) ≤
+        (upperNumerator (candidateLoss loss) candidateAcceptance (fun i => sample i w) radius chosen : ℝ) /
+          (lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen : ℝ) := by
+      apply (div_le_div_iff₀ coveragePositive lowerPositive).mpr
+      nlinarith
+    have gate : (upperNumerator (candidateLoss loss) candidateAcceptance (fun i => sample i w) radius chosen : ℝ) /
+        (lowerCoverage candidateAcceptance (fun i => sample i w) radius chosen : ℝ) ≤ (target : ℝ) := by
+      exact_mod_cast gateQ
+    exact ⟨coveragePositive, le_trans ratio gate⟩
 
 end JurisLean.Candidates.SampleCalibrationConsumer20261027

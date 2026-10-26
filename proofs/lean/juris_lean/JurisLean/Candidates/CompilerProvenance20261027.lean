@@ -213,9 +213,48 @@ theorem u03_1_checked_provenance_sound (ctx : Gamma) (catalog : List RuleUse)
             cases accepted
             refine ⟨sameQuery, ?_, ?_⟩
             · exact scan_certified ctx catalog leafCheck ruleGate nodes [] known
-                (by simp) run evidence (List.mem_of_getElem? atRoot)
+                (by simp) run out (List.mem_of_getElem? atRoot)
             · exact scan_backward ctx catalog leafCheck ruleGate nodes [] known run
           next differentQuery => cases accepted
+
+theorem backward_lookup (nodes : List Node) (count i : Nat) (node : Node)
+    (ordered : BackwardFrom count nodes) (atIndex : nodes[i]? = some node) :
+    ∀ parent ∈ parentIndices node, parent < count + i := by
+  induction nodes generalizing count i with
+  | nil => simp at atIndex
+  | cons first rest ih =>
+      cases i with
+      | zero =>
+          have same : first = node := by simpa using atIndex
+          subst node
+          simpa using ordered.1
+      | succ i =>
+          have lookup : rest[i]? = some node := by simpa using atIndex
+          have smaller := ih (count + 1) i ordered.2 lookup
+          intro parent member
+          have bound := smaller parent member
+          omega
+
+def Edge (nodes : List Node) (child parent : Nat) : Prop :=
+  ∃ node, nodes[child]? = some node ∧ parent ∈ parentIndices node
+
+theorem u03_1_checked_provenance_acyclic (ctx : Gamma) (catalog : List RuleUse)
+    (leafCheck : Gamma → Leaf → Bool) (ruleGate : Gamma → RuleUse → Bool)
+    (nodes : List Node) (root query : Nat) (out : Evidence)
+    (accepted : proposed_provenance_input ctx catalog leafCheck ruleGate nodes root query =
+      .known out) : ∀ i, ¬Relation.TransGen (Edge nodes) i i := by
+  have ordered := (u03_1_checked_provenance_sound ctx catalog leafCheck ruleGate
+    nodes root query out accepted).2.2
+  have edgeLess : ∀ i j, Edge nodes i j → j < i := by
+    rintro i j ⟨node, atIndex, member⟩
+    simpa using backward_lookup nodes 0 i node ordered atIndex j member
+  have pathLess : ∀ i j, Relation.TransGen (Edge nodes) i j → j < i := by
+    intro i j path
+    induction path with
+    | single edge => exact edgeLess _ _ edge
+    | tail _ edge ih => exact lt_trans (edgeLess _ _ edge) ih
+  intro i cycle
+  exact Nat.lt_irrefl i (pathLess i i cycle)
 
 -- The preceding accepted output supplies the actual facts of the next call.
 -- Its leaf references are not replaced by a separate hand-written fact list.
@@ -255,6 +294,78 @@ theorem u03_1_provenance_semantic_composition (ctx : Gamma) (catalog : List Rule
   have valid := checked.2.1.2 leaf leafMember
   exact sourceSound leaf valid.1 valid.2
 
+theorem u03_1_reject_forward_reference (ctx : Gamma) (catalog : List RuleUse)
+    (leafCheck : Gamma → Leaf → Bool) (ruleGate : Gamma → RuleUse → Bool)
+    (known : List Evidence) (use : RuleUse) (parents : List Nat) (i : Nat)
+    (member : i ∈ parents) (notEarlier : known.length ≤ i) :
+    evalNode ctx catalog leafCheck ruleGate known (.fire use parents) = none := by
+  cases checked : evalNode ctx catalog leafCheck ruleGate known (.fire use parents) with
+  | none => rfl
+  | some out =>
+      have smaller := evalNode_backward ctx catalog leafCheck ruleGate known
+        (.fire use parents) out checked i member
+      omega
+
+theorem u03_1_reject_wrong_premises (ctx : Gamma) (catalog : List RuleUse)
+    (leafCheck : Gamma → Leaf → Bool) (ruleGate : Gamma → RuleUse → Bool)
+    (known : List Evidence) (use : RuleUse) (parents : List Nat)
+    (mismatch : (parents.filterMap fun i => known[i]?).map Evidence.atom ≠
+      use.rule.premises) :
+    evalNode ctx catalog leafCheck ruleGate known (.fire use parents) = none := by
+  simp [evalNode, mismatch]
+
+theorem u03_1_reject_unsupported_leaf (ctx : Gamma) (catalog : List RuleUse)
+    (leafCheck : Gamma → Leaf → Bool) (ruleGate : Gamma → RuleUse → Bool)
+    (known : List Evidence) (claim : Leaf) (unsupported : leafCheck ctx claim = false) :
+    evalNode ctx catalog leafCheck ruleGate known (.leaf claim) = none := by
+  simp [evalNode, unsupported]
+
+theorem u03_1_reject_wrong_rule_version (ctx : Gamma) (catalog : List RuleUse)
+    (leafCheck : Gamma → Leaf → Bool) (ruleGate : Gamma → RuleUse → Bool)
+    (known : List Evidence) (use : RuleUse) (parents : List Nat)
+    (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+    evalNode ctx catalog leafCheck ruleGate known (.fire use parents) = none := by
+  simp [evalNode, wrongVersion]
+
+-- S03's coverage relation connects individual interpretations. The desired
+-- universal answer is derived from it, not supplied as a coverage assumption.
+theorem u03_3_conservative_abstraction_sound {Concrete Abstract : Type*}
+    (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+    (abstractQuery : Abstract → Prop)
+    (coverage : ∀ c, ∃ a, relation c a)
+    (reflects : ∀ c a, relation c a → abstractQuery a → concreteQuery c)
+    (abstractAnswer : ∀ a, abstractQuery a) : ∀ c, concreteQuery c := by
+  intro c
+  obtain ⟨a, related⟩ := coverage c
+  exact reflects c a related (abstractAnswer a)
+
+theorem u03_3_conservative_abstraction_exact {Concrete Abstract : Type*}
+    (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+    (abstractQuery : Abstract → Prop)
+    (coverage : ∀ c, ∃ a, relation c a) (reverseCoverage : ∀ a, ∃ c, relation c a)
+    (sameAnswer : ∀ c a, relation c a → (abstractQuery a ↔ concreteQuery c)) :
+    (∀ a, abstractQuery a) ↔ ∀ c, concreteQuery c := by
+  constructor
+  · exact u03_3_conservative_abstraction_sound relation concreteQuery abstractQuery
+      coverage (fun c a related => (sameAnswer c a related).mp)
+  · intro concreteAnswer a
+    obtain ⟨c, related⟩ := reverseCoverage a
+    exact (sameAnswer c a related).mpr (concreteAnswer c)
+
+theorem u03_3_interpretation_bijection_preserves_robust_queries
+    {Left Right Query : Type*} (correspondence : Left ≃ Right)
+    (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+    (sameAnswer : ∀ c q, rightEval (correspondence c) q = leftEval c q) (q : Query) :
+    (∀ r, rightEval r q = true) ↔ ∀ l, leftEval l q = true := by
+  constructor
+  · intro allRight l
+    rw [← sameAnswer l q]
+    exact allRight (correspondence l)
+  · intro allLeft r
+    have equal := sameAnswer (correspondence.symm r) q
+    rw [correspondence.apply_symm_apply] at equal
+    exact equal.trans (allLeft (correspondence.symm r))
+
 end JurisLean.Candidates.CompilerProvenance20261027
 
 #check JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
@@ -263,3 +374,17 @@ end JurisLean.Candidates.CompilerProvenance20261027
 #print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
 #check JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
 #print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries

@@ -1384,22 +1384,22 @@ end cand8U01
 
 def cand8FixedClassTailNotIidWitness : Prop :=
   (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-    (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
+    (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
   ¬ cand8IidSampleMeanSqrtRadiusSpecialization
 
 def cand8ApproximateErmNotDecompositionWitness : Prop :=
   (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-    (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-    (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-    (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))) ∧
+    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))) ∧
   ¬ cand8RepresentationRiskDecomposition
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
     cand8FixedClassTailNotIidWitness := by
   unfold cand8FixedClassTailNotIidWitness
   refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-    (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
+    (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
   intro hspec
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
@@ -1437,8 +1437,8 @@ def cand8LabelBridgeNotMeasurableWitness : Prop :=
   ¬ cand8GeneralMeasurableBoundedLossIntegration
 
 def cand8FiniteBridgeNotJointBudgetWitness : Prop :=
-  (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-    (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))) ∧
+  ((Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)))) ∧
   ¬ cand8JointlyEstimatedBridgeBudget
 
 theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :

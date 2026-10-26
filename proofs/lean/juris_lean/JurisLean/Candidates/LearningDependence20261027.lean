@@ -22,6 +22,8 @@ def fairCoinMeasure : Measure ℝ :=
 instance : IsProbabilityMeasure fairCoinMeasure where
   measure_univ := by
     norm_num [fairCoinMeasure, Measure.add_apply, Measure.smul_apply]
+    rw [← two_mul]
+    exact ENNReal.mul_inv_cancel (by norm_num) (by norm_num)
 
 theorem fair_coin_law : FairBinary fairCoinMeasure id := by
   refine ⟨measurable_id, ?_, ?_, ?_⟩
@@ -118,7 +120,11 @@ theorem u01_4_concrete_common_cause_counterexample {n : ℕ} (hn : 1 < n) :
 end
 end JurisLean.Candidates.LearningDependence20261027
 
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample

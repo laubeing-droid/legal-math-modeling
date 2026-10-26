@@ -273,7 +273,7 @@ theorem q05_3_positive_fixture_radius :
   have nonnegative : 0 ≤ Real.log 80 / 8000 := div_nonneg logNonnegative (by norm_num)
   have squared := Real.sq_sqrt nonnegative
   have bound : Real.sqrt (Real.log 80 / 8000) ≤ (1/10 : ℝ) := by nlinarith
-  norm_num [finiteRadius] at ⊢
+  norm_num [finiteRadius] at bound ⊢
   exact bound
 
 end JurisLean.Candidates.SelectiveCalibration20261027

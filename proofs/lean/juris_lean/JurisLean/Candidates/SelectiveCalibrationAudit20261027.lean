@@ -21,12 +21,15 @@ import JurisLean.Candidates.SelectiveCalibration20261027
 #check JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound
 #print axioms JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound
 
+#check JurisLean.Candidates.SelectiveCalibration20261027.q05_3_positive_fixture_radius
+#print axioms JurisLean.Candidates.SelectiveCalibration20261027.q05_3_positive_fixture_radius
+
 open JurisLean.Candidates.SelectiveCalibration20261027
 
 /-- info: true -/
 #guard_msgs in
 #eval decide (calibrate (fun (_ : Bool) (_ : Unit) => 0)
-  (fun h _ => h) [false, true] (fun _ : Fin 4 => ()) (1/10) (1/4) = some true)
+  (fun h _ => h) [false, true] (fun _ : Fin 4000 => ()) (1/10) (1/4) = some true)
 
 /-- info: true -/
 #guard_msgs in

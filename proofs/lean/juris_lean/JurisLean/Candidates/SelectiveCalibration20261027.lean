@@ -73,7 +73,14 @@ theorem q05_3_no_result_iff_no_threshold_passes {H : Type*} (lower upper : H →
   | cons first rest ih =>
       by_cases passes : 0 < lower first ∧ upper first / lower first ≤ target
       · simp [selectPassing, passes]
-      · simp [selectPassing, passes, ih]
+      · rw [selectPassing, if_neg passes, ih]
+        constructor
+        · intro tail h member
+          rcases List.mem_cons.mp member with rfl | member
+          · exact passes
+          · exact tail h member
+        · intro all h member
+          exact all h (List.mem_cons_of_mem first member)
 
 theorem q05_3_empty_sample_refused {H Z : Type*} (loss : H → Z → ℚ)
     (accepts : H → Z → Bool) (models : List H) (data : Fin 0 → Z)
@@ -256,5 +263,17 @@ theorem q05_3_selected_threshold_has_population_risk_bound {Ω Z H : Type*}
         (lowerCoverage accepts (fun i => sample i w) radius h : ℝ) ≤ (target : ℝ) := by
       exact_mod_cast spec.2.2
     exact ⟨coveragePositive, le_trans ratio gate⟩
+
+-- A numerical, non-vacuous radius for the executable positive fixture:
+-- n=4000, two rules, delta=1/10, radius=1/10. This does not certify iid data.
+theorem q05_3_positive_fixture_radius :
+    finiteRadius 4000 4 (1/10) ≤ (1/10 : ℝ) := by
+  have logBound := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 80 by norm_num)
+  have logNonnegative := Real.log_nonneg (show (1 : ℝ) ≤ 80 by norm_num)
+  have nonnegative : 0 ≤ Real.log 80 / 8000 := div_nonneg logNonnegative (by norm_num)
+  have squared := Real.sq_sqrt nonnegative
+  have bound : Real.sqrt (Real.log 80 / 8000) ≤ (1/10 : ℝ) := by nlinarith
+  norm_num [finiteRadius] at ⊢
+  exact bound
 
 end JurisLean.Candidates.SelectiveCalibration20261027

@@ -5,6 +5,7 @@ import Mathlib.Probability.Moments.Variance
 namespace JurisLean.Candidates.LearningDependence20261027
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 open JurisLean.Candidates.LearningFiniteClass20261027
 
 noncomputable section
@@ -71,7 +72,6 @@ theorem u01_4_independent_empirical_mean_variance {Ω : Type*} [MeasurableSpace 
   simp_rw [fair_binary_variance μ _ (law _)]
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   field_simp [ne_of_gt hnR]
-  <;> ring
 
 theorem u01_4_copied_empirical_mean_variance {Ω : Type*} [MeasurableSpace Ω]
     {n : ℕ} (μ : Measure Ω) [IsProbabilityMeasure μ] (hn : 0 < n)

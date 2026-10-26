@@ -1,0 +1,259 @@
+{
+  "pinned_subject": "966b937394a07d14e58098b786e5bf742edd6b23",
+  "tip_subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+  "carried_from": "evidence/ci-tip-1c72e444/scope-archive.json",
+  "source": "50_clause_status.json rows at pinned_subject",
+  "note": "Verbatim exact_scope and remaining_obligations from the pinned subject. Carried forward from evidence/ci-tip-1c72e444/scope-archive.json. Not a Lean proof. Carrying this archive does not prove manuscript sentences and does not close archived gaps.",
+  "rows": [
+    {
+      "clause": "U07.1",
+      "exact_scope": "### U07.1 往返与观察\n\n定义/前提：e:R→M、d:M→R满足de=id；观察族在同一对象域按包含比较。结论/证明：对e(r₁)=e(r₂)应用d得单射；任意r有原像e(r)，得d满射；eded=e(de)d=ed。小族已有的区分见证也在大族内。反例/边界：两点常值观察不分离，加入恒等观察才分离，故反向错；R={0},M={0,1}否定e必满射。未编码历史不能从余额恢复。来源：v001 L47–54，专题07。",
+      "remaining_obligations": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain."
+    },
+    {
+      "clause": "U07.2",
+      "exact_scope": "### U07.2 共同纤维\n\n定义/前提：有限I、f_i:W_i→B，存在同一b且每个f_i⁻¹(b)非空。结论/证明：空I取空元组，逐个添加一个纤维见证，有限归纳构成共同元组。反例/边界：两个单点分别映0、1，局部非空不推出共同非空；现实案件满足前提未证，无限层选择另论。来源：L55–62，专题07。",
+      "remaining_obligations": "Fresh CI and actual semantic compatibility of supplied layers remain separate."
+    },
+    {
+      "clause": "U07.3",
+      "exact_scope": "### U07.3 数据投影唯一\n\n定义/前提：同案、同历史索引和完整履行绑定输入，结果从同一源关系构造。结论/证明：事件、义务人、金额投影分别等于同源值，再用等号传递；函数确定性来自同函数同完整实参。反例/边界：删去义务人来源约束可同金额配不同人；未观察注释可以不同。禁止把待证投影等式当作前提或以证明无关性推出数据全等。来源：L63–82，专题07。",
+      "remaining_obligations": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
+    },
+    {
+      "clause": "U03.1",
+      "exact_scope": "### U03.1 相对健全\n\n定义/前提：正Horn闭包，初始事实在w真，各启用规则保真。结论/证明：按加入轮次归纳，初始用事实前提，新增用已真前件和规则。反例/边界：{a}/{b}、a→q/b→q给各闭包含q而交集事实闭包无q，只有包含关系。缺例外记录不等无例外；现实事实与规则效力未证。来源：L83–96，专题03。",
+      "remaining_obligations": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure."
+    },
+    {
+      "clause": "U03.2",
+      "exact_scope": "### U03.2 相对完备\n\n定义/前提：正Horn最小不动闭包；有限实现有有限生成头或独立终止证明。结论/证明：正向用健全性；q不在闭包时，闭包自身作为真原子集合满足F,N且使q假，构成反模型。反例/边界：空F,N不推q也不推现实¬q；无限生成项不能套有限停止。来源：L97–110，专题03。",
+      "remaining_obligations": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
+    },
+    {
+      "clause": "U02.1",
+      "exact_scope": "### U02.1 门健全性\n\n定义/前提：A_safe为非空K_e各世界允许且所有Succ后态保I的交集，真实w*在K_e，真实后态属于Succ。结论/证明：取交集的w*分量再实例化真实后态。反例/边界：不可区分世界分别只许a/b时无共同目标动作；若都有idle则交集不空。空Succ的全称真不证明可完成。世界保留、判定和执行精化均独立。来源：L111–114，专题02。",
+      "remaining_obligations": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
+    },
+    {
+      "clause": "U02.2",
+      "exact_scope": "### U02.2 事务结果\n\n定义/前提：Σ=(b,v,D,Z)、固定Req(a)=(k,p)、纯F及原子检查/写入、完整读集版本、持久性、保留期和同事件同键。结论/证明：正文v002逐转移归纳D单调并得1[k∈D_n]=1[k∈D_0]+C_k(n)，故C_k≤1；重放返回不可变项；取消Z排除对应尝试未来提交。没有假定唯一执行。反例/边界：先查后非原子写、业务写后崩溃未留D、删D、换键、F隐藏副作用、空查询后在途提交；均在正文详述。未证真实DB精化、外部副作用或最终完成。来源：v001 L115–118及v002完整增补。",
+      "remaining_obligations": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open."
+    },
+    {
+      "clause": "U02.3",
+      "exact_scope": "### U02.3 有限门和覆盖\n\n定义/前提：有限动作/世界/后继表，Bool谓词反映语义，条件比率分母正。结论/证明：逐层有限合取等价全称，枚举恰得安全集；生成覆盖是另一个全称合同。反例/边界：候选缺一安全动作时过滤不能补出；覆盖0时条件风险无定义。未证开放法律可判定。来源：L119–125。",
+      "remaining_obligations": "Generator support coverage and common-idle/empty-successor counterexamples not fully discharged."
+    },
+    {
+      "clause": "U02.4",
+      "exact_scope": "### U02.4 条件测度风险\n\n定义/前提：P(H)>0，在P_H=P(·|H)内有条件失败界和累计ε；无条件声明另需P(Hᶜ)≤α。结论/证明：P_H内塔性质加并集界得ε，再分H/Hᶜ得α+ε。反例/边界：P(B)=.1且H=B，原界.1成立而P(B|H)=1；不准混测度。来源：L126–133。",
+      "remaining_obligations": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1). A general filtration/random-budget tower beyond this partition identity is not an additional theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the unproved general filtration/random-budget tower."
+    },
+    {
+      "clause": "U08.1",
+      "exact_scope": "### U08.1 历史截面稳定\n\n定义/前提：不可变历史、固定知识/记录截点、纯查询；追加记录在该截点后才可见。结论/证明：两历史截取结果逐元素相同，再对同一函数代入。反例/边界：读当前status或将迟到记录伪装成当时已知会改变输入。今日追溯与当时可知不同，记录时间真实性未证。来源：v001 L134–139，专题08。",
+      "remaining_obligations": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance."
+    },
+    {
+      "clause": "U10.1",
+      "exact_scope": "### U10.1 授权启用到实际消费\n\n定义/前提：具名权限、作用域/版本/时间检查，选v、同快照刷新env、实际消费者读env。结论/证明：依次代入追加、选择、刷新和调用的后置式，实际规则输入为v。反例/边界：只写日志却保留旧env就不成立；发布、生效、适用不能统称最新版。真实授权合法性未由形式检查证明。来源：L140–143，专题10。",
+      "remaining_obligations": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
+    },
+    {
+      "clause": "U10.2",
+      "exact_scope": "### U10.2 有限混合轨迹\n\n定义/前提：同案状态链、逐步真实前后态、对应操作的具名条件。结论/证明：一般归纳在正文；第14节补具体初态、支付、应计、冲销、授权刷新、知识变更及拒绝的逐字段推导，再归纳中间态。反例/边界：两次读初态只是两条支路；后步失败不回滚先前成功。未知提交不当成确知拒绝；实际DB、外部副作用和未列法律状态仍未精化。来源：L144–153及本次第14节编辑补证。",
+      "remaining_obligations": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open."
+    },
+    {
+      "clause": "U08.2",
+      "exact_scope": "### U08.2 时间适用与观察压缩\n\n定义/前提：当前与可达耗尽分开；压缩只在实际适用(h,v,q)组合和声明观察族C内检查答案等价。结论/证明：逐实际组合代入相等观察，保持相应答案；可达耗尽弱于当前耗尽。反例/边界：当前一个可执行操作、执行后耗尽；同标签但不同金额。未证明任意版本可压成最新；EMPTY、UNKNOWN和字段形状均是可独立观察。来源：L154–158。",
+      "remaining_obligations": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized."
+    },
+    {
+      "clause": "U08.3",
+      "exact_scope": "### U08.3 证据四态与程序乘积\n\n定义/前提：支持/反对两位构成四态，程序另建OPEN/BLOCKED/依法关闭；关闭须有机会域完整性、履行或授权放弃、关闭权限等具名依据。结论/证明：两二值枚举得四且仅四组合，乘积保留各轴；消费者只由有据构造返回关闭。反例/边界：(0,0)不足不等反对，已知空不等未知，证据支持不关闭程序。这是分类/类型合同，不是现实真值定理。来源：L159–163。",
+      "remaining_obligations": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit."
+    },
+    {
+      "clause": "U10.3",
+      "exact_scope": "### U10.3 模拟长度与终止\n\n定义/前提：实际一步模拟k_i抽象步；长度界另需k_i≤K；自然数rank每实际步严格下降。结论/证明：路径拼接长度Σk_i≤Kn；rank每步至少降1，归纳rank_n+n≤rank₀，故步数≤rank₀。反例/边界：x↔y无自环却无限循环；零步模拟不证明进展；字典序良基不直接给总和长度。公平/外部响应另证。来源：L164–177。",
+      "remaining_obligations": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions."
+    },
+    {
+      "clause": "U09.1",
+      "exact_scope": "### U09.1 连续数量账\n\n定义/前提：d₀≥0，p_i≥0，k_i=min(p_i,d_{i−1})、d_i=d_{i−1}−k_i、u_i=p_i−k_i。结论/证明：min范围给非负，逐步债式与付款式求和望远镜消去中间项，得d₀=d_n+Σk，Σp=Σk+Σu。反例/边界：10付7后3，再付7后0，分配7/3、余款0/4；两次从10算3/3错误。重复事件需去重，金额清零不等法律关系消灭。来源：L178–192。",
+      "remaining_obligations": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open."
+    },
+    {
+      "clause": "U09.2",
+      "exact_scope": "### U09.2 现金守恒\n\n定义/前提：封闭账户集，每事件现金增量和0，费用和边界流显式纳入，有限事件串。结论/证明：交换账户/事件有限求和，内层每事件为0，故总0。反例/边界：漏收费者看似现金消失；有真实现金转账仍可能无原债，不自动合法清偿。来源：L193–198。",
+      "remaining_obligations": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises."
+    },
+    {
+      "clause": "U09.3",
+      "exact_scope": "### U09.3 一般分配与法义独立\n\n定义/前提：0≤k_i≤d_i且Σk_i≤p；原债、应计、新债、冲销、现金及关系身份分开。结论/证明：逐项减法保非负/偏序，求和得债减少=分配，余款p−Σk≥0；加入新增/应计/冲销项后同样保持独立恒等式。反例/边界：d=p=1,k=0满足弱合同却不最大/互补；应计6不是现金6；无关系为None而非0−6；正文W6等构造分开债/现金和法律效果。原债同步扣减须在同一转移，法定清偿顺序不是金额公式。来源：L199–213。",
+      "remaining_obligations": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain."
+    },
+    {
+      "clause": "U01.0",
+      "exact_scope": "### U01.0 独立有界和\n\n定义/前提：独立X_i∈[a_i,b_i]，D=Σ(b_i−a_i)²。结论/证明：中心化log-mgf二阶导为倾斜方差≤宽²/4，积分两次得λ²宽²/8；独立乘积、Markov并取λ=4t/D，合两尾得2exp(−2t²/D)。D=0另为常数尾概率0。反例/边界：复制同一个Bernoulli使平均方差1/4，ID不同也不独立；实际抽样独立未内部证明。来源：L214–223。",
+      "remaining_obligations": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required."
+    },
+    {
+      "clause": "U01.1",
+      "exact_scope": "### U01.1 有限类泛化\n\n定义/前提：评价前固定H，M≥1,n≥1 iid，损失[0,1]，δ∈(0,1)，近似ERM差η。结论/证明：M个双尾并集给ε=√(log(2M/δ)/(2n))；R(hhat)≤Rhat(hhat)+ε≤min Rhat+η+ε≤min R+η+2ε。反例/边界：验证后自适应新增不受原M保证；合并异标签点的表示会有近似差。来源：L224–241。",
+      "remaining_obligations": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition."
+    },
+    {
+      "clause": "U01.2",
+      "exact_scope": "### U01.2 标签桥\n\n定义/前提：0—1事件或两边同一个[0,1]损失；标签不一致率有有效上界和联合置信预算。结论/证明：h≠Φ包含于h≠Y或Y≠Φ；一般同损失在Y=Φ时差0，其余至多1，取期望得界。反例/边界：换成极小不同成本不能保原分类界；95%点估计不等真实上界。拟合不能自证真实法律目标。来源：L242–251。",
+      "remaining_obligations": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain."
+    },
+    {
+      "clause": "U01.3",
+      "exact_scope": "### U01.3 部署距离\n\n定义/前提：同任务同[0,1]损失，联合(X,Y)分布P/Q。结论/证明：Ef=∫₀¹P(f>t)dt，逐事件差≤TV，积分并交换P/Q得绝对风险差界。反例/边界：X边际相同而Y反转，边际TV0仍可风险差1。此式不估计TV或保证域外有效。来源：L252–257。",
+      "remaining_obligations": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support."
+    },
+    {
+      "clause": "U01.4",
+      "exact_scope": "### U01.4 三组有限反例\n\n定义/前提：正文完整指定标签、部署支持及独立/复制分布。结论/证明：逐点得训练误差0而目标错误1、部署错误1；独立Bernoulli均值方差1/(4n)，复制或共同原因方差1/4。边界：这是对无条件泛化主张的反例，不断言现实数据必属坏机制；去重不产生iid。来源：L258–272。",
+      "remaining_obligations": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the named finite witnesses into a claim about real data. This does not assert that real data follow the bad mechanism."
+    },
+    {
+      "clause": "U04.1",
+      "exact_scope": "### U04.1 后验与预测\n\n定义/前提：α,β>0的Beta先验和明确二项计数似然；下一观测另需P(Xnew=1|θ,D)=θ。结论/证明：密度乘θ^s(1−θ)^(n−s)并归一化得后验；预测用塔性质得后验均值。反例/边界：半复制半独立的交换构造给5/6而非2/3，单有后验代数不能决定未来核；先验与桥是新增模型假设。来源：L273–278。",
+      "remaining_obligations": "Integer-shape density conjugacy reuses UnifiedNeedlesS3a.beta_posterior_from_likelihood. Predictive mean reuses polyBeta_moments. Real Gamma weight ratio reuses FullMath.Probability.beta_ratio. The exchangeable finite law gives 5/6 against the Beta(1,1) one-success bridge 2/3. Non-integer pointwise density identity is not restated beyond that Gamma ratio. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a non-integer pointwise density identity."
+    },
+    {
+      "clause": "U04.2",
+      "exact_scope": "### U04.2 识别区间传播\n\n定义/前提：0≤N≤B，输入区间确包围二者，b_L>0。结论/证明：正除法单调给n_L/b_U及n_U/b_L，再裁到[0,1]；通分得宽度，正文另给缺失、Fréchet和污染权重构造。反例/边界：Beta(2,3)半点B=1/12,N=11/192，比率11/16；B输入[1.5,1.6]不是真包围。只驳该成功算例，不驳一般除法。分母0、输入失实均不能产生证明。来源：L279–301。",
+      "remaining_obligations": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain."
+    },
+    {
+      "clause": "U04.3",
+      "exact_scope": "### U04.3 正则逻辑回归\n\n定义/前提：有限数据/维度，逻辑损失加λ||β||²/2，λ>0且所有自由坐标含截距受罚。结论/证明：非负损失给强制性，连续函数在紧次水平集达最小；Hessian半正定项加λI正定，故严格凸且最小点唯一。反例/边界：截距不罚且全标签1时下确界0在∞才逼近。存在唯一解不证明校准、因果或数值算法已求准。来源：L302–310。",
+      "remaining_obligations": "Unpenalized all-positive intercept counterexample is named: loss stays positive, strictly decreases, and is arbitrarily small. Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. formal_ci records run 39783481932, whose lean-full-clean-build compiled the named counterexample. That run does not discharge existence or uniqueness of the fully penalized logistic minimizer."
+    },
+    {
+      "clause": "U04.4",
+      "exact_scope": "### U04.4 方差等效量\n\n定义/前提：等方差σ²>0、等相关r、n≥2且协方差矩阵半正定。结论/证明：n个对角项加n(n−1)个协方差除以n²得σ²[1+(n−1)r]/n；正括号时才定义有限n_eff。反例/边界：B、1−B的r=−1使两点平均恒定，是零方差退化态；n_eff不恢复独立性。来源：L311–314。",
+      "remaining_obligations": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, and the r=-1 quadratic form are named. The pre-existing u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance remains the zero-denominator branch. n_eff does not restore independence. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a restoration of independence."
+    },
+    {
+      "clause": "U04.5",
+      "exact_scope": "### U04.5 测量与副本\n\n定义/前提：对象、测量事件、记录副本分型；重复测量条件独立与.8准确率有明确合同。结论/证明：一次正测量LR=.8/.2=4，两次独立乘16；复制条件概率1，不加新似然因子，仍4。反例/边界：两个记录ID可以同测量；同对象也可不同测量；经验零频不等总体概率0。身份和机制真实需外证。来源：L315–332。",
+      "remaining_obligations": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain."
+    },
+    {
+      "clause": "U05.1",
+      "exact_scope": "### U05.1 保形边际覆盖\n\n定义/前提：训练后评分固定，条件于训练n个校准与测试可交换；k=ceil((n+1)(1−α))，k>n用∞。结论/证明：独立连续破同分给均匀秩，秩≤k蕴含原非严格覆盖，概率≥k/(n+1)≥1−α；∞分支必覆盖。反例/边界：边际非群体/逐点保证；部署机制改变可失效。来源：L333–336。",
+      "remaining_obligations": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem."
+    },
+    {
+      "clause": "U05.2",
+      "exact_scope": "### U05.2 校准、阈值、稀有群体\n\n定义/前提：同任务Brier损失、固定有限阈值、错误分子与覆盖分母联合界；群体结果另需群内交换性。结论/证明：平方展开和条件期望消交叉项得分解；正覆盖下界时单调取比≤min(1,μ_U/c_L)；对2M量并集。反例/边界：90%分.6全对、10%分.9全错，升阈值风险.1→1；边际校准不推分组；稀有群体保形例总体可高而组内低。零分母无定义；迁移需标签核及绝对连续。来源：L337–352。",
+      "remaining_obligations": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain."
+    },
+    {
+      "clause": "U06.1",
+      "exact_scope": "### U06.1 信息与有限动态规划\n\n定义/前提：有限非空行动/世界，免费信号可忽略、旧动作仍可选；动态部分需完整Markov状态、非预见策略、有限时域/终端/空集合同。结论/证明：旧常值策略包含于新类，逐世界最优给上界；Bellman按剩余步数倒推。反例/边界：有成本净值可负，非矩形最坏集合逐状态选最坏可将.5错成0；观测预测不自带干预收益。来源：L353–368。",
+      "remaining_obligations": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain."
+    },
+    {
+      "clause": "U06.2",
+      "exact_scope": "### U06.2 收益扰动迁移\n\n定义/前提：同完整偏离集合，所有结果收益差≤η，旧ε均衡；混合使用同一有限期望。结论/证明：新偏离≤旧偏离+η≤旧当前+ε+η≤新当前+ε+2η。反例/边界：新增未覆盖偏离使结论失效；非线性单调变换不保持期望效用排序。真实η和偏离覆盖另证。来源：L369–375。",
+      "remaining_obligations": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain."
+    },
+    {
+      "clause": "U06.3",
+      "exact_scope": "### U06.3 精确表达式、区间与行动\n\n定义/前提：有理AST，金额单位/币种/日期口径一致；概率非负归一，成本按现金身份只扣一次，共同模型输入，效用/风险定义域及合法候选明确。结论/证明：对子表达式结构归纳给求值唯一，区间加法/四端点乘法给包围，策略仅在声明域比较。反例/边界：D收益−1/11各半现金均值5>S4，但sqrt(z+1)效用√3<√5且负收益风险.5；重复扣成本改排序。区间盒极端不保证联合可达，收益高不证明合法。来源：L376–384。",
+      "remaining_obligations": "Rational AST, typed gate and executable IR present; arbitrary interval multiplication enclosure and general uncertainty comparison remain."
+    },
+    {
+      "clause": "U06.4",
+      "exact_scope": "### U06.4 阈值三方向\n\n定义/前提：g(q)=q(b−l)+l−k−v0,q∈[0,1]，同效用单位。结论/证明：正斜率除法保持≥，负斜率翻成≤，零斜率直接判常数；与[0,1]交得全/空/区间。反例/边界：负斜率仍写≥错；零斜率除法未定义；输入值真实与合法性不由代数保证。来源：L385–388。",
+      "remaining_obligations": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance."
+    },
+    {
+      "clause": "U06.5",
+      "exact_scope": "### U06.5 噪声信息和博弈\n\n定义/前提：正文.8信息模型、两轮给定议价树、有限博弈；混合存在用Brouwer背景。结论/证明：信号价值.8−.5−成本；从末轮逐节点逆推得给定树(4,6)；连续正收益修正映射的不动点不能有正偏离收益，得混合均衡。反例/边界：成本>.3净负，匹配硬币无纯均衡，平局不保唯一；不将背景定理称本轮Lean已证。来源：L389–404。",
+      "remaining_obligations": "Signal value 3/10-cost, cost>3/10 net negative, given two-round tree (4,6), and matching-pennies no pure equilibrium are named. Brouwer/mixed equilibrium is not claimed. Hidden-information sequential equilibrium is not bi_one_step_no_gain. T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the original hidden-information statement. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium."
+    },
+    {
+      "clause": "U11.1",
+      "exact_scope": "### U11.1 行为测量与因果识别\n\n定义/前提：结构因果模型、处理版本、干预结果、目标人群T；识别式另需一致性、条件可交换性、正性及无干扰或已定义暴露，跨群体另证迁移。结论/证明：U~Bernoulli(.5)，A=U；Y=A与Y=U有同一观测律而干预效应1/0，故观测律不能识别；有具名前提时按X条件化、交换性、一致性得到g公式。反例/边界：20上诉8错不能推出全100中40%错；余80未知只给8%至88%识别范围。真实无混杂不从预测精度取得。来源：v001 L405–412，专题11。",
+      "remaining_obligations": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain."
+    },
+    {
+      "clause": "U12.1",
+      "exact_scope": "### U12.1 条件政策价值\n\n定义/前提：有限行动，π_log与π、目标输入分布和响应机制冻结；一致性/交换性桥及目标行动支持。结论/证明：条件于X,A，π_log与重要性比抵消，剩目标加权条件均值，经因果桥得目标价值。反例/边界：目标正而日志0不可识别；零/零只可在零质量处任定；截权例.35不等目标.55。政策改变人的响应或目标分布不受此冻结合同保护。来源：L413–429。",
+      "remaining_obligations": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain."
+    },
+    {
+      "clause": "U12.2",
+      "exact_scope": "### U12.2 收缩与稳定\n\n定义/前提：非空完备度量空间D、自映射T、全域Lipschitz q∈[0,1)。结论/证明：相邻距≤q^n初始距，几何尾和使Cauchy；完备性得极限，连续性给不动点，两个不动点距离≤q倍自身故唯一。反例/边界：1−θ振荡；x−x³在[-1,1]可收敛而不严格收缩，条件充分非必要。真实响应收缩、合法/公平未证。来源：L430–433。",
+      "remaining_obligations": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain."
+    },
+    {
+      "clause": "U12.3",
+      "exact_scope": "### U12.3 政策选择、截断与长程\n\n定义/前提：固定有限政策类，iid加权结果[0,W]；缺失修正有MAR与正记录率，多步有逐历史支持和因果桥。结论/证明：U01.0逐政策并集给W√(log(2M/δ)/(2n))及2ε选择界；加减未截断期望给偏差E[(w−c)+Y]；逐历史条件化才可消轨迹比。反例/边界：同A0,Y0日志，X1=A0或1−A0可有相反终端价值；单步不识别长期；裁剪不自动无偏。来源：L434–442。",
+      "remaining_obligations": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED."
+    },
+    {
+      "clause": "U12.4",
+      "exact_scope": "### U12.4 信号与激励\n\n定义/前提：E成本.6，G成本.1，无为0；单位奖励，审计通过率p_E,p_G，参与者比较期望净收益。结论/证明：E胜G等价p_E−p_G>.5，E胜无为等价p_E>.6，两者合取必要充分。反例/边界：(.6,.5)可区分但E净0、G净.4；(1,0)满足。真实成本/偏好、审计合法性另证，平局不证明严格最优。来源：L443–454。",
+      "remaining_obligations": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
+    },
+    {
+      "clause": "U13.1",
+      "exact_scope": "### U13.1 规范与参数非干扰\n\n定义/前提：G(E,N,c,e)不读θ；更新只写θ，其余实参不变。结论/证明：同函数同实参直接相等。反例/边界：共享张量同时改N使前提失效；若N允许统计结果成为新e，θ变化可改案件判断，规则未改不等判断永不变。实际内存读写精化未证。来源：L455–458。",
+      "remaining_obligations": "Read-set noninterference present; lawful statistical-evidence input-change counterexample and authority integration remain."
+    },
+    {
+      "clause": "U13.2",
+      "exact_scope": "### U13.2 五种更新和个人隔离\n\n定义/前提：数据追加、条件计算、个人权重、规则、机制五种操作，各写集明确；Θ仅更新ℓ；验证及加载独立授权。结论/证明：函数更新分支给j≠ℓ时Θ'(j)=Θ(j)，字段不在写集则保持；条件均值仅在权重和>0定义，否则UNKNOWN。反例/边界：Kish量不是iid计数，候选不等已加载；写域隔离不证明性能无外溢。来源：L459–475。",
+      "remaining_obligations": "Five preparations and personal/data/condition frames present; complete authorized rule/mechanism load and persistent storage refinement remain."
+    },
+    {
+      "clause": "U13.3",
+      "exact_scope": "### U13.3 表示迁移与冷启动\n\n定义/前提：φ'=b∘φ，b双射，g'=g∘b⁻¹，同任务同损失。结论/证明：g'(φ'(x))=g(φ(x))逐点逆消，取期望风险相同；不读取θ的规范计算仍可独立。反例/边界：概念含义改变不是改名；无观测时Bernoulli0/1同为空资料，不可识别，先验是新增假设。来源：L476–482。",
+      "remaining_obligations": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain."
+    },
+    {
+      "clause": "U13.4",
+      "exact_scope": "### U13.4 checkpoint缺失分支\n\n定义/前提：有个人参数则用其已验证范围；缺失时选择有独立证据的总体模型、声明先验、支持数据估计或UNKNOWN。结论/证明：按证据有无枚举分支，缺证不构造“已校准预测”；与不依赖该参数的精确规范计算分开。反例/边界：默认.5标已校准无依据，缺个人参数就停全部规范计算也不成立。此为类型/选择合同，不是改进定理；RSI全称未核。来源：L483–494。",
+      "remaining_obligations": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses."
+    },
+    {
+      "clause": "U14.1",
+      "exact_scope": "### U14.1 保守接纳与累计风险\n\n定义/前提：同风险域的新旧联合有效区间，U_new≤L_old+ε；自适应多轮在过去条件下有效且预算受控，验证和授权加载分开。结论/证明：R_new≤U_new≤L_old+ε≤R_old+ε；严格U_new<L_old给严格改善。塔性质加并集控累计失败，停时以可预测指示处理。反例/边界：点估计下降不保证；验A加载B不受证书保护；置信失败不等真实必恶化。来源：L495–511。",
+      "remaining_obligations": "Acceptance algebra, identity/readback gate and label conflicts present; independent statistical validation, adaptive conditional budgets and service-load integration remain."
+    },
+    {
+      "clause": "U15.1",
+      "exact_scope": "### U15.1 有限累计与状态界\n\n定义/前提：共同有效事件上逐轮R_t≤R_{t−1}+ε_t；有限M模型严格降风险时才谈有限改变次数。结论/证明：逐轮相加望远镜得R_T≤R₀+Σε；严格下降不能重访模型，最多M−1次变化。反例/边界：风险收敛不推参数收敛/全局最优，平均改善可伤关键个体；不保证每轮有候选或无限自举改进。来源：L512–527。",
+      "remaining_obligations": "Finite real telescoping bound present; finite-state strict-improvement length and no-parameter-convergence counterexample remain."
+    },
+    {
+      "clause": "U14.2",
+      "exact_scope": "### U14.2 独立簇集中\n\n定义/前提：簇间独立，固定大小n_j，簇内可任意依赖，损失[0,1]，N=Σn_j>0。结论/证明：簇和Z_j∈[0,n_j]，对这些独立量用U01.0，阈值Nε，得2exp(−2N²ε²/Σn_j²)，有效量N²/Σn_j²。反例/边界：99/1簇有效量5000/4901，不是2；按结果选择大小或跨簇共同原因不受此式覆盖。来源：L528–534。",
+      "remaining_obligations": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain."
+    },
+    {
+      "clause": "U15.2",
+      "exact_scope": "### U15.2 旧能力保持边界\n\n定义/前提：新旧预测在D_old逐点相同，P支持该域，同一损失。结论/证明：损失逐点相同，积分风险相同，不能同时声称域内旧错误严格改善。反例/边界：质量.01关键点由对变错，而总体.99→.01仍可称平均改善；未见点可任意反转。平均保持不替逐点/安全保持。来源：L535–541。",
+      "remaining_obligations": "Preserved-prediction finite risk identity present; key-point regression and finite-observation indistinguishability examples remain."
+    },
+    {
+      "clause": "U15.3",
+      "exact_scope": "### U15.3 两轮非空构造\n\n定义/前提：完整已知两点总体，X各半、Y0/1，θ00、θ01、θ10；只许授权个人更新，第二轮必须同任务。结论/证明：逐点算θ00风险.5、θ01为0，首轮接纳；θ10在Y'=1−Y上评价被绑定检查拒绝，实际串θ00→θ01→θ01。反例/边界：改目标好成绩不能作原任务改善；两次从θ00出发不是两轮；合成精确δ0非现实未知总体证明。来源：L542–566。",
+      "remaining_obligations": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain."
+    },
+    {
+      "clause": "U00",
+      "exact_scope": "### U00 全路线条件合成\n\n定义/前提：同案Γ与S、非空相容公共接口b、逐层具名前提、输出实际作为下一输入；统计保证有保各边际合同的联合验证律Q_Γ。法律分支λ不默认有概率。结论/证明：确定边用U10.2归纳，表示与来源边用U07和U03交换关系，统计在Q_Γ内并集；失败/未决按原语义交下游。反例/边界：局部见证各有却分别投影0/1，后步回初态，或换风险目标，均阻断合成。未证任意现实案件相容/法义唯一/任意域外有效/无限RSI，也未证明产品实现这些边。来源：L567–598，全部15专题。",
+      "remaining_obligations": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed."
+    }
+  ]
+}

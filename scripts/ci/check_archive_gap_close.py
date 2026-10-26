@@ -3,8 +3,8 @@
 
 The manuscript pin is not rewritten and is not emptied. ``discharges`` stays
 false. The live tip-pin is the authorized retarget
-subject 1c72e444ab79ff255af201f100aa6a93bdc0e5c7 / run 40257646857 / job
-121362851074. That retarget is not a close. The live tip-pin is not moved
+subject 21862d9bdd94bfa15e5da39079538b5eb30ff235 / run 40274167574 / job
+121413235107. That retarget is not a close. The live tip-pin is not moved
 onto gate run 39960871624. Declarations cited as wiring must be in the
 re-extracted tip-pin axiom audit.
 
@@ -30,10 +30,10 @@ STATUS_PATH = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_PATH = CANDIDATE / "construction_status.json"
 ARCHIVE_PATH = CANDIDATE / "evidence/ci-tip-e87543d8/scope-archive.json"
 CARRIED_PATH = CANDIDATE / "evidence/ci-tip-966b9373/scope-archive.json"
-LIVE_ARCHIVE_REL = "evidence/ci-tip-1c72e444/scope-archive.json"
+LIVE_ARCHIVE_REL = "evidence/ci-tip-21862d9b/scope-archive.json"
 LIVE_ARCHIVE_PATH = CANDIDATE / LIVE_ARCHIVE_REL
-RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-1c72e444/verification.json"
-EXPAND_RECEIPT_REL = "evidence/ci-tip-1c72e444/verification.json"
+RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-21862d9b/verification.json"
+EXPAND_RECEIPT_REL = "evidence/ci-tip-21862d9b/verification.json"
 EXPAND_RECEIPT_PATH = CANDIDATE / EXPAND_RECEIPT_REL
 LEDGER_PATH = CANDIDATE / "evidence/archive-gap-close-20261024/close-ledger.json"
 LEDGER_REL = "evidence/archive-gap-close-20261024/close-ledger.json"
@@ -170,7 +170,7 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
             "note": (
                 "The manuscript pin stays verbatim, so this retarget does not empty "
                 "the archive. The live tip-pin retarget carries the same rows in "
-                "evidence/ci-tip-1c72e444/scope-archive.json. Carrying is not a proof "
+                "evidence/ci-tip-21862d9b/scope-archive.json. Carrying is not a proof "
                 "and does not close archived gaps. "
                 "discharges_archived_manuscript_gaps stays false until math "
                 "authorizes the flip after a tip Authority recheck of the commit "
@@ -500,11 +500,12 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("formal-tail summary open count drifted")
     if open_rows != 25:
         errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 25")
-    if summary.get("blocked_rows") != 25:
-        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != 25")
-    if summary.get("candidate_rows") != 0:
+    if summary.get("blocked_rows") != 20:
+        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != 20")
+    if summary.get("candidate_rows") != len(disp.CAND7_IDS):
         errors.append(
-            f"candidate_rows {summary.get('candidate_rows')!r} != 0 after CAND6 close"
+            f"candidate_rows {summary.get('candidate_rows')!r} != {len(disp.CAND7_IDS)} "
+            "(CAND7 expand-audit only; not a close)"
         )
     wiring_ids = [
         row.get("clause")
@@ -523,65 +524,29 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     # no longer carry candidate_theorems on the prove record).
     expected_order = []
     cand6_ids = set(disp.CAND6_IDS)
+    cand7_ids = set(disp.CAND7_IDS)
     for row in ledger.get("rows") or []:
-        if row.get("clause") in cand6_ids:
+        if row.get("clause") in cand6_ids or row.get("clause") in cand7_ids:
             continue
         expected_order.extend(disp.PROVE_CANDIDATES.get(row.get("clause"), []))
-    # CAND6 short names stay in PROVE_CANDIDATES and in FormalTail20261024.lean.
-    # The five rows are CLOSED_BY_WIRING and no longer carry candidate_theorems
-    # on the prove record. Source order appends the twelve names after the
-    # earlier 37. That is not archive order, so the module-order check keeps
-    # them as a suffix. The expand receipt stays closes_debt=false /
-    # closed_this_round=0 / named_count=49. That receipt is not this close.
+    # CAND6 (closed) and CAND7 (expand-audit) short names stay in PROVE_CANDIDATES
+    # and in FormalTail20261024.lean. Source order appends twenty-four names after
+    # the earlier 37. That is not archive order, so the module-order check keeps
+    # them as suffixes. This expand's closed increment stays 0.
     cand6_suffix: list[str] = []
     for clause in disp.CAND6_IDS:
         cand6_suffix.extend(disp.PROVE_CANDIDATES.get(clause, []))
+    cand7_suffix: list[str] = []
+    for clause in disp.CAND7_IDS:
+        cand7_suffix.extend(disp.PROVE_CANDIDATES.get(clause, []))
     if len(cand6_suffix) != 12:
         errors.append(f"CAND6 theorem count {len(cand6_suffix)} != 12")
-    prove_names = {name for names in disp.PROVE_CANDIDATES.values() for name in names}
-    missing_from_prove = [name for name in cand6_suffix if name not in prove_names]
-    if missing_from_prove:
-        errors.append(f"CAND6 suffix missing from PROVE_CANDIDATES: {missing_from_prove}")
-    # CAND7 (pack formal_tail_真证CAND7_20261026) appends twelve theorems to the
-    # same module. They are intentionally absent from PROVE_CANDIDATES: putting
-    # them there would flip U07.1/U02.3/U04.3/U05.2/U06.3 out of
-    # BLOCKED_NOT_IN_TIP_PIN_AUDIT and would claim a tip-pin expand audit.
-    # Closed increment stays 0. OPEN stays 25. tip_pin is not retargeted.
-    # named_count stays 49. This suffix is not an expand-audit receipt.
-    cand7_suffix = [
-        "u07_1_retraction_not_full_observation_decoding_acceptance",
-        "u07_1_separation_monotone_not_history_decoding",
-        "u07_1_encode_nonsurjective_not_full_decode_acceptance",
-        "u02_3_finite_enumeration_not_generator_support_coverage",
-        "u02_3_common_idle_and_zero_coverage_not_support_coverage",
-        "u04_3_unpenalized_positive_not_penalized_minimizer_existence",
-        "u04_3_unpenalized_improves_not_uniqueness",
-        "u04_3_arbitrarily_small_not_intercept_coordinate_solved",
-        "u05_2_bernoulli_brier_not_conditional_expectation_decomposition",
-        "u05_2_selected_risk_not_simultaneous_threshold_or_rare_group",
-        "u06_3_eval_exists_unique_not_interval_multiplication_enclosure",
-        "u06_3_decision_respects_allowed_not_general_uncertainty_comparison",
-    ]
     if len(cand7_suffix) != 12:
         errors.append(f"CAND7 theorem count {len(cand7_suffix)} != 12")
-    overlap = [name for name in cand7_suffix if name in prove_names]
-    if overlap:
-        errors.append(f"CAND7 suffix overlaps PROVE_CANDIDATES: {overlap}")
-    cand7_ids = ("U07.1", "U02.3", "U04.3", "U05.2", "U06.3")
-    for row in ledger.get("rows") or []:
-        if row.get("clause") not in cand7_ids:
-            continue
-        record = row.get("formal_tail_prove") or {}
-        if row.get("archive_gap_status") != "OPEN_FORMAL_TAIL":
-            errors.append(f"{row.get('clause')}: CAND7 true-proof flipped archive_gap_status")
-        if record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
-            errors.append(f"{row.get('clause')}: CAND7 true-proof flipped disposition")
-        if record.get("candidate_theorems"):
-            errors.append(f"{row.get('clause')}: CAND7 true-proof wrote candidate_theorems")
-        if record.get("discharges_archived_manuscript_gaps") is not False:
-            errors.append(f"{row.get('clause')}: CAND7 true-proof flipped discharges")
-        if record.get("step_2_closed") is not False:
-            errors.append(f"{row.get('clause')}: CAND7 true-proof flipped step_2_closed")
+    prove_names = {name for names in disp.PROVE_CANDIDATES.values() for name in names}
+    missing_from_prove = [name for name in cand6_suffix + cand7_suffix if name not in prove_names]
+    if missing_from_prove:
+        errors.append(f"CAND6/CAND7 suffix missing from PROVE_CANDIDATES: {missing_from_prove}")
     declared = []
     if candidate_text:
         for line in candidate_text.splitlines():
@@ -604,9 +569,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = str(item.get("name") or "")
             if full.startswith(disp.CANDIDATE_MODULE_NAME + "."):
                 errors.append(f"{clause}: FormalTail full name in wired_declarations")
-    # Live expand receipt names CAND5 (25) + CAND5bis (12) + CAND6 (12) = 49
-    # on tip 1c72e444. Historical dc7b7430 (named_count=37) and f85ebe44
-    # (named_count=25) stay on disk untouched.
+    # Live expand receipt names CAND5 (25) + CAND5bis (12) + CAND6 (12) + CAND7 (12)
+    # = 61 on tip 21862d9b. Historical 1c72e444 (49), dc7b7430 (37), f85ebe44 (25).
     if not EXPAND_RECEIPT_PATH.is_file():
         errors.append("missing expand-audit receipt")
     else:
@@ -632,22 +596,25 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
             if full not in named:
                 errors.append(f"expand-audit missing CAND6 {full}")
-        if expand.get("named_count") != 49:
-            errors.append(f"expand-audit named_count {expand.get('named_count')} != 49 (CAND5+CAND5bis+CAND6)")
-        if len(expand.get("named_theorems_full") or []) != 49:
-            errors.append("expand-audit named_theorems_full length != 49")
         for short in cand7_suffix:
             full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
-            if full in named:
-                errors.append(f"expand-audit must not name CAND7 {full}")
+            if full not in named:
+                errors.append(f"expand-audit missing CAND7 {full}")
+        if expand.get("named_count") != 61:
+            errors.append(
+                f"expand-audit named_count {expand.get('named_count')} != 61 "
+                "(CAND5+CAND5bis+CAND6+CAND7)"
+            )
+        if len(expand.get("named_theorems_full") or []) != 61:
+            errors.append("expand-audit named_theorems_full length != 61")
         if expand.get("subject_commit") != disp.TIP_PIN["subject"]:
             errors.append("expand-audit subject_commit != live tip_pin subject")
         if expand.get("run_id") != disp.TIP_PIN["run_id"]:
             errors.append("expand-audit run_id != live tip_pin run_id")
         if expand.get("job_id") != disp.TIP_PIN["job_id"]:
             errors.append("expand-audit job_id != live tip_pin job_id")
-        if expand.get("open_formal_tail_remaining") != 30:
-            errors.append("expand-audit open_formal_tail_remaining != 30")
+        if expand.get("open_formal_tail_remaining") != 25:
+            errors.append("expand-audit open_formal_tail_remaining != 25")
         if expand.get("closed_this_round") != 0:
             errors.append("expand-audit closed_this_round != 0 (this expand increments 0)")
         companion = expand.get("u10_3_companion_note") or ""
@@ -665,6 +632,25 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         u09_1 = expand.get("u09_1_companion_note") or ""
         if "法律关系" not in u09_1 or ("另证" not in u09_1 and "NON_GOAL" not in u09_1):
             errors.append("expand-audit missing U09.1 companion 法律关系/NON_GOAL note")
+        u04_3 = expand.get("u04_3_companion_note") or ""
+        if "校准" not in u04_3 or ("另证" not in u04_3 and "NON_GOAL" not in u04_3):
+            errors.append("expand-audit missing U04.3 companion 校准/NON_GOAL note")
+        # Historical CAND5+CAND5bis+CAND6 receipt must remain named_count=49 and
+        # must not gain the CAND7 names.
+        prior_path = CANDIDATE / "evidence/ci-tip-1c72e444/verification.json"
+        if prior_path.is_file():
+            prior = load_json(prior_path)
+            if prior.get("named_count") != 49:
+                errors.append("historical 1c72e444 named_count drifted from 49")
+            if prior.get("closes_debt") is not False:
+                errors.append("historical 1c72e444 closes_debt flipped")
+            prior_named = set(prior.get("named_theorems_full") or [])
+            for short in cand7_suffix:
+                full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+                if full in prior_named:
+                    errors.append(f"historical 1c72e444 must not name CAND7 {full}")
+        else:
+            errors.append("missing historical 1c72e444 receipt")
         # Historical CAND5+CAND5bis receipt must remain named_count=37 and must
         # not gain the CAND6 names.
         prior_path = CANDIDATE / "evidence/ci-tip-dc7b7430/verification.json"

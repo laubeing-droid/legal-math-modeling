@@ -98,7 +98,7 @@ theorem u01_6_fit_card_minimizes_actual_sample {m n : Nat} {Y : Type}
     (protocol : LearningProtocol) (loss : ℚ → Y → ℚ)
     (models : List (List ℚ)) (data : Fin n → Fin m × Y)
     (out : FittedTable) (accepted : fitTable protocol loss models data = .known out) :
-    out.protocol = protocol ∧ out.sampleSize = n ∧ out.table ∈ models ∧
+    out.protocol = protocol ∧ out.sampleSize = n ∧ out.table.length = m ∧ out.table ∈ models ∧
       out.empiricalRisk = empiricalScore (tableLoss loss) data out.table ∧
       ∀ table ∈ models,
         empiricalScore (tableLoss loss) data out.table ≤ empiricalScore (tableLoss loss) data table := by
@@ -107,7 +107,10 @@ theorem u01_6_fit_card_minimizes_actual_sample {m n : Nat} {Y : Type}
   · cases accepted
   · split at accepted
     · cases accepted
-    · cases models with
+    · rename_i widths
+      have allWidths : models.all (fun table => decide (table.length = m)) = true := by
+        simpa using widths
+      cases models with
       | nil => simp [proposed_empirical_fit] at accepted
       | cons first rest =>
           by_cases hn : n = 0
@@ -115,7 +118,10 @@ theorem u01_6_fit_card_minimizes_actual_sample {m n : Nat} {Y : Type}
           · simp only [proposed_empirical_fit, hn, if_false] at accepted
             cases accepted
             have best := selectMinimum_spec (empiricalScore (tableLoss loss) data) first rest
-            exact ⟨rfl, rfl, best.1, rfl, best.2⟩
+            have selectedWidth :
+                (selectMinimum (empiricalScore (tableLoss loss) data) first rest).length = m := by
+              simpa using (List.all_eq_true.mp allWidths _ best.1)
+            exact ⟨rfl, rfl, selectedWidth, best.1, rfl, best.2⟩
 
 theorem u01_6_reject_changed_model_contents {m : Nat}
     (expected : LearningProtocol) (fitted : FittedTable) (query : Fin m)
@@ -165,8 +171,7 @@ theorem u01_6_matching_calibration_reads_selected_table {m : Nat}
     (nonnegative : 0 ≤ certificate.bounds.upperRisk)
     (acceptable : certificate.bounds.upperRisk ≤ riskLimit) :
     consumeCalibration fitted.protocol fitted query certificate riskLimit true =
-      .known { protocol := fitted.protocol, value := fitted.table.getD query.val 0,
-        bounds := certificate.bounds } := by
+      .known { protocol := fitted.protocol, value := fitted.table.getD query.val 0, bounds := certificate.bounds } := by
   simp [consumeCalibration, scope, sameTable, width,
     Calibration.proposed_calibration_support_gate, boundScope, coverage, nonnegative, acceptable]
 
@@ -176,7 +181,7 @@ theorem u01_6_successful_pipeline_uses_actual_empirical_minimizer {m n : Nat} {Y
     (query : Fin m) (certificate : TableCalibration) (riskLimit : ℚ)
     (out : FittedTable) (accepted : fitTable protocol loss models data = .known out)
     (scope : certificate.protocol = protocol) (sameTable : certificate.table = out.table)
-    (width : out.table.length = m) (boundScope : certificate.bounds.contract = protocol.fit)
+    (boundScope : certificate.bounds.contract = protocol.fit)
     (coverage : 0 < certificate.bounds.lowerCoverage)
     (nonnegative : 0 ≤ certificate.bounds.upperRisk)
     (acceptable : certificate.bounds.upperRisk ≤ riskLimit) :
@@ -189,9 +194,9 @@ theorem u01_6_successful_pipeline_uses_actual_empirical_minimizer {m n : Nat} {Y
   have consumed := u01_6_actual_fit_output_is_consumed protocol protocol loss models data
     query certificate riskLimit true out accepted
   have checked := u01_6_matching_calibration_reads_selected_table out query certificate riskLimit
-    (scope.trans best.1.symm) sameTable width (boundScope.trans (congrArg LearningProtocol.fit best.1).symm)
+    (scope.trans best.1.symm) sameTable best.2.2.1 (boundScope.trans (congrArg LearningProtocol.fit best.1).symm)
     coverage nonnegative acceptable
-  refine ⟨?_, best.2.2.1, best.2.2.2.2⟩
+  refine ⟨?_, best.2.2.2.1, best.2.2.2.2.2⟩
   simpa only [best.1] using consumed.trans (by simpa only [best.1] using checked)
 
 end JurisLean.Candidates.LearningConsumer20261027

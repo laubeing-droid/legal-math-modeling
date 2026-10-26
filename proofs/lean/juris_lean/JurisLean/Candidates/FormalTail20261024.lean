@@ -57,8 +57,9 @@ non-goals of U04.3. discharges_archived_manuscript_gaps,
 math_flip_authorized, and step_2_closed stay false.
 The closed increment of this section is 0.
 
-CAND8 (U03.1 / U03.2 / U07.2 / U01.1 / U01.2), pack
-formal_tail_真证CAND8_20261026, appends twelve non-sufficiency witnesses.
+CAND8 (U03.1 / U03.2 / U07.2; U01 deferred), pack
+formal_tail_真证CAND8_20261026 v1.1, appends eight non-sufficiency witnesses.
+U01.1 / U01.2 are deferred out of this knife per owner+math.
 They stay out of PROVE_CANDIDATES, so the five rows stay blocked.
 Open count stays 20. This section does not retarget tip_pin
 (subject 21862d9b / Authority 40274167574 / job 121413235107 /
@@ -1213,7 +1214,8 @@ theorem u06_3_decision_respects_allowed_not_general_uncertainty_comparison
   exact absurd this (by norm_num)
 
 /-! ### CAND8
-Non-sufficiency witnesses for U03.1, U03.2, U07.2, U01.1, and U01.2.
+Non-sufficiency witnesses for U03.1, U03.2, and U07.2 (eight theorems).
+U01.1 / U01.2 deferred out of this knife (owner+math v1.1).
 Each one consumes an already-audited Final20261021 declaration and shows
 that the wired claim does not state the still-open gap. No row is closed.
 Verified fuel-bound and provenance-DAG-to-closure claims stay non-goals. -/
@@ -1357,90 +1359,5 @@ theorem u07_2_incompatible_fiber_not_layer_compatibility :
   intro hall
   have hfalse := hall false
   exact absurd hfalse (by decide)
-
-/-! ### U01.1
-A fixed-class subgaussian tail bound is not an iid sample-mean/sqrt-radius
-specialization. An approximate ERM inequality is not a representation-risk
-decomposition. -/
-
-section cand8U01
-open scoped NNReal
-
-/-- Iid sample-mean/sqrt-radius specialization would collapse distinct rates. -/
-def cand8IidSampleMeanSqrtRadiusSpecialization : Prop :=
-  (2 : ℝ) = (3 : ℝ)
-
-/-- Representation-risk decomposition would identify unrelated error budgets. -/
-def cand8RepresentationRiskDecomposition : Prop :=
-  (1 : ℝ) = (0 : ℝ)
-
-noncomputable def cand8UnitMeasure : MeasureTheory.Measure Unit :=
-  MeasureTheory.Measure.dirac ()
-
-instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
-  ⟨by simp [cand8UnitMeasure]⟩
-
-end cand8U01
-
-theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    _root_.And
-      (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-        (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
-        (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one)
-      (¬ cand8IidSampleMeanSqrtRadiusSpecialization) := by
-  refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-    (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
-    (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
-  intro hspec
-  exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
-
-theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    _root_.And
-      (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-        (by norm_num) (by norm_num) (by norm_num))
-      (¬ cand8RepresentationRiskDecomposition) := by
-  refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-    (by norm_num) (by norm_num) (by norm_num), ?_⟩
-  intro hdecomp
-  exact absurd hdecomp (by norm_num : (1 : ℝ) ≠ 0)
-
-/-! ### U01.2
-A pointwise zero-one label bridge is not general measurable bounded-loss
-integration. A finite expectation bridge is not a jointly estimated bridge
-budget with additive equality. -/
-
-def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
-  mass := fun _ => 1 / 2
-  nonneg := fun _ => by norm_num
-  total := by norm_num
-}
-
-/-- General measurable bounded-loss integration would identify every bridge. -/
-def cand8GeneralMeasurableBoundedLossIntegration : Prop :=
-  ∀ (h y truth : Fin 2), Learning.zeroOne h truth = 0
-
-/-- A jointly estimated bridge budget would identify unrelated additive rates. -/
-def cand8JointlyEstimatedBridgeBudget : Prop :=
-  (2 : ℚ) = (3 : ℚ)
-
-theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
-    (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
-        Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ∧
-    (¬ cand8GeneralMeasurableBoundedLossIntegration) := by
-  have hpoint := Learning.u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
-  refine ⟨hpoint, ?_⟩
-  intro hall
-  have hfalse := hall 0 1 1
-  simp [Learning.zeroOne] at hfalse
-
-theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
-    _root_.And
-      (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-        (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)))
-      (¬ cand8JointlyEstimatedBridgeBudget) := by
-  refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-    (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
-  intro hbudget
-  exact absurd hbudget (by norm_num : (2 : ℚ) ≠ 3)
 
 end JurisLean.Candidates.FormalTail20261024

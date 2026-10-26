@@ -1,0 +1,53 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "927df18fb9de571902e9c0d62dc7c70b28a7a494",
+  "run_id": 40385438770,
+  "job_id": 121792358693,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumerAudit20261027.lean",
+  "named_count": 8,
+  "named_theorems_full": [
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_model_contents",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_fit_scope",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_wrong_feature_width",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_invalid_failure_budget",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_matching_calibration_reads_selected_table",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean",
+      "sha256": "665fc8b3063fde35817e0b6d2d83cb125960b8251ffceb3ed1744a5d4a414753"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumerAudit20261027.lean",
+      "sha256": "2efc0064234efd369f42ff550e0abfd4eb1dccff88ca96a0e74f5436bfd09792"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 8,
+    "axiom_vocabulary": {
+      "Classical.choice": 5,
+      "Quot.sound": 8,
+      "propext": 8
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "Three #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

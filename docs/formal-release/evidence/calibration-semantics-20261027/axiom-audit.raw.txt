@@ -1,0 +1,79 @@
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:3:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_correct_implies_calibration.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (mX mScore : MeasurableSpace Ω) (scoreInformation : mScore ≤ mX) (observedInformation : mX ≤ m₀) (Y p : Ω → ℝ)
+  (scoreMeasurable : MeasureTheory.AEStronglyMeasurable p μ) (correct : μ[Y | mX] =ᵐ[μ] p) : μ[Y | mScore] =ᵐ[μ] p
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:4:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_correct_implies_calibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:5:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_decomposition.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (m : MeasurableSpace Ω)
+  (hm : m ≤ m₀) (Y p : Ω → ℝ) (hY : MeasureTheory.MemLp Y 2 μ) (hp : MeasureTheory.MemLp p 2 μ)
+  (scoreMeasurable : MeasureTheory.StronglyMeasurable p) :
+  μ[(Y - p) ^ 2 | m] =ᵐ[μ] ProbabilityTheory.condVar m Y μ + (μ[Y | m] - p) ^ 2
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:6:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:7:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_unique_optimum.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (m : MeasurableSpace Ω)
+  (hm : m ≤ m₀) (Y p : Ω → ℝ) (hY : MeasureTheory.MemLp Y 2 μ) (hp : MeasureTheory.MemLp p 2 μ)
+  (scoreMeasurable : MeasureTheory.StronglyMeasurable p) :
+  ∀ᵐ (w : Ω) ∂μ,
+    ProbabilityTheory.condVar m Y μ w ≤ μ[(Y - p) ^ 2 | m] w ∧
+      (ProbabilityTheory.condVar m Y μ w = μ[(Y - p) ^ 2 | m] w ↔ p w = μ[Y | m] w)
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:8:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_unique_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:9:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_variance.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (m : MeasurableSpace Ω)
+  (hm : m ≤ m₀) (Y : Ω → ℝ) (hY : MeasureTheory.MemLp Y 2 μ) (binary : ∀ᵐ (w : Ω) ∂μ, Y w = 0 ∨ Y w = 1) :
+  ProbabilityTheory.condVar m Y μ =ᵐ[μ] μ[Y | m] * (1 - μ[Y | m])
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:10:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:11:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_brier.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (m : MeasurableSpace Ω)
+  (hm : m ≤ m₀) (Y p : Ω → ℝ) (hY : MeasureTheory.MemLp Y 2 μ) (hp : MeasureTheory.MemLp p 2 μ)
+  (scoreMeasurable : MeasureTheory.StronglyMeasurable p) (binary : ∀ᵐ (w : Ω) ∂μ, Y w = 0 ∨ Y w = 1) :
+  μ[(Y - p) ^ 2 | m] =ᵐ[μ] μ[Y | m] * (1 - μ[Y | m]) + (μ[Y | m] - p) ^ 2
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:12:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_brier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:13:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_2_population_calibration_not_group_calibration :
+  JurisLean.Candidates.CalibrationSemantics20261027.calibrated
+      JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms (fun x => 1 / 2) id ∧
+    JurisLean.Candidates.CalibrationSemantics20261027.groupRate
+          JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms id id =
+        some 1 ∧
+      JurisLean.Candidates.CalibrationSemantics20261027.groupRate
+          JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms (fun w => !w) id =
+        some 0
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:14:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_2_population_calibration_not_group_calibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:15:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_1_normalized_score_not_calibrated :
+  (∀ (w : Bool), 0 ≤ (fun x => 9 / 10) w ∧ (fun x => 9 / 10) w ≤ 1) ∧
+    ¬JurisLean.Candidates.CalibrationSemantics20261027.calibrated
+        JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms (fun x => 9 / 10) id
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:16:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_1_normalized_score_not_calibrated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:17:0: JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk :
+  JurisLean.Candidates.CalibrationSemantics20261027.groupRate
+        JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms
+        (fun w => decide (1 / 2 ≤ JurisLean.Candidates.CalibrationSemantics20261027.confidenceScore w)) id =
+      some (1 / 2) ∧
+    JurisLean.Candidates.CalibrationSemantics20261027.groupRate
+          JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms
+          (fun w => decide (1 ≤ JurisLean.Candidates.CalibrationSemantics20261027.confidenceScore w)) id =
+        some 1 ∧
+      (JurisLean.Candidates.Final20261021.Probability.expectation
+            JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms fun w =>
+            if 1 / 2 ≤ JurisLean.Candidates.CalibrationSemantics20261027.confidenceScore w then 1 else 0) =
+          1 ∧
+        (JurisLean.Candidates.Final20261021.Probability.expectation
+            JurisLean.Candidates.CalibrationSemantics20261027.balancedAtoms fun w =>
+            if 1 ≤ JurisLean.Candidates.CalibrationSemantics20261027.confidenceScore w then 1 else 0) =
+          1 / 2
+info: JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean:18:0: 'JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1414,7 +1414,8 @@ def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
   mass := fun _ => 1 / 2
   nonneg := fun _ => by norm_num
   total := by
-    native_decide
+    simp [Finset.sum_univ, Fintype.card_fin]
+    norm_num
 }
 
 /-- General measurable bounded-loss integration would identify every bridge. -/

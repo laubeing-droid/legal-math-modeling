@@ -9281,8 +9281,8 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "72f570967d3c5bc5564e702a34940e90cf5876656b3e994e8bee6c9fc260fdd8",
-   "size_bytes": 64371,
+   "sha256": "661afcd55deca65e981318d5fbe13e5e15d2f5feba495600a9744471fc66fd27",
+   "size_bytes": 63794,
    "theorem_count": 73,
    "theorem_count_bol_convention": 73
   },
@@ -50327,19 +50327,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "07942e64a6815e9b64aecaa3f1a57e19147ccc7fb7a23e866d721f40ca3df2e4",
+ "source_inventory_digest": "494f3cd91bc88bfd3b2a60242c76f9d3f63d7e5e4b0530150e5e1f2abcf5ecb4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/formal-tail-cand8-1dc1",
-  "commit": "e938717dcd198ac19847d46a722affbd0c3413df",
-  "tree": "3a09bfc9ff90fbc106beac5d1008e01272b65839"
+  "commit": "901ac3b1c019059cec7f5f9e7d4c10e2b3cbc166",
+  "tree": "2611af66a376f0dbd88310e09b2a1247a1d90550"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 394,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

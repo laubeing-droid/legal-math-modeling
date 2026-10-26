@@ -1382,10 +1382,11 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
   ⟨by simp [cand8UnitMeasure]⟩
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-      (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
-      (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
-      ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
+    And
+      (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+        (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
+        (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one)
+      (Not cand8IidSampleMeanSqrtRadiusSpecialization) := by
   refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
     (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
@@ -1393,12 +1394,13 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))) ∧
-      ¬ cand8RepresentationRiskDecomposition := by
-  refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+    And
+      (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+        (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+        (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+        (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ)))
+      (Not cand8RepresentationRiskDecomposition) := by
+  refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
     (by norm_num) (by norm_num) (by norm_num), ?_⟩
   intro hdecomp
   exact absurd hdecomp (by norm_num : (1 : ℝ) ≠ 0)
@@ -1425,9 +1427,10 @@ def cand8JointlyEstimatedBridgeBudget : Prop :=
   (2 : ℚ) = (3 : ℚ)
 
 theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
-    (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
-        Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ∧
-      ¬ cand8GeneralMeasurableBoundedLossIntegration := by
+    And
+      (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
+        Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2))
+      (Not cand8GeneralMeasurableBoundedLossIntegration) := by
   have hpoint := Learning.u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
   refine ⟨hpoint, ?_⟩
   intro hall
@@ -1435,9 +1438,10 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
   simp [Learning.zeroOne] at hfalse
 
 theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
-    (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))) ∧
-      ¬ cand8JointlyEstimatedBridgeBudget := by
+    And
+      (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+        (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)))
+      (Not cand8JointlyEstimatedBridgeBudget) := by
   refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
     (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
   intro hbudget

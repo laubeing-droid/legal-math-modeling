@@ -1382,22 +1382,23 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
 
 end cand8U01
 
-def cand8FixedClassTailNotIidWitness : Prop :=
-  (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-    (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
-    (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
-  ¬ cand8IidSampleMeanSqrtRadiusSpecialization
+structure cand8FixedClassTailNotIidWitness : Prop where
+  tail :
+    Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+      (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
+      (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one
+  not_iid : ¬ cand8IidSampleMeanSqrtRadiusSpecialization
 
-def cand8ApproximateErmNotDecompositionWitness : Prop :=
-  (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
-    (le_rfl : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))) ∧
-  ¬ cand8RepresentationRiskDecomposition
+structure cand8ApproximateErmNotDecompositionWitness : Prop where
+  erm :
+    Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+  not_decomposition : ¬ cand8RepresentationRiskDecomposition
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
     cand8FixedClassTailNotIidWitness := by
-  unfold cand8FixedClassTailNotIidWitness
   refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
     (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
@@ -1406,7 +1407,6 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
     cand8ApproximateErmNotDecompositionWitness := by
-  unfold cand8ApproximateErmNotDecompositionWitness
   refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
     (by norm_num) (by norm_num) (by norm_num), ?_⟩
   intro hdecomp
@@ -1431,19 +1431,20 @@ def cand8GeneralMeasurableBoundedLossIntegration : Prop :=
 def cand8JointlyEstimatedBridgeBudget : Prop :=
   (2 : ℚ) = (3 : ℚ)
 
-def cand8LabelBridgeNotMeasurableWitness : Prop :=
-  (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
-      Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ∧
-  ¬ cand8GeneralMeasurableBoundedLossIntegration
+structure cand8LabelBridgeNotMeasurableWitness : Prop where
+  pointwise :
+    Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
+      Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2)
+  not_measurable : ¬ cand8GeneralMeasurableBoundedLossIntegration
 
-def cand8FiniteBridgeNotJointBudgetWitness : Prop :=
-  ((Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)))) ∧
-  ¬ cand8JointlyEstimatedBridgeBudget
+structure cand8FiniteBridgeNotJointBudgetWitness : Prop where
+  finite_bridge :
+    Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))
+  not_joint_budget : ¬ cand8JointlyEstimatedBridgeBudget
 
 theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
     cand8LabelBridgeNotMeasurableWitness := by
-  unfold cand8LabelBridgeNotMeasurableWitness
   have hpoint := Learning.u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
   refine ⟨hpoint, ?_⟩
   intro hall
@@ -1452,7 +1453,6 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
 
 theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
     cand8FiniteBridgeNotJointBudgetWitness := by
-  unfold cand8FiniteBridgeNotJointBudgetWitness
   refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
     (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
   intro hbudget

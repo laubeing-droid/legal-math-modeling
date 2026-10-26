@@ -155,7 +155,82 @@ theorem u03_2_bounded_executable_closure_complete (rules : List (Rule Nat))
       if_true, known]
   exact ⟨known, checked, u03_2_checked_closure_complete rules facts fuel known checked⟩
 
+theorem u03_2_computed_at_carrier_iff (rules : List (Rule Nat)) (facts : List Nat)
+    (a : Nat) :
+    a ∈ proposed_rule_input rules (finiteCarrier rules facts).card facts ↔
+      Derives (· ∈ facts) (· ∈ rules) a := by
+  apply u03_2_checked_closure_complete rules facts (finiteCarrier rules facts).card
+    (proposed_rule_input rules (finiteCarrier rules facts).card facts)
+  simp only [proposed_checked_rule_input,
+    u03_2_closed_at_finite_fuel rules facts _ (Nat.le_refl _), if_true]
+
+theorem derives_mono_facts {facts larger : Nat → Prop} {rules : Rule Nat → Prop}
+    (included : ∀ a, facts a → larger a) {a : Nat} (derived : Derives facts rules a) :
+    Derives larger rules a := by
+  induction derived with
+  | fact a ha => exact .fact a (included a ha)
+  | fire r hr hp ih => exact .fire r hr ih
+
+/-- Common-facts derivability is sound in each retained interpretation.
+The converse is not claimed; the executable counterexample below is strict. -/
+theorem u03_1_common_facts_closure_subset_robust
+    (interpretations : List (List Nat)) (rules : List (Rule Nat)) (a : Nat)
+    (derived : Derives (fun b => ∀ facts ∈ interpretations, b ∈ facts) (· ∈ rules) a) :
+    ∀ facts ∈ interpretations, Derives (· ∈ facts) (· ∈ rules) a := by
+  intro facts member
+  exact derives_mono_facts (fun b hb => hb facts member) derived
+
+/-- Exact finite-query evaluation over the retained interpretations. Empty
+interpretation families are rejected instead of accepting by vacuity. -/
+def proposed_robust_queries (rules : List (Rule Nat))
+    (interpretations : List (List Nat)) (queries : List Nat) : Result (List Nat) :=
+  if interpretations = [] then .unknown .missingEvidence
+  else .known (queries.filter fun a => interpretations.all fun facts =>
+    decide (a ∈ proposed_rule_input rules (finiteCarrier rules facts).card facts))
+
+theorem u03_2_robust_queries_exact (rules : List (Rule Nat))
+    (interpretations : List (List Nat)) (queries known : List Nat)
+    (accepted : proposed_robust_queries rules interpretations queries = .known known)
+    (a : Nat) :
+    interpretations ≠ [] ∧
+      (a ∈ known ↔ a ∈ queries ∧
+        ∀ facts ∈ interpretations, Derives (· ∈ facts) (· ∈ rules) a) := by
+  unfold proposed_robust_queries at accepted
+  split at accepted
+  next empty => cases accepted
+  next nonempty =>
+    cases accepted
+    refine ⟨nonempty, ?_⟩
+    simp only [List.mem_filter, List.all_eq_true, decide_eq_true_eq]
+    constructor
+    · rintro ⟨queried, allFacts⟩
+      exact ⟨queried, fun facts member =>
+        (u03_2_computed_at_carrier_iff rules facts a).mp (allFacts facts member)⟩
+    · rintro ⟨queried, allFacts⟩
+      exact ⟨queried, fun facts member =>
+        (u03_2_computed_at_carrier_iff rules facts a).mpr (allFacts facts member)⟩
+
+theorem u03_2_robust_queries_total_on_nonempty (rules : List (Rule Nat))
+    (interpretations : List (List Nat)) (queries : List Nat)
+    (nonempty : interpretations ≠ []) :
+    ∃ known, proposed_robust_queries rules interpretations queries = .known known := by
+  exact ⟨_, by simp only [proposed_robust_queries, nonempty, if_false]⟩
+
+theorem u03_2_empty_interpretations_rejected (rules : List (Rule Nat)) (queries : List Nat) :
+    proposed_robust_queries rules [] queries = .unknown .missingEvidence := by
+  simp [proposed_robust_queries]
+
+/-- The original 03.4 counterexample now runs through the exact evaluator.
+Both alternatives derive 3; their common-facts closure does not. -/
+theorem u03_1_robust_query_strictly_beyond_common_facts :
+    let rules : List (Rule Nat) := [⟨[1], 3⟩, ⟨[2], 3⟩]
+    proposed_robust_queries rules [[1], [2]] [3] = .known [3] ∧
+      3 ∉ proposed_rule_input rules (finiteCarrier rules []).card [] := by
+  decide
+
 end JurisLean.Candidates.Final20261021.Compiler
 
 #print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel
 #print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts

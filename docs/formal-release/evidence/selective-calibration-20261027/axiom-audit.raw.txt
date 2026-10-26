@@ -1,0 +1,118 @@
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:3:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selectPassing_spec.{u_1} {H : Type u_1} (lower upper : H → ℚ)
+  (target : ℚ) (models : List H) (h : H)
+  (selected : JurisLean.Candidates.SelectiveCalibration20261027.selectPassing lower upper target models = some h) :
+  h ∈ models ∧ 0 < lower h ∧ upper h / lower h ≤ target
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:4:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selectPassing_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:6:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_no_result_iff_no_threshold_passes.{u_1} {H : Type u_1}
+  (lower upper : H → ℚ) (target : ℚ) (models : List H) :
+  JurisLean.Candidates.SelectiveCalibration20261027.selectPassing lower upper target models = none ↔
+    ∀ h ∈ models, ¬(0 < lower h ∧ upper h / lower h ≤ target)
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:7:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_no_result_iff_no_threshold_passes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:9:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_empty_sample_refused.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  (loss : H → Z → ℚ) (accepts : H → Z → Bool) (models : List H) (data : Fin 0 → Z) (radius target : ℚ) :
+  JurisLean.Candidates.SelectiveCalibration20261027.calibrate loss accepts models data radius target = none
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:10:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_empty_sample_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:12:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate.{u_1, u_2} {H : Type u_1}
+  {Z : Type u_2} {n : ℕ} (loss : H → Z → ℚ) (models : List H) (data : Fin n → Z) (radius target : ℚ)
+  (nonnegative : 0 ≤ radius) :
+  JurisLean.Candidates.SelectiveCalibration20261027.calibrate loss (fun x x_1 => false) models data radius target = none
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:13:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:15:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_joint_confidence_event_measurable.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (P : MeasureTheory.Measure Z)
+  (models : Finset H) (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i))
+  (loss : H → Z → ℚ) (accepts : H → Z → Bool)
+  (numeratorMeasurable :
+    ∀ h ∈ models,
+      Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z))
+  (coverageMeasurable :
+    ∀ h ∈ models, Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z))
+  (radius : ℝ) :
+  MeasurableSet
+    {w |
+      ∀ h ∈ models,
+        |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts) (fun i => sample i w)
+                    h) -
+                ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z) ∂P| ≤
+            radius ∧
+          |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts) (fun i => sample i w) h) -
+                ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z) ∂P| ≤
+            radius}
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:16:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_joint_confidence_event_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:18:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_simultaneous_numerator_and_coverage.{u_1, u_2, u_3}
+  {Ω : Type u_1} {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (models : Finset H) (nonempty : models.Nonempty)
+  (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i))
+  (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ) (accepts : H → Z → Bool)
+  (numeratorMeasurable :
+    ∀ h ∈ models,
+      Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z))
+  (coverageMeasurable :
+    ∀ h ∈ models, Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z))
+  (lossRange : ∀ h ∈ models, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ models,
+          |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore
+                      (JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts)
+                      (fun i => sample i w) h) -
+                  ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z) ∂P| ≤
+              JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * models.card) δ ∧
+            |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore
+                      (JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts) (fun i => sample i w)
+                      h) -
+                  ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z) ∂P| ≤
+              JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * models.card) δ}
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:19:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_simultaneous_numerator_and_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:21:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound.{u_1, u_2, u_3}
+  {Ω : Type u_1} {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] [DecidableEq H] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (first : H) (rest : List H) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ) (accepts : H → Z → Bool)
+  (numeratorMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z))
+  (coverageMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z => ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z))
+  (lossRange : ∀ h ∈ first :: rest, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1)
+  (radius target : ℚ)
+  (conservative :
+    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * (first :: rest).toFinset.card) δ ≤ ↑radius) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - δ ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (h : H),
+            JurisLean.Candidates.SelectiveCalibration20261027.calibrate loss accepts (first :: rest)
+                  (fun i => sample i w) radius target =
+                some h →
+              0 < ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z) ∂P ∧
+                (∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss loss accepts h z) ∂P) /
+                    ∫ (z : Z), ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss accepts h z) ∂P ≤
+                  ↑target
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:22:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:24:0: JurisLean.Candidates.SelectiveCalibration20261027.q05_3_positive_fixture_radius :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius 4000 4 (1 / 10) ≤ 1 / 10
+info: JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean:25:0: 'JurisLean.Candidates.SelectiveCalibration20261027.q05_3_positive_fixture_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

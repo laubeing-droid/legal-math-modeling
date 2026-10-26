@@ -541,6 +541,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     expected_order = []
     cand6_ids = set(disp.CAND6_IDS)
     cand7_ids = set(disp.CAND7_IDS)
+    cand8_ids = set(disp.CAND8_IDS)
     for row in ledger.get("rows") or []:
         if row.get("clause") in cand6_ids or row.get("clause") in cand7_ids:
             continue
@@ -565,19 +566,56 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     missing_from_prove = [name for name in cand6_suffix + cand7_suffix if name not in prove_names]
     if missing_from_prove:
         errors.append(f"CAND6/CAND7 suffix missing from PROVE_CANDIDATES: {missing_from_prove}")
+    # CAND8 v1.1 (pack formal_tail_真证CAND8_20261026): eight theorems only.
+    # U01.1/U01.2 deferred out of this knife (owner+math). Intentionally absent
+    # from PROVE_CANDIDATES so U03.1/U03.2/U07.2 (and deferred U01) stay
+    # BLOCKED_NOT_IN_TIP_PIN_AUDIT. Closed increment stays 0. OPEN stays 20.
+    # tip_pin is not retargeted. named_count stays 61.
+    cand8_suffix = [
+        "u03_1_relative_soundness_not_provenance_dag_to_finite_closure",
+        "u03_1_computed_sound_not_dag_connected_to_executable_closure",
+        "u03_1_robust_countermodel_not_connected_to_finite_closure",
+        "u03_2_relative_completeness_not_verified_fuel_bound",
+        "u03_2_checked_closure_complete_not_list_carrier_bound",
+        "u03_2_incomplete_fuel_not_carrier_fuel_bound",
+        "u07_2_common_fiber_not_semantic_compatibility",
+        "u07_2_incompatible_fiber_not_layer_compatibility",
+    ]
+    if len(cand8_suffix) != 8:
+        errors.append(f"CAND8 theorem count {len(cand8_suffix)} != 8")
+    overlap8 = [name for name in cand8_suffix if name in prove_names]
+    if overlap8:
+        errors.append(f"CAND8 suffix overlaps PROVE_CANDIDATES: {overlap8}")
+    for row in ledger.get("rows") or []:
+        if row.get("clause") not in cand8_ids:
+            continue
+        record = row.get("formal_tail_prove") or {}
+        if row.get("archive_gap_status") != "OPEN_FORMAL_TAIL":
+            errors.append(f"{row.get('clause')}: CAND8 true-proof flipped archive_gap_status")
+        if record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
+            errors.append(f"{row.get('clause')}: CAND8 true-proof flipped disposition")
+        if record.get("candidate_theorems"):
+            errors.append(f"{row.get('clause')}: CAND8 true-proof wrote candidate_theorems")
+        if record.get("discharges_archived_manuscript_gaps") is not False:
+            errors.append(f"{row.get('clause')}: CAND8 true-proof flipped discharges")
+        if record.get("step_2_closed") is not False:
+            errors.append(f"{row.get('clause')}: CAND8 true-proof flipped step_2_closed")
     declared = []
     if candidate_text:
         for line in candidate_text.splitlines():
             stripped = line.strip()
             if stripped.startswith("theorem "):
                 declared.append(stripped.split()[1])
-    if declared != expected_order + cand6_suffix + cand7_suffix:
+    if declared != expected_order + cand6_suffix + cand7_suffix + cand8_suffix:
         errors.append(
             f"candidate module theorems {declared} != "
-            f"PROVE_CANDIDATES+CAND6+CAND7 {expected_order + cand6_suffix + cand7_suffix}"
+            f"PROVE_CANDIDATES+CAND6+CAND7+CAND8 "
+            f"{expected_order + cand6_suffix + cand7_suffix + cand8_suffix}"
         )
     # Ban FormalTail short names from every row's wired_declarations.
-    formal_shorts = set(expected_order) | set(cand6_suffix) | set(cand7_suffix)
+    formal_shorts = (
+        set(expected_order) | set(cand6_suffix) | set(cand7_suffix) | set(cand8_suffix)
+    )
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
         for item in row.get("wired_declarations") or []:
@@ -618,6 +656,10 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
             if full not in named:
                 errors.append(f"expand-audit missing CAND7 {full}")
+        for short in cand8_suffix:
+            full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+            if full in named:
+                errors.append(f"expand-audit must not name CAND8 {full}")
         if expand.get("named_count") != 61:
             errors.append(
                 f"expand-audit named_count {expand.get('named_count')} != 61 "

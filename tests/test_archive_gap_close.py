@@ -200,7 +200,20 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "u06_3_eval_exists_unique_not_interval_multiplication_enclosure",
         "u06_3_decision_respects_allowed_not_general_uncertainty_comparison",
     ]
-    assert formal_tail_text.count("theorem ") >= 37 + len(cand6_shorts) + len(cand7_shorts)
+    cand8_shorts = [
+        "u03_1_relative_soundness_not_provenance_dag_to_finite_closure",
+        "u03_1_computed_sound_not_dag_connected_to_executable_closure",
+        "u03_1_robust_countermodel_not_connected_to_finite_closure",
+        "u03_2_relative_completeness_not_verified_fuel_bound",
+        "u03_2_checked_closure_complete_not_list_carrier_bound",
+        "u03_2_incomplete_fuel_not_carrier_fuel_bound",
+        "u07_2_common_fiber_not_semantic_compatibility",
+        "u07_2_incompatible_fiber_not_layer_compatibility",
+    ]
+    assert (
+        formal_tail_text.count("theorem ")
+        >= 37 + len(cand6_shorts) + len(cand7_shorts) + len(cand8_shorts)
+    )
     for short in cand6_shorts:
         assert f"theorem {short}" in formal_tail_text
     import archive_gap_dispositions as disp
@@ -209,6 +222,14 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     for short in cand7_shorts:
         assert f"theorem {short}" in formal_tail_text
         assert short in prove_names
+    for short in cand8_shorts:
+        assert f"theorem {short}" in formal_tail_text
+        assert short not in prove_names
+    for clause in ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2"):
+        row = by_clause[clause]
+        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+        assert row["formal_tail_prove"]["disposition"] == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
+        assert row["formal_tail_prove"]["candidate_theorems"] == []
     for clause in blocked:
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import re
+import runpy
 import subprocess
 import sys
 from pathlib import Path
@@ -65,6 +66,7 @@ def figures() -> dict[str, object]:
         "reachable": int(m.group(1)),
         "reach_total": int(m.group(2)),
         "reach_booked": int(m.group(3)),
+        "reach_drivers": len(runpy.run_path(str(REACH))["STANDALONE_DRIVERS"]),
         "cmds": pkg["print_axioms_command_count"],
         "targets": pkg["print_axioms_distinct_targets"],
         "audit_cmds": audit_cmds,
@@ -138,6 +140,10 @@ def cn_specs(f: dict[str, object]) -> list[tuple[str, str]]:
          f"{n['tracked_theorems']} 条（`all_tracked_lean`，{n['tracked_files']} 文件）"),
         (r"该账现报 \d+ / \d+ 模块在根闭",
          f"该账现报 {n['reachable']} / {n['reach_total']} 模块在根闭"),
+        (r"\d+ 件记账为独立或待 CI 驱动",
+         f"{n['reach_booked']} 件记账为独立或待 CI 驱动"),
+        (r"其中 \d+ 件是 AxiomAudit 等 CI 直跑入口",
+         f"其中 {n['reach_drivers']} 件是 AxiomAudit 等 CI 直跑入口"),
         (r"文件数的跳升（225[^）]*）",
          f"文件数的跳升（225→296→297，本轮 {n['pkg_files']}）"),
     ]
@@ -146,6 +152,10 @@ def cn_specs(f: dict[str, object]) -> list[tuple[str, str]]:
 def en_specs(f: dict[str, object]) -> list[tuple[str, str]]:
     n = {k: str(v) for k, v in f.items()}
     return [
+        (r"(?:Ten|\d+) of those are CI entry points such as AxiomAudit",
+         f"{n['reach_drivers']} of those are CI entry points such as AxiomAudit"),
+        (r"the \d+ standalone CI entry points",
+         f"the {n['reach_drivers']} standalone CI entry points"),
         (r"## Derived accounting section \(\d+ basis,[^)]*\)",
          f"## Derived accounting section ({n['pkg_counted']} basis, recomputed by the "
          f"generator from the artifacts - do not edit by hand)"),

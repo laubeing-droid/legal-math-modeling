@@ -49,6 +49,10 @@ STANDALONE_DRIVERS: dict[str, str] = {
     "JurisLean.BusinessRoot.RootAudit": "root-environment audit driver",
     "JurisLean.BusinessRoot.SevenAxisAudit": "seven-axis audit driver",
     "JurisLean.FullMath.CompletionAudit": "generated completion audit",
+    "JurisLean.Candidates.FormalTailCAND8AxiomAudit20261027": (
+        "independent 69-target audit; changed-module run 40356561660 passed; "
+        "does not promote FormalTail or replace the frozen tip pin"
+    ),
 }
 
 # Quarantine for modules whose own CI module build has not passed yet: AGENTS.md

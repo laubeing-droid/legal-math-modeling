@@ -1381,34 +1381,24 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
   ⟨by simp [cand8UnitMeasure]⟩
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    cand8UnitMeasure.real
-        (⋃ _h ∈ ({0} : Finset (Fin 1)), {w : Unit | (0 : ℝ) ≤ |(fun _ => (0 : ℝ)) w|}) ≤
-        ∑ _ ∈ ({0} : Finset (Fin 1)), 2 * Real.exp (-(0 : ℝ) ^ 2 / (2 * (0 : ℝ))) ∧
+    (u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+      (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ))
+      (fun h hh => absurd hh (Finset.not_mem_empty h)) (1 : ℝ) zero_le_one) ∧
       ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
-  have hmgf : ProbabilityTheory.HasSubgaussianMGF (fun (_ : Unit) => (0 : ℝ)) 0
-      cand8UnitMeasure := by
-    refine u01_0_bounded_mgf cand8UnitMeasure (fun _ => 0) 0 0
-      (measurable_const.aemeasurable : AEMeasurable (fun _ : Unit => (0 : ℝ)) cand8UnitMeasure) ?_
-    filter_upwards with _
-    simp [Set.mem_Icc]
-  have htail := u01_1_fixed_class_tail cand8UnitMeasure ({0} : Finset (Fin 1))
-    (fun _ _ => 0) (fun _ => 0)
-    (fun h hh => by
-      simp only [Finset.mem_singleton] at hh
-      subst h
-      exact hmgf) (0 : ℝ) (le_refl _)
-  refine ⟨htail, ?_⟩
+  refine ⟨u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+    (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ))
+    (fun h hh => absurd hh (Finset.not_mem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
   intro hspec
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    ((0 : ℝ) ≤ (0 : ℝ) + 2 * (0 : ℝ) + (0 : ℝ)) ∧
+    (u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+      (le_refl _) (le_refl _) (le_refl _)) ∧
       ¬ cand8RepresentationRiskDecomposition := by
-  have h := u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-    (le_refl (0 : ℝ)) (le_refl (0 : ℝ)) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num)
-  refine ⟨h, ?_⟩
+  refine ⟨u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+    (le_refl _) (le_refl _) (le_refl _), ?_⟩
   intro hdecomp
-  exact absurd hdecomp (by norm_num)
+  exact absurd hdecomp (by norm_num : (1 : ℝ) ≠ 0)
 
 end cand8U01
 
@@ -1447,17 +1437,17 @@ theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
     (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
       (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))) ∧
       ¬ cand8JointlyEstimatedBridgeBudget := by
-  constructor
-  · exact Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))
-  · intro hbudget
-    have h1 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
-      simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-      norm_num
-    have h0 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
-      simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-      norm_num
-    rw [cand8JointlyEstimatedBridgeBudget, h1, h0] at hbudget
-    norm_num at hbudget
+  refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+    (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
+  intro hbudget
+  unfold cand8JointlyEstimatedBridgeBudget at hbudget
+  have h1 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
+    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+    norm_num
+  have h0 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
+    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+    norm_num
+  rw [h1, h0] at hbudget
+  norm_num at hbudget
 
 end JurisLean.Candidates.FormalTail20261024

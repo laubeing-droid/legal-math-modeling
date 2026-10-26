@@ -1,0 +1,161 @@
+JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n)
+  (X : Fin n → Ω → ℝ) (independent : ProbabilityTheory.iIndepFun X μ)
+  (law : ∀ (i : Fin n), JurisLean.Candidates.LearningDependence20261027.FairBinary μ (X i)) :
+  ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X) μ = 1 / (4 * ↑n)
+'JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n)
+  (B : Ω → ℝ) (law : JurisLean.Candidates.LearningDependence20261027.FairBinary μ B) :
+  ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean fun x => B) μ = 1 / 4
+'JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 1 < n)
+  (B : Ω → ℝ) (law : JurisLean.Candidates.LearningDependence20261027.FairBinary μ B) :
+  (Function.Injective fun event => event) ∧ ¬ProbabilityTheory.iIndepFun (fun x => B) μ
+'JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample {n : ℕ} (hn : 1 < n) :
+  (Function.Injective fun event => event) ∧
+    ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean fun x => id)
+          JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure =
+        1 / 4 ∧
+      ¬ProbabilityTheory.iIndepFun (fun x => id) JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure
+'JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ) (i : ℕ) (member : i ∈ parents)
+  (notEarlier : known.length ≤ i) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (mismatch :
+    List.map JurisLean.Candidates.CompilerProvenance20261027.Evidence.atom
+        (List.filterMap (fun i => known[i]?) parents) ≠
+      use.rule.premises) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises' depends on axioms: [propext]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (claim : JurisLean.Candidates.CompilerProvenance20261027.Leaf) (unsupported : leafCheck ctx claim = false) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.leaf claim) =
+    none
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf' depends on axioms: [propext]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version' depends on axioms: [propext]
+JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact.{u_1, u_2} {Concrete : Type u_1}
+  {Abstract : Type u_2} (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+  (abstractQuery : Abstract → Prop) (coverage : ∀ (c : Concrete), ∃ a, relation c a)
+  (reverseCoverage : ∀ (a : Abstract), ∃ c, relation c a)
+  (sameAnswer : ∀ (c : Concrete) (a : Abstract), relation c a → (abstractQuery a ↔ concreteQuery c)) :
+  (∀ (a : Abstract), abstractQuery a) ↔ ∀ (c : Concrete), concreteQuery c
+'JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact' does not depend on any axioms
+JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries.{u_1, u_2, u_3}
+  {Left : Type u_1} {Right : Type u_2} {Query : Type u_3} (correspondence : Left ≃ Right)
+  (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+  (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
+  (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
+'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]

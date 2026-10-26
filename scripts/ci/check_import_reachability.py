@@ -56,6 +56,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
     "JurisLean.Candidates.LearningTheoryAudit20261027": (
         "14 exact U01 types and kernel dependencies; changed-module run 40369446453 passed"
     ),
+    "JurisLean.Candidates.LearningProvenanceAudit20261027": (
+        "14 exact sampling and source-graph targets; changed-module run 40376634346 passed"
+    ),
 }
 
 # Quarantine for modules whose own CI module build has not passed yet: AGENTS.md

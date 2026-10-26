@@ -35,7 +35,7 @@ def fixtureCertificate (table : List ℚ) : TableCalibration :=
 
 def fixtureRun (label : Bool) (certificateTable : List ℚ) : Result ℚ :=
   match fitThenCalibrationGate fixtureProtocol fixtureProtocol
-    (fun score truth => if decide (score = 1) = truth then (0 : ℚ) else 1)
+    (fun score truth => if (score = 1 ↔ truth = true) then (0 : ℚ) else 1)
     [[0], [1]] (fun _ : Fin 2 => ((0 : Fin 1), label))
     (0 : Fin 1) (fixtureCertificate certificateTable) 0 true with
   | .known out => .known out.value

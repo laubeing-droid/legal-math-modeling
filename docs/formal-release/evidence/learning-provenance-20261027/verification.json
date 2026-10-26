@@ -1,0 +1,54 @@
+{
+  "schema": "original-learning-provenance-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "7ddb79313adb77e372a323db7913ddfe7c064d78",
+  "run_id": 40376634346,
+  "job_id": 121761360006,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
+  "named_count": 14,
+  "named_theorems_full": [
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+      "sha256": "d7826bb633877896d5e66bce574fa7b4585092b06b196b1795d05d1843c523c7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
+      "sha256": "d0f0c69fb60aeba465a21aeaef556d38bd4382010a4b25e221353b04003c239b"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 14,
+    "axiom_vocabulary": {
+      "Classical.choice": 6,
+      "Quot.sound": 10,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -56,7 +56,7 @@ theorem q05_1_conditional_brier_unique_optimum {Ω : Type*} [m₀ : MeasurableSp
     (scoreMeasurable : StronglyMeasurable[m] p) :
     ∀ᵐ w ∂μ, (Var[Y; μ | m]) w ≤ (μ[(Y - p) ^ 2 | m]) w ∧
       ((Var[Y; μ | m]) w = (μ[(Y - p) ^ 2 | m]) w ↔ p w = (μ[Y | m]) w) := by
-  filter_upwards [q05_1_conditional_brier_decomposition μ m hm Y p hY hp scoreMeasurable]
+  filter_upwards [q05_1_conditional_brier_decomposition (m₀ := m₀) μ m hm Y p hY hp scoreMeasurable]
     with w hRisk
   dsimp at hRisk
   constructor
@@ -87,8 +87,8 @@ theorem q05_1_binary_conditional_brier {Ω : Type*} [m₀ : MeasurableSpace Ω]
     (scoreMeasurable : StronglyMeasurable[m] p) (binary : ∀ᵐ w ∂μ, Y w = 0 ∨ Y w = 1) :
     μ[(Y - p) ^ 2 | m] =ᵐ[μ]
       μ[Y | m] * (1 - μ[Y | m]) + (μ[Y | m] - p) ^ 2 := by
-  filter_upwards [q05_1_conditional_brier_decomposition μ m hm Y p hY hp scoreMeasurable,
-    q05_1_binary_conditional_variance μ m hm Y hY binary] with w hRisk hVariance
+  filter_upwards [q05_1_conditional_brier_decomposition (m₀ := m₀) μ m hm Y p hY hp scoreMeasurable,
+    q05_1_binary_conditional_variance (m₀ := m₀) μ m hm Y hY binary] with w hRisk hVariance
   dsimp at hRisk hVariance ⊢
   rw [hRisk, hVariance]
 
@@ -127,7 +127,7 @@ theorem q05_2_population_calibration_not_group_calibration :
     by_cases same : (1/2 : ℚ) = bin
     · rw [← same]
       norm_num [bucketMass, bucketSuccess, expectation, balancedAtoms, univ]
-    · simp [bucketMass, bucketSuccess, expectation, same]
+    · simp only [bucketMass, bucketSuccess, expectation, if_neg same, mul_zero, Finset.sum_const_zero]
   · norm_num [groupRate, expectation, balancedAtoms, univ]
   · norm_num [groupRate, expectation, balancedAtoms, univ]
 

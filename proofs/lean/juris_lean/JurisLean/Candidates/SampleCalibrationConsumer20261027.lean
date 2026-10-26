@@ -51,7 +51,8 @@ theorem radius_verification_sound (n M : ℕ) (delta radius : ℚ) (exponent : �
   have argumentBound : 4 * (M : ℝ) / (delta : ℝ) ≤ (2 : ℝ) ^ exponent :=
     (div_le_iff₀ hdR).mpr (by simpa only [mul_comm] using hsizeR)
   have logTwo : Real.log 2 ≤ 1 := by
-    simpa using Real.log_le_sub_one_of_pos (show (0 : ℝ) < 2 by norm_num)
+    have bound := Real.log_le_sub_one_of_pos (show (0 : ℝ) < 2 by norm_num)
+    linarith
   have logarithmBound : Real.log (4 * (M : ℝ) / (delta : ℝ)) ≤ (exponent : ℝ) := by
     calc
       _ ≤ Real.log ((2 : ℝ) ^ exponent) := Real.log_le_log argumentPositive argumentBound

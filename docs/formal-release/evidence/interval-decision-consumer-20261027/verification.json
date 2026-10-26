@@ -1,0 +1,62 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "098224d9cd7a1f7f956b49745ea162bc866ff9be",
+  "run_id": 40418104346,
+  "job_id": 121905397514,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean",
+  "named_count": 10,
+  "named_theorems_full": [
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.actual_probability_fills_both_outcomes",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.affine_interval_bounds",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.interval_evaluation_reads_the_receipt",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.computed_decision_encloses_cash_utility_and_risk",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.missing_identification_cannot_succeed",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.fit_to_decision_passes_the_actual_probability",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.explicit_maximin_preserves_permission_and_risk",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.maximin_none_exactly_when_infeasible",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.whole_computed_decision_bin_law_confidence"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
+      "sha256": "e4d9472653683b069c5986ae7fd37c21725e7347e172075bb8005c5f3dd2fb6b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean",
+      "sha256": "f94a52fc3f5a3c89684a76aea03046a5b84f68c75026c8ce393d87cb64889007"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 10,
+    "axiom_vocabulary": {
+      "Classical.choice": 10,
+      "Quot.sound": 10,
+      "propext": 10
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "10 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -1,0 +1,186 @@
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:3:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_fitted_score_selects_the_bin {m : ℕ} (table : List ℚ)
+  (query : Fin m) (row : Fin m × Bool) :
+  JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin (table, query) row = true ↔
+    table.getD (↑row.1) 0 = table.getD (↑query) 0
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:4:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_fitted_score_selects_the_bin' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:5:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.full_model_bin_family_is_counted {m : ℕ}
+  (models : List (List ℚ)) :
+  (JurisLean.Candidates.ProbabilityIntervalConsumer20261027.modelBins models).card = models.toFinset.card * m
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:6:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.full_model_bin_family_is_counted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:7:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.changed_probability_scope_refused {m n : ℕ}
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (models : List (List ℚ))
+  (data : Fin n → Fin m × Bool) (query : Fin m) (radius : ℚ) (exponent snapshot : ℕ) (supported : Bool)
+  (changed : sampleProtocol ≠ fitted.protocol) :
+  JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval sampleProtocol fitted models data query
+      radius exponent snapshot supported =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.targetMismatch
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:8:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.changed_probability_scope_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:9:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_samples_determine_probability {m n : ℕ}
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (models : List (List ℚ))
+  (data : Fin n → Fin m × Bool) (query : Fin m) (radius : ℚ) (exponent snapshot : ℕ) (supported : Bool)
+  (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (accepted :
+    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval sampleProtocol fitted models data query
+        radius exponent snapshot supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out =
+      { fitted := fitted, query := query, models := models, sampleSize := n, snapshot := snapshot, radius := radius,
+        radiusExponent := exponent,
+        successMass :=
+          JurisLean.Candidates.LearningERM20261027.empiricalScore
+            (JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+              JurisLean.Candidates.ProbabilityIntervalConsumer20261027.successLabel
+              JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+            data (fitted.table, query),
+        coverage :=
+          JurisLean.Candidates.LearningERM20261027.empiricalScore
+            (JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+              JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+            data (fitted.table, query) } ∧
+    sampleProtocol = fitted.protocol ∧
+      fitted.table ∈ models ∧
+        JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified n
+              (JurisLean.Candidates.ProbabilityIntervalConsumer20261027.modelBins models).card
+              fitted.protocol.failureBudget radius exponent =
+            true ∧
+          0 <
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                  JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+                data (fitted.table, query) -
+              radius
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:10:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_samples_determine_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:11:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.empirical_success_bounded_by_coverage {m n : ℕ}
+  (data : Fin n → Fin m × Bool) (candidate : List ℚ × Fin m) :
+  0 ≤
+      JurisLean.Candidates.LearningERM20261027.empiricalScore
+        (JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.successLabel
+          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+        data candidate ∧
+    JurisLean.Candidates.LearningERM20261027.empiricalScore
+        (JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.successLabel
+          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+        data candidate ≤
+      JurisLean.Candidates.LearningERM20261027.empiricalScore
+        (JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin)
+        data candidate
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:12:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.empirical_success_bounded_by_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:13:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_interval_contains_empirical_probability {m n : ℕ}
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (models : List (List ℚ))
+  (data : Fin n → Fin m × Bool) (query : Fin m) (radius : ℚ) (exponent snapshot : ℕ) (supported : Bool)
+  (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (accepted :
+    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval sampleProtocol fitted models data query
+        radius exponent snapshot supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  0 ≤ out.lower ∧ out.lower ≤ out.estimate ∧ out.estimate ≤ out.upper ∧ out.upper ≤ 1
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:14:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_interval_contains_empirical_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:15:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.pipeline_consumes_actual_fit_and_sample {m n k : ℕ}
+  (protocol sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (query : Fin m) (radius : ℚ) (exponent snapshot : ℕ) (supported : Bool)
+  (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (accepted :
+    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.runProbability protocol sampleProtocol loss models training
+        calibration query radius exponent snapshot supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SampleCalibrationConsumer20261027.eventPartitionsValid training calibration = true ∧
+    ∃ fitted,
+      (JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models fun i =>
+            ((training i).feature, (training i).label)) =
+          JurisLean.Candidates.Final20261021.Result.known fitted ∧
+        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval sampleProtocol fitted models
+            (fun i => ((calibration i).feature, (calibration i).label)) query radius exponent snapshot supported =
+          JurisLean.Candidates.Final20261021.Result.known out
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:16:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.pipeline_consumes_actual_fit_and_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:17:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.population_bin_integrals {m : ℕ}
+  [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)] (P : MeasureTheory.Measure (Fin m × Bool))
+  (candidate : List ℚ × Fin m) :
+  ∫ (z : Fin m × Bool),
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+            JurisLean.Candidates.ProbabilityIntervalConsumer20261027.successLabel
+            JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin candidate z) ∂P =
+      P.real {z | JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin candidate z = true ∧ z.2 = true} ∧
+    ∫ (z : Fin m × Bool),
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+            JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin candidate z) ∂P =
+      P.real {z | JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin candidate z = true}
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:18:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.population_bin_integrals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:19:0: JurisLean.Candidates.ProbabilityIntervalConsumer20261027.whole_pipeline_bin_probability_confidence.{u_1} {Ω : Type u_1}
+  {m n k : ℕ} [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Bool))
+  [MeasureTheory.IsProbabilityMeasure P] (hm : 0 < m) (hn : 0 < n)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ) (first : List ℚ)
+  (rest : List (List ℚ)) (sample : Fin n → Ω → Fin m × Bool) (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i))
+  (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (hδ : 0 < protocol.failureBudget)
+  (hδ1 : protocol.failureBudget < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (training : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+            (events : Fin n → JurisLean.Candidates.Final20261021.EventId) (query : Fin m) (radius : ℚ)
+            (exponent snapshot : ℕ) (supported : Bool)
+            (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m),
+            JurisLean.Candidates.ProbabilityIntervalConsumer20261027.runProbability protocol protocol loss
+                  (first :: rest) training
+                  (fun i => { event := events i, feature := (sample i w).1, label := (sample i w).2 }) query radius
+                  exponent snapshot supported =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              0 <
+                  P.real
+                    {z |
+                      JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin (out.fitted.table, out.query)
+                          z =
+                        true} ∧
+                ↑out.lower ≤
+                    P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                (out.fitted.table, out.query) z =
+                              true ∧
+                            z.2 = true} /
+                      P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                              (out.fitted.table, out.query) z =
+                            true} ∧
+                  P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                (out.fitted.table, out.query) z =
+                              true ∧
+                            z.2 = true} /
+                      P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                              (out.fitted.table, out.query) z =
+                            true} ≤
+                    ↑out.upper
+info: JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean:20:0: 'JurisLean.Candidates.ProbabilityIntervalConsumer20261027.whole_pipeline_bin_probability_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

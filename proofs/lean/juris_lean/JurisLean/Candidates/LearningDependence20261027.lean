@@ -15,6 +15,23 @@ def FairBinary {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) (X : Ω → �
   Measurable X ∧ (∀ᵐ w ∂μ, X w = 0 ∨ X w = 1) ∧
     μ.real {w | X w = 0} = 1 / 2 ∧ μ.real {w | X w = 1} = 1 / 2
 
+def fairCoinMeasure : Measure ℝ :=
+  (2 : ℝ≥0∞)⁻¹ • Measure.dirac 0 + (2 : ℝ≥0∞)⁻¹ • Measure.dirac 1
+
+instance : IsProbabilityMeasure fairCoinMeasure where
+  measure_univ := by
+    norm_num [fairCoinMeasure, Measure.add_apply, Measure.smul_apply]
+
+theorem fair_coin_law : FairBinary fairCoinMeasure id := by
+  refine ⟨measurable_id, ?_, ?_, ?_⟩
+  · rw [ae_iff]
+    norm_num [fairCoinMeasure, Measure.add_apply, Measure.smul_apply,
+      Measure.dirac_apply, Set.indicator]
+  · norm_num [Measure.real, fairCoinMeasure, Measure.add_apply, Measure.smul_apply,
+      Measure.dirac_apply, Set.indicator]
+  · norm_num [Measure.real, fairCoinMeasure, Measure.add_apply, Measure.smul_apply,
+      Measure.dirac_apply, Set.indicator]
+
 theorem fair_binary_variance {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ) (law : FairBinary μ X) :
     variance X μ = 1 / 4 := by
@@ -43,7 +60,11 @@ theorem u01_4_independent_empirical_mean_variance {Ω : Type*} [MeasurableSpace 
     have h := IndepFun.variance_sum (s := (Finset.univ : Finset (Fin n)))
       (fun i _ => fair_binary_memLp μ (X i) (law i))
       (fun i _ j _ hij => independent.indepFun hij)
-    simpa only [Finset.sum_apply] using h
+    have sumEqual : (∑ i, X i) = (fun w => ∑ i, X i w) := by
+      funext w
+      simp only [Finset.sum_apply]
+    rw [sumEqual] at h
+    exact h
   change variance (fun w => (∑ i, X i w) / (n : ℝ)) μ = _
   simp_rw [div_eq_mul_inv]
   rw [variance_mul_const, additive]
@@ -83,9 +104,21 @@ theorem u01_4_distinct_ids_common_cause_not_independent {Ω : Type*}
   rw [hc] at hi
   linarith
 
+-- A concrete probability space witnesses that unique event IDs do not turn
+-- copies of one hidden Bernoulli variable into independent observations.
+theorem u01_4_concrete_common_cause_counterexample {n : ℕ} (hn : 1 < n) :
+    Function.Injective (fun event : Fin n => event) ∧
+      variance (empiricalMean (fun _ : Fin n => (id : ℝ → ℝ))) fairCoinMeasure = 1 / 4 ∧
+      ¬iIndepFun (fun _ : Fin n => (id : ℝ → ℝ)) fairCoinMeasure := by
+  have h := u01_4_distinct_ids_common_cause_not_independent
+    fairCoinMeasure hn id fair_coin_law
+  refine ⟨h.1, ?_, h.2⟩
+  exact u01_4_copied_empirical_mean_variance fairCoinMeasure (by omega) id fair_coin_law
+
 end
 end JurisLean.Candidates.LearningDependence20261027
 
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance
 #print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent
+#print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample

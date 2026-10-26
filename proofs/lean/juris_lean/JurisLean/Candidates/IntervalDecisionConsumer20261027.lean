@@ -16,6 +16,7 @@ utility remain external inputs. No weights are assigned to legal branches.
 
 namespace JurisLean.Candidates.IntervalDecisionConsumer20261027
 
+open MeasureTheory ProbabilityTheory
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.Final20261021.Decision
 open JurisLean.Candidates.LearningConsumer20261027
@@ -137,9 +138,9 @@ theorem binary_evaluation_uses_exact_amount_and_one_cost (g : Gamma) (utility : 
             refine ⟨rfl, rfl, ?_, ?_, ?_⟩
             · simp [BinaryQuote.atProbability, cashAt]
             · simp [BinaryQuote.atProbability, utilityAt]
-            · by_cases hs : evalExact a.success.expr - a.cost.value < 0 <;>
-                by_cases hf : evalExact a.failure.expr - a.cost.value < 0 <;>
-                simp [BinaryQuote.atProbability, lossAt, hs, hf]
+            · by_cases hs : evalExact a.success.expr < a.cost.value <;>
+                by_cases hf : evalExact a.failure.expr < a.cost.value <;>
+                simp [BinaryQuote.atProbability, lossAt, sub_neg, hs, hf]
 
 theorem affine_interval_bounds (p lo hi b l k : ℝ) (lower : lo ≤ p) (upper : p ≤ hi) :
     min (lo*b + (1-lo)*l-k) (hi*b + (1-hi)*l-k) ≤ p*b + (1-p)*l-k ∧
@@ -269,5 +270,62 @@ theorem explicit_maximin_preserves_permission_and_risk {m : ℕ} (g : Gamma)
   refine ⟨member, checks.1, checks.2.1, checks.2.2.1, checks.2.2.2, ?_⟩
   intro other hm hg hu ha hr
   exact optimal other hm (by simp [hg, hu, ha, hr])
+
+theorem maximin_none_exactly_when_infeasible {m : ℕ} (g : Gamma)
+    (utilityVersion : ℕ) (riskLimit : ℚ) (allowed : List ℕ)
+    (values : List (IntervalDecision m)) :
+    chooseMaximin g utilityVersion riskLimit allowed values = none ↔
+      ∀ v ∈ values, ¬ (v.nominal.gamma = g ∧ v.nominal.utilityVersion = utilityVersion ∧
+        v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit) := by
+  unfold chooseMaximin legalBest
+  rw [best_none]
+  simp
+
+-- The same measurable confidence event now reaches the actual computed decision,
+-- not merely a separately supplied interval. q is explicitly the observed bin
+-- law. Its interpretation as an intervention law still needs identification.
+theorem whole_computed_decision_bin_law_confidence {Ω : Type*} {m n k : ℕ}
+    [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)]
+    [MeasurableSingletonClass (Fin m × Bool)]
+    (μ : Measure Ω) [IsProbabilityMeasure μ]
+    (P : Measure (Fin m × Bool)) [IsProbabilityMeasure P] (hm : 0 < m) (hn : 0 < n)
+    (request : DecisionRequest m) (loss : ℚ → Bool → ℚ)
+    (first : List ℚ) (rest : List (List ℚ))
+    (sample : Fin n → Ω → Fin m × Bool) (sampleMeasurable : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
+    (hδ : 0 < request.protocol.failureBudget) (hδ1 : request.protocol.failureBudget < 1) :
+    ∃ confidence : Set Ω, MeasurableSet confidence ∧
+      1 - (request.protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
+      ∀ w ∈ confidence, ∀ (training : Fin k → SampleObservation m Bool)
+        (events : Fin n → EventId) (radius : ℚ) (exponent : ℕ) (supported : Bool)
+        (utility : ℚ → ℚ) (a : BinaryQuote) (out : IntervalDecision m),
+        fitToDecision request request.protocol loss (first :: rest) training
+          (fun i => ⟨events i, (sample i w).1, (sample i w).2⟩)
+          radius exponent supported utility a = .known out →
+        let bin := scoreBin (out.probability.fitted.table, out.probability.query)
+        let q := P.real {z | bin z = true ∧ z.2 = true} / P.real {z | bin z = true}
+        0 < P.real {z | bin z = true} ∧
+        (out.netLower : ℝ) ≤ q * (evalExact a.success.expr : ℝ) +
+          (1-q) * (evalExact a.failure.expr : ℝ) - (a.cost.value : ℝ) ∧
+        q * (evalExact a.success.expr : ℝ) + (1-q) * (evalExact a.failure.expr : ℝ) -
+          (a.cost.value : ℝ) ≤ (out.netUpper : ℝ) ∧
+        (out.utilityLower : ℝ) ≤ q * (utility (evalExact a.success.expr - a.cost.value) : ℝ) +
+          (1-q) * (utility (evalExact a.failure.expr - a.cost.value) : ℝ) ∧
+        q * (utility (evalExact a.success.expr - a.cost.value) : ℝ) +
+          (1-q) * (utility (evalExact a.failure.expr - a.cost.value) : ℝ) ≤ (out.utilityUpper : ℝ) ∧
+        q * (if evalExact a.success.expr - a.cost.value < 0 then (1 : ℝ) else 0) +
+          (1-q) * (if evalExact a.failure.expr - a.cost.value < 0 then (1 : ℝ) else 0) ≤
+          (out.riskUpper : ℝ) := by
+  obtain ⟨confidence, measurable, probability, sound⟩ := whole_pipeline_bin_probability_confidence
+    (k := k) μ P hm hn request.protocol loss first rest sample sampleMeasurable independent law hδ hδ1
+  refine ⟨confidence, measurable, probability, ?_⟩
+  intro w hw training events radius exponent supported utility a out accepted
+  obtain ⟨p, predicted, evaluated, same⟩ := fit_to_decision_passes_the_actual_probability
+    request request.protocol loss (first :: rest) training _ radius exponent supported utility a out accepted
+  have interval := sound w hw training events request.query radius exponent
+    request.calibrationSnapshot supported p predicted
+  have propagated := computed_decision_encloses_cash_utility_and_risk request utility p a out evaluated
+    _ interval.2.1 interval.2.2
+  simpa only [same] using And.intro interval.1 propagated
 
 end JurisLean.Candidates.IntervalDecisionConsumer20261027

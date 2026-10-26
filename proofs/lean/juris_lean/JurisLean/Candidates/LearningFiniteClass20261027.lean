@@ -45,7 +45,8 @@ theorem row_mean_two_tail {Ω : Type*} [MeasurableSpace Ω] {n : ℕ}
   have events : {w | (n : ℝ) * ε ≤ |∑ i : Fin n, (X i w - ∫ z, X i z ∂μ)|} =
       {w | ε ≤ |empiricalMean X w - mean|} := by
     ext w
-    change (_ ≤ _) ↔ (_ ≤ _)
+    change (n : ℝ) * ε ≤ |∑ i : Fin n, (X i w - ∫ z, X i z ∂μ)| ↔
+      ε ≤ |empiricalMean X w - mean|
     rw [centered w, abs_mul, abs_of_pos hnR]
     constructor <;> intro hw <;> nlinarith
   have exponent : -2 * ((n : ℝ) * ε) ^ 2 / (n : ℝ) = -2 * (n : ℝ) * ε ^ 2 := by
@@ -120,7 +121,9 @@ theorem finite_class_mean_uniform {Ω H : Type*} [MeasurableSpace Ω] {n : ℕ}
     fun_prop
   have goodMeasurable : MeasurableSet {w | ∀ h ∈ models,
       |empiricalMean (X h) w - mean h| ≤ finiteRadius n models.card δ} := by
-    have h := models.measurableSet_biInter (fun h hh =>
+    have h := models.measurableSet_biInter
+      (f := fun h => {w | |empiricalMean (X h) w - mean h| ≤ finiteRadius n models.card δ})
+      (fun h hh =>
       measurableSet_le (deviation h hh) measurable_const)
     convert h using 1 <;> ext w <;> simp
   have failure : {w | ∀ h ∈ models,
@@ -133,7 +136,7 @@ theorem finite_class_mean_uniform {Ω H : Type*} [MeasurableSpace Ω] {n : ℕ}
     obtain ⟨h, hh, bad⟩ := hw
     simp only [Set.mem_iUnion, Set.mem_setOf_eq]
     exact ⟨h, hh, le_of_lt bad⟩
-  have failed := le_trans (measureReal_mono failure) bound
+  have failed := le_trans (measureReal_mono (μ := μ) failure) bound
   rw [measureReal_compl goodMeasurable] at failed
   simpa using (show 1 - δ ≤ μ.real {w | ∀ h ∈ models,
     |empiricalMean (X h) w - mean h| ≤ finiteRadius n models.card δ} by

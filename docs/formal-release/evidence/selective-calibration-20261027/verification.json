@@ -1,0 +1,54 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "f6a1cbf2eb3a208711e8baa5c0c21bdfd6611d34",
+  "run_id": 40399866406,
+  "job_id": 121842531899,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+  "named_count": 8,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selectPassing_spec",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_no_result_iff_no_threshold_passes",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_empty_sample_refused",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_joint_confidence_event_measurable",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_simultaneous_numerator_and_coverage",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_positive_fixture_radius"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
+      "sha256": "7ee8ba6e521ae85fc9dd61e3fa718acc81b46789d0e51391a46b09b258b6b3c1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+      "sha256": "96915d1289de70c1ff3363d8548c78e97339de3690458e238e3dad8c8b38e57c"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 8,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 8,
+      "propext": 8
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "Four #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

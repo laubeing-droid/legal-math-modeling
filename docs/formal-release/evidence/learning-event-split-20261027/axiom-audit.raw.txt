@@ -1,0 +1,56 @@
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_partition_membership (trainingEvent : ℕ → Bool)
+  (rows : List JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation)
+  (row : JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation) :
+  (row ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).1 ↔
+      row ∈ rows ∧ trainingEvent row.event = true) ∧
+    (row ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).2 ↔
+      row ∈ rows ∧ trainingEvent row.event = false)
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_partition_membership' depends on axioms: [propext]
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_same_event_cannot_cross (trainingEvent : ℕ → Bool)
+  (rows : List JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation)
+  (train test : JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation)
+  (inTrain : train ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).1)
+  (inTest : test ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).2) :
+  train.event ≠ test.event
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_same_event_cannot_cross' depends on axioms: [propext]
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_every_row_has_a_partition (trainingEvent : ℕ → Bool)
+  (rows : List JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation)
+  (row : JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation) (member : row ∈ rows) :
+  row ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).1 ∨
+    row ∈ (JurisLean.Candidates.LearningEventSplit20261027.eventSplit trainingEvent rows).2
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_every_row_has_a_partition' depends on axioms: [propext]
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_duplicate_records_do_not_add_events
+  (rows : List JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation) :
+  JurisLean.Candidates.LearningEventSplit20261027.eventUnits (rows ++ rows) =
+      JurisLean.Candidates.LearningEventSplit20261027.eventUnits rows ∧
+    (JurisLean.Candidates.LearningEventSplit20261027.eventUnits (rows ++ rows)).card =
+      (JurisLean.Candidates.LearningEventSplit20261027.eventUnits rows).card
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_duplicate_records_do_not_add_events' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_non_event_ids_do_not_choose_partition (trainingEvent : ℕ → Bool)
+  (row : JurisLean.Candidates.LearningEventSplit20261027.EventSplitObservation) (newMeasurement newRecord : ℕ) :
+  trainingEvent
+      { event := row.event, measurement := newMeasurement, record := newRecord, feature := row.feature,
+          label := row.label, target := row.target, featureTime := row.featureTime,
+          predictionCutoff := row.predictionCutoff }.event =
+    trainingEvent row.event
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_non_event_ids_do_not_choose_partition' does not depend on any axioms
+JurisLean.Candidates.LearningEventSplit20261027.u01_3_event_split_does_not_certify_information :
+  JurisLean.Candidates.LearningEventSplit20261027.eventSplit (fun event => event == 1)
+        [JurisLean.Candidates.LearningEventSplit20261027.leakedTrain,
+          JurisLean.Candidates.LearningEventSplit20261027.leakedTest] =
+      ([JurisLean.Candidates.LearningEventSplit20261027.leakedTrain],
+        [JurisLean.Candidates.LearningEventSplit20261027.leakedTest]) ∧
+    JurisLean.Candidates.LearningEventSplit20261027.leakedTrain.event ≠
+        JurisLean.Candidates.LearningEventSplit20261027.leakedTest.event ∧
+      JurisLean.Candidates.LearningEventSplit20261027.leakedTrain.measurement ≠
+          JurisLean.Candidates.LearningEventSplit20261027.leakedTest.measurement ∧
+        JurisLean.Candidates.LearningEventSplit20261027.leakedTrain.record ≠
+            JurisLean.Candidates.LearningEventSplit20261027.leakedTest.record ∧
+          ∀
+            row ∈
+              [JurisLean.Candidates.LearningEventSplit20261027.leakedTrain,
+                JurisLean.Candidates.LearningEventSplit20261027.leakedTest],
+            row.predictionCutoff < row.featureTime ∧ row.feature = row.label ∧ row.label = !row.target
+'JurisLean.Candidates.LearningEventSplit20261027.u01_3_event_split_does_not_certify_information' does not depend on any axioms

@@ -16,6 +16,7 @@ EVIDENCE_CASES = [
         ("learning-theory-20261027", 14), ("learning-provenance-20261027", 14),
         ("learning-erm-20261027", 5), ("learning-boundary-20261027", 5),
         ("learning-consumer-20261027", 8),
+        ("learning-event-split-20261027", 6),
     )
 ]
 

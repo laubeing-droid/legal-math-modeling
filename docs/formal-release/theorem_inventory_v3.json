@@ -9277,42 +9277,6 @@
     {
      "kind": "theorem",
      "name": "u07_2_incompatible_fiber_not_layer_compatibility"
-    },
-    {
-     "kind": "def",
-     "name": "cand8IidSampleMeanSqrtRadiusSpecialization"
-    },
-    {
-     "kind": "def",
-     "name": "cand8RepresentationRiskDecomposition"
-    },
-    {
-     "kind": "theorem",
-     "name": "u01_1_fixed_class_tail_not_iid_sample_mean_specialization"
-    },
-    {
-     "kind": "theorem",
-     "name": "u01_1_approximate_erm_not_representation_risk_decomposition"
-    },
-    {
-     "kind": "def",
-     "name": "cand8UniformFin2"
-    },
-    {
-     "kind": "def",
-     "name": "cand8GeneralMeasurableBoundedLossIntegration"
-    },
-    {
-     "kind": "def",
-     "name": "cand8JointlyEstimatedBridgeBudget"
-    },
-    {
-     "kind": "theorem",
-     "name": "u01_2_label_bridge_pointwise_not_general_measurable_integration"
-    },
-    {
-     "kind": "theorem",
-     "name": "u01_2_finite_label_bridge_not_joint_bridge_budget"
     }
    ],
    "imports": [
@@ -9339,10 +9303,10 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "c96ea8e61a8cee699f9bc3e5f4e45ee46a85aaf3d959c889f1d4ab1f5593ac70",
-   "size_bytes": 63629,
-   "theorem_count": 73,
-   "theorem_count_bol_convention": 73
+   "sha256": "25344c4b6770404b607380d625b24e5dbc7d17bd65fd7e9d78e40192280c5742",
+   "size_bytes": 60191,
+   "theorem_count": 69,
+   "theorem_count_bol_convention": 69
   },
   {
    "declarations": [
@@ -49482,22 +49446,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5531,
+   "counted_declaration_count": 5527,
    "file_count": 394,
    "lemma_count": 146,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5385,
-   "theorem_count_bol_convention": 5285
+   "theorem_count": 5381,
+   "theorem_count_bol_convention": 5281
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5512,
+   "counted_declaration_count": 5508,
    "file_count": 379,
    "lemma_count": 139,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5373,
-   "theorem_count_bol_convention": 5273
+   "theorem_count": 5369,
+   "theorem_count_bol_convention": 5269
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50327,19 +50291,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "4ee91b2d63a76288010a723817408e7b06c90103fd886bda7d081f3cf9351501",
+ "source_inventory_digest": "e85126b3b19ddc8056a5f0eb2e3ca3ae59d52cf2a759bbb5d96f7954d1d68a2a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/formal-tail-cand8-1dc1",
-  "commit": "6d59e7114e59355729638a2d6fcb2350c7adfc38",
-  "tree": "e67a913f6c83e4b0fd5da50b6cfaa21afedf9d71"
+  "commit": "a7850d2b332a95ea26a1a6520fbc6cf1f366302b",
+  "tree": "39edab6a0db5755d84ed2120b6febf19f0a8571c"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 394,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

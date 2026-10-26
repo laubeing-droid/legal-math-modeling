@@ -26976,6 +26976,68 @@
       "status": "completed",
       "updated_at": "2026-10-26T19:41:06Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-26T20:04:33Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/grouped-split-20261027",
+      "head_sha": "0b2fca079d85ad033138ab126c24a83906bcb4a4",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40392393562",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/learning-split-20261027/README.md:3"
+      ],
+      "run_id": 40392393562,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T20:07:21Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

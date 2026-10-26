@@ -9055,14 +9055,113 @@
     {
      "kind": "theorem",
      "name": "u10_2_post_invariant_not_gamma_frame_or_service_refinement"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Encode"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Decode"
+    },
+    {
+     "kind": "def",
+     "name": "cand7FullObservationDecoding"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_retraction_not_full_observation_decoding_acceptance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_separation_monotone_not_history_decoding"
+    },
+    {
+     "kind": "def",
+     "name": "cand7FullDecodeAcceptance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_encode_nonsurjective_not_full_decode_acceptance"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Possible"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Allowed"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Successor"
+    },
+    {
+     "kind": "def",
+     "name": "cand7Invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "u02_3_finite_enumeration_not_generator_support_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "u02_3_common_idle_and_zero_coverage_not_support_coverage"
+    },
+    {
+     "kind": "def",
+     "name": "cand7PenalizedMinimizerExists"
+    },
+    {
+     "kind": "theorem",
+     "name": "u04_3_unpenalized_positive_not_penalized_minimizer_existence"
+    },
+    {
+     "kind": "def",
+     "name": "cand7UniqueZeroIntercept"
+    },
+    {
+     "kind": "theorem",
+     "name": "u04_3_unpenalized_improves_not_uniqueness"
+    },
+    {
+     "kind": "theorem",
+     "name": "u04_3_arbitrarily_small_not_intercept_coordinate_solved"
+    },
+    {
+     "kind": "def",
+     "name": "cand7ConditionalBrier"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_2_bernoulli_brier_not_conditional_expectation_decomposition"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_2_selected_risk_not_simultaneous_threshold_or_rare_group"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_3_eval_exists_unique_not_interval_multiplication_enclosure"
+    },
+    {
+     "kind": "def",
+     "name": "cand7UncertaintyDominates"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_3_decision_respects_allowed_not_general_uncertainty_comparison"
     }
    ],
    "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
     "JurisLean.Candidates.Final20261021.Authorization",
     "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Calibration",
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.Final20261021.EvidenceProcedure",
     "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
     "JurisLean.Candidates.Final20261021.Iteration",
     "JurisLean.Candidates.Final20261021.Learning",
     "JurisLean.Candidates.Final20261021.Ledger",
@@ -9071,16 +9170,17 @@
     "JurisLean.Candidates.Final20261021.Probability",
     "JurisLean.Candidates.Final20261021.Progress",
     "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
     "JurisLean.Candidates.Final20261021.Temporal",
     "JurisLean.Candidates.Final20261021.Trace"
    ],
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "e283d925cc0e6cbf2a36678811bca569e72016696e6b6e9808da8a72df445eed",
-   "size_bytes": 38270,
-   "theorem_count": 49,
-   "theorem_count_bol_convention": 49
+   "sha256": "811c8e526412c0af872e6fbadd0cc7f567e8158c84bb7fd554d6728d0941ac36",
+   "size_bytes": 52139,
+   "theorem_count": 61,
+   "theorem_count_bol_convention": 61
   },
   {
    "declarations": [
@@ -49278,22 +49378,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5507,
+   "counted_declaration_count": 5519,
    "file_count": 394,
    "lemma_count": 146,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5361,
-   "theorem_count_bol_convention": 5261
+   "theorem_count": 5373,
+   "theorem_count_bol_convention": 5273
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5488,
+   "counted_declaration_count": 5500,
    "file_count": 379,
    "lemma_count": 139,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5349,
-   "theorem_count_bol_convention": 5249
+   "theorem_count": 5361,
+   "theorem_count_bol_convention": 5261
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50123,12 +50223,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2f483196341a96d51c4d591ffddb05f3df9ee07a0daf2535cddae5b31f4361b5",
+ "source_inventory_digest": "62529ab4efb1f4ae3afd275e1bd4929beff8fb49304e52fe4ddb0af3da8dbe70",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "cursor/formaltail-cand6-theorems-0091",
-  "commit": "68a38f71ba7e1039cee0ba748d8e889d3d6528ef",
-  "tree": "5ea43af7a0f9408d9ffcf8bfd67381b5a2be07f0"
+  "branch": "cursor/formaltail-cand7-true-proof-8d19",
+  "commit": "6188059e5460a7bbb0409403e45f9e21cf1b4991",
+  "tree": "f5b0ff896498531eda00c3d417e620c392642b98"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

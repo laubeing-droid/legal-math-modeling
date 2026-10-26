@@ -798,10 +798,11 @@ theorem u09_1_conservation_not_receipt_revision_order
     simpa [cand6ReceiptRevisionChain, cand6ReceiptEarly, cand6ReceiptLate] using hchain
   omega
 
-def cand6CashA : Ledger.CashEvent :=
+-- `CashEvent` is declared on `Final20261021`, not inside `Ledger`.
+def cand6CashA : CashEvent :=
   { id := ⟨1⟩, source := ⟨1⟩, payer := ⟨0⟩, payee := ⟨1⟩, amount := cand6Amount }
 
-def cand6CashB : Ledger.CashEvent := { cand6CashA with id := ⟨2⟩ }
+def cand6CashB : CashEvent := { cand6CashA with id := ⟨2⟩ }
 
 /-- Two cash events, no receipts. Coherence does not force those events to coincide. -/
 def cand6LooseCash : Ledger.State :=
@@ -850,8 +851,7 @@ theorem u09_1_at_most_once_not_product_protocol_refinement
   refine ⟨Trace.u09_1_actual_trace_at_most_once s ref after later laterRef req next
       permission permissionNext mode modeNext receipt committed intervening sameKey, ?_⟩
   intro hproto
-  simp [cand6ProductProtocolRefined] at hproto
-  omega
+  exact Nat.zero_ne_one (by simpa [cand6ProductProtocolRefined] using hproto)
 
 /-! ### U10.2
 A committed pay step plus invariant preservation along one accrue step is
@@ -872,8 +872,7 @@ theorem u10_2_executor_and_trace_not_full_mixed_operation_coverage
       Trace.Invariant after ∧
       Trace.Invariant
         { h with revision := h.revision + 1, state := Ledger.accrue h.state a } ∧
-      ({ h with revision := h.revision + 1,
-          state := Ledger.accrue h.state a }).state.receipts = h.state.receipts ∧
+      (Ledger.accrue h.state a).receipts = h.state.receipts ∧
       (6 : Nat) ≠ 1 := by
   have reported :
       (Ledger.consume_ext before previous_output_ref req permission mode).post before =

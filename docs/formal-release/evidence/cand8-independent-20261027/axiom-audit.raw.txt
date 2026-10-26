@@ -1,0 +1,674 @@
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:7:0: JurisLean.Candidates.FormalTail20261024.u08_1_recorded_after_cutoff_not_visible
+  (g : JurisLean.Candidates.Final20261021.Gamma) (e : JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (h : g.recordCutoff.ticks < e.recordedAt.ticks) : JurisLean.Candidates.Final20261021.Temporal.visible g e = false
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:8:0: 'JurisLean.Candidates.FormalTail20261024.u08_1_recorded_after_cutoff_not_visible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:10:0: JurisLean.Candidates.FormalTail20261024.u08_1_late_append_uses_selection_stable
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (e : JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (h : g.recordCutoff.ticks < e.recordedAt.ticks) :
+  JurisLean.Candidates.Final20261021.Temporal.proposed_applicability g (history ++ [e]) =
+    JurisLean.Candidates.Final20261021.Temporal.proposed_applicability g history
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:11:0: 'JurisLean.Candidates.FormalTail20261024.u08_1_late_append_uses_selection_stable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:13:0: JurisLean.Candidates.FormalTail20261024.u08_1_late_record_disguised_as_then_known_changes_applicability :
+  JurisLean.Candidates.Final20261021.Temporal.visible JurisLean.Candidates.FormalTail20261024.u08Cutoff
+        JurisLean.Candidates.FormalTail20261024.u08Late =
+      false ∧
+    JurisLean.Candidates.Final20261021.Temporal.visible JurisLean.Candidates.FormalTail20261024.u08Cutoff
+          JurisLean.Candidates.FormalTail20261024.u08Disguised =
+        true ∧
+      JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+            JurisLean.Candidates.FormalTail20261024.u08Cutoff [JurisLean.Candidates.FormalTail20261024.u08Late] =
+          JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence ∧
+        JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+              JurisLean.Candidates.FormalTail20261024.u08Cutoff [JurisLean.Candidates.FormalTail20261024.u08Disguised] =
+            JurisLean.Candidates.Final20261021.Result.known 7 ∧
+          JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+              JurisLean.Candidates.FormalTail20261024.u08Cutoff [JurisLean.Candidates.FormalTail20261024.u08Late] ≠
+            JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+              JurisLean.Candidates.FormalTail20261024.u08Cutoff [JurisLean.Candidates.FormalTail20261024.u08Disguised]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:14:0: 'JurisLean.Candidates.FormalTail20261024.u08_1_late_record_disguised_as_then_known_changes_applicability' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:16:0: JurisLean.Candidates.FormalTail20261024.u08_1_mutable_current_status_disagrees_with_cutoff :
+  JurisLean.Candidates.FormalTail20261024.currentStatus [JurisLean.Candidates.FormalTail20261024.u08Late] = some 7 ∧
+    JurisLean.Candidates.Final20261021.Temporal.proposed_applicability JurisLean.Candidates.FormalTail20261024.u08Cutoff
+          [JurisLean.Candidates.FormalTail20261024.u08Late] =
+        JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence ∧
+      JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+            JurisLean.Candidates.FormalTail20261024.u08Cutoff
+            ([] ++ [JurisLean.Candidates.FormalTail20261024.u08Late]) =
+          JurisLean.Candidates.Final20261021.Temporal.proposed_applicability
+            JurisLean.Candidates.FormalTail20261024.u08Cutoff [] ∧
+        JurisLean.Candidates.FormalTail20261024.currentStatus [JurisLean.Candidates.FormalTail20261024.u08Late] ≠ none
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:17:0: 'JurisLean.Candidates.FormalTail20261024.u08_1_mutable_current_status_disagrees_with_cutoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:19:0: JurisLean.Candidates.FormalTail20261024.u08_2_current_singleton_does_not_exhaust_reachable : ¬∀ (v : Fin 2), v ∈ {0}
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:20:0: 'JurisLean.Candidates.FormalTail20261024.u08_2_current_singleton_does_not_exhaust_reachable' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:22:0: JurisLean.Candidates.FormalTail20261024.u08_2_nonempty_observation_preserves_chosen_answer :
+  JurisLean.Candidates.Final20261021.Temporal.checkCompression JurisLean.Candidates.FormalTail20261024.u08_2_app
+        JurisLean.Candidates.FormalTail20261024.u08_2_answer JurisLean.Candidates.FormalTail20261024.u08_2_obs true =
+      true ∧
+    JurisLean.Candidates.Final20261021.Temporal.Compressible
+      (fun h v => JurisLean.Candidates.FormalTail20261024.u08_2_app h v = true)
+      JurisLean.Candidates.FormalTail20261024.u08_2_answer
+      (fun q => JurisLean.Candidates.FormalTail20261024.u08_2_obs q = true) true
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:23:0: 'JurisLean.Candidates.FormalTail20261024.u08_2_nonempty_observation_preserves_chosen_answer' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:25:0: JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_ranked_path_is_identity {S : Type} (rank : S → ℕ) {s t : S}
+  (h : JurisLean.Candidates.Final20261021.Progress.RankedPath rank s 0 t) : s = t
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:26:0: 'JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_ranked_path_is_identity' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:28:0: JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_prohibits_strict_progress {S : Type} (rank : S → ℕ) (s : S) :
+  ¬∃ t, JurisLean.Candidates.Final20261021.Progress.RankedPath rank s 0 t ∧ rank t < rank s
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:29:0: 'JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_prohibits_strict_progress' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:31:0: JurisLean.Candidates.FormalTail20261024.u10_3_business_observation_faithful (perOperation : List ℕ) (K : ℕ)
+  (bounded : ∀ n ∈ perOperation, n ≤ K) :
+  JurisLean.Candidates.FormalTail20261024.businessObservedLength perOperation = perOperation.sum ∧
+    JurisLean.Candidates.FormalTail20261024.businessObservedLength perOperation ≤ perOperation.length * K
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:32:0: 'JurisLean.Candidates.FormalTail20261024.u10_3_business_observation_faithful' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:34:0: JurisLean.Candidates.FormalTail20261024.u10_3_zero_observation_is_not_progress (perOperation : List ℕ)
+  (h : ∀ n ∈ perOperation, n = 0) : JurisLean.Candidates.FormalTail20261024.businessObservedLength perOperation = 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:35:0: 'JurisLean.Candidates.FormalTail20261024.u10_3_zero_observation_is_not_progress' depends on axioms: [propext]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:37:0: JurisLean.Candidates.FormalTail20261024.u10_3_one_real_step_zero_abstract_is_not_progress :
+  JurisLean.Candidates.FormalTail20261024.businessObservedLength [0] = 0 ∧
+    ¬0 < JurisLean.Candidates.FormalTail20261024.businessObservedLength [0]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:38:0: 'JurisLean.Candidates.FormalTail20261024.u10_3_one_real_step_zero_abstract_is_not_progress' depends on axioms: [propext]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:40:0: JurisLean.Candidates.FormalTail20261024.u09_3_greedy_prefix_misses_second_claim :
+  have budget := 3;
+  have d1 := 2;
+  have d2 := 2;
+  have greedy1 := min d1 budget;
+  have leftover := budget - greedy1;
+  have greedy2 := min d2 leftover;
+  greedy1 = 2 ∧ leftover = 1 ∧ greedy2 = 1 ∧ greedy1 + greedy2 = 3 ∧ greedy2 < d2 ∧ min d2 budget = 2
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:41:0: 'JurisLean.Candidates.FormalTail20261024.u09_3_greedy_prefix_misses_second_claim' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:43:0: JurisLean.Candidates.FormalTail20261024.u09_3_same_institution_accrual_is_not_cash_effect
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (a : ℚ) :
+  (JurisLean.Candidates.Final20261021.Ledger.accrue s a).cash = s.cash ∧
+    (JurisLean.Candidates.Final20261021.Ledger.accrue s a).paid = s.paid ∧
+      (JurisLean.Candidates.Final20261021.Ledger.accrue s a).refundCash = s.refundCash
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:44:0: 'JurisLean.Candidates.FormalTail20261024.u09_3_same_institution_accrual_is_not_cash_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:46:0: JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_above_one_excludes (q b l k target : ℝ) (hlb : l < b)
+  (hq : q ≤ 1) (hout : 1 < (target + k - l) / (b - l)) :
+  ¬target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:47:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_above_one_excludes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:49:0: JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_at_most_zero_includes (q b l k target : ℝ)
+  (hlb : l < b) (hq : 0 ≤ q) (hout : (target + k - l) / (b - l) ≤ 0) :
+  target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:50:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_at_most_zero_includes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:52:0: JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_below_zero_excludes (q b l k target : ℝ)
+  (hbl : b < l) (hq : 0 ≤ q) (hout : (target + k - l) / (b - l) < 0) :
+  ¬target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:53:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_below_zero_excludes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:55:0: JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_at_least_one_includes (q b l k target : ℝ)
+  (hbl : b < l) (hq : q ≤ 1) (hout : 1 ≤ (target + k - l) / (b - l)) :
+  target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:56:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_at_least_one_includes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:58:0: JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_above_one_is_empty (b l k target : ℝ)
+  (hlb : l < b) (hout : 1 < (target + k - l) / (b - l)) (q : ℝ) :
+  0 ≤ q → q ≤ 1 → ¬target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:59:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_above_one_is_empty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:61:0: JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_at_most_zero_is_full (b l k target : ℝ)
+  (hlb : l < b) (hout : (target + k - l) / (b - l) ≤ 0) (q : ℝ) :
+  0 ≤ q → q ≤ 1 → target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:62:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_at_most_zero_is_full' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:64:0: JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_below_zero_is_empty (b l k target : ℝ)
+  (hbl : b < l) (hout : (target + k - l) / (b - l) < 0) (q : ℝ) :
+  0 ≤ q → q ≤ 1 → ¬target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:65:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_below_zero_is_empty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:67:0: JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_at_least_one_is_full (b l k target : ℝ)
+  (hbl : b < l) (hout : 1 ≤ (target + k - l) / (b - l)) (q : ℝ) :
+  0 ≤ q → q ≤ 1 → target ≤ JurisLean.Candidates.Final20261021.Decision.net q b l k
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:68:0: 'JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_at_least_one_is_full' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:70:0: JurisLean.Candidates.FormalTail20261024.u12_2_halving_damps_toward_zero (n : ℕ) :
+  dist (JurisLean.Candidates.FormalTail20261024.halve^[n] 1) 0 = (1 / 2) ^ n ∧
+    dist (JurisLean.Candidates.FormalTail20261024.halve^[n + 1] 1) 0 <
+        dist (JurisLean.Candidates.FormalTail20261024.halve^[n] 1) 0 ∧
+      JurisLean.Candidates.FormalTail20261024.halve 0 = 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:71:0: 'JurisLean.Candidates.FormalTail20261024.u12_2_halving_damps_toward_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:73:0: JurisLean.Candidates.FormalTail20261024.u12_2_negation_orbit_oscillates (n : ℕ) :
+  JurisLean.Candidates.FormalTail20261024.negate^[2 * n] 1 = 1 ∧
+    JurisLean.Candidates.FormalTail20261024.negate^[2 * n + 1] 1 = -1 ∧ 1 ≠ -1
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:74:0: 'JurisLean.Candidates.FormalTail20261024.u12_2_negation_orbit_oscillates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:76:0: JurisLean.Candidates.FormalTail20261024.u12_2_one_minus_theta_oscillates (θ : ℝ) :
+  JurisLean.Candidates.FormalTail20261024.oneMinus (JurisLean.Candidates.FormalTail20261024.oneMinus θ) = θ ∧
+    JurisLean.Candidates.FormalTail20261024.oneMinus 0 = 1 ∧
+      JurisLean.Candidates.FormalTail20261024.oneMinus 1 = 0 ∧ 0 ≠ 1
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:77:0: 'JurisLean.Candidates.FormalTail20261024.u12_2_one_minus_theta_oscillates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:79:0: JurisLean.Candidates.FormalTail20261024.u12_2_shift_has_no_fixed_point (x : ℝ) : x + 1 ≠ x
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:80:0: 'JurisLean.Candidates.FormalTail20261024.u12_2_shift_has_no_fixed_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:82:0: JurisLean.Candidates.FormalTail20261024.u12_2_cubic_reaches_zero_but_expands :
+  JurisLean.Candidates.FormalTail20261024.cubicStep 0 = 0 ∧
+    JurisLean.Candidates.FormalTail20261024.cubicStep 1 = 0 ∧
+      |JurisLean.Candidates.FormalTail20261024.cubicStep 1 -
+            JurisLean.Candidates.FormalTail20261024.cubicStep (4 / 5)| >
+        |1 - 4 / 5|
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:83:0: 'JurisLean.Candidates.FormalTail20261024.u12_2_cubic_reaches_zero_but_expands' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:85:0: JurisLean.Candidates.FormalTail20261024.u13_1_lawful_stat_input_change_changes_estimate :
+  [1].length ≠ [0, 1].length ∧
+    JurisLean.Candidates.Final20261021.RSI.conditionalEstimate [1] [0, 1] =
+        JurisLean.Candidates.Final20261021.Result.rejected JurisLean.Candidates.Final20261021.Error.unsupported ∧
+      JurisLean.Candidates.Final20261021.RSI.conditionalEstimate [] [] =
+        JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:86:0: 'JurisLean.Candidates.FormalTail20261024.u13_1_lawful_stat_input_change_changes_estimate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:88:0: JurisLean.Candidates.FormalTail20261024.u13_1_personal_update_preserves_rule_service {X Y : Type} (eval : ℕ → ℕ → X → Y)
+  (s : JurisLean.Candidates.Final20261021.RSI.State) (x : X) (who : JurisLean.Candidates.Final20261021.PartyId)
+  (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :
+  JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval
+      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value) x =
+    JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval s x
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:89:0: 'JurisLean.Candidates.FormalTail20261024.u13_1_personal_update_preserves_rule_service' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:91:0: JurisLean.Candidates.FormalTail20261024.u15_1_finite_state_strict_improve_length_bound {S : Type} (rank : S → ℕ)
+  {s t : S} {n : ℕ} (h : JurisLean.Candidates.FormalTail20261024.FinStrictImprove rank s n t) : n ≤ rank s
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:92:0: 'JurisLean.Candidates.FormalTail20261024.u15_1_finite_state_strict_improve_length_bound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:94:0: JurisLean.Candidates.FormalTail20261024.u15_1_no_parameter_successor_has_no_fixed_point (n : ℕ) : n + 1 ≠ n
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:95:0: 'JurisLean.Candidates.FormalTail20261024.u15_1_no_parameter_successor_has_no_fixed_point' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:97:0: JurisLean.Candidates.FormalTail20261024.u15_1_telescoping_consumes_cumulative_improvement {first last : ℝ}
+  {budgets : List ℝ} (h : JurisLean.Candidates.Final20261021.Iteration.RiskTrace first budgets last) :
+  last ≤ first + budgets.sum
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:98:0: 'JurisLean.Candidates.FormalTail20261024.u15_1_telescoping_consumes_cumulative_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:100:0: JurisLean.Candidates.FormalTail20261024.u14_2_zero_N_rejects_positive_hypothesis (N : ℝ) (h : N = 0) : ¬0 < N
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:101:0: 'JurisLean.Candidates.FormalTail20261024.u14_2_zero_N_rejects_positive_hypothesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:103:0: JurisLean.Candidates.FormalTail20261024.u14_2_endogenous_equal_sizes_are_not_the_fixed_witness :
+  (99 + 1) ^ 2 / (99 ^ 2 + 1 ^ 2) = 5000 / 4901 ∧ (1 + 1) ^ 2 / (1 ^ 2 + 1 ^ 2) = 2 ∧ 5000 / 4901 ≠ 2
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:104:0: 'JurisLean.Candidates.FormalTail20261024.u14_2_endogenous_equal_sizes_are_not_the_fixed_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:106:0: JurisLean.Candidates.FormalTail20261024.u14_2_common_cause_copy_exceeds_independent_variance (n : ℕ) (hn : 1 < n) :
+  (↑n ^ 2 * (1 / 2) - (↑n * (1 / 2)) ^ 2) / ↑n ^ 2 = 1 / 4 ∧
+    (↑n * (1 / 2) + ↑n * (↑n - 1) * (1 / 4) - (↑n * (1 / 2)) ^ 2) / ↑n ^ 2 = 1 / (4 * ↑n) ∧ 1 / (4 * ↑n) < 1 / 4
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:107:0: 'JurisLean.Candidates.FormalTail20261024.u14_2_common_cause_copy_exceeds_independent_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:109:0: JurisLean.Candidates.FormalTail20261024.u15_2_key_point_regression_changes_exact_risk :
+  JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, false) = 1 / 2 ∧
+    JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, true) = 0 ∧
+      JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, false) ≠
+        JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, true)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:110:0: 'JurisLean.Candidates.FormalTail20261024.u15_2_key_point_regression_changes_exact_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:112:0: JurisLean.Candidates.FormalTail20261024.u15_2_finite_obs_agree_not_global :
+  JurisLean.Candidates.FormalTail20261024.u15_2_old false = JurisLean.Candidates.FormalTail20261024.u15_2_new false ∧
+    JurisLean.Candidates.FormalTail20261024.u15_2_old true ≠ JurisLean.Candidates.FormalTail20261024.u15_2_new true ∧
+      ¬∀ (x : Bool),
+          JurisLean.Candidates.FormalTail20261024.u15_2_old x = JurisLean.Candidates.FormalTail20261024.u15_2_new x
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:113:0: 'JurisLean.Candidates.FormalTail20261024.u15_2_finite_obs_agree_not_global' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:115:0: JurisLean.Candidates.FormalTail20261024.u15_2_full_agreement_preserves_risk {Ω Y : Type} [Fintype Ω]
+  (law : JurisLean.Candidates.Final20261021.Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℚ)
+  (same : ∀ (x : Ω), old x = new x) :
+  (JurisLean.Candidates.Final20261021.Probability.expectation law fun x => loss (old x) x) =
+    JurisLean.Candidates.Final20261021.Probability.expectation law fun x => loss (new x) x
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:116:0: 'JurisLean.Candidates.FormalTail20261024.u15_2_full_agreement_preserves_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:118:0: JurisLean.Candidates.FormalTail20261024.u08_3_four_states_do_not_exhaust_dependency_policies :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.classify true false =
+      JurisLean.Candidates.Final20261021.Judgment.supported ∧
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.classify false true =
+        JurisLean.Candidates.Final20261021.Judgment.opposed ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.classify true true =
+          JurisLean.Candidates.Final20261021.Judgment.incompatible ∧
+        JurisLean.Candidates.Final20261021.EvidenceProcedure.classify false false =
+            JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+          JurisLean.Candidates.FormalTail20261024.u08OppNone.dependencies ≠
+              JurisLean.Candidates.FormalTail20261024.u08OppDep.dependencies ∧
+            ¬JurisLean.Candidates.FormalTail20261024.u08OppNone.dependencies =
+                JurisLean.Candidates.FormalTail20261024.u08OppDep.dependencies
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:119:0: 'JurisLean.Candidates.FormalTail20261024.u08_3_four_states_do_not_exhaust_dependency_policies' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:121:0: JurisLean.Candidates.FormalTail20261024.u08_3_judgment_not_compatibility_world_classification :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment 0
+        [JurisLean.Candidates.Final20261021.EvidenceProcedure.forgedEvidence] =
+      JurisLean.Candidates.Final20261021.Judgment.supported ∧
+    JurisLean.Candidates.FormalTail20261024.u08CompatClass
+          (JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment 0
+            [JurisLean.Candidates.Final20261021.EvidenceProcedure.forgedEvidence]) =
+        JurisLean.Candidates.FormalTail20261024.u08CompatWorld.pending ∧
+      JurisLean.Candidates.FormalTail20261024.u08CompatClass JurisLean.Candidates.Final20261021.Judgment.supported ≠
+          JurisLean.Candidates.FormalTail20261024.u08CompatWorld.classified ∧
+        ¬(JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment 0
+                [JurisLean.Candidates.Final20261021.EvidenceProcedure.forgedEvidence] =
+              JurisLean.Candidates.Final20261021.Judgment.supported →
+            JurisLean.Candidates.FormalTail20261024.u08CompatClass
+                JurisLean.Candidates.Final20261021.Judgment.supported =
+              JurisLean.Candidates.FormalTail20261024.u08CompatWorld.classified)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:122:0: 'JurisLean.Candidates.FormalTail20261024.u08_3_judgment_not_compatibility_world_classification' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:124:0: JurisLean.Candidates.FormalTail20261024.u08_3_opposition_preserves_support_not_full_reflection :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment 0
+        JurisLean.Candidates.FormalTail20261024.u08OpposedPair =
+      JurisLean.Candidates.Final20261021.Judgment.incompatible ∧
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted
+          JurisLean.Candidates.FormalTail20261024.u08BareProcess =
+        false ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.procedure
+            JurisLean.Candidates.FormalTail20261024.u08BareProcess =
+          JurisLean.Candidates.Final20261021.Procedure.open ∧
+        ¬(JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment 0
+                JurisLean.Candidates.FormalTail20261024.u08OpposedPair =
+              JurisLean.Candidates.Final20261021.Judgment.incompatible →
+            JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted
+                JurisLean.Candidates.FormalTail20261024.u08BareProcess =
+              true)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:125:0: 'JurisLean.Candidates.FormalTail20261024.u08_3_opposition_preserves_support_not_full_reflection' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:127:0: JurisLean.Candidates.FormalTail20261024.u15_3_two_point_risks_do_not_complete_five_evidence_levels :
+  JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, false) = 1 / 2 ∧
+    JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, true) = 0 ∧
+      JurisLean.Candidates.Final20261021.Iteration.exactRisk (true, false) = 1 ∧
+        JurisLean.Candidates.FormalTail20261024.u15TwoPointLevels.length = 2 ∧
+          JurisLean.Candidates.FormalTail20261024.u15FiveEvidenceLevels.length = 5 ∧
+            JurisLean.Candidates.FormalTail20261024.u15TwoPointLevels ≠
+                JurisLean.Candidates.FormalTail20261024.u15FiveEvidenceLevels ∧
+              ¬(JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, false) = 1 / 2 ∧
+                    JurisLean.Candidates.Final20261021.Iteration.exactRisk (false, true) = 0 ∧
+                      JurisLean.Candidates.Final20261021.Iteration.exactRisk (true, false) = 1 →
+                  JurisLean.Candidates.FormalTail20261024.u15TwoPointLevels =
+                    JurisLean.Candidates.FormalTail20261024.u15FiveEvidenceLevels)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:128:0: 'JurisLean.Candidates.FormalTail20261024.u15_3_two_point_risks_do_not_complete_five_evidence_levels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:130:0: JurisLean.Candidates.FormalTail20261024.u15_3_second_round_consumer_is_not_evidence_ladder :
+  JurisLean.Candidates.Final20261021.Iteration.twoRounds JurisLean.Candidates.FormalTail20261024.cand6Old
+        JurisLean.Candidates.FormalTail20261024.cand6Better JurisLean.Candidates.FormalTail20261024.cand6Wrong =
+      JurisLean.Candidates.FormalTail20261024.cand6Better ∧
+    JurisLean.Candidates.FormalTail20261024.u15FiveEvidenceLevels ≠
+        JurisLean.Candidates.FormalTail20261024.u15TwoPointLevels ∧
+      JurisLean.Candidates.FormalTail20261024.cand6Better.protocol = 0 ∧
+        ¬(JurisLean.Candidates.Final20261021.Iteration.twoRounds JurisLean.Candidates.FormalTail20261024.cand6Old
+                JurisLean.Candidates.FormalTail20261024.cand6Better JurisLean.Candidates.FormalTail20261024.cand6Wrong =
+              JurisLean.Candidates.FormalTail20261024.cand6Better →
+            JurisLean.Candidates.FormalTail20261024.u15FiveEvidenceLevels =
+              JurisLean.Candidates.FormalTail20261024.u15TwoPointLevels)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:131:0: 'JurisLean.Candidates.FormalTail20261024.u15_3_second_round_consumer_is_not_evidence_ladder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:133:0: JurisLean.Candidates.FormalTail20261024.u13_2_frames_do_not_imply_authorized_rule_load
+  (s : JurisLean.Candidates.Final20261021.RSI.State) (who : JurisLean.Candidates.Final20261021.PartyId)
+  (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint)
+  (row : JurisLean.Candidates.Final20261021.Behavior.MeasurementLog) :
+  (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).rules = s.rules ∧
+    (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).mechanism = s.mechanism ∧
+      (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s
+              (JurisLean.Candidates.Final20261021.RSI.Update.data row)).rules =
+          s.rules ∧
+        (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s
+                (JurisLean.Candidates.Final20261021.RSI.Update.data row)).mechanism =
+            s.mechanism ∧
+          (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s
+                  (JurisLean.Candidates.Final20261021.RSI.Update.rule (s.rules + 1) { value := 0 })).rules =
+              s.rules + 1 ∧
+            ¬((JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).rules = s.rules →
+                (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s
+                      (JurisLean.Candidates.Final20261021.RSI.Update.rule (s.rules + 1) { value := 0 })).rules =
+                  s.rules)
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:134:0: 'JurisLean.Candidates.FormalTail20261024.u13_2_frames_do_not_imply_authorized_rule_load' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:136:0: JurisLean.Candidates.FormalTail20261024.u13_2_condition_does_not_train_not_persistent_storage_refinement
+  (s : JurisLean.Candidates.Final20261021.RSI.State) :
+  JurisLean.Candidates.Final20261021.RSI.prepareUpdate s JurisLean.Candidates.Final20261021.RSI.Update.condition = s ∧
+    ¬(JurisLean.Candidates.Final20261021.RSI.prepareUpdate s
+              JurisLean.Candidates.Final20261021.RSI.Update.condition).data.length =
+        s.data.length + 1
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:137:0: 'JurisLean.Candidates.FormalTail20261024.u13_2_condition_does_not_train_not_persistent_storage_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:139:0: JurisLean.Candidates.FormalTail20261024.u09_1_conservation_not_receipt_revision_order
+  (p : JurisLean.Candidates.Final20261021.PaymentPayload) (hp : 0 ≤ p.amount.value) :
+  JurisLean.Candidates.Final20261021.Ledger.Conserves
+      (JurisLean.Candidates.Final20261021.Ledger.performance JurisLean.Candidates.FormalTail20261024.cand6UnorderedState
+        p) ∧
+    (JurisLean.Candidates.Final20261021.Ledger.performance JurisLean.Candidates.FormalTail20261024.cand6UnorderedState
+            p).receipts =
+        [JurisLean.Candidates.FormalTail20261024.cand6ReceiptEarly,
+          JurisLean.Candidates.FormalTail20261024.cand6ReceiptLate] ∧
+      ¬JurisLean.Candidates.FormalTail20261024.cand6ReceiptRevisionChain
+          [JurisLean.Candidates.FormalTail20261024.cand6ReceiptEarly,
+            JurisLean.Candidates.FormalTail20261024.cand6ReceiptLate]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:140:0: 'JurisLean.Candidates.FormalTail20261024.u09_1_conservation_not_receipt_revision_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:142:0: JurisLean.Candidates.FormalTail20261024.u09_1_receipt_coherent_not_cash_uniqueness :
+  JurisLean.Candidates.Final20261021.Ledger.ReceiptCoherent JurisLean.Candidates.FormalTail20261024.cand6LooseCash ∧
+    JurisLean.Candidates.FormalTail20261024.cand6CashA ∈ JurisLean.Candidates.FormalTail20261024.cand6LooseCash.cash ∧
+      JurisLean.Candidates.FormalTail20261024.cand6CashB ∈ JurisLean.Candidates.FormalTail20261024.cand6LooseCash.cash ∧
+        JurisLean.Candidates.FormalTail20261024.cand6CashA ≠ JurisLean.Candidates.FormalTail20261024.cand6CashB ∧
+          ¬∀ (e₁ e₂ : JurisLean.Candidates.Final20261021.CashEvent),
+              e₁ ∈ JurisLean.Candidates.FormalTail20261024.cand6LooseCash.cash →
+                e₂ ∈ JurisLean.Candidates.FormalTail20261024.cand6LooseCash.cash → e₁ = e₂
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:143:0: 'JurisLean.Candidates.FormalTail20261024.u09_1_receipt_coherent_not_cash_uniqueness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:145:0: JurisLean.Candidates.FormalTail20261024.u09_1_at_most_once_not_product_protocol_refinement
+  (s ref after later laterRef : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req next : JurisLean.Candidates.Final20261021.PaymentRequest) (permission permissionNext : Bool)
+  (mode modeNext : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (committed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext s ref req permission mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt after)
+  (intervening : JurisLean.Candidates.Final20261021.Trace.Path after later) (sameKey : next.key = req.key) :
+  (∀ (r : JurisLean.Candidates.Final20261021.Ledger.Receipt) (post : JurisLean.Candidates.Final20261021.Ledger.Handle),
+      JurisLean.Candidates.Final20261021.Ledger.consume_ext later laterRef next permissionNext modeNext ≠
+        JurisLean.Candidates.Final20261021.Ledger.Outcome.committed r post) ∧
+    ¬JurisLean.Candidates.FormalTail20261024.cand6ProductProtocolRefined 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:146:0: 'JurisLean.Candidates.FormalTail20261024.u09_1_at_most_once_not_product_protocol_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:148:0: JurisLean.Candidates.FormalTail20261024.u10_2_executor_and_trace_not_full_mixed_operation_coverage
+  (h : JurisLean.Candidates.Final20261021.Ledger.Handle) (a : ℚ) (ha : 0 ≤ a)
+  (hs : JurisLean.Candidates.Final20261021.Trace.Invariant h)
+  (before previous_output_ref : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req : JurisLean.Candidates.Final20261021.PaymentRequest) (permission : Bool)
+  (mode : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (committed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext before previous_output_ref req permission mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt after)
+  (beforeInv : JurisLean.Candidates.Final20261021.Trace.Invariant before) :
+  JurisLean.Candidates.Final20261021.Trace.Step h
+      { gamma := h.gamma, revision := h.revision + 1,
+        state := JurisLean.Candidates.Final20261021.Ledger.accrue h.state a } ∧
+    JurisLean.Candidates.Final20261021.Trace.Step before after ∧
+      JurisLean.Candidates.Final20261021.Trace.Invariant after ∧
+        JurisLean.Candidates.Final20261021.Trace.Invariant
+            { gamma := h.gamma, revision := h.revision + 1,
+              state := JurisLean.Candidates.Final20261021.Ledger.accrue h.state a } ∧
+          (JurisLean.Candidates.Final20261021.Ledger.accrue h.state a).receipts = h.state.receipts ∧ 6 ≠ 1
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:149:0: 'JurisLean.Candidates.FormalTail20261024.u10_2_executor_and_trace_not_full_mixed_operation_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:151:0: JurisLean.Candidates.FormalTail20261024.u10_2_post_invariant_not_gamma_frame_or_service_refinement
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (first second : JurisLean.Candidates.Final20261021.PaymentRequest)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (mode2 : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (r1 : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (actualPost1 final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (initialInvariant : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (firstCommitted :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext initial initial first
+        (JurisLean.Candidates.Final20261021.Authorization.authorized grants initial.gamma first.payload.payer 0
+          first.payload.normVersion (JurisLean.Candidates.Final20261021.ObjectId.relation first.payload.relation)
+          (some first.payload))
+        JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed r1 actualPost1)
+  (acknowledged :
+    (JurisLean.Candidates.Final20261021.Pipeline.executePayments initial first second grants mode2 none).current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final ∧
+    JurisLean.Candidates.Final20261021.Trace.Invariant
+        (JurisLean.Candidates.Final20261021.Trace.initial JurisLean.Candidates.FormalTail20261024.cand6Gamma
+          JurisLean.Candidates.FormalTail20261024.cand6Debt) ∧
+      (JurisLean.Candidates.Final20261021.Trace.initial JurisLean.Candidates.FormalTail20261024.cand6Gamma
+                JurisLean.Candidates.FormalTail20261024.cand6Debt).gamma.jurisdiction ≠
+          "SERVICE" ∧
+        (JurisLean.Candidates.Final20261021.Trace.initial JurisLean.Candidates.FormalTail20261024.cand6Gamma
+                  JurisLean.Candidates.FormalTail20261024.cand6Debt).gamma.mechanismVersion =
+            (JurisLean.Candidates.Final20261021.Trace.initial JurisLean.Candidates.FormalTail20261024.cand6Gamma
+                  JurisLean.Candidates.FormalTail20261024.cand6Debt).gamma.observationFamily ∧
+          ¬(JurisLean.Candidates.Final20261021.Trace.initial JurisLean.Candidates.FormalTail20261024.cand6Gamma
+                    JurisLean.Candidates.FormalTail20261024.cand6Debt).gamma.jurisdiction =
+              "SERVICE"
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:152:0: 'JurisLean.Candidates.FormalTail20261024.u10_2_post_invariant_not_gamma_frame_or_service_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:154:0: JurisLean.Candidates.FormalTail20261024.u07_1_retraction_not_full_observation_decoding_acceptance :
+  Function.Injective JurisLean.Candidates.FormalTail20261024.cand7Encode ∧
+    Function.Surjective JurisLean.Candidates.FormalTail20261024.cand7Decode ∧
+      (∀ (b : Bool),
+          JurisLean.Candidates.FormalTail20261024.cand7Encode
+              (JurisLean.Candidates.FormalTail20261024.cand7Decode
+                (JurisLean.Candidates.FormalTail20261024.cand7Encode
+                  (JurisLean.Candidates.FormalTail20261024.cand7Decode b))) =
+            JurisLean.Candidates.FormalTail20261024.cand7Encode
+              (JurisLean.Candidates.FormalTail20261024.cand7Decode b)) ∧
+        ¬JurisLean.Candidates.FormalTail20261024.cand7FullObservationDecoding
+            JurisLean.Candidates.FormalTail20261024.cand7Encode JurisLean.Candidates.FormalTail20261024.cand7Decode
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:155:0: 'JurisLean.Candidates.FormalTail20261024.u07_1_retraction_not_full_observation_decoding_acceptance' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:157:0: JurisLean.Candidates.FormalTail20261024.u07_1_separation_monotone_not_history_decoding :
+  (¬JurisLean.Candidates.Final20261021.Representation.Separates (fun x => True) fun x x_1 => false) ∧
+    (JurisLean.Candidates.Final20261021.Representation.Separates (fun x => True) fun observation a =>
+        if observation = true then a else false) ∧
+      (JurisLean.Candidates.Final20261021.Representation.Separates (fun o => o = true ∨ o = false) fun observation a =>
+          if observation = true then a else false) ∧
+        ¬JurisLean.Candidates.Final20261021.Representation.Separates (fun x => True) fun observation history =>
+            if observation = true then history.2 else false
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:158:0: 'JurisLean.Candidates.FormalTail20261024.u07_1_separation_monotone_not_history_decoding' depends on axioms: [propext]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:160:0: JurisLean.Candidates.FormalTail20261024.u07_1_encode_nonsurjective_not_full_decode_acceptance :
+  (∀ (x : Unit), (fun x => ()) ((fun x => false) x) = x) ∧
+    (¬Function.Surjective fun x => false) ∧
+      (fun x => false) ((fun x => ()) true) = false ∧ ¬JurisLean.Candidates.FormalTail20261024.cand7FullDecodeAcceptance
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:161:0: 'JurisLean.Candidates.FormalTail20261024.u07_1_encode_nonsurjective_not_full_decode_acceptance' does not depend on any axioms
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:163:0: JurisLean.Candidates.FormalTail20261024.u02_3_finite_enumeration_not_generator_support_coverage :
+  (1 ∈
+        JurisLean.Candidates.Final20261021.Harness.proposed_harness_gate
+          JurisLean.Candidates.FormalTail20261024.cand7Possible JurisLean.Candidates.FormalTail20261024.cand7Allowed
+          JurisLean.Candidates.FormalTail20261024.cand7Successor JurisLean.Candidates.FormalTail20261024.cand7Invariant
+          true [0, 1] ↔
+      1 ∈ [0, 1] ∧ JurisLean.Candidates.FormalTail20261024.cand7Safe 1) ∧
+    JurisLean.Candidates.FormalTail20261024.cand7Safe 1 ∧
+      ¬(JurisLean.Candidates.FormalTail20261024.cand7Safe 1 →
+          1 ∈
+            JurisLean.Candidates.Final20261021.Harness.proposed_harness_gate
+              JurisLean.Candidates.FormalTail20261024.cand7Possible JurisLean.Candidates.FormalTail20261024.cand7Allowed
+              JurisLean.Candidates.FormalTail20261024.cand7Successor
+              JurisLean.Candidates.FormalTail20261024.cand7Invariant true [0])
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:164:0: 'JurisLean.Candidates.FormalTail20261024.u02_3_finite_enumeration_not_generator_support_coverage' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:166:0: JurisLean.Candidates.FormalTail20261024.u02_3_common_idle_and_zero_coverage_not_support_coverage :
+  JurisLean.Candidates.Final20261021.Harness.proposed_harness_gate (fun x => true)
+        (fun w x a => decide (a = 0 ∨ a = if w = true then 1 else 2)) (fun x x_1 x_2 after => after)
+        (fun x after => after) true [0, 1, 2] =
+      [0] ∧
+    JurisLean.Candidates.Final20261021.Harness.conditionalRisk 1 0 =
+        JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.notIdentified ∧
+      [0] ≠ [0, 1, 2] ∧
+        JurisLean.Candidates.Final20261021.Harness.conditionalRisk 1 0 ≠
+          JurisLean.Candidates.Final20261021.Result.known 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:167:0: 'JurisLean.Candidates.FormalTail20261024.u02_3_common_idle_and_zero_coverage_not_support_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:169:0: JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_positive_not_penalized_minimizer_existence :
+  (∀ (t : ℝ), 0 < Real.log (1 + Real.exp (-t))) ∧ ¬JurisLean.Candidates.FormalTail20261024.cand7PenalizedMinimizerExists
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:170:0: 'JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_positive_not_penalized_minimizer_existence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:172:0: JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_improves_not_uniqueness :
+  (∀ (s t : ℝ), s < t → Real.log (1 + Real.exp (-t)) < Real.log (1 + Real.exp (-s))) ∧
+    (∀ (t : ℝ), Real.log (1 + Real.exp (-t)) ≠ 0) ∧
+      Real.log (1 + Real.exp (-1)) < Real.log (1 + Real.exp (-0)) ∧
+        ¬JurisLean.Candidates.FormalTail20261024.cand7UniqueZeroIntercept
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:173:0: 'JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_improves_not_uniqueness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:175:0: JurisLean.Candidates.FormalTail20261024.u04_3_arbitrarily_small_not_intercept_coordinate_solved :
+  (∀ (ε : ℝ), 0 < ε → ∃ t, Real.log (1 + Real.exp (-t)) < ε) ∧
+    (∀ (t : ℝ), Real.log (1 + Real.exp (-t)) ≠ 0) ∧ ¬∃ t, Real.log (1 + Real.exp (-t)) = 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:176:0: 'JurisLean.Candidates.FormalTail20261024.u04_3_arbitrarily_small_not_intercept_coordinate_solved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:178:0: JurisLean.Candidates.FormalTail20261024.u05_2_bernoulli_brier_not_conditional_expectation_decomposition :
+  JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 0 = 1 * (1 - 1) + (0 - 1) ^ 2 ∧
+    (JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 1 ≤
+          JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 0 ∧
+        (JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 1 =
+            JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 0 ↔
+          1 = 0)) ∧
+      JurisLean.Candidates.FormalTail20261024.cand7ConditionalBrier true 1 0 = 1 ∧
+        JurisLean.Candidates.FormalTail20261024.cand7ConditionalBrier false 1 0 = 0 ∧
+          JurisLean.Candidates.FormalTail20261024.cand7ConditionalBrier true 1 0 ≠
+              JurisLean.Candidates.FormalTail20261024.cand7ConditionalBrier false 1 0 ∧
+            ¬JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier 1 0 =
+                JurisLean.Candidates.FormalTail20261024.cand7ConditionalBrier false 1 0
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:179:0: 'JurisLean.Candidates.FormalTail20261024.u05_2_bernoulli_brier_not_conditional_expectation_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:181:0: JurisLean.Candidates.FormalTail20261024.u05_2_selected_risk_not_simultaneous_threshold_or_rare_group :
+  1 / 10 / 1 ≤ 1 / 10 ∧
+    JurisLean.Candidates.Final20261021.Harness.conditionalRisk (1 / 10) 1 =
+        JurisLean.Candidates.Final20261021.Result.known (1 / 10) ∧
+      JurisLean.Candidates.Final20261021.Harness.conditionalRisk (1 / 10) (1 / 10) =
+          JurisLean.Candidates.Final20261021.Result.known 1 ∧
+        ¬(JurisLean.Candidates.Final20261021.Harness.conditionalRisk (1 / 10) 1 =
+                JurisLean.Candidates.Final20261021.Result.known (1 / 10) →
+              JurisLean.Candidates.Final20261021.Harness.conditionalRisk (1 / 10) (1 / 10) =
+                JurisLean.Candidates.Final20261021.Result.known (1 / 10)) ∧
+          ¬0 ≥ 1 - 1 / 10
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:182:0: 'JurisLean.Candidates.FormalTail20261024.u05_2_selected_risk_not_simultaneous_threshold_or_rare_group' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:184:0: JurisLean.Candidates.FormalTail20261024.u06_3_eval_exists_unique_not_interval_multiplication_enclosure :
+  JurisLean.Candidates.Final20261021.Decision.Evaluates
+      ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+        (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)))
+      (JurisLean.Candidates.Final20261021.Decision.evalExact
+        ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+          (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)))) ∧
+    (∀ (q : ℚ),
+        JurisLean.Candidates.Final20261021.Decision.Evaluates
+            ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+              (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)))
+            q →
+          q =
+            JurisLean.Candidates.Final20261021.Decision.evalExact
+              ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+                (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)))) ∧
+      JurisLean.Candidates.Final20261021.Decision.evalExact
+            ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+              (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2))) =
+          4 ∧
+        ¬∀ (x y : ℚ),
+            -2 ≤ x →
+              x ≤ 1 →
+                -2 ≤ y →
+                  y ≤ 1 →
+                    x * y =
+                      JurisLean.Candidates.Final20261021.Decision.evalExact
+                        ((JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)).mul
+                          (JurisLean.Candidates.Final20261021.Decision.ExactExpr.rational (-2)))
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:185:0: 'JurisLean.Candidates.FormalTail20261024.u06_3_eval_exists_unique_not_interval_multiplication_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:187:0: JurisLean.Candidates.FormalTail20261024.u06_3_decision_respects_allowed_not_general_uncertainty_comparison
+  (allowed : List ℕ) (values : List JurisLean.Candidates.Final20261021.Decision.DecisionIR)
+  (selected : JurisLean.Candidates.Final20261021.Decision.DecisionIR)
+  (h : JurisLean.Candidates.Final20261021.Decision.proposed_decision allowed values = some selected) :
+  selected.action.id ∈ allowed ∧
+    selected.probabilityOfLoss ≤ selected.riskLimit ∧
+      ¬JurisLean.Candidates.FormalTail20261024.cand7UncertaintyDominates 0 2 1 3
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:188:0: 'JurisLean.Candidates.FormalTail20261024.u06_3_decision_respects_allowed_not_general_uncertainty_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:190:0: JurisLean.Candidates.FormalTail20261024.u03_1_relative_soundness_not_provenance_dag_to_finite_closure :
+  JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ [1])
+      (fun x => x ∈ JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules) 3 ∧
+    ¬JurisLean.Candidates.FormalTail20261024.cand8GraphConnectionChecks
+        JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules [1] 3 { leaves := [1], edges := [(0, 0)] }
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:191:0: 'JurisLean.Candidates.FormalTail20261024.u03_1_relative_soundness_not_provenance_dag_to_finite_closure' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:193:0: JurisLean.Candidates.FormalTail20261024.u03_1_computed_sound_not_dag_connected_to_executable_closure :
+  3 ∈
+      JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input
+        JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules 2 [1] ∧
+    JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ [1])
+        (fun x => x ∈ JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules) 3 ∧
+      ¬JurisLean.Candidates.FormalTail20261024.cand8GraphConnectionChecks
+          JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules [1] 3 { leaves := [], edges := [] }
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:194:0: 'JurisLean.Candidates.FormalTail20261024.u03_1_computed_sound_not_dag_connected_to_executable_closure' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:196:0: JurisLean.Candidates.FormalTail20261024.u03_1_robust_countermodel_not_connected_to_finite_closure :
+  3 ∈
+      JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input
+        JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules 2 [1] ∧
+    3 ∈
+        JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input
+          JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules 2 [2] ∧
+      3 ∉
+          JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input
+            JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules 2 [] ∧
+        ¬JurisLean.Candidates.FormalTail20261024.cand8CommonFactsPreserveRobustQuery
+            JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules 3
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:197:0: 'JurisLean.Candidates.FormalTail20261024.u03_1_robust_countermodel_not_connected_to_finite_closure' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:199:0: JurisLean.Candidates.FormalTail20261024.u03_2_relative_completeness_not_verified_fuel_bound :
+  (JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ [0])
+        (fun x => x ∈ JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules) 1 ↔
+      ∀ (truth : ℕ → Prop),
+        JurisLean.Candidates.Final20261021.Compiler.Models (fun x => x ∈ [0])
+            (fun x => x ∈ JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules) truth →
+          truth 1) ∧
+    ¬JurisLean.Candidates.FormalTail20261024.cand8EveryBudgetUpToOneSuffices
+        JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules [0]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:200:0: 'JurisLean.Candidates.FormalTail20261024.u03_2_relative_completeness_not_verified_fuel_bound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:202:0: JurisLean.Candidates.FormalTail20261024.u03_2_checked_closure_complete_not_list_carrier_bound :
+  JurisLean.Candidates.Final20261021.Compiler.proposed_checked_rule_input
+        JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules 2 [0] =
+      JurisLean.Candidates.Final20261021.Result.known [0, 1, 1, 2] ∧
+    (∀ (a : ℕ),
+        a ∈ [0, 1, 1, 2] ↔
+          JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ [0])
+            (fun x => x ∈ JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules) a) ∧
+      ¬JurisLean.Candidates.FormalTail20261024.cand8OneEntryPerRoundBound [0] 2 [0, 1, 1, 2]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:203:0: 'JurisLean.Candidates.FormalTail20261024.u03_2_checked_closure_complete_not_list_carrier_bound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:205:0: JurisLean.Candidates.FormalTail20261024.u03_2_incomplete_fuel_not_carrier_fuel_bound :
+  JurisLean.Candidates.Final20261021.Compiler.proposed_checked_rule_input
+        JurisLean.Candidates.FormalTail20261024.cand8IncompleteRules 1 [0] =
+      JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.checkIncomplete ∧
+    ¬JurisLean.Candidates.FormalTail20261024.cand8FuelOneHasKnownResult
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:206:0: 'JurisLean.Candidates.FormalTail20261024.u03_2_incomplete_fuel_not_carrier_fuel_bound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:208:0: JurisLean.Candidates.FormalTail20261024.u07_2_common_fiber_not_semantic_compatibility :
+  (∃ ws, ∀ (i : Fin 2), (fun x w => ()) i (ws i) = ()) ∧
+    ¬JurisLean.Candidates.FormalTail20261024.cand8IncompatibleBoolLayersHaveCommonValue
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:209:0: 'JurisLean.Candidates.FormalTail20261024.u07_2_common_fiber_not_semantic_compatibility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:211:0: JurisLean.Candidates.FormalTail20261024.u07_2_incompatible_fiber_not_layer_compatibility :
+  (¬∃ b, false = b ∧ true = b) ∧ ¬JurisLean.Candidates.FormalTail20261024.cand8BoolObservationFibersAgree
+info: JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean:212:0: 'JurisLean.Candidates.FormalTail20261024.u07_2_incompatible_fiber_not_layer_compatibility' does not depend on any axioms

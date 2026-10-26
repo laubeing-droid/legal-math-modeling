@@ -65,6 +65,28 @@ def test_every_quoted_run_id_is_in_the_index() -> None:
     assert recorded <= set(quoted), f"index records nothing quotes: {sorted(recorded - set(quoted))}"
 
 
+def test_quote_scan_distinguishes_job_ids_from_runs(tmp_path, monkeypatch) -> None:
+    from types import SimpleNamespace
+
+    (tmp_path / "quotes.md").write_text(
+        "[run 40356561660, job 121690497738]"
+        "(https://github.com/owner/repo/actions/runs/40356561660/job/121690497738)\n"
+        "run 121690497738 is still a run when explicitly quoted separately\n"
+        "123456789012, jobs 123456789013, /jobs/123456789014, 1234567890123\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(build_ci_run_index, "ROOT", tmp_path)
+    monkeypatch.setattr(build_ci_run_index, "MD_OUT", tmp_path / "index.md")
+    monkeypatch.setattr(build_ci_run_index, "EVIDENCE_ROOT", tmp_path / "evidence")
+    monkeypatch.setattr(build_ci_run_index.subprocess, "run",
+                        lambda *args, **kwargs: SimpleNamespace(stdout="quotes.md\0"))
+    assert build_ci_run_index.run_ids_in_markdown() == {
+        "40356561660": ["quotes.md:1"],
+        "121690497738": ["quotes.md:2"],
+        "123456789012": ["quotes.md:3"],
+    }
+
+
 def test_citations_in_the_index_are_real_locations() -> None:
     """The index may not invent the quotes it says it checked."""
 

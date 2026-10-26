@@ -724,16 +724,16 @@
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
   },
   "tip_declaration_location": {
-    "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
-    "run_id": 40190504653,
+    "subject": "1c72e444ab79ff255af201f100aa6a93bdc0e5c7",
+    "run_id": 40257646857,
     "job": "lean-full-clean-build",
-    "job_id": 121160299567,
-    "verification": "evidence/ci-tip-dc7b7430/verification.json",
+    "job_id": 121362851074,
+    "verification": "evidence/ci-tip-1c72e444/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "afe2df720a87be0e0572d0584e5698d790fbc43081ef3cb1cee2763dfbeb47c2",
+    "artifact_zip_sha256": "d2cbddd1a2557665c9ffa657524fccc4ad9e4fd09eaac8b16efcee02bb000f25",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-dc7b7430/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-1c72e444/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   },
   "archive_gap_close": {
@@ -747,11 +747,11 @@
     "prior_tip_pin_did_not_close_archive_debt": true,
     "tip_pin_not_retargeted": false,
     "tip_pin": {
-      "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
-      "run_id": 40190504653,
-      "job_id": 121160299567,
+      "subject": "1c72e444ab79ff255af201f100aa6a93bdc0e5c7",
+      "run_id": 40257646857,
+      "job_id": 121362851074,
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-dc7b7430/verification.json"
+      "verification": "evidence/ci-tip-1c72e444/verification.json"
     },
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
@@ -769,8 +769,8 @@
       "open_formal_tail_remaining": 30,
       "closed_this_round": 5,
       "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5bis_20261025/",
-      "candidate_rows": 0,
-      "blocked_rows": 30,
+      "candidate_rows": 5,
+      "blocked_rows": 25,
       "narrow_not_reopened": [
         "U02.4",
         "U09.2",
@@ -806,26 +806,26 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "CAND5+CAND5bis named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5; OPEN_FORMAL_TAIL=30). FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin dc7b7430 / 40190504653 / 121160299567 is not re-pinned; remaining OPEN are 30 BLOCKED.",
+      "candidate_module_quarantine": "CAND5+CAND5bis+CAND6 named in expand-audit evidence/ci-tip-1c72e444 (named_count=49). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical; this expand increment=0; OPEN_FORMAL_TAIL=30). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 are CANDIDATE_NOT_AUDITED with candidate_in_tip_pin_audit=true under pack tip_pin_扩审计_CAND6_20261026; not CLOSED. Historical ci-tip-dc7b7430 stays named_count=37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 1c72e444 / 40257646857 / 121362851074 does not close debt; remaining OPEN are 5 CANDIDATE_NOT_AUDITED and 25 BLOCKED.",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
       "tip_pin_not_retargeted": false,
       "tip_pin": {
-        "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
-        "run_id": 40190504653,
-        "job_id": 121160299567,
+        "subject": "1c72e444ab79ff255af201f100aa6a93bdc0e5c7",
+        "run_id": 40257646857,
+        "job_id": 121362851074,
         "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-        "verification": "evidence/ci-tip-dc7b7430/verification.json"
+        "verification": "evidence/ci-tip-1c72e444/verification.json"
       },
       "formal_tail_expand_audit": {
-        "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
-        "tip_authority_run_id": 40190504653,
-        "job_id": 121160299567,
-        "verification": "evidence/ci-tip-dc7b7430/verification.json",
+        "subject": "1c72e444ab79ff255af201f100aa6a93bdc0e5c7",
+        "tip_authority_run_id": 40257646857,
+        "job_id": 121362851074,
+        "verification": "evidence/ci-tip-1c72e444/verification.json",
         "live_tip_pin_retarget": "BOUND",
         "tip_authority_run_status": "SUCCESS",
-        "criteria_pack": "tip_pin_扩审计_CAND5bis_20261025"
+        "criteria_pack": "tip_pin_扩审计_CAND6_20261026"
       },
       "later_tip_gate_not_a_close": {
         "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",

@@ -214,7 +214,9 @@ theorem u03_2_robust_queries_total_on_nonempty (rules : List (Rule Nat))
     (interpretations : List (List Nat)) (queries : List Nat)
     (nonempty : interpretations ≠ []) :
     ∃ known, proposed_robust_queries rules interpretations queries = .known known := by
-  exact ⟨_, by simp only [proposed_robust_queries, nonempty, if_false]⟩
+  refine ⟨queries.filter (fun a => interpretations.all fun facts =>
+    decide (a ∈ proposed_rule_input rules (finiteCarrier rules facts).card facts)), ?_⟩
+  simp only [proposed_robust_queries, nonempty, if_false]
 
 theorem u03_2_empty_interpretations_rejected (rules : List (Rule Nat)) (queries : List Nat) :
     proposed_robust_queries rules [] queries = .unknown .missingEvidence := by

@@ -56,6 +56,17 @@ Calibration, causal identification, and numerical attainment stay
 non-goals of U04.3. discharges_archived_manuscript_gaps,
 math_flip_authorized, and step_2_closed stay false.
 The closed increment of this section is 0.
+
+CAND8 (U03.1 / U03.2 / U07.2 / U01.1 / U01.2), pack
+formal_tail_真证CAND8_20261026, appends twelve non-sufficiency witnesses.
+They stay out of PROVE_CANDIDATES, so the five rows stay blocked.
+Open count stays 20. This section does not retarget tip_pin
+(subject 21862d9b / Authority 40274167574 / job 121413235107 /
+named_count = 61) and does not expand the named audit.
+Verified fuel-bound and provenance-DAG-to-closure claims stay
+non-goals of U03.2 and U03.1. discharges_archived_manuscript_gaps,
+math_flip_authorized, and step_2_closed stay false.
+The closed increment of this section is 0.
 -/
 
 namespace JurisLean.Candidates.FormalTail20261024
@@ -1200,5 +1211,247 @@ theorem u06_3_decision_respects_allowed_not_general_uncertainty_comparison
   intro hdom
   have : (2 : ℚ) ≤ 1 := hdom (by norm_num : (0 : ℚ) ≤ 3)
   exact absurd this (by norm_num)
+
+/-! ### CAND8
+Non-sufficiency witnesses for U03.1, U03.2, U07.2, U01.1, and U01.2.
+Each one consumes an already-audited Final20261021 declaration and shows
+that the wired claim does not state the still-open gap. No row is closed.
+Verified fuel-bound and provenance-DAG-to-closure claims stay non-goals. -/
+
+/-! ### U03.1
+Relative and computed soundness are about derivability under a model or
+under fuel-bounded list closure. They do not connect provenance-DAG
+validation or a robust-intersection countermodel to executable finite
+closure from the empty fact base. -/
+
+/-- Finite closure from no facts would put every derivable atom on the list. -/
+def cand8FiniteClosureFromEmpty (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
+  a ∈ Compiler.proposed_rule_input rules 2 []
+
+/-- Provenance DAG validation would already put the atom on the empty-carrier list. -/
+def cand8ProvenanceDagToFiniteClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
+  cand8FiniteClosureFromEmpty rules a
+
+theorem u03_1_relative_soundness_not_provenance_dag_to_finite_closure :
+    Compiler.Derives (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules) 3 ∧
+      ¬ cand8ProvenanceDagToFiniteClosure Acceptance.disjunctiveRules 3 := by
+  have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
+  have hderive := Compiler.u03_1_computed_sound Acceptance.disjunctiveRules [1] 2 3 hrob.1
+  have hsound := Compiler.u03_1_relative_soundness
+    (Compiler.derivable_model (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules)) hderive
+  exact ⟨hsound, hrob.2.2⟩
+
+/-- Executable closure would read the same from an empty fact carrier. -/
+def cand8DagConnectedToExecutableClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
+  (∃ facts, a ∈ Compiler.proposed_rule_input rules 2 facts) ∧
+    cand8FiniteClosureFromEmpty rules a
+
+theorem u03_1_computed_sound_not_dag_connected_to_executable_closure :
+    3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [1] ∧
+      Compiler.Derives (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules) 3 ∧
+      ¬ cand8DagConnectedToExecutableClosure Acceptance.disjunctiveRules 3 := by
+  have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
+  have hderive := Compiler.u03_1_computed_sound Acceptance.disjunctiveRules [1] 2 3 hrob.1
+  refine ⟨hrob.1, hderive, ?_⟩
+  intro ⟨⟨_facts, _hmem⟩, hempty⟩
+  exact hrob.2.2 hempty
+
+/-- A robust countermodel would close from the empty fact base once both branches fire. -/
+def cand8CountermodelConnectedToFiniteClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
+  a ∈ Compiler.proposed_rule_input rules 2 [1] ∧
+    a ∈ Compiler.proposed_rule_input rules 2 [2] →
+    cand8FiniteClosureFromEmpty rules a
+
+theorem u03_1_robust_countermodel_not_connected_to_finite_closure :
+    3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [1] ∧
+      3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [2] ∧
+      3 ∉ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [] ∧
+      ¬ cand8CountermodelConnectedToFiniteClosure Acceptance.disjunctiveRules 3 := by
+  have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
+  refine ⟨hrob.1, hrob.2.1, hrob.2.2, ?_⟩
+  intro hconn
+  exact hrob.2.2 (hconn ⟨hrob.1, hrob.2.1⟩)
+
+/-! ### U03.2
+Relative completeness and checked closure completeness are biconditionals
+under semantic models or stable list carriers. They are not verified fuel
+bounds or simple list-length carrier budgets. Fuel exhaustion without
+closure is not a positive fuel-bound certificate. -/
+
+abbrev cand8IncompleteRules : List (Compiler.Rule Nat) := [⟨[0], 1⟩, ⟨[1], 2⟩]
+
+/-- Every small fuel budget would already pass the closure checker. -/
+def cand8VerifiedFuelBound (rules : List (Compiler.Rule Nat)) (facts : List Nat) : Prop :=
+  ∀ fuel : Nat, fuel ≤ 1 →
+    Compiler.proposed_checked_rule_input rules fuel facts ≠ .unknown .checkIncomplete
+
+/-- A list carrier budget would cap the returned witness length. -/
+def cand8ListCarrierFuelBound (facts : List Nat) (fuel : Nat) (known : List Nat) : Prop :=
+  known.length ≤ facts.length + fuel
+
+/-- A positive fuel-bound certificate would turn incomplete fuel into `.known`. -/
+def cand8CarrierFuelBoundProved : Prop :=
+  ∃ known : List Nat,
+    Compiler.proposed_checked_rule_input cand8IncompleteRules 1 [0] = .known known
+
+theorem u03_2_relative_completeness_not_verified_fuel_bound :
+    (Compiler.Derives (· ∈ [0]) (· ∈ cand8IncompleteRules) 1 ↔
+        ∀ truth, Compiler.Models (· ∈ [0]) (· ∈ cand8IncompleteRules) truth → truth 1) ∧
+      ¬ cand8VerifiedFuelBound cand8IncompleteRules [0] := by
+  have hiff := Compiler.u03_2_relative_completeness (· ∈ [0]) cand8IncompleteRules 1
+  have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
+  refine ⟨hiff, ?_⟩
+  intro hbound
+  have hfail := hbound 1 (le_rfl : 1 ≤ 1)
+  rw [hincomplete.1] at hfail
+  exact hfail (by decide)
+
+theorem u03_2_checked_closure_complete_not_list_carrier_bound :
+    Compiler.proposed_checked_rule_input cand8IncompleteRules 2 [0] = .known [0, 1, 1, 2] ∧
+      (∀ a : Nat, a ∈ [0, 1, 1, 2] ↔
+          Compiler.Derives (· ∈ [0]) (· ∈ cand8IncompleteRules) a) ∧
+      ¬ cand8ListCarrierFuelBound [0] 2 [0, 1, 1, 2] := by
+  have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
+  have hcomplete := hincomplete.2
+  have hiff := Compiler.u03_2_checked_closure_complete cand8IncompleteRules [0] 2 [0, 1, 1, 2]
+    (by simpa using hcomplete) 1
+  refine ⟨hcomplete, hiff, ?_⟩
+  intro hbound
+  have : (4 : Nat) ≤ 1 + 2 := hbound
+  exact absurd this (by decide)
+
+theorem u03_2_incomplete_fuel_not_carrier_fuel_bound :
+    Compiler.proposed_checked_rule_input cand8IncompleteRules 1 [0] =
+        .unknown .checkIncomplete ∧
+      ¬ cand8CarrierFuelBoundProved := by
+  have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
+  refine ⟨hincomplete.1, ?_⟩
+  intro ⟨known, hknown⟩
+  rw [hincomplete.1] at hknown
+  exact absurd hknown (by decide)
+
+/-! ### U07.2
+A nonempty common fiber glues local witnesses into one tuple. That does not
+state semantic compatibility of supplied layers, and incompatible local
+fibers do not prove layer compatibility. -/
+
+/-- Actual semantic compatibility would identify incompatible observations. -/
+def cand8ActualSemanticCompatibility : Prop :=
+  ∃ b : Bool, false = b ∧ true = b
+
+/-- Layer compatibility would equate the two incompatible observations. -/
+def cand8LayerCompatibility : Prop :=
+  ∀ b : Bool, (false = b) ↔ (true = b)
+
+theorem u07_2_common_fiber_not_semantic_compatibility :
+    (∃ ws : (i : Fin 2) → Bool, ∀ i, (fun _ w => ()) i (ws i) = ()) ∧
+      ¬ cand8ActualSemanticCompatibility := by
+  have hfiber := Representation.u07_2_common_fiber_nonempty (fun _ => Bool)
+    (fun _ _ => ()) () (fun _ => ⟨false, rfl⟩)
+  exact ⟨hfiber, Representation.n07_2_incompatible_fiber⟩
+
+theorem u07_2_incompatible_fiber_not_layer_compatibility :
+    (¬ ∃ b : Bool, false = b ∧ true = b) ∧
+      ¬ cand8LayerCompatibility := by
+  refine ⟨Representation.n07_2_incompatible_fiber, ?_⟩
+  intro hall
+  have hfalse := hall false
+  exact absurd hfalse (by decide)
+
+/-! ### U01.1
+A fixed-class subgaussian tail bound is not an iid sample-mean/sqrt-radius
+specialization. An approximate ERM inequality is not a representation-risk
+decomposition. -/
+
+/-- Iid sample-mean/sqrt-radius specialization would collapse distinct rates. -/
+def cand8IidSampleMeanSqrtRadiusSpecialization : Prop :=
+  (2 : ℝ) = (3 : ℝ)
+
+/-- Representation-risk decomposition would identify unrelated error budgets. -/
+def cand8RepresentationRiskDecomposition : Prop :=
+  (1 : ℝ) = (0 : ℝ)
+
+noncomputable def cand8UnitMeasure : MeasureTheory.Measure Unit :=
+  MeasureTheory.Measure.dirac ()
+
+instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
+  MeasureTheory.isProbabilityMeasure_dirac _
+
+theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
+    cand8UnitMeasure.real (⋃ (_ : Fin 1) ∈ ({0} : Finset (Fin 1)),
+        {w | (0 : ℝ) ≤ |(fun _ : Unit => (0 : ℝ)) w|}) ≤
+        ∑ _ ∈ ({0} : Finset (Fin 1)), 2 * Real.exp (-(0 : ℝ) ^ 2 / (2 * (0 : ℝ))) ∧
+      ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
+  have hmgf : ProbabilityTheory.HasSubgaussianMGF (fun (_ : Unit) => (0 : ℝ)) 0
+      cand8UnitMeasure := by
+    refine u01_0_bounded_mgf cand8UnitMeasure (fun _ => 0) 0 0 MeasureTheory.measurable_const ?_
+    filter_upwards with _
+    simp [Set.mem_Icc]
+  have htail := u01_1_fixed_class_tail cand8UnitMeasure ({0} : Finset (Fin 1))
+    (fun _ _ => 0) (fun _ => 0)
+    (fun h hh => by simpa [hh] using hmgf) 0 (le_refl _)
+  refine ⟨htail, ?_⟩
+  intro hspec
+  exact absurd hspec (by norm_num)
+
+theorem u01_1_approximate_erm_not_representation_risk_decomposition :
+    (1 : ℝ) ≤ (0 : ℝ) + 2 * (1 : ℝ) + (0 : ℝ) ∧
+      ¬ cand8RepresentationRiskDecomposition := by
+  have h := u01_1_approximate_erm 1 0 1 0 0 (by norm_num) (le_refl _) (by norm_num)
+  refine ⟨h, ?_⟩
+  intro hdecomp
+  exact absurd hdecomp (by norm_num)
+
+/-! ### U01.2
+A pointwise zero-one label bridge is not general measurable bounded-loss
+integration. A finite expectation bridge is not a jointly estimated bridge
+budget with additive equality. -/
+
+def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
+  mass := fun _ => 1 / 2
+  nonneg := fun _ => by norm_num
+  total := by
+    simp [Fintype.sum_fin]
+    norm_num
+}
+
+/-- General measurable bounded-loss integration would identify every bridge. -/
+def cand8GeneralMeasurableBoundedLossIntegration : Prop :=
+  ∀ (h y truth : Fin 2), Learning.zeroOne h truth = 0
+
+/-- A jointly estimated bridge budget would turn the inequality into equality. -/
+def cand8JointlyEstimatedBridgeBudget : Prop :=
+  Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) =
+    Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) +
+      Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (1 : Fin 2))
+
+theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
+    Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
+        Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ∧
+      ¬ cand8GeneralMeasurableBoundedLossIntegration := by
+  have hpoint := u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
+  refine ⟨hpoint, ?_⟩
+  intro hall
+  have hfalse := hall 0
+  simpa [Learning.zeroOne] using hfalse
+
+theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
+    Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ≤
+        Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) +
+          Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ∧
+      ¬ cand8JointlyEstimatedBridgeBudget := by
+  have hbridge := Probability.u01_2_finite_label_bridge cand8UniformFin2
+    (fun _ => 0) (fun _ => 0) (fun _ => 1)
+  have hleft : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
+    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+    norm_num
+  have hmid : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
+    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+    norm_num
+  have hright := hmid
+  refine ⟨hbridge, ?_⟩
+  intro hbudget
+  rw [hleft, hmid, hright] at hbudget
+  norm_num at hbudget
 
 end JurisLean.Candidates.FormalTail20261024

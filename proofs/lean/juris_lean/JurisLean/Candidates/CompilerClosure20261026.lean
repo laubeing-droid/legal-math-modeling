@@ -48,7 +48,7 @@ theorem computed_add (rules : List (Rule Nat)) (m n : Nat) (facts : List Nat) :
     proposed_rule_input rules (m + n) facts =
       proposed_rule_input rules n (proposed_rule_input rules m facts) := by
   induction m generalizing facts with
-  | zero => rfl
+  | zero => simp only [Nat.zero_add, proposed_rule_input]
   | succ m ih =>
       simpa only [Nat.succ_add, proposed_rule_input] using ih (advance rules facts)
 
@@ -60,8 +60,9 @@ theorem computed_subset_carrier (rules : List (Rule Nat)) (facts : List Nat)
     (proposed_rule_input rules fuel facts).toFinset ⊆ finiteCarrier rules facts := by
   intro a ha
   have derived := u03_1_computed_sound rules facts fuel a (List.mem_toFinset.mp ha)
+  clear ha
   induction derived with
-  | fact a ha => simp [finiteCarrier, ha]
+  | fact a inputMember => simp [finiteCarrier, inputMember]
   | fire r hr premises ih =>
       have h : r.conclusion ∈ rules.map Rule.conclusion := List.mem_map.mpr ⟨r, hr, rfl⟩
       simp [finiteCarrier, h]
@@ -155,3 +156,6 @@ theorem u03_2_bounded_executable_closure_complete (rules : List (Rule Nat))
   exact ⟨known, checked, u03_2_checked_closure_complete rules facts fuel known checked⟩
 
 end JurisLean.Candidates.Final20261021.Compiler
+
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete

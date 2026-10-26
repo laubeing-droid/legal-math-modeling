@@ -95,6 +95,43 @@ def jointLoss {H Z : Type*} (loss : H → Z → ℚ)
     (accepts : H → Z → Bool) (pair : H × Bool) (z : Z) : ℚ :=
   if pair.2 then numeratorLoss loss accepts pair.1 z else coverageLoss accepts pair.1 z
 
+theorem q05_3_joint_confidence_event_measurable {Ω Z H : Type*}
+    [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ}
+    (P : Measure Z) (models : Finset H)
+    (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ i, Measurable (sample i))
+    (loss : H → Z → ℚ) (accepts : H → Z → Bool)
+    (numeratorMeasurable : ∀ h ∈ models,
+      Measurable (fun z => (numeratorLoss loss accepts h z : ℝ)))
+    (coverageMeasurable : ∀ h ∈ models,
+      Measurable (fun z => (coverageLoss accepts h z : ℝ))) (radius : ℝ) :
+    MeasurableSet {w | ∀ h ∈ models,
+      |(empiricalScore (numeratorLoss loss accepts) (fun i => sample i w) h : ℝ) -
+        ∫ z, (numeratorLoss loss accepts h z : ℝ) ∂P| ≤ radius ∧
+      |(empiricalScore (coverageLoss accepts) (fun i => sample i w) h : ℝ) -
+        ∫ z, (coverageLoss accepts h z : ℝ) ∂P| ≤ radius} := by
+  have deviations (h : H) (hh : h ∈ models) :
+      Measurable (fun w =>
+        |(empiricalScore (numeratorLoss loss accepts) (fun i => sample i w) h : ℝ) -
+          ∫ z, (numeratorLoss loss accepts h z : ℝ) ∂P|) ∧
+      Measurable (fun w =>
+        |(empiricalScore (coverageLoss accepts) (fun i => sample i w) h : ℝ) -
+          ∫ z, (coverageLoss accepts h z : ℝ) ∂P|) := by
+    have hm : ∀ i, Measurable (fun w => (numeratorLoss loss accepts h (sample i w) : ℝ)) :=
+      fun i => (numeratorMeasurable h hh).comp (sampleMeasurable i)
+    have hc : ∀ i, Measurable (fun w => (coverageLoss accepts h (sample i w) : ℝ)) :=
+      fun i => (coverageMeasurable h hh).comp (sampleMeasurable i)
+    simp_rw [empiricalScore_cast]
+    constructor <;> fun_prop
+  have measurable := models.measurableSet_biInter
+    (f := fun h => {w |
+      |(empiricalScore (numeratorLoss loss accepts) (fun i => sample i w) h : ℝ) -
+        ∫ z, (numeratorLoss loss accepts h z : ℝ) ∂P| ≤ radius ∧
+      |(empiricalScore (coverageLoss accepts) (fun i => sample i w) h : ℝ) -
+        ∫ z, (coverageLoss accepts h z : ℝ) ∂P| ≤ radius})
+    (fun h hh => (measurableSet_le (deviations h hh).1 measurable_const).inter
+      (measurableSet_le (deviations h hh).2 measurable_const))
+  convert measurable using 1 <;> ext w <;> simp
+
 -- There are two bounded statistics for every candidate, hence 2 * |T| in
 -- finiteRadius, i.e. sqrt(log(4 * |T| / delta) / (2 * n)).
 theorem q05_3_simultaneous_numerator_and_coverage {Ω Z H : Type*}
@@ -167,18 +204,21 @@ theorem q05_3_selected_threshold_has_population_risk_bound {Ω Z H : Type*}
     (lossRange : ∀ h ∈ first :: rest, ∀ z, (loss h z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
     (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) (radius target : ℚ)
     (conservative : finiteRadius n (2 * (first :: rest).toFinset.card) δ ≤ (radius : ℝ)) :
-    1 - δ ≤ μ.real {w | ∀ h,
-      calibrate loss accepts (first :: rest) (fun i => sample i w) radius target = some h →
-      0 < ∫ z, (coverageLoss accepts h z : ℝ) ∂P ∧
-      (∫ z, (numeratorLoss loss accepts h z : ℝ) ∂P) /
-        (∫ z, (coverageLoss accepts h z : ℝ) ∂P) ≤ (target : ℝ)} := by
+    ∃ confidence : Set Ω, MeasurableSet confidence ∧ 1 - δ ≤ μ.real confidence ∧
+      ∀ w ∈ confidence, ∀ h,
+        calibrate loss accepts (first :: rest) (fun i => sample i w) radius target = some h →
+        0 < ∫ z, (coverageLoss accepts h z : ℝ) ∂P ∧
+        (∫ z, (numeratorLoss loss accepts h z : ℝ) ∂P) /
+          (∫ z, (coverageLoss accepts h z : ℝ) ∂P) ≤ (target : ℝ) := by
   have uniform := q05_3_simultaneous_numerator_and_coverage μ P hn
     (first :: rest).toFinset ⟨first, by simp⟩ sample sampleMeasurable independent law
     loss accepts (fun h hh => numeratorMeasurable h (List.mem_toFinset.mp hh))
     (fun h hh => coverageMeasurable h (List.mem_toFinset.mp hh))
     (fun h hh => lossRange h (List.mem_toFinset.mp hh)) δ hδ hδ1
-  apply le_trans uniform
-  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+  refine ⟨_, q05_3_joint_confidence_event_measurable P (first :: rest).toFinset
+    sample sampleMeasurable loss accepts
+    (fun h hh => numeratorMeasurable h (List.mem_toFinset.mp hh))
+    (fun h hh => coverageMeasurable h (List.mem_toFinset.mp hh)) _, uniform, ?_⟩
   intro w hw h selected
   unfold calibrate at selected
   split at selected

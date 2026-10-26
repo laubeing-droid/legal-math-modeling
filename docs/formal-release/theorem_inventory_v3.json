@@ -9151,6 +9151,110 @@
     {
      "kind": "theorem",
      "name": "u06_3_decision_respects_allowed_not_general_uncertainty_comparison"
+    },
+    {
+     "kind": "def",
+     "name": "cand8FiniteClosureFromEmpty"
+    },
+    {
+     "kind": "def",
+     "name": "cand8ProvenanceDagToFiniteClosure"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_relative_soundness_not_provenance_dag_to_finite_closure"
+    },
+    {
+     "kind": "def",
+     "name": "cand8DagConnectedToExecutableClosure"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_computed_sound_not_dag_connected_to_executable_closure"
+    },
+    {
+     "kind": "def",
+     "name": "cand8CountermodelConnectedToFiniteClosure"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_robust_countermodel_not_connected_to_finite_closure"
+    },
+    {
+     "kind": "def",
+     "name": "cand8VerifiedFuelBound"
+    },
+    {
+     "kind": "def",
+     "name": "cand8ListCarrierFuelBound"
+    },
+    {
+     "kind": "def",
+     "name": "cand8CarrierFuelBoundProved"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_2_relative_completeness_not_verified_fuel_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_2_checked_closure_complete_not_list_carrier_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_2_incomplete_fuel_not_carrier_fuel_bound"
+    },
+    {
+     "kind": "def",
+     "name": "cand8ActualSemanticCompatibility"
+    },
+    {
+     "kind": "def",
+     "name": "cand8LayerCompatibility"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_2_common_fiber_not_semantic_compatibility"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_2_incompatible_fiber_not_layer_compatibility"
+    },
+    {
+     "kind": "def",
+     "name": "cand8IidSampleMeanSqrtRadiusSpecialization"
+    },
+    {
+     "kind": "def",
+     "name": "cand8RepresentationRiskDecomposition"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_fixed_class_tail_not_iid_sample_mean_specialization"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_approximate_erm_not_representation_risk_decomposition"
+    },
+    {
+     "kind": "def",
+     "name": "cand8UniformFin2"
+    },
+    {
+     "kind": "def",
+     "name": "cand8GeneralMeasurableBoundedLossIntegration"
+    },
+    {
+     "kind": "def",
+     "name": "cand8JointlyEstimatedBridgeBudget"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_2_label_bridge_pointwise_not_general_measurable_integration"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_2_finite_label_bridge_not_joint_bridge_budget"
     }
    ],
    "imports": [
@@ -9177,10 +9281,10 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "a7ac6e514043e63054a82ddb6cee4407b2add715cff74ce76ed596de7b702004",
-   "size_bytes": 52184,
-   "theorem_count": 61,
-   "theorem_count_bol_convention": 61
+   "sha256": "235698aa8820116f6e80cccda2f4d339caecffd1e6ec27ad0cf6607e23723756",
+   "size_bytes": 64530,
+   "theorem_count": 73,
+   "theorem_count_bol_convention": 73
   },
   {
    "declarations": [
@@ -49378,22 +49482,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5519,
+   "counted_declaration_count": 5531,
    "file_count": 394,
    "lemma_count": 146,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5373,
-   "theorem_count_bol_convention": 5273
+   "theorem_count": 5385,
+   "theorem_count_bol_convention": 5285
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5500,
+   "counted_declaration_count": 5512,
    "file_count": 379,
    "lemma_count": 139,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5361,
-   "theorem_count_bol_convention": 5261
+   "theorem_count": 5373,
+   "theorem_count_bol_convention": 5273
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50223,12 +50327,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b11e8b8837829b56b6742e071f8b917db4d703ea8e4c9f8335faec5c703ad9e3",
+ "source_inventory_digest": "946e0ffbb3a6ded0c8b2cb7e007f60fa393eaf54810799cef0ef70ab596064cc",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "cursor/formaltail-cand7-true-proof-8d19",
-  "commit": "a67c018716f7c734cd1f571af39a5efb2b28caaf",
-  "tree": "2e164b2f9433e1ae9df8cafb1df5cdecc3cd51b7"
+  "branch": "cursor/formal-tail-cand8-1dc1",
+  "commit": "b93aef4a2685f96a9b6d6897bff07c20d2647691",
+  "tree": "b92a8067e1bab74463bf543829bbf13356641823"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

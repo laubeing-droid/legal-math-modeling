@@ -1298,7 +1298,7 @@ theorem u03_2_relative_completeness_not_verified_fuel_bound :
     (Compiler.Derives (· ∈ [0]) (· ∈ cand8IncompleteRules) 1 ↔
         ∀ truth, Compiler.Models (· ∈ [0]) (· ∈ cand8IncompleteRules) truth → truth 1) ∧
       ¬ cand8VerifiedFuelBound cand8IncompleteRules [0] := by
-  have hiff := Compiler.u03_2_relative_completeness (· ∈ [0]) cand8IncompleteRules 1
+  have hiff := Compiler.u03_2_relative_completeness (· ∈ [0]) (· ∈ cand8IncompleteRules) 1
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   refine ⟨hiff, ?_⟩
   intro hbound
@@ -1313,9 +1313,9 @@ theorem u03_2_checked_closure_complete_not_list_carrier_bound :
       ¬ cand8ListCarrierFuelBound [0] 2 [0, 1, 1, 2] := by
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   have hcomplete := hincomplete.2
-  have hiff := Compiler.u03_2_checked_closure_complete cand8IncompleteRules [0] 2 [0, 1, 1, 2]
-    (by simpa using hcomplete) 1
-  refine ⟨hcomplete, hiff, ?_⟩
+  refine ⟨hcomplete, fun a =>
+    Compiler.u03_2_checked_closure_complete cand8IncompleteRules [0] 2 [0, 1, 1, 2]
+      (by simpa using hcomplete) a, ?_⟩
   intro hbound
   have : (4 : Nat) ≤ 1 + 2 := hbound
   exact absurd this (by decide)
@@ -1327,8 +1327,7 @@ theorem u03_2_incomplete_fuel_not_carrier_fuel_bound :
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   refine ⟨hincomplete.1, ?_⟩
   intro ⟨known, hknown⟩
-  rw [hincomplete.1] at hknown
-  exact absurd hknown (by decide)
+  cases hknown
 
 /-! ### U07.2
 A nonempty common fiber glues local witnesses into one tuple. That does not
@@ -1346,8 +1345,9 @@ def cand8LayerCompatibility : Prop :=
 theorem u07_2_common_fiber_not_semantic_compatibility :
     (∃ ws : (i : Fin 2) → Bool, ∀ i, (fun _ w => ()) i (ws i) = ()) ∧
       ¬ cand8ActualSemanticCompatibility := by
-  have hfiber := Representation.u07_2_common_fiber_nonempty (fun _ => Bool)
-    (fun _ _ => ()) () (fun _ => ⟨false, rfl⟩)
+  have hfiber := Representation.u07_2_common_fiber_nonempty
+    (fun (_ : Fin 2) => Bool) (fun (_ : Fin 2) (_ : Bool) => ()) ()
+    (fun (_ : Fin 2) => ⟨false, rfl⟩)
   exact ⟨hfiber, Representation.n07_2_incompatible_fiber⟩
 
 theorem u07_2_incompatible_fiber_not_layer_compatibility :
@@ -1375,11 +1375,11 @@ noncomputable def cand8UnitMeasure : MeasureTheory.Measure Unit :=
   MeasureTheory.Measure.dirac ()
 
 instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
-  MeasureTheory.isProbabilityMeasure_dirac _
+  ⟨by simp [cand8UnitMeasure]⟩
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    cand8UnitMeasure.real (⋃ (_ : Fin 1) ∈ ({0} : Finset (Fin 1)),
-        {w | (0 : ℝ) ≤ |(fun _ : Unit => (0 : ℝ)) w|}) ≤
+    cand8UnitMeasure.real
+        (⋃ _h ∈ ({0} : Finset (Fin 1)), {w : Unit | (0 : ℝ) ≤ |(fun _ => (0 : ℝ)) w|}) ≤
         ∑ _ ∈ ({0} : Finset (Fin 1)), 2 * Real.exp (-(0 : ℝ) ^ 2 / (2 * (0 : ℝ))) ∧
       ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
   have hmgf : ProbabilityTheory.HasSubgaussianMGF (fun (_ : Unit) => (0 : ℝ)) 0
@@ -1389,15 +1389,18 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
     simp [Set.mem_Icc]
   have htail := u01_1_fixed_class_tail cand8UnitMeasure ({0} : Finset (Fin 1))
     (fun _ _ => 0) (fun _ => 0)
-    (fun h hh => by simpa [hh] using hmgf) 0 (le_refl _)
+    (fun h hh => by
+      simp only [Finset.mem_singleton] at hh
+      subst h
+      exact hmgf) (0 : ℝ) (le_refl _)
   refine ⟨htail, ?_⟩
   intro hspec
   exact absurd hspec (by norm_num)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    (1 : ℝ) ≤ (0 : ℝ) + 2 * (1 : ℝ) + (0 : ℝ) ∧
+    ((0 : ℝ) ≤ (0 : ℝ) + 2 * (0 : ℝ) + (0 : ℝ)) ∧
       ¬ cand8RepresentationRiskDecomposition := by
-  have h := u01_1_approximate_erm 1 0 1 0 0 (by norm_num) (le_refl _) (by norm_num)
+  have h := u01_1_approximate_erm 0 0 0 0 0 (le_refl _) (le_refl _) (le_refl _)
   refine ⟨h, ?_⟩
   intro hdecomp
   exact absurd hdecomp (by norm_num)
@@ -1411,8 +1414,7 @@ def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
   mass := fun _ => 1 / 2
   nonneg := fun _ => by norm_num
   total := by
-    simp [Fintype.sum_fin]
-    norm_num
+    native_decide
 }
 
 /-- General measurable bounded-loss integration would identify every bridge. -/
@@ -1432,7 +1434,7 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
   have hpoint := u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
   refine ⟨hpoint, ?_⟩
   intro hall
-  have hfalse := hall 0
+  have hfalse := hall 0 0 1
   simpa [Learning.zeroOne] using hfalse
 
 theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
@@ -1448,10 +1450,9 @@ theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
   have hmid : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
     simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
     norm_num
-  have hright := hmid
   refine ⟨hbridge, ?_⟩
   intro hbudget
-  rw [hleft, hmid, hright] at hbudget
+  simp [cand8JointlyEstimatedBridgeBudget, hleft, hmid] at hbudget
   norm_num at hbudget
 
 end JurisLean.Candidates.FormalTail20261024

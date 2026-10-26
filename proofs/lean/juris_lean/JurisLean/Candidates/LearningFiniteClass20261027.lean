@@ -136,7 +136,7 @@ theorem finite_class_mean_uniform {Ω H : Type*} [MeasurableSpace Ω] {n : ℕ}
     obtain ⟨h, hh, bad⟩ := hw
     simp only [Set.mem_iUnion, Set.mem_setOf_eq]
     exact ⟨h, hh, le_of_lt bad⟩
-  have failed := le_trans (measureReal_mono (μ := μ) failure) bound
+  have failed := le_trans (measureReal_mono (μ := μ) failure (measure_ne_top μ _)) bound
   rw [measureReal_compl goodMeasurable] at failed
   simpa using (show 1 - δ ≤ μ.real {w | ∀ h ∈ models,
     |empiricalMean (X h) w - mean h| ≤ finiteRadius n models.card δ} by
@@ -171,9 +171,44 @@ theorem u01_1_iid_empirical_risk_uniform {Ω Z H : Type*}
   · exact hδ
   · exact hδ1
 
+-- This consumes the sample-mean event above for an actual data-dependent
+-- selected member. The optimization premise concerns the computed empirical
+-- risks; neither the population oracle inequality nor its event is assumed.
+theorem u01_1_iid_approximate_erm {Ω Z H : Type*}
+    [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ}
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (P : Measure Z) [IsProbabilityMeasure P]
+    (hn : 0 < n) (models : Finset H) (nonempty : models.Nonempty)
+    (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
+    (loss : H → Z → ℝ) (lossMeasurable : ∀ h ∈ models, Measurable (loss h))
+    (lossRange : ∀ h ∈ models, ∀ z, loss h z ∈ Set.Icc (0 : ℝ) 1)
+    (chosen : Ω → H) (member : ∀ w, chosen w ∈ models)
+    (chosenRiskMeasurable : Measurable (fun w => ∫ z, loss (chosen w) z ∂P))
+    (opt : ℝ) (optimization : ∀ w h, h ∈ models →
+      empiricalMean (fun i w' => loss (chosen w) (sample i w')) w ≤
+        empiricalMean (fun i w' => loss h (sample i w')) w + opt)
+    (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+    MeasurableSet {w | (∫ z, loss (chosen w) z ∂P) ≤
+      riskInf (fun h => ∫ z, loss h z ∂P) (models : Set H) +
+        2 * finiteRadius n models.card δ + opt} ∧
+    1 - δ ≤ μ.real {w | (∫ z, loss (chosen w) z ∂P) ≤
+      riskInf (fun h => ∫ z, loss h z ∂P) (models : Set H) +
+        2 * finiteRadius n models.card δ + opt} := by
+  refine ⟨measurableSet_le chosenRiskMeasurable measurable_const, ?_⟩
+  have uniform := u01_1_iid_empirical_risk_uniform μ P hn models nonempty
+    sample sampleMeasurable independent law loss lossMeasurable lossRange δ hδ hδ1
+  apply le_trans uniform
+  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+  intro w hw
+  exact u01_1_uniform_event_erm_oracle (fun h => ∫ z, loss h z ∂P)
+    (fun h => empiricalMean (fun i w' => loss h (sample i w')) w)
+    (models : Set H) (chosen w) (member w) (finiteRadius n models.card δ) opt
+    (fun h hh => by simpa [abs_sub_comm] using hw h hh) (optimization w)
+
 end
 end JurisLean.Candidates.LearningFiniteClass20261027
 
 #print axioms JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
 #print axioms JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform
 #print axioms JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm

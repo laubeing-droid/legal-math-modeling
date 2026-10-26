@@ -52,10 +52,11 @@ theorem u01_2_same_bounded_loss_label_bridge {Ω A B : Type*} [MeasurableSpace �
     · simp [mismatch, heq]
     · have ht := (range (prediction w) (target w)).2
       have hl := (range (prediction w) (label w)).1
-      simp only [mismatch, mem_setOf_eq, heq, not_false_eq_true, indicator_of_mem]
+      have hm : mismatch w = 1 := by simp [mismatch, Set.indicator, heq]
+      rw [hm]
       linarith
   have bound := integral_mono targetInt (labelInt.add mismatchInt) pointwise
-  rw [integral_add labelInt mismatchInt] at bound
+  rw [integral_add' labelInt mismatchInt] at bound
   simpa [mismatch, integral_indicator_one disagreementMeasurable] using bound
 
 -- A valid bridge upper bound has its own failure budget. These bounds may be
@@ -135,11 +136,17 @@ theorem u01_3_same_bounded_loss_tv {Ω : Type*} [MeasurableSpace Ω]
   have eventBound (t : ℝ) : |p t - q t| ≤ jointTotalVariation P Q :=
     event_distance_le_tv P Q _ (measurableSet_le measurable_const measurable)
   have upper := integral_mono pInt (qInt.add (integrable_const (jointTotalVariation P Q)))
-    (fun t => by have h := (abs_le.mp (eventBound t)).2; linarith)
+    (fun t => by
+      change p t ≤ q t + jointTotalVariation P Q
+      have h := (abs_le.mp (eventBound t)).2
+      linarith)
   have lower := integral_mono qInt (pInt.add (integrable_const (jointTotalVariation P Q)))
-    (fun t => by have h := (abs_le.mp (eventBound t)).1; linarith)
-  rw [integral_add qInt (integrable_const _)] at upper
-  rw [integral_add pInt (integrable_const _)] at lower
+    (fun t => by
+      change q t ≤ p t + jointTotalVariation P Q
+      have h := (abs_le.mp (eventBound t)).1
+      linarith)
+  rw [integral_add' qInt (integrable_const _)] at upper
+  rw [integral_add' pInt (integrable_const _)] at lower
   have constant : (∫ _t in Ioc (0 : ℝ) 1, jointTotalVariation P Q) = jointTotalVariation P Q := by
     simp
   rw [constant] at upper lower

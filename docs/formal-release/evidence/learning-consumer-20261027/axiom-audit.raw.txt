@@ -1,0 +1,109 @@
+JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample {m n : ℕ} {Y : Type}
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (data : Fin n → Fin m × Y) (out : JurisLean.Candidates.LearningConsumer20261027.FittedTable)
+  (accepted :
+    JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models data =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.protocol = protocol ∧
+    out.sampleSize = n ∧
+      out.table.length = m ∧
+        out.table ∈ models ∧
+          out.empiricalRisk =
+              JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data out.table ∧
+            ∀ table ∈ models,
+              JurisLean.Candidates.LearningERM20261027.empiricalScore
+                  (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data out.table ≤
+                JurisLean.Candidates.LearningERM20261027.empiricalScore
+                  (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data table
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_model_contents {m : ℕ}
+  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (query : Fin m)
+  (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration) (riskLimit : ℚ) (supported : Bool)
+  (changed : certificate.table ≠ fitted.table) :
+  JurisLean.Candidates.LearningConsumer20261027.consumeCalibration expected fitted query certificate riskLimit
+      supported =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.targetMismatch
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_model_contents' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_fit_scope {m : ℕ}
+  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (query : Fin m)
+  (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration) (riskLimit : ℚ) (supported : Bool)
+  (changed : fitted.protocol ≠ expected ∨ certificate.protocol ≠ expected) :
+  JurisLean.Candidates.LearningConsumer20261027.consumeCalibration expected fitted query certificate riskLimit
+      supported =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.targetMismatch
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_fit_scope' depends on axioms: [propext, Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_wrong_feature_width {m n : ℕ} {Y : Type}
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (data : Fin n → Fin m × Y)
+  (wrong : (models.all fun table => decide (table.length = m)) = false) :
+  JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models data =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.unsupported
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_wrong_feature_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_invalid_failure_budget {m n : ℕ} {Y : Type}
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (data : Fin n → Fin m × Y)
+  (invalid : ¬(0 < protocol.failureBudget ∧ protocol.failureBudget < 1)) :
+  JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models data =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.unsupported
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_invalid_failure_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed {m n : ℕ} {Y : Type}
+  (protocol expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (data : Fin n → Fin m × Y) (query : Fin m)
+  (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration) (riskLimit : ℚ) (supported : Bool)
+  (out : JurisLean.Candidates.LearningConsumer20261027.FittedTable)
+  (accepted :
+    JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models data =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.LearningConsumer20261027.fitThenCalibrationGate protocol expected loss models data query
+      certificate riskLimit supported =
+    JurisLean.Candidates.LearningConsumer20261027.consumeCalibration expected out query certificate riskLimit supported
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_matching_calibration_reads_selected_table {m : ℕ}
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (query : Fin m)
+  (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration) (riskLimit : ℚ)
+  (scope : certificate.protocol = fitted.protocol) (sameTable : certificate.table = fitted.table)
+  (width : fitted.table.length = m) (boundScope : certificate.bounds.contract = fitted.protocol.fit)
+  (coverage : 0 < certificate.bounds.lowerCoverage) (nonnegative : 0 ≤ certificate.bounds.upperRisk)
+  (acceptable : certificate.bounds.upperRisk ≤ riskLimit) :
+  JurisLean.Candidates.LearningConsumer20261027.consumeCalibration fitted.protocol fitted query certificate riskLimit
+      true =
+    JurisLean.Candidates.Final20261021.Result.known
+      { protocol := fitted.protocol, value := fitted.table.getD (↑query) 0, bounds := certificate.bounds }
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_matching_calibration_reads_selected_table' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer {m n : ℕ}
+  {Y : Type} (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (data : Fin n → Fin m × Y) (query : Fin m)
+  (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration) (riskLimit : ℚ)
+  (out : JurisLean.Candidates.LearningConsumer20261027.FittedTable)
+  (accepted :
+    JurisLean.Candidates.LearningConsumer20261027.fitTable protocol loss models data =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (scope : certificate.protocol = protocol) (sameTable : certificate.table = out.table)
+  (boundScope : certificate.bounds.contract = protocol.fit) (coverage : 0 < certificate.bounds.lowerCoverage)
+  (nonnegative : 0 ≤ certificate.bounds.upperRisk) (acceptable : certificate.bounds.upperRisk ≤ riskLimit) :
+  JurisLean.Candidates.LearningConsumer20261027.fitThenCalibrationGate protocol protocol loss models data query
+        certificate riskLimit true =
+      JurisLean.Candidates.Final20261021.Result.known
+        { protocol := protocol, value := out.table.getD (↑query) 0, bounds := certificate.bounds } ∧
+    out.table ∈ models ∧
+      ∀ table ∈ models,
+        JurisLean.Candidates.LearningERM20261027.empiricalScore
+            (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data out.table ≤
+          JurisLean.Candidates.LearningERM20261027.empiricalScore
+            (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data table
+'JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

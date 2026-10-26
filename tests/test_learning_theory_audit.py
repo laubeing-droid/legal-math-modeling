@@ -15,6 +15,7 @@ EVIDENCE_CASES = [
     (ROOT / "docs/formal-release/evidence" / name, count) for name, count in (
         ("learning-theory-20261027", 14), ("learning-provenance-20261027", 14),
         ("learning-erm-20261027", 5), ("learning-boundary-20261027", 5),
+        ("learning-consumer-20261027", 8),
     )
 ]
 

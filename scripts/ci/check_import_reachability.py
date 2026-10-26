@@ -65,6 +65,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
     "JurisLean.Candidates.LearningBoundaryAudit20261027": (
         "5 finite-population and two-world boundary targets; changed-module run 40380565418 passed"
     ),
+    "JurisLean.Candidates.LearningConsumerAudit20261027": (
+        "8 actual fitted-table consumption targets and 3 execution checks; changed-module run 40385438770 passed"
+    ),
 }
 
 # Quarantine for modules whose own CI module build has not passed yet: AGENTS.md

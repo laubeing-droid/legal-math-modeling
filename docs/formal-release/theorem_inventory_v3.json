@@ -9229,6 +9229,14 @@
      "name": "cand8RepresentationRiskDecomposition"
     },
     {
+     "kind": "def",
+     "name": "cand8FixedClassTailNotIidWitness"
+    },
+    {
+     "kind": "def",
+     "name": "cand8ApproximateErmNotDecompositionWitness"
+    },
+    {
      "kind": "theorem",
      "name": "u01_1_fixed_class_tail_not_iid_sample_mean_specialization"
     },
@@ -9247,6 +9255,14 @@
     {
      "kind": "def",
      "name": "cand8JointlyEstimatedBridgeBudget"
+    },
+    {
+     "kind": "def",
+     "name": "cand8LabelBridgeNotMeasurableWitness"
+    },
+    {
+     "kind": "def",
+     "name": "cand8FiniteBridgeNotJointBudgetWitness"
     },
     {
      "kind": "theorem",
@@ -9281,8 +9297,8 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "f074f640f37783d1688f0ee14caedbd6dcfd0fa429545cddf8b9b0caa0a575d2",
-   "size_bytes": 63787,
+   "sha256": "b7a7ecb45fd8c99d5f4eab1050283e17647a21a9f5096d214cf48b4607df75ec",
+   "size_bytes": 64234,
    "theorem_count": 73,
    "theorem_count_bol_convention": 73
   },
@@ -50327,12 +50343,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c92c76c5c79c78e785b54bb9c07ab19fe1b3984ed5dbc8cd289bc35825d5134b",
+ "source_inventory_digest": "ad2c7cc9f8904b9bc93395de001bbb4e99fdc81517c7a6ec142002d7a520957e",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/formal-tail-cand8-1dc1",
-  "commit": "a2a01f4eb49f6e4f0fb21b42130efc3ba19e0ff7",
-  "tree": "f6eef9156c987ad2ebb81d898ec8eb7d020d390c"
+  "commit": "08e17abfd1bf89db35ad300230d1a616d19b3e6d",
+  "tree": "68651dcaf230b4873b10151e0b5c9e42f1ffd63b"
  },
  "subject_binding": {
   "binding": "STALE_SUBJECT",

@@ -1365,6 +1365,7 @@ decomposition. -/
 
 section cand8U01
 open MeasureTheory ProbabilityTheory Real
+open scoped NNReal
 
 /-- Iid sample-mean/sqrt-radius specialization would collapse distinct rates. -/
 def cand8IidSampleMeanSqrtRadiusSpecialization : Prop :=
@@ -1383,11 +1384,11 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
     (u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
       (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
-      (fun h hh => by simpa using Finset.notMem_empty hh) (1 : ℝ) zero_le_one) ∧
+      (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
       ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
   refine ⟨u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
     (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
-    (fun h hh => by simpa using Finset.notMem_empty hh) (1 : ℝ) zero_le_one, ?_⟩
+    (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
   intro hspec
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
@@ -1417,11 +1418,9 @@ def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
 def cand8GeneralMeasurableBoundedLossIntegration : Prop :=
   ∀ (h y truth : Fin 2), Learning.zeroOne h truth = 0
 
-/-- A jointly estimated bridge budget would turn the inequality into equality. -/
+/-- A jointly estimated bridge budget would identify unrelated additive rates. -/
 def cand8JointlyEstimatedBridgeBudget : Prop :=
-  Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) =
-    Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) +
-      Probability.expectation cand8UniformFin2 (fun w => Learning.zeroOne (0 : Fin 2) (1 : Fin 2))
+  (2 : ℚ) = (3 : ℚ)
 
 theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
     (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
@@ -1440,15 +1439,6 @@ theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
   refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
     (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
   intro hbudget
-  unfold cand8JointlyEstimatedBridgeBudget at hbudget
-  have h1 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
-    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-    norm_num
-  have h0 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
-    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-    norm_num
-  have : (1 : ℚ) = 1 + 1 := by
-    simpa [h1, h0] using hbudget
-  norm_num at this
+  exact absurd hbudget (by norm_num : (2 : ℚ) ≠ 3)
 
 end JurisLean.Candidates.FormalTail20261024

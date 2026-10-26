@@ -1,0 +1,59 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "098224d9cd7a1f7f956b49745ea162bc866ff9be",
+  "run_id": 40418104346,
+  "job_id": 121905397514,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
+  "named_count": 9,
+  "named_theorems_full": [
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_fitted_score_selects_the_bin",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.full_model_bin_family_is_counted",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.changed_probability_scope_refused",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_samples_determine_probability",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.empirical_success_bounded_by_coverage",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_interval_contains_empirical_probability",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.pipeline_consumes_actual_fit_and_sample",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.population_bin_integrals",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.whole_pipeline_bin_probability_confidence"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
+      "sha256": "2c30753d03f34b90a3af5274731df4392faa1589c07cb56b6ff4383dc8ae90fc"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
+      "sha256": "1b4b4e7067dde4b237e3b1ea17bd46ad533e676fd9052bd8f5b2eebcc7507b32"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 9,
+      "propext": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "8 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

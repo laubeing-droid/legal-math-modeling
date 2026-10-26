@@ -65,6 +65,7 @@ import JurisLean.BanachWeightedNorm
 import JurisLean.Candidates.CalibrationSemantics20261027
 import JurisLean.Candidates.CompilerClosure20261026
 import JurisLean.Candidates.CompilerProvenance20261027
+import JurisLean.Candidates.IntervalDecisionConsumer20261027
 import JurisLean.Candidates.LearningBoundary20261027
 import JurisLean.Candidates.LearningBridge20261027
 import JurisLean.Candidates.LearningConsumer20261027
@@ -73,6 +74,7 @@ import JurisLean.Candidates.LearningERM20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.LearningFiniteClass20261027
 import JurisLean.Candidates.LearningRisk20261027
+import JurisLean.Candidates.ProbabilityIntervalConsumer20261027
 import JurisLean.Candidates.SampleCalibrationConsumer20261027
 import JurisLean.Candidates.SelectiveCalibration20261027
 import JurisLean.CanonicalSerialization

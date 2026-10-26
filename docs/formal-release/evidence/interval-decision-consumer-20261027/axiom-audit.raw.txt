@@ -1,0 +1,225 @@
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:4:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.actual_probability_fills_both_outcomes
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote) (p : ℚ) :
+  List.map (fun x => x.probability) (a.atProbability p).outcomes = [p, 1 - p]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:5:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.actual_probability_fills_both_outcomes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:6:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost
+  (g : JurisLean.Candidates.Final20261021.Gamma) (utility : ℚ → ℚ) (utilityVersion : ℕ) (riskLimit : ℚ)
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote) (p : ℚ)
+  (out : JurisLean.Candidates.Final20261021.Decision.DecisionIR)
+  (accepted :
+    JurisLean.Candidates.Final20261021.Decision.evaluate g utility utilityVersion riskLimit (a.atProbability p) =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.gamma = g ∧
+    out.action = a.atProbability p ∧
+      out.expectedNet.value = JurisLean.Candidates.IntervalDecisionConsumer20261027.cashAt a p ∧
+        out.expectedUtility = JurisLean.Candidates.IntervalDecisionConsumer20261027.utilityAt utility a p ∧
+          out.probabilityOfLoss = JurisLean.Candidates.IntervalDecisionConsumer20261027.lossAt a p
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:7:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:8:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.affine_interval_bounds (p lo hi b l k : ℝ) (lower : lo ≤ p)
+  (upper : p ≤ hi) :
+  min (lo * b + (1 - lo) * l - k) (hi * b + (1 - hi) * l - k) ≤ p * b + (1 - p) * l - k ∧
+    p * b + (1 - p) * l - k ≤ max (lo * b + (1 - lo) * l - k) (hi * b + (1 - hi) * l - k)
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:9:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.affine_interval_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:10:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.interval_evaluation_reads_the_receipt {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (p : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (out : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (accepted :
+    JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p a =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.probability = p ∧
+    JurisLean.Candidates.Final20261021.Decision.evaluate request.gamma utility request.utilityVersion request.riskLimit
+          (a.atProbability p.estimate) =
+        JurisLean.Candidates.Final20261021.Result.known out.nominal ∧
+      out.netLower =
+          min (JurisLean.Candidates.IntervalDecisionConsumer20261027.cashAt a p.lower)
+            (JurisLean.Candidates.IntervalDecisionConsumer20261027.cashAt a p.upper) ∧
+        out.netUpper =
+            max (JurisLean.Candidates.IntervalDecisionConsumer20261027.cashAt a p.lower)
+              (JurisLean.Candidates.IntervalDecisionConsumer20261027.cashAt a p.upper) ∧
+          out.utilityLower =
+              min (JurisLean.Candidates.IntervalDecisionConsumer20261027.utilityAt utility a p.lower)
+                (JurisLean.Candidates.IntervalDecisionConsumer20261027.utilityAt utility a p.upper) ∧
+            out.utilityUpper =
+                max (JurisLean.Candidates.IntervalDecisionConsumer20261027.utilityAt utility a p.lower)
+                  (JurisLean.Candidates.IntervalDecisionConsumer20261027.utilityAt utility a p.upper) ∧
+              out.riskUpper =
+                max (JurisLean.Candidates.IntervalDecisionConsumer20261027.lossAt a p.lower)
+                  (JurisLean.Candidates.IntervalDecisionConsumer20261027.lossAt a p.upper)
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:11:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.interval_evaluation_reads_the_receipt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:12:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.computed_decision_encloses_cash_utility_and_risk {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (p : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (out : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (accepted :
+    JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p a =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (q : ℝ) (lower : ↑p.lower ≤ q) (upper : q ≤ ↑p.upper) :
+  ↑out.netLower ≤
+      q * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr) +
+          (1 - q) * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr) -
+        ↑a.cost.value ∧
+    q * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr) +
+            (1 - q) * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr) -
+          ↑a.cost.value ≤
+        ↑out.netUpper ∧
+      ↑out.utilityLower ≤
+          q * ↑(utility (JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr - a.cost.value)) +
+            (1 - q) * ↑(utility (JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr - a.cost.value)) ∧
+        q * ↑(utility (JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr - a.cost.value)) +
+              (1 - q) *
+                ↑(utility (JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr - a.cost.value)) ≤
+            ↑out.utilityUpper ∧
+          ((q *
+                if JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr - a.cost.value < 0 then 1
+                else 0) +
+              (1 - q) *
+                if JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr - a.cost.value < 0 then 1
+                else 0) ≤
+            ↑out.riskUpper
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:13:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.computed_decision_encloses_cash_utility_and_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:14:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.missing_identification_cannot_succeed {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (p : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote) (missing : a.causalBridge = none)
+  (out : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m) :
+  JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p a ≠
+    JurisLean.Candidates.Final20261021.Result.known out
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:15:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.missing_identification_cannot_succeed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:16:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.fit_to_decision_passes_the_actual_probability {m n k : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool) (radius : ℚ)
+  (exponent : ℕ) (supported : Bool) (utility : ℚ → ℚ)
+  (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (out : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (accepted :
+    JurisLean.Candidates.IntervalDecisionConsumer20261027.fitToDecision request sampleProtocol loss models training
+        calibration radius exponent supported utility a =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ p,
+    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.runProbability request.protocol sampleProtocol loss models
+          training calibration request.query radius exponent request.calibrationSnapshot supported =
+        JurisLean.Candidates.Final20261021.Result.known p ∧
+      JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p a =
+          JurisLean.Candidates.Final20261021.Result.known out ∧
+        out.probability = p
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:17:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.fit_to_decision_passes_the_actual_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:18:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.explicit_maximin_preserves_permission_and_risk {m : ℕ}
+  (g : JurisLean.Candidates.Final20261021.Gamma) (utilityVersion : ℕ) (riskLimit : ℚ) (allowed : List ℕ)
+  (values : List (JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m))
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (chosen :
+    JurisLean.Candidates.IntervalDecisionConsumer20261027.chooseMaximin g utilityVersion riskLimit allowed values =
+      some selected) :
+  selected ∈ values ∧
+    selected.nominal.gamma = g ∧
+      selected.nominal.utilityVersion = utilityVersion ∧
+        selected.nominal.riskLimit = riskLimit ∧
+          selected.nominal.action.id ∈ allowed ∧
+            selected.riskUpper ≤ riskLimit ∧
+              ∀ other ∈ values,
+                other.nominal.gamma = g →
+                  other.nominal.utilityVersion = utilityVersion →
+                    other.nominal.riskLimit = riskLimit →
+                      other.nominal.action.id ∈ allowed →
+                        other.riskUpper ≤ riskLimit → other.utilityLower ≤ selected.utilityLower
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:19:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.explicit_maximin_preserves_permission_and_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:20:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.maximin_none_exactly_when_infeasible {m : ℕ}
+  (g : JurisLean.Candidates.Final20261021.Gamma) (utilityVersion : ℕ) (riskLimit : ℚ) (allowed : List ℕ)
+  (values : List (JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)) :
+  JurisLean.Candidates.IntervalDecisionConsumer20261027.chooseMaximin g utilityVersion riskLimit allowed values = none ↔
+    ∀ v ∈ values,
+      ¬(v.nominal.gamma = g ∧
+          v.nominal.utilityVersion = utilityVersion ∧
+            v.nominal.riskLimit = riskLimit ∧ v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit)
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:21:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.maximin_none_exactly_when_infeasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:22:0: JurisLean.Candidates.IntervalDecisionConsumer20261027.whole_computed_decision_bin_law_confidence.{u_1} {Ω : Type u_1}
+  {m n k : ℕ} [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Bool))
+  [MeasureTheory.IsProbabilityMeasure P] (hm : 0 < m) (hn : 0 < n)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (loss : ℚ → Bool → ℚ)
+  (first : List ℚ) (rest : List (List ℚ)) (sample : Fin n → Ω → Fin m × Bool)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (hδ : 0 < request.protocol.failureBudget)
+  (hδ1 : request.protocol.failureBudget < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑request.protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (training : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+            (events : Fin n → JurisLean.Candidates.Final20261021.EventId) (radius : ℚ) (exponent : ℕ) (supported : Bool)
+            (utility : ℚ → ℚ) (a : JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+            (out : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m),
+            JurisLean.Candidates.IntervalDecisionConsumer20261027.fitToDecision request request.protocol loss
+                  (first :: rest) training
+                  (fun i => { event := events i, feature := (sample i w).1, label := (sample i w).2 }) radius exponent
+                  supported utility a =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              have bin :=
+                JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                  (out.probability.fitted.table, out.probability.query);
+              have q := P.real {z | bin z = true ∧ z.2 = true} / P.real {z | bin z = true};
+              0 < P.real {z | bin z = true} ∧
+                ↑out.netLower ≤
+                    q * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr) +
+                        (1 - q) * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr) -
+                      ↑a.cost.value ∧
+                  q * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr) +
+                          (1 - q) * ↑(JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr) -
+                        ↑a.cost.value ≤
+                      ↑out.netUpper ∧
+                    ↑out.utilityLower ≤
+                        q *
+                            ↑(utility
+                                (JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr - a.cost.value)) +
+                          (1 - q) *
+                            ↑(utility
+                                (JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr - a.cost.value)) ∧
+                      q *
+                              ↑(utility
+                                  (JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr -
+                                    a.cost.value)) +
+                            (1 - q) *
+                              ↑(utility
+                                  (JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr -
+                                    a.cost.value)) ≤
+                          ↑out.utilityUpper ∧
+                        ((q *
+                              if
+                                  JurisLean.Candidates.Final20261021.Decision.evalExact a.success.expr - a.cost.value <
+                                    0 then
+                                1
+                              else 0) +
+                            (1 - q) *
+                              if
+                                  JurisLean.Candidates.Final20261021.Decision.evalExact a.failure.expr - a.cost.value <
+                                    0 then
+                                1
+                              else 0) ≤
+                          ↑out.riskUpper
+info: JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean:23:0: 'JurisLean.Candidates.IntervalDecisionConsumer20261027.whole_computed_decision_bin_law_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -67,12 +67,22 @@ def produceCalibration {m n : ℕ} {Y : Type} (sampleProtocol : LearningProtocol
     | some cutoff =>
         let low := lowerCoverage (sampleAcceptance fitted) rows radius cutoff
         let upper := upperNumerator (sampleLoss fitted loss) (sampleAcceptance fitted) rows radius cutoff
-        .known { fitted := fitted, cutoff := cutoff, radius := radius, calibrationRows := n
-          candidateCutoffs := cutoffs
-          certificate := { protocol := fitted.protocol, table := fitted.table
-            bounds := { contract := fitted.protocol.fit, lowerCoverage := low
-              upperRisk := upper / low, protocol := calibrationProtocol
-              validationSnapshot := snapshot, protectedGroups := [] } } }
+        .known
+          { fitted := fitted
+            cutoff := cutoff
+            radius := radius
+            calibrationRows := n
+            candidateCutoffs := cutoffs
+            certificate :=
+              { protocol := fitted.protocol
+                table := fitted.table
+                bounds :=
+                  { contract := fitted.protocol.fit
+                    lowerCoverage := low
+                    upperRisk := upper / low
+                    protocol := calibrationProtocol
+                    validationSnapshot := snapshot
+                    protectedGroups := [] } } }
 
 def predictCalibrated {m : ℕ} (expected : LearningProtocol) (calibrated : SampleCalibration)
     (query : Fin m) (target : ℚ) (supported : Bool) : Result TaskScore :=
@@ -154,7 +164,8 @@ theorem query_outside_selected_rule_refused {m : ℕ} (expected : LearningProtoc
     (calibrated : SampleCalibration) (query : Fin m) (target : ℚ) (supported : Bool)
     (outside : ¬ calibrated.cutoff ≤ calibrated.fitted.table.getD query.val 0) :
     predictCalibrated expected calibrated query target supported = .unknown .unsupported := by
-  simp [predictCalibrated, outside]
+  unfold predictCalibrated
+  rw [if_pos outside]
 
 theorem prediction_reads_actual_fitted_table {m : ℕ} (expected : LearningProtocol)
     (calibrated : SampleCalibration) (query : Fin m) (target : ℚ) (supported : Bool)
@@ -172,15 +183,25 @@ theorem prediction_reads_actual_fitted_table {m : ℕ} (expected : LearningProto
     · cases accepted
     · split at accepted
       · cases accepted
-      · unfold Calibration.proposed_calibration_support_gate at accepted
-        split at accepted
-        · cases accepted
-        · split at accepted
-          · cases accepted
-          · split at accepted
-            · cases accepted
-              exact ⟨rfl, rfl, rfl, eligible⟩
-            · cases accepted
+      · cases gate : Calibration.proposed_calibration_support_gate calibrated.fitted.protocol.fit
+            calibrated.certificate.bounds target supported with
+        | unknown e => simp [gate] at accepted
+        | rejected e => simp [gate] at accepted
+        | conflict a b => simp [gate] at accepted
+        | known bounds =>
+            simp only [gate] at accepted
+            cases accepted
+            have sameBounds : bounds = calibrated.certificate.bounds := by
+              unfold Calibration.proposed_calibration_support_gate at gate
+              split at gate
+              · cases gate
+              · split at gate
+                · cases gate
+                · split at gate
+                  · cases gate
+                    rfl
+                  · cases gate
+            exact ⟨rfl, rfl, sameBounds, eligible⟩
 
 theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type}
     (protocol sampleProtocol : LearningProtocol) (loss : ℚ → Y → ℚ)

@@ -53,6 +53,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
         "independent 69-target audit; changed-module run 40356561660 passed; "
         "does not promote FormalTail or replace the frozen tip pin"
     ),
+    "JurisLean.Candidates.LearningTheoryAudit20261027": (
+        "14 exact U01 types and kernel dependencies; changed-module run 40369446453 passed"
+    ),
 }
 
 # Quarantine for modules whose own CI module build has not passed yet: AGENTS.md

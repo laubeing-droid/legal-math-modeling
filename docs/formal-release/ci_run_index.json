@@ -26422,6 +26422,68 @@
     {
       "artifacts_total": 1,
       "conclusion": "success",
+      "created_at": "2026-10-26T16:08:19Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/u03-closure-20261026",
+      "head_sha": "2646bdd30d76da43862975c5591951b522403588",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40356182317",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/learning-theory-20261027/README.md:25"
+      ],
+      "run_id": 40356182317,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T16:12:18Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
       "created_at": "2026-10-26T16:10:39Z",
       "event": "workflow_dispatch",
       "evidence": null,
@@ -26479,6 +26541,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-26T16:14:31Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-26T17:31:40Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/theory-completion-20261027",
+      "head_sha": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40369446453",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/learning-theory-20261027/README.md:10"
+      ],
+      "run_id": 40369446453,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T17:35:20Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

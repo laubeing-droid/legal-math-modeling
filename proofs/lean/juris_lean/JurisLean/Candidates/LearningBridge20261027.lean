@@ -57,7 +57,11 @@ theorem u01_2_same_bounded_loss_label_bridge {Ω A B : Type*} [MeasurableSpace �
       linarith
   have bound := integral_mono targetInt (labelInt.add mismatchInt) pointwise
   rw [integral_add' labelInt mismatchInt] at bound
-  simpa [mismatch, integral_indicator_one disagreementMeasurable] using bound
+  have mismatchIntegral : (∫ w, mismatch w ∂μ) = μ.real {w | label w ≠ target w} := by
+    change (∫ w, {w | label w ≠ target w}.indicator (1 : Ω → ℝ) w ∂μ) = _
+    exact integral_indicator_one disagreementMeasurable
+  rw [mismatchIntegral] at bound
+  exact bound
 
 -- A valid bridge upper bound has its own failure budget. These bounds may be
 -- dependent; the union bound pays for both events without an independence claim.

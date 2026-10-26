@@ -1,0 +1,48 @@
+import JurisLean.Candidates.LearningRisk20261027
+import JurisLean.Candidates.LearningFiniteClass20261027
+import JurisLean.Candidates.LearningBridge20261027
+
+-- Exact types and kernel dependencies for this U01 proof batch.
+-- This is an independent driver, not a claim that all U01 subclaims are finished.
+
+#check JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition
+#print axioms JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition
+
+#check JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle
+#print axioms JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle
+
+#check JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound
+#print axioms JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound
+
+#check JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap
+#print axioms JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap
+
+#check JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap
+#print axioms JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm
+
+#check JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge
+#print axioms JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge
+
+#check JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge
+#print axioms JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge
+
+#check JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget
+#print axioms JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget
+
+#check JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv
+#print axioms JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv
+
+#check JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv
+#print axioms JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv

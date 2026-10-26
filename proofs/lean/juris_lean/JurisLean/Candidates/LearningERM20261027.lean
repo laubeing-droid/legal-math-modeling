@@ -80,7 +80,7 @@ theorem selectMinimum_measurable {Ω H : Type*} [MeasurableSpace Ω]
           score first w ≤ score (selectMinimum (fun h => score h w) next rest) w} := by
         simpa only [Rat.cast_le] using measurableSet_le firstMeasurable tail.1
       constructor
-      · simpa only [selectMinimum, apply_ite] using
+      · simpa only [selectMinimum, apply_ite, ite_apply] using
           Measurable.ite comparison firstMeasurable tail.1
       · simpa only [selectMinimum, apply_ite] using
           Measurable.ite comparison (measurable_const (a := value first)) tail.2
@@ -158,7 +158,7 @@ theorem u01_1_fit_reads_actual_sample :
     let loss := fun (h z : Bool) => if h = z then (0 : ℚ) else 1
     proposed_empirical_fit loss [false, true] (fun _ : Fin 2 => false) = some false ∧
       proposed_empirical_fit loss [false, true] (fun _ : Fin 2 => true) = some true := by
-  decide
+  norm_num [proposed_empirical_fit, fitNonempty, selectMinimum, empiricalScore]
 
 end JurisLean.Candidates.LearningERM20261027
 

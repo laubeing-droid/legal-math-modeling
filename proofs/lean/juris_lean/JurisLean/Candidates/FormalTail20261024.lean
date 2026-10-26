@@ -1,8 +1,11 @@
+import JurisLean.Candidates.Final20261021.Acceptance
 import JurisLean.Candidates.Final20261021.Authorization
 import JurisLean.Candidates.Final20261021.Behavior
+import JurisLean.Candidates.Final20261021.Calibration
 import JurisLean.Candidates.Final20261021.Decision
 import JurisLean.Candidates.Final20261021.EvidenceProcedure
 import JurisLean.Candidates.Final20261021.Feedback
+import JurisLean.Candidates.Final20261021.Harness
 import JurisLean.Candidates.Final20261021.Iteration
 import JurisLean.Candidates.Final20261021.Learning
 import JurisLean.Candidates.Final20261021.Ledger
@@ -10,6 +13,7 @@ import JurisLean.Candidates.Final20261021.Pipeline
 import JurisLean.Candidates.Final20261021.Policy
 import JurisLean.Candidates.Final20261021.Probability
 import JurisLean.Candidates.Final20261021.Progress
+import JurisLean.Candidates.Final20261021.Representation
 import JurisLean.Candidates.Final20261021.RSI
 import JurisLean.Candidates.Final20261021.Temporal
 import JurisLean.Candidates.Final20261021.Trace
@@ -41,6 +45,17 @@ They stay out of PROVE_CANDIDATES, so the five rows stay blocked.
 Open count stays 30. This section does not retarget tip_pin and does not
 expand the named audit. Reality-truth, external load readback, and legal
 allocation stay non-goals of the wired declarations already on those rows.
+
+CAND7 (U07.1 / U02.3 / U04.3 / U05.2 / U06.3), pack
+formal_tail_真证CAND7_20261026, appends twelve non-sufficiency witnesses.
+They stay out of PROVE_CANDIDATES, so the five rows stay blocked.
+Open count stays 25. This section does not retarget tip_pin
+(subject 1c72e444 / Authority 40257646857 / job 121362851074 /
+named_count = 49) and does not expand the named audit.
+Calibration, causal identification, and numerical attainment stay
+non-goals of U04.3. discharges_archived_manuscript_gaps,
+math_flip_authorized, and step_2_closed stay false.
+The closed increment of this section is 0.
 -/
 
 namespace JurisLean.Candidates.FormalTail20261024
@@ -912,5 +927,276 @@ theorem u10_2_post_invariant_not_gamma_frame_or_service_refinement
       actualPost1 final initialInvariant firstCommitted acknowledged,
     Trace.initial_invariant cand6Gamma cand6Debt (le_rfl : 0 ≤ cand6Debt.amount.value),
     by decide, rfl, by decide⟩
+
+/-! ### CAND7
+Non-sufficiency witnesses for U07.1, U02.3, U04.3, U05.2, and U06.3.
+Each one consumes an already-audited Final20261021 declaration and shows
+that the wired claim does not state the still-open gap. No row is closed.
+Calibration, causal identification, and numerical attainment stay non-goals
+on U04.3; they are not restated as theorems. -/
+
+/-! ### U07.1
+Retraction, section, and idempotent image do not accept every code as a
+decoded observation. Separation of the current bit does not decode a
+history. A retraction whose encode misses a point is not full decode
+acceptance. -/
+
+def cand7Encode : Unit → Bool := fun _ => false
+def cand7Decode : Bool → Unit := fun _ => ()
+
+/-- Full observation decoding would hit every code and split it. -/
+def cand7FullObservationDecoding (e : Unit → Bool) (d : Bool → Unit) : Prop :=
+  Function.Surjective e ∧ ∀ b, e (d b) = b
+
+theorem u07_1_retraction_not_full_observation_decoding_acceptance :
+    Function.Injective cand7Encode ∧
+      Function.Surjective cand7Decode ∧
+      (∀ b, cand7Encode (cand7Decode (cand7Encode (cand7Decode b))) =
+        cand7Encode (cand7Decode b)) ∧
+      ¬ cand7FullObservationDecoding cand7Encode cand7Decode := by
+  have roundtrip : ∀ x : Unit, cand7Decode (cand7Encode x) = x := by
+    intro x; cases x; rfl
+  refine ⟨Representation.u07_1_retraction_injective cand7Encode cand7Decode roundtrip,
+    Representation.u07_1_section_surjective cand7Encode cand7Decode roundtrip,
+    fun b => Representation.u07_1_rho_idempotent cand7Encode cand7Decode roundtrip b, ?_⟩
+  intro hfull
+  rcases hfull.1 true with ⟨x, hx⟩
+  cases x
+  cases hx
+
+theorem u07_1_separation_monotone_not_history_decoding :
+    (¬ Representation.Separates (fun _ : Unit => True) (fun _ (_ : Bool) => false)) ∧
+      Representation.Separates (fun _ : Bool => True)
+        (fun observation (a : Bool) => if observation then a else false) ∧
+      Representation.Separates (fun o : Bool => o = true ∨ o = false)
+        (fun observation (a : Bool) => if observation then a else false) ∧
+      ¬ Representation.Separates (fun _ : Bool => True)
+        (fun observation (history : Bool × Bool) =>
+          if observation then history.2 else false) := by
+  have hconst := Acceptance.n07_1_constant_family_not_separating
+  have hid := Acceptance.a07_1_identity_observation_separates
+  have hmono := Representation.u07_1_separation_monotone
+    (fun _ : Bool => True) (fun o : Bool => o = true ∨ o = false)
+    (fun observation (a : Bool) => if observation then a else false)
+    (fun o _ => by cases o <;> decide) hid
+  refine ⟨hconst, hid, hmono, ?_⟩
+  intro hsep
+  have hpair := hsep (true, false) (false, false) (fun o _ => by cases o <;> rfl)
+  rcases Prod.ext_iff.mp hpair with ⟨hfst, _⟩
+  cases hfst
+
+/-- Full decode acceptance would make the encode hit every code and fix it. -/
+def cand7FullDecodeAcceptance : Prop :=
+  Function.Surjective (fun _ : Unit => false) ∧
+    ∀ b : Bool, (fun _ : Unit => false) ((fun _ : Bool => ()) b) = b
+
+theorem u07_1_encode_nonsurjective_not_full_decode_acceptance :
+    (∀ x : Unit, (fun _ : Bool => ()) ((fun _ : Unit => false) x) = x) ∧
+      ¬ Function.Surjective (fun _ : Unit => false) ∧
+      (fun _ : Unit => false) ((fun _ : Bool => ()) true) = false ∧
+      ¬ cand7FullDecodeAcceptance := by
+  have h := Acceptance.n07_1_retraction_need_not_encode_surjectively
+  refine ⟨h.1, h.2, rfl, ?_⟩
+  intro full
+  exact h.2 full.1
+
+/-! ### U02.3
+Finite candidate enumeration returns the safe slice of the list it was
+given. It does not generate the support of every safe action. Common idle
+and zero coverage are the same kind of witness: the idle gate is not the
+full candidate list, and zero coverage is not a known zero risk. -/
+
+def cand7Possible : Bool → Bool := fun _ => true
+def cand7Allowed : Bool → Bool → Nat → Bool := fun _ _ _ => true
+def cand7Successor : Bool → Bool → Nat → Bool → Bool := fun _ _ _ _ => true
+def cand7Invariant : Bool → Bool → Bool := fun _ _ => true
+
+abbrev cand7Safe (a : Nat) : Prop :=
+  Harness.Safe (fun w => cand7Possible w = true)
+    (fun w s b => cand7Allowed w s b = true)
+    (fun w s b t => cand7Successor w s b t = true)
+    (fun w t => cand7Invariant w t = true)
+    true a
+
+theorem u02_3_finite_enumeration_not_generator_support_coverage :
+    (1 ∈ Harness.proposed_harness_gate cand7Possible cand7Allowed cand7Successor
+        cand7Invariant true [0, 1] ↔
+      1 ∈ ([0, 1] : List Nat) ∧ cand7Safe 1) ∧
+      cand7Safe 1 ∧
+      ¬ (cand7Safe 1 →
+          1 ∈ Harness.proposed_harness_gate cand7Possible cand7Allowed
+            cand7Successor cand7Invariant true [0]) := by
+  have henum := Harness.u02_3_finite_gate_enumeration cand7Possible cand7Allowed
+    cand7Successor cand7Invariant true ([0, 1] : List Nat) 1
+  have hsafe : cand7Safe 1 := by
+    intro w _
+    refine ⟨rfl, ?_⟩
+    intro _ _
+    rfl
+  refine ⟨henum, hsafe, ?_⟩
+  intro hcover
+  have hmem := hcover hsafe
+  have hiff := Harness.u02_3_finite_gate_enumeration cand7Possible cand7Allowed
+    cand7Successor cand7Invariant true ([0] : List Nat) 1
+  have hin : (1 : Nat) ∈ [0] := (hiff.mp hmem).1
+  exact absurd hin (by decide)
+
+theorem u02_3_common_idle_and_zero_coverage_not_support_coverage :
+    Harness.proposed_harness_gate (W := Bool) (S := Bool) (fun _ => true)
+      (fun w _ a => decide (a = 0 ∨ a = if w then 1 else 2))
+      (fun _ _ _ after => after) (fun _ after => after) true [0, 1, 2] = [0] ∧
+      Harness.conditionalRisk (1 : ℚ) 0 = .unknown .notIdentified ∧
+      ([0] : List Nat) ≠ [0, 1, 2] ∧
+      Harness.conditionalRisk (1 : ℚ) 0 ≠ .known 0 := by
+  refine ⟨Acceptance.a02_common_idle_remains_allowed,
+    Harness.zero_coverage_not_zero_risk (1 : ℚ), by decide, ?_⟩
+  intro hknown
+  have hunknown := Harness.zero_coverage_not_zero_risk (1 : ℚ)
+  rw [hunknown] at hknown
+  exact absurd hknown (by decide)
+
+/-! ### U04.3
+The unpenalized all-positive intercept stays positive, strictly improves as
+the intercept grows, never hits zero, and can be driven under any positive
+tolerance. None of that states a fully penalized logistic minimizer, its
+uniqueness, or a solved intercept coordinate. Calibration, causal
+identification, and numerical attainment remain non-goals. -/
+
+/-- A finite intercept that is ≤ every other intercept. -/
+def cand7PenalizedMinimizerExists : Prop :=
+  ∃ t : ℝ, ∀ s : ℝ, Real.log (1 + Real.exp (-t)) ≤ Real.log (1 + Real.exp (-s))
+
+theorem u04_3_unpenalized_positive_not_penalized_minimizer_existence :
+    (∀ t : ℝ, 0 < Real.log (1 + Real.exp (-t))) ∧
+      ¬ cand7PenalizedMinimizerExists := by
+  refine ⟨Probability.u04_3_unpenalized_intercept_positive, ?_⟩
+  intro ⟨t, hmin⟩
+  have himp := Probability.u04_3_unpenalized_intercept_improves t (t + 1) (lt_add_one t)
+  exact lt_irrefl _ (lt_of_lt_of_le himp (hmin (t + 1)))
+
+/-- A unique solved intercept would be the only finite point whose loss is zero. -/
+def cand7UniqueZeroIntercept : Prop :=
+  ∃ t : ℝ, Real.log (1 + Real.exp (-t)) = 0 ∧
+    ∀ s : ℝ, Real.log (1 + Real.exp (-s)) = 0 → s = t
+
+theorem u04_3_unpenalized_improves_not_uniqueness :
+    (∀ s t : ℝ, s < t →
+      Real.log (1 + Real.exp (-t)) < Real.log (1 + Real.exp (-s))) ∧
+      (∀ t : ℝ, Real.log (1 + Real.exp (-t)) ≠ 0) ∧
+      Real.log (1 + Real.exp (-(1 : ℝ))) < Real.log (1 + Real.exp (-(0 : ℝ))) ∧
+      ¬ cand7UniqueZeroIntercept := by
+  have hlt := Probability.u04_3_unpenalized_intercept_improves (0 : ℝ) 1 zero_lt_one
+  refine ⟨Probability.u04_3_unpenalized_intercept_improves,
+    Probability.u04_3_unpenalized_never_zero, hlt, ?_⟩
+  intro ⟨t, hz, _⟩
+  exact absurd hz (Probability.u04_3_unpenalized_never_zero t)
+
+theorem u04_3_arbitrarily_small_not_intercept_coordinate_solved :
+    (∀ ε : ℝ, 0 < ε → ∃ t : ℝ, Real.log (1 + Real.exp (-t)) < ε) ∧
+      (∀ t : ℝ, Real.log (1 + Real.exp (-t)) ≠ 0) ∧
+      ¬ (∃ t : ℝ, Real.log (1 + Real.exp (-t)) = 0) := by
+  refine ⟨Probability.u04_3_unpenalized_arbitrarily_small,
+    Probability.u04_3_unpenalized_never_zero, ?_⟩
+  intro ⟨t, hz⟩
+  exact absurd hz (Probability.u04_3_unpenalized_never_zero t)
+
+/-! ### U05.2
+The Bernoulli square identity and its unique optimum are not a
+conditional-expectation decomposition. One selected-risk ratio, and the
+witness that raising a threshold can raise risk, are not simultaneous
+threshold coverage and are not a rare-group bound. -/
+
+/-- Two hidden groups. The algebra at one `(p, q)` does not state both. -/
+def cand7ConditionalBrier (group : Bool) (p q : ℝ) : ℝ :=
+  if group then Calibration.bernoulliBrier p q
+  else Calibration.bernoulliBrier (1 - p) q
+
+theorem u05_2_bernoulli_brier_not_conditional_expectation_decomposition :
+    Calibration.bernoulliBrier (1 : ℝ) 0 =
+      (1 : ℝ) * (1 - 1) + (0 - 1) ^ 2 ∧
+      (Calibration.bernoulliBrier 1 1 ≤ Calibration.bernoulliBrier 1 0 ∧
+        (Calibration.bernoulliBrier 1 1 = Calibration.bernoulliBrier 1 0 ↔
+          (1 : ℝ) = 0)) ∧
+      cand7ConditionalBrier true 1 0 = 1 ∧
+      cand7ConditionalBrier false 1 0 = 0 ∧
+      cand7ConditionalBrier true 1 0 ≠ cand7ConditionalBrier false 1 0 ∧
+      ¬ (Calibration.bernoulliBrier 1 0 = cand7ConditionalBrier false 1 0) := by
+  have hdec := Calibration.u05_2_brier_decomposition (1 : ℝ) 0
+  have hopt := Calibration.u05_2_brier_unique_optimum (1 : ℝ) 0
+  have htrue : cand7ConditionalBrier true (1 : ℝ) 0 = 1 := by
+    show Calibration.bernoulliBrier (1 : ℝ) 0 = 1
+    unfold Calibration.bernoulliBrier
+    norm_num
+  have hfalse : cand7ConditionalBrier false (1 : ℝ) 0 = 0 := by
+    show Calibration.bernoulliBrier ((1 : ℝ) - 1) 0 = 0
+    unfold Calibration.bernoulliBrier
+    norm_num
+  refine ⟨hdec, hopt, htrue, hfalse, ?_, ?_⟩
+  · rw [htrue, hfalse]
+    norm_num
+  · intro heq
+    have hbrier : Calibration.bernoulliBrier (1 : ℝ) 0 = 1 := by
+      rw [hdec]
+      norm_num
+    rw [hbrier, hfalse] at heq
+    exact absurd heq (by norm_num)
+
+theorem u05_2_selected_risk_not_simultaneous_threshold_or_rare_group :
+    ((1 / 10 : ℚ) / 1 ≤ (1 / 10 : ℚ)) ∧
+      Harness.conditionalRisk (1 / 10) 1 = .known (1 / 10) ∧
+      Harness.conditionalRisk (1 / 10) (1 / 10) = .known 1 ∧
+      ¬ (Harness.conditionalRisk (1 / 10) 1 = .known (1 / 10) →
+          Harness.conditionalRisk (1 / 10) (1 / 10) = .known (1 / 10)) ∧
+      ¬ ((0 : ℚ) ≥ 1 - 1 / 10) := by
+  have hsel := Calibration.u05_2_selected_risk (1 / 10) 1 (1 / 10) 1 (1 / 10)
+    (by norm_num : (0 : ℚ) < 1) (le_rfl : (1 : ℚ) ≤ 1)
+    (by norm_num : (0 : ℚ) ≤ 1 / 10) (le_rfl : (1 / 10 : ℚ) ≤ 1 / 10)
+    (by norm_num : (1 / 10 : ℚ) / 1 ≤ 1 / 10)
+  have hrise := Acceptance.n05_raising_score_threshold_increases_risk
+  refine ⟨hsel, hrise.1, hrise.2, ?_, by norm_num⟩
+  intro hsim
+  have hlow := hsim hrise.1
+  exact absurd (hrise.2.symm.trans hlow) (by decide)
+
+/-! ### U06.3
+Existence and uniqueness of exact rational evaluation name one product.
+They do not enclose every product inside an interval. Selecting an allowed
+action does not compare arbitrary overlapping uncertainty intervals. -/
+
+theorem u06_3_eval_exists_unique_not_interval_multiplication_enclosure :
+    Evaluates (.mul (.rational (-2)) (.rational (-2)))
+        (evalExact (.mul (.rational (-2)) (.rational (-2)))) ∧
+      (∀ q, Evaluates (.mul (.rational (-2)) (.rational (-2))) q →
+        q = evalExact (.mul (.rational (-2)) (.rational (-2)))) ∧
+      evalExact (.mul (.rational (-2)) (.rational (-2))) = 4 ∧
+      ¬ (∀ x y : ℚ, (-2 : ℚ) ≤ x → x ≤ 1 → (-2) ≤ y → y ≤ 1 →
+          x * y = evalExact (.mul (.rational (-2)) (.rational (-2)))) := by
+  have hval : evalExact (.mul (.rational (-2)) (.rational (-2))) = 4 := by
+    calc
+      evalExact (.mul (.rational (-2)) (.rational (-2)))
+        = (-2 : ℚ) * -2 := rfl
+      _ = 4 := by norm_num
+  refine ⟨u06_3_eval_exists _, fun q h => u06_3_eval_unique h, hval, ?_⟩
+  intro hall
+  have h11 : (1 : ℚ) * 1 = 4 := by
+    rw [hval] at hall
+    exact hall (1 : ℚ) 1 (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  exact absurd h11 (by norm_num)
+
+/-- General uncertainty comparison would force overlapping intervals to nest. -/
+def cand7UncertaintyDominates (loA hiA loB hiB : ℚ) : Prop :=
+  loA ≤ hiB → hiA ≤ loB
+
+theorem u06_3_decision_respects_allowed_not_general_uncertainty_comparison
+    (allowed : List Nat) (values : List DecisionIR) (selected : DecisionIR)
+    (h : proposed_decision allowed values = some selected) :
+    selected.action.id ∈ allowed ∧
+      selected.probabilityOfLoss ≤ selected.riskLimit ∧
+      ¬ cand7UncertaintyDominates (0 : ℚ) 2 1 3 := by
+  have hres := u06_3_decision_respects_allowed allowed values selected h
+  refine ⟨hres.1, hres.2, ?_⟩
+  intro hdom
+  have : (2 : ℚ) ≤ 1 := hdom (by norm_num : (0 : ℚ) ≤ 3)
+  exact absurd this (by norm_num)
 
 end JurisLean.Candidates.FormalTail20261024

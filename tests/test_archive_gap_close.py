@@ -188,9 +188,34 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     formal_tail_text = (
         ROOT / "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean"
     ).read_text(encoding="utf-8")
-    assert formal_tail_text.count("theorem ") >= 37 + len(cand6_shorts)
+    cand7_shorts = [
+        "u07_1_retraction_not_full_observation_decoding_acceptance",
+        "u07_1_separation_monotone_not_history_decoding",
+        "u07_1_encode_nonsurjective_not_full_decode_acceptance",
+        "u02_3_finite_enumeration_not_generator_support_coverage",
+        "u02_3_common_idle_and_zero_coverage_not_support_coverage",
+        "u04_3_unpenalized_positive_not_penalized_minimizer_existence",
+        "u04_3_unpenalized_improves_not_uniqueness",
+        "u04_3_arbitrarily_small_not_intercept_coordinate_solved",
+        "u05_2_bernoulli_brier_not_conditional_expectation_decomposition",
+        "u05_2_selected_risk_not_simultaneous_threshold_or_rare_group",
+        "u06_3_eval_exists_unique_not_interval_multiplication_enclosure",
+        "u06_3_decision_respects_allowed_not_general_uncertainty_comparison",
+    ]
+    assert formal_tail_text.count("theorem ") >= 37 + len(cand6_shorts) + len(cand7_shorts)
     for short in cand6_shorts:
         assert f"theorem {short}" in formal_tail_text
+    import archive_gap_dispositions as disp
+
+    prove_names = {name for names in disp.PROVE_CANDIDATES.values() for name in names}
+    for short in cand7_shorts:
+        assert f"theorem {short}" in formal_tail_text
+        assert short not in prove_names
+    for clause in ("U07.1", "U02.3", "U04.3", "U05.2", "U06.3"):
+        row = by_clause[clause]
+        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+        assert row["formal_tail_prove"]["disposition"] == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
+        assert row["formal_tail_prove"]["candidate_theorems"] == []
     for clause in blocked:
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"

@@ -63,7 +63,8 @@ theorem u01_1_uniform_event_erm_oracle {H : Type*} (risk empirical : H → ℝ)
     risk chosen ≤ riskInf risk models + 2 * ε + opt := by
   have lower : risk chosen - 2 * ε - opt ≤ riskInf risk models := by
     change risk chosen - 2 * ε - opt ≤ sInf (risk '' models)
-    apply le_csInf ⟨risk chosen, ⟨chosen, member, rfl⟩⟩
+    have nonempty : (risk '' models).Nonempty := ⟨risk chosen, ⟨chosen, member, rfl⟩⟩
+    apply le_csInf nonempty
     rintro _ ⟨h, hh, rfl⟩
     have hc := (abs_le.mp (uniform chosen member)).2
     have hh' := (abs_le.mp (uniform h hh)).1

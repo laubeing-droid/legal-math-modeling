@@ -9630,6 +9630,87 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "pointWeight"
+    },
+    {
+     "kind": "def",
+     "name": "pointPopulationRisk"
+    },
+    {
+     "kind": "theorem",
+     "name": "pointWeight_is_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "pointPopulationRisk_eq"
+    },
+    {
+     "kind": "def",
+     "name": "actualConstantFit"
+    },
+    {
+     "kind": "theorem",
+     "name": "actualConstantFit_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_actual_fit_label_risk_not_truth_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_3_actual_fit_zero_train_one_deploy"
+    },
+    {
+     "kind": "def",
+     "name": "worldTarget"
+    },
+    {
+     "kind": "def",
+     "name": "visibleTraining"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_3_two_worlds_same_training_uncontrolled_deployment"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_perfect_fit_does_not_supply_authorization"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningERM20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e",
+   "size_bytes": 3998,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.LearningBoundary20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_1_actual_fit_label_risk_not_truth_risk",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization"
+   ],
+   "sha256": "b488e405ed81333ffe7a021a2b29c5fbe40a6cf83f7556f9b02c97da42cdfab0",
+   "size_bytes": 1047,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "integrable_unit_interval"
     },
@@ -9741,6 +9822,93 @@
    "size_bytes": 6325,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "selectMinimum"
+    },
+    {
+     "kind": "def",
+     "name": "empiricalScore"
+    },
+    {
+     "kind": "def",
+     "name": "fitNonempty"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_empirical_fit"
+    },
+    {
+     "kind": "theorem",
+     "name": "selectMinimum_spec"
+    },
+    {
+     "kind": "theorem",
+     "name": "empiricalScore_cast"
+    },
+    {
+     "kind": "theorem",
+     "name": "selectMinimum_measurable"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_actual_empirical_fit_minimizes"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_actual_fit_consumes_iid_oracle"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_empty_class_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_empty_sample_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_fit_reads_actual_sample"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningFiniteClass20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample"
+   ],
+   "sha256": "3dd7e325a499c8547a71755ef436f7db3268a480dcd863a5deb00da515f210d8",
+   "size_bytes": 9978,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.LearningERM20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningERMAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected",
+    "JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample"
+   ],
+   "sha256": "3b8268bcb6cbe8d8ead654648fa9af4a51f1eec332014d4ddcc049ff7c78fc5f",
+   "size_bytes": 1402,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -49685,8 +49853,10 @@
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
+    "JurisLean.Candidates.LearningBoundary20261027",
     "JurisLean.Candidates.LearningBridge20261027",
     "JurisLean.Candidates.LearningDependence20261027",
+    "JurisLean.Candidates.LearningERM20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
     "JurisLean.CanonicalSerialization",
@@ -49911,8 +50081,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "ee51268ae15f693630b89ed9c744d0b641816c4d5a4674e2698c3aafb53c7a0d",
-   "size_bytes": 11123,
+   "sha256": "1616ddeea6eeae98a780cf881c6a27fa8c702fc4400591aff079c1db51fddd00",
+   "size_bytes": 11224,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50076,22 +50246,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5590,
-   "file_count": 403,
+   "counted_declaration_count": 5605,
+   "file_count": 407,
    "lemma_count": 146,
-   "print_axioms_command_count": 4463,
-   "print_axioms_distinct_targets": 4381,
-   "theorem_count": 5444,
-   "theorem_count_bol_convention": 5344
+   "print_axioms_command_count": 4478,
+   "print_axioms_distinct_targets": 4391,
+   "theorem_count": 5459,
+   "theorem_count_bol_convention": 5359
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5571,
-   "file_count": 388,
+   "counted_declaration_count": 5586,
+   "file_count": 392,
    "lemma_count": 139,
-   "print_axioms_command_count": 4463,
-   "print_axioms_distinct_targets": 4381,
-   "theorem_count": 5432,
-   "theorem_count_bol_convention": 5332
+   "print_axioms_command_count": 4478,
+   "print_axioms_distinct_targets": 4391,
+   "theorem_count": 5447,
+   "theorem_count_bol_convention": 5347
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50176,8 +50346,12 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningERMAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
@@ -50577,8 +50751,12 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningERMAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
@@ -50939,17 +51117,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "96fdd588b4be9100a4b90d4549911c2afd150bc83a2ad191274be3feae3778e7",
+ "source_inventory_digest": "5aa6682fd76c94c5d3876c2577ccf583e093f7bf3388974a26528b1e284ca16b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/learning-dependence-20261027",
-  "commit": "07065432a58dc5987481ac3f10252f4d4bfd227b",
-  "tree": "1aecc53b7a1b3e8b3bfcbf07b1ea5bc7da4e7c47"
+  "branch": "formal/finite-erm-consumer-20261027",
+  "commit": "45ad09badda65432ba152a942d02f383605bf996",
+  "tree": "7f42f077e1e813181805194d7daeab330b2461b1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 403,
+  "files_total": 407,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -143,7 +143,7 @@ COMPANION_NOTES: dict[str, str] = {
     "U10.3": "companion_缩: 公平/外部响应",
     "U13.1": "authority 集成＝另证（NON_GOAL）",
     "U09.1": "companion_缩: legal allocation effects / 法律关系消灭",
-    "U04.3": "companion_缩: 校准/因果/数值求准（非本条声称）",
+    "U04.3": "companion_缩: 校准/因果/数值求准＝另证（非本条声称）",
     "U12.4": "companion_缩: 真实成本/偏好/审计合法性",
     "U13.4": "companion_缩: RSI全称改进定理",
     "U15.3": "companion_缩: external load readback path",
@@ -290,9 +290,6 @@ CLAIMED_SCOPE: dict[str, str] = {
 # Formal sentences the wired declarations do not state. Empty means the
 # suggested path is fully dispositioned (narrow, or wiring plus non-goals).
 UNWIRED: dict[str, list[str]] = {
-    "U07.1": [
-        "Full observation/history decoding acceptance is not stated by the retraction, separation, or encode witnesses.",
-    ],
     "U07.2": [
         "Actual semantic compatibility of supplied layers remains a separate unproved obligation.",
     ],
@@ -307,9 +304,6 @@ UNWIRED: dict[str, list[str]] = {
     ],
     "U02.1": [
         "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
-    ],
-    "U02.3": [
-        "Generator support coverage is not stated by the finite enumeration, the common-idle witness, or the zero-coverage witness.",
     ],
     "U10.1": [
         "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it.",
@@ -326,23 +320,14 @@ UNWIRED: dict[str, list[str]] = {
     "U04.2": [
         "Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved.",
     ],
-    "U04.3": [
-        "Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. The unpenalized-intercept counterexamples do not state them. Run 39783481932 does not discharge them.",
-    ],
     "U04.5": [
         "A general joint likelihood/copy theorem and the sigma-field information argument remain unproved.",
-    ],
-    "U05.2": [
-        "A conditional-expectation Brier decomposition, simultaneous threshold coverage, and rare-group examples remain unproved. The algebraic Bernoulli identity is not that decomposition.",
     ],
     "U06.1": [
         "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
     ],
     "U06.2": [
         "Mixed expectations and an explicit strategy/tree bridge remain unproved.",
-    ],
-    "U06.3": [
-        "Arbitrary interval multiplication enclosure and general uncertainty comparison remain unproved.",
     ],
     "U11.1": [
         "The g formula, K1/K2 selection, sharp support gaps, and measurement bridges remain unproved.",
@@ -514,6 +499,60 @@ SCOPE_REVIEW: dict[str, str] = {
         "mixed-operation／Gamma-frame／service-refinement gap. "
         "It does not claim a stronger manuscript sentence or flip discharges."
     ),
+    "U07.1": (
+        "本条关项范围＝FormalTail 覆盖的形式义务；不扩展到 companion／中国法／原稿更强句。"
+        "Wired statements remain the tip-pin audited Representation／Acceptance lemmas. "
+        "This close admits the FormalTail20261024 theorems "
+        "u07_1_retraction_not_full_observation_decoding_acceptance, "
+        "u07_1_separation_monotone_not_history_decoding, and "
+        "u07_1_encode_nonsurjective_not_full_decode_acceptance named in the live "
+        "tip-pin expand evidence (CAND7; named_count=61) as discharging the prior "
+        "UNWIRED full-observation／history-decoding-acceptance gap. "
+        "It does not claim a stronger manuscript sentence, China-law discharge, "
+        "or discharges_archived_manuscript_gaps."
+    ),
+    "U02.3": (
+        "本条关项范围＝FormalTail 覆盖的形式义务；不扩展到 companion／中国法／原稿更强句。"
+        "Wired statements remain the tip-pin audited Harness／Acceptance lemmas. "
+        "This close admits the FormalTail20261024 theorems "
+        "u02_3_finite_enumeration_not_generator_support_coverage and "
+        "u02_3_common_idle_and_zero_coverage_not_support_coverage named in the live "
+        "tip-pin expand evidence as discharging the prior UNWIRED "
+        "generator-support-coverage gap. It does not claim a stronger manuscript "
+        "sentence or flip discharges."
+    ),
+    "U04.3": (
+        "本条关项范围＝FormalTail 覆盖的形式义务；不扩展到 companion／中国法／原稿更强句。"
+        "Wired statements remain the tip-pin audited Probability lemmas. "
+        "This close admits the FormalTail20261024 theorems "
+        "u04_3_unpenalized_positive_not_penalized_minimizer_existence, "
+        "u04_3_unpenalized_improves_not_uniqueness, and "
+        "u04_3_arbitrarily_small_not_intercept_coordinate_solved named in the live "
+        "tip-pin expand evidence as discharging the prior UNWIRED "
+        "penalized-minimizer-existence／uniqueness／intercept-coordinate gap. "
+        "NON_GOAL（同条旁注保留）：校准／因果／数值求准＝另证. "
+        "It does not claim a stronger manuscript sentence or flip discharges."
+    ),
+    "U05.2": (
+        "本条关项范围＝FormalTail 覆盖的形式义务；不扩展到 companion／中国法／原稿更强句。"
+        "Wired statements remain the tip-pin audited Calibration／Acceptance lemmas. "
+        "This close admits the FormalTail20261024 theorems "
+        "u05_2_bernoulli_brier_not_conditional_expectation_decomposition and "
+        "u05_2_selected_risk_not_simultaneous_threshold_or_rare_group named in the live "
+        "tip-pin expand evidence as discharging the prior UNWIRED "
+        "conditional-expectation-Brier／simultaneous-threshold／rare-group gap. "
+        "It does not claim a stronger manuscript sentence or flip discharges."
+    ),
+    "U06.3": (
+        "本条关项范围＝FormalTail 覆盖的形式义务；不扩展到 companion／中国法／原稿更强句。"
+        "Wired statements remain the tip-pin audited Decision lemmas. "
+        "This close admits the FormalTail20261024 theorems "
+        "u06_3_eval_exists_unique_not_interval_multiplication_enclosure and "
+        "u06_3_decision_respects_allowed_not_general_uncertainty_comparison named in "
+        "the live tip-pin expand evidence as discharging the prior UNWIRED "
+        "interval-multiplication-enclosure／general-uncertainty-comparison gap. "
+        "It does not claim a stronger manuscript sentence or flip discharges."
+    ),
 }
 
 DOES_NOT_CLAIM = [
@@ -613,6 +652,11 @@ CLOSED_WIRING_IDS = (
     "U13.2",
     "U09.1",
     "U10.2",
+    "U07.1",
+    "U02.3",
+    "U04.3",
+    "U05.2",
+    "U06.3",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -620,7 +664,7 @@ FORMAL_TAIL_CAND5BIS_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_真证CAND5bis_20261025/"
 )
 CAND5BIS_IDS = ("U08.2", "U09.3", "U13.1", "U15.1", "U15.2")
-# Historical CAND5bis wiring closes. The live closed_this_round field is CAND6.
+# Historical CAND5bis wiring closes. The live closed_this_round field is CAND7.
 CAND5BIS_CLOSED_IDS = CAND5BIS_IDS
 CAND5BIS_CLOSED_THIS_ROUND = 5
 FORMAL_TAIL_CAND5BIS_CLOSE_PACK = (
@@ -634,10 +678,10 @@ CAND6_IDS = ("U08.3", "U15.3", "U13.2", "U09.1", "U10.2")
 FORMAL_TAIL_CAND6_PACK = (
     "/home/box/shared/legal-math-reviewer/tip_pin_扩审计_CAND6_20261026/"
 )
-# This round (pack formal_tail_关≥1_CAND6_20261026). Count is this round only.
+# Historical CAND6 wiring closes (pack formal_tail_关≥1_CAND6_20261026).
 CAND6_CLOSED_IDS = CAND6_IDS
 CAND6_CLOSED_THIS_ROUND = 5
-FORMAL_TAIL_CLOSE_PACK = (
+FORMAL_TAIL_CAND6_CLOSE_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND6_20261026/"
 )
 # Expand-audit naming (pack tip_pin_扩审计_CAND7_20261026). Naming is not a close.
@@ -645,7 +689,12 @@ CAND7_IDS = ("U07.1", "U02.3", "U04.3", "U05.2", "U06.3")
 FORMAL_TAIL_CAND7_PACK = (
     "/home/box/shared/legal-math-reviewer/tip_pin_扩审计_CAND7_20261026/"
 )
-CAND7_EXPAND_CLOSED_THIS_ROUND = 0
+# This round (pack formal_tail_关≥1_CAND7_20261026). Count is this round only.
+CAND7_CLOSED_IDS = CAND7_IDS
+CAND7_CLOSED_THIS_ROUND = 5
+FORMAL_TAIL_CLOSE_PACK = (
+    "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND7_20261026/"
+)
 # Theorems in CANDIDATE_MODULE. None is in the tip-pin audit. None closes a row.
 # Order inside each clause is source order. Archive order concatenates them.
 PROVE_CANDIDATES: dict[str, list[str]] = {
@@ -732,7 +781,8 @@ PROVE_CANDIDATES: dict[str, list[str]] = {
         "u10_2_executor_and_trace_not_full_mixed_operation_coverage",
         "u10_2_post_invariant_not_gamma_frame_or_service_refinement",
     ],
-    # CAND7 (pack tip_pin_扩审计_CAND7_20261026): expand-audit naming only.
+    # CAND7 (pack formal_tail_关≥1_CAND7_20261026): CLOSED_BY_WIRING this round.
+    # Expand-audit naming in ci-tip-21862d9b is the qualification, not the close.
     "U07.1": [
         "u07_1_retraction_not_full_observation_decoding_acceptance",
         "u07_1_separation_monotone_not_history_decoding",
@@ -974,32 +1024,39 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
         "Retraction, section, and idempotent image do not state full observation or "
         "history decoding acceptance; separation and encode witnesses stay non-sufficient. "
         "Named in expand-audit evidence/ci-tip-21862d9b (named_count=61; pack "
-        "tip_pin_扩审计_CAND7_20261026). This naming is not CLOSED_BY_WIRING."
+        "tip_pin_扩审计_CAND7_20261026). Pack formal_tail_关≥1_CAND7_20261026 "
+        "authorized CLOSED_BY_WIRING for this row; FormalTail short names stay out "
+        "of wired_declarations."
     ),
     "U02.3": (
         "Finite enumeration, common idle, and zero-coverage witnesses do not state "
         "generator support coverage. Named in expand-audit evidence/ci-tip-21862d9b "
-        "(named_count=61; pack tip_pin_扩审计_CAND7_20261026). "
-        "This naming is not CLOSED_BY_WIRING."
+        "(named_count=61; pack tip_pin_扩审计_CAND7_20261026). Pack "
+        "formal_tail_关≥1_CAND7_20261026 authorized CLOSED_BY_WIRING for this row; "
+        "FormalTail short names stay out of wired_declarations."
     ),
     "U04.3": (
         "Unpenalized-intercept counterexamples do not state penalized minimizer "
         "existence, uniqueness, or intercept solved. Calibration, causal identification, "
         "and numerical attainment stay non-goals on this same row. Named in expand-audit "
         "evidence/ci-tip-21862d9b (named_count=61; pack tip_pin_扩审计_CAND7_20261026). "
-        "This naming is not CLOSED_BY_WIRING."
+        "Pack formal_tail_关≥1_CAND7_20261026 authorized CLOSED_BY_WIRING for this row; "
+        "FormalTail short names stay out of wired_declarations."
     ),
     "U05.2": (
         "Bernoulli Brier algebra and selected-risk witnesses do not state conditional "
         "expectation decomposition, simultaneous threshold control, or rare-group coverage. "
         "Named in expand-audit evidence/ci-tip-21862d9b (named_count=61; pack "
-        "tip_pin_扩审计_CAND7_20261026). This naming is not CLOSED_BY_WIRING."
+        "tip_pin_扩审计_CAND7_20261026). Pack formal_tail_关≥1_CAND7_20261026 "
+        "authorized CLOSED_BY_WIRING for this row; FormalTail short names stay out "
+        "of wired_declarations."
     ),
     "U06.3": (
         "Eval exists, uniqueness, and decision-respects-allowed do not state interval "
         "multiplication enclosure or general uncertainty comparison. Named in expand-audit "
         "evidence/ci-tip-21862d9b (named_count=61; pack tip_pin_扩审计_CAND7_20261026). "
-        "This naming is not CLOSED_BY_WIRING."
+        "Pack formal_tail_关≥1_CAND7_20261026 authorized CLOSED_BY_WIRING for this row; "
+        "FormalTail short names stay out of wired_declarations."
     ),
 }
 TAIL_BLOCKER = (
@@ -1043,6 +1100,7 @@ def formal_tail_record(clause: str) -> dict:
                 clause in CAND5_CLOSED_IDS
                 or clause in CAND5BIS_CLOSED_IDS
                 or clause in CAND6_CLOSED_IDS
+                or clause in CAND7_CLOSED_IDS
             ),
             "step_2_closed": False,
             "discharges_archived_manuscript_gaps": False,
@@ -1084,14 +1142,14 @@ def formal_tail_record(clause: str) -> dict:
         if cand7:
             record["criteria_pack_cand7"] = FORMAL_TAIL_CAND7_PACK
             record["blocker"] = (
-                "This CAND7 id is still OPEN_FORMAL_TAIL. Expand-audit naming in "
-                "evidence/ci-tip-21862d9b (named_count=61; pack "
-                "tip_pin_扩审计_CAND7_20261026) sets candidate_in_tip_pin_audit only. "
-                "releasable_ids is empty. This expand's closed increment is 0. "
-                "It is not CLOSED. discharges stays false. Step 2 stays open."
+                "This CAND7 id is still OPEN_FORMAL_TAIL. Pack "
+                "formal_tail_关≥1_CAND7_20261026 authorizes CLOSED_BY_WIRING only "
+                "with empty UNWIRED and a scope review. Expand-audit naming in "
+                "evidence/ci-tip-21862d9b (named_count=61) is not itself a close. "
+                "discharges stays false. Step 2 stays open."
             )
             record["close_blocked_reason"] = (
-                "Math has not authorized disposition CLOSED, discharges, or a close. "
+                "Row is not in the authorized closed shape. "
                 "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
             )
         elif cand6:
@@ -1145,7 +1203,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "pack_files": list(FORMAL_TAIL_PACK_FILES),
         "one_pipeline": "archive-gap close ledger; no second track",
         "open_formal_tail_remaining": len(open_rows),
-        "closed_this_round": CAND6_CLOSED_THIS_ROUND,
+        "closed_this_round": CAND7_CLOSED_THIS_ROUND,
         "close_pack": FORMAL_TAIL_CLOSE_PACK,
         "candidate_rows": sum(
             1 for row in open_rows if (row.get("formal_tail_prove") or {}).get("disposition") == "CANDIDATE_NOT_AUDITED"
@@ -1167,15 +1225,15 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             f"(closed_this_round={CAND5BIS_CLOSED_THIS_ROUND} historical). "
             "CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack "
             "formal_tail_关≥1_CAND6_20261026 "
-            f"(closed_this_round={CAND6_CLOSED_THIS_ROUND} historical; OPEN_FORMAL_TAIL=25; "
-            "CLOSED_BY_WIRING=17). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 are "
-            "CANDIDATE_NOT_AUDITED with candidate_in_tip_pin_audit=true under pack "
-            "tip_pin_扩审计_CAND7_20261026; not CLOSED; this expand closed increment=0. "
-            "Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. "
-            "FormalTail short names stay out of wired_declarations; discharges stay false; "
-            "step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / "
-            "121413235107 does not close debt; remaining OPEN are 5 CANDIDATE_NOT_AUDITED "
-            "and 20 BLOCKED."
+            f"(closed_this_round={CAND6_CLOSED_THIS_ROUND} historical). "
+            "CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack "
+            "formal_tail_关≥1_CAND7_20261026 "
+            f"(closed_this_round={CAND7_CLOSED_THIS_ROUND} this round; OPEN_FORMAL_TAIL=20; "
+            "CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; "
+            "ci-tip-dc7b7430 stays 37. FormalTail short names stay out of "
+            "wired_declarations; discharges stay false; step_2_closed stays false; "
+            "tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close "
+            "debt; remaining OPEN are 20 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,

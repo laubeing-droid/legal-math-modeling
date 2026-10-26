@@ -1,14 +1,14 @@
-"""The archive-gap close layer stays fail-closed after CAND7 expand-audit.
+"""The archive-gap close layer stays fail-closed after the CAND7 wiring close.
 
 The live pin is subject 21862d9b / run 40274167574 / job 121413235107.
 CAND5, CAND5bis, and CAND6 remain CLOSED_BY_WIRING historically.
-CAND7 expand-audit (U07.1/U02.3/U04.3/U05.2/U06.3) sets
-candidate_in_tip_pin_audit=true with disposition CANDIDATE_NOT_AUDITED only.
-closed_this_round ledger field stays 5 (CAND6 close historical); this expand
-increment is 0. OPEN_FORMAL_TAIL=25, blocked_rows=20, candidate_rows=5.
+This round closes CAND7 (U07.1/U02.3/U04.3/U05.2/U06.3) by wiring:
+close_admitted=true, UNWIRED empty, SCOPE_REVIEW present.
+closed_this_round=5, OPEN_FORMAL_TAIL=20, CLOSED_BY_WIRING=22,
+blocked_rows=20, candidate_rows=0.
 discharges stays false; math_flip stays false; step 2 stays open.
-The expand receipt ci-tip-21862d9b is named_count=61, closes_debt=false.
-Historical ci-tip-1c72e444 stays named_count=49; dc7b7430 stays 37.
+The expand receipt ci-tip-21862d9b stays named_count=61, closes_debt=false,
+and closed increment 0. Historical ci-tip-1c72e444 stays named_count=49.
 """
 
 from __future__ import annotations
@@ -38,8 +38,8 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     assert "narrow 8" in proc.stdout
-    assert "wiring 17" in proc.stdout
-    assert "open_formal_tail 25" in proc.stdout
+    assert "wiring 22" in proc.stdout
+    assert "open_formal_tail 20" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "40274167574" in proc.stdout
     assert "formal_tail_closed_this_round 5" in proc.stdout
@@ -51,10 +51,12 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert errors == []
     by_clause = {row["clause"]: row for row in ledger["rows"]}
     penalized = by_clause["U04.3"]
-    assert penalized["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+    assert penalized["archive_gap_status"] == "CLOSED_BY_WIRING"
     assert penalized["suggested_close_path"] == "证"
-    assert any("UNPROVED" in item and "existence" in item.lower() for item in penalized["unwired_formal_obligations"])
+    assert penalized["unwired_formal_obligations"] == []
+    assert "本条关项范围＝FormalTail 覆盖的形式义务" in penalized["scope_review"]
     assert any("校准" in item for item in penalized["non_goals"])
+    assert "校准" in penalized["scope_review"]
     tower = by_clause["U02.4"]
     assert tower["archive_gap_status"] == "CLOSED_BY_NARROW"
     assert any("general filtration/random-budget tower" in item for item in tower["non_goals"])
@@ -71,14 +73,14 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     summary = ledger["formal_tail_round"]
     assert summary["step_2_closed"] is False
     assert summary["closed_this_round"] == 5
-    assert summary["open_formal_tail_remaining"] == 25
-    assert summary["candidate_rows"] == 5
+    assert summary["open_formal_tail_remaining"] == 20
+    assert summary["candidate_rows"] == 0
     assert summary["blocked_rows"] == 20
     assert summary["discharges_archived_manuscript_gaps"] is False
     assert summary["math_flip_authorized"] is False
     assert summary["step_2_closed"] is False
     assert summary["close_pack"] == (
-        "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND6_20261026/"
+        "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND7_20261026/"
     )
     assert summary["tip_pin_not_retargeted"] is False
     assert summary["tip_pin"]["subject"] == "21862d9bdd94bfa15e5da39079538b5eb30ff235"
@@ -94,8 +96,8 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["formal_tail_expand_audit"]["job_id"] == 121413235107
     assert summary["formal_tail_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND7_20261026"
     assert ledger["tip_pin_not_retargeted"] is False
-    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 25
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 17
+    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 20
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 22
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
     assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
     assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False
@@ -106,6 +108,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U02.2", "U01.0", "U06.4", "U08.1", "U10.3", "U12.2", "U14.2",
         "U08.2", "U09.3", "U13.1", "U15.1", "U15.2",
         "U08.3", "U15.3", "U13.2", "U09.1", "U10.2",
+        "U07.1", "U02.3", "U04.3", "U05.2", "U06.3",
     ]
     # CAND5 remain CLOSED_BY_WIRING (historical).
     cand5 = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -206,19 +209,6 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     for short in cand7_shorts:
         assert f"theorem {short}" in formal_tail_text
         assert short in prove_names
-    cand7 = ("U07.1", "U02.3", "U04.3", "U05.2", "U06.3")
-    for clause in cand7:
-        row = by_clause[clause]
-        prove = row["formal_tail_prove"]
-        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
-        assert prove["disposition"] == "CANDIDATE_NOT_AUDITED"
-        assert prove["candidate_theorems"]
-        assert prove["candidate_in_tip_pin_audit"] is True
-        assert prove["close_admitted"] is False
-        assert prove["tip_pin_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND7_20261026"
-        for item in row["wired_declarations"]:
-            assert "FormalTail20261024" not in item["name"]
-            assert item["name"].split(".")[-1] not in cand7_shorts
     for clause in blocked:
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
@@ -277,6 +267,26 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
             assert "FormalTail20261024" not in item["name"]
             assert item["name"].startswith("JurisLean.Candidates.Final20261021.")
             assert item["name"].split(".")[-1] not in cand6_shorts
+    cand7 = ("U07.1", "U02.3", "U04.3", "U05.2", "U06.3")
+    for clause in cand7:
+        row = by_clause[clause]
+        prove = row["formal_tail_prove"]
+        assert row["archive_gap_status"] == "CLOSED_BY_WIRING"
+        assert row["unwired_formal_obligations"] == []
+        assert "本条关项范围＝FormalTail 覆盖的形式义务" in row["scope_review"]
+        assert "FormalTail20261024" in row["scope_review"]
+        assert prove["in_this_round"] is False
+        assert prove["not_reopened"] is True
+        assert prove["archive_gap_status"] == "CLOSED_BY_WIRING"
+        assert prove["close_admitted"] is True
+        assert prove["step_2_closed"] is False
+        assert prove["discharges_archived_manuscript_gaps"] is False
+        assert "disposition" not in prove
+        assert "candidate_theorems" not in prove
+        for item in row["wired_declarations"]:
+            assert "FormalTail20261024" not in item["name"]
+            assert item["name"].startswith("JurisLean.Candidates.Final20261021.")
+            assert item["name"].split(".")[-1] not in cand7_shorts
     u08_3 = by_clause["U08.3"]
     assert any("现实真值" in item for item in u08_3["non_goals"])
     assert "现实真值" in u08_3["companion_scope_notes"]
@@ -292,7 +302,6 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "法律分配" in u09_1["scope_review"] and "法律关系" in u09_1["scope_review"]
     u04_3 = by_clause["U04.3"]
     assert any("校准" in item for item in u04_3["non_goals"])
-    assert u04_3["formal_tail_prove"]["companion_required"] is True
     # Live expand receipt is ci-tip-21862d9b (named_count=61). 1c72e444 stays 49.
     assert summary["formal_tail_expand_audit"]["verification"] == (
         "evidence/ci-tip-21862d9b/verification.json"
@@ -303,11 +312,11 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "集成" in u13["companion_scope_notes"] and "另证" in u13["companion_scope_notes"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
-    admitted = set(cand5) | set(cand5bis) | set(cand6)
+    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7)
     assert all(
         row["formal_tail_prove"]["close_admitted"] is (row["clause"] in admitted)
         for row in ledger["rows"]
     )
-    assert "CANDIDATE_NOT_AUDITED" in summary["candidate_module_quarantine"]
+    assert "OPEN_FORMAL_TAIL=20" in summary["candidate_module_quarantine"]
     assert "does not close debt" in summary["candidate_module_quarantine"]
     assert "named_count=61" in summary["candidate_module_quarantine"]

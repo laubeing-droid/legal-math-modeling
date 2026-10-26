@@ -1387,7 +1387,8 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
       ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
   have hmgf : ProbabilityTheory.HasSubgaussianMGF (fun (_ : Unit) => (0 : ℝ)) 0
       cand8UnitMeasure := by
-    refine u01_0_bounded_mgf cand8UnitMeasure (fun _ => 0) 0 0 measurable_const ?_
+    refine u01_0_bounded_mgf cand8UnitMeasure (fun _ => 0) 0 0
+      (measurable_const.aemeasurable : AEMeasurable (fun _ : Unit => (0 : ℝ)) cand8UnitMeasure) ?_
     filter_upwards with _
     simp [Set.mem_Icc]
   have htail := u01_1_fixed_class_tail cand8UnitMeasure ({0} : Finset (Fin 1))
@@ -1398,13 +1399,13 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
       exact hmgf) (0 : ℝ) (le_refl _)
   refine ⟨htail, ?_⟩
   intro hspec
-  norm_num at hspec
+  exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
     ((0 : ℝ) ≤ (0 : ℝ) + 2 * (0 : ℝ) + (0 : ℝ)) ∧
       ¬ cand8RepresentationRiskDecomposition := by
-  have h := u01_1_approximate_erm 0 0 0 0 0 (le_refl _) (le_refl _)
-    (show (0 : ℝ) ≤ 0 + 0 by norm_num)
+  have h := u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+    (le_refl (0 : ℝ)) (le_refl (0 : ℝ)) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num)
   refine ⟨h, ?_⟩
   intro hdecomp
   exact absurd hdecomp (by norm_num)
@@ -1419,9 +1420,7 @@ budget with additive equality. -/
 def cand8UniformFin2 : Probability.FiniteLaw (Fin 2) := {
   mass := fun _ => 1 / 2
   nonneg := fun _ => by norm_num
-  total := by
-    simp [Finset.sum_fin_eq_sum_range, Finset.sum_range_succ, Finset.sum_range_zero]
-    norm_num
+  total := by norm_num
 }
 
 /-- General measurable bounded-loss integration would identify every bridge. -/
@@ -1441,22 +1440,24 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
   have hpoint := u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
   refine ⟨hpoint, ?_⟩
   intro hall
-  have hfalse := hall 0 1 0
-  simpa [Learning.zeroOne] using hfalse
+  have hfalse := hall 0 1 1
+  simp [Learning.zeroOne] at hfalse
 
 theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
     (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
       (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))) ∧
       ¬ cand8JointlyEstimatedBridgeBudget := by
-  refine ⟨Probability.u01_2_finite_label_bridge _, ?_⟩
-  intro hbudget
-  have h1 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
-    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-    norm_num
-  have h0 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
-    simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
-    norm_num
-  rw [cand8JointlyEstimatedBridgeBudget, h1, h0] at hbudget
-  norm_num at hbudget
+  constructor
+  · exact Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))
+  · intro hbudget
+    have h1 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) = 1 := by
+      simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+      norm_num
+    have h0 : Probability.expectation cand8UniformFin2 (fun _ => Learning.zeroOne (0 : Fin 2) (0 : Fin 2)) = 1 := by
+      simp [Probability.expectation, cand8UniformFin2, Learning.zeroOne]
+      norm_num
+    rw [cand8JointlyEstimatedBridgeBudget, h1, h0] at hbudget
+    norm_num at hbudget
 
 end JurisLean.Candidates.FormalTail20261024

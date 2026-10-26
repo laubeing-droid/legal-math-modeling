@@ -110,10 +110,16 @@ theorem actual_samples_determine_probability {m n : ℕ} (sampleProtocol : Learn
     (out : SampleProbability m)
     (accepted : produceInterval sampleProtocol fitted models data query radius exponent snapshot supported =
       .known out) :
-    out = { fitted := fitted, query := query, models := models, sampleSize := n,
-      snapshot := snapshot, radius := radius, radiusExponent := exponent,
-      successMass := empiricalScore (numeratorLoss successLabel scoreBin) data (fitted.table, query),
-      coverage := empiricalScore (coverageLoss scoreBin) data (fitted.table, query) } ∧
+    out =
+      { fitted := fitted
+        query := query
+        models := models
+        sampleSize := n
+        snapshot := snapshot
+        radius := radius
+        radiusExponent := exponent
+        successMass := empiricalScore (numeratorLoss successLabel scoreBin) data (fitted.table, query)
+        coverage := empiricalScore (coverageLoss scoreBin) data (fitted.table, query) } ∧
     sampleProtocol = fitted.protocol ∧ fitted.table ∈ models ∧
     radiusVerified n (modelBins (m := m) models).card fitted.protocol.failureBudget radius exponent = true ∧
     0 < empiricalScore (coverageLoss scoreBin) data (fitted.table, query) - radius := by

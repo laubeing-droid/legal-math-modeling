@@ -1217,49 +1217,66 @@ theorem u06_3_decision_respects_allowed_not_general_uncertainty_comparison
 Non-sufficiency witnesses for U03.1, U03.2, and U07.2 (eight theorems).
 U01.1 / U01.2 deferred out of this knife (owner+math v1.1).
 Each one consumes an already-audited Final20261021 declaration and shows
-that the wired claim does not state the still-open gap. No row is closed.
-Verified fuel-bound and provenance-DAG-to-closure claims stay non-goals. -/
+the failure of an explicitly stated proposed certificate or stronger property.
+These counterexamples do not prove that a missing positive theorem is false,
+or that no finite fuel bound exists. No row is closed. Positive fuel-bound
+and complete provenance-DAG-to-closure proofs are outside this knife. -/
 
 /-! ### U03.1
-Relative and computed soundness are about derivability under a model or
-under fuel-bounded list closure. They do not connect provenance-DAG
-validation or a robust-intersection countermodel to executable finite
-closure from the empty fact base. -/
+Relative and computed soundness do not validate an independently supplied
+graph certificate. A cycle and an unbound leaf carrier are concrete failures
+of necessary graph-connection checks. The third witness is specifically the
+loss of robust consequences when replacing alternative facts by common facts. -/
 
 /-- Finite closure from no facts would put every derivable atom on the list. -/
 def cand8FiniteClosureFromEmpty (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
   a ∈ Compiler.proposed_rule_input rules 2 []
 
-/-- Provenance DAG validation would already put the atom on the empty-carrier list. -/
-def cand8ProvenanceDagToFiniteClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
-  cand8FiniteClosureFromEmpty rules a
+/-- The fragment of a supplied graph relevant to the two counterexamples.
+Edges point from premise indices to later conclusion indices. This structure
+does not itself validate rule instances, support witnesses, or a root. -/
+structure Cand8GraphFragment where
+  leaves : List Nat
+  edges : List (Nat × Nat)
+
+/-- Necessary checks for connecting a supplied graph to this closure call:
+forward edges in the supplied order, the same initial atoms, and the query
+in the computed output. This is not a complete provenance DAG validator. -/
+def cand8GraphConnectionChecks (rules : List (Compiler.Rule Nat)) (facts : List Nat)
+    (a : Nat) (graph : Cand8GraphFragment) : Prop :=
+  (∀ edge ∈ graph.edges, edge.1 < edge.2) ∧
+    (∀ b, b ∈ graph.leaves ↔ b ∈ facts) ∧
+    a ∈ Compiler.proposed_rule_input rules 2 facts
 
 theorem u03_1_relative_soundness_not_provenance_dag_to_finite_closure :
     Compiler.Derives (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules) 3 ∧
-      ¬ cand8ProvenanceDagToFiniteClosure Acceptance.disjunctiveRules 3 := by
+      ¬ cand8GraphConnectionChecks Acceptance.disjunctiveRules [1] 3
+        ⟨[1], [(0, 0)]⟩ := by
   have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
   have hderive := Compiler.u03_1_computed_sound Acceptance.disjunctiveRules [1] 2 3 hrob.1
   have hsound := Compiler.u03_1_relative_soundness
     (Compiler.derivable_model (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules)) hderive
-  exact ⟨hsound, hrob.2.2⟩
-
-/-- Executable closure would read the same from an empty fact carrier. -/
-def cand8DagConnectedToExecutableClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
-  (∃ facts, a ∈ Compiler.proposed_rule_input rules 2 facts) ∧
-    cand8FiniteClosureFromEmpty rules a
+  refine ⟨hsound, ?_⟩
+  intro connected
+  have cycle : (0 : Nat) < 0 := connected.1 (0, 0) (by simp)
+  omega
 
 theorem u03_1_computed_sound_not_dag_connected_to_executable_closure :
     3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [1] ∧
       Compiler.Derives (· ∈ [1]) (· ∈ Acceptance.disjunctiveRules) 3 ∧
-      ¬ cand8DagConnectedToExecutableClosure Acceptance.disjunctiveRules 3 := by
+      ¬ cand8GraphConnectionChecks Acceptance.disjunctiveRules [1] 3 ⟨[], []⟩ := by
   have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
   have hderive := Compiler.u03_1_computed_sound Acceptance.disjunctiveRules [1] 2 3 hrob.1
   refine ⟨hrob.1, hderive, ?_⟩
-  intro ⟨⟨_facts, _hmem⟩, hempty⟩
-  exact hrob.2.2 hempty
+  intro connected
+  have missing : (1 : Nat) ∈ ([] : List Nat) :=
+    (connected.2.1 1).mpr (by simp)
+  simp at missing
 
-/-- A robust countermodel would close from the empty fact base once both branches fire. -/
-def cand8CountermodelConnectedToFiniteClosure (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
+/-- The proposed common-facts replacement for this two-interpretation family.
+The interpretations [1] and [2] have no common atom; this implication is
+false for the disjunctive rules, even though both branches derive the query. -/
+def cand8CommonFactsPreserveRobustQuery (rules : List (Compiler.Rule Nat)) (a : Nat) : Prop :=
   a ∈ Compiler.proposed_rule_input rules 2 [1] ∧
     a ∈ Compiler.proposed_rule_input rules 2 [2] →
     cand8FiniteClosureFromEmpty rules a
@@ -1268,7 +1285,7 @@ theorem u03_1_robust_countermodel_not_connected_to_finite_closure :
     3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [1] ∧
       3 ∈ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [2] ∧
       3 ∉ Compiler.proposed_rule_input Acceptance.disjunctiveRules 2 [] ∧
-      ¬ cand8CountermodelConnectedToFiniteClosure Acceptance.disjunctiveRules 3 := by
+      ¬ cand8CommonFactsPreserveRobustQuery Acceptance.disjunctiveRules 3 := by
   have hrob := Acceptance.n03_must_facts_closure_is_not_robust_closure
   refine ⟨hrob.1, hrob.2.1, hrob.2.2, ?_⟩
   intro hconn
@@ -1282,24 +1299,25 @@ closure is not a positive fuel-bound certificate. -/
 
 abbrev cand8IncompleteRules : List (Compiler.Rule Nat) := [⟨[0], 1⟩, ⟨[1], 2⟩]
 
-/-- Every small fuel budget would already pass the closure checker. -/
-def cand8VerifiedFuelBound (rules : List (Compiler.Rule Nat)) (facts : List Nat) : Prop :=
+/-- A particular proposed budget claim, not existence of a finite fuel bound. -/
+def cand8EveryBudgetUpToOneSuffices (rules : List (Compiler.Rule Nat)) (facts : List Nat) : Prop :=
   ∀ fuel : Nat, fuel ≤ 1 →
     Compiler.proposed_checked_rule_input rules fuel facts ≠ .unknown .checkIncomplete
 
-/-- A list carrier budget would cap the returned witness length. -/
-def cand8ListCarrierFuelBound (facts : List Nat) (fuel : Nat) (known : List Nat) : Prop :=
+/-- The proposed one-new-list-entry-per-round bound, which duplicates refute. -/
+def cand8OneEntryPerRoundBound (facts : List Nat) (fuel : Nat) (known : List Nat) : Prop :=
   known.length ≤ facts.length + fuel
 
-/-- A positive fuel-bound certificate would turn incomplete fuel into `.known`. -/
-def cand8CarrierFuelBoundProved : Prop :=
+/-- Acceptance at fuel one for this concrete two-rule chain. Its failure says
+nothing against a sufficient larger fuel bound. -/
+def cand8FuelOneHasKnownResult : Prop :=
   ∃ known : List Nat,
     Compiler.proposed_checked_rule_input cand8IncompleteRules 1 [0] = .known known
 
 theorem u03_2_relative_completeness_not_verified_fuel_bound :
     (Compiler.Derives (· ∈ [0]) (· ∈ cand8IncompleteRules) 1 ↔
         ∀ truth, Compiler.Models (· ∈ [0]) (· ∈ cand8IncompleteRules) truth → truth 1) ∧
-      ¬ cand8VerifiedFuelBound cand8IncompleteRules [0] := by
+      ¬ cand8EveryBudgetUpToOneSuffices cand8IncompleteRules [0] := by
   have hiff := Compiler.u03_2_relative_completeness (· ∈ [0]) (· ∈ cand8IncompleteRules) 1
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   refine ⟨hiff, ?_⟩
@@ -1312,7 +1330,7 @@ theorem u03_2_checked_closure_complete_not_list_carrier_bound :
     Compiler.proposed_checked_rule_input cand8IncompleteRules 2 [0] = .known [0, 1, 1, 2] ∧
       (∀ a : Nat, a ∈ [0, 1, 1, 2] ↔
           Compiler.Derives (· ∈ [0]) (· ∈ cand8IncompleteRules) a) ∧
-      ¬ cand8ListCarrierFuelBound [0] 2 [0, 1, 1, 2] := by
+      ¬ cand8OneEntryPerRoundBound [0] 2 [0, 1, 1, 2] := by
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   have hcomplete := hincomplete.2
   refine ⟨hcomplete, fun a =>
@@ -1325,7 +1343,7 @@ theorem u03_2_checked_closure_complete_not_list_carrier_bound :
 theorem u03_2_incomplete_fuel_not_carrier_fuel_bound :
     Compiler.proposed_checked_rule_input cand8IncompleteRules 1 [0] =
         .unknown .checkIncomplete ∧
-      ¬ cand8CarrierFuelBoundProved := by
+      ¬ cand8FuelOneHasKnownResult := by
   have hincomplete := Acceptance.n03_incomplete_fuel_is_not_closure
   refine ⟨hincomplete.1, ?_⟩
   intro ⟨known, hknown⟩
@@ -1336,17 +1354,17 @@ A nonempty common fiber glues local witnesses into one tuple. That does not
 state semantic compatibility of supplied layers, and incompatible local
 fibers do not prove layer compatibility. -/
 
-/-- Actual semantic compatibility would identify incompatible observations. -/
-def cand8ActualSemanticCompatibility : Prop :=
+/-- Compatibility for the specified false/true observations, not all layers. -/
+def cand8IncompatibleBoolLayersHaveCommonValue : Prop :=
   ∃ b : Bool, false = b ∧ true = b
 
-/-- Layer compatibility would equate the two incompatible observations. -/
-def cand8LayerCompatibility : Prop :=
+/-- Equality of the fibers of these two constant Bool observations. -/
+def cand8BoolObservationFibersAgree : Prop :=
   ∀ b : Bool, (false = b) ↔ (true = b)
 
 theorem u07_2_common_fiber_not_semantic_compatibility :
     (∃ ws : (i : Fin 2) → Bool, ∀ i, (fun _ w => ()) i (ws i) = ()) ∧
-      ¬ cand8ActualSemanticCompatibility := by
+      ¬ cand8IncompatibleBoolLayersHaveCommonValue := by
   have hfiber := Representation.u07_2_common_fiber_nonempty
     (fun (_ : Fin 2) => Bool) (fun (_ : Fin 2) (_ : Bool) => ()) ()
     (fun (_ : Fin 2) => ⟨false, rfl⟩)
@@ -1354,7 +1372,7 @@ theorem u07_2_common_fiber_not_semantic_compatibility :
 
 theorem u07_2_incompatible_fiber_not_layer_compatibility :
     (¬ ∃ b : Bool, false = b ∧ true = b) ∧
-      ¬ cand8LayerCompatibility := by
+      ¬ cand8BoolObservationFibersAgree := by
   refine ⟨Representation.n07_2_incompatible_fiber, ?_⟩
   intro hall
   have hfalse := hall false

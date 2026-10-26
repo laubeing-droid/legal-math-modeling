@@ -55,21 +55,46 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-  # One ULM gate. Consolidated.All and BusinessRoot.All are legs of this job,
-  # not a second workflow: reference-gate depends on lean-seeds once, and that
-  # result is success only when every leg succeeds. The cache key fingerprints
-  # the checked-in toolchain version and mathlib commit. github.run_id is not
-  # part of it. Each leg has its own suffix because a saved cache entry cannot
-  # be updated, and the two builds write different .lake trees.
+  # One ULM gate. These package legs run in parallel under this single job id.
+  # reference-gate depends on lean-seeds once and is success only when every
+  # leg succeeds. Cache key = runner OS + pinned toolchain version + pinned
+  # mathlib commit + leg id. github.run_id is not part of it.
+  # Seams, Genealogy, and External stay out of this gate: seed coverage is the
+  # consolidated and business-root audits, and those packages are not part of
+  # the six-leg list.
   lean-seeds:
     runs-on: ubuntu-24.04
     timeout-minutes: 360
     strategy:
-      # A failed leg must not cancel the other one's evidence upload. The job
+      # A failed leg must not cancel the other ones' evidence uploads. The job
       # result is still failure unless every leg succeeds.
       fail-fast: false
       matrix:
-        target: [consolidated, business-root]
+        include:
+          - leg: consolidated
+            lake_target: JurisLean.Consolidated.All
+            build_kind: module
+            audit: seeds
+          - leg: business-root
+            lake_target: JurisLean.BusinessRoot.All
+            build_kind: module
+            audit: root
+          - leg: fullmath
+            lake_target: JurisLean.FullMath.All
+            build_kind: module
+            audit: build
+          - leg: unified-v2
+            lake_target: JurisLean.UnifiedV2.All
+            build_kind: module
+            audit: build
+          - leg: candidates
+            lake_target: JurisLean.Candidates.Final20261021.CIAll
+            build_kind: module
+            audit: build
+          - leg: mandate
+            lake_target: JurisLean.Mandate
+            build_kind: directory
+            audit: build
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
@@ -82,7 +107,7 @@ jobs:
       - name: Fingerprint pinned Lean toolchain and mathlib commit
         id: lean-cache-key
         env:
-          LEAN_SEEDS_TARGET: ${{ matrix.target }}
+          LEAN_SEEDS_TARGET: ${{ matrix.leg }}
           LEAN_SEEDS_RUNNER_OS: ${{ runner.os }}
         run: |
           set -euo pipefail
@@ -109,7 +134,7 @@ jobs:
           PY
           )
           case "$LEAN_SEEDS_TARGET" in
-            consolidated|business-root) ;;
+            consolidated|business-root|fullmath|unified-v2|candidates|mandate) ;;
             *) echo "refusing cache key: unknown lean-seeds target ${LEAN_SEEDS_TARGET}" >&2; exit 1 ;;
           esac
           key="lean-seeds-${LEAN_SEEDS_RUNNER_OS}-${version}-${mathlib}-${LEAN_SEEDS_TARGET}"
@@ -135,45 +160,100 @@ jobs:
           restore-keys: |
             lean-seeds-${{ runner.os }}-${{ steps.lean-cache-key.outputs.version }}-${{ steps.lean-cache-key.outputs.mathlib }}-
             lean-seeds-${{ runner.os }}-${{ steps.lean-cache-key.outputs.version }}-
-      - name: Build real modules (cached mathlib), inspect compiled environment
+      - name: Fetch pinned mathlib oleans, build this leg, inspect when this leg owns an audit
         env:
-          LEAN_SEEDS_TARGET: ${{ matrix.target }}
+          LEAN_SEEDS_TARGET: ${{ matrix.leg }}
+          LAKE_TARGET: ${{ matrix.lake_target }}
+          BUILD_KIND: ${{ matrix.build_kind }}
+          LEAN_AUDIT: ${{ matrix.audit }}
         run: |
           set -euo pipefail
           mkdir -p work/consolidated-lean
           cd proofs/lean/juris_lean
           elan --version > ../../../work/consolidated-lean/tool-versions.log
           lean --version >> ../../../work/consolidated-lean/tool-versions.log
-          case "$LEAN_SEEDS_TARGET" in
-            consolidated)
-              lake build JurisLean.Consolidated.All 2>&1 | tee ../../../work/consolidated-lean/build.log
-              lake env lean JurisLean/Consolidated/Audit.lean > ../../../work/consolidated-lean/environment.log 2>&1
+          # Same fetch the Authority workflow uses for this pin. Without it a
+          # cache miss compiles mathlib from source and the extra legs do not
+          # shorten the wall clock.
+          lake exe cache get! 2>&1 | tee ../../../work/consolidated-lean/mathlib-cloud-cache.log
+          case "$BUILD_KIND" in
+            module)
+              if [ -z "$LAKE_TARGET" ]; then
+                echo "refusing leg ${LEAN_SEEDS_TARGET}: empty lake target" >&2
+                exit 1
+              fi
+              lake build "$LAKE_TARGET" 2>&1 | tee ../../../work/consolidated-lean/build.log
               ;;
-            business-root)
-              lake build JurisLean.BusinessRoot.All 2>&1 | tee ../../../work/consolidated-lean/business-root-build.log
-              lake env lean JurisLean/BusinessRoot/RootAudit.lean > ../../../work/consolidated-lean/root-environment.log 2>&1
+            directory)
+              dir=${LAKE_TARGET//./\/}
+              if [ ! -d "$dir" ]; then
+                echo "refusing leg ${LEAN_SEEDS_TARGET}: missing ${dir}" >&2
+                exit 1
+              fi
+              targets=()
+              while IFS= read -r rel; do
+                mod=${rel%.lean}
+                mod=${mod//\//.}
+                targets+=("${LAKE_TARGET}.${mod}")
+              done < <(find "$dir" -type f -name '*.lean' -printf '%P\n' | sort)
+              if [ "${#targets[@]}" -lt 20 ]; then
+                echo "refusing leg ${LEAN_SEEDS_TARGET}: only ${#targets[@]} modules in ${dir}" >&2
+                exit 1
+              fi
+              printf '%s\n' "${targets[@]}" | tee ../../../work/consolidated-lean/package-targets.txt
+              lake build "${targets[@]}" 2>&1 | tee ../../../work/consolidated-lean/build.log
               ;;
             *)
-              echo "unknown lean-seeds target: ${LEAN_SEEDS_TARGET}" >&2
+              echo "unknown lean-seeds build kind: ${BUILD_KIND}" >&2
+              exit 1
+              ;;
+          esac
+          case "$LEAN_AUDIT" in
+            seeds)
+              lake env lean JurisLean/Consolidated/Audit.lean > ../../../work/consolidated-lean/environment.log 2>&1
+              ;;
+            root)
+              lake env lean JurisLean/BusinessRoot/RootAudit.lean > ../../../work/consolidated-lean/root-environment.log 2>&1
+              ;;
+            build)
+              ;;
+            *)
+              echo "unknown lean-seeds audit: ${LEAN_AUDIT}" >&2
               exit 1
               ;;
           esac
           cd ../../..
           python tools/unified_math_v2/scripts/verify_pins.py --repo-root .
-          case "$LEAN_SEEDS_TARGET" in
-            consolidated)
+          case "$LEAN_AUDIT" in
+            seeds)
               python tools/ulm_consolidation/scripts/audit_compiled.py --log work/consolidated-lean/environment.log --expected tools/ulm_consolidation/plans/LEAN_SEEDS_84.json --output work/consolidated-lean/consolidated-lean.json
               python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/consolidated-lean.json --output work/consolidated-lean/consolidated-lean.json
               ;;
-            business-root)
+            root)
               python tools/ulm_consolidation/scripts/audit_root_compiled.py --log work/consolidated-lean/root-environment.log --output work/consolidated-lean/root-compiled.json
               python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/root-compiled.json --output work/consolidated-lean/root-compiled.json
               ;;
+            build)
+              ;;
             *)
-              echo "unknown lean-seeds target: ${LEAN_SEEDS_TARGET}" >&2
+              echo "unknown lean-seeds audit: ${LEAN_AUDIT}" >&2
               exit 1
               ;;
           esac
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          leg = os.environ["LEAN_SEEDS_TARGET"]
+          path = Path("work/consolidated-lean") / f"leg-{leg}.json"
+          path.write_text(json.dumps({
+              "status": "PASS",
+              "scope": "LEAN_SEEDS_MATRIX_LEG",
+              "leg": leg,
+              "lake_target": os.environ["LAKE_TARGET"],
+              "audit": os.environ["LEAN_AUDIT"],
+          }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+          python tools/ulm_consolidation/scripts/ci_receipt.py --report "work/consolidated-lean/leg-${LEAN_SEEDS_TARGET}.json" --output "work/consolidated-lean/leg-${LEAN_SEEDS_TARGET}.json"
       - name: Save Lean build cache
         # A stable key must not record a failed tree: GitHub cannot replace an
         # existing entry. Skip the write on an exact hit or a failed build.
@@ -185,7 +265,7 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: consolidated-lean-${{ matrix.target }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: consolidated-lean-${{ matrix.leg }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: work/consolidated-lean/
           if-no-files-found: error
           retention-days: 90
@@ -252,7 +332,7 @@ jobs:
           pattern: consolidated-*-${{ github.run_id }}-${{ github.run_attempt }}
           path: work/upstream
           merge-multiple: false
-      - name: Require both lean-seeds legs before aggregation
+      - name: Require every lean-seeds leg and the retained seed audits
         run: |
           set -euo pipefail
           python - <<'PY'
@@ -261,9 +341,10 @@ jobs:
           root = Path("work/upstream")
           run_id = os.environ["GITHUB_RUN_ID"]
           attempt = os.environ["GITHUB_RUN_ATTEMPT"]
-          # Same gate as lean-seeds: both matrix legs must bind a PASS receipt
-          # to this run. Missing either leg is not ULM success.
-          for name in ("consolidated-lean.json", "root-compiled.json"):
+          # Same six legs as lean-seeds.matrix. A missing leg is not ULM success.
+          required_legs = ("consolidated", "business-root", "fullmath", "unified-v2", "candidates", "mandate")
+          names = [f"leg-{leg}.json" for leg in required_legs] + ["consolidated-lean.json", "root-compiled.json"]
+          for name in names:
               matches = list(root.rglob(name))
               if len(matches) != 1:
                   raise SystemExit(f"Missing/ambiguous {name}: {len(matches)}")

@@ -34,8 +34,10 @@ theorem confirmed_observation_has_fixed_target {m : Nat} (s : Store m) (now : In
     (row : Observation m) (target : Target m) (reliable : Reliable s target)
     (valid : observationValid s now row = true) :
     row.scope = s.scope ∧ row.label = target s.scope row.caseId row.event row.feature := by
-  have checks := Bool.and_eq_true.mp valid
-  have scope : row.scope = s.scope := (of_decide_eq_true checks.1).1
+  have checks : (row.scope = s.scope ∧ row.origin = .external ∧
+      row.observedAt.ticks ≤ now.ticks) ∧ sourceConfirmed s row = true := by
+    simpa [observationValid] using valid
+  have scope : row.scope = s.scope := checks.1.1
   have confirmed : ∃ evidence ∈ s.confirmations, evidence.observation = row := by
     simpa [sourceConfirmed] using checks.2
   obtain ⟨evidence, member, same⟩ := confirmed
@@ -89,11 +91,13 @@ theorem valid_correction_has_fixed_target {m : Nat} (s : Store m) (now : Instant
       intro feature label same
       simp [correctedCell, replacement] at same
   | some row =>
-      unfold correctionValid at valid
-      simp only [replacement] at valid
-      have checked := Bool.and_eq_true.mp (Bool.and_eq_true.mp valid).2
-      have identity : row.event = edit.supersedes.event ∧ row.caseId = edit.supersedes.caseId :=
-        of_decide_eq_true checked.2
+      have details : (edit.policyVersion = s.scope.correctionPolicy ∧
+          edit.effectiveFrom.ticks ≤ now.ticks) ∧
+          observationValid s now row = true ∧
+          row.event = edit.supersedes.event ∧ row.caseId = edit.supersedes.caseId := by
+        simpa [correctionValid, replacement] using valid
+      have checked := details.2
+      have identity := checked.2
       have truth := (confirmed_observation_has_fixed_target s now row target reliable checked.1).2
       intro feature label same
       simp only [correctedCell, replacement, LabelState.active.injEq] at same
@@ -125,25 +129,12 @@ theorem update_keeps_target_scope_and_external_catalog {m : Nat} (now : Instant)
       (applyChange now permits s change).post.confirmations = s.confirmations := by
   cases change with
   | observed row =>
-      unfold applyChange observe
-      split
-      · exact ⟨rfl, rfl⟩
-      · split
-        · exact ⟨rfl, rfl⟩
-        · split
-          · exact ⟨rfl, rfl⟩
-          · split
-            · exact ⟨rfl, rfl⟩
-            · split <;> exact ⟨rfl, rfl⟩
+      cases found : lookup s row.event <;>
+        simp only [applyChange, observe, found] <;>
+        split_ifs <;> exact ⟨rfl, rfl⟩
   | corrected edit =>
-      unfold applyChange correct
-      split
-      · exact ⟨rfl, rfl⟩
-      · split
-        · exact ⟨rfl, rfl⟩
-        · split
-          · exact ⟨rfl, rfl⟩
-          · split <;> exact ⟨rfl, rfl⟩
+      simp only [applyChange, correct]
+      split_ifs <;> exact ⟨rfl, rfl⟩
 
 theorem finite_feedback_preserves_fixed_target {m : Nat} (now : Instant)
     (permits : List (CorrectionPermit m)) (s : Store m) (changes : List (Change m))
@@ -182,6 +173,49 @@ theorem actual_fitted_sample_is_target_correct {m : Nat} (s : Store m) (target :
   | conflicted => simp [Cell.toSample, state] at produced
   | withdrawn => simp [Cell.toSample, state] at produced
 
+-- A previously wrong label need not satisfy Reliable. Repair instead requires
+-- the new external label to be correct and only the untouched events to retain
+-- their meanings; the old label is deliberately not assumed correct.
+theorem record_cell_repairs_target {m : Nat} (s : Store m) (change : Change m)
+    (cell : Cell m) (target : Target m)
+    (untouched : ∀ old ∈ s.cells, old.event ≠ cell.event → CellMeaning s.scope target old)
+    (inserted : CellMeaning s.scope target cell) :
+    StoreMeaning (recordCell s change cell) target := by
+  intro item member
+  change item ∈ putCell s.cells cell at member
+  simp only [putCell, List.mem_cons] at member
+  rcases member with same | prior
+  · subst item
+    exact inserted
+  · have prior' := List.mem_filter.mp prior
+    exact untouched item prior'.1 (by simpa using prior'.2)
+
+theorem approved_correction_repairs_target {m : Nat} (s : Store m) (now : Instant)
+    (permits : List (CorrectionPermit m)) (edit : Correction m) (row : Observation m)
+    (target : Target m) (replacement : edit.replacement = some row)
+    (truth : row.label = target s.scope row.caseId row.event row.feature)
+    (untouched : ∀ old ∈ s.cells, old.event ≠ edit.supersedes.event →
+      CellMeaning s.scope target old)
+    (fresh : Change.corrected edit ∉ s.history)
+    (found : lookup s edit.supersedes.event = some edit.supersedes)
+    (valid : correctionValid s now edit = true)
+    (allowed : correctionAuthorized s now permits edit = true) :
+    StoreMeaning (correct s now permits edit).post target := by
+  have details : (edit.policyVersion = s.scope.correctionPolicy ∧
+      edit.effectiveFrom.ticks ≤ now.ticks) ∧
+      observationValid s now row = true ∧ row.event = edit.supersedes.event ∧
+      row.caseId = edit.supersedes.caseId := by
+    simpa [correctionValid, replacement] using valid
+  have transition : (correct s now permits edit).post =
+      recordCell s (.corrected edit) (correctedCell edit) := by
+    simp [correct, fresh, found, valid, allowed]
+  rw [transition]
+  apply record_cell_repairs_target _ _ _ _ untouched
+  intro feature label same
+  simp only [correctedCell, replacement, LabelState.active.injEq] at same
+  rcases same with ⟨rfl, rfl⟩
+  simpa only [details.2.2.1, details.2.2.2] using truth
+
 def twoPointProtocol : LearningProtocol :=
   ⟨⟨1, 2, 3, 4, 5, ⟨10⟩, ⟨1⟩⟩, 6, 7, 8, 9, 10, 11, 12, 1/10⟩
 
@@ -200,6 +234,8 @@ theorem suggestions_fit_better_but_true_risk_worsens :
     empiricalScore (tableLoss binaryLoss) pseudoData [1, 0] = 0 ∧
     empiricalScore (tableLoss binaryLoss) trueData [0, 0] = 1/2 ∧
     empiricalScore (tableLoss binaryLoss) trueData [1, 0] = 1 := by
-  decide
+  norm_num [fittedOnSuggestions, fitTable, twoPointProtocol, proposed_empirical_fit,
+    fitNonempty, selectMinimum, empiricalScore, tableLoss, binaryLoss, pseudoData,
+    trueData, Fin.sum_univ_two]
 
 end JurisLean.Candidates.FeedbackLabelSemantics20261027

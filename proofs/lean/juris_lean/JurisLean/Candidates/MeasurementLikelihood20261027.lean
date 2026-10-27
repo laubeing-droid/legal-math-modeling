@@ -29,7 +29,7 @@ theorem joint_likelihood_chain {Ω : Type*} [MeasurableSpace Ω]
           (Q.real (first ∩ second) / Q.real first))) := by
   rw [eventLikelihoodRatio, if_pos positiveJoint]
   congr 1
-  field_simp [ne_of_gt positiveP, ne_of_gt positiveQ, ne_of_gt positiveJoint]
+  field_simp [ne_of_gt positiveP, ne_of_gt positiveQ, ne_of_gt positiveJoint] <;> ring
 
 -- Independence is supplied under EACH hypothesis law; it is not read from IDs.
 theorem independent_measurement_joint_mass
@@ -42,7 +42,6 @@ theorem independent_measurement_joint_mass
     ⟨s, hs, rfl⟩ ⟨t, ht, rfl⟩
   change (P (X ⁻¹' s ∩ Y ⁻¹' t)).toReal = _
   rw [product, ENNReal.toReal_mul]
-  rfl
 
 theorem independent_measurement_likelihood_multiplies
     {Ω A B : Type*} [MeasurableSpace Ω] [MeasurableSpace A] [MeasurableSpace B]

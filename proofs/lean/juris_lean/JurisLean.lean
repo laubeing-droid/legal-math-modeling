@@ -89,6 +89,7 @@ import JurisLean.Candidates.ProbabilityIntervalConsumer20261027
 import JurisLean.Candidates.ProtectedFeedback20261027
 import JurisLean.Candidates.SampleCalibrationConsumer20261027
 import JurisLean.Candidates.SelectiveCalibration20261027
+import JurisLean.Candidates.SourceCompilation20261027
 import JurisLean.Candidates.SourceRepresentation20261027
 import JurisLean.Candidates.ValidatedFeedbackLoad20261027
 import JurisLean.CanonicalSerialization

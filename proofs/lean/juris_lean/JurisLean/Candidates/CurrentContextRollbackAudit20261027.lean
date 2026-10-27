@@ -37,7 +37,7 @@ def currentSecond : Observation 2 := { row 1 true 12 with scope := currentScope 
 
 def currentStore : Store 2 :=
   let start := emptyStore 2 currentScope [⟨currentFirst, ⟨11⟩⟩, ⟨currentSecond, ⟨12⟩⟩]
-  (observe (observe start ⟨30⟩ currentFirst).post ⟨30⟩ currentSecond).post
+  (observe (observe start ⟨10⟩ currentFirst).post ⟨10⟩ currentSecond).post
 
 def currentPlan : ValidationPlan := { plan with scope := currentScope }
 

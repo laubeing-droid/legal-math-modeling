@@ -83,7 +83,7 @@ theorem rollback_evaluation_consumes_reissued_candidate {m : Nat} (s : Service m
       evaluate request.plan (readLoaded s) candidate binaryLoss request.blocks = .known evaluation := by
   cases hp : proposeRollback s request with
   | known candidate =>
-      exact ⟨candidate, hp, by simpa [evaluateRollback, hp] using produced⟩
+      exact ⟨candidate, rfl, by simpa [evaluateRollback, hp] using produced⟩
   | unknown why => simp [evaluateRollback, hp] at produced
   | rejected why => simp [evaluateRollback, hp] at produced
   | conflict a b => simp [evaluateRollback, hp] at produced
@@ -96,7 +96,7 @@ theorem rollback_attempt_is_actual_activation {m : Nat} (s : Service m)
       out = activate s evaluation samplingCatalog request.sampling authorityCatalog request.permit := by
   cases he : evaluateRollback s request with
   | known evaluation =>
-      exact ⟨evaluation, he, by simpa [attemptRollback, he] using produced.symm⟩
+      exact ⟨evaluation, rfl, by simpa [attemptRollback, he] using produced.symm⟩
   | unknown why => simp [attemptRollback, he] at produced
   | rejected why => simp [attemptRollback, he] at produced
   | conflict a b => simp [attemptRollback, he] at produced

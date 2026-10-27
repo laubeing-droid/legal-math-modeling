@@ -1,5 +1,9 @@
 import JurisLean.Candidates.HarnessRisk20261027
 
+#check JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability
+#print axioms JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability
+#check JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk
+#print axioms JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk
 #check JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal
 #print axioms JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal
 #check JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal
@@ -26,6 +30,7 @@ import JurisLean.Candidates.HarnessRisk20261027
 #print axioms JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit
 #check JurisLean.Candidates.HarnessRisk20261027.two_attempts_are_not_one_budget
 #print axioms JurisLean.Candidates.HarnessRisk20261027.two_attempts_are_not_one_budget
+
 
 open JurisLean.Candidates.HarnessRisk20261027
 
@@ -74,6 +79,7 @@ theorem ten_percent_each_is_nineteen_percent_after_two :
     1 - (1 - (1/10 : ℝ))^2 = 19/100 ∧ (1/10 : ℝ) < 19/100 := by norm_num
 
 end JurisLean.Candidates.HarnessRisk20261027.Audit
+
 
 #check JurisLean.Candidates.HarnessRisk20261027.Audit.resetting_the_per_attempt_number_is_not_a_total_bound
 #print axioms JurisLean.Candidates.HarnessRisk20261027.Audit.resetting_the_per_attempt_number_is_not_a_total_bound

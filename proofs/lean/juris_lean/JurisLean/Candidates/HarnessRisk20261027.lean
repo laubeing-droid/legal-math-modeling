@@ -18,30 +18,58 @@ conditional premise; changing the learner or history does not renew it.
 namespace JurisLean.Candidates.HarnessRisk20261027
 
 open MeasureTheory ProbabilityTheory Filter
-open scoped ENNReal Topology
+open scoped NNReal ENNReal Topology
 open JurisLean.Candidates.Final20261021
 
 noncomputable section
 
+def eventRate {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
+    (population event : Set Ω) : Result ℝ :=
+  if 0 < μ.real population then .known (μ.real (population ∩ event) / μ.real population)
+  else .unknown .notIdentified
+
+def violationAndBlockingRates {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
+    (accepted admissible unsafe : Set Ω) : Result ℝ × Result ℝ :=
+  (eventRate μ accepted unsafe, eventRate μ admissible acceptedᶜ)
+
+theorem reported_population_rate_is_a_probability {Ω : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (population event : Set Ω) (rate : ℝ)
+    (reported : eventRate μ population event = .known rate) : 0 ≤ rate ∧ rate ≤ 1 := by
+  unfold eventRate at reported
+  split at reported
+  · rename_i positive
+    have same := Result.known.inj reported
+    rw [← same]
+    constructor
+    · exact div_nonneg measureReal_nonneg positive.le
+    · apply (div_le_iff₀ positive).mpr
+      simpa using (measureReal_mono (μ := μ) (Set.inter_subset_left (s := population) (t := event)))
+  · cases reported
+
+theorem zero_population_is_not_zero_risk {Ω : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) (population event : Set Ω) (emptyMass : μ.real population = 0) :
+    eventRate μ population event = .unknown .notIdentified := by
+  simp [eventRate, emptyMass]
+
 theorem conditional_risk_implies_expected_marginal {Ω : Type*} [m₀ : MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (past : MeasurableSpace Ω) (information : past ≤ m₀)
-    (bad : Set Ω) (measurable : MeasurableSet bad) (budget : Ω → ℝ)
+    (bad : Set Ω) (measurable : @MeasurableSet Ω m₀ bad) (budget : Ω → ℝ)
     (integrable : Integrable budget μ)
     (conditional : ∀ᵐ w ∂μ, (μ[bad.indicator (fun _ => (1 : ℝ)) | past]) w ≤ budget w) :
     μ.real bad ≤ ∫ w, budget w ∂μ := by
   calc
     μ.real bad = ∫ w, bad.indicator (fun _ => (1 : ℝ)) w ∂μ :=
-      (integral_indicator_one measurable).symm
+      (integral_indicator_one (μ := μ) measurable).symm
     _ = ∫ w, (μ[bad.indicator (fun _ => (1 : ℝ)) | past]) w ∂μ :=
       (integral_condExp information).symm
     _ ≤ _ := integral_mono_ae integrable_condExp integrable conditional
 
 theorem conditional_risk_implies_constant_marginal {Ω : Type*} [m₀ : MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (past : MeasurableSpace Ω) (information : past ≤ m₀)
-    (bad : Set Ω) (measurable : MeasurableSet bad) (δ : ℝ)
+    (bad : Set Ω) (measurable : @MeasurableSet Ω m₀ bad) (δ : ℝ)
     (conditional : ∀ᵐ w ∂μ, (μ[bad.indicator (fun _ => (1 : ℝ)) | past]) w ≤ δ) :
     μ.real bad ≤ δ := by
-  simpa using conditional_risk_implies_expected_marginal μ past information bad measurable
+  simpa using conditional_risk_implies_expected_marginal (m₀ := m₀) μ past information bad measurable
     (fun _ => δ) (integrable_const δ) conditional
 
 -- past t is the information before attempt t. Any filtration is a special
@@ -56,7 +84,7 @@ theorem finite_conditional_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
     μ.real (⋃ t ∈ attempts, bad t) ≤ ∑ t ∈ attempts, δ t := by
   apply Harness.risk_union_in_declared_measure μ attempts bad δ
   intro t member
-  exact conditional_risk_implies_constant_marginal μ (past t) (information t)
+  exact conditional_risk_implies_constant_marginal (m₀ := m₀) μ (past t) (information t)
     (bad t) (measurable t) (δ t) (conditional t member)
 
 theorem finite_adaptive_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
@@ -70,7 +98,7 @@ theorem finite_adaptive_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
   rw [integral_finsetSum _ (fun t _ => integrable t)]
   apply Harness.risk_union_in_declared_measure μ attempts bad
   intro t member
-  exact conditional_risk_implies_expected_marginal μ (past t) (information t)
+  exact conditional_risk_implies_expected_marginal (m₀ := m₀) μ (past t) (information t)
     (bad t) (measurable t) (budget t) (integrable t) (conditional t member)
 
 theorem countable_summable_risk_budget {Ω : Type*} [MeasurableSpace Ω]
@@ -94,7 +122,7 @@ theorem countable_conditional_risk_budget {Ω : Type*} [m₀ : MeasurableSpace �
       (μ[(bad t).indicator (fun _ => (1 : ℝ)) | past t]) w ≤ δ t) :
     μ.real (⋃ t, bad t) ≤ ∑' t, δ t := by
   apply countable_summable_risk_budget μ bad δ nonnegative summable
-  exact fun t => conditional_risk_implies_constant_marginal μ (past t) (information t)
+  exact fun t => conditional_risk_implies_constant_marginal (m₀ := m₀) μ (past t) (information t)
     (bad t) (measurable t) (δ t) (conditional t)
 
 -- A concrete probability measure, not an assumed sequence of risk values.
@@ -153,7 +181,7 @@ theorem independent_constant_risk_accumulates (p : ℝ≥0) (hp : p ≤ 1) (T : 
     intro t
     apply MeasurableSet.iUnion
     intro _
-    exact (measurable_pi_apply t) (by trivial)
+    exact (measurable_pi_apply t) (show MeasurableSet ({true} : Set Bool) from by trivial)
   have complement := measureReal_add_measureReal_compl (μ := bernoulliPaths p hp) measurable
   rw [safeMass, probReal_univ] at complement
   linarith

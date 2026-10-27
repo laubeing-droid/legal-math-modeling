@@ -216,7 +216,7 @@ theorem prepared_feedback_uses_actual_observation {m : Nat}
   | rejected e => cases prepared
   | conflict a b => cases prepared
   | known row =>
-      unfold prepareObserved at prepared
+      simp only [prepareObserved] at prepared
       split at prepared
       · cases prepared
       · split at prepared

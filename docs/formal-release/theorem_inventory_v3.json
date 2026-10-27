@@ -6049,6 +6049,125 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "historyCell"
+    },
+    {
+     "kind": "theorem",
+     "name": "conditional_event_mass"
+    },
+    {
+     "kind": "theorem",
+     "name": "predictable_failure_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "history_budget_is_expected_spend"
+    },
+    {
+     "kind": "theorem",
+     "name": "predictable_failure_expected_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "fresh_iid_history_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "sample_count_covers_radius"
+    },
+    {
+     "kind": "def",
+     "name": "zeroLabelValidationScore"
+    },
+    {
+     "kind": "def",
+     "name": "probeScores"
+    },
+    {
+     "kind": "def",
+     "name": "fromProbeScores"
+    },
+    {
+     "kind": "def",
+     "name": "uniformZeroRisk"
+    },
+    {
+     "kind": "theorem",
+     "name": "probe_score_reveals_membership"
+    },
+    {
+     "kind": "theorem",
+     "name": "feedback_model_eq_unseen"
+    },
+    {
+     "kind": "theorem",
+     "name": "feedback_model_zero_validation"
+    },
+    {
+     "kind": "theorem",
+     "name": "feedback_model_population_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "feedback_model_large_population_risk"
+    },
+    {
+     "kind": "def",
+     "name": "fourPointFailureMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "three_failure_events_not_independent_formula"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ProtectedFeedback20261027",
+    "Mathlib.MeasureTheory.Integral.Bochner.Set",
+    "Mathlib.Probability.ConditionalProbability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "3e80ddbfcd40858660bc36660e60664fccb6e817728a6e6cef613ab3570e2d45",
+   "size_bytes": 13862,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "visiblePoints"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveValidation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation",
+    "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend",
+    "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership",
+    "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+    "JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula"
+   ],
+   "sha256": "9750d99d766ef40f207dbbad2abeef27aa89086ef96f98a191d4e3b67b29ebb7",
+   "size_bytes": 3208,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "q05_1_conditional_correct_implies_calibration"
     },
@@ -51688,6 +51807,7 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
+    "JurisLean.Candidates.AdaptiveValidation20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
@@ -51931,8 +52051,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "1a90c899675f6893a3ddc5a1272bc1be03e6bdcec7d997af196957c72bfec7d0",
-   "size_bytes": 11925,
+   "sha256": "a5ecdb980e2a00ec3a781016a3f4aa2bcd73c0394b9738b821309207eceae6c5",
+   "size_bytes": 11980,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52096,22 +52216,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5725,
-   "file_count": 431,
+   "counted_declaration_count": 5737,
+   "file_count": 433,
    "lemma_count": 146,
-   "print_axioms_command_count": 4598,
-   "print_axioms_distinct_targets": 4511,
-   "theorem_count": 5579,
-   "theorem_count_bol_convention": 5479
+   "print_axioms_command_count": 4610,
+   "print_axioms_distinct_targets": 4523,
+   "theorem_count": 5591,
+   "theorem_count_bol_convention": 5491
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5706,
-   "file_count": 416,
+   "counted_declaration_count": 5718,
+   "file_count": 418,
    "lemma_count": 139,
-   "print_axioms_command_count": 4598,
-   "print_axioms_distinct_targets": 4511,
-   "theorem_count": 5567,
-   "theorem_count_bol_convention": 5467
+   "print_axioms_command_count": 4610,
+   "print_axioms_distinct_targets": 4523,
+   "theorem_count": 5579,
+   "theorem_count_bol_convention": 5479
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -52168,6 +52288,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
@@ -52597,6 +52719,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
@@ -53015,17 +53139,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ad88ea12a32cd3c9f62ef39d48a3fd38a5d1f4db297e647a4786bd1eccbcdf21",
+ "source_inventory_digest": "4b30f9aff01fa150477eb2898358ce4146f3bc84b2453e554cb1a0717e13784b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/validated-feedback-load-20261027",
-  "commit": "a891fc3cd1cdf585d1a54bf0a1ac3e35f8178d91",
-  "tree": "00431fc8800b4733be29fc8114c23e59b9517af2"
+  "branch": "formal/adaptive-validation-20261027",
+  "commit": "b0d254268a7166d4aeb12266692632f7c4059b29",
+  "tree": "2609a78a8d0d733552435fc67759727dde2ea979"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 431,
+  "files_total": 433,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

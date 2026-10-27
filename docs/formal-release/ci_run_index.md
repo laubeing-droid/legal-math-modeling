@@ -460,6 +460,8 @@ without guessing where it came from.
 | 40433301935 | failure | `a7bcf10` | formal/protected-feedback-20261027 | workflow_dispatch | 0/8 | 1 | README.md |
 | 40433882641 | failure | `8a9330b` | formal/protected-feedback-20261027 | workflow_dispatch | 0/8 | 1 | README.md |
 | 40434490740 | success | `fece078` | formal/protected-feedback-20261027 | workflow_dispatch | 1/8 | 1 | README.md |
+| 40434501868 | success | `5ea01c4` | formal/validated-feedback-load-20261027 | workflow_dispatch | 1/8 | 1 | README.md |
+| 40435047031 | success | `1314be9` | formal/validated-feedback-load-20261027 | workflow_dispatch | 1/8 | 1 | README.md |
 | 40435443558 | failure | `95e4017` | formal/protected-feedback-20261027 | pull_request | 2/8 | 5 | README.md |
 | 40436410064 | success | `04942c2` | formal/protected-feedback-anchor-20261027 | workflow_dispatch | 1/8 | 1 | README.md |
 

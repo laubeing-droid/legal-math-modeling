@@ -1,5 +1,11 @@
 -- JurisLean root module
 import JurisLean.Basic
+import JurisLean.Candidates.PendingCommit20261027
+import JurisLean.Candidates.CommitReadback20261027
+import JurisLean.Candidates.CommitRecovery20261027
+import JurisLean.Candidates.CommitRecoveryAudit20261027
+import JurisLean.Candidates.ExactProbability20261027
+import JurisLean.Candidates.ExactProbabilityAudit20261027
 import JurisLean.Mandate.Kernel
 import JurisLean.Mandate.GameTree
 import JurisLean.Mandate.PureNash

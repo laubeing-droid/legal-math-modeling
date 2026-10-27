@@ -1,0 +1,304 @@
+JurisLean.Candidates.PendingCommit20261027.unknown_outcome_keeps_request_identity
+  (before : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (request : JurisLean.Candidates.Final20261021.PaymentRequest) (allowed : Bool)
+  (mode : JurisLean.Candidates.Final20261021.Ledger.Submission) (key : JurisLean.Candidates.Final20261021.PaymentId)
+  (attempt : JurisLean.Candidates.Final20261021.AttemptId)
+  (unknown :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext before before request allowed mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit key attempt) :
+  key = request.key ∧ attempt = request.attempt
+
+'JurisLean.Candidates.PendingCommit20261027.unknown_outcome_keeps_request_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PendingCommit20261027.captured_pending_has_actual_prefix_and_stopped_result
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (found : JurisLean.Candidates.PendingCommit20261027.locate grants initial steps = some pending) :
+  pending.grants = grants ∧
+    JurisLean.Candidates.Final20261021.Trace.Path initial pending.before ∧
+      JurisLean.Candidates.Final20261021.Ledger.consume_ext pending.before pending.before pending.request
+            (JurisLean.Candidates.PendingCommit20261027.permission pending.grants pending.before pending.request)
+            pending.mode =
+          JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit pending.request.key pending.request.attempt ∧
+        (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = none ∧
+          JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit pending.request.key pending.request.attempt ∈
+            (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).outcomes
+
+'JurisLean.Candidates.PendingCommit20261027.captured_pending_has_actual_prefix_and_stopped_result' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PendingCommit20261027.stopped_interpreter_always_has_pending
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (stopped :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = none) :
+  ∃ pending, JurisLean.Candidates.PendingCommit20261027.locate grants initial steps = some pending
+
+'JurisLean.Candidates.PendingCommit20261027.stopped_interpreter_always_has_pending' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PendingCommit20261027.captured_prestate_inherits_full_invariant
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (found : JurisLean.Candidates.PendingCommit20261027.locate grants initial steps = some pending) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant pending.before
+
+'JurisLean.Candidates.PendingCommit20261027.captured_prestate_inherits_full_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitReadback20261027.checked_post_is_exact_commit_or_fenced_absence
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (accepted :
+    JurisLean.Candidates.CommitReadback20261027.checkedPost pending report =
+      JurisLean.Candidates.Final20261021.Result.known after) :
+  after = report.after ∧
+    ((∃ receipt,
+        report.disposition = JurisLean.Candidates.CommitReadback20261027.Disposition.committed receipt ∧
+          JurisLean.Candidates.Final20261021.Ledger.consume_ext pending.before pending.before pending.request
+              (JurisLean.Candidates.PendingCommit20261027.permission pending.grants pending.before pending.request)
+              JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+            JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt after) ∨
+      ∃ fence,
+        report.disposition = JurisLean.Candidates.CommitReadback20261027.Disposition.fencedAbsent fence ∧
+          after = pending.before)
+
+'JurisLean.Candidates.CommitReadback20261027.checked_post_is_exact_commit_or_fenced_absence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitReadback20261027.resolved_readback_binds_catalog_full_request_and_actual_unknown
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (accepted :
+    JurisLean.Candidates.CommitReadback20261027.resolve pending catalog report =
+      JurisLean.Candidates.Final20261021.Result.known after) :
+  report ∈ catalog ∧
+    report.before = pending.before ∧
+      report.request = pending.request ∧
+        JurisLean.Candidates.Final20261021.Ledger.consume_ext pending.before pending.before pending.request
+              (JurisLean.Candidates.PendingCommit20261027.permission pending.grants pending.before pending.request)
+              pending.mode =
+            JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit pending.request.key
+              pending.request.attempt ∧
+          JurisLean.Candidates.CommitReadback20261027.checkedPost pending report =
+            JurisLean.Candidates.Final20261021.Result.known after
+
+'JurisLean.Candidates.CommitReadback20261027.resolved_readback_binds_catalog_full_request_and_actual_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitReadback20261027.resolved_readback_is_reported_state_and_step_or_frame
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (accepted :
+    JurisLean.Candidates.CommitReadback20261027.resolve pending catalog report =
+      JurisLean.Candidates.Final20261021.Result.known after) :
+  after = report.after ∧ (JurisLean.Candidates.Final20261021.Trace.Step pending.before after ∨ after = pending.before)
+
+'JurisLean.Candidates.CommitReadback20261027.resolved_readback_is_reported_state_and_step_or_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitReadback20261027.recovered_actual_pending_preserves_full_invariant
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (found : JurisLean.Candidates.PendingCommit20261027.locate grants initial steps = some pending)
+  (accepted :
+    JurisLean.Candidates.CommitReadback20261027.resolve pending catalog report =
+      JurisLean.Candidates.Final20261021.Result.known after) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant after
+
+'JurisLean.Candidates.CommitReadback20261027.recovered_actual_pending_preserves_full_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.pending_for_retains_actual_plan {W : Type} {m : ℕ}
+  (before : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (actual : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionOutput W m)
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending)
+  (found : JurisLean.Candidates.CommitRecovery20261027.pendingFor before input actual = some pending) :
+  ∃ initial execution proposal,
+    before.business.current = some initial ∧
+      actual.run = some execution ∧
+        execution.execution.proposal = some proposal ∧
+          JurisLean.Candidates.PendingCommit20261027.locate input.grants initial proposal.steps = some pending ∧
+            actual.post.business.current = none
+
+'JurisLean.Candidates.CommitRecovery20261027.pending_for_retains_actual_plan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.unknown_selected_execution_is_actual_trajectory {m : ℕ}
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (stopped :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps).current =
+      none) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps =
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps
+
+'JurisLean.Candidates.CommitRecovery20261027.unknown_selected_execution_is_actual_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.captured_pending_comes_from_actual_action_trajectory {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (pending : JurisLean.Candidates.PendingCommit20261027.Pending) (found : ticket.pending = some pending) :
+  ∃ initial execution proposal,
+    ticket.before.business.current = some initial ∧
+      ticket.actual.run = some execution ∧
+        execution.execution.proposal = some proposal ∧
+          execution.execution.payment =
+              JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory ticket.input.grants initial
+                proposal.steps ∧
+            JurisLean.Candidates.PendingCommit20261027.locate ticket.input.grants initial proposal.steps =
+                some pending ∧
+              ticket.actual.post.business.current = none
+
+'JurisLean.Candidates.CommitRecovery20261027.captured_pending_comes_from_actual_action_trajectory' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.actual_unknown_action_always_has_capture {W : Type} {m : ℕ}
+  (before : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle) (known : before.business.current = some initial)
+  (stopped : (JurisLean.Candidates.BusinessFeedbackLoop20261027.act before input).post.business.current = none) :
+  ∃ pending, (JurisLean.Candidates.CommitRecovery20261027.capture before input).pending = some pending
+
+'JurisLean.Candidates.CommitRecovery20261027.actual_unknown_action_always_has_capture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.known_resolution_matches_current_capture {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (accepted :
+    JurisLean.Candidates.CommitRecovery20261027.resolution ticket current catalog report =
+      JurisLean.Candidates.Final20261021.Result.known after) :
+  current = ticket.actual.post ∧
+    ∃ pending,
+      ticket.pending = some pending ∧
+        JurisLean.Candidates.CommitReadback20261027.resolve pending catalog report =
+          JurisLean.Candidates.Final20261021.Result.known after
+
+'JurisLean.Candidates.CommitRecovery20261027.known_resolution_matches_current_capture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.stale_resolution_cannot_replace_later_state {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback) (changed : current ≠ ticket.actual.post) :
+  JurisLean.Candidates.CommitRecovery20261027.resolution ticket current catalog report =
+    JurisLean.Candidates.Final20261021.Result.rejected JurisLean.Candidates.Final20261021.Error.prestateRequired
+
+'JurisLean.Candidates.CommitRecovery20261027.stale_resolution_cannot_replace_later_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.refusal_preserves_complete_current_state {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (unresolved :
+    ∀ (after : JurisLean.Candidates.Final20261021.Ledger.Handle),
+      JurisLean.Candidates.CommitRecovery20261027.resolution ticket current catalog report ≠
+        JurisLean.Candidates.Final20261021.Result.known after) :
+  (JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report).post = current
+
+'JurisLean.Candidates.CommitRecovery20261027.refusal_preserves_complete_current_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.recovery_keeps_learning_observations_and_original_outcomes {W : Type}
+  {m : ℕ} (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback) :
+  have recovered := JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report;
+  recovered.report = report ∧
+    recovered.post.learning = current.learning ∧
+      recovered.post.policyRows = current.policyRows ∧
+        recovered.post.lastObservation = current.lastObservation ∧
+          recovered.post.observationHistory = current.observationHistory ∧
+            recovered.post.feedbackQueue = current.feedbackQueue ∧
+              recovered.post.business.outcomes = current.business.outcomes ∧
+                recovered.post.business.obligations = current.business.obligations
+
+'JurisLean.Candidates.CommitRecovery20261027.recovery_keeps_learning_observations_and_original_outcomes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.recovery_preserves_known_business_invariant {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (originalValid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant ticket.before)
+  (currentValid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant current) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+    (JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report).post
+
+'JurisLean.Candidates.CommitRecovery20261027.recovery_preserves_known_business_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.CommitRecovery20261027.finite_continuation_consumes_recovered_actual_state {W : Type} {m : ℕ}
+  (ticket : JurisLean.Candidates.CommitRecovery20261027.Captured W m)
+  (current : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (catalog : List JurisLean.Candidates.CommitReadback20261027.Readback)
+  (report : JurisLean.Candidates.CommitReadback20261027.Readback)
+  (commands : List (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+  (originalValid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant ticket.before)
+  (currentValid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant current)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent current.learning ≤ current.learning.limit) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step
+        (JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report).post commands) ∧
+    (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step
+              (JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report).post
+              commands).learning.limit =
+        current.learning.limit ∧
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+          (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step
+              (JurisLean.Candidates.CommitRecovery20261027.resume ticket current catalog report).post
+              commands).learning ≤
+        current.learning.limit
+
+'JurisLean.Candidates.CommitRecovery20261027.finite_continuation_consumes_recovered_actual_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8610 jobs).
+

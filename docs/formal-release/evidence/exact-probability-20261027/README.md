@@ -1,0 +1,9 @@
+# Exact probability additions already under construction
+
+Successful named audit on `4297ea1fdcd3de9a7a6252a2b397fc4906bae548`: [run 40516194777](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40516194777), [job 122230636130](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40516194777/job/122230636130). Eleven complete theorem types and eleven axiom outputs; standard axioms only. Source and driver are bound in verification.json. These are general analytic proofs; this driver adds no synthetic execution assertions.
+
+A measurable deterministic copy preserves the generated sigma-field exactly, and therefore preserves integrable conditional expectations almost everywhere. Supplied numerator and strictly positive denominator enclosures yield both the unit-interval width bound and the explicit propagated width bound. The theorem keeps the original lower-numerator assumption; it does not require a nonnegative supplied lower endpoint.
+
+For every positive real alpha and beta and natural success/failure counts, the Bernoulli likelihood times the Beta prior equals its positive evidence ratio times the updated density. Integrating gives the actual normalizing constant. Dividing by that integral gives the posterior density and measure, and its first moment is the stated predictive-parameter mean. Reading that mean as a future success probability requires the conditional Bernoulli sampling premise. No independent sampling, causal identification, confidence coverage or numerical quadrature claim is inferred from density normalization.
+
+Root integration and complete PR acceptance are separate checks. The three-event sharp identified set, contamination obligations and the general joint-likelihood interpretation are not closed by these eleven statements. This module receipt does not change historical CAND8, frozen tip pin or archive debt status.

@@ -4,10 +4,18 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.fired_conclusions_are_enabled_rules
 #check JurisLean.Candidates.FiniteLegalValidation20261027.advance_is_recorded_round
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.advance_is_recorded_round
+#check JurisLean.Candidates.FiniteLegalValidation20261027.trace_checker_reflects_actual_rule_and_premise_checks
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.trace_checker_reflects_actual_rule_and_premise_checks
+#check JurisLean.Candidates.FiniteLegalValidation20261027.valid_trace_replay_is_sound
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.valid_trace_replay_is_sound
+#check JurisLean.Candidates.FiniteLegalValidation20261027.checked_trace_certifies_relative_derivation
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.checked_trace_certifies_relative_derivation
 #check JurisLean.Candidates.FiniteLegalValidation20261027.generated_trace_has_actual_rule_premises
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.generated_trace_has_actual_rule_premises
 #check JurisLean.Candidates.FiniteLegalValidation20261027.replay_generated_trace_is_exact_closure
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.replay_generated_trace_is_exact_closure
+#check JurisLean.Candidates.FiniteLegalValidation20261027.generated_trace_passes_separate_checker
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.generated_trace_passes_separate_checker
 #check JurisLean.Candidates.FiniteLegalValidation20261027.trace_has_exact_number_of_rounds
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.trace_has_exact_number_of_rounds
 #check JurisLean.Candidates.FiniteLegalValidation20261027.enabled_count_bounded_by_rule_count
@@ -56,6 +64,7 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 
 
 
+
 open JurisLean.Candidates.Final20261021.Compiler
 open JurisLean.Candidates.FiniteLegalValidation20261027
 
@@ -80,6 +89,27 @@ open JurisLean.Candidates.FiniteLegalValidation20261027
 /-- info: true -/
 #guard_msgs in
 #eval decide (traceRounds ([] : List (Rule Nat)) 0 [] = [])
+
+/-- info: true -/
+#guard_msgs in
+#eval checkTrace [⟨[1], 2⟩, ⟨[2], 3⟩] [1] (traceRounds [⟨[1], 2⟩, ⟨[2], 3⟩] 3 [1])
+
+/-- info: true -/
+#guard_msgs in
+#eval !checkTrace [⟨[1], 2⟩] [1] [[⟨[1], 99⟩]]
+
+/-- info: true -/
+#guard_msgs in
+#eval !checkTrace [⟨[1], 2⟩, ⟨[2], 3⟩] [1] [[⟨[2], 3⟩]]
+
+/-- info: true -/
+#guard_msgs in
+#eval !checkTrace [⟨[1], 2⟩, ⟨[2], 1⟩] [] [[⟨[1], 2⟩], [⟨[2], 1⟩]]
+
+/-- info: true -/
+#guard_msgs in
+#eval checkTrace [⟨[1], 2⟩] [1] [] && decide (2 ∉ replayTrace [1] [] ∧
+  2 ∈ proposed_rule_input [⟨[1], 2⟩] 1 [1])
 
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.Final20261021.EvidenceProcedure
@@ -305,14 +335,14 @@ def familyRun (entries : List BranchCase) : Result (List (Nat × Result (Validat
 /-- info: true -/
 #guard_msgs in
 #eval match familyRun [⟨0, material, 0⟩, ⟨1, material, 1⟩] with
-  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+  | .known results => decide (results.map (fun (p : Nat × Result (ValidationReport (List Nat))) => (p.1, procedureTag p.2)) =
       [(0, Result.known Procedure.closedLawfully), (1, Result.known Procedure.open)])
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match familyRun [⟨0, material, 0⟩, ⟨1, material, 99⟩] with
-  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+  | .known results => decide (results.map (fun (p : Nat × Result (ValidationReport (List Nat))) => (p.1, procedureTag p.2)) =
       [(0, Result.known Procedure.closedLawfully), (1, Result.unknown Error.missingEvidence)])
   | _ => false
 
@@ -320,7 +350,7 @@ def familyRun (entries : List BranchCase) : Result (List (Nat × Result (Validat
 #guard_msgs in
 #eval match familyRun [⟨0, material, 0⟩,
     ⟨1, { material with gamma := { context with knowledgeCutoff := ⟨99⟩ } }, 1⟩] with
-  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+  | .known results => decide (results.map (fun (p : Nat × Result (ValidationReport (List Nat))) => (p.1, procedureTag p.2)) =
       [(0, Result.known Procedure.closedLawfully), (1, Result.rejected Error.scopeMismatch)])
   | _ => false
 
@@ -386,6 +416,7 @@ theorem allowed_pairs_reject_unlicensed_cross_combination :
       true ∉ branchWorlds 0 ([(0, false), (1, true)] : List (Nat × Bool)) := by decide
 
 end JurisLean.Candidates.FiniteLegalValidation20261027.Audit
+
 
 
 #check JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth

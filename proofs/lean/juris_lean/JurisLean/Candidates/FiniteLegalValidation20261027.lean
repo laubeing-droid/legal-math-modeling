@@ -3,8 +3,9 @@ import JurisLean.Candidates.EvidenceWorlds20261027
 import JurisLean.Candidates.ProcedureClosure20261027
 
 /-!
-Original 08.7/08.8: finite legal validation consumes all extracted source
-atoms, the actual selected norm version and an independent procedure policy.
+Original 08.7/08.8: finite legal validation checks every extracted source
+atom for actual evidence eligibility, then consumes the selected facts,
+the actual selected norm version and an independent procedure policy.
 The round trace is executable derivation evidence. A missing requested proof
 does not remove a source fact or turn non-derivability into factual falsity.
 -/
@@ -49,6 +50,47 @@ def ValidTrace (rules : List (Rule Nat)) : List Nat → List (List (Rule Nat)) �
       (∀ r ∈ fired, r ∈ rules ∧ ∀ a ∈ r.premises, a ∈ known) ∧
         ValidTrace rules (known ++ fired.map Rule.conclusion) rest
 
+-- This checker reads a supplied trace. It never reruns traceRounds.
+def checkTrace (rules : List (Rule Nat)) : List Nat → List (List (Rule Nat)) → Bool
+  | _, [] => true
+  | known, fired :: rest =>
+      fired.all (fun r => decide (r ∈ rules) &&
+        r.premises.all (fun a => decide (a ∈ known))) &&
+      checkTrace rules (known ++ fired.map Rule.conclusion) rest
+
+theorem trace_checker_reflects_actual_rule_and_premise_checks (rules : List (Rule Nat))
+    (known : List Nat) (trace : List (List (Rule Nat))) :
+    checkTrace rules known trace = true ↔ ValidTrace rules known trace := by
+  induction trace generalizing known with
+  | nil => simp [checkTrace, ValidTrace]
+  | cons fired rest ih =>
+      simp only [checkTrace, ValidTrace, Bool.and_eq_true, List.all_eq_true,
+        decide_eq_true_eq, ih]
+
+theorem valid_trace_replay_is_sound (rules : List (Rule Nat)) (facts known : List Nat)
+    (trace : List (List (Rule Nat)))
+    (priorSound : ∀ a ∈ known, Derives (· ∈ facts) (· ∈ rules) a)
+    (valid : ValidTrace rules known trace) :
+    ∀ a ∈ replayTrace known trace, Derives (· ∈ facts) (· ∈ rules) a := by
+  induction trace generalizing known with
+  | nil => exact priorSound
+  | cons fired rest ih =>
+      apply ih (known ++ fired.map Rule.conclusion) _ valid.2
+      intro a member
+      rcases List.mem_append.mp member with old | added
+      · exact priorSound a old
+      · obtain ⟨r, rMember, sameConclusion⟩ := List.mem_map.mp added
+        rw [← sameConclusion]
+        have checked := valid.1 r rMember
+        exact Derives.fire r checked.1 (fun p hp => priorSound p (checked.2 p hp))
+
+theorem checked_trace_certifies_relative_derivation (rules : List (Rule Nat))
+    (facts : List Nat) (trace : List (List (Rule Nat)))
+    (accepted : checkTrace rules facts trace = true) :
+    ∀ a ∈ replayTrace facts trace, Derives (· ∈ facts) (· ∈ rules) a :=
+  valid_trace_replay_is_sound rules facts facts trace (fun a h => .fact a h)
+    ((trace_checker_reflects_actual_rule_and_premise_checks rules facts trace).mp accepted)
+
 theorem generated_trace_has_actual_rule_premises (rules : List (Rule Nat))
     (fuel : Nat) (facts : List Nat) : ValidTrace rules facts (traceRounds rules fuel facts) := by
   induction fuel generalizing facts with
@@ -70,6 +112,11 @@ theorem replay_generated_trace_is_exact_closure (rules : List (Rule Nat))
       simp only [traceRounds, replayTrace, proposed_rule_input]
       rw [← advance_is_recorded_round]
       exact ih (advance rules facts)
+
+theorem generated_trace_passes_separate_checker (rules : List (Rule Nat))
+    (fuel : Nat) (facts : List Nat) : checkTrace rules facts (traceRounds rules fuel facts) = true :=
+  (trace_checker_reflects_actual_rule_and_premise_checks rules facts _).mpr
+    (generated_trace_has_actual_rule_premises rules fuel facts)
 
 theorem trace_has_exact_number_of_rounds (rules : List (Rule Nat))
     (fuel : Nat) (facts : List Nat) : (traceRounds rules fuel facts).length = fuel := by

@@ -11739,6 +11739,209 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "SamplingReceipt"
+    },
+    {
+     "kind": "structure",
+     "name": "LoadPermit"
+    },
+    {
+     "kind": "inductive",
+     "name": "LoadStatus"
+    },
+    {
+     "kind": "structure",
+     "name": "LoadLog"
+    },
+    {
+     "kind": "structure",
+     "name": "Service"
+    },
+    {
+     "kind": "def",
+     "name": "readLoaded"
+    },
+    {
+     "kind": "def",
+     "name": "predictLoaded"
+    },
+    {
+     "kind": "structure",
+     "name": "LoadOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "samplingMatches"
+    },
+    {
+     "kind": "def",
+     "name": "loadAllowed"
+    },
+    {
+     "kind": "def",
+     "name": "refuse"
+    },
+    {
+     "kind": "def",
+     "name": "writeAndRead"
+    },
+    {
+     "kind": "def",
+     "name": "activate"
+    },
+    {
+     "kind": "theorem",
+     "name": "activation_keeps_rules_mechanism_and_training"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_activation_attempt_retains_history"
+    },
+    {
+     "kind": "theorem",
+     "name": "refusal_keeps_actual_prediction"
+    },
+    {
+     "kind": "theorem",
+     "name": "loaded_package_is_actual_written_readback"
+    },
+    {
+     "kind": "theorem",
+     "name": "replaced_candidate_does_not_reuse_old_permit"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_loaded_risk_follows_computed_domain_bounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_validation_snapshot_does_not_reuse_sampling_receipt"
+    },
+    {
+     "kind": "structure",
+     "name": "Prepared"
+    },
+    {
+     "kind": "def",
+     "name": "prepareNext"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_candidate_consumes_current_loaded_and_actual_post"
+    },
+    {
+     "kind": "theorem",
+     "name": "newly_loaded_model_is_next_actual_parent"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.ProtectedFeedback20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "728eef1cb18bbe0073719fde7b0c5ebcf33fc4b340ef32c4fcba07ce03bc56f0",
+   "size_bytes": 13591,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "protocol"
+    },
+    {
+     "kind": "def",
+     "name": "scope"
+    },
+    {
+     "kind": "def",
+     "name": "row"
+    },
+    {
+     "kind": "def",
+     "name": "first"
+    },
+    {
+     "kind": "def",
+     "name": "second"
+    },
+    {
+     "kind": "def",
+     "name": "third"
+    },
+    {
+     "kind": "def",
+     "name": "initial"
+    },
+    {
+     "kind": "def",
+     "name": "oldState"
+    },
+    {
+     "kind": "def",
+     "name": "gamma"
+    },
+    {
+     "kind": "def",
+     "name": "plan"
+    },
+    {
+     "kind": "def",
+     "name": "block"
+    },
+    {
+     "kind": "def",
+     "name": "mixedBlock"
+    },
+    {
+     "kind": "def",
+     "name": "twoPointRisk"
+    },
+    {
+     "kind": "def",
+     "name": "built"
+    },
+    {
+     "kind": "def",
+     "name": "sampling"
+    },
+    {
+     "kind": "def",
+     "name": "permit"
+    },
+    {
+     "kind": "def",
+     "name": "check"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.changed_validation_snapshot_does_not_reuse_sampling_receipt",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.every_activation_attempt_retains_history",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.next_candidate_consumes_current_loaded_and_actual_post",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.refusal_keeps_actual_prediction",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.replaced_candidate_does_not_reuse_old_permit"
+   ],
+   "sha256": "5a7a3c78bc2116a2357741490a7efb6ffe72ff68da6930f216a8e4f6ecb8f339",
+   "size_bytes": 10976,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "CanonicalCollection"
     },
     {
@@ -51505,6 +51708,7 @@
     "JurisLean.Candidates.ProtectedFeedback20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
     "JurisLean.Candidates.SelectiveCalibration20261027",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
     "JurisLean.CertificateCheckerV2",
@@ -51727,8 +51931,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "70872023276045c89f2cbdc33fac25c7978ca84d0279b91265ca384f145a371c",
-   "size_bytes": 11867,
+   "sha256": "1a90c899675f6893a3ddc5a1272bc1be03e6bdcec7d997af196957c72bfec7d0",
+   "size_bytes": 11925,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -51892,22 +52096,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5716,
-   "file_count": 429,
+   "counted_declaration_count": 5725,
+   "file_count": 431,
    "lemma_count": 146,
-   "print_axioms_command_count": 4589,
-   "print_axioms_distinct_targets": 4502,
-   "theorem_count": 5570,
-   "theorem_count_bol_convention": 5470
+   "print_axioms_command_count": 4598,
+   "print_axioms_distinct_targets": 4511,
+   "theorem_count": 5579,
+   "theorem_count_bol_convention": 5479
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5697,
-   "file_count": 414,
+   "counted_declaration_count": 5706,
+   "file_count": 416,
    "lemma_count": 139,
-   "print_axioms_command_count": 4589,
-   "print_axioms_distinct_targets": 4502,
-   "theorem_count": 5558,
-   "theorem_count_bol_convention": 5458
+   "print_axioms_command_count": 4598,
+   "print_axioms_distinct_targets": 4511,
+   "theorem_count": 5567,
+   "theorem_count_bol_convention": 5467
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -52024,6 +52228,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -52451,6 +52657,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -52807,17 +53015,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "6ebac64c3261c66e89a9b56a06d41131b85c50645af5ea34c1abac84bb5d2ec8",
+ "source_inventory_digest": "a1852331566b7e7c2d83e4abd9e7e5e7b2f5a7d2b156339e3f12859f4da565be",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/protected-feedback-20261027",
-  "commit": "51314481a044e103fc70d29e456905deb67f0d34",
-  "tree": "9684fa45e943d33d8a10b88601f9626624a3051a"
+  "branch": "formal/validated-feedback-load-20261027",
+  "commit": "c3214384a4e40e9e54cfe9ac0ee483e54ed145ba",
+  "tree": "087d1b8569cf7b4a5415c8a1468e7e9a36cd5adf"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 429,
+  "files_total": 431,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

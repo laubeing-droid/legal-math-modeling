@@ -7232,6 +7232,204 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Disposition"
+    },
+    {
+     "kind": "structure",
+     "name": "Readback"
+    },
+    {
+     "kind": "def",
+     "name": "checkedPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "checked_post_is_exact_commit_or_fenced_absence"
+    },
+    {
+     "kind": "def",
+     "name": "resolve"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_readback_binds_catalog_full_request_and_actual_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_readback_is_reported_state_and_step_or_frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "recovered_actual_pending_preserves_full_invariant"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.PendingCommit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitReadback20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "7da3f1a0d7afd3909b0812a6a35ecce292d999ce84280d1bb64b91489527e403",
+   "size_bytes": 6450,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "pendingFor"
+    },
+    {
+     "kind": "structure",
+     "name": "Captured"
+    },
+    {
+     "kind": "def",
+     "name": "capture"
+    },
+    {
+     "kind": "theorem",
+     "name": "pending_for_retains_actual_plan"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_selected_execution_is_actual_trajectory"
+    },
+    {
+     "kind": "theorem",
+     "name": "captured_pending_comes_from_actual_action_trajectory"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_unknown_action_always_has_capture"
+    },
+    {
+     "kind": "def",
+     "name": "resolution"
+    },
+    {
+     "kind": "theorem",
+     "name": "known_resolution_matches_current_capture"
+    },
+    {
+     "kind": "theorem",
+     "name": "stale_resolution_cannot_replace_later_state"
+    },
+    {
+     "kind": "def",
+     "name": "publish"
+    },
+    {
+     "kind": "structure",
+     "name": "Recovery"
+    },
+    {
+     "kind": "def",
+     "name": "resume"
+    },
+    {
+     "kind": "theorem",
+     "name": "refusal_preserves_complete_current_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "recovery_keeps_learning_observations_and_original_outcomes"
+    },
+    {
+     "kind": "theorem",
+     "name": "recovery_preserves_known_business_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_continuation_consumes_recovered_actual_state"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CommitReadback20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecovery20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "120702bc5a76586425e1f8ef48914dae5218e2886d7a86470627fea6e2e39728",
+   "size_bytes": 14802,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "first"
+    },
+    {
+     "kind": "def",
+     "name": "second"
+    },
+    {
+     "kind": "def",
+     "name": "unknownSteps"
+    },
+    {
+     "kind": "def",
+     "name": "unknownPlans"
+    },
+    {
+     "kind": "def",
+     "name": "unknownModel"
+    },
+    {
+     "kind": "def",
+     "name": "fixture"
+    },
+    {
+     "kind": "def",
+     "name": "check"
+    },
+    {
+     "kind": "def",
+     "name": "absent"
+    },
+    {
+     "kind": "def",
+     "name": "nextInput"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CommitRecovery20261027",
+    "JurisLean.Candidates.SourceActionAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecoveryAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CommitReadback20261027.checked_post_is_exact_commit_or_fenced_absence",
+    "JurisLean.Candidates.CommitReadback20261027.recovered_actual_pending_preserves_full_invariant",
+    "JurisLean.Candidates.CommitReadback20261027.resolved_readback_binds_catalog_full_request_and_actual_unknown",
+    "JurisLean.Candidates.CommitReadback20261027.resolved_readback_is_reported_state_and_step_or_frame",
+    "JurisLean.Candidates.CommitRecovery20261027.actual_unknown_action_always_has_capture",
+    "JurisLean.Candidates.CommitRecovery20261027.captured_pending_comes_from_actual_action_trajectory",
+    "JurisLean.Candidates.CommitRecovery20261027.finite_continuation_consumes_recovered_actual_state",
+    "JurisLean.Candidates.CommitRecovery20261027.known_resolution_matches_current_capture",
+    "JurisLean.Candidates.CommitRecovery20261027.pending_for_retains_actual_plan",
+    "JurisLean.Candidates.CommitRecovery20261027.recovery_keeps_learning_observations_and_original_outcomes",
+    "JurisLean.Candidates.CommitRecovery20261027.recovery_preserves_known_business_invariant",
+    "JurisLean.Candidates.CommitRecovery20261027.refusal_preserves_complete_current_state",
+    "JurisLean.Candidates.CommitRecovery20261027.stale_resolution_cannot_replace_later_state",
+    "JurisLean.Candidates.CommitRecovery20261027.unknown_selected_execution_is_actual_trajectory",
+    "JurisLean.Candidates.PendingCommit20261027.captured_pending_has_actual_prefix_and_stopped_result",
+    "JurisLean.Candidates.PendingCommit20261027.captured_prestate_inherits_full_invariant",
+    "JurisLean.Candidates.PendingCommit20261027.stopped_interpreter_always_has_pending",
+    "JurisLean.Candidates.PendingCommit20261027.unknown_outcome_keeps_request_identity"
+   ],
+   "sha256": "f555bc91749b6e7ed8c77382c9452aff1fd43eba8c79f8e6530f2236f7f67ecb",
+   "size_bytes": 15877,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "mem_advance_iff"
     },
@@ -8267,6 +8465,96 @@
    "size_bytes": 9636,
    "theorem_count": 6,
    "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "deterministic_copy_preserves_generated_information"
+    },
+    {
+     "kind": "theorem",
+     "name": "deterministic_copy_keeps_integrable_conditional_expectation"
+    },
+    {
+     "kind": "theorem",
+     "name": "supplied_enclosure_has_explicit_width_bound"
+    },
+    {
+     "kind": "def",
+     "name": "bernoulliLikelihood"
+    },
+    {
+     "kind": "theorem",
+     "name": "beta_evidence_is_positive"
+    },
+    {
+     "kind": "theorem",
+     "name": "real_beta_likelihood_density_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "beta_likelihood_density_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "beta_likelihood_normalization_integral"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_real_beta_posterior_density"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_real_beta_posterior_measure"
+    },
+    {
+     "kind": "theorem",
+     "name": "beta_one_success_evidence_ratio"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_real_beta_predictive_mean"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Probability",
+    "Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic",
+    "Mathlib.MeasureTheory.MeasurableSpace.Prod",
+    "Mathlib.Probability.Distributions.Beta"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32",
+   "size_bytes": 9114,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.ExactProbability20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ExactProbability20261027.beta_evidence_is_positive",
+    "JurisLean.Candidates.ExactProbability20261027.beta_likelihood_density_identity",
+    "JurisLean.Candidates.ExactProbability20261027.beta_likelihood_normalization_integral",
+    "JurisLean.Candidates.ExactProbability20261027.beta_one_success_evidence_ratio",
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean",
+    "JurisLean.Candidates.ExactProbability20261027.real_beta_likelihood_density_identity",
+    "JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound"
+   ],
+   "sha256": "f5e5e55331f549d60f51f7960386cd0dd6d4ddd6e5bc6e57339779b59d016340",
+   "size_bytes": 2162,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -13774,6 +14062,48 @@
    "size_bytes": 8919,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Pending"
+    },
+    {
+     "kind": "def",
+     "name": "permission"
+    },
+    {
+     "kind": "def",
+     "name": "locate"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_outcome_keeps_request_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "captured_pending_has_actual_prefix_and_stopped_result"
+    },
+    {
+     "kind": "theorem",
+     "name": "stopped_interpreter_always_has_pending"
+    },
+    {
+     "kind": "theorem",
+     "name": "captured_prestate_inherits_full_invariant"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SourceAction20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "5b01ce41025e8f682dc5ce5833922aba2de00a85714d1dfaf32767f3b0736b13",
+   "size_bytes": 9648,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
   },
   {
    "declarations": [
@@ -56197,8 +56527,13 @@
     "JurisLean.Candidates.BusinessFeedbackLoopAudit20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CausalSelection20261027",
+    "JurisLean.Candidates.CommitReadback20261027",
+    "JurisLean.Candidates.CommitRecovery20261027",
+    "JurisLean.Candidates.CommitRecoveryAudit20261027",
     "JurisLean.Candidates.CurrentContextRollback20261027",
     "JurisLean.Candidates.EvidenceWorldsAudit20261027",
+    "JurisLean.Candidates.ExactProbability20261027",
+    "JurisLean.Candidates.ExactProbabilityAudit20261027",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.HarnessRisk20261027",
@@ -56209,6 +56544,7 @@
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LoadedLegalConsumer20261027",
     "JurisLean.Candidates.LoadedLegalConsumerAudit20261027",
+    "JurisLean.Candidates.PendingCommit20261027",
     "JurisLean.Candidates.PolicyResponse20261027",
     "JurisLean.Candidates.ProcedureClosureAudit20261027",
     "JurisLean.Candidates.SourceAction20261027",
@@ -56418,8 +56754,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "b1637e2a80dbfa46653f574fbfc794f7d5ec6ef56e7cf49d94c9d3d9e77f676e",
-   "size_bytes": 11287,
+   "sha256": "0e00944a26f99e81c12f59c07749ed2f743c444d49d3f5ad81ad45a900877eda",
+   "size_bytes": 11606,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -56583,22 +56919,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6077,
-   "file_count": 473,
+   "counted_declaration_count": 6106,
+   "file_count": 479,
    "lemma_count": 146,
-   "print_axioms_command_count": 4947,
-   "print_axioms_distinct_targets": 4860,
-   "theorem_count": 5931,
-   "theorem_count_bol_convention": 5831
+   "print_axioms_command_count": 4976,
+   "print_axioms_distinct_targets": 4889,
+   "theorem_count": 5960,
+   "theorem_count_bol_convention": 5860
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6058,
-   "file_count": 458,
+   "counted_declaration_count": 6087,
+   "file_count": 464,
    "lemma_count": 139,
-   "print_axioms_command_count": 4947,
-   "print_axioms_distinct_targets": 4860,
-   "theorem_count": 5919,
-   "theorem_count_bol_convention": 5819
+   "print_axioms_command_count": 4976,
+   "print_axioms_distinct_targets": 4889,
+   "theorem_count": 5948,
+   "theorem_count_bol_convention": 5848
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -56667,6 +57003,9 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitReadback20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecovery20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecoveryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
@@ -56677,6 +57016,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -56731,6 +57072,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
@@ -57138,6 +57480,9 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitReadback20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecovery20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecoveryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
@@ -57148,6 +57493,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -57202,6 +57549,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
@@ -57586,17 +57934,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "af40a085b395f0bdac74080c844f4321bebb9383c8e87c93ca8ac558d646225b",
+ "source_inventory_digest": "ae330d577c645cc924eea18ae7b3eb61e887658f58f5513b94823e4f816ade22",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/source-consumer-20261027",
-  "commit": "c92eddf1b4b9a6725ca443c6620759bd00a9e143",
-  "tree": "d3c448d19e70bc4f3c7ec5db2474fe3762773489"
+  "branch": "formal/commit-recovery-20261027",
+  "commit": "cf6efc850f0fd3138c02a5d191d441bffd1c1d10",
+  "tree": "8f071e87465521b5fba23711ef41c008df82166b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 473,
+  "files_total": 479,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -1,0 +1,329 @@
+JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event.{u_1, u_2, u_3, u_4} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} {G : Type u_4} [MeasurableSpace Ω] [MeasurableSpace Z] [Fintype G]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : G → MeasureTheory.Measure Z)
+  [∀ (g : G), MeasureTheory.IsProbabilityMeasure (P g)] (n : G → ℕ) (positive : ∀ (g : G), 0 < n g) (models : Finset H)
+  (nonempty : models.Nonempty) (sample : (g : G) → Fin (n g) → Ω → Z)
+  (measurable : ∀ (g : G) (i : Fin (n g)), Measurable (sample g i))
+  (independent : ∀ (g : G), ProbabilityTheory.iIndepFun (sample g) μ)
+  (law : ∀ (g : G) (i : Fin (n g)), ProbabilityTheory.IdentDistrib (sample g i) id μ (P g)) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ models, Measurable fun z => ↑(loss h z))
+  (bounded : ∀ h ∈ models, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (delta : G → ℝ)
+  (deltaPositive : ∀ (g : G), 0 < delta g) (deltaBelowOne : ∀ (g : G), delta g < 1) :
+  MeasurableSet
+      {w |
+        ∀ (g : G),
+          ∀ h ∈ models,
+            |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample g i w) h) -
+                  ∫ (z : Z), ↑(loss h z) ∂P g| ≤
+              JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n g) models.card (delta g)} ∧
+    1 - ∑ g, delta g ≤
+      μ.real
+        {w |
+          ∀ (g : G),
+            ∀ h ∈ models,
+              |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample g i w) h) -
+                    ∫ (z : Z), ↑(loss h z) ∂P g| ≤
+                JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n g) models.card (delta g)}
+'JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence.{u_1} {Ω : Type u_1} {m G : ℕ}
+  [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (P : Fin G → MeasureTheory.Measure (Fin m × Bool)) [∀ (g : Fin G), MeasureTheory.IsProbabilityMeasure (P g)]
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (nonempty : plan.models.toFinset.Nonempty)
+  (n : Fin G → ℕ) (positive : ∀ (g : Fin G), 0 < n g) (sample : (g : Fin G) → Fin (n g) → Ω → Fin m × Bool)
+  (measurable : ∀ (g : Fin G) (i : Fin (n g)), Measurable (sample g i))
+  (independent : ∀ (g : Fin G), ProbabilityTheory.iIndepFun (sample g) μ)
+  (law : ∀ (g : Fin G) (i : Fin (n g)), ProbabilityTheory.IdentDistrib (sample g i) id μ (P g)) (loss : ℚ → Bool → ℚ)
+  (bounded :
+    ∀ table ∈ plan.models,
+      ∀ (z : Fin m × Bool), ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss table z) ∈ Set.Icc 0 1)
+  (delta : Fin G → ℚ) (deltaPositive : ∀ (g : Fin G), 0 < delta g) (deltaBelowOne : ∀ (g : Fin G), delta g < 1)
+  (budget : ∑ g, delta g ≤ plan.failureBudget) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑plan.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)
+            (domain snapshot : Fin G → ℕ) (radius tolerance : Fin G → ℚ) (exponent : Fin G → ℕ)
+            (events : (g : Fin G) → Fin (n g) → JurisLean.Candidates.Final20261021.EventId)
+            (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m),
+            JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss
+                  (List.ofFn fun g =>
+                    JurisLean.Candidates.ProtectedFeedback20261027.sampledBlock plan (domain g) (snapshot g) (delta g)
+                      (radius g) (exponent g) (tolerance g) (events g) fun i => sample g i w) =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              out.passesBounds = true →
+                ∀ (g : Fin G),
+                  ∫ (z : Fin m × Bool),
+                      ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss candidate.fitted.table z) ∂P g ≤
+                    ∫ (z : Fin m × Bool),
+                        ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss parent.fitted.table z) ∂P g +
+                      ↑(tolerance g)
+'JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (accepted : out.passesBounds = true) (risk : ℕ → List ℚ → ℝ)
+  (confidence :
+    ∀ block ∈ blocks,
+      ∀ model ∈ plan.models,
+        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk block.domain model| ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card
+            ↑block.delta)
+  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :
+  block ∈ blocks → risk block.domain candidate.fitted.table ≤ risk block.domain parent.fitted.table + ↑block.tolerance
+'JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (passed : out.passesBounds = true) (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m)
+  (member : block ∈ blocks) (risk : List ℚ → ℝ)
+  (confidence :
+    ∀ model ∈ plan.models,
+      |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk model| ≤
+        JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card
+          ↑block.delta)
+  (strict :
+    JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block candidate.fitted.table + block.radius <
+      JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block parent.fitted.table - block.radius) :
+  risk candidate.fitted.table < risk parent.fitted.table
+'JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement :
+  49 / 100 < 1 / 2 ∧
+    { domain := 1, snapshot := 1, sampleSize := 400, oldEmpirical := 1 / 2, newEmpirical := 49 / 100, radius := 1 / 10,
+            tolerance := 0, delta := 1 / 20 }.acceptable =
+        false ∧
+      { domain := 1, snapshot := 1, sampleSize := 400, oldEmpirical := 1 / 2, newEmpirical := 1 / 2, radius := 1 / 10,
+            tolerance := 1 / 5, delta := 1 / 20 }.acceptable =
+        true
+'JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget.{u_1, u_2, u_3} {Ω : Type u_1} {H : Type u_2}
+  {T : Type u_3} [MeasurableSpace Ω] [Fintype H] [Fintype T] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (history : T → Ω → H)
+  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))
+  (active : T → H → Bool) (bad : T → H → Set Ω) (delta : T → H → ℝ)
+  (conditional :
+    ∀ (t : T) (h : H),
+      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →
+        μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h].real (bad t h) ≤ delta t h) :
+  μ.real {w | ∃ t, active t (history t w) = true ∧ w ∈ bad t (history t w)} ≤
+    ∑ t,
+      ∑ h,
+        if active t h = true then
+          μ.real (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) * delta t h
+        else 0
+'JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget.{u_1, u_2, u_3, u_4, u_5} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} {K : Type u_4} {T : Type u_5} [MeasurableSpace Ω] [MeasurableSpace Z] [Fintype H]
+  [Fintype T] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (history : T → Ω → H)
+  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))
+  (active : T → H → Bool) (n : T → H → ℕ) (positive : ∀ (t : T) (h : H), 0 < n t h) (models : T → H → Finset K)
+  (nonempty : ∀ (t : T) (h : H), (models t h).Nonempty) (sample : (t : T) → (h : H) → Fin (n t h) → Ω → Z)
+  (measurable : ∀ (t : T) (h : H) (i : Fin (n t h)), Measurable (sample t h i))
+  (independent :
+    ∀ (t : T) (h : H),
+      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →
+        ProbabilityTheory.iIndepFun (sample t h)
+          μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h])
+  (law :
+    ∀ (t : T) (h : H),
+      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →
+        ∀ (i : Fin (n t h)),
+          ProbabilityTheory.IdentDistrib (sample t h i) id
+            μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h] P)
+  (loss : K → Z → ℚ) (lossMeasurable : ∀ (t : T) (h : H), ∀ k ∈ models t h, Measurable fun z => ↑(loss k z))
+  (bounded : ∀ (t : T) (h : H), ∀ k ∈ models t h, ∀ (z : Z), ↑(loss k z) ∈ Set.Icc 0 1) (delta : T → H → ℝ)
+  (deltaPositive : ∀ (t : T) (h : H), 0 < delta t h) (deltaBelowOne : ∀ (t : T) (h : H), delta t h < 1) :
+  μ.real
+      {w |
+        ∃ t,
+          active t (history t w) = true ∧
+            ¬∀ k ∈ models t (history t w),
+                |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample t (history t w) i w)
+                          k) -
+                      ∫ (z : Z), ↑(loss k z) ∂P| ≤
+                  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n t (history t w))
+                    (models t (history t w)).card (delta t (history t w))} ≤
+    ∫ (w : Ω), ∑ t, if active t (history t w) = true then delta t (history t w) else 0 ∂μ
+'JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius (n M : ℕ) (positive : 0 < n)
+  (delta epsilon : ℝ) (epsilonPositive : 0 < epsilon) (enough : Real.log (2 * ↑M / delta) / (2 * epsilon ^ 2) ≤ ↑n) :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n M delta ≤ epsilon
+'JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (attempts : Finset I)
+  (past : I → MeasurableSpace Ω) (information : ∀ (t : I), past t ≤ m₀) (bad : I → Set Ω)
+  (measurable : ∀ (t : I), MeasurableSet (bad t)) (budget : I → Ω → ℝ)
+  (integrable : ∀ (t : I), MeasureTheory.Integrable (budget t) μ)
+  (conditional : ∀ t ∈ attempts, ∀ᵐ (w : Ω) ∂μ, μ[(bad t).indicator fun x => 1 | past t] w ≤ budget t w) :
+  μ.real (⋃ t ∈ attempts, bad t) ≤ ∫ (w : Ω), ∑ t ∈ attempts, budget t w ∂μ
+'JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (actualEvaluation :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =
+      some (JurisLean.Candidates.Final20261021.Result.known evaluation))
+  (actualLoad :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded) :
+  loaded =
+    JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits r.permit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget {m : ℕ}
+  (actions : List (JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m))
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions).limit = s.limit ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+        (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions) ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  evaluation.parent = JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    evaluation.candidate.snapshot = s.journal ∧
+      JurisLean.Candidates.ProtectedFeedback20261027.evaluate evaluation.plan evaluation.parent evaluation.candidate
+            JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss evaluation.blocks =
+          JurisLean.Candidates.Final20261021.Result.known evaluation ∧
+        evaluation.passesBounds = true ∧
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.samplingMatches samplingCatalog evaluation receipt = true ∧
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.loadAllowed authorityCatalog s evaluation permit = true ∧
+              JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                        authorityCatalog permit).post =
+                  evaluation.candidate ∧
+                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                      authorityCatalog permit).readback =
+                  some
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                          authorityCatalog permit).post)
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (risk : ℕ → List ℚ → ℝ)
+  (confidence :
+    ∀ block ∈ evaluation.blocks,
+      ∀ model ∈ evaluation.plan.models,
+        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk
+                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss block model) -
+              risk block.domain model| ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length
+            evaluation.plan.models.toFinset.card ↑block.delta)
+  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :
+  block ∈ evaluation.blocks →
+    risk block.domain
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                  authorityCatalog permit).post).fitted.table ≤
+      risk block.domain (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table +
+        ↑block.tolerance
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (correctionPermits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (proposals : List (List ℚ)) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).parent =
+      evaluation.candidate ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).models =
+      evaluation.candidate.fitted.table :: proposals
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (round : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (out : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (called :
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.act
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.assess state round samples permits) input).run =
+      some out)
+  (chosen : out.decision = JurisLean.Candidates.Final20261021.Result.known selected) :
+  selected.probability.fitted =
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound state.learning round samples
+              permits).post.service).fitted
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

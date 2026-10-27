@@ -83,14 +83,11 @@ import JurisLean.BanachContraction
 import JurisLean.BanachFixedPoint
 import JurisLean.BanachScratch
 import JurisLean.BanachWeightedNorm
-import JurisLean.Candidates.AdaptiveValidation20261027
 import JurisLean.Candidates.CalibrationSemantics20261027
 import JurisLean.Candidates.CausalSelection20261027
 import JurisLean.Candidates.CurrentContextRollback20261027
 import JurisLean.Candidates.EvidenceWorldsAudit20261027
 import JurisLean.Candidates.FeedbackLabelSemantics20261027
-import JurisLean.Candidates.HarnessRisk20261027
-import JurisLean.Candidates.HarnessRiskAudit20261027
 import JurisLean.Candidates.LearningBoundary20261027
 import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningEventSplit20261027

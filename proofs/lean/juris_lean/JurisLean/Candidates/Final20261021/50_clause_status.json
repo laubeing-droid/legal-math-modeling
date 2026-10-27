@@ -4392,22 +4392,42 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Feedback.lean:52"
         ],
         "non_goals": [],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event",
+            "JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence",
+            "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk",
+            "JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement",
+            "JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement",
+            "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+            "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+            "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+            "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+            "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+            "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget",
+            "JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback",
+            "JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds",
+            "JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent",
+            "JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+          "criteria_pack": "",
           "non_goals_same_row": []
         }
       }

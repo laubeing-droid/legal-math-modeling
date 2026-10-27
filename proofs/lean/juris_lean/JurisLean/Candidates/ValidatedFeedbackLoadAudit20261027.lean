@@ -47,6 +47,14 @@ def block (domain : Nat) (label : Bool) : DomainBlock 2 :=
     (fun i : Fin 400 => ⟨10000 * domain + i.val⟩)
     (fun _ : Fin 400 => ((1 : Fin 2), label))
 
+def mixedBlock : DomainBlock 2 :=
+  sampledBlock plan 10 110 (1/20) (1/10) 8 0
+    (fun i : Fin 400 => ⟨100000 + i.val⟩)
+    (fun i : Fin 400 => (if i.val % 2 = 0 then (0, false) else (1, true)))
+
+def twoPointRisk (s : Service 2) : ℚ :=
+  (binaryLoss (predictLoaded s 0) false + binaryLoss (predictLoaded s 1) true) / 2
+
 def built : Result (Service 2 × Evaluation 2) :=
   match fitFromStore oldState protocol binaryLoss [[0, 0], [0, 1]] with
   | .known parent =>
@@ -56,7 +64,7 @@ def built : Result (Service 2 × Evaluation 2) :=
       match prepared.candidate with
       | .known candidate =>
           match evaluate { plan with models := prepared.models } prepared.parent candidate binaryLoss
-              [block 10 true, block 20 true] with
+              [mixedBlock, block 20 true] with
           | .known evaluation => .known (prepared.post, evaluation)
           | .unknown e => .unknown e
           | .rejected e => .rejected e
@@ -88,7 +96,10 @@ def check (f : Service 2 → Evaluation 2 → Bool) : Bool :=
   let out := activate s e [r] r [p] p
   decide (out.status = .loaded ∧ predictLoaded s 1 = 0 ∧ predictLoaded out.post 1 = 1 ∧
     out.readback = some (readLoaded out.post) ∧ readLoaded out.post = e.candidate ∧
-    out.post.history.length = 1 ∧ out.post.gamma = s.gamma))
+    out.post.history.length = 1 ∧ out.post.gamma = s.gamma ∧
+    e.statistics.map DomainStatistics.oldEmpirical = [1/2, 1] ∧
+    e.statistics.map DomainStatistics.newEmpirical = [0, 0] ∧
+    twoPointRisk s = 1/2 ∧ twoPointRisk out.post = 0))
 
 /-- info: true -/
 #guard_msgs in

@@ -6049,6 +6049,231 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "RoundLearner"
+    },
+    {
+     "kind": "inductive",
+     "name": "RoundClaim"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundRequest"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundDeclaration"
+    },
+    {
+     "kind": "inductive",
+     "name": "RoundStatus"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "LearnerPermit"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundState"
+    },
+    {
+     "kind": "def",
+     "name": "roundSpent"
+    },
+    {
+     "kind": "def",
+     "name": "requestedEvents"
+    },
+    {
+     "kind": "def",
+     "name": "exposedRoundEvents"
+    },
+    {
+     "kind": "def",
+     "name": "roundCost"
+    },
+    {
+     "kind": "def",
+     "name": "beginAdaptiveRound"
+    },
+    {
+     "kind": "def",
+     "name": "emptyRoundRecord"
+    },
+    {
+     "kind": "def",
+     "name": "assessAdaptiveRound"
+    },
+    {
+     "kind": "def",
+     "name": "appendRoundRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "finishAdaptiveRound"
+    },
+    {
+     "kind": "def",
+     "name": "learnerShapeValid"
+    },
+    {
+     "kind": "def",
+     "name": "changeRoundLearner"
+    },
+    {
+     "kind": "theorem",
+     "name": "generation_uses_actual_loaded_and_learner"
+    },
+    {
+     "kind": "theorem",
+     "name": "recorded_prefix_and_next_round"
+    },
+    {
+     "kind": "theorem",
+     "name": "evaluated_round_spends_its_actual_block_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "assessed_round_stays_within_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "finish_round_preserves_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "exact_round_replay_retains_current_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_round_key_does_not_spend_or_load"
+    },
+    {
+     "kind": "theorem",
+     "name": "evaluated_round_has_fresh_events_and_current_checker"
+    },
+    {
+     "kind": "theorem",
+     "name": "learner_change_keeps_service_budget_and_trusted_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "self_issued_or_new_checker_permission_cannot_change_learner"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_learner_is_actual_next_generator"
+    },
+    {
+     "kind": "theorem",
+     "name": "assessed_load_comes_from_actual_activation"
+    },
+    {
+     "kind": "theorem",
+     "name": "recorded_load_is_actual_next_service"
+    },
+    {
+     "kind": "inductive",
+     "name": "RoundAction"
+    },
+    {
+     "kind": "def",
+     "name": "applyRoundAction"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_round_action_keeps_budget_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_finite_round_actions_keep_budget"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "8137187be49e0589cffbadb8e5d0acb73bd017a1e06fbf1166a39b0ec7c8b84c",
+   "size_bytes": 18250,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "base"
+    },
+    {
+     "kind": "def",
+     "name": "generate"
+    },
+    {
+     "kind": "def",
+     "name": "freshBlocks"
+    },
+    {
+     "kind": "def",
+     "name": "request"
+    },
+    {
+     "kind": "def",
+     "name": "complete"
+    },
+    {
+     "kind": "def",
+     "name": "firstRound"
+    },
+    {
+     "kind": "def",
+     "name": "twoRounds"
+    },
+    {
+     "kind": "def",
+     "name": "learnerPermit"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027",
+    "JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner"
+   ],
+   "sha256": "149ee3caee93281b93b8851aebee6cbed4de1563af9c6e58d2375b4087e79301",
+   "size_bytes": 13165,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "historyCell"
     },
@@ -51930,6 +52155,7 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027",
     "JurisLean.Candidates.AdaptiveValidation20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
@@ -52175,8 +52401,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "c13f68eeb2a86be358e57c4843cd1cb708b99351d9eadf7ebb8ffef6646d8226",
-   "size_bytes": 12039,
+   "sha256": "3aff54fbdb3a4581b4ea4d08c511294c23f0c78008e0a6d9be613b5b2043002f",
+   "size_bytes": 12095,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52340,22 +52566,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5746,
-   "file_count": 435,
+   "counted_declaration_count": 5761,
+   "file_count": 437,
    "lemma_count": 146,
-   "print_axioms_command_count": 4619,
-   "print_axioms_distinct_targets": 4532,
-   "theorem_count": 5600,
-   "theorem_count_bol_convention": 5500
+   "print_axioms_command_count": 4634,
+   "print_axioms_distinct_targets": 4547,
+   "theorem_count": 5615,
+   "theorem_count_bol_convention": 5515
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5727,
-   "file_count": 420,
+   "counted_declaration_count": 5742,
+   "file_count": 422,
    "lemma_count": 139,
-   "print_axioms_command_count": 4619,
-   "print_axioms_distinct_targets": 4532,
-   "theorem_count": 5588,
-   "theorem_count_bol_convention": 5488
+   "print_axioms_command_count": 4634,
+   "print_axioms_distinct_targets": 4547,
+   "theorem_count": 5603,
+   "theorem_count_bol_convention": 5503
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -52412,6 +52638,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
@@ -52845,6 +53073,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
@@ -53267,17 +53497,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c5da0d0c3ac2247156ed7b9ff9869ac2834522dded0fa5e343db761e18f640dd",
+ "source_inventory_digest": "e70ddb6fef229c0d3c6543083b000018ffcbf1c96dc403b208ad4b1bd85b1cd7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/current-context-rollback-20261027",
-  "commit": "4f8f6260c49f951aaaab206bda0b67df1b8c0953",
-  "tree": "44d51544c065a044359c5928cc79c0a8c6628943"
+  "branch": "formal/adaptive-round-ledger-20261027",
+  "commit": "9f5610fd323163432f943290f481c5fe02f52833",
+  "tree": "e1c6520f7c3ef0d5e438269f4a37c7dbc84fa5c4"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 435,
+  "files_total": 437,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

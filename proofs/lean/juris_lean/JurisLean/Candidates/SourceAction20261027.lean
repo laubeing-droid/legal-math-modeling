@@ -76,8 +76,9 @@ theorem instruction_payloads_are_source_rows_in_call_order {W : Type}
       calls.map (fun call => (boundRow opening.anchor.frame call.slot).payment.value.payload) := by
   induction calls with
   | nil => rfl
-  | cons call rest ih => simpa only [instructions, List.map_cons, paymentPayloads, paymentRequest] using
-      congrArg (List.cons (boundRow opening.anchor.frame call.slot).payment.value.payload) ih
+  | cons call rest ih =>
+      simpa only [instructions, List.map_cons, paymentPayloads, paymentRequest] using
+        (congrArg (List.cons (boundRow opening.anchor.frame call.slot).payment.value.payload) ih)
 
 structure PlanSpec where
   quote : BinaryQuote
@@ -97,7 +98,7 @@ theorem bound_plan_preserves_entire_quote_and_source_instructions {W : Type}
       spec.quote.gamma = opening.handle.gamma ∧
       spec.quote.execution = spec.calls.map
         (fun call => (boundRow opening.anchor.frame call.slot).payment.value.payload) := by
-  unfold bindPlan at accepted
+  dsimp only [bindPlan] at accepted
   split at accepted
   · rename_i checked
     cases accepted

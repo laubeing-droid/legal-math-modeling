@@ -1,0 +1,69 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "9a2d0bbfff264c8593fe148378a64460741a250a",
+  "run_id": 40457212969,
+  "job_id": 122033215316,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+  "named_count": 15,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence",
+    "JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact",
+    "JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object",
+    "JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate",
+    "JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies",
+    "JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order",
+    "JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations",
+    "JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective",
+    "JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history",
+    "JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection",
+    "JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding",
+    "JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag",
+    "JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch",
+    "JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag",
+    "JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+      "sha256": "40607d55d0912d6f5b135c13efc874c1f432a2899db5060a85c7f132a6d2c207"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+      "sha256": "a53fa4dd305a0e5999437eaf1f184957426f926fb24b015a675a4789ed1a53af"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "Classical.choice": 7,
+      "Quot.sound": 8,
+      "propext": 10
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "12 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

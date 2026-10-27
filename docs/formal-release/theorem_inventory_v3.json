@@ -6393,6 +6393,226 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "BehaviorConstruct"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasurementDictionary"
+    },
+    {
+     "kind": "inductive",
+     "name": "BehaviorRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasurementRow"
+    },
+    {
+     "kind": "structure",
+     "name": "ObservationAttestation"
+    },
+    {
+     "kind": "structure",
+     "name": "WindowClosure"
+    },
+    {
+     "kind": "inductive",
+     "name": "MeasurementFailure"
+    },
+    {
+     "kind": "structure",
+     "name": "BehaviorMeasurement"
+    },
+    {
+     "kind": "inductive",
+     "name": "MeasurementResult"
+    },
+    {
+     "kind": "def",
+     "name": "measurementThreshold"
+    },
+    {
+     "kind": "def",
+     "name": "rowMagnitude"
+    },
+    {
+     "kind": "def",
+     "name": "rowContribution"
+    },
+    {
+     "kind": "def",
+     "name": "measuredTotal"
+    },
+    {
+     "kind": "def",
+     "name": "measurementInputsValid"
+    },
+    {
+     "kind": "def",
+     "name": "windowComplete"
+    },
+    {
+     "kind": "def",
+     "name": "measureBusiness"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurement_reads_actual_state_and_rows"
+    },
+    {
+     "kind": "theorem",
+     "name": "negative_requires_complete_closed_window"
+    },
+    {
+     "kind": "theorem",
+     "name": "duplicate_events_refused"
+    },
+    {
+     "kind": "theorem",
+     "name": "accepted_rows_are_external_and_current"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_means_actual_total_reaches_threshold"
+    },
+    {
+     "kind": "theorem",
+     "name": "revocation_does_not_supply_defect_measurement"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_payment_receipt_cannot_measure_performance"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_magnitude_is_actual_allocation"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasuredTrajectory"
+    },
+    {
+     "kind": "def",
+     "name": "measureTrajectory"
+    },
+    {
+     "kind": "theorem",
+     "name": "trajectory_measurement_uses_reported_post"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_commit_has_no_behavior_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "accepted_measurement_keeps_actual_trace_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "appealCompletionRate"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_appeal_frequencies"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_appeal_labels_have_sharp_bounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "appeal_observations_cannot_identify_population_rate"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "71763f8359209b1e393bd72bd6cfc17b92c7979ce42c3dbb9ff4dad8d878ed51",
+   "size_bytes": 17122,
+   "theorem_count": 14,
+   "theorem_count_bol_convention": 14
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "performanceDictionary"
+    },
+    {
+     "kind": "def",
+     "name": "measurementStamp"
+    },
+    {
+     "kind": "def",
+     "name": "performanceRowOne"
+    },
+    {
+     "kind": "def",
+     "name": "performanceRowTwo"
+    },
+    {
+     "kind": "def",
+     "name": "performanceRows"
+    },
+    {
+     "kind": "def",
+     "name": "attestRows"
+    },
+    {
+     "kind": "def",
+     "name": "closeWindow"
+    },
+    {
+     "kind": "def",
+     "name": "performanceFixture"
+    },
+    {
+     "kind": "def",
+     "name": "measurementHas"
+    },
+    {
+     "kind": "def",
+     "name": "procedureDictionary"
+    },
+    {
+     "kind": "def",
+     "name": "simpleMeasurement"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.BusinessMeasurement20261027",
+    "JurisLean.Candidates.DecisionTrajectoryConsumerAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.BusinessMeasurement20261027.accepted_measurement_keeps_actual_trace_invariant",
+    "JurisLean.Candidates.BusinessMeasurement20261027.accepted_rows_are_external_and_current",
+    "JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate",
+    "JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused",
+    "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+    "JurisLean.Candidates.BusinessMeasurement20261027.missing_payment_receipt_cannot_measure_performance",
+    "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+    "JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies",
+    "JurisLean.Candidates.BusinessMeasurement20261027.performance_magnitude_is_actual_allocation",
+    "JurisLean.Candidates.BusinessMeasurement20261027.positive_means_actual_total_reaches_threshold",
+    "JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement",
+    "JurisLean.Candidates.BusinessMeasurement20261027.trajectory_measurement_uses_reported_post",
+    "JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds",
+    "JurisLean.Candidates.BusinessMeasurement20261027.unknown_commit_has_no_behavior_label"
+   ],
+   "sha256": "e8c9cdde4b1fc13b5d18d42d89d01e1abea4c002215a48eebe798c066912a0fe",
+   "size_bytes": 8763,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "q05_1_conditional_correct_implies_calibration"
     },
@@ -52698,6 +52918,7 @@
     "JurisLean.BusinessRoot.SevenAxisCases",
     "JurisLean.Candidates.AdaptiveRoundLedger20261027",
     "JurisLean.Candidates.AdaptiveValidation20261027",
+    "JurisLean.Candidates.BusinessMeasurement20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CausalSelection20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
@@ -52945,8 +53166,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "cdab32d1752dc4e97335280a490903493e8c93015aa6bbc76237febf7c40eff8",
-   "size_bytes": 12251,
+   "sha256": "9195a13bb36ed9919e492615d3c1a65c5a000328d455d670c0e223d4fa88eac7",
+   "size_bytes": 12307,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -53110,22 +53331,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5807,
-   "file_count": 443,
+   "counted_declaration_count": 5821,
+   "file_count": 445,
    "lemma_count": 146,
-   "print_axioms_command_count": 4679,
-   "print_axioms_distinct_targets": 4592,
-   "theorem_count": 5661,
-   "theorem_count_bol_convention": 5561
+   "print_axioms_command_count": 4693,
+   "print_axioms_distinct_targets": 4606,
+   "theorem_count": 5675,
+   "theorem_count_bol_convention": 5575
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5788,
-   "file_count": 428,
+   "counted_declaration_count": 5802,
+   "file_count": 430,
    "lemma_count": 139,
-   "print_axioms_command_count": 4679,
-   "print_axioms_distinct_targets": 4592,
-   "theorem_count": 5649,
-   "theorem_count_bol_convention": 5549
+   "print_axioms_command_count": 4693,
+   "print_axioms_distinct_targets": 4606,
+   "theorem_count": 5663,
+   "theorem_count_bol_convention": 5563
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -53186,6 +53407,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
@@ -53627,6 +53850,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
@@ -54053,17 +54278,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2ccc5f805c54c26d392501ee32c2e7ab25ab23248fae39109e79b65fe3c342df",
+ "source_inventory_digest": "2b0b4129505afd53e1402a02c91daef7c528da8d2757497ecfcadbf3e5aca519",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/policy-response-20261027",
-  "commit": "e895a49ee659e854facbf6123a9dfe988426beb2",
-  "tree": "0de1f867d02e07dec6d488664da6fbedb16cda7e"
+  "branch": "formal/business-measurement-20261027",
+  "commit": "776a37b0f1d76f0ce5d355f26cb3fdf869ddebcd",
+  "tree": "ee3fa5c9e828c7a647f51f408bdb74b773d55dd2"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 443,
+  "files_total": 445,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

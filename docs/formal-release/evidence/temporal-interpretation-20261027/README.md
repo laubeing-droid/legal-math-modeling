@@ -1,0 +1,23 @@
+# Temporal interpretation and actual source-compiler consumption
+
+Scope: original 08.2/08.3 and the temporal edge of 08.7; conditional semantic bridges also connect to 08.1. This is module evidence, not whole-theory or real legal acceptance.
+
+- Subject: `7d4e77a12bb86adfa719267f3a44e3e331c85e9a`
+- GitHub Actions: [run 40472856489](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40472856489), [job 122083892400](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40472856489/job/122083892400)
+- SUCCESS: 24 exact type/axiom targets and 22 guarded executions. Both source files bind to this successful subject; 48 actual type/axiom messages are retained in axiom-audit.raw.txt.
+- Local Lean/Lake/Elan was not run. Root/full-release evidence must be obtained for the integrated final head separately.
+
+The selector first takes the record/knowledge cut, turns visible records into a finite set, rejects conflicting stable IDs and duplicate version catalog entries, and retains unknown App results. Identical record copies are idempotent, while same-day distinct IDs remain distinct. App is a supplied finite interpretation of the visible records under the same Gamma; a Boolean or Applicable.yes is not proof of legal fidelity. A separate theorem states the external legal-interpretation bridge.
+
+The proofs establish selected-candidate membership, permutation invariance, stability after invisible append, sufficient locality/support conditions for cut/selection commutation, and the restricted latest-start theorem under coverage, distinct starts and ordered half-open nonoverlapping ends. The executable default example is the declared interval interpretation; no arbitrary legal selector is inferred from timestamps. The latest-start theorem concerns a supplied maximal-start witness, not an undocumented algorithm or an unrestricted legal rule.
+
+Publication is stored as a distinct observation in the counterexample. Two completions share every known publication/order fact but choose different versions. Other counterexamples retain the same App while a late exception changes the answer, show that raising the cut need not narrow candidates, and separate preserving one answer from preserving labels/all questions. checkLossless reflects nonempty per-event candidate sets and equality over the supplied finite observation family; completeness of that family is explicit, not inferred. Unknown knownAt retains each supplied possible-time completion; an empty range stays unknown, and the supplied range is not certified as exhaustive historical truth.
+
+compileTimed consumes selectVersion first, requires exact agreement with the original material Gamma, and passes the actual selected version into selectedGate and compileView. No Gamma is rewritten. Success derives actual App acceptance, the actual source-compiler result, query membership in its finite closure and backward provenance. Primitive material meaning and active-rule soundness yield the conditional query theorem. Unknown applicability blocks even a leaf-only compilation.
+
+Earlier dfc91391/run40471097974/job122078143815 failed because matches was used as a reserved local identifier. The 655d9373 and 42e16819 attempts were cancelled during concurrent replacement/cache preparation, so they are not PASS evidence. c0bd46ae/run40471989089/job122081153350 failed because unrestricted simp rewrote the selected version before the failure-branch equation applied; simp only preserved the exact expression. b7a8d791/run40472408907/job122082418378 built the implementation but its audit still used the reserved identifier partial. The successful subject changes that fixture name; no condition, failure branch or assertion was removed.
+
+The 22 executions cover event dates 5/10/12, permutation, same-day distinct IDs, overlapping versions, conflicting IDs, duplicate version catalog entries, pending applicability, empty catalog/history, late knowledge, unknown-time alternatives, empty-range unknown, exact known-time precedence, nonempty compression, one/all-question distinction, actual compiled closure, unknown/wrong version, rejected rule gate, leaf-only unknown, source-Gamma mismatch and conflicting version choices.
+
+Evidence/possible-world semantics, independently justified procedural closure, full finite-validator composition, all original paragraph/engineering reconciliation and U00 continue separately. Real source fidelity, legal interpretation and complete candidate-domain premises remain explicit. OPEN=20; closes_debt=false; CAND8=8 outside PROVE_CANDIDATES; frozen tip_pin subject21862d9b/Authority40274167574/named61 and discharges remain unchanged.
+

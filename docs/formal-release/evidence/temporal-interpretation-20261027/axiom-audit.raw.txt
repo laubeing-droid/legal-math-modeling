@@ -1,0 +1,340 @@
+JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.TemporalInterpretation20261027.TimedCompilation)
+  (LegalApp : JurisLean.Candidates.Final20261021.Gamma → ℕ → Prop)
+  (appFaithful :
+    ∀ v ∈ versions,
+      app s.gamma (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet s.gamma history) v =
+          JurisLean.Candidates.Final20261021.Applicable.yes →
+        LegalApp s.gamma v)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.compileTimed s history versions app branch catalog rules
+        ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  LegalApp s.gamma out.selectedVersion
+
+'JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (keyed : JurisLean.Candidates.TemporalInterpretation20261027.KeyConsistent history.toFinset) :
+  JurisLean.Candidates.TemporalInterpretation20261027.KeyConsistent
+    (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g history)
+
+'JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App)
+  (keyed : JurisLean.Candidates.TemporalInterpretation20261027.KeyConsistent history.toFinset)
+  (locality :
+    ∀ (v : ℕ),
+      app g history.toFinset v = app g (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g history) v)
+  (visibleSupport :
+    ∀ (v : ℕ),
+      app g (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g history) v =
+          JurisLean.Candidates.Final20261021.Applicable.yes →
+        ∃ e ∈ JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g history, e.version = v) :
+  JurisLean.Candidates.TemporalInterpretation20261027.selectThenCut g history versions app =
+    JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g history versions app
+
+'JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model
+  (records : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (t : ℤ)
+  (latest : JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (latestMember : latest ∈ records)
+  (latestStarted : latest.factFrom.ordinal ≤ t)
+  (maximal : ∀ e ∈ records, e.factFrom.ordinal ≤ t → e.factFrom.ordinal ≤ latest.factFrom.ordinal)
+  (coverage : ∃ e ∈ records, JurisLean.Candidates.TemporalInterpretation20261027.InHalfOpenInterval e t)
+  (distinct : ∀ e ∈ records, ∀ f ∈ records, e.factFrom = f.factFrom → e = f)
+  (orderedEnds :
+    ∀ e ∈ records,
+      ∀ f ∈ records,
+        e.factFrom.ordinal < f.factFrom.ordinal →
+          ∃ finish, e.factUntil = some finish ∧ finish.ordinal ≤ f.factFrom.ordinal) :
+  JurisLean.Candidates.TemporalInterpretation20261027.InHalfOpenInterval latest t ∧
+    ∀ e ∈ records, JurisLean.Candidates.TemporalInterpretation20261027.InHalfOpenInterval e t → e = latest
+
+'JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact (xs : List ℕ) (v : ℕ)
+  (h :
+    JurisLean.Candidates.TemporalInterpretation20261027.single xs = JurisLean.Candidates.Final20261021.Result.known v) :
+  xs = [v]
+
+'JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact' depends on axioms: [propext]
+
+JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (records : Finset JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (v : ℕ)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.selectFrom g records versions app =
+      JurisLean.Candidates.Final20261021.Result.known v) :
+  JurisLean.Candidates.TemporalInterpretation20261027.KeyConsistent records ∧
+    versions.Nodup ∧
+      JurisLean.Candidates.TemporalInterpretation20261027.pending g records versions app = [] ∧
+        JurisLean.Candidates.TemporalInterpretation20261027.candidates g records versions app = [v]
+
+'JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (v : ℕ)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g history versions app =
+      JurisLean.Candidates.Final20261021.Result.known v) :
+  v ∈ versions ∧
+    app g (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g history) v =
+      JurisLean.Candidates.Final20261021.Applicable.yes
+
+'JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant
+  (g : JurisLean.Candidates.Final20261021.Gamma) (h h' : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (perm : h.Perm h') :
+  JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g h =
+    JurisLean.Candidates.TemporalInterpretation20261027.visibleSet g h'
+
+'JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant
+  (g : JurisLean.Candidates.Final20261021.Gamma) (h h' : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (versions : List ℕ) (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (perm : h.Perm h') :
+  JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g h versions app =
+    JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g h' versions app
+
+'JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (h extra : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App)
+  (later : ∀ e ∈ extra, JurisLean.Candidates.Final20261021.Temporal.visible g e = false) :
+  JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g (h ++ extra) versions app =
+    JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g h versions app
+
+'JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App)
+  (p : JurisLean.Candidates.TemporalInterpretation20261027.PartialVersion)
+  (times : List JurisLean.Candidates.Final20261021.Instant) (unknownTime : p.knownAt = none)
+  (t : JurisLean.Candidates.Final20261021.Instant) (possible : t ∈ times) :
+  JurisLean.Candidates.TemporalInterpretation20261027.selectVersion g
+      (history ++ [JurisLean.Candidates.TemporalInterpretation20261027.completeKnownAt p t]) versions app ∈
+    JurisLean.Candidates.TemporalInterpretation20261027.knownAtAlternatives g history versions app p times
+
+'JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must {W : Type}
+  (old next : List W) (p : W → Prop) (nonempty : next ≠ []) (narrows : ∀ w ∈ next, w ∈ old)
+  (prior : JurisLean.Candidates.TemporalInterpretation20261027.Must old p) :
+  JurisLean.Candidates.TemporalInterpretation20261027.Must next p
+
+'JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must' does not depend on any axioms
+
+JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership {W : Type}
+  (worlds : List W) (p : W → Prop) (actual : W) (belongs : actual ∈ worlds)
+  (known : JurisLean.Candidates.TemporalInterpretation20261027.Must worlds p) : p actual
+
+'JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership' does not depend on any axioms
+
+JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection {E Q A : Type} [DecidableEq A]
+  (events : List E) (questions : List Q) (options : E → List ℕ) (answer : ℕ → E → Q → A) (chosen : ℕ) :
+  JurisLean.Candidates.TemporalInterpretation20261027.checkLossless events questions options answer chosen = true ↔
+    JurisLean.Candidates.TemporalInterpretation20261027.Lossless events questions options answer chosen
+
+'JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers {E Q A : Type}
+  (events : List E) (questions : List Q) (options : E → List ℕ) (answer : ℕ → E → Q → A) (chosen : ℕ)
+  (labels : ∀ e ∈ events, options e ≠ [] ∧ ∀ v ∈ options e, v = chosen) :
+  JurisLean.Candidates.TemporalInterpretation20261027.Lossless events questions options answer chosen
+
+'JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers' does not depend on any axioms
+
+JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.TemporalInterpretation20261027.TimedCompilation)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.compileTimed s history versions app branch catalog rules
+        ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.TemporalInterpretation20261027.selectVersion s.gamma history versions app =
+      JurisLean.Candidates.Final20261021.Result.known out.selectedVersion ∧
+    out.selectedVersion = s.gamma.normVersion ∧
+      JurisLean.Candidates.SourceCompilation20261027.compileView s branch catalog rules
+          (JurisLean.Candidates.TemporalInterpretation20261027.selectedGate out.selectedVersion ruleGate) nodes root
+          query =
+        JurisLean.Candidates.Final20261021.Result.known out.compiled
+
+'JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.TemporalInterpretation20261027.TimedCompilation)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.compileTimed s history versions app branch catalog rules
+        ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  app s.gamma (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet s.gamma history) out.selectedVersion =
+      JurisLean.Candidates.Final20261021.Applicable.yes ∧
+    query ∈ out.compiled.closure ∧ JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+
+'JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.TemporalInterpretation20261027.TimedCompilation)
+  (Interpret :
+    JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot →
+      JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Prop)
+  (truth : ℕ → Prop)
+  (catalogFaithful : ∀ row ∈ catalog, row.material = s → row.branch = branch → Interpret s row.decoded)
+  (primitiveMeaning :
+    ∀ (decoded : JurisLean.Candidates.SourceCompilation20261027.ConsumedView),
+      Interpret s decoded → ∀ f ∈ decoded.atoms, truth f.value)
+  (rulesSound :
+    ∀ version ∈ versions,
+      app s.gamma (JurisLean.Candidates.TemporalInterpretation20261027.visibleSet s.gamma history) version =
+          JurisLean.Candidates.Final20261021.Applicable.yes →
+        ∀
+          r ∈
+            JurisLean.Candidates.CompilerProvenance20261027.activeRules s.gamma rules
+              (JurisLean.Candidates.TemporalInterpretation20261027.selectedGate version ruleGate),
+          (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.TemporalInterpretation20261027.compileTimed s history versions app branch catalog rules
+        ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+
+'JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version :
+  Audit.earlyCompletion.1 = Audit.lateCompletion.1 ∧
+    Audit.knownPublicationOrder Audit.earlyCompletion.1 ∧
+      Audit.earlyCompletion.1.fact = Audit.gamma.lawDate ∧
+        selectVersion
+              (have __src := Audit.gamma;
+              { caseId := __src.caseId, caseRevision := __src.caseRevision, evidenceVersion := __src.evidenceVersion,
+                jurisdiction := __src.jurisdiction, question := __src.question, interpretation := __src.interpretation,
+                normVersion := __src.normVersion, lawDate := __src.lawDate, knowledgeCutoff := { ticks := 6 },
+                recordCutoff := { ticks := 6 }, schemaVersion := __src.schemaVersion,
+                observationFamily := __src.observationFamily, mechanismVersion := __src.mechanismVersion })
+              Audit.earlyCompletion.2 [8, 9] intervalApp =
+            Result.known 9 ∧
+          selectVersion
+              (have __src := Audit.gamma;
+              { caseId := __src.caseId, caseRevision := __src.caseRevision, evidenceVersion := __src.evidenceVersion,
+                jurisdiction := __src.jurisdiction, question := __src.question, interpretation := __src.interpretation,
+                normVersion := __src.normVersion, lawDate := __src.lawDate, knowledgeCutoff := { ticks := 6 },
+                recordCutoff := { ticks := 6 }, schemaVersion := __src.schemaVersion,
+                observationFamily := __src.observationFamily, mechanismVersion := __src.mechanismVersion })
+              Audit.lateCompletion.2 [8, 9] intervalApp =
+            Result.known 8
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event :
+  Audit.selectAt 5 = Result.known 8 ∧
+    Audit.selectAt 12 = Result.known 9 ∧ Audit.selectAt 20 = Result.known 9 ∧ Audit.selectAt 5 ≠ Audit.selectAt 12
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute :
+  selectVersion Audit.early Audit.lateHistory [8, 9] Audit.exceptionApp = Result.known 8 ∧
+    Audit.selectFullThenFilter Audit.early Audit.lateHistory = Result.unknown Error.missingEvidence
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates :
+  candidates Audit.early (visibleSet Audit.early Audit.lateHistory) [8, 9] Audit.exceptionApp = [8] ∧
+    candidates Audit.later (visibleSet Audit.later Audit.lateHistory) [8, 9] Audit.exceptionApp = [9] ∧
+      ¬∀ v ∈ candidates Audit.later (visibleSet Audit.later Audit.lateHistory) [8, 9] Audit.exceptionApp,
+          v ∈ candidates Audit.early (visibleSet Audit.early Audit.lateHistory) [8, 9] Audit.exceptionApp
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law :
+  (selectVersion Audit.early Audit.lateHistory [8, 9] fun x x_1 v => if v = 8 then Applicable.yes else Applicable.no) =
+      Result.known 8 ∧
+    (selectVersion Audit.early Audit.lateHistory [8, 9] fun x x_1 v =>
+        if v = 9 then Applicable.yes else Applicable.no) =
+      Result.known 9
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers :
+  checkLossless [()] [false] Audit.options Audit.sameAnswer 8 = true ∧
+    9 ∈ Audit.options () ∧ 9 ≠ 8 ∧ checkLossless [()] [false, true] Audit.options Audit.sameAnswer 8 = false
+
+'JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers' depends on axioms: [propext,
+ Quot.sound]
+

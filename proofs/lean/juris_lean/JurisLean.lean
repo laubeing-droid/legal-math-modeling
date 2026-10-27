@@ -65,6 +65,7 @@ import JurisLean.BanachWeightedNorm
 import JurisLean.Candidates.AdaptiveRoundLedger20261027
 import JurisLean.Candidates.AdaptiveValidation20261027
 import JurisLean.Candidates.CalibrationSemantics20261027
+import JurisLean.Candidates.CausalSelection20261027
 import JurisLean.Candidates.CompilerClosure20261026
 import JurisLean.Candidates.CompilerProvenance20261027
 import JurisLean.Candidates.CurrentContextRollback20261027

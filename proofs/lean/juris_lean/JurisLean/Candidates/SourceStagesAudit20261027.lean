@@ -1,4 +1,14 @@
 import JurisLean.Candidates.SourceStages20261027
+import JurisLean.Seams.UnifiedInstance
+
+#check JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact
+#print axioms JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact
+#check JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain
+#print axioms JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain
+#check JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified
+#print axioms JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified
+#check JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact
+#print axioms JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact
 
 #check JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows
 #print axioms JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows
@@ -87,9 +97,9 @@ def updateStagePayment (update : FullPayment → FullPayment) : ConsumedView :=
       out.stages.afterFormation.relations.length = 1 ∧ out.stages.afterSecond.relations.length = 1 ∧
       out.stages.afterFirst.state.formations = out.stages.afterSecond.state.formations ∧
       out.stages.afterFirst.state.debt.amount ≠ out.stages.afterSecond.state.debt.amount ∧
-      out.stages.afterSecond.quantity.item.kind = .principal ∧
-      out.stages.afterSecond.quantity.item.basis = .contractStip ∧
-      out.stages.afterSecond.quantity.item.status = .supported ∧
+      out.stages.afterSecond.quantity.item.kind = JurisLean.Seams.UnifiedQuantLedger.DebtKind.principal ∧
+      out.stages.afterSecond.quantity.item.basis = JurisLean.Seams.UnifiedQuantLedger.FeeBasis.contractStip ∧
+      out.stages.afterSecond.quantity.item.status = JurisLean.Seams.UnifiedQuantLedger.ClaimStatus.supported ∧
       out.stages.afterSecond.state.debt.metadata = "all debt metadata retained")
   | _ => false
 
@@ -156,3 +166,24 @@ def updateStagePayment (update : FullPayment → FullPayment) : ConsumedView :=
 /-- info: true -/
 #guard_msgs in
 #eval !stageKnown (sourceStages { stageMaterial with parseVersion := 99 } 0 [⟨stageMaterial, 0, stageView⟩])
+
+namespace JurisLean.Candidates.SourceStages20261027
+
+theorem nonempty_source_stage_fixture : ∃ out, runStageView stageView = .known out := by
+  have known : stageKnown (runStageView stageView) = true := by decide
+  cases computed : runStageView stageView with
+  | known out => exact ⟨out, rfl⟩
+  | unknown e => simp [computed, stageKnown] at known
+  | rejected e => simp [computed, stageKnown] at known
+  | conflict l r => simp [computed, stageKnown] at known
+
+theorem legacy_background_instance_is_nonempty (frame : SourceFrame) (naturalAmount : Nat) :
+    LegacyContracts (modelOf JurisLean.Seams.UnifiedInstance.instanceM frame naturalAmount) :=
+  (fixed_background_preserves_exact_old_contracts _ _ _).1
+
+end JurisLean.Candidates.SourceStages20261027
+
+#check JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture
+#print axioms JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture
+#check JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty
+#print axioms JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty

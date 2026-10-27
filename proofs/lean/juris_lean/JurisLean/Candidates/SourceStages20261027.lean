@@ -22,6 +22,43 @@ open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.SourceCompilation20261027
 open JurisLean.Seams
 
+abbrev ResolvedLegalRef (mu : SourceRef → Option LegalObject) :=
+  {ref : SourceRef // ∃ object, mu ref = some object}
+
+noncomputable def canonicalLegalKey (mu : SourceRef → Option LegalObject)
+    (ref : ResolvedLegalRef mu) : LegalObject := Classical.choose ref.property
+
+theorem canonical_typed_identity_is_exact (mu : SourceRef → Option LegalObject)
+    (left right : ResolvedLegalRef mu) :
+    canonicalLegalKey mu left = canonicalLegalKey mu right ↔
+      ∃ object, mu left.val = some object ∧ mu right.val = some object := by
+  have hl : mu left = some (canonicalLegalKey mu left) := Classical.choose_spec left.property
+  have hr : mu right = some (canonicalLegalKey mu right) := Classical.choose_spec right.property
+  constructor
+  · intro same; exact ⟨canonicalLegalKey mu left, hl, by simpa only [same] using hr⟩
+  · rintro ⟨object, l, r⟩
+    exact (Option.some.inj (hl.symm.trans l)).trans (Option.some.inj (r.symm.trans hr))
+
+theorem typed_identity_equivalence_on_defined_domain (mu : SourceRef → Option LegalObject) :
+    Equivalence (fun left right : ResolvedLegalRef mu =>
+      ∃ object, mu left.val = some object ∧ mu right.val = some object) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro a; exact (canonical_typed_identity_is_exact mu a a).mp rfl
+  · intro a b ab
+    exact (canonical_typed_identity_is_exact mu b a).mp
+      ((canonical_typed_identity_is_exact mu a b).mpr ab).symm
+  · intro a b c ab bc
+    exact (canonical_typed_identity_is_exact mu a c).mp
+      (((canonical_typed_identity_is_exact mu a b).mpr ab).trans
+        ((canonical_typed_identity_is_exact mu b c).mpr bc))
+
+theorem undefined_typed_reference_is_not_identified (mu : SourceRef → Option LegalObject)
+    (left right : SourceRef) (missing : mu left = none) :
+    ¬ ∃ object, mu left = some object ∧ mu right = some object := by
+  rintro ⟨object, found, _⟩
+  rw [missing] at found
+  cases found
+
 structure BoundPayment where
   history : Quoted SourceHistory
   payment : Quoted FullPayment
@@ -91,6 +128,16 @@ def sameDebt (left right : FullDebt) : Bool :=
     left.item.basis = right.item.basis ∧ left.item.beneficiary = right.item.beneficiary ∧
     left.item.status = right.item.status ∧ left.item.amount = right.item.amount ∧
     left.debtRel = right.debtRel ∧ left.obligor = right.obligor ∧ left.unit = right.unit)
+
+theorem full_debt_comparison_is_exact (left right : FullDebt)
+    (checked : sameDebt left right = true) : left = right := by
+  cases left with
+  | mk li lr lo lu =>
+      cases right with
+      | mk ri rr ro ru =>
+          cases li
+          cases ri
+          simp_all [sameDebt]
 
 def initialRelations (view : ExtractedView) : InstitutionalEffects.Ledger RelationId :=
   view.decoded.initialHistory.filterMap fun h => match h.value with
@@ -332,24 +379,39 @@ theorem nonempty_local_models_can_have_empty_common_fiber :
       ¬ ∃ x y : Unit, (fun _ : Unit => (0 : Nat)) x = (fun _ : Unit => (1 : Nat)) y := by
   exact ⟨⟨(), trivial⟩, ⟨(), trivial⟩, by simp⟩
 
-def modelOf {V : Type} (background : UnifiedModel V RelationId) (frame : SourceFrame)
+def modelOf {V R : Type} [DecidableEq R] (background : UnifiedModel V R) (frame : SourceFrame)
     (naturalAmount : Nat) : UnifiedModel V RelationId :=
-  { background with
+  { norms := background.norms, atom := background.atom
+    aaf := background.aaf, pol := background.pol, disputed := background.disputed
+    hBaseConflictFree := background.hBaseConflictFree, round := background.round
+    hPolicyClosed := background.hPolicyClosed, hBaseInGrounded := background.hBaseInGrounded
+    evalDom := background.evalDom, candidate := background.candidate
+    hAdmissibleNonempty := background.hAdmissibleNonempty, hCollapse := background.hCollapse
     ledger := frame.stages.beforeFormation.relations
     eventId := toString frame.formationSource.value
     relFormed := frame.formationRelation
     relObserved := frame.source.decoded.observed.value.2
     performEventId := toString frame.first.payment.value.payload.cashId.value
     obligor := toString frame.first.payment.value.payload.payer.value
-    performAmount := naturalAmount }
+    performAmount := naturalAmount
+    env := background.env, ad := background.ad, hwf := background.hwf
+    atDay := background.atDay, production := background.production
+    hUnauthorized := background.hUnauthorized
+    asOf := background.asOf, past := background.past
+    future₁ := background.future₁, future₂ := background.future₂
+    hFuture₁ := background.hFuture₁, hFuture₂ := background.hFuture₂, someLate := background.someLate
+    weight := background.weight, truthAssessment := background.truthAssessment
+    hWeightPos := background.hWeightPos, hWeightTotal := background.hWeightTotal
+    contaminated := background.contaminated, observation := background.observation
+    caseBurden := background.caseBurden, sanction := background.sanction }
 
 def LegacyContracts {V : Type} (model : UnifiedModel V RelationId) : Prop :=
   UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V RelationId model ∧
     UnifiedChainCorrespondence V RelationId model ∧ UnifiedFiniteProcessComposition V RelationId model ∧
     UnifiedTimeAndUncertaintyPreserved V RelationId model
 
-theorem fixed_background_preserves_exact_old_contracts {V : Type}
-    (background : UnifiedModel V RelationId) (frame : SourceFrame) (n : Nat) :
+theorem fixed_background_preserves_exact_old_contracts {V R : Type} [DecidableEq R]
+    (background : UnifiedModel V R) (frame : SourceFrame) (n : Nat) :
     LegacyContracts (modelOf background frame n) ∧
     (modelOf background frame n).candidate = background.candidate ∧
     (modelOf background frame n).norms = background.norms ∧

@@ -1,0 +1,309 @@
+JurisLean.Candidates.BusinessFeedbackLoop20261027.measurement_reads_the_reported_post_only {m : ℕ}
+  (business : JurisLean.Candidates.Final20261021.Pipeline.PaymentRun)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (measured :
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported business input =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out) :
+  ∃ post,
+    business.current = some post ∧ out.actualPost = post ∧ out.dictionary = input.dictionary ∧ out.rows = input.rows
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.measurement_reads_the_reported_post_only' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.unknown_commit_cannot_generate_a_measurement {m : ℕ}
+  (business : JurisLean.Candidates.Final20261021.Pipeline.PaymentRun)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m) (unknown : business.current = none) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported business input =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.unknown
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementFailure.unknownCommit
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.unknown_commit_cannot_generate_a_measurement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_enqueue_another_round {m : ℕ}
+  (history queue : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (seen : (history.any fun old => JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row) = true) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.enqueueObserved history queue
+      (JurisLean.Candidates.Final20261021.Result.known row) =
+    (history, queue)
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_enqueue_another_round' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.distinct_observation_retains_full_evidence_and_queue {m : ℕ}
+  (history queue : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (fresh : (history.any fun old => JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row) = false) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.enqueueObserved history queue
+      (JurisLean.Candidates.Final20261021.Result.known row) =
+    (history ++ [row], queue ++ [row])
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.distinct_observation_retains_full_evidence_and_queue' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_append_a_policy_sample {m : ℕ}
+  (rows : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (old row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (found :
+    List.find? (fun prior => decide (prior.measured.dictionary.event = row.measured.dictionary.event)) rows = some old)
+  (same : JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row = true) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.recordObservation
+      (JurisLean.Candidates.Final20261021.Result.known rows) (JurisLean.Candidates.Final20261021.Result.known row) =
+    JurisLean.Candidates.Final20261021.Result.known rows
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_append_a_policy_sample' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.conflicting_measurement_does_not_become_a_policy_sample {m : ℕ}
+  (rows : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (old row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (found :
+    List.find? (fun prior => decide (prior.measured.dictionary.event = row.measured.dictionary.event)) rows = some old)
+  (different : JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row = false) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.recordObservation
+      (JurisLean.Candidates.Final20261021.Result.known rows) (JurisLean.Candidates.Final20261021.Result.known row) =
+    JurisLean.Candidates.Final20261021.Result.conflict old.measured.dictionary.resultRecord.value
+      row.measured.dictionary.resultRecord.value
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.conflicting_measurement_does_not_become_a_policy_sample' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.known_advice_reads_recorded_data_within_cutoffs {m : ℕ}
+  (context : JurisLean.Candidates.Final20261021.Gamma)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (rows :
+    JurisLean.Candidates.Final20261021.Result (List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)))
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyAdvice m)
+  (accepted :
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.adviseRecorded context input rows =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ actual,
+    rows = JurisLean.Candidates.Final20261021.Result.known actual ∧
+      out.observations = actual ∧
+        input.design.acquiredAt.ticks ≤ context.knowledgeCutoff.ticks ∧
+          input.design.acquiredAt.ticks ≤ context.recordCutoff.ticks ∧
+            ∀ row ∈ actual,
+              row.measured.observedAt.ticks ≤ context.knowledgeCutoff.ticks ∧
+                row.measured.observedAt.ticks ≤ context.recordCutoff.ticks
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.known_advice_reads_recorded_data_within_cutoffs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_feedback_preserves_actual_learner {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m) (busy : state.pending.isSome = true) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved state input
+        (JurisLean.Candidates.Final20261021.Result.known row) =
+      JurisLean.Candidates.Final20261021.Result.unknown
+        JurisLean.Candidates.Final20261021.Error.openMissingOpportunity ∧
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState state
+        (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved state input
+          (JurisLean.Candidates.Final20261021.Result.known row)) =
+      state
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_feedback_preserves_actual_learner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.prepared_feedback_uses_actual_observation {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (observed :
+    JurisLean.Candidates.Final20261021.Result (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (out : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (prepared :
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved state input observed =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ row,
+    observed = JurisLean.Candidates.Final20261021.Result.known row ∧
+      state.service.gamma = row.measured.actualPost.gamma ∧
+        state.service.journal.scope = row.treatment.environment.dataScope ∧
+          out =
+            JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound state input.now input.corrections
+              (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.observed
+                (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row))
+              input.protocol input.validation
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.prepared_feedback_uses_actual_observation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (observed :
+    JurisLean.Candidates.Final20261021.Result (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)) :
+  (JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState state
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved state input observed)).limit =
+      state.limit ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState state
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved state input observed)).records =
+      state.records
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry {m : ℕ}
+  (queue : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (declared : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (pending : next.pending = some declared)
+  (unconfirmed :
+    declared.prepared.observation.disposition =
+      JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.invalidObservation) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.unpreparedQueue queue
+      (JurisLean.Candidates.Final20261021.Result.known next) =
+    queue
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (rest : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)) (busy : state.pending.isSome = true) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.unpreparedQueue (row :: rest)
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareQueued state input (row :: rest)) =
+    row :: rest
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_queue_keeps_risk_budget {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (queue : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)) :
+  (JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState state
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareQueued state input queue)).limit =
+      state.limit ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState state
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareQueued state input queue)).records =
+      state.records
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_queue_keeps_risk_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_does_not_repeat_business_execution {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m) :
+  (JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness state measurement policy feedback).post.business =
+    state.business
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_does_not_repeat_business_execution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_feedback_is_the_actual_measured_result {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (observed :
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness state measurement policy feedback).observation =
+      JurisLean.Candidates.Final20261021.Result.known row) :
+  ∃ post,
+    state.business.current = some post ∧
+      row.measured.actualPost = post ∧
+        row.measured.dictionary = measurement.dictionary ∧ row.measured.rows = measurement.rows
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_feedback_is_the_actual_measured_result' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.assessment_passes_actual_post_to_next_model {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (request : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)) :
+  (JurisLean.Candidates.BusinessFeedbackLoop20261027.assess state request samples permits).learning =
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound state.learning request samples
+          permits).post ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.assess state request samples permits).business = state.business
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.assessment_passes_actual_post_to_next_model' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.unresolved_business_has_no_new_action {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (unknown : state.business.current = none) :
+  (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state input).run = none ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state input).post = state
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.unresolved_business_has_no_new_action' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.actual_action_reads_current_handle_and_loaded_state {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (out : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+  (called : (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state input).run = some out) :
+  ∃ initial,
+    state.business.current = some initial ∧
+      out =
+          JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input.legal input.model input.proposals
+            state.learning input.request input.calibration input.calibrationCatalog input.radius input.exponent
+            input.utility input.grants initial ∧
+        (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state input).post.business = out.execution.payment
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.actual_action_reads_current_handle_and_loaded_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (round : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (out : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (called :
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.act
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.assess state round samples permits) input).run =
+      some out)
+  (chosen : out.decision = JurisLean.Candidates.Final20261021.Result.known selected) :
+  selected.probability.fitted =
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound state.learning round samples
+              permits).post.service).fitted
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.action_preserves_every_reported_business_state {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (valid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant state) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state input).post
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.action_preserves_every_reported_business_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.episode_consumes_actual_output_and_keeps_invariants {W : Type} {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (action : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (valid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant state) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.episode state action measurement policy
+            feedback).continuation.post ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.episode state action measurement policy
+                  feedback).continuation.post.learning.limit =
+        state.learning.limit ∧
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.episode state action measurement policy
+                  feedback).continuation.post.learning.records =
+        state.learning.records
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.episode_consumes_actual_output_and_keeps_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.each_command_preserves_known_business_and_learning_budget {W : Type}
+  {m : ℕ} (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (command : JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m)
+  (valid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant state)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent state.learning ≤ state.learning.limit) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.step state command) ∧
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.step state command).learning.limit = state.learning.limit ∧
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.step state command).learning ≤
+        state.learning.limit
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.each_command_preserves_known_business_and_learning_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessFeedbackLoop20261027.arbitrary_finite_commands_consume_actual_posts {W : Type} {m : ℕ}
+  (commands : List (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (valid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant state)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent state.learning ≤ state.learning.limit) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step state commands) ∧
+    (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step state commands).learning.limit =
+        state.learning.limit ∧
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+          (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step state commands).learning ≤
+        state.learning.limit
+'JurisLean.Candidates.BusinessFeedbackLoop20261027.arbitrary_finite_commands_consume_actual_posts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8559 jobs).

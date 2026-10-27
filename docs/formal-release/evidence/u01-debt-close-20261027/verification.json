@@ -1,0 +1,83 @@
+{
+  "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+  "run_id": 40369446453,
+  "job_id": 121735932469,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+  "named_count": 14,
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+      "sha256": "3ce4768676de75a5f2d32173bb2500c8d0763bed9027c979cfb78c796efe945e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+      "sha256": "57a39fad7695ab6ec04221062d25c32049d115adf9cc00725de448d002850ae9"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+      "sha256": "cc076526085ea84e448edbc90bb2cf37b4f2e675341ec70498832054316ecdaf"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 14,
+    "axiom_vocabulary": {
+      "Classical.choice": 14,
+      "Quot.sound": 14,
+      "propext": 14
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "schema": "independent-original-residual-close-v1",
+  "names_by_clause": {
+    "U01.1": [
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition",
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound",
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap",
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap",
+      "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+      "JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform",
+      "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform",
+      "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm"
+    ],
+    "U01.2": [
+      "JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge",
+      "JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge",
+      "JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget"
+    ],
+    "U01.3": [
+      "JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv",
+      "JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv"
+    ]
+  },
+  "original_residuals": {
+    "U01.1": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition.",
+    "U01.2": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain.",
+    "U01.3": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support."
+  },
+  "closed_ids": [
+    "U01.1",
+    "U01.2",
+    "U01.3"
+  ],
+  "closed_this_round": 3,
+  "closes_debt": true,
+  "open_before": 18,
+  "open_after": 15,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "source_module_receipt": "docs/formal-release/evidence/learning-theory-20261027/verification.json"
+}

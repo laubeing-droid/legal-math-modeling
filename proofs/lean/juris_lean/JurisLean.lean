@@ -1,5 +1,6 @@
 -- JurisLean root module
 import JurisLean.Basic
+import JurisLean.Candidates.LearningTheoryAudit20261027
 import JurisLean.Candidates.U03DebtClosureAudit20261027
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
@@ -89,7 +90,6 @@ import JurisLean.Candidates.FeedbackLabelSemantics20261027
 import JurisLean.Candidates.HarnessRisk20261027
 import JurisLean.Candidates.HarnessRiskAudit20261027
 import JurisLean.Candidates.LearningBoundary20261027
-import JurisLean.Candidates.LearningBridge20261027
 import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.PolicyResponse20261027

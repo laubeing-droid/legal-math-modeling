@@ -29831,6 +29831,192 @@
       "status": "completed",
       "updated_at": "2026-10-27T04:23:28Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-27T04:27:36Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/policy-evaluation-20261027",
+      "head_sha": "8f497e0d3fe2910df7a65a353d23d99100c88f92",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40449847943",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/policy-evaluation-20261027/README.md:9"
+      ],
+      "run_id": 40449847943,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-27T04:29:56Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-27T04:30:38Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/policy-evaluation-20261027",
+      "head_sha": "b25b14dde466b667284de537aad7640bba0f5a1b",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40450127416",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/policy-evaluation-20261027/README.md:24"
+      ],
+      "run_id": 40450127416,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-27T04:33:03Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-27T04:46:21Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/policy-evaluation-20261027",
+      "head_sha": "0cddf2c120de92f93c64eb7c4d0066d7934f74d7",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40451570271",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/policy-evaluation-20261027/README.md:9"
+      ],
+      "run_id": 40451570271,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-27T04:49:27Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

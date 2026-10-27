@@ -1,0 +1,25 @@
+# Conditional-history fresh validation and adaptive score leakage
+
+Scope: original 15.2/15.3, correction 13/S15 and E15's mathematical budget. A finite pre-sample visible history fixes the candidate class, sample count, risk budget and continuation decision for each round. The theorem uses the actual normalized restriction of one common probability measure to each positive-mass history cell. Within that conditional measure, the existing iid finite-class theorem derives the single-round event. The finite union and history partition then prove the probability of any conducted-round failure is at most the expected sum of its allocated budgets. Cross-round independence is not assumed. Any predictable finite stopping policy is a history-dependent continuation mask covered by that bound.
+
+This is a finite-history/finite-horizon scheme, as selected in the original finite alternative. The fixed population law, bounded loss, measurable samples, history-conditional iid laws and predeclared classes remain explicit premises. The theorem does not infer these premises from different identifiers or from a candidate's claimed confidence. The sample-count lemma proves the stated log(2M/delta)/(2 epsilon^2) sufficient count for the same actual radius.
+
+The executable attack sends coordinate probes to the actual zero-label validation-score function and constructs a predictor only from the returned scores. General proofs show zero validation error and uniform population risk 1 - |seen|/N, hence at least 1 - n/N when at most n points were seen. The six-point execution observes two points and yields validation error 0 but population error 2/3. This does not refute a correctly paid bound for the entire fixed search class. The literal original four-atom failure table has three disjoint events of mass 1/4, union mass 3/4; the independence expression 37/64 underestimates it.
+
+Independent [run 40439612934](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40439612934), [job 121976530560](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40439612934/job/121976530560), SUCCESS on `149dee0f69c9158f43af3c26e61a5bcfce1632be`: 12 exact type/axiom targets and 6 guarded execution checks, standard axioms only. Source and driver match that subject after LF normalization; raw original named output and exact source binding are retained. The first draft `effa0f86680d8d9653407cd52cc32a98e0a27d30` / [run 40438981425](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40438981425) failed a recursive simplification and an unsplit membership case; the successful subject proves those steps explicitly without changing theorem statements.
+
+Construction-card G-PROPOSED correspondence (baseline 825792b83476a767152396d7f5e2ba3017048841): this new namespace/source is absent there; current later proved dependencies are identified below.
+
+| Symbol | Original obligation | Baseline / reuse | Actual consumer | Acceptance |
+|---|---|---|---|---|
+| conditional_event_mass | 15.2, conditional-to-global step | NEW; uses pinned Mathlib conditional restriction identity | predictable_failure_budget | finite positive/null history cells handled separately |
+| predictable_failure_budget | 15.2 / 15.3, adaptive continuation | NEW; finite measure union bound | predictable_failure_expected_budget | arbitrary finite histories/rounds, no cross-round independence |
+| history_budget_is_expected_spend | 15.2, expected spent budget | NEW; actual Bochner integral of the history-dependent budget | predictable_failure_expected_budget | exact partition/integral equality |
+| fresh_iid_history_budget | 15.2 / S15, derive validity from fresh conditional samples | NEW; consumes ProtectedFeedback.protected_iid_joint_event | bounded-round statistical contract, runtime consumer still pending | actual conditional iid laws and class-dependent radius |
+| sample_count_covers_radius | 15.2, sample cost | NEW; uses current finiteRadius | declared per-round sample planning | arbitrary positive n/epsilon satisfying the displayed count |
+| probeScores / fromProbeScores | 15.2, validation leakage | NEW; actual score producer feeds reconstructed predictor | zero-validation/population-risk proofs and driver | general finite N, actual six-point execution |
+| three_failure_events_not_independent_formula | 15.3, same-table arithmetic | NEW; actual fourPointFailureMass | exact failure-budget counterexample | all three marginals, union, 37/64 inequality |
+
+Implementation enters the root after independent success; its driver remains standalone. UNLOCATED at this batch boundary: actual round ledger/fresh-block reuse rejection/trust-root and rollback consumers, and whole U00. Existing finite RiskTrace accumulation and finite-rank results are retained; this conditional-sampling proof does not claim those old abstract premises are automatically supplied by every runtime trace. Full PR ULM/Authority acceptance is separate.
+
+OPEN=20, closes_debt=false, CAND8=8 outside PROVE_CANDIDATES; no discharges or frozen-pin change, no local Lean/Lake/Elan, and no workflow/toolchain change.

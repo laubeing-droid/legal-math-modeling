@@ -40,17 +40,26 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 18,
-    "closed_this_round": 2,
+    "open_formal_tail_remaining": 15,
+    "closed_this_round": 3,
     "historical_cand7_closed": 5,
+    "historical_u03_closed": 2,
     "independent_closed_ids": [
       "U03.1",
-      "U03.2"
+      "U03.2",
+      "U01.1",
+      "U01.2",
+      "U01.3"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
-    "close_pack": "docs/formal-release/evidence/u03-debt-close-20261027",
+    "independent_closed_total": 5,
+    "independent_receipts": [
+      "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
+      "docs/formal-release/evidence/u01-debt-close-20261027/verification.json"
+    ],
+    "independent_receipt": "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
+    "close_pack": "docs/formal-release/evidence/u01-debt-close-20261027",
     "candidate_rows": 0,
-    "blocked_rows": 18,
+    "blocked_rows": 15,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -62,6 +71,8 @@
       "U00"
     ],
     "wiring_not_reopened": [
+      "U03.1",
+      "U03.2",
       "U02.2",
       "U01.0",
       "U06.4",
@@ -96,7 +107,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs; remaining OPEN are 18 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals; remaining OPEN are 15 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -134,8 +145,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 24,
-    "OPEN_FORMAL_TAIL": 18
+    "CLOSED_BY_WIRING": 27,
+    "OPEN_FORMAL_TAIL": 15
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -1953,7 +1964,7 @@
     {
       "clause": "U01.1",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition.",
       "claimed_scope": "",
@@ -1985,11 +1996,9 @@
         "Learning.lean:121"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U01 residual closure: LearningFiniteClass20261027 derives the actual iid sample-mean bound with sqrt(log(2M/delta)/(2n)) and the data-selected approximate ERM oracle for a fixed nonempty finite class. LearningRisk20261027 proves the three-part representation/head/estimation decomposition and the collapsed-representation half-gap counterexample. LearningERM20261027 separately consumes the oracle for its actual minimizer. Exact residual evidence: docs/formal-release/evidence/u01-debt-close-20261027. Sampling, common loss and population premises remain explicit; an adaptive class enlargement is not covered. This does not close all U00 obligations.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U01_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2003,39 +2012,32 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition",
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound",
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap",
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap",
+          "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+          "JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform",
+          "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform",
+          "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm"
+        ]
       }
     },
     {
       "clause": "U01.2",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain.",
       "claimed_scope": "",
@@ -2072,11 +2074,9 @@
         "Probability.lean:28"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U01 residual closure: LearningBridge20261027 integrates the same measurable [0,1] loss under a probability measure and proves the classification event inclusion. Random label and bridge upper bounds combine by a union bound without an independence assumption. Each bound must satisfy its own failure budget; a point estimate is not that premise. Exact evidence: docs/formal-release/evidence/u01-debt-close-20261027. This neither changes the loss nor certifies the target's legal truth.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U01_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2090,39 +2090,26 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge",
+          "JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge",
+          "JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget"
+        ]
       }
     },
     {
       "clause": "U01.3",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support.",
       "claimed_scope": "",
@@ -2143,11 +2130,9 @@
         "Probability.lean:89"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U01 residual closure: LearningBridge20261027 defines TV by measurable event differences on the full joint task space, derives the general measurable [0,1]-loss integral bound by layer cake in both directions, and applies it to every member of a model class. Exact evidence: docs/formal-release/evidence/u01-debt-close-20261027. No finite-support reduction, marginal-only TV, estimated TV certificate or unsupported-domain validity is substituted for the original theorem.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U01_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2161,33 +2146,19 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv",
+          "JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv"
+        ]
       }
     },
     {

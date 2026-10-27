@@ -77,7 +77,7 @@ theorem successful_binding_reads_actual_rows (view : ExtractedView) (index : Nat
   | some b =>
       simp only [bindPayment, selected] at success
       split at success
-      next valid => cases success; exact ⟨selected, valid⟩
+      next valid => cases success; exact ⟨rfl, valid⟩
       next invalid => cases success
 
 theorem deterministic_binding_data_unique (view : ExtractedView) (index : Nat)
@@ -86,9 +86,11 @@ theorem deterministic_binding_data_unique (view : ExtractedView) (index : Nat)
     (hr : bindPayment view index = .known right) : left = right :=
   Result.known.inj (hl.symm.trans hr)
 
-def debtFields (d : FullDebt) :=
-  (d.item.ident, d.item.kind, d.item.basis, d.item.beneficiary, d.item.status,
-    d.item.amount, d.debtRel, d.obligor, d.unit)
+def sameDebt (left right : FullDebt) : Bool :=
+  decide (left.item.ident = right.item.ident ∧ left.item.kind = right.item.kind ∧
+    left.item.basis = right.item.basis ∧ left.item.beneficiary = right.item.beneficiary ∧
+    left.item.status = right.item.status ∧ left.item.amount = right.item.amount ∧
+    left.debtRel = right.debtRel ∧ left.obligor = right.obligor ∧ left.unit = right.unit)
 
 def initialRelations (view : ExtractedView) : InstitutionalEffects.Ledger RelationId :=
   view.decoded.initialHistory.filterMap fun h => match h.value with
@@ -187,7 +189,7 @@ theorem two_payments_balance_and_cash (view : ExtractedView) (first second : Bou
   let formed := (buildStages view first second source relation).afterFormation.state
   have initial : Ledger.Conserves formed := by
     dsimp [formed, buildStages, initialStage, formStage, Ledger.Conserves, Ledger.balance]
-    exact ⟨nonnegative, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, by ring, rfl⟩
+    exact ⟨nonnegative, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, le_rfl, by ring, by norm_num⟩
   have cash : Ledger.CashConsistent formed := by rfl
   have conserved := Ledger.u09_1_quantity_conservation
     (Ledger.performance formed first.payment.value.payload) second.payment.value.payload
@@ -196,7 +198,7 @@ theorem two_payments_balance_and_cash (view : ExtractedView) (first second : Bou
     (Ledger.performance_cash_consistent _ _ cash)⟩
   have clamp := Ledger.u09_1_afterPayments_clamp formed
     [first.payment.value.payload, second.payment.value.payload] nonnegative
-    (by intro p hp; simp only [List.mem_cons, List.mem_singleton] at hp
+    (by intro p hp; simp only [List.mem_cons, List.not_mem_nil, or_false] at hp
         rcases hp with rfl | rfl; exact payOne; exact payTwo)
   simpa [Ledger.afterPayments, buildStages, payStage, formed, formStage, initialStage,
     Ledger.balance] using clamp
@@ -215,7 +217,7 @@ def frameFromBindings (view : ExtractedView) (first second : BoundPayment) : Res
       match formation.value with
       | .formation source relation =>
           if source = formation.citation.source ∧ relation = first.debt.value.debtRel ∧
-              debtFields first.debt.value = debtFields second.debt.value ∧
+              sameDebt first.debt.value second.debt.value = true ∧
               first.relation.value = second.relation.value ∧
               first.payment.value.key ≠ second.payment.value.key ∧
               first.payment.value.payload.cashId ≠ second.payment.value.payload.cashId then
@@ -281,6 +283,32 @@ theorem public_consumer_reads_actual_extraction (material : MaterialSnapshot) (b
       have stages : stagesFromView view = .known out := by simpa only [sourceStages, extracted] using accepted
       have same := (accepted_view_binds_both_actual_payments view out stages).1
       exact ⟨by simpa only [same] using extracted, by simpa only [same] using stages⟩
+
+theorem successful_source_stages_conserve (material : MaterialSnapshot) (branch : Nat)
+    (catalog : List InterpretationRow) (out : SourceFrame)
+    (accepted : sourceStages material branch catalog = .known out) :
+    Ledger.balance out.stages.afterSecond.state =
+      max (out.first.relation.value.amount.value -
+        (out.first.payment.value.payload.amount.value + out.second.payment.value.payload.amount.value)) 0 ∧
+    Ledger.Conserves out.stages.afterSecond.state ∧ Ledger.CashConsistent out.stages.afterSecond.state ∧
+    out.stages.afterSecond.quantity.item.amount = Ledger.balance out.stages.afterSecond.state := by
+  have flow := public_consumer_reads_actual_extraction _ _ _ _ accepted
+  have bindings := accepted_view_binds_both_actual_payments out.source out flow.2
+  have firstChecks := (successful_binding_reads_actual_rows _ _ _ bindings.2.1).2
+  have secondChecks := (successful_binding_reads_actual_rows _ _ _ bindings.2.2.1).2
+  rcases firstChecks with ⟨_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, amount, debtNonneg, payOne⟩
+  rcases secondChecks with ⟨_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, payTwo⟩
+  have amountValue := congrArg Amount.value amount
+  have nonneg : 0 ≤ out.first.relation.value.amount.value := by
+    rw [amountValue]
+    exact debtNonneg
+  rw [bindings.2.2.2]
+  have conserved := two_payments_balance_and_cash out.source out.first out.second
+    out.formationSource out.formationRelation nonneg payOne payTwo
+  refine ⟨conserved.1, conserved.2.1, conserved.2.2, ?_⟩
+  apply scalar_and_item_projections_commute
+  apply scalar_and_item_projections_commute
+  simpa only [buildStages, formStage, initialStage, Ledger.balance] using amountValue.symm
 
 -- A dependent tuple and independent local witnesses are equivalent by choice;
 -- a common semantic fiber requires the additional, explicit base agreement.

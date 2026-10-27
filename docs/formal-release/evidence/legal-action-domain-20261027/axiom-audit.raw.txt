@@ -1,0 +1,306 @@
+JurisLean.Candidates.LegalActionDomain20261027.meaning_row_binds_full_instructions {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S)
+  (g : JurisLean.Candidates.Final20261021.Gamma) (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (row : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning) :
+  row ∈ JurisLean.Candidates.LegalActionDomain20261027.meaningRows model g proposal ↔
+    row ∈ model.meanings ∧
+      row.gamma = g ∧
+        row.checkerVersion = model.checkerVersion ∧ row.actionId = proposal.quote.id ∧ row.steps = proposal.steps
+
+'JurisLean.Candidates.LegalActionDomain20261027.meaning_row_binds_full_instructions' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.finite_row_checks_every_world_and_successor {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (row : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning) (worlds : List W) :
+  JurisLean.Candidates.LegalActionDomain20261027.rowSafe model truth before row worlds = true ↔
+    ∀ w ∈ worlds,
+      (∀ atom ∈ row.permissionAtoms, truth w atom = true) ∧
+        model.successors row.gamma w before row.steps ≠ [] ∧
+          ∀ after ∈ model.successors row.gamma w before row.steps, model.invariant row.gamma w after = true
+
+'JurisLean.Candidates.LegalActionDomain20261027.finite_row_checks_every_world_and_successor' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.accepted_meaning_has_nonempty_worlds_and_required_closure {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (row : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning) (worlds : List W)
+  (procedure : JurisLean.Candidates.Final20261021.Procedure)
+  (accepted :
+    JurisLean.Candidates.LegalActionDomain20261027.checkMeaning model truth before row worlds procedure =
+      JurisLean.Candidates.Final20261021.Result.known true) :
+  worlds ≠ [] ∧
+    (row.requiresClosed = true → procedure = JurisLean.Candidates.Final20261021.Procedure.closedLawfully) ∧
+      JurisLean.Candidates.LegalActionDomain20261027.rowSafe model truth before row worlds = true
+
+'JurisLean.Candidates.LegalActionDomain20261027.accepted_meaning_has_nonempty_worlds_and_required_closure' depends on axioms: [propext]
+
+JurisLean.Candidates.LegalActionDomain20261027.branch_acceptance_uses_actual_worlds_and_unique_meaning {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (report : JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)
+  (accepted :
+    JurisLean.Candidates.LegalActionDomain20261027.checkBranch model truth before proposal report =
+      JurisLean.Candidates.Final20261021.Result.known true) :
+  ∃ view procedure row,
+    report.worldView = JurisLean.Candidates.Final20261021.Result.known view ∧
+      report.procedure = JurisLean.Candidates.Final20261021.Result.known procedure ∧
+        JurisLean.Candidates.LegalActionDomain20261027.meaningRows model report.bound.source.material.gamma proposal =
+            [row] ∧
+          JurisLean.Candidates.LegalActionDomain20261027.checkMeaning model truth before row view.possibleWorlds
+              procedure =
+            JurisLean.Candidates.Final20261021.Result.known true
+
+'JurisLean.Candidates.LegalActionDomain20261027.branch_acceptance_uses_actual_worlds_and_unique_meaning' depends on axioms: [propext]
+
+JurisLean.Candidates.LegalActionDomain20261027.acceptance_binds_proposal_and_every_branch {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (branches :
+    List
+      (ℕ ×
+        JurisLean.Candidates.Final20261021.Result
+          (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)))
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal) :
+  JurisLean.Candidates.LegalActionDomain20261027.accepts model truth before g branches proposal = true ↔
+    (proposal.quote.gamma = g ∧
+        JurisLean.Candidates.DecisionTrajectoryConsumer20261027.paymentPayloads proposal.steps =
+          proposal.quote.execution) ∧
+      branches ≠ [] ∧
+        ∀ branch ∈ branches,
+          JurisLean.Candidates.LegalActionDomain20261027.branchCheck model truth before proposal branch.2 =
+            JurisLean.Candidates.Final20261021.Result.known true
+
+'JurisLean.Candidates.LegalActionDomain20261027.acceptance_binds_proposal_and_every_branch' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.accepted_actual_branch_step_preserves_declared_invariant {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before after : S)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (report : JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W) (actual : W)
+  (view : JurisLean.Candidates.EvidenceWorlds20261027.EvidenceView W)
+  (procedure : JurisLean.Candidates.Final20261021.Procedure)
+  (row : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (accepted :
+    JurisLean.Candidates.LegalActionDomain20261027.checkBranch model truth before proposal report =
+      JurisLean.Candidates.Final20261021.Result.known true)
+  (worldResult : report.worldView = JurisLean.Candidates.Final20261021.Result.known view)
+  (processResult : report.procedure = JurisLean.Candidates.Final20261021.Result.known procedure)
+  (meaning :
+    JurisLean.Candidates.LegalActionDomain20261027.meaningRows model report.bound.source.material.gamma proposal =
+      [row])
+  (actualWorld : actual ∈ view.possibleWorlds)
+  (actualStep : after ∈ model.successors row.gamma actual before row.steps) :
+  (∀ atom ∈ row.permissionAtoms, truth actual atom = true) ∧ model.invariant row.gamma actual after = true
+
+'JurisLean.Candidates.LegalActionDomain20261027.accepted_actual_branch_step_preserves_declared_invariant' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.unresolved_branch_cannot_be_silently_removed {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (branches :
+    List
+      (ℕ ×
+        JurisLean.Candidates.Final20261021.Result
+          (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)))
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal) (key : ℕ)
+  (e : JurisLean.Candidates.Final20261021.Error)
+  (pending : (key, JurisLean.Candidates.Final20261021.Result.unknown e) ∈ branches) :
+  JurisLean.Candidates.LegalActionDomain20261027.accepts model truth before g branches proposal ≠ true
+
+'JurisLean.Candidates.LegalActionDomain20261027.unresolved_branch_cannot_be_silently_removed' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.legal_domain_is_exact_filter_not_a_generator {W S : Type}
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (truth : W → ℕ → Bool) (before : S)
+  (g : JurisLean.Candidates.Final20261021.Gamma)
+  (branches :
+    List
+      (ℕ ×
+        JurisLean.Candidates.Final20261021.Result
+          (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)))
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal) :
+  proposal ∈ JurisLean.Candidates.LegalActionDomain20261027.allowedProposals model truth before g branches proposals ↔
+    proposal ∈ proposals ∧
+      JurisLean.Candidates.LegalActionDomain20261027.accepts model truth before g branches proposal = true
+
+'JurisLean.Candidates.LegalActionDomain20261027.legal_domain_is_exact_filter_not_a_generator' depends on axioms: [propext]
+
+JurisLean.Candidates.LegalActionDomain20261027.domain_consumes_actual_validator {W S : Type}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model : JurisLean.Candidates.LegalActionDomain20261027.ActionModel W S) (before : S)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (included : proposal ∈ (JurisLean.Candidates.LegalActionDomain20261027.review input model before proposals).allowed) :
+  ∃ branches,
+    input.inspect = JurisLean.Candidates.Final20261021.Result.known branches ∧
+      proposal ∈ proposals ∧
+        JurisLean.Candidates.LegalActionDomain20261027.accepts model input.truth before input.anchor.gamma branches
+            proposal =
+          true
+
+'JurisLean.Candidates.LegalActionDomain20261027.domain_consumes_actual_validator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.selected_plan_was_approved_and_reproduces_the_decision {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (chosen :
+    JurisLean.Candidates.LegalActionDomain20261027.selectPlan request utility selected proposals = some proposal) :
+  proposal ∈ proposals ∧
+    JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility selected.probability
+        proposal.quote =
+      JurisLean.Candidates.Final20261021.Result.known selected
+
+'JurisLean.Candidates.LegalActionDomain20261027.selected_plan_was_approved_and_reproduces_the_decision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.no_selected_plan_preserves_all_business_state {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (decision :
+    JurisLean.Candidates.Final20261021.Result
+      (JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m))
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (noneSelected :
+    (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+          initial).proposal =
+      none) :
+  (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+            initial).payment.current =
+      some initial ∧
+    (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+            initial).payment.outcomes =
+      []
+
+'JurisLean.Candidates.LegalActionDomain20261027.no_selected_plan_preserves_all_business_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.chosen_execution_uses_the_entire_approved_instruction_list {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (decision :
+    JurisLean.Candidates.Final20261021.Result
+      (JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m))
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (chosen :
+    (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+          initial).proposal =
+      some proposal) :
+  ∃ selected,
+    decision = JurisLean.Candidates.Final20261021.Result.known selected ∧
+      proposal ∈ proposals ∧
+        JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility selected.probability
+              proposal.quote =
+            JurisLean.Candidates.Final20261021.Result.known selected ∧
+          (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+                initial).payment =
+            JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial
+              proposal.steps
+
+'JurisLean.Candidates.LegalActionDomain20261027.chosen_execution_uses_the_entire_approved_instruction_list' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.execution_choice_preserves_reported_state_invariant {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (decision :
+    JurisLean.Candidates.Final20261021.Result
+      (JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m))
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (reported :
+    (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals decision grants
+            initial).payment.current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final
+
+'JurisLean.Candidates.LegalActionDomain20261027.execution_choice_preserves_reported_state_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.complete_consumer_choice_has_actual_legal_validation {W : Type}
+  {m n k : ℕ} (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model :
+    JurisLean.Candidates.LegalActionDomain20261027.ActionModel W JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool) (radius : ℚ)
+  (exponent : ℕ) (supported : Bool) (utility : ℚ → ℚ)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (chosen :
+    (JurisLean.Candidates.LegalActionDomain20261027.runLegalDecision input model proposals request sampleProtocol loss
+            models training calibration radius exponent supported utility grants initial).execution.proposal =
+      some proposal) :
+  ∃ branches,
+    input.inspect = JurisLean.Candidates.Final20261021.Result.known branches ∧
+      proposal ∈ proposals ∧
+        JurisLean.Candidates.LegalActionDomain20261027.accepts model input.truth initial input.anchor.gamma branches
+            proposal =
+          true
+
+'JurisLean.Candidates.LegalActionDomain20261027.complete_consumer_choice_has_actual_legal_validation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.indistinguishable_permission_prevents_sound_and_complete {S O A : Type}
+  (observe : S → O) (admissible : S → A → Prop) (gate : O → A → Bool) (s t : S) (a : A) (same : observe s = observe t)
+  (allowed : admissible s a) (forbidden : ¬admissible t a)
+  (sound : ∀ (state : S) (action : A), gate (observe state) action = true → admissible state action)
+  (complete : ∀ (state : S) (action : A), admissible state action → gate (observe state) action = true) : False
+
+'JurisLean.Candidates.LegalActionDomain20261027.indistinguishable_permission_prevents_sound_and_complete' does not depend on any axioms
+
+JurisLean.Candidates.LegalActionDomain20261027.pure_filter_cannot_offer_an_unproposed_action {A : Type} (candidate : A)
+  (proposals : List A) (safe : A → Bool) (absent : candidate ∉ proposals) : candidate ∉ List.filter safe proposals
+
+'JurisLean.Candidates.LegalActionDomain20261027.pure_filter_cannot_offer_an_unproposed_action' depends on axioms: [propext]
+
+JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown :
+  JurisLean.Candidates.LegalActionDomain20261027.rateReport 0 0 0 0 =
+    (JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.notIdentified,
+      JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.notIdentified)
+
+'JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LegalActionDomain20261027.Audit.schema_correct_can_be_normatively_forbidden :
+  (fun x => true) 1 = true ∧ ¬1 ≤ 0
+
+'JurisLean.Candidates.LegalActionDomain20261027.Audit.schema_correct_can_be_normatively_forbidden' does not depend on any axioms
+
+JurisLean.Candidates.LegalActionDomain20261027.Audit.checked_action_is_not_a_substituted_execution : 1 ≤ 1 ∧ ¬2 ≤ 1
+
+'JurisLean.Candidates.LegalActionDomain20261027.Audit.checked_action_is_not_a_substituted_execution' does not depend on any axioms
+
+JurisLean.Candidates.LegalActionDomain20261027.Audit.two_standalone_steps_need_the_actual_intermediate_state :
+  1 ≤ 1 ∧ 1 ≤ 1 ∧ ¬1 + 1 ≤ 1
+
+'JurisLean.Candidates.LegalActionDomain20261027.Audit.two_standalone_steps_need_the_actual_intermediate_state' does not depend on any axioms
+
+JurisLean.Candidates.LegalActionDomain20261027.Audit.inaction_does_not_remove_deadline_loss : 0 ≤ 1 ∧ ¬0 + 2 ≤ 1
+
+'JurisLean.Candidates.LegalActionDomain20261027.Audit.inaction_does_not_remove_deadline_loss' does not depend on any axioms
+
+JurisLean.Candidates.LegalActionDomain20261027.Audit.syntax_and_proof_do_not_establish_external_fact_fidelity :
+  (fun fact => fact) true = true ∧ false ≠ true
+
+'JurisLean.Candidates.LegalActionDomain20261027.Audit.syntax_and_proof_do_not_establish_external_fact_fidelity' does not depend on any axioms

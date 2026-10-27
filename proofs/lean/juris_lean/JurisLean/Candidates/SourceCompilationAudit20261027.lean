@@ -47,7 +47,7 @@ def sourceCompileCatalog : List InterpretationRow := [⟨sourceCompileMaterial, 
 def sourceCompileRule : RuleUse := ⟨50, 8, ⟨[1], 2⟩⟩
 def sourceCompileNodes : List Node :=
   [.leaf ⟨⟨1⟩, 0, 7, 1⟩, .fire sourceCompileRule [0]]
-def sourceCompileRun (material : MaterialSnapshot) (catalog : List InterpretationRow) :=
+def sourceCompileRun (material : MaterialSnapshot) (catalog : List InterpretationRow) : Result CompiledView :=
   compileView material 0 catalog [sourceCompileRule] (fun _ _ => true) sourceCompileNodes 1 2
 def extractionKnown (result : Result ExtractedView) : Bool :=
   match result with
@@ -58,12 +58,12 @@ def extractionKnown (result : Result ExtractedView) : Bool :=
 #guard_msgs in
 #eval match sourceCompileRun sourceCompileMaterial sourceCompileCatalog with
   | .known out => decide (out.evidence.atom = 2 ∧ 2 ∈ out.closure ∧
-      out.evidence.leaves = [⟨⟨1⟩, 0, 7, 1⟩] ∧
+      out.evidence.leaves = [(⟨⟨1⟩, 0, 7, 1⟩ : Leaf)] ∧
       (recordOf out.source).claimedAmount = 3 ∧ (recordOf out.source).registered = true ∧
-      out.source.decoded.payments.map (fun p => p.value.payload.amount.value) = [7] ∧
-      out.source.decoded.ledger.map (fun d => d.value.item.amount) = [10] ∧
+      out.source.decoded.payments.map (fun (p : Quoted FullPayment) => p.value.payload.amount.value) = [7] ∧
+      out.source.decoded.ledger.map (fun (d : Quoted FullDebt) => d.value.item.amount) = [10] ∧
       out.source.decoded.historyEvents.map Quoted.value =
-        [.formation ⟨1⟩ ⟨9⟩, .payment ⟨1⟩ ⟨10⟩])
+        [SourceHistory.formation ⟨1⟩ ⟨9⟩, SourceHistory.payment ⟨1⟩ ⟨10⟩])
   | _ => false
 
 /-- info: true -/

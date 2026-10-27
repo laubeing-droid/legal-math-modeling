@@ -1,0 +1,123 @@
+JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (population event : Set Ω)
+  (rate : ℝ)
+  (reported :
+    JurisLean.Candidates.HarnessRisk20261027.eventRate μ population event =
+      JurisLean.Candidates.Final20261021.Result.known rate) :
+  0 ≤ rate ∧ rate ≤ 1
+'JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) (population event : Set Ω) (emptyMass : μ.real population = 0) :
+  JurisLean.Candidates.HarnessRisk20261027.eventRate μ population event =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.notIdentified
+'JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (past : MeasurableSpace Ω) (information : past ≤ m₀) (bad : Set Ω) (measurable : MeasurableSet bad) (budget : Ω → ℝ)
+  (integrable : MeasureTheory.Integrable budget μ)
+  (conditional : ∀ᵐ (w : Ω) ∂μ, μ[bad.indicator fun x => 1 | past] w ≤ budget w) : μ.real bad ≤ ∫ (w : Ω), budget w ∂μ
+'JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal.{u_1} {Ω : Type u_1}
+  [m₀ : MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (past : MeasurableSpace Ω) (information : past ≤ m₀) (bad : Set Ω) (measurable : MeasurableSet bad) (δ : ℝ)
+  (conditional : ∀ᵐ (w : Ω) ∂μ, μ[bad.indicator fun x => 1 | past] w ≤ δ) : μ.real bad ≤ δ
+'JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (attempts : Finset I)
+  (past : I → MeasurableSpace Ω) (information : ∀ (t : I), past t ≤ m₀) (bad : I → Set Ω)
+  (measurable : ∀ (t : I), MeasurableSet (bad t)) (δ : I → ℝ)
+  (conditional : ∀ t ∈ attempts, ∀ᵐ (w : Ω) ∂μ, μ[(bad t).indicator fun x => 1 | past t] w ≤ δ t) :
+  μ.real (⋃ t ∈ attempts, bad t) ≤ ∑ t ∈ attempts, δ t
+'JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (attempts : Finset I)
+  (past : I → MeasurableSpace Ω) (information : ∀ (t : I), past t ≤ m₀) (bad : I → Set Ω)
+  (measurable : ∀ (t : I), MeasurableSet (bad t)) (budget : I → Ω → ℝ)
+  (integrable : ∀ (t : I), MeasureTheory.Integrable (budget t) μ)
+  (conditional : ∀ t ∈ attempts, ∀ᵐ (w : Ω) ∂μ, μ[(bad t).indicator fun x => 1 | past t] w ≤ budget t w) :
+  μ.real (⋃ t ∈ attempts, bad t) ≤ ∫ (w : Ω), ∑ t ∈ attempts, budget t w ∂μ
+'JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.countable_summable_risk_budget.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (bad : ℕ → Set Ω) (δ : ℕ → ℝ)
+  (nonnegative : ∀ (t : ℕ), 0 ≤ δ t) (summable : Summable δ) (marginal : ∀ (t : ℕ), μ.real (bad t) ≤ δ t) :
+  μ.real (⋃ t, bad t) ≤ ∑' (t : ℕ), δ t
+'JurisLean.Candidates.HarnessRisk20261027.countable_summable_risk_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget.{u_1} {Ω : Type u_1} [m₀ : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (past : ℕ → MeasurableSpace Ω)
+  (information : ∀ (t : ℕ), past t ≤ m₀) (bad : ℕ → Set Ω) (measurable : ∀ (t : ℕ), MeasurableSet (bad t)) (δ : ℕ → ℝ)
+  (nonnegative : ∀ (t : ℕ), 0 ≤ δ t) (summable : Summable δ)
+  (conditional : ∀ (t : ℕ), ∀ᵐ (w : Ω) ∂μ, μ[(bad t).indicator fun x => 1 | past t] w ≤ δ t) :
+  μ.real (⋃ t, bad t) ≤ ∑' (t : ℕ), δ t
+'JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.bernoulli_coordinates_are_independent (p : NNReal) (hp : p ≤ 1) :
+  ProbabilityTheory.iIndepFun (fun t path => path t) (JurisLean.Candidates.HarnessRisk20261027.bernoulliPaths p hp)
+'JurisLean.Candidates.HarnessRisk20261027.bernoulli_coordinates_are_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.bernoulli_cylinder_probability (p : NNReal) (hp : p ≤ 1) (times : Finset ℕ)
+  (b : Bool) :
+  (JurisLean.Candidates.HarnessRisk20261027.bernoulliPaths p hp) ((↑times).pi fun x => {b}) =
+    (if b = true then ↑p else ↑(1 - p)) ^ times.card
+'JurisLean.Candidates.HarnessRisk20261027.bernoulli_cylinder_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.bernoulli_one_attempt_risk (p : NNReal) (hp : p ≤ 1) (t : ℕ) :
+  (JurisLean.Candidates.HarnessRisk20261027.bernoulliPaths p hp).real
+      (JurisLean.Candidates.HarnessRisk20261027.failureAt t) =
+    ↑p
+'JurisLean.Candidates.HarnessRisk20261027.bernoulli_one_attempt_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.no_failure_is_the_false_cylinder (T : ℕ) :
+  (⋃ t ∈ Finset.range T, JurisLean.Candidates.HarnessRisk20261027.failureAt t)ᶜ =
+    (↑(Finset.range T)).pi fun x => {false}
+'JurisLean.Candidates.HarnessRisk20261027.no_failure_is_the_false_cylinder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates (p : NNReal) (hp : p ≤ 1) (T : ℕ) :
+  (JurisLean.Candidates.HarnessRisk20261027.bernoulliPaths p hp).real
+      (⋃ t ∈ Finset.range T, JurisLean.Candidates.HarnessRisk20261027.failureAt t) =
+    1 - (1 - ↑p) ^ T
+'JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit (p : NNReal)
+  (hp : p ≤ 1) (positive : 0 < p) :
+  Filter.Tendsto
+    (fun T =>
+      (JurisLean.Candidates.HarnessRisk20261027.bernoulliPaths p hp).real
+        (⋃ t ∈ Finset.range T, JurisLean.Candidates.HarnessRisk20261027.failureAt t))
+    Filter.atTop (nhds 1)
+'JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.two_attempts_are_not_one_budget (δ : ℚ) (positive : 0 < δ) : δ < δ + δ
+'JurisLean.Candidates.HarnessRisk20261027.two_attempts_are_not_one_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.Audit.resetting_the_per_attempt_number_is_not_a_total_bound (δ : ℝ)
+  (positive : 0 < δ) (belowOne : δ < 1) : δ < 1 - (1 - δ) ^ 2
+'JurisLean.Candidates.HarnessRisk20261027.Audit.resetting_the_per_attempt_number_is_not_a_total_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.HarnessRisk20261027.Audit.ten_percent_each_is_nineteen_percent_after_two :
+  1 - (1 - 1 / 10) ^ 2 = 19 / 100 ∧ 1 / 10 < 19 / 100
+'JurisLean.Candidates.HarnessRisk20261027.Audit.ten_percent_each_is_nineteen_percent_after_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,66 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "6cb49e5c1bd18aa00ad67a69f8446ee74befb361",
+  "run_id": 40506874977,
+  "job_id": 122198322720,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
+  "named_count": 9,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity",
+    "JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions",
+    "JurisLean.Candidates.SourceAction20261027.instruction_payloads_are_source_rows_in_call_order",
+    "JurisLean.Candidates.SourceAction20261027.bound_plan_preserves_entire_quote_and_source_instructions",
+    "JurisLean.Candidates.SourceAction20261027.usable_plan_has_an_actual_source_spec",
+    "JurisLean.Candidates.SourceAction20261027.source_run_keeps_inspection_even_on_failure",
+    "JurisLean.Candidates.SourceAction20261027.completed_run_consumes_actual_opening_and_plans",
+    "JurisLean.Candidates.SourceAction20261027.selected_source_plan_has_actual_spec_and_legal_validation",
+    "JurisLean.Candidates.SourceAction20261027.source_episode_and_finite_continuation_preserve_invariants"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceAction20261027.lean",
+      "sha256": "9d23a0af70eb7f18c762bf0af53a35dea96dcd2a597dcd74211181bebfb72d2c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
+      "sha256": "440e61821eedb452169ab65eb452f5b6f39bca352af02768f01a9cb3fd4841a7"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "Classical.choice": 5,
+      "Quot.sound": 9,
+      "propext": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "15 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

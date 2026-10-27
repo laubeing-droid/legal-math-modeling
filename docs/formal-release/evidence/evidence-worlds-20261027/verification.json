@@ -1,0 +1,78 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "2cf77d06d6047b3dc04395f3eb0ef5dbe6570313",
+  "run_id": 40474394071,
+  "job_id": 122088971259,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+  "named_count": 20,
+  "named_theorems_full": [
+    "JurisLean.Candidates.EvidenceWorlds20261027.constrained_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.additional_constraints_only_remove_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.faithful_evidence_retains_actual_world",
+    "JurisLean.Candidates.EvidenceWorlds20261027.all_positive_and_negative_iff_empty",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_incompatible_iff_empty",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_supported_iff_nonempty_universal",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_opposed_iff_nonempty_universal",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_insufficient_iff_both_possibilities",
+    "JurisLean.Candidates.EvidenceWorlds20261027.supported_world_judgment_needs_actual_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.source_to_world_truth_is_conditional",
+    "JurisLean.Candidates.EvidenceWorlds20261027.output_world_label_reads_actual_filtered_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.adding_evidence_is_monotone_in_information_bits",
+    "JurisLean.Candidates.EvidenceWorlds20261027.compatible_pair_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.filtering_never_invents_legal_world_pair",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.credible_but_inadmissible_has_no_constraint",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.opposing_usable_directions_empty_classical_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.adding_credible_evidence_can_destroy_determinacy",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.admissible_is_not_source_truth",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.actual_world_coverage_is_necessary",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.marginal_coordinates_do_not_justify_cartesian_completion"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
+      "sha256": "ee352c1e1a1d77e83b1ce69a9f975cf77946f3274c081b9e20b083a943ad5249"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+      "sha256": "592ede304d73fb6134e909858030b85f56a0d7b42af7bee52cfcb7909b1dde78"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 20,
+    "axiom_vocabulary": {
+      "Classical.choice": 1,
+      "Quot.sound": 15,
+      "propext": 17
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "16 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

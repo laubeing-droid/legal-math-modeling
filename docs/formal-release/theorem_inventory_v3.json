@@ -13190,6 +13190,234 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "LegalObject"
+    },
+    {
+     "kind": "structure",
+     "name": "Fragment"
+    },
+    {
+     "kind": "structure",
+     "name": "MaterialSnapshot"
+    },
+    {
+     "kind": "structure",
+     "name": "Citation"
+    },
+    {
+     "kind": "structure",
+     "name": "Quoted"
+    },
+    {
+     "kind": "structure",
+     "name": "FullDebt"
+    },
+    {
+     "kind": "structure",
+     "name": "FullPayment"
+    },
+    {
+     "kind": "inductive",
+     "name": "SourceHistory"
+    },
+    {
+     "kind": "structure",
+     "name": "ConsumedView"
+    },
+    {
+     "kind": "def",
+     "name": "citations"
+    },
+    {
+     "kind": "def",
+     "name": "citationPresent"
+    },
+    {
+     "kind": "def",
+     "name": "resolve"
+    },
+    {
+     "kind": "def",
+     "name": "viewChecks"
+    },
+    {
+     "kind": "structure",
+     "name": "InterpretationRow"
+    },
+    {
+     "kind": "structure",
+     "name": "ExtractedView"
+    },
+    {
+     "kind": "def",
+     "name": "matchingRows"
+    },
+    {
+     "kind": "def",
+     "name": "extractView"
+    },
+    {
+     "kind": "theorem",
+     "name": "extracted_view_is_exact_selected_payload"
+    },
+    {
+     "kind": "def",
+     "name": "recordOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_record_observations"
+    },
+    {
+     "kind": "theorem",
+     "name": "extracted_observed_reference_resolves"
+    },
+    {
+     "kind": "def",
+     "name": "leafOf"
+    },
+    {
+     "kind": "def",
+     "name": "extractedLeaves"
+    },
+    {
+     "kind": "def",
+     "name": "leafCheck"
+    },
+    {
+     "kind": "theorem",
+     "name": "accepted_leaf_has_actual_source"
+    },
+    {
+     "kind": "structure",
+     "name": "CompiledView"
+    },
+    {
+     "kind": "def",
+     "name": "compileView"
+    },
+    {
+     "kind": "theorem",
+     "name": "compiler_reads_actual_extracted_output"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_compilation_enters_finite_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "interpreted_material_to_query"
+    },
+    {
+     "kind": "def",
+     "name": "compiled"
+    },
+    {
+     "kind": "def",
+     "name": "robustCompiled"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_compilation_retains_every_branch"
+    },
+    {
+     "kind": "def",
+     "name": "compileBranches"
+    },
+    {
+     "kind": "theorem",
+     "name": "successful_family_does_not_drop_unknown"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CompilerProvenance20261027",
+    "JurisLean.Seams.UnifiedNeedlesS0S1",
+    "JurisLean.Seams.UnifiedQuantLedger"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+   "size_bytes": 15083,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "sourceCompileGamma"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileTag"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileMaterial"
+    },
+    {
+     "kind": "def",
+     "name": "quotedSource"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompilePayment"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileView"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileCatalog"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileRule"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileNodes"
+    },
+    {
+     "kind": "def",
+     "name": "sourceCompileRun"
+    },
+    {
+     "kind": "def",
+     "name": "extractionKnown"
+    },
+    {
+     "kind": "def",
+     "name": "primitivePaymentMeaning"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SourceCompilation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.SourceCompilation20261027.accepted_leaf_has_actual_source",
+    "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+    "JurisLean.Candidates.SourceCompilation20261027.actual_record_observations",
+    "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+    "JurisLean.Candidates.SourceCompilation20261027.extracted_observed_reference_resolves",
+    "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+    "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+    "JurisLean.Candidates.SourceCompilation20261027.robust_compilation_retains_every_branch",
+    "JurisLean.Candidates.SourceCompilation20261027.successful_family_does_not_drop_unknown"
+   ],
+   "sha256": "9d38f530ffb9fb3078ac92f9a646e4181b0268e55da7fc3b8b9282a71f53e6fa",
+   "size_bytes": 8241,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "interpreted_same_symmetric"
     },
@@ -53325,6 +53553,7 @@
     "JurisLean.Candidates.ProtectedFeedback20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
     "JurisLean.Candidates.SelectiveCalibration20261027",
+    "JurisLean.Candidates.SourceCompilation20261027",
     "JurisLean.Candidates.SourceRepresentation20261027",
     "JurisLean.Candidates.ValidatedFeedbackLoad20261027",
     "JurisLean.CanonicalSerialization",
@@ -53549,8 +53778,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "afffce0077046257fc393392d7582baad3f4e505e596bcc0df5fe64c51d0b087",
-   "size_bytes": 12415,
+   "sha256": "c7eb7f9b9d02cf1782a52dd5fe23e733a96007eb5bec38b84a72e5e956a3927e",
+   "size_bytes": 12469,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -53714,22 +53943,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5849,
-   "file_count": 449,
+   "counted_declaration_count": 5858,
+   "file_count": 451,
    "lemma_count": 146,
-   "print_axioms_command_count": 4719,
-   "print_axioms_distinct_targets": 4632,
-   "theorem_count": 5703,
-   "theorem_count_bol_convention": 5603
+   "print_axioms_command_count": 4728,
+   "print_axioms_distinct_targets": 4641,
+   "theorem_count": 5712,
+   "theorem_count_bol_convention": 5612
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5830,
-   "file_count": 434,
+   "counted_declaration_count": 5839,
+   "file_count": 436,
    "lemma_count": 139,
-   "print_axioms_command_count": 4719,
-   "print_axioms_distinct_targets": 4632,
-   "theorem_count": 5691,
-   "theorem_count_bol_convention": 5591
+   "print_axioms_command_count": 4728,
+   "print_axioms_distinct_targets": 4641,
+   "theorem_count": 5700,
+   "theorem_count_bol_convention": 5600
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -53862,6 +54091,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
@@ -54309,6 +54540,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
@@ -54669,17 +54902,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "06f6c9d77fe4eba24a4806197bd421342f54f43c4df5159b137647c958acc4b1",
+ "source_inventory_digest": "c85f565d967a7b5988d5d17cc9f9cf831b875ceba298968233ad74faa5d55143",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/measured-policy-20261027",
-  "commit": "63790cb2be111e2dd68a2f061cdd4d1994d6d9ed",
-  "tree": "e4df5c91c07bdb0e299993d615ab73879f2766d0"
+  "branch": "formal/source-compilation-20261027",
+  "commit": "af98b91d5797d0b7c37962093ad40cdedac28cbc",
+  "tree": "fb1173329462332c69db4ed894c55d5e60eb9ff1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 449,
+  "files_total": 451,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

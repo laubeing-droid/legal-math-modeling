@@ -1,0 +1,65 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "6cb49e5c1bd18aa00ad67a69f8446ee74befb361",
+  "run_id": 40506874977,
+  "job_id": 122198322720,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
+  "named_count": 11,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SourceOpening20261027.known_frame_consumes_actual_legal_source",
+    "JurisLean.Candidates.SourceOpening20261027.every_collected_frame_has_an_actual_report",
+    "JurisLean.Candidates.SourceOpening20261027.collected_branch_keys_are_not_filtered",
+    "JurisLean.Candidates.SourceOpening20261027.opening_reads_formed_source_without_claiming_payments",
+    "JurisLean.Candidates.SourceOpening20261027.source_opening_has_a_proved_initial_invariant",
+    "JurisLean.Candidates.SourceOpening20261027.known_opening_keeps_every_common_branch",
+    "JurisLean.Candidates.SourceOpening20261027.known_opening_consumes_the_actual_inspection",
+    "JurisLean.Candidates.SourceOpening20261027.known_common_opening_has_proved_business_invariant",
+    "JurisLean.Candidates.SourceOpening20261027.initialized_state_keeps_supplied_learner_and_actual_opening",
+    "JurisLean.Candidates.SourceOpening20261027.source_initialized_state_has_proved_known_invariant",
+    "JurisLean.Candidates.SourceOpening20261027.arbitrary_finite_commands_start_from_actual_source"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
+      "sha256": "fb1f29415ffcba0d14ee5be525ff644e1056119416f7c2f2afb8528c8098ede6"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
+      "sha256": "ceb0b3370394cabc3b280b603b34865ef5e831013e753ba86324e1f43ec6cde5"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 11,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 11,
+      "propext": 11
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "12 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "4297ea1fdcd3de9a7a6252a2b397fc4906bae548",
+  "run_id": 40516194777,
+  "job_id": 122230636130,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
+  "named_count": 11,
+  "named_theorems_full": [
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+    "JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound",
+    "JurisLean.Candidates.ExactProbability20261027.beta_evidence_is_positive",
+    "JurisLean.Candidates.ExactProbability20261027.real_beta_likelihood_density_identity",
+    "JurisLean.Candidates.ExactProbability20261027.beta_likelihood_density_identity",
+    "JurisLean.Candidates.ExactProbability20261027.beta_likelihood_normalization_integral",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure",
+    "JurisLean.Candidates.ExactProbability20261027.beta_one_success_evidence_ratio",
+    "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
+      "sha256": "f5e5e55331f549d60f51f7960386cd0dd6d4ddd6e5bc6e57339779b59d016340"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 11,
+    "axiom_vocabulary": {
+      "Classical.choice": 11,
+      "Quot.sound": 11,
+      "propext": 11
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "0 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

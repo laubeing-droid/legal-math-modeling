@@ -1,0 +1,88 @@
+JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information.{u_1, u_2, u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [mA : MeasurableSpace A] [mB : MeasurableSpace B] (X : Ω → A) (g : A → B)
+  (measurableCopy : Measurable g) :
+  MeasurableSpace.comap (fun w => (X w, g (X w))) (mA.prod mB) = MeasurableSpace.comap X mA
+JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation.{u_1, u_2,
+    u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] [mA : MeasurableSpace A] [mB : MeasurableSpace B]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → A) (g : A → B)
+  (_observed : Measurable X) (measurableCopy : Measurable g) (target : Ω → ℝ)
+  (_integrable : MeasureTheory.Integrable target μ) :
+  μ[target | MeasurableSpace.comap (fun w => (X w, g (X w))) (mA.prod mB)] =ᵐ[μ] μ[target | MeasurableSpace.comap X mA]
+JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound (N B nL nU bL bU : ℝ)
+  (nonnegative : 0 ≤ N) (belowTotal : N ≤ B) (numeratorLower : nL ≤ N) (numeratorUpper : N ≤ nU)
+  (denominatorPositive : 0 < bL) (denominatorLower : bL ≤ B) (denominatorUpper : B ≤ bU) :
+  0 ≤ min 1 (nU / bL) - max 0 (nL / bU) ∧
+    min 1 (nU / bL) - max 0 (nL / bU) ≤ 1 ∧
+      min 1 (nU / bL) - max 0 (nL / bU) ≤ (nU - nL) / bU + nU * (bU - bL) / (bL * bU)
+JurisLean.Candidates.ExactProbability20261027.beta_evidence_is_positive (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  0 < JurisLean.Candidates.ExactProbability20261027.betaEvidence α β successes failures
+JurisLean.Candidates.ExactProbability20261027.real_beta_likelihood_density_identity (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) (x : ℝ) :
+  ProbabilityTheory.betaPDFReal α β x *
+      JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood successes failures x =
+    JurisLean.Candidates.ExactProbability20261027.betaEvidence α β successes failures *
+      ProbabilityTheory.betaPDFReal (α + ↑successes) (β + ↑failures) x
+JurisLean.Candidates.ExactProbability20261027.beta_likelihood_density_identity (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) (x : ℝ) :
+  ProbabilityTheory.betaPDF α β x *
+      ENNReal.ofReal (JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood successes failures x) =
+    ENNReal.ofReal (JurisLean.Candidates.ExactProbability20261027.betaEvidence α β successes failures) *
+      ProbabilityTheory.betaPDF (α + ↑successes) (β + ↑failures) x
+JurisLean.Candidates.ExactProbability20261027.beta_likelihood_normalization_integral (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  ∫⁻ (x : ℝ),
+      ProbabilityTheory.betaPDF α β x *
+        ENNReal.ofReal (JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood successes failures x) =
+    ENNReal.ofReal (JurisLean.Candidates.ExactProbability20261027.betaEvidence α β successes failures)
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) (x : ℝ) :
+  JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures x =
+    ProbabilityTheory.betaPDF (α + ↑successes) (β + ↑failures) x
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  MeasureTheory.volume.withDensity
+      (JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures) =
+    ProbabilityTheory.betaMeasure (α + ↑successes) (β + ↑failures)
+JurisLean.Candidates.ExactProbability20261027.beta_one_success_evidence_ratio (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) : JurisLean.Candidates.ExactProbability20261027.betaEvidence α β 1 0 = α / (α + β)
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  ∫⁻ (x : ℝ),
+      ENNReal.ofReal x *
+        JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures x =
+    ENNReal.ofReal ((α + ↑successes) / (α + ↑successes + (β + ↑failures)))
+'JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.beta_evidence_is_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.real_beta_likelihood_density_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.beta_likelihood_density_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.beta_likelihood_normalization_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.beta_one_success_evidence_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

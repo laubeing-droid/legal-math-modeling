@@ -1,0 +1,89 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "ca43621c4c99dbd77e2fe16ecbc5b076bfd1a3fc",
+  "run_id": 40513695407,
+  "job_id": 122221950725,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecoveryAudit20261027.lean",
+  "named_count": 18,
+  "named_theorems_full": [
+    "JurisLean.Candidates.PendingCommit20261027.unknown_outcome_keeps_request_identity",
+    "JurisLean.Candidates.PendingCommit20261027.captured_pending_has_actual_prefix_and_stopped_result",
+    "JurisLean.Candidates.PendingCommit20261027.stopped_interpreter_always_has_pending",
+    "JurisLean.Candidates.PendingCommit20261027.captured_prestate_inherits_full_invariant",
+    "JurisLean.Candidates.CommitReadback20261027.checked_post_is_exact_commit_or_fenced_absence",
+    "JurisLean.Candidates.CommitReadback20261027.resolved_readback_binds_catalog_full_request_and_actual_unknown",
+    "JurisLean.Candidates.CommitReadback20261027.resolved_readback_is_reported_state_and_step_or_frame",
+    "JurisLean.Candidates.CommitReadback20261027.recovered_actual_pending_preserves_full_invariant",
+    "JurisLean.Candidates.CommitRecovery20261027.pending_for_retains_actual_plan",
+    "JurisLean.Candidates.CommitRecovery20261027.unknown_selected_execution_is_actual_trajectory",
+    "JurisLean.Candidates.CommitRecovery20261027.captured_pending_comes_from_actual_action_trajectory",
+    "JurisLean.Candidates.CommitRecovery20261027.actual_unknown_action_always_has_capture",
+    "JurisLean.Candidates.CommitRecovery20261027.known_resolution_matches_current_capture",
+    "JurisLean.Candidates.CommitRecovery20261027.stale_resolution_cannot_replace_later_state",
+    "JurisLean.Candidates.CommitRecovery20261027.refusal_preserves_complete_current_state",
+    "JurisLean.Candidates.CommitRecovery20261027.recovery_keeps_learning_observations_and_original_outcomes",
+    "JurisLean.Candidates.CommitRecovery20261027.recovery_preserves_known_business_invariant",
+    "JurisLean.Candidates.CommitRecovery20261027.finite_continuation_consumes_recovered_actual_state"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecovery20261027.lean",
+      "sha256": "120702bc5a76586425e1f8ef48914dae5218e2886d7a86470627fea6e2e39728"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitRecoveryAudit20261027.lean",
+      "sha256": "f555bc91749b6e7ed8c77382c9452aff1fd43eba8c79f8e6530f2236f7f67ecb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
+      "sha256": "5b01ce41025e8f682dc5ce5833922aba2de00a85714d1dfaf32767f3b0736b13"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CommitReadback20261027.lean",
+      "sha256": "7da3f1a0d7afd3909b0812a6a35ecce292d999ce84280d1bb64b91489527e403"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 18,
+    "axiom_vocabulary": {
+      "Classical.choice": 18,
+      "Quot.sound": 18,
+      "propext": 18
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "21 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

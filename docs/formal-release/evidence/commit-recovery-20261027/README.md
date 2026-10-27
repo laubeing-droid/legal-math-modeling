@@ -1,0 +1,11 @@
+# Existing unknown-commit recovery, now completed
+
+Successful subject `ca43621c4c99dbd77e2fe16ecbc5b076bfd1a3fc`: [run 40513695407](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40513695407), [job 122221950725](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40513695407/job/122221950725), SUCCESS. Eighteen exact types and axiom targets, 21 guarded synthetic executions. All four source files are bound in verification.json.
+
+PendingCommit captures the actual interpreter prefix, original full request and attempt, original grants, and unexecuted tail when a real action returns unknown. Capture completeness follows from the actual unknown output; no fabricated known poststate is substituted. CommitReadback requires an externally trusted catalogue entry bound to the full original request and full before/after states. A committed readback passes the existing receipt consumer with the original grants. A fenced absence returns exactly the original state. Real catalogue truth and the fence preventing a late old attempt remain explicit external premises.
+
+CommitRecovery captures the actual legal-action output once. Recovery accepts only the unchanged full captured state; replay or any changed current state fails closed. It publishes the verified handle and preserves learning/model/observation/budget fields and the record of unknown outcomes. The old tail is retained, not automatically executed. The next actual decision, measurement and feedback consume the recovered state. General invariant and arbitrary finite continuation theorems cover these operations.
+
+The 21 executions include source debt 10 and two payments 7; a committed second payment produces total 14, allocation 10 and surplus 4; fenced absence preserves total 7. They exercise wrong key, attempt, payload, prestate, revision, version, source, receipt, poststate and missing authority, stale/repeated recovery, preserved learner budget, and actual subsequent action/measurement/feedback.
+
+This receipt establishes the named source/proof scope. Full root/PR acceptance is recorded separately. No claim about live database transactions, real legal authority, or a complete original-topic protocol follows from the synthetic model. The historical CAND8 ledger and frozen tip pin are unchanged; this receipt itself does not close an archive row.

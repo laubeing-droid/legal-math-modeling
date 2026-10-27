@@ -1,0 +1,204 @@
+JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out) :
+  out.actualPost = post ∧
+    out.dictionary = d ∧
+      out.rows = rows ∧
+        out.observedAt = now ∧
+          JurisLean.Candidates.BusinessMeasurement20261027.measuredTotal post d rows = some out.measuredTotal ∧
+            JurisLean.Candidates.BusinessMeasurement20261027.measurementInputsValid post d now catalog rows = true
+'JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out)
+  (negative : out.label = false) :
+  JurisLean.Candidates.BusinessMeasurement20261027.windowComplete d now rows closures = true ∧
+    d.windowEnd.ticks ≤ now.ticks ∧
+      out.measuredTotal < JurisLean.Candidates.BusinessMeasurement20261027.measurementThreshold d
+'JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (duplicate : ¬List.Pairwise (fun a b => a.event ≠ b.event) rows) :
+  JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.unknown
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementFailure.scopeMismatch
+'JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.accepted_rows_are_external_and_current
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out) :
+  d.context = post.gamma ∧
+    ∀ row ∈ rows,
+      row.dictionary = d ∧
+        row.occurredAt.ticks ≤ row.recordedAt.ticks ∧
+          row.recordedAt.ticks ≤ now.ticks ∧ ∃ entry ∈ catalog, entry.row = row
+'JurisLean.Candidates.BusinessMeasurement20261027.accepted_rows_are_external_and_current' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.positive_means_actual_total_reaches_threshold
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out)
+  (positive : out.label = true) :
+  JurisLean.Candidates.BusinessMeasurement20261027.measurementThreshold d ≤ out.measuredTotal
+'JurisLean.Candidates.BusinessMeasurement20261027.positive_means_actual_total_reaches_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (row : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (construct : d.construct = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorConstruct.reviewedDefect)
+  (observed : row.body = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorRecord.revocation) :
+  JurisLean.Candidates.BusinessMeasurement20261027.rowContribution post d row = none
+'JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.missing_payment_receipt_cannot_measure_performance
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (row : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (relation : JurisLean.Candidates.Final20261021.RelationId) (payer payee : JurisLean.Candidates.Final20261021.PartyId)
+  (required : JurisLean.Candidates.Final20261021.Amount) (key : JurisLean.Candidates.Final20261021.PaymentId)
+  (construct :
+    d.construct =
+      JurisLean.Candidates.BusinessMeasurement20261027.BehaviorConstruct.timelyPerformance relation payer payee
+        required)
+  (recorded : row.body = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorRecord.payment key)
+  (missing : JurisLean.Candidates.Final20261021.Ledger.lookupReceipt post.state key = none) :
+  JurisLean.Candidates.BusinessMeasurement20261027.rowContribution post d row = none
+'JurisLean.Candidates.BusinessMeasurement20261027.missing_payment_receipt_cannot_measure_performance' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.performance_magnitude_is_actual_allocation
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (row : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (relation : JurisLean.Candidates.Final20261021.RelationId) (payer payee : JurisLean.Candidates.Final20261021.PartyId)
+  (required : JurisLean.Candidates.Final20261021.Amount) (key : JurisLean.Candidates.Final20261021.PaymentId)
+  (value : ℚ)
+  (construct :
+    d.construct =
+      JurisLean.Candidates.BusinessMeasurement20261027.BehaviorConstruct.timelyPerformance relation payer payee
+        required)
+  (recorded : row.body = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorRecord.payment key)
+  (measured : JurisLean.Candidates.BusinessMeasurement20261027.rowMagnitude post d row = some value) :
+  ∃ receipt,
+    JurisLean.Candidates.Final20261021.Ledger.lookupReceipt post.state key = some receipt ∧
+      value = receipt.allocated ∧ receipt.payload.cashId = row.event ∧ receipt.payload.amount.tag = required.tag
+'JurisLean.Candidates.BusinessMeasurement20261027.performance_magnitude_is_actual_allocation' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.trajectory_measurement_uses_reported_post
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (reported :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = some post) :
+  (JurisLean.Candidates.BusinessMeasurement20261027.measureTrajectory grants initial steps d now catalog closures
+        rows).measurement =
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows
+'JurisLean.Candidates.BusinessMeasurement20261027.trajectory_measurement_uses_reported_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.unknown_commit_has_no_behavior_label
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (unknown :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = none) :
+  (JurisLean.Candidates.BusinessMeasurement20261027.measureTrajectory grants initial steps d now catalog closures
+        rows).measurement =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.unknown
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementFailure.unknownCommit
+'JurisLean.Candidates.BusinessMeasurement20261027.unknown_commit_has_no_behavior_label' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.accepted_measurement_keeps_actual_trace_invariant
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (accepted :
+    (JurisLean.Candidates.BusinessMeasurement20261027.measureTrajectory grants initial steps d now catalog closures
+          rows).measurement =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant out.actualPost ∧ initial.state.used ⊆ out.actualPost.state.used
+'JurisLean.Candidates.BusinessMeasurement20261027.accepted_measurement_keeps_actual_trace_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies :
+  JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 2 = 1 / 10 ∧ 8 / 20 = 2 / 5 ∧ 8 / 100 = 2 / 25
+'JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds (n : ℕ) (hn : n ≤ 80) :
+  2 / 25 ≤ JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate n ∧
+    JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate n ≤ 22 / 25 ∧
+      JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 0 = 2 / 25 ∧
+        JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 80 = 22 / 25
+'JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate
+  (estimator : ℕ × ℕ → ℚ) :
+  ¬(estimator (20, 8) = JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 0 ∧
+      estimator (20, 8) = JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 80)
+'JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+

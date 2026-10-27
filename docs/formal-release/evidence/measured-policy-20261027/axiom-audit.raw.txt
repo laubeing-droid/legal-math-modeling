@@ -1,0 +1,206 @@
+JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_row_preserves_actual_output {m : ℕ}
+  (env : JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment)
+  (measurement : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult)
+  (treatment : JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m)
+  (catalog : List (JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m))
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (accepted :
+    JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement env measurement treatment catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  measurement = JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out.measured ∧
+    out.treatment = treatment ∧
+      JurisLean.Candidates.MeasuredPolicy20261027.treatmentMatches env out.measured treatment catalog = true
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_row_preserves_actual_output' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement {m : ℕ}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (dictionary : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (sources : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (env : JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment)
+  (treatment : JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m)
+  (catalog : List (JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m))
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (accepted :
+    (JurisLean.Candidates.MeasuredPolicy20261027.runMeasurementPolicy grants initial steps dictionary now sources
+          closures rows env treatment catalog).observation =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  (JurisLean.Candidates.BusinessMeasurement20261027.measureTrajectory grants initial steps dictionary now sources
+        closures rows).measurement =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out.measured
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission {m n : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (allowed : List (List ℚ)) (chosen : List ℚ)
+  (selected : JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan data allowed = some chosen) :
+  JurisLean.Candidates.MeasuredPolicy20261027.policyNumericsValid m n plan = true ∧
+    plan.parent ∈ plan.family ∧
+      chosen ∈ plan.family ∧
+        chosen ∈ allowed ∧
+          JurisLean.Candidates.LearningERM20261027.empiricalScore
+                  (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data plan.parent +
+                plan.radius -
+              plan.tolerance ≤
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data chosen -
+              plan.radius
+'JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded {m : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true) (table : List ℚ)
+  (member : table ∈ plan.family) (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) :
+  ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging table z) ∈ Set.Icc 0 ↑plan.weightBound
+'JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.scaled_policy_score_mean {m n : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (table : List ℚ) :
+  JurisLean.Candidates.LearningERM20261027.empiricalScore
+      (fun h z => JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging h z / plan.weightBound) data
+      table =
+    JurisLean.Candidates.LearningERM20261027.empiricalScore
+        (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data table /
+      plan.weightBound
+'JurisLean.Candidates.MeasuredPolicy20261027.scaled_policy_score_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence.{u_1} {Ω : Type u_1} {m n : ℕ}
+  [MeasurableSpace Ω] [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ]
+  (P : MeasureTheory.Measure (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m))
+  [MeasureTheory.IsProbabilityMeasure P] (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true)
+  (nonempty : plan.family.toFinset.Nonempty) (positive : 0 < n)
+  (sample : Fin n → Ω → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)
+  (measurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (deltaPositive : 0 < plan.delta)
+  (deltaBelowOne : plan.delta < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑plan.delta ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (allowed : List (List ℚ)) (chosen : List ℚ),
+            JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan (fun i => sample i w) allowed = some chosen →
+              ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                  ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging plan.parent z) ∂P ≤
+                ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                    ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging chosen z) ∂P +
+                  ↑plan.tolerance
+'JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy {m : ℕ}
+  (context : JurisLean.Candidates.Final20261021.Gamma) (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (rows : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (design : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m)
+  (catalog : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m))
+  (permission : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission)
+  (permissions : List JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission)
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyAdvice m)
+  (accepted :
+    JurisLean.Candidates.MeasuredPolicy20261027.adviseMeasured context plan rows design catalog permission permissions =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.plan = plan ∧
+    out.observations = rows ∧
+      out.chosen ∈ permission.policies ∧
+        out.oldEstimate =
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+              (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging)
+              (JurisLean.Candidates.MeasuredPolicy20261027.observedPolicyData rows) plan.parent ∧
+          out.newEstimate =
+              JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging)
+                (JurisLean.Candidates.MeasuredPolicy20261027.observedPolicyData rows) out.chosen ∧
+            permission ∈ permissions ∧ permission.context = context
+'JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.feedback_reads_actual_external_label {m : ℕ}
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m) :
+  (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row).label = row.measured.label ∧
+    (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row).event = row.measured.dictionary.event ∧
+      (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row).feature = row.treatment.feature
+'JurisLean.Candidates.MeasuredPolicy20261027.feedback_reads_actual_external_label' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_enters_actual_next_learner {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (validation : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (context : state.service.gamma = row.measured.actualPost.gamma)
+  (scope : state.service.journal.scope = row.treatment.environment.dataScope) :
+  JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol validation =
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound state now permits
+      (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.observed
+        (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row))
+      protocol validation
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_enters_actual_next_learner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_prepares_from_actual_loaded_and_journal {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (validation : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (context : state.service.gamma = row.measured.actualPost.gamma)
+  (scope : state.service.journal.scope = row.treatment.environment.dataScope) (free : state.pending = none)
+  (room : state.records.length < state.horizon) :
+  (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+            validation).service.journal =
+      (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits state.service.journal
+          (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.observed
+            (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row))).post ∧
+    (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol validation).pending =
+      some
+        { learner := state.learner, generatedAt := now, visiblePrefix := state.records.length,
+          prepared :=
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext state.service now permits
+              (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.observed
+                (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row))
+              protocol state.learner.proposals,
+          plan :=
+            { scope := validation.scope, protocol := validation.protocol, domains := validation.domains,
+              models := state.service.loaded.fitted.table :: state.learner.proposals,
+              failureBudget := validation.failureBudget } }
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_prepares_from_actual_loaded_and_journal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.measured_data_update_keeps_rules_loaded_and_budget {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (validation : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) :
+  (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+            validation).service.gamma =
+      state.service.gamma ∧
+    (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+              validation).service.loaded =
+        state.service.loaded ∧
+      (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+              validation).learner =
+          state.learner ∧
+        (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+                validation).checker =
+            state.checker ∧
+          (JurisLean.Candidates.MeasuredPolicy20261027.beginMeasuredRound state now row permits protocol
+                validation).records =
+            state.records
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_data_update_keeps_rules_loaded_and_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

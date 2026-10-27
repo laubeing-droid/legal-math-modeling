@@ -1,0 +1,208 @@
+JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.procedure p =
+      JurisLean.Candidates.Final20261021.Procedure.closedLawfully ↔
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.covered p = true ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true ∧
+        decide (List.map (fun x => x.id) p.records).Nodup = true ∧
+          Option.any (fun r => decide (r ∈ p.validClosureAuthorities)) p.closureAuthority = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks' depends on axioms: [propext, Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) :
+  JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully ↔
+    JurisLean.Candidates.ProcedureClosure20261027.validPolicy required p = true ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.checked_closure_exhausts_independent_requirements (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (closed :
+    JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully)
+  (o : ℕ) : o ∈ required → JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.checked_closure_exhausts_independent_requirements' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (coverage : ∀ o ∈ required, o ∈ p.policyDomain)
+  (done : JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true) (o : ℕ) :
+  o ∈ required → JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (noExtra : ∀ o ∈ p.policyDomain, o ∈ required)
+  (done : ∀ o ∈ required, JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.missing_witness_is_an_actual_uncovered_requirement (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (o : ℕ) :
+  o ∈ JurisLean.Candidates.ProcedureClosure20261027.missingOpportunities required p ↔ o ∈ required ∧ o ∉ p.policyDomain
+
+'JurisLean.Candidates.ProcedureClosure20261027.missing_witness_is_an_actual_uncovered_requirement' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.unfinished_witness_is_an_actual_open_policy_opportunity
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (o : ℕ) :
+  o ∈ JurisLean.Candidates.ProcedureClosure20261027.unfinishedOpportunities p ↔
+    o ∈ p.policyDomain ∧ JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = false
+
+'JurisLean.Candidates.ProcedureClosure20261027.unfinished_witness_is_an_actual_open_policy_opportunity' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.final_undetermined_exact
+  (state : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure) :
+  JurisLean.Candidates.ProcedureClosure20261027.finalUndetermined state = true ↔
+    state.1 = JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+      state.2 = JurisLean.Candidates.Final20261021.Procedure.closedLawfully
+
+'JurisLean.Candidates.ProcedureClosure20261027.final_undetermined_exact' depends on axioms: [propext]
+
+JurisLean.Candidates.ProcedureClosure20261027.successful_inspection_reads_actual_process_result (budget : ℕ)
+  (required : List ℕ) (query : ℕ) (evidence : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (out : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure)
+  (accepted :
+    JurisLean.Candidates.ProcedureClosure20261027.inspect budget required query evidence p =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  0 < budget ∧
+    JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+        JurisLean.Candidates.Final20261021.Result.known out.2 ∧
+      out.1 = JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment query evidence
+
+'JurisLean.Candidates.ProcedureClosure20261027.successful_inspection_reads_actual_process_result' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.inspected_final_undetermined_retains_coverage (budget : ℕ)
+  (required : List ℕ) (query : ℕ) (evidence : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (out : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure)
+  (accepted :
+    JurisLean.Candidates.ProcedureClosure20261027.inspect budget required query evidence p =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (final : JurisLean.Candidates.ProcedureClosure20261027.finalUndetermined out = true) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment query evidence =
+      JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+    ∀ o ∈ required, JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.inspected_final_undetermined_retains_coverage' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.branch_inspection_does_not_drop_open_results (budget : ℕ)
+  (required : ℕ → List ℕ) (query : ℕ)
+  (evidence : ℕ → List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (processes : ℕ → JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (branches : List ℕ) (branch : ℕ)
+  (member : branch ∈ branches) :
+  (branch,
+      JurisLean.Candidates.ProcedureClosure20261027.inspect budget (required branch) query (evidence branch)
+        (processes branch)) ∈
+    JurisLean.Candidates.ProcedureClosure20261027.inspectBranches budget required query evidence processes branches
+
+'JurisLean.Candidates.ProcedureClosure20261027.branch_inspection_does_not_drop_open_results' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (decreases : ∀ (s t : S), step s t → rank t < rank s) (path : ℕ → S) (n : ℕ)
+  (valid : ∀ k < n, step (path k) (path (k + 1))) : rank (path n) + n ≤ rank (path 0)
+
+'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (decreases : ∀ (s t : S), step s t → rank t < rank s) :
+  ¬∃ path, ∀ (k : ℕ), step (path k) (path (k + 1))
+
+'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (state : S) (loop : step state state) : ¬∀ (s t : S), step s t → rank t < rank s
+
+'JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank' does not depend on any axioms
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement :
+  exhausted Audit.badPolicy = true ∧
+    procedure Audit.badPolicy = Procedure.closedLawfully ∧
+      missingOpportunities [1] Audit.badPolicy = [1] ∧
+        checkProcess [1] Audit.badPolicy = Result.rejected Error.scopeMismatch
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.required_exhaustion_need_not_exhaust_larger_policy_domain :
+  (∀ o ∈ [1],
+      terminal
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked })
+          o =
+        true) ∧
+    exhausted
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked }) =
+        false ∧
+      procedure
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked }) =
+        Procedure.open
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.required_exhaustion_need_not_exhaust_larger_policy_domain' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct :
+  proposed_judgment_and_process 0 [Audit.positive] Audit.openInput = (Judgment.supported, Procedure.open) ∧
+    proposed_judgment_and_process 0 [] Audit.closedInput = (Judgment.insufficient, Procedure.closedLawfully) ∧
+      proposed_judgment_and_process 0 [Audit.positive, Audit.negative] Audit.openInput =
+          (Judgment.incompatible, Procedure.open) ∧
+        proposed_judgment_and_process 0 []
+            (have __src := Audit.openInput;
+            { required := __src.required, policyDomain := __src.policyDomain, records := __src.records,
+              validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+              closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+              blocked := true }) =
+          (Judgment.insufficient, Procedure.blocked)
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.same_current_record_has_different_future_extensions :
+  Audit.futureWithoutNew 0 = Audit.futureWithNew 0 ∧
+    judgment 0 (Audit.futureWithoutNew 1) = Judgment.insufficient ∧
+      judgment 0 (Audit.futureWithNew 1) = Judgment.supported ∧
+        finalUndetermined (judgment 0 (Audit.futureWithoutNew 0), procedure Audit.closedInput) = true
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.same_current_record_has_different_future_extensions' depends on axioms: [propext,
+ Quot.sound]
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.current_record_does_not_imply_future_impossibility :
+  ¬∀ (future : ℕ → List EvidenceItem), future 0 = [] → ∀ (time : ℕ), judgment 0 (future time) ≠ Judgment.supported
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.current_record_does_not_imply_future_impossibility' does not depend on any axioms
+
+JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution :
+  ∃ path,
+    (∀ (k : ℕ), Audit.retryStep (path k) (path (k + 1))) ∧
+      inspect 1 [1] 0 [] Audit.openInput = Result.known (Judgment.insufficient, Procedure.open)
+
+'JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution' depends on axioms: [propext,
+ Quot.sound]
+

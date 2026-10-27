@@ -331,9 +331,9 @@ theorem sampled_block_uses_exact_losses {m n : Nat}
       empiricalScore (tableLoss loss) data table := by
   simp [blockRisk, blockData, sampledBlock, empiricalScore]
   congr 1
-  apply Finset.sum_congr rfl
-  intro i _
-  rfl
+  exact Fintype.sum_equiv
+    (finCongr (List.length_ofFn (f := fun i =>
+      SampleObservation.mk (events i) (data i).1 (data i).2))) _ _ (fun _ => rfl)
 
 -- Counts and budgets are fixed outside the confidence event; returned models,
 -- tolerances and verified radii may depend on its data. Every actual bounds-qualified

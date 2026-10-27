@@ -6393,6 +6393,317 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "State"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasurementInput"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyInput"
+    },
+    {
+     "kind": "structure",
+     "name": "FeedbackInput"
+    },
+    {
+     "kind": "def",
+     "name": "measureReported"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurement_reads_the_reported_post_only"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_commit_cannot_generate_a_measurement"
+    },
+    {
+     "kind": "def",
+     "name": "sameObservation"
+    },
+    {
+     "kind": "def",
+     "name": "enqueueObserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "semantic_replay_does_not_enqueue_another_round"
+    },
+    {
+     "kind": "theorem",
+     "name": "distinct_observation_retains_full_evidence_and_queue"
+    },
+    {
+     "kind": "def",
+     "name": "recordObservation"
+    },
+    {
+     "kind": "theorem",
+     "name": "semantic_replay_does_not_append_a_policy_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflicting_measurement_does_not_become_a_policy_sample"
+    },
+    {
+     "kind": "def",
+     "name": "adviseRecorded"
+    },
+    {
+     "kind": "theorem",
+     "name": "known_advice_reads_recorded_data_within_cutoffs"
+    },
+    {
+     "kind": "def",
+     "name": "prepareObserved"
+    },
+    {
+     "kind": "def",
+     "name": "preparedState"
+    },
+    {
+     "kind": "theorem",
+     "name": "deferred_feedback_preserves_actual_learner"
+    },
+    {
+     "kind": "theorem",
+     "name": "prepared_feedback_uses_actual_observation"
+    },
+    {
+     "kind": "theorem",
+     "name": "preparing_observation_keeps_risk_budget"
+    },
+    {
+     "kind": "def",
+     "name": "prepareQueued"
+    },
+    {
+     "kind": "def",
+     "name": "unpreparedQueue"
+    },
+    {
+     "kind": "theorem",
+     "name": "unconfirmed_observation_remains_available_for_retry"
+    },
+    {
+     "kind": "theorem",
+     "name": "deferred_queue_keeps_every_unprocessed_row"
+    },
+    {
+     "kind": "theorem",
+     "name": "preparing_queue_keeps_risk_budget"
+    },
+    {
+     "kind": "structure",
+     "name": "Continuation"
+    },
+    {
+     "kind": "def",
+     "name": "continueBusiness"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuation_does_not_repeat_business_execution"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuation_feedback_is_the_actual_measured_result"
+    },
+    {
+     "kind": "def",
+     "name": "retryFeedback"
+    },
+    {
+     "kind": "def",
+     "name": "assess"
+    },
+    {
+     "kind": "theorem",
+     "name": "assessment_passes_actual_post_to_next_model"
+    },
+    {
+     "kind": "structure",
+     "name": "ActionInput"
+    },
+    {
+     "kind": "structure",
+     "name": "ActionOutput"
+    },
+    {
+     "kind": "def",
+     "name": "act"
+    },
+    {
+     "kind": "theorem",
+     "name": "unresolved_business_has_no_new_action"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_action_reads_current_handle_and_loaded_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_action_reads_actual_assessment_post"
+    },
+    {
+     "kind": "structure",
+     "name": "Episode"
+    },
+    {
+     "kind": "def",
+     "name": "episode"
+    },
+    {
+     "kind": "def",
+     "name": "KnownBusinessInvariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "action_preserves_every_reported_business_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_consumes_actual_output_and_keeps_invariants"
+    },
+    {
+     "kind": "inductive",
+     "name": "Command"
+    },
+    {
+     "kind": "def",
+     "name": "step"
+    },
+    {
+     "kind": "theorem",
+     "name": "each_command_preserves_known_business_and_learning_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_finite_commands_consume_actual_posts"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LoadedLegalConsumer20261027",
+    "JurisLean.Candidates.MeasuredPolicy20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "fdde718efb3dfdf84ca35edee473674b18aa19f656fd27d6414814b71a2f04e3",
+   "size_bytes": 26313,
+   "theorem_count": 23,
+   "theorem_count_bol_convention": 23
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "dictionary"
+    },
+    {
+     "kind": "def",
+     "name": "environment"
+    },
+    {
+     "kind": "def",
+     "name": "treatment"
+    },
+    {
+     "kind": "def",
+     "name": "measurement"
+    },
+    {
+     "kind": "def",
+     "name": "confirmation"
+    },
+    {
+     "kind": "def",
+     "name": "initial"
+    },
+    {
+     "kind": "def",
+     "name": "feedback"
+    },
+    {
+     "kind": "def",
+     "name": "policy"
+    },
+    {
+     "kind": "def",
+     "name": "action"
+    },
+    {
+     "kind": "def",
+     "name": "first"
+    },
+    {
+     "kind": "def",
+     "name": "assessRequest"
+    },
+    {
+     "kind": "def",
+     "name": "assessed"
+    },
+    {
+     "kind": "def",
+     "name": "procedureMeasurement"
+    },
+    {
+     "kind": "def",
+     "name": "procedureRows"
+    },
+    {
+     "kind": "def",
+     "name": "procedurePolicy"
+    },
+    {
+     "kind": "def",
+     "name": "policyState"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027",
+    "JurisLean.Candidates.LoadedLegalConsumerAudit20261027",
+    "JurisLean.Candidates.MeasuredPolicyAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoopAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.action_preserves_every_reported_business_state",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.actual_action_reads_current_handle_and_loaded_state",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.arbitrary_finite_commands_consume_actual_posts",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.assessment_passes_actual_post_to_next_model",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.conflicting_measurement_does_not_become_a_policy_sample",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_does_not_repeat_business_execution",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_feedback_is_the_actual_measured_result",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_feedback_preserves_actual_learner",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.distinct_observation_retains_full_evidence_and_queue",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.each_command_preserves_known_business_and_learning_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.episode_consumes_actual_output_and_keeps_invariants",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.known_advice_reads_recorded_data_within_cutoffs",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.measurement_reads_the_reported_post_only",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.prepared_feedback_uses_actual_observation",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_queue_keeps_risk_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_append_a_policy_sample",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_enqueue_another_round",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unknown_commit_cannot_generate_a_measurement",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unresolved_business_has_no_new_action"
+   ],
+   "sha256": "c0eb72b8d346d06cf48c4a5bc3cf0ff4f2bc44863e81e493e5f5893a70a1694c",
+   "size_bytes": 24898,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "BehaviorConstruct"
     },
@@ -13063,6 +13374,182 @@
    "size_bytes": 17162,
    "theorem_count": 5,
    "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "CalibrationPacket"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationData"
+    },
+    {
+     "kind": "def",
+     "name": "historyKnownBy"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationTimeReady"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationReady"
+    },
+    {
+     "kind": "def",
+     "name": "loadedProbability"
+    },
+    {
+     "kind": "theorem",
+     "name": "known_probability_binds_actual_loaded_and_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_loaded_contents_refuse_old_calibration"
+    },
+    {
+     "kind": "theorem",
+     "name": "known_probability_respects_cutoffs"
+    },
+    {
+     "kind": "theorem",
+     "name": "future_model_is_not_available_for_prior_question"
+    },
+    {
+     "kind": "theorem",
+     "name": "future_loaded_observations_stay_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_calibration_attestation_stays_unknown"
+    },
+    {
+     "kind": "def",
+     "name": "chooseLoaded"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_decision_reads_same_probability_and_quote"
+    },
+    {
+     "kind": "structure",
+     "name": "LoadedRun"
+    },
+    {
+     "kind": "def",
+     "name": "runLoaded"
+    },
+    {
+     "kind": "theorem",
+     "name": "loaded_run_uses_actual_legal_validation"
+    },
+    {
+     "kind": "theorem",
+     "name": "loaded_run_choice_uses_current_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "loaded_run_preserves_reported_business_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_loaded_probability_has_no_transaction_effect"
+    },
+    {
+     "kind": "theorem",
+     "name": "frozen_family_probability_confidence"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027",
+    "JurisLean.Candidates.LegalActionDomain20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "78e8a257a50eb61dbe4dfb5bf25642b9007b9ce87be8a98585715c7140b48bf3",
+   "size_bytes": 22148,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "gamma"
+    },
+    {
+     "kind": "def",
+     "name": "opening"
+    },
+    {
+     "kind": "def",
+     "name": "grants"
+    },
+    {
+     "kind": "def",
+     "name": "legalInput"
+    },
+    {
+     "kind": "def",
+     "name": "proposals"
+    },
+    {
+     "kind": "def",
+     "name": "actionModel"
+    },
+    {
+     "kind": "def",
+     "name": "base"
+    },
+    {
+     "kind": "def",
+     "name": "request"
+    },
+    {
+     "kind": "def",
+     "name": "rows"
+    },
+    {
+     "kind": "def",
+     "name": "packet"
+    },
+    {
+     "kind": "def",
+     "name": "probability"
+    },
+    {
+     "kind": "def",
+     "name": "fixture"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LegalActionDomainAudit20261027",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027",
+    "JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_choice_uses_current_model",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_preserves_reported_business_invariant",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_uses_actual_legal_validation",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.selected_decision_reads_same_probability_and_quote",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.unknown_loaded_probability_has_no_transaction_effect"
+   ],
+   "sha256": "18e5c9b2dccdab00d116e273834cb3be5f702fb2d17701562e003010257cd18c",
+   "size_bytes": 16878,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -55362,51 +55849,29 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
-    "JurisLean.Candidates.AdaptiveRoundLedger20261027",
     "JurisLean.Candidates.AdaptiveValidation20261027",
-    "JurisLean.Candidates.BusinessMeasurement20261027",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027",
+    "JurisLean.Candidates.BusinessFeedbackLoopAudit20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CausalSelection20261027",
-    "JurisLean.Candidates.CompilerClosure20261026",
-    "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.CurrentContextRollback20261027",
-    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
-    "JurisLean.Candidates.EventFeedbackConsumer20261027",
-    "JurisLean.Candidates.EvidenceWorlds20261027",
     "JurisLean.Candidates.EvidenceWorldsAudit20261027",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
-    "JurisLean.Candidates.FiniteLegalValidation20261027",
-    "JurisLean.Candidates.FiniteLegalValidationAudit20261027",
     "JurisLean.Candidates.HarnessRisk20261027",
     "JurisLean.Candidates.HarnessRiskAudit20261027",
-    "JurisLean.Candidates.IntervalDecisionConsumer20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
     "JurisLean.Candidates.LearningBridge20261027",
-    "JurisLean.Candidates.LearningConsumer20261027",
     "JurisLean.Candidates.LearningDependence20261027",
-    "JurisLean.Candidates.LearningERM20261027",
     "JurisLean.Candidates.LearningEventSplit20261027",
-    "JurisLean.Candidates.LearningFiniteClass20261027",
-    "JurisLean.Candidates.LearningRisk20261027",
-    "JurisLean.Candidates.LegalActionDomain20261027",
-    "JurisLean.Candidates.LegalActionDomainAudit20261027",
-    "JurisLean.Candidates.MeasuredPolicy20261027",
-    "JurisLean.Candidates.PolicyEvaluation20261027",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027",
+    "JurisLean.Candidates.LoadedLegalConsumerAudit20261027",
     "JurisLean.Candidates.PolicyResponse20261027",
-    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027",
-    "JurisLean.Candidates.ProcedureClosure20261027",
     "JurisLean.Candidates.ProcedureClosureAudit20261027",
-    "JurisLean.Candidates.ProtectedFeedback20261027",
-    "JurisLean.Candidates.SampleCalibrationConsumer20261027",
-    "JurisLean.Candidates.SelectiveCalibration20261027",
-    "JurisLean.Candidates.SourceCompilation20261027",
     "JurisLean.Candidates.SourceRepresentation20261027",
     "JurisLean.Candidates.SourceStages20261027",
     "JurisLean.Candidates.SourceStagesAudit20261027",
-    "JurisLean.Candidates.TemporalInterpretation20261027",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
-    "JurisLean.Candidates.ValidatedFeedbackLoad20261027",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
     "JurisLean.CertificateCheckerV2",
@@ -55541,11 +56006,8 @@
     "JurisLean.Seams.LegacyConeBridge",
     "JurisLean.Seams.Limitation",
     "JurisLean.Seams.PayoffEquilibrium",
-    "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.ReductionConditions2",
-    "JurisLean.Seams.Representation",
     "JurisLean.Seams.SanctionInterest",
-    "JurisLean.Seams.SourceNorms",
     "JurisLean.Seams.StatuteChain",
     "JurisLean.Seams.Temporal",
     "JurisLean.Seams.Transitions",
@@ -55573,7 +56035,6 @@
     "JurisLean.Seams.UnifiedNeedlesGap05",
     "JurisLean.Seams.UnifiedNeedlesGapLate",
     "JurisLean.Seams.UnifiedNeedlesGapMid",
-    "JurisLean.Seams.UnifiedNeedlesS0S1",
     "JurisLean.Seams.UnifiedNeedlesS2",
     "JurisLean.Seams.UnifiedNeedlesS3b",
     "JurisLean.Seams.UnifiedNeedlesS4",
@@ -55601,7 +56062,6 @@
     "JurisLean.SourcePathSpec",
     "JurisLean.SupZeroLemma",
     "JurisLean.TaintNoninterference",
-    "JurisLean.TemporalApplicability",
     "JurisLean.TemporalKripke",
     "JurisLean.TranslationRefinement",
     "JurisLean.TranslationWitness",
@@ -55629,8 +56089,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "1e0acfe72d2c38a1941be2f26929007364e60dbc802cf1bf3f986fe8856d1947",
-   "size_bytes": 13248,
+   "sha256": "3b2d2eae831520749da7ed637ec653e5e779c39d135ed3700e06b642d4fd7ea2",
+   "size_bytes": 11836,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -55794,22 +56254,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6022,
-   "file_count": 465,
+   "counted_declaration_count": 6057,
+   "file_count": 469,
    "lemma_count": 146,
-   "print_axioms_command_count": 4892,
-   "print_axioms_distinct_targets": 4805,
-   "theorem_count": 5876,
-   "theorem_count_bol_convention": 5776
+   "print_axioms_command_count": 4927,
+   "print_axioms_distinct_targets": 4840,
+   "theorem_count": 5911,
+   "theorem_count_bol_convention": 5811
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6003,
-   "file_count": 450,
+   "counted_declaration_count": 6038,
+   "file_count": 454,
    "lemma_count": 139,
-   "print_axioms_command_count": 4892,
-   "print_axioms_distinct_targets": 4805,
-   "theorem_count": 5864,
-   "theorem_count_bol_convention": 5764
+   "print_axioms_command_count": 4927,
+   "print_axioms_distinct_targets": 4840,
+   "theorem_count": 5899,
+   "theorem_count_bol_convention": 5799
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -55870,6 +56330,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoopAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
@@ -55936,6 +56398,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomainAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
@@ -56333,6 +56797,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoopAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
@@ -56399,6 +56865,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomainAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
@@ -56781,17 +57249,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f3ec58c288423eb882ac76e958d457eaa20aebdde7f77bfed2258e95fe352b2a",
+ "source_inventory_digest": "5e8be7e0dd144d5f51ced52f0a4898105c63c0b734e0cb02ae7a68e43efb6d91",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/legal-action-domain-20261027",
-  "commit": "120e1f4cf8692b5e9496f278698b67cf8e2973cf",
-  "tree": "560a9c70d82e798bbf1ee0aedd481c27cc6d5d20"
+  "branch": "formal/business-feedback-loop-20261027",
+  "commit": "8ef5c1b0c33741373ad265ffea3ded09c29e310e",
+  "tree": "b76730b1fa67e1e5408216c6d076722a7b1b1146"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 465,
+  "files_total": 469,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

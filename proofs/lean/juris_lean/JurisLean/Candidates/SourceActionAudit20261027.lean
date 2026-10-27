@@ -47,7 +47,7 @@ def payload (key : Nat) : PaymentPayload :=
 
 def source : ConsumedView :=
   {SourceOpening20261027.Audit.source with
-    relations := [stageQuote ⟨⟨9⟩, ⟨1⟩, ⟨2⟩, ⟨10, intervalDecisionTag⟩, "source debt metadata"]
+    relations := [stageQuote ⟨⟨9⟩, ⟨1⟩, ⟨2⟩, ⟨10, intervalDecisionTag⟩, "source debt metadata"⟩]
     ledger := [stageQuote ⟨⟨20, .principal, .contractStip, 2, .supported, 10⟩,
       ⟨9⟩, ⟨1⟩, intervalDecisionTag⟩]
     payments := [stageQuote ⟨⟨10⟩, 20, payload 10⟩, stageQuote ⟨⟨11⟩, 20, payload 11⟩]}

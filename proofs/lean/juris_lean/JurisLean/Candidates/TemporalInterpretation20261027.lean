@@ -310,16 +310,16 @@ theorem timed_compiler_consumes_selected_version (s : MaterialSnapshot)
   | rejected e => simp [compileTimed, selected] at accepted
   | conflict l r => simp [compileTimed, selected] at accepted
   | known version =>
-      by_cases matches : version = s.gamma.normVersion
+      by_cases sameVersion : version = s.gamma.normVersion
       · cases compiled : compileView s branch catalog rules (selectedGate version ruleGate) nodes root query with
-        | unknown e => simp [compileTimed, selected, matches, compiled] at accepted
-        | rejected e => simp [compileTimed, selected, matches, compiled] at accepted
-        | conflict l r => simp [compileTimed, selected, matches, compiled] at accepted
+        | unknown e => simp [compileTimed, selected, sameVersion, compiled] at accepted
+        | rejected e => simp [compileTimed, selected, sameVersion, compiled] at accepted
+        | conflict l r => simp [compileTimed, selected, sameVersion, compiled] at accepted
         | known result =>
-            simp only [compileTimed, selected, if_pos matches, compiled, Result.known.injEq] at accepted
+            simp only [compileTimed, selected, if_pos sameVersion, compiled, Result.known.injEq] at accepted
             cases accepted
-            exact ⟨rfl, matches, compiled⟩
-      · simp [compileTimed, selected, matches] at accepted
+            exact ⟨rfl, sameVersion, compiled⟩
+      · simp [compileTimed, selected, sameVersion] at accepted
 
 theorem timed_compilation_has_actual_app_and_closure (s : MaterialSnapshot)
     (history : List VersionRecord) (versions : List Nat) (app : App) (branch : Nat)

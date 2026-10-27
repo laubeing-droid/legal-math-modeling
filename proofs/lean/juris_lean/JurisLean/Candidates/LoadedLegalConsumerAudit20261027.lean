@@ -58,7 +58,8 @@ def legalInput : LegalInput (List Nat) :=
   let old := LegalActionDomain20261027.Audit.legalInput
   let materialA := {old.anchor with gamma := gamma}
   let materialB := {materialA with gamma := {gamma with interpretation := 2}}
-  {old with anchor := materialA
+  {old with
+    anchor := materialA
     branches := [⟨0, materialA, 0⟩, ⟨1, materialB, 0⟩]
     catalog := [⟨materialA, 0, FiniteLegalValidation20261027.Audit.source⟩,
       ⟨materialB, 0, FiniteLegalValidation20261027.Audit.source⟩]
@@ -83,7 +84,8 @@ def base (service : Service 2) : RoundState 2 :=
   ⟨{service with gamma := gamma}, ⟨1, [[1, 1]]⟩, 55, 3, 1/5, [10, 20], [], none, []⟩
 
 def request (state : RoundState 2) : DecisionRequest 2 :=
-  {intervalDecisionRequest with gamma := state.service.gamma,
+  {intervalDecisionRequest with
+    gamma := state.service.gamma
     protocol := (readLoaded state.service).fitted.protocol}
 
 def rows : List (SampleObservation 2 Bool) := List.ofFn fun i : Fin 400 =>
@@ -328,8 +330,10 @@ def fixture (state : RoundState 2) : LoadedRun (List Nat) 2 :=
 #guard_msgs in
 #eval ValidatedFeedbackLoadFixture.check (fun service _ =>
   let future := {ValidatedFeedbackLoadFixture.third with observedAt := ⟨101⟩}
-  let state := {base service with service := {service with gamma := gamma,
-    journal := {service.journal with history := service.journal.history ++ [.observed future]}}}
+  let changedService := {service with
+    gamma := gamma
+    journal := {service.journal with history := service.journal.history ++ [.observed future]}}
+  let state := {base service with service := changedService}
   let p := packet state
   match probability state p [p] with
   | .known out => decide (out.fitted = (readLoaded service).fitted ∧ out.estimate = 1/2)

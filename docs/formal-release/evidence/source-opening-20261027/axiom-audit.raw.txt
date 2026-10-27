@@ -1,0 +1,147 @@
+JurisLean.Candidates.SourceOpening20261027.known_frame_consumes_actual_legal_source {W : Type}
+  (row :
+    ℕ ×
+      JurisLean.Candidates.Final20261021.Result (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W))
+  (out : JurisLean.Candidates.SourceOpening20261027.BranchOpening W)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.frameReport row = JurisLean.Candidates.Final20261021.Result.known out) :
+  row.2 = JurisLean.Candidates.Final20261021.Result.known out.legal ∧
+    out.key = row.1 ∧
+      JurisLean.Candidates.SourceStages20261027.stagesFromView out.legal.bound.source =
+        JurisLean.Candidates.Final20261021.Result.known out.frame
+'JurisLean.Candidates.SourceOpening20261027.known_frame_consumes_actual_legal_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.every_collected_frame_has_an_actual_report {W : Type}
+  (rows :
+    List
+      (ℕ ×
+        JurisLean.Candidates.Final20261021.Result
+          (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)))
+  (frames : List (JurisLean.Candidates.SourceOpening20261027.BranchOpening W))
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.collectFrames rows =
+      JurisLean.Candidates.Final20261021.Result.known frames)
+  (frame : JurisLean.Candidates.SourceOpening20261027.BranchOpening W) :
+  frame ∈ frames →
+    ∃ row ∈ rows,
+      JurisLean.Candidates.SourceOpening20261027.frameReport row = JurisLean.Candidates.Final20261021.Result.known frame
+'JurisLean.Candidates.SourceOpening20261027.every_collected_frame_has_an_actual_report' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.collected_branch_keys_are_not_filtered {W : Type}
+  (rows :
+    List
+      (ℕ ×
+        JurisLean.Candidates.Final20261021.Result
+          (JurisLean.Candidates.FiniteLegalValidation20261027.ValidationReport W)))
+  (frames : List (JurisLean.Candidates.SourceOpening20261027.BranchOpening W))
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.collectFrames rows =
+      JurisLean.Candidates.Final20261021.Result.known frames) :
+  List.map JurisLean.Candidates.SourceOpening20261027.BranchOpening.key frames = List.map Prod.fst rows
+'JurisLean.Candidates.SourceOpening20261027.collected_branch_keys_are_not_filtered' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.opening_reads_formed_source_without_claiming_payments
+  (frame : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) :
+  (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history).state.debt = frame.first.relation.value ∧
+    (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history).state.formations =
+        frame.stages.afterFormation.state.formations ∧
+      (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history).state.paid = 0 ∧
+        (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history).state.receipts = [] ∧
+          (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history).state.env =
+            JurisLean.Candidates.Final20261021.Temporal.proposed_applicability frame.source.material.gamma history
+'JurisLean.Candidates.SourceOpening20261027.opening_reads_formed_source_without_claiming_payments' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.source_opening_has_a_proved_initial_invariant
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (frame : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.stagesFromView view =
+      JurisLean.Candidates.Final20261021.Result.known frame) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant
+    (JurisLean.Candidates.SourceOpening20261027.openingHandle frame history)
+'JurisLean.Candidates.SourceOpening20261027.source_opening_has_a_proved_initial_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.known_opening_keeps_every_common_branch {W : Type}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (branches : List (JurisLean.Candidates.SourceOpening20261027.BranchOpening W))
+  (out : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.proposeOpening input branches =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.anchor ∈ branches ∧
+    out.branches = branches ∧
+      out.anchor.frame.source.material = input.anchor ∧
+        out.handle = JurisLean.Candidates.SourceOpening20261027.openingHandle out.anchor.frame input.history ∧
+          ∀ branch ∈ branches,
+            JurisLean.Candidates.SourceOpening20261027.sameOpeningCore branch.frame out.anchor.frame = true
+'JurisLean.Candidates.SourceOpening20261027.known_opening_keeps_every_common_branch' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.known_opening_consumes_the_actual_inspection {W : Type}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (out : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.openingFor input = JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ reports frames,
+    input.inspect = JurisLean.Candidates.Final20261021.Result.known reports ∧
+      JurisLean.Candidates.SourceOpening20261027.collectFrames reports =
+          JurisLean.Candidates.Final20261021.Result.known frames ∧
+        JurisLean.Candidates.SourceOpening20261027.proposeOpening input frames =
+          JurisLean.Candidates.Final20261021.Result.known out
+'JurisLean.Candidates.SourceOpening20261027.known_opening_consumes_the_actual_inspection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.known_common_opening_has_proved_business_invariant {W : Type}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (out : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.openingFor input = JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant out.handle
+'JurisLean.Candidates.SourceOpening20261027.known_common_opening_has_proved_business_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.initialized_state_keeps_supplied_learner_and_actual_opening {W : Type}
+  {m : ℕ} (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (out : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.initialState opening learning =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.learning = learning ∧ out.business.current = some opening.handle ∧ learning.service.gamma = opening.handle.gamma
+'JurisLean.Candidates.SourceOpening20261027.initialized_state_keeps_supplied_learner_and_actual_opening' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.source_initialized_state_has_proved_known_invariant {W : Type} {m : ℕ}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (out : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.start input learning =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant out ∧ out.learning = learning
+'JurisLean.Candidates.SourceOpening20261027.source_initialized_state_has_proved_known_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceOpening20261027.arbitrary_finite_commands_start_from_actual_source {W : Type} {m : ℕ}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (initial : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (commands : List (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+  (accepted :
+    JurisLean.Candidates.SourceOpening20261027.start input learning =
+      JurisLean.Candidates.Final20261021.Result.known initial)
+  (budget : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent learning ≤ learning.limit) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step initial commands) ∧
+    (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step initial commands).learning.limit =
+        learning.limit ∧
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+          (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step initial commands).learning ≤
+        learning.limit
+'JurisLean.Candidates.SourceOpening20261027.arbitrary_finite_commands_start_from_actual_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

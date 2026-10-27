@@ -1,0 +1,152 @@
+JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (call : JurisLean.Candidates.SourceAction20261027.PaymentCall) :
+  have row := JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame call.slot;
+  (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).key = row.payment.value.key ∧
+    (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload = row.payment.value.payload ∧
+      (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).interpretedPayment =
+          some row.payment.value.key ∧
+        (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).attempt = call.attempt
+'JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (call : JurisLean.Candidates.SourceAction20261027.PaymentCall) :
+  (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).applicable =
+      JurisLean.Candidates.Final20261021.Applicable.yes ↔
+    opening.handle.state.env =
+        JurisLean.Candidates.Final20261021.Result.known
+          (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload.normVersion ∧
+      ∀ branch ∈ opening.branches,
+        branch.legal.selected =
+          JurisLean.Candidates.Final20261021.Result.known
+            (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload.normVersion
+'JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.instruction_payloads_are_source_rows_in_call_order {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (calls : List JurisLean.Candidates.SourceAction20261027.PaymentCall) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.paymentPayloads
+      (JurisLean.Candidates.SourceAction20261027.instructions opening calls) =
+    List.map
+      (fun call =>
+        (JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame call.slot).payment.value.payload)
+      calls
+'JurisLean.Candidates.SourceAction20261027.instruction_payloads_are_source_rows_in_call_order' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.bound_plan_preserves_entire_quote_and_source_instructions {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (spec : JurisLean.Candidates.SourceAction20261027.PlanSpec)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (accepted :
+    JurisLean.Candidates.SourceAction20261027.bindPlan opening spec =
+      JurisLean.Candidates.Final20261021.Result.known proposal) :
+  proposal.quote = spec.quote ∧
+    proposal.steps = JurisLean.Candidates.SourceAction20261027.instructions opening spec.calls ∧
+      spec.quote.gamma = opening.handle.gamma ∧
+        spec.quote.execution =
+          List.map
+            (fun call =>
+              (JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame call.slot).payment.value.payload)
+            spec.calls
+'JurisLean.Candidates.SourceAction20261027.bound_plan_preserves_entire_quote_and_source_instructions' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.usable_plan_has_an_actual_source_spec {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (specs : List JurisLean.Candidates.SourceAction20261027.PlanSpec)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (member :
+    proposal ∈
+      JurisLean.Candidates.SourceAction20261027.usablePlans
+        (JurisLean.Candidates.SourceAction20261027.planResults opening specs)) :
+  ∃ spec ∈ specs,
+    JurisLean.Candidates.SourceAction20261027.bindPlan opening spec =
+      JurisLean.Candidates.Final20261021.Result.known proposal
+'JurisLean.Candidates.SourceAction20261027.usable_plan_has_an_actual_source_spec' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.source_run_keeps_inspection_even_on_failure {W : Type} {m : ℕ}
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m) :
+  (JurisLean.Candidates.SourceAction20261027.run legal learning settings measurement policy feedback).inspection =
+    legal.inspect
+'JurisLean.Candidates.SourceAction20261027.source_run_keeps_inspection_even_on_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.completed_run_consumes_actual_opening_and_plans {W : Type} {m : ℕ}
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (out : JurisLean.Candidates.SourceAction20261027.Completed W m)
+  (completed :
+    (JurisLean.Candidates.SourceAction20261027.run legal learning settings measurement policy feedback).outcome =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SourceOpening20261027.openingFor legal =
+      JurisLean.Candidates.Final20261021.Result.known out.opening ∧
+    JurisLean.Candidates.SourceOpening20261027.initialState out.opening learning =
+        JurisLean.Candidates.Final20261021.Result.known out.initial ∧
+      out.plans = JurisLean.Candidates.SourceAction20261027.planResults out.opening settings.plans ∧
+        out.episode =
+          JurisLean.Candidates.BusinessFeedbackLoop20261027.episode out.initial
+            (JurisLean.Candidates.SourceAction20261027.actionInput legal settings out.plans) measurement policy feedback
+'JurisLean.Candidates.SourceAction20261027.completed_run_consumes_actual_opening_and_plans' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.selected_source_plan_has_actual_spec_and_legal_validation {W : Type} {m : ℕ}
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (out : JurisLean.Candidates.SourceAction20261027.Completed W m)
+  (actual : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (completed :
+    (JurisLean.Candidates.SourceAction20261027.run legal learning settings measurement policy feedback).outcome =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (called : out.episode.action.run = some actual) (chosen : actual.execution.proposal = some proposal) :
+  ∃ spec ∈ settings.plans,
+    JurisLean.Candidates.SourceAction20261027.bindPlan out.opening spec =
+        JurisLean.Candidates.Final20261021.Result.known proposal ∧
+      ∃ branches,
+        legal.inspect = JurisLean.Candidates.Final20261021.Result.known branches ∧
+          JurisLean.Candidates.LegalActionDomain20261027.accepts settings.model legal.truth out.opening.handle
+              legal.anchor.gamma branches proposal =
+            true
+'JurisLean.Candidates.SourceAction20261027.selected_source_plan_has_actual_spec_and_legal_validation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceAction20261027.source_episode_and_finite_continuation_preserve_invariants {W : Type} {m : ℕ}
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (out : JurisLean.Candidates.SourceAction20261027.Completed W m)
+  (commands : List (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+  (completed :
+    (JurisLean.Candidates.SourceAction20261027.run legal learning settings measurement policy feedback).outcome =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (budget : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent learning ≤ learning.limit) :
+  JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
+      (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step out.episode.continuation.post commands) ∧
+    (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step out.episode.continuation.post
+              commands).learning.limit =
+        learning.limit ∧
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+          (List.foldl JurisLean.Candidates.BusinessFeedbackLoop20261027.step out.episode.continuation.post
+              commands).learning ≤
+        learning.limit
+'JurisLean.Candidates.SourceAction20261027.source_episode_and_finite_continuation_preserve_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8606 jobs).

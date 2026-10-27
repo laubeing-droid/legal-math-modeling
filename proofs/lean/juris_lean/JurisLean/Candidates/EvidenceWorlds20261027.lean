@@ -16,31 +16,31 @@ open JurisLean.Candidates.Final20261021.EvidenceProcedure
 def respects {W : Type} (truth : W → Nat → Bool) (w : W) (e : EvidenceItem) : Bool :=
   decide (usable e.query e = true → truth w e.query = e.supports)
 
-def constrained {W : Type} (universe : List W) (truth : W → Nat → Bool)
+def constrained {W : Type} (modelWorlds : List W) (truth : W → Nat → Bool)
     (items : List EvidenceItem) : List W :=
-  universe.filter fun w => items.all (respects truth w)
+  modelWorlds.filter fun w => items.all (respects truth w)
 
-theorem constrained_membership {W : Type} (universe : List W) (truth : W → Nat → Bool)
+theorem constrained_membership {W : Type} (modelWorlds : List W) (truth : W → Nat → Bool)
     (items : List EvidenceItem) (w : W) :
-    w ∈ constrained universe truth items ↔
-      w ∈ universe ∧ ∀ e ∈ items, usable e.query e = true → truth w e.query = e.supports := by
+    w ∈ constrained modelWorlds truth items ↔
+      w ∈ modelWorlds ∧ ∀ e ∈ items, usable e.query e = true → truth w e.query = e.supports := by
   simp [constrained, respects, List.all_eq_true]
 
-theorem additional_constraints_only_remove_worlds {W : Type} (universe : List W)
+theorem additional_constraints_only_remove_worlds {W : Type} (modelWorlds : List W)
     (truth : W → Nat → Bool) (old next : List EvidenceItem)
     (includesOld : ∀ e ∈ old, e ∈ next) :
-    ∀ w ∈ constrained universe truth next, w ∈ constrained universe truth old := by
+    ∀ w ∈ constrained modelWorlds truth next, w ∈ constrained modelWorlds truth old := by
   intro w member
-  have checked := (constrained_membership universe truth next w).mp member
-  exact (constrained_membership universe truth old w).mpr
+  have checked := (constrained_membership modelWorlds truth next w).mp member
+  exact (constrained_membership modelWorlds truth old w).mpr
     ⟨checked.1, fun e he => checked.2 e (includesOld e he)⟩
 
-theorem faithful_evidence_retains_actual_world {W : Type} (universe : List W)
+theorem faithful_evidence_retains_actual_world {W : Type} (modelWorlds : List W)
     (truth : W → Nat → Bool) (items : List EvidenceItem) (actual : W)
-    (covered : actual ∈ universe)
+    (covered : actual ∈ modelWorlds)
     (faithful : ∀ e ∈ items, usable e.query e = true → truth actual e.query = e.supports) :
-    actual ∈ constrained universe truth items :=
-  (constrained_membership universe truth items actual).mpr ⟨covered, faithful⟩
+    actual ∈ constrained modelWorlds truth items :=
+  (constrained_membership modelWorlds truth items actual).mpr ⟨covered, faithful⟩
 
 def worldJudgment {W : Type} (worlds : List W) (truth : W → Nat → Bool) (query : Nat) : Judgment :=
   classify (worlds.all fun w => truth w query) (worlds.all fun w => !truth w query)
@@ -64,6 +64,7 @@ theorem world_supported_iff_nonempty_universal {W : Type} (worlds : List W)
     (truth : W → Nat → Bool) (query : Nat) :
     worldJudgment worlds truth query = .supported ↔
       worlds ≠ [] ∧ ∀ w ∈ worlds, truth w query = true := by
+  unfold worldJudgment
   rw [(u08_3_evidence_four_states
     (worlds.all fun w => truth w query) (worlds.all fun w => !truth w query)).1]
   constructor
@@ -84,6 +85,7 @@ theorem world_opposed_iff_nonempty_universal {W : Type} (worlds : List W)
     (truth : W → Nat → Bool) (query : Nat) :
     worldJudgment worlds truth query = .opposed ↔
       worlds ≠ [] ∧ ∀ w ∈ worlds, truth w query = false := by
+  unfold worldJudgment
   rw [(u08_3_evidence_four_states
     (worlds.all fun w => truth w query) (worlds.all fun w => !truth w query)).2.1]
   constructor
@@ -106,6 +108,7 @@ theorem world_insufficient_iff_both_possibilities {W : Type} (worlds : List W)
     (truth : W → Nat → Bool) (query : Nat) :
     worldJudgment worlds truth query = .insufficient ↔
       (∃ w ∈ worlds, truth w query = true) ∧ (∃ w ∈ worlds, truth w query = false) := by
+  unfold worldJudgment
   rw [(u08_3_evidence_four_states
     (worlds.all fun w => truth w query) (worlds.all fun w => !truth w query)).2.2.2]
   simp only [List.all_eq_false]
@@ -123,14 +126,14 @@ theorem supported_world_judgment_needs_actual_membership {W : Type}
     truth actual query = true :=
   ((world_supported_iff_nonempty_universal worlds truth query).mp supported).2 actual belongs
 
-theorem source_to_world_truth_is_conditional {W : Type} (universe : List W)
+theorem source_to_world_truth_is_conditional {W : Type} (modelWorlds : List W)
     (truth : W → Nat → Bool) (items : List EvidenceItem) (query : Nat) (actual : W)
-    (covered : actual ∈ universe)
+    (covered : actual ∈ modelWorlds)
     (faithful : ∀ e ∈ items, usable e.query e = true → truth actual e.query = e.supports)
-    (supported : worldJudgment (constrained universe truth items) truth query = .supported) :
+    (supported : worldJudgment (constrained modelWorlds truth items) truth query = .supported) :
     truth actual query = true :=
   supported_world_judgment_needs_actual_membership _ truth query actual
-    (faithful_evidence_retains_actual_world universe truth items actual covered faithful) supported
+    (faithful_evidence_retains_actual_world modelWorlds truth items actual covered faithful) supported
 
 def pendingSources (query : Nat) (items : List EvidenceItem) : List SourceRef :=
   (items.filter fun e => decide (e.query = query ∧ e.admissibility = .unknown)).map EvidenceItem.source
@@ -141,16 +144,16 @@ structure EvidenceView (W : Type) where
   possibleWorldJudgment : Judgment
   pending : List SourceRef
 
-def viewEvidence {W : Type} (universe : List W) (truth : W → Nat → Bool)
+def viewEvidence {W : Type} (modelWorlds : List W) (truth : W → Nat → Bool)
     (query : Nat) (items : List EvidenceItem) : EvidenceView W :=
-  let worlds := constrained universe truth items
+  let worlds := constrained modelWorlds truth items
   ⟨judgment query items, worlds, worldJudgment worlds truth query, pendingSources query items⟩
 
-theorem output_world_label_reads_actual_filtered_worlds {W : Type} (universe : List W)
+theorem output_world_label_reads_actual_filtered_worlds {W : Type} (modelWorlds : List W)
     (truth : W → Nat → Bool) (query : Nat) (items : List EvidenceItem) :
-    (viewEvidence universe truth query items).possibleWorldJudgment = .supported ↔
-      (viewEvidence universe truth query items).possibleWorlds ≠ [] ∧
-      ∀ w ∈ (viewEvidence universe truth query items).possibleWorlds, truth w query = true :=
+    (viewEvidence modelWorlds truth query items).possibleWorldJudgment = .supported ↔
+      (viewEvidence modelWorlds truth query items).possibleWorlds ≠ [] ∧
+      ∀ w ∈ (viewEvidence modelWorlds truth query items).possibleWorlds, truth w query = true :=
   world_supported_iff_nonempty_universal _ _ _
 
 def evidenceBits (query : Nat) (items : List EvidenceItem) : Bool × Bool :=

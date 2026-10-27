@@ -39,27 +39,27 @@ def positive : EvidenceItem := ⟨⟨1⟩, 0, .yes, true, true⟩
 def negative : EvidenceItem := ⟨⟨2⟩, 0, .yes, true, false⟩
 def unknownAdmission : EvidenceItem := ⟨⟨3⟩, 0, .unknown, true, false⟩
 def valuation (world : Bool) (query : Nat) : Bool := if query = 0 then world else !world
-def universe : List Bool := [false, true]
-def run (items : List EvidenceItem) := viewEvidence universe valuation 0 items
+def modelWorlds : List Bool := [false, true]
+def run (items : List EvidenceItem) := viewEvidence modelWorlds valuation 0 items
 
 theorem credible_but_inadmissible_has_no_constraint :
     judgment 0 [{ positive with admissibility := .no }] = .insufficient ∧
-      constrained universe valuation [{ positive with admissibility := .no }] = universe := by decide
+      constrained modelWorlds valuation [{ positive with admissibility := .no }] = modelWorlds := by decide
 
 theorem opposing_usable_directions_empty_classical_worlds :
     judgment 0 [positive, negative] = .incompatible ∧
-      constrained universe valuation [positive, negative] = [] ∧
-      worldJudgment (constrained universe valuation [positive, negative]) valuation 0 = .incompatible := by decide
+      constrained modelWorlds valuation [positive, negative] = [] ∧
+      worldJudgment (constrained modelWorlds valuation [positive, negative]) valuation 0 = .incompatible := by decide
 
 theorem adding_credible_evidence_can_destroy_determinacy :
     judgment 0 [positive] = .supported ∧
       judgment 0 [positive, negative] = .incompatible ∧
-      worldJudgment (constrained universe valuation [positive]) valuation 0 = .supported ∧
-      worldJudgment (constrained universe valuation [positive, negative]) valuation 0 = .incompatible := by decide
+      worldJudgment (constrained modelWorlds valuation [positive]) valuation 0 = .supported ∧
+      worldJudgment (constrained modelWorlds valuation [positive, negative]) valuation 0 = .incompatible := by decide
 
 theorem admissible_is_not_source_truth :
-    false ∈ universe ∧ judgment 0 [positive] = .supported ∧
-      worldJudgment (constrained universe valuation [positive]) valuation 0 = .supported ∧
+    false ∈ modelWorlds ∧ judgment 0 [positive] = .supported ∧
+      worldJudgment (constrained modelWorlds valuation [positive]) valuation 0 = .supported ∧
       valuation false 0 = false := by decide
 
 theorem actual_world_coverage_is_necessary :
@@ -74,7 +74,7 @@ theorem marginal_coordinates_do_not_justify_cartesian_completion :
 /-- info: true -/
 #guard_msgs in
 #eval decide ((run []).evidenceJudgment = Judgment.insufficient ∧
-  (run []).possibleWorlds = universe ∧ (run []).possibleWorldJudgment = Judgment.insufficient ∧
+  (run []).possibleWorlds = modelWorlds ∧ (run []).possibleWorldJudgment = Judgment.insufficient ∧
   (run []).pending = [])
 
 /-- info: true -/
@@ -96,18 +96,18 @@ theorem marginal_coordinates_do_not_justify_cartesian_completion :
 /-- info: true -/
 #guard_msgs in
 #eval decide ((run [{ positive with admissibility := .no }]).evidenceJudgment = Judgment.insufficient ∧
-  (run [{ positive with admissibility := .no }]).possibleWorlds = universe)
+  (run [{ positive with admissibility := .no }]).possibleWorlds = modelWorlds)
 
 /-- info: true -/
 #guard_msgs in
 #eval decide ((run [unknownAdmission]).evidenceJudgment = Judgment.insufficient ∧
-  (run [unknownAdmission]).possibleWorlds = universe ∧
+  (run [unknownAdmission]).possibleWorlds = modelWorlds ∧
   (run [unknownAdmission]).pending = [SourceRef.mk 3])
 
 /-- info: true -/
 #guard_msgs in
 #eval decide ((run [{ positive with credibleUnderPolicy := false }]).evidenceJudgment = Judgment.insufficient ∧
-  (run [{ positive with credibleUnderPolicy := false }]).possibleWorlds = universe)
+  (run [{ positive with credibleUnderPolicy := false }]).possibleWorlds = modelWorlds)
 
 /-- info: true -/
 #guard_msgs in

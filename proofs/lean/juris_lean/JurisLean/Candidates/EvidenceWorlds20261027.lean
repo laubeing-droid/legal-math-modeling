@@ -24,7 +24,7 @@ theorem constrained_membership {W : Type} (modelWorlds : List W) (truth : W → 
     (items : List EvidenceItem) (w : W) :
     w ∈ constrained modelWorlds truth items ↔
       w ∈ modelWorlds ∧ ∀ e ∈ items, usable e.query e = true → truth w e.query = e.supports := by
-  simp [constrained, respects, List.all_eq_true]
+  simp only [constrained, List.mem_filter, List.all_eq_true, respects, decide_eq_true_eq]
 
 theorem additional_constraints_only_remove_worlds {W : Type} (modelWorlds : List W)
     (truth : W → Nat → Bool) (old next : List EvidenceItem)
@@ -178,7 +178,7 @@ theorem compatible_pair_membership {L W : Type} (allowed : List (L × W))
     (truth : L → W → Nat → Bool) (items : L → List EvidenceItem) (pair : L × W) :
     pair ∈ compatibleWorlds allowed truth items ↔ pair ∈ allowed ∧
       ∀ e ∈ items pair.1, usable e.query e = true → truth pair.1 pair.2 e.query = e.supports := by
-  simp [compatibleWorlds, respects, List.all_eq_true]
+  simp only [compatibleWorlds, List.mem_filter, List.all_eq_true, respects, decide_eq_true_eq]
 
 theorem filtering_never_invents_legal_world_pair {L W : Type} (allowed : List (L × W))
     (truth : L → W → Nat → Bool) (items : L → List EvidenceItem) (pair : L × W)

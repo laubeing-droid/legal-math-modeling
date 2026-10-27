@@ -1,0 +1,60 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "149dee0f69c9158f43af3c26e61a5bcfce1632be",
+  "run_id": 40439612934,
+  "job_id": 121976530560,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+  "named_count": 12,
+  "named_theorems_full": [
+    "JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass",
+    "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend",
+    "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+    "JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk",
+    "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk",
+    "JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+      "sha256": "3e80ddbfcd40858660bc36660e60664fccb6e817728a6e6cef613ab3570e2d45"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+      "sha256": "9750d99d766ef40f207dbbad2abeef27aa89086ef96f98a191d4e3b67b29ebb7"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 12,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "6 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

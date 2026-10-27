@@ -5,8 +5,10 @@ CAND5, CAND5bis, and CAND6 remain CLOSED_BY_WIRING historically.
 This round closes CAND7 (U07.1/U02.3/U04.3/U05.2/U06.3) by wiring:
 close_admitted=true, UNWIRED empty, SCOPE_REVIEW present.
 The independent U03 closure retains two original residuals; the later U01
-package closes three more; U04.5 closes one further original residual.
-closed_this_round=1, OPEN_FORMAL_TAIL=14, CLOSED_BY_WIRING=28, blocked_rows=14.
+package closes three more; U04.5 closes one further original residual; the
+U14.1 package names existing independent statistical validation, adaptive
+conditional budgets and service-load proofs for its residual.
+closed_this_round=1, OPEN_FORMAL_TAIL=13, CLOSED_BY_WIRING=29, blocked_rows=13.
 Historical CAND8 still closes nothing.
 discharges stays false; math_flip stays false; step 2 stays open.
 The expand receipt ci-tip-21862d9b stays named_count=61, closes_debt=false,
@@ -40,8 +42,8 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     assert "narrow 8" in proc.stdout
-    assert "wiring 28" in proc.stdout
-    assert "open_formal_tail 14" in proc.stdout
+    assert "wiring 29" in proc.stdout
+    assert "open_formal_tail 13" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "40274167574" in proc.stdout
     assert "formal_tail_closed_this_round 1" in proc.stdout
@@ -75,14 +77,14 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     summary = ledger["formal_tail_round"]
     assert summary["step_2_closed"] is False
     assert summary["closed_this_round"] == 1
-    assert summary["open_formal_tail_remaining"] == 14
+    assert summary["open_formal_tail_remaining"] == 13
     assert summary["candidate_rows"] == 0
-    assert summary["blocked_rows"] == 14
+    assert summary["blocked_rows"] == 13
     assert summary["discharges_archived_manuscript_gaps"] is False
     assert summary["math_flip_authorized"] is False
     assert summary["step_2_closed"] is False
     assert summary["close_pack"] == (
-        "docs/formal-release/evidence/u04-5-debt-close-20261027"
+        "docs/formal-release/evidence/u14-1-debt-close-20261028"
     )
     assert summary["tip_pin_not_retargeted"] is False
     assert summary["tip_pin"]["subject"] == "21862d9bdd94bfa15e5da39079538b5eb30ff235"
@@ -98,8 +100,8 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["formal_tail_expand_audit"]["job_id"] == 121413235107
     assert summary["formal_tail_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND7_20261026"
     assert ledger["tip_pin_not_retargeted"] is False
-    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 14
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 28
+    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 13
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 29
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
     assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
     assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False
@@ -107,6 +109,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U02.4", "U09.2", "U01.4", "U04.1", "U04.4", "U05.1", "U06.5", "U00",
     ]
     assert summary["wiring_not_reopened"] == [
+        "U04.5",
         "U01.1", "U01.2", "U01.3",
         "U03.1", "U03.2",
         "U02.2", "U01.0", "U06.4", "U08.1", "U10.3", "U12.2", "U14.2",
@@ -170,9 +173,9 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U04.2", "U06.1", "U06.2",
         "U07.2", "U07.3",
         "U10.1", "U11.1", "U12.1", "U12.3", "U12.4",
-        "U13.3", "U13.4", "U14.1",
+        "U13.3", "U13.4",
     ]
-    assert len(blocked) == 14
+    assert len(blocked) == 13
     cand6_shorts = [
         "u08_3_four_states_do_not_exhaust_dependency_policies",
         "u08_3_judgment_not_compatibility_world_classification",
@@ -338,7 +341,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "集成" in u13["companion_scope_notes"] and "另证" in u13["companion_scope_notes"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
-    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5"}
+    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1"}
     assert all(
         row["formal_tail_prove"]["close_admitted"] is (row["clause"] in admitted)
         for row in ledger["rows"]
@@ -360,7 +363,7 @@ def test_u03_closure_covers_only_original_residuals_with_independent_proofs():
         assert row["independent_closure"]["named_theorems_full"] == checker.disp.POST_PIN_NAMES[clause]
         assert row["independent_closure"]["receipt"] == checker.disp.POST_PIN_RECEIPT
     assert ledger["formal_tail_round"]["historical_cand7_closed"] == 5
-    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5"]
+    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1"]
     assert ledger["formal_tail_round"]["historical_u03_closed"] == 2
 
 
@@ -399,8 +402,8 @@ def test_u01_close_uses_general_theorems_and_keeps_u03_evidence():
             "named_theorems_full": checker.disp.U01_NAMES[clause],
         }
     summary = ledger["formal_tail_round"]
-    assert summary["independent_closed_total"] == 6
-    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT]
+    assert summary["independent_closed_total"] == 7
+    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT]
     import copy
     pack = checker.disp.INDEPENDENT_CLOSE_PACKS[1]
     receipt = checker.load_json(ROOT / pack["receipt"])
@@ -413,6 +416,37 @@ def test_u01_close_uses_general_theorems_and_keeps_u03_evidence():
         lambda r: r["sources"][0].update({"sha256": "0" * 64}),
         lambda r: r["sources"].pop(),
         lambda r: r.update(open_before=20),
+        lambda r: r.update(job_conclusion="failure"),
+        lambda r: r["tip_pin"].update({"subject": "0" * 40}),
+    ):
+        changed = copy.deepcopy(receipt)
+        mutate(changed)
+        assert checker.independent_close_errors(changed, raw, pack)
+    assert checker.independent_close_errors(receipt, raw.replace("depends on axioms", "audit omitted", 1), pack)
+
+
+def test_u14_1_close_names_validation_budget_and_load_proofs():
+    import copy
+    errors, ledger = checker.check(write=False)
+    assert errors == []
+    row = next(r for r in ledger["rows"] if r["clause"] == "U14.1")
+    assert row["archive_gap_status"] == "CLOSED_BY_WIRING"
+    assert row["independent_closure"] == {
+        "receipt": checker.disp.U14_1_RECEIPT,
+        "named_theorems_full": checker.disp.U14_1_NAMES["U14.1"],
+    }
+    assert row["remaining_after_close"] == "WIRED_TO_INDEPENDENT_U14_1_PROOFS"
+    pack = checker.disp.INDEPENDENT_CLOSE_PACKS[3]
+    receipt = checker.load_json(ROOT / pack["receipt"])
+    raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+    assert checker.independent_close_errors(receipt, raw, pack) == []
+    assert receipt["named_count"] == 15
+    assert (receipt["open_before"], receipt["open_after"]) == (14, 13)
+    for mutate in (
+        lambda r: r["closed_ids"].append("U07.2"),
+        lambda r: r["original_residuals"].update({"U14.1": "acceptance algebra only"}),
+        lambda r: r["names_by_clause"]["U14.1"].pop(),
+        lambda r: r["sources"][0].update({"sha256": "0" * 64}),
         lambda r: r.update(job_conclusion="failure"),
         lambda r: r["tip_pin"].update({"subject": "0" * 40}),
     ):

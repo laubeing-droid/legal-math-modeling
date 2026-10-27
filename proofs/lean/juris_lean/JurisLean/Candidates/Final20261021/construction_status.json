@@ -766,7 +766,7 @@
         "TAIL40清单.json"
       ],
       "one_pipeline": "archive-gap close ledger; no second track",
-      "open_formal_tail_remaining": 14,
+      "open_formal_tail_remaining": 13,
       "closed_this_round": 1,
       "historical_cand7_closed": 5,
       "historical_u03_closed": 2,
@@ -777,18 +777,20 @@
         "U01.1",
         "U01.2",
         "U01.3",
-        "U04.5"
+        "U04.5",
+        "U14.1"
       ],
-      "independent_closed_total": 6,
+      "independent_closed_total": 7,
       "independent_receipts": [
         "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
         "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
-        "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json"
+        "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
+        "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json"
       ],
-      "independent_receipt": "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
-      "close_pack": "docs/formal-release/evidence/u04-5-debt-close-20261027",
+      "independent_receipt": "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
+      "close_pack": "docs/formal-release/evidence/u14-1-debt-close-20261028",
       "candidate_rows": 0,
-      "blocked_rows": 14,
+      "blocked_rows": 13,
       "narrow_not_reopened": [
         "U02.4",
         "U09.2",
@@ -800,6 +802,7 @@
         "U00"
       ],
       "wiring_not_reopened": [
+        "U04.5",
         "U01.1",
         "U01.2",
         "U01.3",
@@ -839,7 +842,7 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14); remaining OPEN are 14 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+      "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13); remaining OPEN are 13 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
@@ -877,8 +880,8 @@
       "放弃": 0,
       "未决": 0,
       "CLOSED_BY_NARROW": 8,
-      "CLOSED_BY_WIRING": 28,
-      "OPEN_FORMAL_TAIL": 14
+      "CLOSED_BY_WIRING": 29,
+      "OPEN_FORMAL_TAIL": 13
     }
   }
 }

@@ -335,12 +335,35 @@ UNWIRED: dict[str, list[str]] = {
     "U13.4": [
         "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone.",
     ],
-    "U14.1": [
-        "Independent statistical validation, adaptive conditional budgets, and service-load integration remain unproved.",
-    ],
+    "U14.1": [],  # Independently proved and audited by the U14.1 closure package.
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U14.1": (
+        "Independent U14.1 residual closure: ProtectedFeedback20261027 supplies "
+        "the independent statistical validation core: the iid joint event over "
+        "the pre-declared finite class, the actual sampled-block confidence "
+        "premise, the joint-event preservation of each protected-domain risk "
+        "bound, and the separation of proven strict improvement from observed "
+        "improvement. AdaptiveValidation20261027 and HarnessRisk20261027 supply "
+        "the adaptive conditional budgets: predictable per-history failure "
+        "budgets without cross-round independence, fresh iid validation inside "
+        "each positive-mass history cell, the sample count that meets the "
+        "radius, the random-budget adaptive union bound, and the actual round "
+        "ledger keeping the declared limit under arbitrary finite round "
+        "actions. ValidatedFeedbackLoad20261027, AdaptiveRoundLedger20261027 "
+        "and BusinessFeedbackLoop20261027 supply the service-load integration: "
+        "the loaded package is the actual written readback behind parent, "
+        "snapshot, context, evaluation, protected-scope, sampling and "
+        "authority gates; the loaded model follows the computed validation "
+        "bounds; the assessed load comes from the actual activation; the "
+        "newly loaded model is the next round actual parent; and the next "
+        "production action reads the actual assessment post. Exact named "
+        "evidence: docs/formal-release/evidence/u14-1-debt-close-20261028. "
+        "This does not certify real-world label truth, the supplied sampling "
+        "laws, deployed services, or legal validity; those stay external "
+        "premises of the original contract."
+    ),
     "U04.5": (
         "Independent U04.5 residual closure: MeasurementLikelihood20261027 proves "
         "the joint event likelihood chain under explicit positive denominators, "
@@ -682,6 +705,7 @@ CLOSED_NARROW_IDS = (
     "U00",
 )
 CLOSED_WIRING_IDS = (
+    "U14.1",
     "U04.5",
     "U01.1", "U01.2", "U01.3",
     "U03.1",
@@ -754,7 +778,7 @@ CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
 POST_PIN_CLOSED_IDS = ("U03.1", "U03.2")
 POST_PIN_CLOSE_PACK = "docs/formal-release/evidence/u03-debt-close-20261027"
 POST_PIN_RECEIPT = POST_PIN_CLOSE_PACK + "/verification.json"
-POST_PIN_OPEN_REMAINING = 14
+POST_PIN_OPEN_REMAINING = 13
 POST_PIN_NAMES = {
     "U03.1": [
         "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
@@ -840,6 +864,38 @@ U04_5_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
     U04_5_DRIVER,
 )
+U14_1_CLOSED_IDS = ("U14.1",)
+U14_1_CLOSE_PACK = "docs/formal-release/evidence/u14-1-debt-close-20261028"
+U14_1_RECEIPT = U14_1_CLOSE_PACK + "/verification.json"
+U14_1_NAMES = {
+    "U14.1": [
+        "JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event",
+        "JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence",
+        "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk",
+        "JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement",
+        "JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement",
+        "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+        "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget",
+        "JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback",
+        "JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds",
+        "JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent",
+        "JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post",
+    ]
+}
+U14_1_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean"
+U14_1_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
+    U14_1_DRIVER,
+)
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -853,12 +909,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U04_5_RECEIPT, "names": U04_5_NAMES,
      "driver": U04_5_DRIVER, "sources": U04_5_SOURCES,
      "open_before": 15, "open_after": 14},
+    {"closed_ids": U14_1_CLOSED_IDS, "pack": U14_1_CLOSE_PACK,
+     "receipt": U14_1_RECEIPT, "names": U14_1_NAMES,
+     "driver": U14_1_DRIVER, "sources": U14_1_SOURCES,
+     "open_before": 14, "open_after": 13},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1416,7 +1476,10 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "residual proofs (20 to 18). The subsequent independent U01 package closes "
             "U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later "
             "independent U04.5 package proves general likelihood and copy information "
-            "(15 to 14); remaining OPEN are 14 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
+            "(15 to 14). The later independent U14.1 package names the existing "
+            "independent statistical validation, adaptive conditional budgets and "
+            "service-load proofs against its original residual (14 to 13); remaining "
+            "OPEN are 13 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -1441,7 +1504,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else
             "WIRED_TO_TIP_PIN_DECLARATIONS")

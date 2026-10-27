@@ -84,7 +84,16 @@ theorem history_budget_is_expected_spend {Ω H T : Type*} [MeasurableSpace Ω]
         ∑ t, ∑ h, term t h w := by
     apply Finset.sum_congr rfl
     intro t _
-    simp [term, historyCell, Set.indicator, eq_comm]
+    symm
+    calc
+      (∑ h, term t h w) = term t (history t w) w := by
+        apply Finset.sum_eq_single (history t w)
+        · intro h _ different
+          have reversed : history t w ≠ h := Ne.symm different
+          simp [term, historyCell, Set.indicator, reversed]
+        · intro absent
+          exact (absent (Finset.mem_univ _)).elim
+      _ = _ := by simp [term, historyCell, Set.indicator]
   calc
     _ = ∫ w, ∑ t, ∑ h, term t h w ∂μ :=
       integral_congr_ae (Filter.Eventually.of_forall expansion)
@@ -199,7 +208,7 @@ def uniformZeroRisk {N : Nat} (prediction : Fin N → Bool) : ℚ :=
 theorem probe_score_reveals_membership {N : Nat} (points : Finset (Fin N)) (x : Fin N) :
     probeScores points x = if x ∈ points then (1 : ℚ) / points.card else 0 := by
   classical
-  simp [probeScores, zeroLabelValidationScore]
+  by_cases inside : x ∈ points <;> simp [probeScores, zeroLabelValidationScore, inside]
 
 theorem feedback_model_eq_unseen {N : Nat} (points : Finset (Fin N))
     (nonempty : points.Nonempty) (x : Fin N) :

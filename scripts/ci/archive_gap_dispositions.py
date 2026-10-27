@@ -310,9 +310,7 @@ UNWIRED: dict[str, list[str]] = {
     "U04.2": [
         "Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved.",
     ],
-    "U04.5": [
-        "A general joint likelihood/copy theorem and the sigma-field information argument remain unproved.",
-    ],
+    "U04.5": [],  # General event likelihood and copy-information proofs independently accepted.
     "U06.1": [
         "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
     ],
@@ -343,6 +341,19 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U04.5": (
+        "Independent U04.5 residual closure: MeasurementLikelihood20261027 proves "
+        "the joint event likelihood chain under explicit positive denominators, "
+        "derives multiplication from measurement independence under EACH hypothesis "
+        "law, and proves that an observed deterministic copy leaves the event and "
+        "likelihood unchanged. A zero reference mass gives no finite ratio; a "
+        "nondegenerate measurement cannot be independent of itself. "
+        "ExactProbability20261027 proves equality of the generated sigma-fields "
+        "and conditional expectations. Exact named evidence: "
+        "docs/formal-release/evidence/u04-5-debt-close-20261027. "
+        "This does not certify real identities, the supplied laws or independence, "
+        "or assign a density likelihood to a zero-probability observation."
+    ),
     "U01.1": (
         "Independent U01 residual closure: LearningFiniteClass20261027 derives the "
         "actual iid sample-mean bound with sqrt(log(2M/delta)/(2n)) and the "
@@ -671,6 +682,7 @@ CLOSED_NARROW_IDS = (
     "U00",
 )
 CLOSED_WIRING_IDS = (
+    "U04.5",
     "U01.1", "U01.2", "U01.3",
     "U03.1",
     "U03.2",
@@ -742,7 +754,7 @@ CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
 POST_PIN_CLOSED_IDS = ("U03.1", "U03.2")
 POST_PIN_CLOSE_PACK = "docs/formal-release/evidence/u03-debt-close-20261027"
 POST_PIN_RECEIPT = POST_PIN_CLOSE_PACK + "/verification.json"
-POST_PIN_OPEN_REMAINING = 15
+POST_PIN_OPEN_REMAINING = 14
 POST_PIN_NAMES = {
     "U03.1": [
         "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
@@ -806,6 +818,28 @@ U01_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
     U01_DRIVER,
 )
+U04_5_CLOSED_IDS = ("U04.5",)
+U04_5_CLOSE_PACK = "docs/formal-release/evidence/u04-5-debt-close-20261027"
+U04_5_RECEIPT = U04_5_CLOSE_PACK + "/verification.json"
+U04_5_NAMES = {
+    "U04.5": [
+        "JurisLean.Candidates.MeasurementLikelihood20261027.joint_likelihood_chain",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_joint_mass",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_likelihood_multiplies",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_observation_event",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.zero_reference_mass_has_no_finite_ratio",
+        "JurisLean.Candidates.MeasurementLikelihood20261027.nondegenerate_measurement_is_not_independent_of_itself",
+        "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+        "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation"
+    ]
+}
+U04_5_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihoodAudit20261027.lean"
+U04_5_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihood20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+    U04_5_DRIVER,
+)
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -815,9 +849,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U01_RECEIPT, "names": U01_NAMES,
      "driver": U01_DRIVER, "sources": U01_SOURCES,
      "open_before": 18, "open_after": 15},
+    {"closed_ids": U04_5_CLOSED_IDS, "pack": U04_5_CLOSE_PACK,
+     "receipt": U04_5_RECEIPT, "names": U04_5_NAMES,
+     "driver": U04_5_DRIVER, "sources": U04_5_SOURCES,
+     "open_before": 15, "open_after": 14},
 )
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES
+CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
+CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
+CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1334,14 +1375,15 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "pack_files": list(FORMAL_TAIL_PACK_FILES),
         "one_pipeline": "archive-gap close ledger; no second track",
         "open_formal_tail_remaining": len(open_rows),
-        "closed_this_round": len(U01_CLOSED_IDS),
+        "closed_this_round": len(CURRENT_CLOSE_IDS),
         "historical_cand7_closed": CAND7_CLOSED_THIS_ROUND,
         "historical_u03_closed": len(POST_PIN_CLOSED_IDS),
+        "historical_u01_closed": len(U01_CLOSED_IDS),
         "independent_closed_ids": list(INDEPENDENT_CLOSED_IDS),
         "independent_closed_total": len(INDEPENDENT_CLOSED_IDS),
         "independent_receipts": [p["receipt"] for p in INDEPENDENT_CLOSE_PACKS],
-        "independent_receipt": U01_RECEIPT,
-        "close_pack": U01_CLOSE_PACK,
+        "independent_receipt": CURRENT_CLOSE_RECEIPT,
+        "close_pack": CURRENT_CLOSE_PACK,
         "candidate_rows": sum(
             1 for row in open_rows if (row.get("formal_tail_prove") or {}).get("disposition") == "CANDIDATE_NOT_AUDITED"
         ),
@@ -1351,7 +1393,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             if (row.get("formal_tail_prove") or {}).get("disposition") == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
         ),
         "narrow_not_reopened": list(CLOSED_NARROW_IDS),
-        "wiring_not_reopened": [c for c in CLOSED_WIRING_IDS if c not in U01_CLOSED_IDS],
+        "wiring_not_reopened": [c for c in CLOSED_WIRING_IDS if c not in CURRENT_CLOSE_IDS],
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
@@ -1372,8 +1414,9 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close "
             "debt. The later independent U03 package closes U03.1/U03.2 using new exact "
             "residual proofs (20 to 18). The subsequent independent U01 package closes "
-            "U01.1/U01.2/U01.3 against the original residuals; remaining OPEN are "
-            "15 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
+            "U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later "
+            "independent U04.5 package proves general likelihood and copy information "
+            "(15 to 14); remaining OPEN are 14 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -1398,7 +1441,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else
             "WIRED_TO_TIP_PIN_DECLARATIONS")
     if goals:

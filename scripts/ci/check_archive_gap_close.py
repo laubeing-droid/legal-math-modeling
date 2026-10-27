@@ -352,14 +352,14 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append(f"formal-tail summary omits pack file {name}")
     if summary.get("step_2_closed") is not False:
         errors.append("formal-tail round claims step 2 closed")
-    if summary.get("closed_this_round") != len(disp.U01_CLOSED_IDS):
+    if summary.get("closed_this_round") != len(disp.CURRENT_CLOSE_IDS):
         errors.append(
             f"formal-tail closed_this_round {summary.get('closed_this_round')!r} "
-            f"!= authorized {len(disp.U01_CLOSED_IDS)}"
+            f"!= authorized {len(disp.CURRENT_CLOSE_IDS)}"
         )
     if disp.CAND7_CLOSED_THIS_ROUND != 5 or len(disp.CAND7_CLOSED_IDS) != 5:
         errors.append("CAND7 close authorization is not the five releasable ids")
-    if summary.get("close_pack") != disp.U01_CLOSE_PACK:
+    if summary.get("close_pack") != disp.CURRENT_CLOSE_PACK:
         errors.append("formal-tail summary close_pack drifted")
     if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
         errors.append("formal-tail round flips discharges or math authorization")
@@ -374,7 +374,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("later tip gate is treated as a close or a retarget")
     if summary.get("narrow_not_reopened") != list(disp.CLOSED_NARROW_IDS):
         errors.append("narrow set was reopened or reordered")
-    if summary.get("wiring_not_reopened") != [c for c in disp.CLOSED_WIRING_IDS if c not in disp.U01_CLOSED_IDS]:
+    if summary.get("wiring_not_reopened") != [c for c in disp.CLOSED_WIRING_IDS if c not in disp.CURRENT_CLOSE_IDS]:
         errors.append("wiring set was reopened or reordered")
     if summary.get("one_pipeline") != "archive-gap close ledger; no second track":
         errors.append("formal-tail round is not on the archive-gap pipeline")
@@ -536,7 +536,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 27 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 28 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -905,10 +905,10 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
         errors.append("construction formal_tail_round tip_pin is not the live retarget")
     if formal_tail.get("step_2_closed") is not False:
         errors.append("construction formal_tail_round claims step 2 closed")
-    if formal_tail.get("closed_this_round") != len(disp.U01_CLOSED_IDS):
+    if formal_tail.get("closed_this_round") != len(disp.CURRENT_CLOSE_IDS):
         errors.append(
             f"construction formal_tail_round closed_this_round "
-            f"{formal_tail.get('closed_this_round')!r} != {len(disp.U01_CLOSED_IDS)}"
+            f"{formal_tail.get('closed_this_round')!r} != {len(disp.CURRENT_CLOSE_IDS)}"
         )
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")

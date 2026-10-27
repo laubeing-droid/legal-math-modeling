@@ -1,0 +1,87 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "ce2092fc89c36d58b53eaadd0f1f029e34f37142",
+  "run_id": 40500436873,
+  "job_id": 122176488411,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoopAudit20261027.lean",
+  "named_count": 23,
+  "named_theorems_full": [
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.measurement_reads_the_reported_post_only",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unknown_commit_cannot_generate_a_measurement",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_enqueue_another_round",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.distinct_observation_retains_full_evidence_and_queue",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.semantic_replay_does_not_append_a_policy_sample",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.conflicting_measurement_does_not_become_a_policy_sample",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.known_advice_reads_recorded_data_within_cutoffs",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_feedback_preserves_actual_learner",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.prepared_feedback_uses_actual_observation",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_queue_keeps_risk_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_does_not_repeat_business_execution",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.continuation_feedback_is_the_actual_measured_result",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.assessment_passes_actual_post_to_next_model",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.unresolved_business_has_no_new_action",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.actual_action_reads_current_handle_and_loaded_state",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.action_preserves_every_reported_business_state",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.episode_consumes_actual_output_and_keeps_invariants",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.each_command_preserves_known_business_and_learning_budget",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.arbitrary_finite_commands_consume_actual_posts"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
+      "sha256": "fdde718efb3dfdf84ca35edee473674b18aa19f656fd27d6414814b71a2f04e3"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoopAudit20261027.lean",
+      "sha256": "c0eb72b8d346d06cf48c4a5bc3cf0ff4f2bc44863e81e493e5f5893a70a1694c"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 23,
+    "axiom_vocabulary": {
+      "Classical.choice": 18,
+      "Quot.sound": 23,
+      "propext": 23
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "22 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

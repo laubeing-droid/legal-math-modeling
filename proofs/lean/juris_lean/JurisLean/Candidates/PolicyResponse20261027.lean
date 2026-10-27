@@ -13,9 +13,9 @@ namespace JurisLean.Candidates.PolicyResponse20261027
 open Filter Function
 open scoped Topology
 
-def preparationScore (b : Fin 3) : ℚ := if b = 0 then 0 else 1
-def preparationQuality (b : Fin 3) : ℚ := if b = 1 then 1 else 0
-def preparationCost (b : Fin 3) : ℚ := if b = 1 then 3/5 else if b = 2 then 1/10 else 0
+def preparationScore (b : Fin 3) : ℚ := if b.val = 0 then 0 else 1
+def preparationQuality (b : Fin 3) : ℚ := if b.val = 1 then 1 else 0
+def preparationCost (b : Fin 3) : ℚ := if b.val = 1 then 3/5 else if b.val = 2 then 1/10 else 0
 def preparationUtility (threshold : ℚ) (b : Fin 3) : ℚ :=
   (if threshold ≤ preparationScore b then 1 else 0) - preparationCost b
 
@@ -24,9 +24,13 @@ theorem finite_response_payoffs (threshold : ℚ) (positive : 0 < threshold) (sm
     preparationUtility threshold 1 = 2/5 ∧ preparationUtility threshold 2 = 9/10 ∧
     (∀ b, b ≠ 2 → preparationUtility threshold b < preparationUtility threshold 2) := by
   have zero : ¬ threshold ≤ 0 := not_le.mpr positive
-  norm_num [preparationUtility, preparationScore, preparationCost, zero, small]
-  intro b different
-  fin_cases b <;> norm_num [preparationUtility, preparationScore, preparationCost, zero, small] at *
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · norm_num [preparationUtility, preparationScore, preparationCost, zero, small]
+  · norm_num [preparationUtility, preparationScore, preparationCost, zero, small]
+  · norm_num [preparationUtility, preparationScore, preparationCost, zero, small]
+  · intro b different
+    fin_cases b <;>
+      norm_num [preparationUtility, preparationScore, preparationCost, zero, small, Fin.ext_iff] at *
 
 theorem score_only_cannot_distinguish_preparation (passProbability : ℚ → ℚ) :
     passProbability (preparationScore 1) = passProbability (preparationScore 2) ∧
@@ -74,13 +78,13 @@ theorem logit_actual_means (beta : ℝ) :
       (Real.exp (-(9/10) * beta) + Real.exp (-(1/2) * beta) + 1) := by
   have weight (b : Fin 3) :
       Real.exp (beta * ((preparationUtility (1/2) b : ℝ) - 9/10)) =
-      if b = 0 then Real.exp (-(9/10) * beta)
-      else if b = 1 then Real.exp (-(1/2) * beta) else 1 := by
+      if b.val = 0 then Real.exp (-(9/10) * beta)
+      else if b.val = 1 then Real.exp (-(1/2) * beta) else 1 := by
     fin_cases b <;>
-      norm_num [preparationUtility, preparationScore, preparationCost] <;> congr 1 <;> ring
-  norm_num [logitQuality, logitScore, logitPreparation, weight,
-    preparationQuality, preparationScore, Fin.sum_univ_succ]
-  <;> ring
+      norm_num [preparationUtility, preparationScore, preparationCost] <;> ring
+  constructor <;>
+    norm_num [logitQuality, logitScore, logitPreparation, weight,
+      preparationQuality, preparationScore, Fin.sum_univ_succ] <;> ring
 
 theorem logit_zero_means :
     logitQuality 0 = 1/3 ∧ logitScore 0 = 2/3 := by
@@ -139,7 +143,10 @@ theorem original_maps_and_unique_fixed_points (x : ℝ) :
 theorem affine_converges_to_center (q x : ℝ) (contractive : |q| < 1) :
     Tendsto (fun n : Nat => (affineResponse q)^[n] x) atTop (𝓝 (1/2)) := by
   have powers := tendsto_pow_atTop_nhds_zero_of_abs_lt_one contractive
-  simpa [affine_iterate_formula] using (powers.mul_const (x-1/2)).const_add (1/2)
+  have shifted : Tendsto (fun n : Nat => (1/2 : ℝ) + q^n*(x-1/2)) atTop
+      (𝓝 ((1/2 : ℝ) + 0*(x-1/2))) :=
+    (powers.mul_const (x-1/2)).const_add (1/2 : ℝ)
+  simpa only [affine_iterate_formula, zero_mul, add_zero] using shifted
 
 theorem reflection_has_no_limit_except_center (x : ℝ) (away : x ≠ 1/2) :
     ¬ ∃ limit, Tendsto (fun n : Nat => (affineResponse (-1))^[n] x) atTop (𝓝 limit) := by
@@ -202,12 +209,13 @@ theorem damping_converges_for_all_iff (rate : ℝ) :
     rw [damped_as_affine]
     exact affine_converges_to_center _ _ (abs_lt.mpr ⟨by linarith, by linarith⟩)
 
-def localResponse (x : ℝ) : ℝ := if x ≤ 1/2 then x/2 else 1
+noncomputable def localResponse (x : ℝ) : ℝ := if x ≤ 1/2 then x/2 else 1
 
 theorem local_affine_behavior_does_not_give_global_contraction :
     (∀ x ≤ (1/2 : ℝ), localResponse x = x/2) ∧
     localResponse 0 = 0 ∧ localResponse 1 = 1 := by
-  refine ⟨fun x hx => by simp [localResponse, hx], ?_, ?_⟩ <;> norm_num [localResponse]
+  refine ⟨fun x hx => by simp only [localResponse, if_pos hx], ?_, ?_⟩ <;>
+    norm_num [localResponse]
 
 theorem stable_fixed_point_can_be_outside_legal_constraint :
     affineResponse (1/2 : ℝ) (1/2) = 1/2 ∧

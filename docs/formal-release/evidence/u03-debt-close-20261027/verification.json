@@ -1,0 +1,80 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "ce5c5d85f0940c8a841d3865f59866a578d9e405",
+  "run_id": 40518100988,
+  "job_id": 122237036992,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+  "named_count": 15,
+  "names_by_clause": {
+    "U03.1": [
+      "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+      "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+      "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+      "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+      "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+      "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+      "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query"
+    ],
+    "U03.2": [
+      "JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact",
+      "JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected",
+      "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
+      "sha256": "13c5bfede9c69121c21505e4687f0fbc6dff3b1294e09a0a2a5584ae547c7520"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+      "sha256": "9bef3d0fa9f04491c1dd9861ec6df4a73e609ab11e66ca24cb84af7ca52a623a"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 14,
+      "propext": 14
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U03.1": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure.",
+    "U03.2": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
+  },
+  "closed_ids": [
+    "U03.1",
+    "U03.2"
+  ],
+  "closed_this_round": 2,
+  "open_before": 20,
+  "open_after": 18,
+  "closes_debt": true,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

@@ -40,11 +40,17 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 20,
-    "closed_this_round": 5,
-    "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND7_20261026/",
+    "open_formal_tail_remaining": 18,
+    "closed_this_round": 2,
+    "historical_cand7_closed": 5,
+    "independent_closed_ids": [
+      "U03.1",
+      "U03.2"
+    ],
+    "independent_receipt": "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
+    "close_pack": "docs/formal-release/evidence/u03-debt-close-20261027",
     "candidate_rows": 0,
-    "blocked_rows": 20,
+    "blocked_rows": 18,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -90,7 +96,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 this round; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt; remaining OPEN are 20 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs; remaining OPEN are 18 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -128,8 +134,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 22,
-    "OPEN_FORMAL_TAIL": 20
+    "CLOSED_BY_WIRING": 24,
+    "OPEN_FORMAL_TAIL": 18
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -403,7 +409,7 @@
     {
       "clause": "U03.1",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure.",
       "claimed_scope": "",
@@ -460,11 +466,9 @@
         "Acceptance.lean:316"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U03 residual closure: CompilerProvenance20261027 checks a finite acyclic graph and passes its actual accepted leaves and enabled rules into CompilerClosure20261026. The executable robust-query countermodel is strict beyond the common-facts closure. SourceCompilation20261027 consumes that actual output; semantic soundness keeps source/rule truth as explicit premises. Exact named evidence: docs/formal-release/evidence/u03-debt-close-20261027. This does not derive source truth, rule legal force, or absence of exceptions.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U03_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -478,39 +482,32 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+          "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+          "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+          "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+          "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+          "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+          "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query"
+        ]
       }
     },
     {
       "clause": "U03.2",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing.",
       "claimed_scope": "",
@@ -553,11 +550,9 @@
         "Acceptance.lean:305"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "A verified finite carrier/fuel bound for this list implementation is still missing."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: A verified finite carrier/fuel bound for this list implementation is still missing.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U03 residual closure: CompilerClosure20261026 bounds the actual duplicate-list computation by the number of distinct initial facts and rule heads, proves closure for every sufficient fuel and checked derivability equivalence. The actual provenance/source consumer supplies that bound. Exact named evidence: docs/formal-release/evidence/u03-debt-close-20261027. No infinite-generation termination or real-world negation is claimed.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U03_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -571,33 +566,24 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "A verified finite carrier/fuel bound for this list implementation is still missing."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact",
+          "JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected",
+          "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure"
+        ]
       }
     },
     {

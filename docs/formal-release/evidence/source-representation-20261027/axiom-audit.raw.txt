@@ -1,0 +1,105 @@
+JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence
+  (mu : JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.Final20261021.ObjectId) :
+  Equivalence fun a b => JurisLean.Candidates.Final20261021.Representation.InterpretedSame mu ↑a ↑b
+'JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence' does not depend on any axioms
+JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact
+  (mu : JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.Final20261021.ObjectId)
+  (a b : JurisLean.Candidates.SourceRepresentation20261027.ResolvedReference mu) :
+  JurisLean.Candidates.SourceRepresentation20261027.semanticKey mu a =
+      JurisLean.Candidates.SourceRepresentation20261027.semanticKey mu b ↔
+    JurisLean.Candidates.Final20261021.Representation.InterpretedSame mu ↑a ↑b
+'JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact' depends on axioms: [Classical.choice]
+JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object
+  (table : List (JurisLean.Candidates.Final20261021.SourceRef × JurisLean.Candidates.Final20261021.ObjectId))
+  (reference : JurisLean.Candidates.Final20261021.SourceRef) (object : JurisLean.Candidates.Final20261021.ObjectId)
+  (accepted :
+    JurisLean.Candidates.SourceRepresentation20261027.resolveObject table reference =
+      JurisLean.Candidates.Final20261021.Result.known object) :
+  List.map Prod.snd (List.filter (fun row => decide (row.1 = reference)) table) = [object]
+'JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object' depends on axioms: [propext]
+JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate :
+  JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+      JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 1 } ∧
+    ¬JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+          JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 2 } ∧
+      JurisLean.Candidates.SourceRepresentation20261027.bareEventExample { value := 0 } =
+          JurisLean.Candidates.SourceRepresentation20261027.bareEventExample { value := 2 } ∧
+        ¬JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+            JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 3 } { value := 3 }
+'JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate' depends on axioms: [propext]
+JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies :
+  0 ≠ 1 ∧
+    JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+      JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 1 }
+'JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies' does not depend on any axioms
+JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order :
+  JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 7), (1, 9)] 1 = some 7 ∧
+    JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 9), (1, 7)] 1 = some 9 ∧
+      JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 7), (1, 9)] 1 ≠
+        JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 9), (1, 7)] 1
+'JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations.{u_1, u_2,
+    u_3, u_4}
+  {R : Type u_1} {M : Type u_2} {O : Type u_3} {V : Type u_4} (encode : R → M) (read : O → R → V)
+  (adequate : JurisLean.Candidates.SourceRepresentation20261027.ObservationAdequate encode read) (a b : R)
+  (same : encode a = encode b) (o : O) : read o a = read o b
+'JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations' does not depend on any axioms
+JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective.{u_1, u_2, u_3, u_4}
+  {R : Type u_1} {M : Type u_2} {O : Type u_3} {V : Type u_4} (encode : R → M) (read : O → R → V)
+  (adequate : JurisLean.Candidates.SourceRepresentation20261027.ObservationAdequate encode read)
+  (separating : ∀ (a b : R), (∀ (o : O), read o a = read o b) → a = b) : Function.Injective encode
+'JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective' does not depend on any axioms
+JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history :
+  JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [10] =
+      JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [4, 3, 3] ∧
+    [10] ≠ [4, 3, 3]
+'JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection :
+  (∀ (r : Unit), (fun x => false) r = (fun x => x) false) ∧ (fun x => x) true = true ∧ ¬∃ r, (fun x => false) r = true
+'JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding
+  (amount : JurisLean.Candidates.Final20261021.Amount) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity amount) =
+    some amount
+'JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag
+  (a b : JurisLean.Candidates.Final20261021.Amount) (same : a.tag = b.tag) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      ((JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity a).add
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity b)) =
+    some { value := a.value + b.value, tag := a.tag }
+'JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch
+  (a b : JurisLean.Candidates.Final20261021.Amount) (different : a.tag ≠ b.tag) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      ((JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity a).add
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity b)) =
+    none
+'JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag (scalar : ℚ)
+  (amount : JurisLean.Candidates.Final20261021.Amount) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      (JurisLean.Candidates.SourceRepresentation20261027.RationalQty.scale scalar
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity amount)) =
+    some { value := scalar * amount.value, tag := amount.tag }
+'JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half
+  (expression : JurisLean.Seams.UnifiedNeedlesS3b.QtyAst) (unit : String)
+  (free : JurisLean.Seams.UnifiedNeedlesS3b.divFree expression = true) :
+  JurisLean.Seams.UnifiedNeedlesS3b.qtyDenote expression ≠ some { val := 1 / 2, unit := unit }
+'JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

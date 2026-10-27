@@ -1,0 +1,74 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "6923d4bbb07d305ab9087bd49fea3680d461e8a4",
+  "run_id": 40453954728,
+  "job_id": 122022821909,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
+  "named_count": 14,
+  "named_theorems_full": [
+    "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+    "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+    "JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused",
+    "JurisLean.Candidates.BusinessMeasurement20261027.accepted_rows_are_external_and_current",
+    "JurisLean.Candidates.BusinessMeasurement20261027.positive_means_actual_total_reaches_threshold",
+    "JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement",
+    "JurisLean.Candidates.BusinessMeasurement20261027.missing_payment_receipt_cannot_measure_performance",
+    "JurisLean.Candidates.BusinessMeasurement20261027.performance_magnitude_is_actual_allocation",
+    "JurisLean.Candidates.BusinessMeasurement20261027.trajectory_measurement_uses_reported_post",
+    "JurisLean.Candidates.BusinessMeasurement20261027.unknown_commit_has_no_behavior_label",
+    "JurisLean.Candidates.BusinessMeasurement20261027.accepted_measurement_keeps_actual_trace_invariant",
+    "JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies",
+    "JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds",
+    "JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+      "sha256": "71763f8359209b1e393bd72bd6cfc17b92c7979ce42c3dbb9ff4dad8d878ed51"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurementAudit20261027.lean",
+      "sha256": "e8c9cdde4b1fc13b5d18d42d89d01e1abea4c002215a48eebe798c066912a0fe"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 14,
+    "axiom_vocabulary": {
+      "Classical.choice": 11,
+      "Quot.sound": 14,
+      "propext": 14
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "18 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

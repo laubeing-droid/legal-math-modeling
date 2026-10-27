@@ -21,6 +21,50 @@ JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_
 'JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (known :
+    JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  (packet.modelAvailableAt.ticks ≤ request.gamma.knowledgeCutoff.ticks ∧
+      packet.modelAvailableAt.ticks ≤ request.gamma.recordCutoff.ticks ∧
+        packet.acquiredAt.ticks ≤ request.gamma.knowledgeCutoff.ticks ∧
+          packet.acquiredAt.ticks ≤ request.gamma.recordCutoff.ticks) ∧
+    JurisLean.Candidates.LoadedLegalConsumer20261027.historyKnownBy request.gamma.knowledgeCutoff
+        packet.loaded.snapshot.history =
+      true
+'JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (late : request.gamma.knowledgeCutoff.ticks < packet.modelAvailableAt.ticks) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.scopeMismatch
+'JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (future :
+    JurisLean.Candidates.LoadedLegalConsumer20261027.historyKnownBy request.gamma.knowledgeCutoff
+        packet.loaded.snapshot.history =
+      false) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.scopeMismatch
+'JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
 JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration {m : ℕ}
   (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
   (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
@@ -200,3 +244,4 @@ JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confi
 'JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
+Build completed successfully (8551 jobs).

@@ -1,0 +1,67 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "a925438a2a0b9cbf602d0661e2262dbb03a3f27d",
+  "run_id": 40422688565,
+  "job_id": 121920717399,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+  "named_count": 12,
+  "named_theorems_full": [
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.committed_head_feeds_actual_tail",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.replay_continues_from_current_state",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.unknown_commit_stops_the_tail",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.authorized_refresh_feeds_actual_tail",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.every_reported_post_has_an_actual_path",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.finite_interpreter_preserves_full_invariant",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.substituted_execution_is_refused",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selected_execution_preserves_full_invariant",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.complete_consumer_uses_the_chosen_execution",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.successful_execution_is_the_selected_plan",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.sampled_consumer_preserves_known_state"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
+      "sha256": "c8eaa46329882ba638446915dad574a69e7dbc462599229782a3339b0475e503"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+      "sha256": "dba5d48c8d459e8fc3efb39c2194bfef1352385b253c208270a919f111fa6928"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 12,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "13 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

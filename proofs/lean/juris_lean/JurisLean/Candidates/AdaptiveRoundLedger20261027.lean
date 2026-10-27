@@ -205,9 +205,9 @@ theorem evaluated_round_spends_its_actual_block_budget {m : Nat}
     (computed : (assessAdaptiveRound s d r samples permits).status = .evaluated) :
     (assessAdaptiveRound s d r samples permits).charge =
       (r.blocks.map DomainBlock.delta).sum := by
-  cases candidateEq : d.prepared.candidate <;>
-    simp only [assessAdaptiveRound, candidateEq] at computed ⊢
-  all_goals split_ifs at computed ⊢ <;> try simp_all [emptyRoundRecord, roundCost]
+  unfold assessAdaptiveRound at computed ⊢
+  split_ifs at computed ⊢ <;> try simp_all [emptyRoundRecord, roundCost]
+  all_goals split at computed <;> try simp_all [emptyRoundRecord, roundCost]
   all_goals split at computed <;> simp_all [emptyRoundRecord, roundCost]
 
 theorem assessed_round_stays_within_budget {m : Nat}
@@ -307,9 +307,9 @@ theorem assessed_load_comes_from_actual_activation {m : Nat}
     (actualEvaluation : (assessAdaptiveRound s d r samples permits).evaluation = some (.known evaluation))
     (actualLoad : (assessAdaptiveRound s d r samples permits).load = some loaded) :
     loaded = activate s.service evaluation samples r.sampling permits r.permit := by
-  cases candidateEq : d.prepared.candidate <;>
-    simp only [assessAdaptiveRound, candidateEq] at actualEvaluation actualLoad
-  all_goals split_ifs at actualEvaluation actualLoad <;> try simp_all [emptyRoundRecord]
+  unfold assessAdaptiveRound at actualEvaluation actualLoad
+  split_ifs at actualEvaluation actualLoad <;> try simp_all [emptyRoundRecord]
+  all_goals split at actualEvaluation <;> try simp_all [emptyRoundRecord]
   all_goals split at actualEvaluation <;> simp_all [emptyRoundRecord]
 
 theorem recorded_load_is_actual_next_service {m : Nat}

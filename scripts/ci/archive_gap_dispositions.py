@@ -304,15 +304,9 @@ UNWIRED: dict[str, list[str]] = {
     "U10.1": [
         "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it.",
     ],
-    "U01.1": [
-        "The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm.",
-    ],
-    "U01.2": [
-        "General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved.",
-    ],
-    "U01.3": [
-        "The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound.",
-    ],
+    "U01.1": [],  # Original residual proved in the independent U01 package.
+    "U01.2": [],  # Original residual proved in the independent U01 package.
+    "U01.3": [],  # Original residual proved in the independent U01 package.
     "U04.2": [
         "Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved.",
     ],
@@ -349,6 +343,35 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U01.1": (
+        "Independent U01 residual closure: LearningFiniteClass20261027 derives the "
+        "actual iid sample-mean bound with sqrt(log(2M/delta)/(2n)) and the "
+        "data-selected approximate ERM oracle for a fixed nonempty finite class. "
+        "LearningRisk20261027 proves the three-part representation/head/estimation "
+        "decomposition and the collapsed-representation half-gap counterexample. "
+        "LearningERM20261027 separately consumes the oracle for its actual minimizer. "
+        "Exact residual evidence: docs/formal-release/evidence/u01-debt-close-20261027. "
+        "Sampling, common loss and population premises remain explicit; an adaptive "
+        "class enlargement is not covered. This does not close all U00 obligations."
+    ),
+    "U01.2": (
+        "Independent U01 residual closure: LearningBridge20261027 integrates the "
+        "same measurable [0,1] loss under a probability measure and proves the "
+        "classification event inclusion. Random label and bridge upper bounds "
+        "combine by a union bound without an independence assumption. Each bound "
+        "must satisfy its own failure budget; a point estimate is not that premise. "
+        "Exact evidence: docs/formal-release/evidence/u01-debt-close-20261027. "
+        "This neither changes the loss nor certifies the target's legal truth."
+    ),
+    "U01.3": (
+        "Independent U01 residual closure: LearningBridge20261027 defines TV by "
+        "measurable event differences on the full joint task space, derives the "
+        "general measurable [0,1]-loss integral bound by layer cake in both "
+        "directions, and applies it to every member of a model class. "
+        "Exact evidence: docs/formal-release/evidence/u01-debt-close-20261027. "
+        "No finite-support reduction, marginal-only TV, estimated TV certificate "
+        "or unsupported-domain validity is substituted for the original theorem."
+    ),
     "U03.1": (
         "Independent U03 residual closure: CompilerProvenance20261027 checks a finite "
         "acyclic graph and passes its actual accepted leaves and enabled rules into "
@@ -648,6 +671,7 @@ CLOSED_NARROW_IDS = (
     "U00",
 )
 CLOSED_WIRING_IDS = (
+    "U01.1", "U01.2", "U01.3",
     "U03.1",
     "U03.2",
     "U02.2",
@@ -718,7 +742,7 @@ CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
 POST_PIN_CLOSED_IDS = ("U03.1", "U03.2")
 POST_PIN_CLOSE_PACK = "docs/formal-release/evidence/u03-debt-close-20261027"
 POST_PIN_RECEIPT = POST_PIN_CLOSE_PACK + "/verification.json"
-POST_PIN_OPEN_REMAINING = 18
+POST_PIN_OPEN_REMAINING = 15
 POST_PIN_NAMES = {
     "U03.1": [
         "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
@@ -748,6 +772,56 @@ POST_PIN_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
     POST_PIN_DRIVER,
 )
+
+# Each independent package keeps its own audited source, receipt and debt delta.
+U01_CLOSED_IDS = ("U01.1", "U01.2", "U01.3")
+U01_CLOSE_PACK = "docs/formal-release/evidence/u01-debt-close-20261027"
+U01_RECEIPT = U01_CLOSE_PACK + "/verification.json"
+U01_NAMES = {
+    "U01.1": [
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition",
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound",
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap",
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap",
+        "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+        "JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform",
+        "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform",
+        "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm"
+    ],
+    "U01.2": [
+        "JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge",
+        "JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge",
+        "JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget"
+    ],
+    "U01.3": [
+        "JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv",
+        "JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv"
+    ]
+}
+U01_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean"
+U01_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+    U01_DRIVER,
+)
+INDEPENDENT_CLOSE_PACKS = (
+    {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
+     "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
+     "driver": POST_PIN_DRIVER, "sources": POST_PIN_SOURCES,
+     "open_before": 20, "open_after": 18},
+    {"closed_ids": U01_CLOSED_IDS, "pack": U01_CLOSE_PACK,
+     "receipt": U01_RECEIPT, "names": U01_NAMES,
+     "driver": U01_DRIVER, "sources": U01_SOURCES,
+     "open_before": 18, "open_after": 15},
+)
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES
+INDEPENDENT_RECEIPTS = {
+    clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
+}
+
 FORMAL_TAIL_CAND8_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_真证CAND8_20261026/"
 )
@@ -1157,7 +1231,7 @@ def formal_tail_record(clause: str) -> dict:
                 or clause in CAND5BIS_CLOSED_IDS
                 or clause in CAND6_CLOSED_IDS
                 or clause in CAND7_CLOSED_IDS
-                or clause in POST_PIN_CLOSED_IDS
+                or clause in INDEPENDENT_CLOSED_IDS
             ),
             "step_2_closed": False,
             "discharges_archived_manuscript_gaps": False,
@@ -1260,11 +1334,14 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "pack_files": list(FORMAL_TAIL_PACK_FILES),
         "one_pipeline": "archive-gap close ledger; no second track",
         "open_formal_tail_remaining": len(open_rows),
-        "closed_this_round": len(POST_PIN_CLOSED_IDS),
+        "closed_this_round": len(U01_CLOSED_IDS),
         "historical_cand7_closed": CAND7_CLOSED_THIS_ROUND,
-        "independent_closed_ids": list(POST_PIN_CLOSED_IDS),
-        "independent_receipt": POST_PIN_RECEIPT,
-        "close_pack": POST_PIN_CLOSE_PACK,
+        "historical_u03_closed": len(POST_PIN_CLOSED_IDS),
+        "independent_closed_ids": list(INDEPENDENT_CLOSED_IDS),
+        "independent_closed_total": len(INDEPENDENT_CLOSED_IDS),
+        "independent_receipts": [p["receipt"] for p in INDEPENDENT_CLOSE_PACKS],
+        "independent_receipt": U01_RECEIPT,
+        "close_pack": U01_CLOSE_PACK,
         "candidate_rows": sum(
             1 for row in open_rows if (row.get("formal_tail_prove") or {}).get("disposition") == "CANDIDATE_NOT_AUDITED"
         ),
@@ -1274,7 +1351,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             if (row.get("formal_tail_prove") or {}).get("disposition") == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
         ),
         "narrow_not_reopened": list(CLOSED_NARROW_IDS),
-        "wiring_not_reopened": [c for c in CLOSED_WIRING_IDS if c not in POST_PIN_CLOSED_IDS],
+        "wiring_not_reopened": [c for c in CLOSED_WIRING_IDS if c not in U01_CLOSED_IDS],
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
@@ -1294,7 +1371,9 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "wired_declarations; discharges stay false; step_2_closed stays false; "
             "tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close "
             "debt. The later independent U03 package closes U03.1/U03.2 using new exact "
-            "residual proofs; remaining OPEN are 18 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
+            "residual proofs (20 to 18). The subsequent independent U01 package closes "
+            "U01.1/U01.2/U01.3 against the original residuals; remaining OPEN are "
+            "15 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -1319,7 +1398,9 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else "WIRED_TO_TIP_PIN_DECLARATIONS"
+    text = ("WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else
+            "WIRED_TO_TIP_PIN_DECLARATIONS")
     if goals:
         text += " || NON_GOAL_POINTER: " + " | ".join(goals)
     return text

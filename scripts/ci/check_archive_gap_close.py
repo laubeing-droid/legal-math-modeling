@@ -139,9 +139,9 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
                 "not_gate_run": disp.GATE_ONLY_RUN,
                 "discharges_archived_manuscript_gaps": False,
                 "formal_tail_prove": disp.formal_tail_record(clause),
-                **({"independent_closure": {"receipt": disp.POST_PIN_RECEIPT,
-                    "named_theorems_full": disp.POST_PIN_NAMES[clause]}}
-                    if clause in disp.POST_PIN_CLOSED_IDS else {}),
+                **({"independent_closure": {"receipt": disp.INDEPENDENT_RECEIPTS[clause],
+                    "named_theorems_full": disp.INDEPENDENT_NAMES[clause]}}
+                    if clause in disp.INDEPENDENT_CLOSED_IDS else {}),
             }
         )
     counts = {
@@ -352,14 +352,14 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append(f"formal-tail summary omits pack file {name}")
     if summary.get("step_2_closed") is not False:
         errors.append("formal-tail round claims step 2 closed")
-    if summary.get("closed_this_round") != len(disp.POST_PIN_CLOSED_IDS):
+    if summary.get("closed_this_round") != len(disp.U01_CLOSED_IDS):
         errors.append(
             f"formal-tail closed_this_round {summary.get('closed_this_round')!r} "
-            f"!= authorized {len(disp.POST_PIN_CLOSED_IDS)}"
+            f"!= authorized {len(disp.U01_CLOSED_IDS)}"
         )
     if disp.CAND7_CLOSED_THIS_ROUND != 5 or len(disp.CAND7_CLOSED_IDS) != 5:
         errors.append("CAND7 close authorization is not the five releasable ids")
-    if summary.get("close_pack") != disp.POST_PIN_CLOSE_PACK:
+    if summary.get("close_pack") != disp.U01_CLOSE_PACK:
         errors.append("formal-tail summary close_pack drifted")
     if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
         errors.append("formal-tail round flips discharges or math authorization")
@@ -374,7 +374,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("later tip gate is treated as a close or a retarget")
     if summary.get("narrow_not_reopened") != list(disp.CLOSED_NARROW_IDS):
         errors.append("narrow set was reopened or reordered")
-    if summary.get("wiring_not_reopened") != [c for c in disp.CLOSED_WIRING_IDS if c not in disp.POST_PIN_CLOSED_IDS]:
+    if summary.get("wiring_not_reopened") != [c for c in disp.CLOSED_WIRING_IDS if c not in disp.U01_CLOSED_IDS]:
         errors.append("wiring set was reopened or reordered")
     if summary.get("one_pipeline") != "archive-gap close ledger; no second track":
         errors.append("formal-tail round is not on the archive-gap pipeline")
@@ -400,7 +400,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         | set(disp.CAND5BIS_CLOSED_IDS)
         | set(disp.CAND6_CLOSED_IDS)
         | set(disp.CAND7_CLOSED_IDS)
-        | set(disp.POST_PIN_CLOSED_IDS)
+        | set(disp.INDEPENDENT_CLOSED_IDS)
     )
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
@@ -536,7 +536,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 24 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 27 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -595,7 +595,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     if overlap8:
         errors.append(f"CAND8 suffix overlaps PROVE_CANDIDATES: {overlap8}")
     for row in ledger.get("rows") or []:
-        if row.get("clause") not in cand8_ids or row.get("clause") in disp.POST_PIN_CLOSED_IDS:
+        if row.get("clause") not in cand8_ids or row.get("clause") in disp.INDEPENDENT_CLOSED_IDS:
             continue
         record = row.get("formal_tail_prove") or {}
         if row.get("archive_gap_status") != "OPEN_FORMAL_TAIL":
@@ -905,44 +905,45 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
         errors.append("construction formal_tail_round tip_pin is not the live retarget")
     if formal_tail.get("step_2_closed") is not False:
         errors.append("construction formal_tail_round claims step 2 closed")
-    if formal_tail.get("closed_this_round") != len(disp.POST_PIN_CLOSED_IDS):
+    if formal_tail.get("closed_this_round") != len(disp.U01_CLOSED_IDS):
         errors.append(
             f"construction formal_tail_round closed_this_round "
-            f"{formal_tail.get('closed_this_round')!r} != {len(disp.POST_PIN_CLOSED_IDS)}"
+            f"{formal_tail.get('closed_this_round')!r} != {len(disp.U01_CLOSED_IDS)}"
         )
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")
     return errors
 
 
-def independent_close_errors(receipt: dict, raw: str) -> list[str]:
-    """Accept only the two original residuals proved after the frozen pin."""
+def independent_close_errors(receipt: dict, raw: str,
+                             pack: dict = disp.INDEPENDENT_CLOSE_PACKS[0]) -> list[str]:
+    """Accept the exact original residuals and evidence of one independent close."""
     errors = []
-    expected = {name for names in disp.POST_PIN_NAMES.values() for name in names}
-    if receipt.get("closed_ids") != list(disp.POST_PIN_CLOSED_IDS):
+    expected = {name for names in pack["names"].values() for name in names}
+    if receipt.get("closed_ids") != list(pack["closed_ids"]):
         errors.append("independent close: unauthorized clause set")
-    if receipt.get("names_by_clause") != disp.POST_PIN_NAMES:
+    if receipt.get("names_by_clause") != pack["names"]:
         errors.append("independent close: residual theorem mapping changed")
-    if receipt.get("closes_debt") is not True or receipt.get("closed_this_round") != 2:
-        errors.append("independent close: missing explicit two-row admission")
+    if receipt.get("closes_debt") is not True or receipt.get("closed_this_round") != len(pack["closed_ids"]):
+        errors.append("independent close: missing explicit clause admission")
     if receipt.get("discharges_archived_manuscript_gaps") is not False:
         errors.append("independent close: global discharges changed")
     if receipt.get("tip_pin") != disp.TIP_PIN:
         errors.append("independent close: frozen pin changed")
     if receipt.get("job_conclusion") != "success" or not receipt.get("run_id") or not receipt.get("job_id"):
         errors.append("independent close: no successful named audit")
-    if (receipt.get("named_count"), receipt.get("open_before"), receipt.get("open_after")) != (15, 20, 18):
+    if (receipt.get("named_count"), receipt.get("open_before"), receipt.get("open_after")) != (len(expected), pack["open_before"], pack["open_after"]):
         errors.append("independent close: target or debt count drifted")
     subject = receipt.get("subject", "")
     if not re.fullmatch(r"[0-9a-f]{40}", subject):
         return errors + ["independent close: invalid exact subject"]
     archive = {row["clause"]: row for row in load_json(ARCHIVE_PATH)["rows"]}
-    residuals = {clause: archive[clause]["remaining_obligations"] for clause in disp.POST_PIN_CLOSED_IDS}
+    residuals = {clause: archive[clause]["remaining_obligations"] for clause in pack["closed_ids"]}
     if receipt.get("original_residuals") != residuals:
         errors.append("independent close: original residual was replaced or omitted")
-    if receipt.get("driver_path") != disp.POST_PIN_DRIVER:
+    if receipt.get("driver_path") != pack["driver"]:
         errors.append("independent close: wrong audit driver")
-    driver = (ROOT / disp.POST_PIN_DRIVER).read_text(encoding="utf-8")
+    driver = (ROOT / pack["driver"]).read_text(encoding="utf-8")
     for command in ("#check", "#print axioms"):
         names = re.findall(rf"^{command} (\S+)$", driver, re.MULTILINE)
         if len(names) != len(expected) or set(names) != expected:
@@ -957,18 +958,19 @@ def independent_close_errors(receipt: dict, raw: str) -> list[str]:
         if not re.search(r"(?m)^" + re.escape(name) + r"(?:\.\{|\s|$)", raw):
             errors.append(f"independent close: full type absent for {name}")
     sources = receipt.get("sources", [])
-    if len(sources) != len(disp.POST_PIN_SOURCES) or {s.get("path") for s in sources} != set(disp.POST_PIN_SOURCES):
+    if len(sources) != len(pack["sources"]) or {s.get("path") for s in sources} != set(pack["sources"]):
         errors.append("independent close: source/consumer inventory incomplete")
     for source in sources:
         rel = source.get("path")
-        if rel not in disp.POST_PIN_SOURCES:
+        if rel not in pack["sources"]:
             continue
         current = (ROOT / rel).read_bytes().replace(b"\r\n", b"\n")
         built = subprocess.run(["git", "show", f"{subject}:{rel}"], cwd=ROOT, capture_output=True)
         if built.returncode or current != built.stdout or sha256_bytes(current) != source.get("sha256"):
             errors.append(f"independent close: source differs from successful audit: {rel}")
     root = (ROOT / "proofs/lean/juris_lean/JurisLean.lean").read_text(encoding="utf-8")
-    if "import JurisLean.Candidates.U03DebtClosureAudit20261027" not in root.splitlines():
+    module = Path(pack["driver"]).relative_to("proofs/lean/juris_lean").with_suffix("").as_posix().replace("/", ".")
+    if f"import {module}" not in root.splitlines():
         errors.append("independent close: proof/consumer audit is outside the full build root")
     return errors
 
@@ -983,9 +985,11 @@ def check(write: bool = False) -> tuple[list[str], dict]:
     lines = theorem_lines(CANDIDATE)
     ledger = build_ledger(status, archive, lines)
     extracted = binding.reextract((ROOT / binding.ZIP_REL).read_bytes())
-    independent = load_json(ROOT / disp.POST_PIN_RECEIPT)
-    raw = (ROOT / disp.POST_PIN_CLOSE_PACK / "axiom-audit.raw.txt").read_text(encoding="utf-8")
-    errors = independent_close_errors(independent, raw)
+    errors = []
+    for pack in disp.INDEPENDENT_CLOSE_PACKS:
+        independent = load_json(ROOT / pack["receipt"])
+        raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+        errors.extend(independent_close_errors(independent, raw, pack))
     if errors:
         return errors, ledger
     if write:

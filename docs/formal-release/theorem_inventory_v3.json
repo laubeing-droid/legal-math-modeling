@@ -13575,6 +13575,303 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "canonical_typed_identity_is_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "typed_identity_equivalence_on_defined_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "undefined_typed_reference_is_not_identified"
+    },
+    {
+     "kind": "structure",
+     "name": "BoundPayment"
+    },
+    {
+     "kind": "def",
+     "name": "candidatePayment"
+    },
+    {
+     "kind": "def",
+     "name": "BindingChecks"
+    },
+    {
+     "kind": "def",
+     "name": "bindPayment"
+    },
+    {
+     "kind": "theorem",
+     "name": "successful_binding_reads_actual_rows"
+    },
+    {
+     "kind": "theorem",
+     "name": "deterministic_binding_data_unique"
+    },
+    {
+     "kind": "def",
+     "name": "sameDebt"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_debt_comparison_is_exact"
+    },
+    {
+     "kind": "def",
+     "name": "initialRelations"
+    },
+    {
+     "kind": "structure",
+     "name": "Stage"
+    },
+    {
+     "kind": "def",
+     "name": "initialStage"
+    },
+    {
+     "kind": "def",
+     "name": "formStage"
+    },
+    {
+     "kind": "def",
+     "name": "payStage"
+    },
+    {
+     "kind": "theorem",
+     "name": "quantity_step_is_existing_ledger_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "payment_preserves_complete_nonquantity_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "scalar_and_item_projections_commute"
+    },
+    {
+     "kind": "structure",
+     "name": "FourStages"
+    },
+    {
+     "kind": "def",
+     "name": "buildStages"
+    },
+    {
+     "kind": "theorem",
+     "name": "four_stages_use_actual_previous_output"
+    },
+    {
+     "kind": "theorem",
+     "name": "adjacent_formation_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_payments_balance_and_cash"
+    },
+    {
+     "kind": "structure",
+     "name": "SourceFrame"
+    },
+    {
+     "kind": "def",
+     "name": "frameFromBindings"
+    },
+    {
+     "kind": "def",
+     "name": "stagesFromView"
+    },
+    {
+     "kind": "def",
+     "name": "sourceStages"
+    },
+    {
+     "kind": "theorem",
+     "name": "frame_contains_actual_computed_stages"
+    },
+    {
+     "kind": "theorem",
+     "name": "accepted_view_binds_both_actual_payments"
+    },
+    {
+     "kind": "theorem",
+     "name": "public_consumer_reads_actual_extraction"
+    },
+    {
+     "kind": "theorem",
+     "name": "successful_source_stages_conserve"
+    },
+    {
+     "kind": "theorem",
+     "name": "independent_local_witnesses_iff_tuple"
+    },
+    {
+     "kind": "theorem",
+     "name": "compatible_fibers_compose_local_contracts"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonempty_local_models_can_have_empty_common_fiber"
+    },
+    {
+     "kind": "def",
+     "name": "modelOf"
+    },
+    {
+     "kind": "def",
+     "name": "LegacyContracts"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_background_preserves_exact_old_contracts"
+    },
+    {
+     "kind": "theorem",
+     "name": "exact_nat_bridge_is_unique"
+    },
+    {
+     "kind": "def",
+     "name": "legacyAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_amount_success_is_exact"
+    },
+    {
+     "kind": "def",
+     "name": "checkedModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "checked_model_reads_exact_payment_and_old_contracts"
+    },
+    {
+     "kind": "def",
+     "name": "sourceModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "public_model_consumes_the_actual_stage_frame"
+    },
+    {
+     "kind": "def",
+     "name": "StrongSameCase"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_case_projection_transfers_local_contracts"
+    },
+    {
+     "kind": "theorem",
+     "name": "static_source_semantic_and_quantity_bridge"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.SourceCompilation20261027",
+    "JurisLean.Candidates.SourceRepresentation20261027",
+    "JurisLean.Seams.Unified"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+   "size_bytes": 29160,
+   "theorem_count": 26,
+   "theorem_count_bol_convention": 26
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "stageGamma"
+    },
+    {
+     "kind": "def",
+     "name": "stageTag"
+    },
+    {
+     "kind": "def",
+     "name": "stageMaterial"
+    },
+    {
+     "kind": "def",
+     "name": "stageQuote"
+    },
+    {
+     "kind": "def",
+     "name": "stagePayment"
+    },
+    {
+     "kind": "def",
+     "name": "stageView"
+    },
+    {
+     "kind": "def",
+     "name": "runStageView"
+    },
+    {
+     "kind": "def",
+     "name": "stageKnown"
+    },
+    {
+     "kind": "def",
+     "name": "updateStagePayment"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonempty_source_stage_fixture"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_background_instance_is_nonempty"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SourceStages20261027",
+    "JurisLean.Seams.UnifiedInstance"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+    "JurisLean.Candidates.SourceStages20261027.adjacent_formation_projection",
+    "JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts",
+    "JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts",
+    "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+    "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+    "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts",
+    "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+    "JurisLean.Candidates.SourceStages20261027.frame_contains_actual_computed_stages",
+    "JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.independent_local_witnesses_iff_tuple",
+    "JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty",
+    "JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber",
+    "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+    "JurisLean.Candidates.SourceStages20261027.payment_preserves_complete_nonquantity_fields",
+    "JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction",
+    "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+    "JurisLean.Candidates.SourceStages20261027.quantity_step_is_existing_ledger_step",
+    "JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts",
+    "JurisLean.Candidates.SourceStages20261027.scalar_and_item_projections_commute",
+    "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+    "JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows",
+    "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+    "JurisLean.Candidates.SourceStages20261027.two_payments_balance_and_cash",
+    "JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain",
+    "JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified"
+   ],
+   "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
+   "size_bytes": 12941,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "SamplingReceipt"
     },
@@ -53555,6 +53852,8 @@
     "JurisLean.Candidates.SelectiveCalibration20261027",
     "JurisLean.Candidates.SourceCompilation20261027",
     "JurisLean.Candidates.SourceRepresentation20261027",
+    "JurisLean.Candidates.SourceStages20261027",
+    "JurisLean.Candidates.SourceStagesAudit20261027",
     "JurisLean.Candidates.ValidatedFeedbackLoad20261027",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
@@ -53778,8 +54077,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "c7eb7f9b9d02cf1782a52dd5fe23e733a96007eb5bec38b84a72e5e956a3927e",
-   "size_bytes": 12469,
+   "sha256": "b34357bd65d155a1990f73965033f73b1307ead445db4ee1a4a8b7fbdd00d193",
+   "size_bytes": 12572,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -53943,22 +54242,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5858,
-   "file_count": 451,
+   "counted_declaration_count": 5886,
+   "file_count": 453,
    "lemma_count": 146,
-   "print_axioms_command_count": 4728,
-   "print_axioms_distinct_targets": 4641,
-   "theorem_count": 5712,
-   "theorem_count_bol_convention": 5612
+   "print_axioms_command_count": 4756,
+   "print_axioms_distinct_targets": 4669,
+   "theorem_count": 5740,
+   "theorem_count_bol_convention": 5640
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5839,
-   "file_count": 436,
+   "counted_declaration_count": 5867,
+   "file_count": 438,
    "lemma_count": 139,
-   "print_axioms_command_count": 4728,
-   "print_axioms_distinct_targets": 4641,
-   "theorem_count": 5700,
-   "theorem_count_bol_convention": 5600
+   "print_axioms_command_count": 4756,
+   "print_axioms_distinct_targets": 4669,
+   "theorem_count": 5728,
+   "theorem_count_bol_convention": 5628
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -54095,6 +54394,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -54544,6 +54845,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -54902,17 +55205,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c85f565d967a7b5988d5d17cc9f9cf831b875ceba298968233ad74faa5d55143",
+ "source_inventory_digest": "387522c9b8ae0deca9295c2852c104f770074c84a2f867122d3945888a61a74a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/source-compilation-20261027",
-  "commit": "af98b91d5797d0b7c37962093ad40cdedac28cbc",
-  "tree": "fb1173329462332c69db4ed894c55d5e60eb9ff1"
+  "branch": "formal/source-stages-20261027",
+  "commit": "9780ad9edcc805111688a376cef7103471434491",
+  "tree": "ec2f479e33316a1e96e83cc24d78e66044dd21b6"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 451,
+  "files_total": 453,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -1,0 +1,22 @@
+# Finite selection recovery, observed g-formula and transport
+
+Original 11.3–11.5 and correction S11 require a positive conditional identification theorem alongside non-identification countermodels. This module uses an actual finite joint kernel over covariates, latent potential responses, assigned actions and recording status. Normalization and nonnegativity are proved separately. The observed conditional mean is calculated by marginalizing that kernel; under nonzero populated treatment cells it equals the potential-response mean, yielding the g-formula. The selection recovery formula needs both treatment and recording support on populated strata. A selected-only database must also account for the actual population selection normalization.
+
+Treatment and recording kernels exclude latent potential-response dependence conditional on the declared covariates/action. Using the same response function under observed and intervened actions encodes consistency. These are explicit generative identification premises; fitting, balance or code success does not establish them for real data. Sampling independence, interference boundaries, measurement versions and population/source validity remain external premises.
+
+K1 and K2 are constructed on four equiprobable atoms. Their entire visible law of (A,S,Y when observed) agrees. Both selected samples have association 1, while their computed population intervention effects are 0 and 1. An arbitrary estimator reading that visible law cannot identify both effects. The transport theorem separately requires target-to-source overlap and conditional-effect stability. The exact original example computes source +.18, target -.18 and weights 1/4 and 4. A second target with binary potential means 0/1 has effect 1 while preserving all available source means and target covariate mass. This distinguishes transport from within-population treatment support.
+
+Independent [run 40449209254](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40449209254), [job 122007689620](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40449209254/job/122007689620), succeeded on `dc8c9b159edfa64af7ad80ea6e57522311268526`: 12 exact type/axiom targets and 7 guarded executions. Raw type/axiom messages are retained verbatim apart from Actions timestamps/ANSI; both source files bind to that subject after LF normalization. Only standard axioms occur. The first subject `229c7939992a550427d3fb1017ac8b4c7c61e0e7`, [run 40448280445](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40448280445), failed a redundant simp rewrite and finite-sum decision reduction; it is not PASS evidence. The repaired proof expands finite sums and proves their rational arithmetic in the kernel, without native_decide or weakened claims.
+
+G-PROPOSED correspondence (baseline 825792b83476a767152396d7f5e2ba3017048841): this namespace/source is new. Existing Behavior.indicator and proposed_causal_evidence are reused; frozen files remain unchanged.
+
+| Symbol | Original obligation | Reuse/new | Actual consumer and check |
+|---|---|---|---|
+| selectionJoint / observedCellMean | 11.3 consistency, exchangeability and g-formula | NEW finite generative kernel | finite_observed_g_formula and exact observed-means execution |
+| selectionRecoveryValue / selected_weight_recovery | 11.4 treatment plus selection recovery | NEW general populated-stratum proof | selected database normalization and actual rational recovery |
+| visibleSelectionMass / no_visible_law_estimator_identifies_both | 11.4 K1/K2 complete observable law | NEW full-law countermodels | existing proposed_causal_evidence returns notIdentified |
+| transportedValue / transport_requires_overlap_and_mean_stability | 11.5 target weighting with support/stability | NEW general finite proof | original exact source/target computations |
+| source_and_target_mix_do_not_identify_new_effect | 11.5 missing target-mechanism evidence | NEW potential-mean construction | same source observations, different actual target effect |
+
+The measurement dictionary, source-to-measurement consumer, all policy arithmetic and final U00 composition are separate remaining obligations. Root import is reachability, not a claim of the whole business/measurement/policy/RSI chain. Independent success precedes root integration; final PR and main acceptance are recorded separately. OPEN=20, closes_debt=false, CAND8=8 outside PROVE_CANDIDATES; no discharges, frozen-pin, workflow, toolchain or local Lean/Lake/Elan changes.
+

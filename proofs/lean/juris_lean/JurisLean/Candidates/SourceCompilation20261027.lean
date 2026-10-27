@@ -147,8 +147,8 @@ theorem extracted_view_is_exact_selected_payload (s : MaterialSnapshot) (branch 
               cases accepted
               have member : row ∈ matchingRows s branch catalog := by simp [rows]
               have selected := List.mem_filter.mp member
-              have matches : row.material = s ∧ row.branch = branch := of_decide_eq_true selected.2
-              exact ⟨rfl, rfl, valid, row, selected.1, matches.1, matches.2, rfl⟩
+              have sameHeader : row.material = s ∧ row.branch = branch := of_decide_eq_true selected.2
+              exact ⟨rfl, rfl, valid, row, selected.1, sameHeader.1, sameHeader.2, rfl⟩
             next invalid => cases accepted
   next duplicate => cases accepted
 
@@ -228,7 +228,7 @@ theorem compiler_reads_actual_extracted_output (s : MaterialSnapshot) (branch : 
       | known evidence =>
           simp only [compileView, extracted, compiled, Result.known.injEq] at accepted
           cases accepted
-          exact ⟨extracted, compiled, rfl⟩
+          exact ⟨rfl, compiled, rfl⟩
 
 theorem actual_compilation_enters_finite_closure (s : MaterialSnapshot) (branch : Nat)
     (catalog : List InterpretationRow) (rules : List CompilerProvenance20261027.RuleUse)
@@ -280,7 +280,9 @@ theorem robust_compilation_retains_every_branch (results : List (Result Compiled
     (accepted : robustCompiled results = true) :
     results ≠ [] ∧ ∀ r ∈ results, ∃ out, r = .known out := by
   have allKnown : ∀ r ∈ results, compiled r = true := by
-    exact List.all_eq_true.mp (Bool.and_eq_true.mp accepted).2
+    have parts := accepted
+    simp only [robustCompiled, Bool.and_eq_true, List.all_eq_true] at parts
+    exact parts.2
   constructor
   · intro empty
     simp [robustCompiled, empty] at accepted

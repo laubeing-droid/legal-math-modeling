@@ -91,6 +91,8 @@ import JurisLean.Candidates.SampleCalibrationConsumer20261027
 import JurisLean.Candidates.SelectiveCalibration20261027
 import JurisLean.Candidates.SourceCompilation20261027
 import JurisLean.Candidates.SourceRepresentation20261027
+import JurisLean.Candidates.SourceStages20261027
+import JurisLean.Candidates.SourceStagesAudit20261027
 import JurisLean.Candidates.ValidatedFeedbackLoad20261027
 import JurisLean.CanonicalSerialization
 import JurisLean.CertificateCheckerV2

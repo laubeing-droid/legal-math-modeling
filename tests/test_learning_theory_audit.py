@@ -13,6 +13,7 @@ from scripts.ci import check_axiom_audit_log as audit
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_CASES = [
     (ROOT / "docs/formal-release/evidence" / name, count) for name, count in (
+        ("event-feedback-consumer-20261027", 15),
         ("learning-theory-20261027", 14), ("learning-provenance-20261027", 14),
         ("learning-erm-20261027", 5), ("learning-boundary-20261027", 5),
         ("learning-consumer-20261027", 8),

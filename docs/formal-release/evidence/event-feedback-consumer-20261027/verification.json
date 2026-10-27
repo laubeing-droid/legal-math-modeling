@@ -1,0 +1,75 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "283c5521db265c4a9815805c3f49f37677f91b6c",
+  "run_id": 40426485868,
+  "job_id": 121933418793,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+  "named_count": 15,
+  "named_theorems_full": [
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.putCell_unique",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.observe_preserves_event_uniqueness",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.correction_preserves_event_uniqueness",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.finite_updates_keep_one_cell_per_event",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.training_contains_no_repeated_event",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.observed_history_is_append_only",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.corrected_history_is_append_only",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.historical_replay_cannot_revive_superseded_label",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.denied_correction_keeps_current_state",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.approved_correction_replaces_exact_prior",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.successful_fit_reads_current_valid_sample",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.next_fit_consumes_actual_post"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
+      "sha256": "700fc5430675c8e710f310b68c9a0b45c9856cad15ad6e7d6013a6e9c7e3db22"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+      "sha256": "4668d2633863a7002dbc68c7d8cd920c99f05a435be14d510fcf27d2e0c4134f"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "Classical.choice": 2,
+      "Quot.sound": 6,
+      "propext": 15
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "18 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -6565,6 +6565,310 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "LabelMeaning"
+    },
+    {
+     "kind": "inductive",
+     "name": "Origin"
+    },
+    {
+     "kind": "structure",
+     "name": "DataScope"
+    },
+    {
+     "kind": "structure",
+     "name": "Observation"
+    },
+    {
+     "kind": "structure",
+     "name": "ExternalConfirmation"
+    },
+    {
+     "kind": "inductive",
+     "name": "LabelState"
+    },
+    {
+     "kind": "structure",
+     "name": "Cell"
+    },
+    {
+     "kind": "structure",
+     "name": "Correction"
+    },
+    {
+     "kind": "structure",
+     "name": "CorrectionPermit"
+    },
+    {
+     "kind": "inductive",
+     "name": "Change"
+    },
+    {
+     "kind": "structure",
+     "name": "Store"
+    },
+    {
+     "kind": "inductive",
+     "name": "Disposition"
+    },
+    {
+     "kind": "structure",
+     "name": "Receipt"
+    },
+    {
+     "kind": "def",
+     "name": "emptyStore"
+    },
+    {
+     "kind": "def",
+     "name": "lookup"
+    },
+    {
+     "kind": "def",
+     "name": "putCell"
+    },
+    {
+     "kind": "def",
+     "name": "recordOnly"
+    },
+    {
+     "kind": "def",
+     "name": "recordCell"
+    },
+    {
+     "kind": "def",
+     "name": "seenObservation"
+    },
+    {
+     "kind": "def",
+     "name": "sourceConfirmed"
+    },
+    {
+     "kind": "def",
+     "name": "observationValid"
+    },
+    {
+     "kind": "def",
+     "name": "observe"
+    },
+    {
+     "kind": "def",
+     "name": "correctionValid"
+    },
+    {
+     "kind": "def",
+     "name": "correctionAuthorized"
+    },
+    {
+     "kind": "def",
+     "name": "correctedCell"
+    },
+    {
+     "kind": "def",
+     "name": "correct"
+    },
+    {
+     "kind": "def",
+     "name": "applyChange"
+    },
+    {
+     "kind": "def",
+     "name": "runChanges"
+    },
+    {
+     "kind": "def",
+     "name": "Unique"
+    },
+    {
+     "kind": "def",
+     "name": "Cell.toSample"
+    },
+    {
+     "kind": "def",
+     "name": "trainingRows"
+    },
+    {
+     "kind": "def",
+     "name": "trainingData"
+    },
+    {
+     "kind": "def",
+     "name": "protocolMatches"
+    },
+    {
+     "kind": "structure",
+     "name": "TrainingCandidate"
+    },
+    {
+     "kind": "def",
+     "name": "fitFromStore"
+    },
+    {
+     "kind": "structure",
+     "name": "CandidateRun"
+    },
+    {
+     "kind": "def",
+     "name": "processAndFit"
+    },
+    {
+     "kind": "theorem",
+     "name": "putCell_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "observe_preserves_event_uniqueness"
+    },
+    {
+     "kind": "theorem",
+     "name": "correction_preserves_event_uniqueness"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_updates_keep_one_cell_per_event"
+    },
+    {
+     "kind": "theorem",
+     "name": "training_contains_no_repeated_event"
+    },
+    {
+     "kind": "theorem",
+     "name": "observed_history_is_append_only"
+    },
+    {
+     "kind": "theorem",
+     "name": "corrected_history_is_append_only"
+    },
+    {
+     "kind": "theorem",
+     "name": "suggestions_do_not_enter_training"
+    },
+    {
+     "kind": "theorem",
+     "name": "unconfirmed_labels_do_not_enter_training"
+    },
+    {
+     "kind": "theorem",
+     "name": "replay_has_no_extra_training_row"
+    },
+    {
+     "kind": "theorem",
+     "name": "historical_replay_cannot_revive_superseded_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "denied_correction_keeps_current_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "approved_correction_replaces_exact_prior"
+    },
+    {
+     "kind": "theorem",
+     "name": "successful_fit_reads_current_valid_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_fit_consumes_actual_post"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "700fc5430675c8e710f310b68c9a0b45c9856cad15ad6e7d6013a6e9c7e3db22",
+   "size_bytes": 17877,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "protocol"
+    },
+    {
+     "kind": "def",
+     "name": "scope"
+    },
+    {
+     "kind": "def",
+     "name": "row"
+    },
+    {
+     "kind": "def",
+     "name": "first"
+    },
+    {
+     "kind": "def",
+     "name": "confirmations"
+    },
+    {
+     "kind": "def",
+     "name": "initial"
+    },
+    {
+     "kind": "def",
+     "name": "one"
+    },
+    {
+     "kind": "def",
+     "name": "oneCell"
+    },
+    {
+     "kind": "def",
+     "name": "edit"
+    },
+    {
+     "kind": "def",
+     "name": "permit"
+    },
+    {
+     "kind": "def",
+     "name": "corrected"
+    },
+    {
+     "kind": "def",
+     "name": "loss"
+    },
+    {
+     "kind": "def",
+     "name": "fittedValue"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.EventFeedbackConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.approved_correction_replaces_exact_prior",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.corrected_history_is_append_only",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.correction_preserves_event_uniqueness",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.denied_correction_keeps_current_state",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.finite_updates_keep_one_cell_per_event",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.historical_replay_cannot_revive_superseded_label",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.next_fit_consumes_actual_post",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.observe_preserves_event_uniqueness",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.observed_history_is_append_only",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.putCell_unique",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.successful_fit_reads_current_valid_sample",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.training_contains_no_repeated_event",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training"
+   ],
+   "sha256": "4668d2633863a7002dbc68c7d8cd920c99f05a435be14d510fcf27d2e0c4134f",
+   "size_bytes": 10538,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "txRequest"
     },
@@ -50847,6 +51151,7 @@
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.IntervalDecisionConsumer20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
@@ -51082,8 +51387,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "88c56227b28400e0b956a220aa5d01c932e4467b57a7e3257eaf1790bbe896f2",
-   "size_bytes": 11696,
+   "sha256": "30a69e333ab6f17d9d4063c5aa251f7b846e9662ac04bf10e8768b8499a14967",
+   "size_bytes": 11754,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -51247,22 +51552,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5676,
-   "file_count": 423,
+   "counted_declaration_count": 5691,
+   "file_count": 425,
    "lemma_count": 146,
-   "print_axioms_command_count": 4549,
-   "print_axioms_distinct_targets": 4462,
-   "theorem_count": 5530,
-   "theorem_count_bol_convention": 5430
+   "print_axioms_command_count": 4564,
+   "print_axioms_distinct_targets": 4477,
+   "theorem_count": 5545,
+   "theorem_count_bol_convention": 5445
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5657,
-   "file_count": 408,
+   "counted_declaration_count": 5672,
+   "file_count": 410,
    "lemma_count": 139,
-   "print_axioms_command_count": 4549,
-   "print_axioms_distinct_targets": 4462,
-   "theorem_count": 5518,
-   "theorem_count_bol_convention": 5418
+   "print_axioms_command_count": 4564,
+   "print_axioms_distinct_targets": 4477,
+   "theorem_count": 5533,
+   "theorem_count_bol_convention": 5433
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -51325,6 +51630,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -51746,6 +52053,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -52150,17 +52459,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e0bb55fdb8460a392823c046996059563bc26e26825c8a25bfb3cfe006eb47d4",
+ "source_inventory_digest": "574974a6973a89ddafe64b8f01ee8f2426e462fd532aaadc137039814ddd658a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/decision-trajectory-20261027",
-  "commit": "7e2b9de926ee2ce33937ce00fe4df6740c34039d",
-  "tree": "2e7b08981b1b3c8688184046173e7f2f19160f29"
+  "branch": "formal/event-feedback-20261027",
+  "commit": "66bf5839f10eb726ac7d0c4d8c344d0f1afbfa88",
+  "tree": "0eb8d8c19f4db6f58c0935daffe6fc59b5743d00"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 423,
+  "files_total": 425,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

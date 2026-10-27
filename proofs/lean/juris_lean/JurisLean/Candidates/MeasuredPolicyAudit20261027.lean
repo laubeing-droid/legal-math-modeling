@@ -106,7 +106,7 @@ def advice : Result (PolicyAdvice 2) :=
 #eval
   match (produced 0).observation with
   | .known row => decide (observationDatum row = ((0 : Fin 2), true, true) ∧
-      row.measured.dictionary.event = ⟨100⟩ ∧ row.measured.actualPost = trajectoryOpening)
+      row.measured.dictionary.event = (⟨100⟩ : EventId) ∧ row.measured.actualPost = trajectoryOpening)
   | _ => false
 
 /-- info: true -/
@@ -137,7 +137,7 @@ def advice : Result (PolicyAdvice 2) :=
 #eval
   match (produced 0).observation with
   | .known row => decide (adviseMeasured intervalDecisionGamma plan [row, row] design [design]
-      permission [permission] = .unknown .scopeMismatch)
+      permission [permission] = (Result.unknown .scopeMismatch : Result (PolicyAdvice 2)))
   | _ => false
 
 /-- info: true -/

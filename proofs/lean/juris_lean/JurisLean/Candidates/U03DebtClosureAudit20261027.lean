@@ -1,0 +1,48 @@
+import JurisLean.Candidates.SourceCompilationAudit20261027
+
+-- Existing proofs only: original U03.1/U03.2 residuals and actual consumer.
+
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+
+#check JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+#print axioms JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts
+
+#check JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier
+#print axioms JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact
+
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected
+
+#check JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output
+#print axioms JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output
+
+#check JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure
+#print axioms JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure
+
+#check JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query
+#print axioms JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query

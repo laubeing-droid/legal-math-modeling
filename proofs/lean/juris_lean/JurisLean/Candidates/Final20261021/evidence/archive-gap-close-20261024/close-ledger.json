@@ -40,26 +40,29 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 15,
-    "closed_this_round": 3,
+    "open_formal_tail_remaining": 14,
+    "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
+    "historical_u01_closed": 3,
     "independent_closed_ids": [
       "U03.1",
       "U03.2",
       "U01.1",
       "U01.2",
-      "U01.3"
+      "U01.3",
+      "U04.5"
     ],
-    "independent_closed_total": 5,
+    "independent_closed_total": 6,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
-      "docs/formal-release/evidence/u01-debt-close-20261027/verification.json"
+      "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
+      "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
-    "close_pack": "docs/formal-release/evidence/u01-debt-close-20261027",
+    "independent_receipt": "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
+    "close_pack": "docs/formal-release/evidence/u04-5-debt-close-20261027",
     "candidate_rows": 0,
-    "blocked_rows": 15,
+    "blocked_rows": 14,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -71,6 +74,9 @@
       "U00"
     ],
     "wiring_not_reopened": [
+      "U01.1",
+      "U01.2",
+      "U01.3",
       "U03.1",
       "U03.2",
       "U02.2",
@@ -107,7 +113,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals; remaining OPEN are 15 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14); remaining OPEN are 14 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -145,8 +151,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 27,
-    "OPEN_FORMAL_TAIL": 15
+    "CLOSED_BY_WIRING": 28,
+    "OPEN_FORMAL_TAIL": 14
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -2581,7 +2587,7 @@
     {
       "clause": "U04.5",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain.",
       "claimed_scope": "",
@@ -2602,11 +2608,9 @@
         "Probability.lean:133"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "A general joint likelihood/copy theorem and the sigma-field information argument remain unproved."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: A general joint likelihood/copy theorem and the sigma-field information argument remain unproved.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U04.5 residual closure: MeasurementLikelihood20261027 proves the joint event likelihood chain under explicit positive denominators, derives multiplication from measurement independence under EACH hypothesis law, and proves that an observed deterministic copy leaves the event and likelihood unchanged. A zero reference mass gives no finite ratio; a nondegenerate measurement cannot be independent of itself. ExactProbability20261027 proves equality of the generated sigma-fields and conditional expectations. Exact named evidence: docs/formal-release/evidence/u04-5-debt-close-20261027. This does not certify real identities, the supplied laws or independence, or assign a density likelihood to a zero-probability observation.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U04_5_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2620,33 +2624,26 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "A general joint likelihood/copy theorem and the sigma-field information argument remain unproved."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.MeasurementLikelihood20261027.joint_likelihood_chain",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_joint_mass",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_likelihood_multiplies",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_observation_event",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.zero_reference_mass_has_no_finite_ratio",
+          "JurisLean.Candidates.MeasurementLikelihood20261027.nondegenerate_measurement_is_not_independent_of_itself",
+          "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+          "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation"
+        ]
       }
     },
     {

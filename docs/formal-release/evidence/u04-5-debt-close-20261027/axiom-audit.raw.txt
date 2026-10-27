@@ -1,0 +1,74 @@
+JurisLean.Candidates.MeasurementLikelihood20261027.joint_likelihood_chain.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (P Q : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] [MeasureTheory.IsProbabilityMeasure Q]
+  (first second : Set Ω) (positiveP : 0 < P.real first) (positiveQ : 0 < Q.real first)
+  (positiveJoint : 0 < Q.real (first ∩ second)) :
+  JurisLean.Candidates.MeasurementLikelihood20261027.eventLikelihoodRatio P Q (first ∩ second) =
+    some
+      (P.real first / Q.real first *
+        (P.real (first ∩ second) / P.real first / (Q.real (first ∩ second) / Q.real first)))
+'JurisLean.Candidates.MeasurementLikelihood20261027.joint_likelihood_chain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_joint_mass.{u_1, u_2, u_3} {Ω : Type u_1}
+  {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] [MeasurableSpace A] [MeasurableSpace B]
+  (P : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] (X : Ω → A) (Y : Ω → B)
+  (independent : ProbabilityTheory.IndepFun X Y P) (s : Set A) (t : Set B) (hs : MeasurableSet s)
+  (ht : MeasurableSet t) : P.real (X ⁻¹' s ∩ Y ⁻¹' t) = P.real (X ⁻¹' s) * P.real (Y ⁻¹' t)
+'JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_joint_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_likelihood_multiplies.{u_1, u_2, u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] [MeasurableSpace A] [MeasurableSpace B]
+  (P Q : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] [MeasureTheory.IsProbabilityMeasure Q]
+  (X : Ω → A) (Y : Ω → B) (independentP : ProbabilityTheory.IndepFun X Y P)
+  (independentQ : ProbabilityTheory.IndepFun X Y Q) (s : Set A) (t : Set B) (hs : MeasurableSet s)
+  (ht : MeasurableSet t) (positiveX : 0 < Q.real (X ⁻¹' s)) (positiveY : 0 < Q.real (Y ⁻¹' t)) :
+  JurisLean.Candidates.MeasurementLikelihood20261027.eventLikelihoodRatio P Q (X ⁻¹' s ∩ Y ⁻¹' t) =
+    some (P.real (X ⁻¹' s) / Q.real (X ⁻¹' s) * (P.real (Y ⁻¹' t) / Q.real (Y ⁻¹' t)))
+'JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_likelihood_multiplies' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_observation_event.{u_1, u_2, u_3} {Ω : Type u_1}
+  {A : Type u_2} {B : Type u_3} (X : Ω → A) (copy : A → B) (observed : A) :
+  {w | X w = observed ∧ copy (X w) = copy observed} = {w | X w = observed}
+'JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_observation_event' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged.{u_1, u_2, u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] (P Q : MeasureTheory.Measure Ω) (X : Ω → A)
+  (copy : A → B) (observed : A) :
+  JurisLean.Candidates.MeasurementLikelihood20261027.eventLikelihoodRatio P Q
+      {w | X w = observed ∧ copy (X w) = copy observed} =
+    JurisLean.Candidates.MeasurementLikelihood20261027.eventLikelihoodRatio P Q {w | X w = observed}
+'JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.zero_reference_mass_has_no_finite_ratio.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] (P Q : MeasureTheory.Measure Ω) (event : Set Ω) (zero : Q.real event = 0) :
+  JurisLean.Candidates.MeasurementLikelihood20261027.eventLikelihoodRatio P Q event = none
+'JurisLean.Candidates.MeasurementLikelihood20261027.zero_reference_mass_has_no_finite_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasurementLikelihood20261027.nondegenerate_measurement_is_not_independent_of_itself.{u_1, u_2}
+  {Ω : Type u_1} {A : Type u_2} [MeasurableSpace Ω] [MeasurableSpace A] (P : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure P] (X : Ω → A) (s : Set A) (hs : MeasurableSet s)
+  (positive : 0 < P.real (X ⁻¹' s)) (belowOne : P.real (X ⁻¹' s) < 1) : ¬ProbabilityTheory.IndepFun X X P
+'JurisLean.Candidates.MeasurementLikelihood20261027.nondegenerate_measurement_is_not_independent_of_itself' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information.{u_1, u_2, u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [mA : MeasurableSpace A] [mB : MeasurableSpace B] (X : Ω → A) (g : A → B)
+  (measurableCopy : Measurable g) :
+  MeasurableSpace.comap (fun w => (X w, g (X w))) (mA.prod mB) = MeasurableSpace.comap X mA
+'JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation.{u_1, u_2,
+    u_3}
+  {Ω : Type u_1} {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] [mA : MeasurableSpace A] [mB : MeasurableSpace B]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → A) (g : A → B)
+  (_observed : Measurable X) (measurableCopy : Measurable g) (target : Ω → ℝ)
+  (_integrable : MeasureTheory.Integrable target μ) :
+  μ[target | MeasurableSpace.comap (fun w => (X w, g (X w))) (mA.prod mB)] =ᵐ[μ] μ[target | MeasurableSpace.comap X mA]
+'JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

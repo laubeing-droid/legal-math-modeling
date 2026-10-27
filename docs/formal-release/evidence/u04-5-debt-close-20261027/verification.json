@@ -1,0 +1,65 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "693b5db3ff9f6e1046877b878a287fb388aa5899",
+  "run_id": 40532401962,
+  "job_id": 122288487688,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihoodAudit20261027.lean",
+  "named_count": 9,
+  "names_by_clause": {
+    "U04.5": [
+      "JurisLean.Candidates.MeasurementLikelihood20261027.joint_likelihood_chain",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_joint_mass",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.independent_measurement_likelihood_multiplies",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_observation_event",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.zero_reference_mass_has_no_finite_ratio",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.nondegenerate_measurement_is_not_independent_of_itself",
+      "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+      "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihood20261027.lean",
+      "sha256": "73a285b5dedadb27a245a54804b1560038c9961fccc6cd0fbd4af0ded2c9a564"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihoodAudit20261027.lean",
+      "sha256": "bd482cc6ed27f6f55f8a0b0600dc962221f228aba1556bbbf27852b80844aed1"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 9,
+      "propext": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U04.5": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain."
+  },
+  "closed_ids": [
+    "U04.5"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 15,
+  "open_after": 14,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

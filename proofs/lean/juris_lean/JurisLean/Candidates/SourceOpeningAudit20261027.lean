@@ -74,9 +74,9 @@ def isKnown {A : Type} : Result A → Bool
   | .known out => decide (out.branches.map BranchOpening.key = [0, 1] ∧
       out.anchor.frame.source.material = materialA ∧ out.handle.gamma = materialA.gamma ∧
       out.handle.state.initialDebt = 10 ∧ Ledger.balance out.handle.state = 10 ∧
-      out.handle.state.formations = [⟨9⟩] ∧ out.handle.state.paid = 0 ∧
+      out.handle.state.formations = [(⟨9⟩ : RelationId)] ∧ out.handle.state.paid = 0 ∧
       out.handle.state.receipts = [] ∧ out.handle.state.cash = [] ∧
-      out.handle.state.normHistory = history ∧ out.handle.state.env = .known 8 ∧
+      out.handle.state.normHistory = history ∧ out.handle.state.env = Result.known (8 : Nat) ∧
       out.anchor.frame.stages.afterSecond.state.paid = 14)
   | _ => false
 
@@ -84,8 +84,8 @@ def isKnown {A : Type} : Result A → Bool
 /-- info: true -/
 #guard_msgs in
 #eval match openingFor legalInput with
-  | .known out => decide (out.handle.state.judgment = .insufficient ∧
-      out.handle.state.procedure = .open ∧ out.handle.state.claim = .unknown ∧
+  | .known out => decide (out.handle.state.judgment = Judgment.insufficient ∧
+      out.handle.state.procedure = Procedure.open ∧ out.handle.state.claim = Applicable.unknown ∧
       out.handle.state.executionEligible = false)
   | _ => false
 
@@ -145,7 +145,7 @@ def isKnown {A : Type} : Result A → Bool
 /-- info: true -/
 #guard_msgs in
 #eval match openingFor {legalInput with history := []} with
-  | .known out => decide (out.handle.state.env = .unknown .missingEvidence ∧
+  | .known out => decide (out.handle.state.env = (Result.unknown Error.missingEvidence : Result Nat) ∧
       out.handle.state.normHistory = [] ∧ out.handle.state.paid = 0)
   | _ => false
 

@@ -116,6 +116,39 @@ theorem captured_pending_comes_from_actual_action_trajectory {W : Type} {m : Nat
     proposal.steps (by simpa only [exactPayment] using unknown)
   exact ⟨initial, execution, proposal, reported, ran, selected, exactPayment.trans executed, captured, stopped⟩
 
+theorem actual_unknown_action_always_has_capture {W : Type} {m : Nat}
+    (before : State m) (input : ActionInput W m) (initial : Ledger.Handle)
+    (known : before.business.current = some initial)
+    (stopped : (act before input).post.business.current = none) :
+    ∃ pending, (capture before input).pending = some pending := by
+  let execution := runLoaded input.legal input.model input.proposals before.learning input.request
+    input.calibration input.calibrationCatalog input.radius input.exponent input.utility input.grants initial
+  have called : (act before input).run = some execution := by simp only [act, known]
+  have unknown : execution.execution.payment.current = none := by simpa only [act, known] using stopped
+  cases selected : execution.execution.proposal with
+  | none =>
+      have frame := no_selected_plan_preserves_all_business_state input.request input.utility
+        (review input.legal input.model initial input.proposals).allowed execution.decision input.grants initial
+        (by simpa only [execution, runLoaded] using selected)
+      have same : execution.execution.payment.current = some initial := by
+        simpa only [execution, runLoaded] using frame.1
+      rw [unknown] at same
+      cases same
+  | some proposal =>
+      obtain ⟨decision, _, _, _, payment⟩ :=
+        chosen_execution_uses_the_entire_approved_instruction_list input.request input.utility
+          (review input.legal input.model initial input.proposals).allowed execution.decision input.grants initial
+          proposal (by simpa only [execution, runLoaded] using selected)
+      have exactPayment : execution.execution.payment = executeSelected decision input.grants initial proposal.steps := by
+        simpa only [execution, runLoaded] using payment
+      have trajectory := unknown_selected_execution_is_actual_trajectory decision input.grants initial
+        proposal.steps (by simpa only [exactPayment] using unknown)
+      obtain ⟨pending, found⟩ := stopped_interpreter_always_has_pending input.grants proposal.steps initial
+        (by simpa only [exactPayment, trajectory] using unknown)
+      refine ⟨pending, ?_⟩
+      change pendingFor before input (act before input) = some pending
+      simpa only [pendingFor, stopped, if_pos, known, called, selected] using found
+
 def resolution {W : Type} {m : Nat} (ticket : Captured W m) (current : State m)
     (catalog : List Readback) (report : Readback) : Result Ledger.Handle :=
   if current = ticket.actual.post then

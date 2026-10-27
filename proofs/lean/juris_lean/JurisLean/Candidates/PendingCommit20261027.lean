@@ -127,6 +127,38 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
           | rejected error => simp [locate, refreshed] at found
           | conflict left right => simp [locate, refreshed] at found
 
+theorem stopped_interpreter_always_has_pending (grants : List Authorization.Grant)
+    (steps : List Instruction) (initial : Ledger.Handle)
+    (stopped : (runTrajectory grants initial steps).current = none) :
+    ∃ pending, locate grants initial steps = some pending := by
+  induction steps generalizing initial with
+  | nil => simp [runTrajectory] at stopped
+  | cons instruction rest ih =>
+      cases instruction with
+      | pay request mode =>
+          cases executed : Ledger.consume_ext initial initial request
+              (Authorization.authorized grants initial.gamma request.payload.payer 0
+                request.payload.normVersion (.relation request.payload.relation) (some request.payload)) mode with
+          | committed receipt after =>
+              obtain ⟨pending, found⟩ := ih after (by simpa only [runTrajectory, executed] using stopped)
+              exact ⟨pending, by simpa only [locate, permission, executed] using found⟩
+          | replay receipt =>
+              obtain ⟨pending, found⟩ := ih initial (by simpa only [runTrajectory, executed] using stopped)
+              exact ⟨pending, by simpa only [locate, permission, executed] using found⟩
+          | unknownCommit key attempt =>
+              exact ⟨⟨grants, initial, request, mode, rest⟩, by simp only [locate, permission, executed]⟩
+          | rejectedNoCommit attempt error => simp [runTrajectory, executed, Pipeline.finishPayment] at stopped
+          | conflict registered requested => simp [runTrajectory, executed, Pipeline.finishPayment] at stopped
+          | pending error => simp [runTrajectory, executed, Pipeline.finishPayment] at stopped
+      | refresh change =>
+          cases refreshed : Pipeline.refresh grants initial change with
+          | known after =>
+              obtain ⟨pending, found⟩ := ih after (by simpa only [runTrajectory, refreshed] using stopped)
+              exact ⟨pending, by simpa only [locate, refreshed] using found⟩
+          | unknown error => simp [runTrajectory, refreshed] at stopped
+          | rejected error => simp [runTrajectory, refreshed] at stopped
+          | conflict left right => simp [runTrajectory, refreshed] at stopped
+
 theorem captured_prestate_inherits_full_invariant (grants : List Authorization.Grant)
     (steps : List Instruction) (initial : Ledger.Handle) (pending : Pending)
     (valid : Trace.Invariant initial) (found : locate grants initial steps = some pending) :

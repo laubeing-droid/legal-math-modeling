@@ -58,7 +58,7 @@ theorem checked_post_is_exact_commit_or_fenced_absence (pending : Pending)
           split at accepted
           · rename_i same
             cases accepted
-            exact ⟨rfl, Or.inl ⟨reported, disposition,
+            exact ⟨rfl, Or.inl ⟨reported, rfl,
               by simpa only [same.1, same.2] using executed⟩⟩
           · cases accepted
       | replay receipt => simp [checkedPost, disposition, executed] at accepted
@@ -71,7 +71,7 @@ theorem checked_post_is_exact_commit_or_fenced_absence (pending : Pending)
       split at accepted
       · rename_i same
         cases accepted
-        exact ⟨rfl, Or.inr ⟨fence, disposition, same⟩⟩
+        exact ⟨rfl, Or.inr ⟨fence, rfl, same⟩⟩
       · cases accepted
 
 def resolve (pending : Pending) (catalog : List Readback) (report : Readback) : Result Ledger.Handle :=

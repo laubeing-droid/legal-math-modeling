@@ -4,6 +4,12 @@ import JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027
 
 #check JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample
 #print axioms JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample
+#check JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs
+#print axioms JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs
+#check JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question
+#print axioms JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question
+#check JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown
+#print axioms JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown
 #check JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration
 #print axioms JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration
 #check JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown
@@ -36,27 +42,64 @@ open JurisLean.Candidates.LoadedLegalConsumer20261027
 
 namespace JurisLean.Candidates.LoadedLegalConsumer20261027.Audit
 
+-- This question is asked after the actual validation acquired at time 20.
+-- Every legal material, quote, grant and business handle uses the same cutoffs.
+def gamma : Gamma :=
+  {intervalDecisionGamma with knowledgeCutoff := ⟨100⟩, recordCutoff := ⟨100⟩}
+
+def opening : Ledger.Handle :=
+  {trajectoryOpening with gamma := gamma, state := {trajectoryOpening.state with
+    env := Temporal.proposed_applicability gamma trajectoryOpening.state.normHistory}}
+
+def grants : List Authorization.Grant :=
+  trajectoryGrants.map fun grant => {grant with context := gamma}
+
+def legalInput : LegalInput (List Nat) :=
+  let old := LegalActionDomain20261027.Audit.legalInput
+  let materialA := {old.anchor with gamma := gamma}
+  let materialB := {materialA with gamma := {gamma with interpretation := 2}}
+  {old with anchor := materialA
+    branches := [⟨0, materialA, 0⟩, ⟨1, materialB, 0⟩]
+    catalog := [⟨materialA, 0, FiniteLegalValidation20261027.Audit.source⟩,
+      ⟨materialB, 0, FiniteLegalValidation20261027.Audit.source⟩]
+    supplements := [{LegalActionDomain20261027.Audit.supplementA with material := materialA},
+      {LegalActionDomain20261027.Audit.supplementB with material := materialB}]
+    policies := [{LegalActionDomain20261027.Audit.policyA with gamma := materialA.gamma},
+      {LegalActionDomain20261027.Audit.policyB with gamma := materialB.gamma}]}
+
+def proposals : List Proposal :=
+  trajectoryQuotes.map fun q => ⟨{q with gamma := gamma}, trajectorySteps⟩
+
+def actionModel : ActionModel (List Nat) Ledger.Handle :=
+  {LegalActionDomain20261027.Audit.actionModel with
+    meanings := proposals.map (fun p => LegalActionDomain20261027.Audit.meaning gamma p 2) ++
+      proposals.map (fun p => LegalActionDomain20261027.Audit.meaning {gamma with interpretation := 2} p 5)
+    successors := fun _ _ before steps =>
+      match (runTrajectory grants before steps).current with
+      | some post => [post]
+      | none => []}
+
 def base (service : Service 2) : RoundState 2 :=
-  ⟨{service with gamma := intervalDecisionGamma}, ⟨1, [[1, 1]]⟩, 55, 3, 1/5, [10, 20], [], none, []⟩
+  ⟨{service with gamma := gamma}, ⟨1, [[1, 1]]⟩, 55, 3, 1/5, [10, 20], [], none, []⟩
 
 def request (state : RoundState 2) : DecisionRequest 2 :=
-  {intervalDecisionRequest with protocol := (readLoaded state.service).fitted.protocol}
+  {intervalDecisionRequest with gamma := state.service.gamma,
+    protocol := (readLoaded state.service).fitted.protocol}
 
 def rows : List (SampleObservation 2 Bool) := List.ofFn fun i : Fin 400 =>
   ⟨⟨10000 + i.val⟩, if i.val < 200 then 0 else 1, decide (200 ≤ i.val)⟩
 
 def packet (state : RoundState 2) : CalibrationPacket 2 :=
   ⟨state.service.gamma, readLoaded state.service, [[0, 0], [0, 1]], rows, 100,
-    ⟨0⟩, ⟨10⟩, ⟨80⟩, true⟩
+    ⟨0⟩, ⟨10⟩, ⟨20⟩, ⟨80⟩, true⟩
 
 def probability (state : RoundState 2) (p : CalibrationPacket 2)
     (catalog : List (CalibrationPacket 2)) : Result (SampleProbability 2) :=
   loadedProbability state (request state) p catalog (1/10) 8
 
 def fixture (state : RoundState 2) : LoadedRun (List Nat) 2 :=
-  runLoaded LegalActionDomain20261027.Audit.legalInput LegalActionDomain20261027.Audit.actionModel
-    LegalActionDomain20261027.Audit.proposals state (request state) (packet state) [packet state]
-    (1/10) 8 id trajectoryGrants trajectoryOpening
+  runLoaded legalInput actionModel proposals state (request state) (packet state) [packet state]
+    (1/10) 8 id grants opening
 
 -- The actual loaded parent is [0,0]; a learner proposing [1,1] cannot replace it.
 /-- info: true -/
@@ -165,7 +208,7 @@ def fixture (state : RoundState 2) : LoadedRun (List Nat) 2 :=
 #guard_msgs in
 #eval ValidatedFeedbackLoadFixture.check (fun service _ =>
   let state := base service
-  let changed := {packet state with acquiredAt := ⟨11⟩}
+  let changed := {packet state with acquiredAt := ⟨101⟩}
   decide (probability state changed [changed] = .unknown .scopeMismatch))
 
 -- This is an actual activation, with the existing exact sampling and load gates.
@@ -194,10 +237,10 @@ def fixture (state : RoundState 2) : LoadedRun (List Nat) 2 :=
   let permit := ValidatedFeedbackLoadFixture.permit before.service evaluation
   let loaded := activate before.service evaluation [sampling] sampling [permit] permit
   let after := {before with service := loaded.post}
-  let actual := runLoaded LegalActionDomain20261027.Audit.legalInput
-    LegalActionDomain20261027.Audit.actionModel LegalActionDomain20261027.Audit.proposals after
+  let actual := runLoaded legalInput
+    actionModel proposals after
     {request after with riskLimit := 2/5} (packet after) [packet after] (1/10) 8 id
-    trajectoryGrants trajectoryOpening
+    grants opening
   match actual.decision with
   | .known d => decide (loaded.status = .loaded ∧ d.nominal.action.id = 1 ∧
       d.probability.fitted = (readLoaded loaded.post).fitted)
@@ -207,30 +250,96 @@ def fixture (state : RoundState 2) : LoadedRun (List Nat) 2 :=
 #guard_msgs in
 #eval ValidatedFeedbackLoadFixture.check (fun service _ =>
   let state := base service
-  let actual := runLoaded {LegalActionDomain20261027.Audit.legalInput with branches := []}
-    LegalActionDomain20261027.Audit.actionModel LegalActionDomain20261027.Audit.proposals state
-    (request state) (packet state) [packet state] (1/10) 8 id trajectoryGrants trajectoryOpening
-  decide (actual.execution.proposal = none ∧ actual.execution.payment.current = some trajectoryOpening ∧
+  let actual := runLoaded {legalInput with branches := []}
+    actionModel proposals state
+    (request state) (packet state) [packet state] (1/10) 8 id grants opening
+  decide (actual.execution.proposal = none ∧ actual.execution.payment.current = some opening ∧
     actual.execution.payment.outcomes = []))
 
 /-- info: true -/
 #guard_msgs in
 #eval ValidatedFeedbackLoadFixture.check (fun service _ =>
   let state := base service
-  let actual := runLoaded LegalActionDomain20261027.Audit.legalInput
-    LegalActionDomain20261027.Audit.actionModel LegalActionDomain20261027.Audit.proposals state
-    (request state) (packet state) [] (1/10) 8 id trajectoryGrants trajectoryOpening
+  let actual := runLoaded legalInput
+    actionModel proposals state
+    (request state) (packet state) [] (1/10) 8 id grants opening
   decide (actual.probability = .unknown .scopeMismatch ∧ actual.execution.proposal = none ∧
-    actual.execution.payment.current = some trajectoryOpening ∧ actual.execution.payment.outcomes = []))
+    actual.execution.payment.current = some opening ∧ actual.execution.payment.outcomes = []))
 
 /-- info: true -/
 #guard_msgs in
 #eval ValidatedFeedbackLoadFixture.check (fun service _ =>
   let state := base service
-  let actual := runLoaded LegalActionDomain20261027.Audit.legalInput
-    LegalActionDomain20261027.Audit.actionModel LegalActionDomain20261027.Audit.proposals state
-    (request state) (packet state) [packet state] (1/10) 8 id [] trajectoryOpening
-  decide (actual.execution.payment.current = some trajectoryOpening ∧
+  let actual := runLoaded legalInput
+    actionModel proposals state
+    (request state) (packet state) [packet state] (1/10) 8 id [] opening
+  decide (actual.execution.payment.current = some opening ∧
     actual.execution.payment.exit = Pipeline.Exit.rejected))
+
+-- A catalog entry cannot make late model availability satisfy an earlier cutoff.
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let state := base service
+  let changed := {packet state with modelAvailableAt := ⟨101⟩}
+  decide (probability state changed [changed] = .unknown .scopeMismatch))
+
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let state := {base service with service := {service with
+    gamma := {gamma with recordCutoff := ⟨15⟩}}}
+  let p := packet state
+  decide (probability state p [p] = .unknown .scopeMismatch))
+
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let state := {base service with service := {service with
+    gamma := {gamma with recordCutoff := ⟨5⟩}}}
+  let p := {packet state with modelAvailableAt := ⟨0⟩}
+  decide (probability state p [p] = .unknown .scopeMismatch))
+
+-- Inspect observations actually retained in the loaded snapshot, including corrections.
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let future := {ValidatedFeedbackLoadFixture.first with observedAt := ⟨101⟩}
+  let changed := {service.loaded with snapshot := {service.loaded.snapshot with
+    history := service.loaded.snapshot.history ++ [.observed future]}}
+  let state := {base service with service := {service with gamma := gamma, loaded := changed}}
+  let p := packet state
+  decide (probability state p [p] = .unknown .scopeMismatch))
+
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let future := {ValidatedFeedbackLoadFixture.first with observedAt := ⟨101⟩}
+  let edit : Correction 2 := ⟨⟨⟨1⟩, ⟨1⟩, 0, .active 0 false⟩,
+    some future, ⟨0⟩, 1, ⟨99⟩⟩
+  let changed := {service.loaded with snapshot := {service.loaded.snapshot with
+    history := service.loaded.snapshot.history ++ [.corrected edit]}}
+  let state := {base service with service := {service with gamma := gamma, loaded := changed}}
+  let p := packet state
+  decide (probability state p [p] = .unknown .scopeMismatch))
+
+-- New journal data awaiting evaluation does not rewrite the loaded model's history.
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let future := {ValidatedFeedbackLoadFixture.third with observedAt := ⟨101⟩}
+  let state := {base service with service := {service with gamma := gamma,
+    journal := {service.journal with history := service.journal.history ++ [.observed future]}}}
+  let p := packet state
+  match probability state p [p] with
+  | .known out => decide (out.fitted = (readLoaded service).fitted ∧ out.estimate = 1/2)
+  | _ => false)
+
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service _ =>
+  let state := base service
+  let changed := {packet state with modelAvailableAt := ⟨19⟩}
+  decide (probability state changed [packet state] = .unknown .scopeMismatch))
 
 end JurisLean.Candidates.LoadedLegalConsumer20261027.Audit

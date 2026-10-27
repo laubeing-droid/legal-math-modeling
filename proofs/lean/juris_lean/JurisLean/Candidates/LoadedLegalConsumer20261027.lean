@@ -39,6 +39,7 @@ structure CalibrationPacket (m : Nat) where
   snapshot : Nat
   declaredAt : Instant
   acquiredAt : Instant
+  modelAvailableAt : Instant
   source : SourceRef
   supported : Bool
   deriving DecidableEq, Repr
@@ -46,6 +47,22 @@ structure CalibrationPacket (m : Nat) where
 def calibrationData {m : Nat} (packet : CalibrationPacket m) :
     Fin packet.rows.length → Fin m × Bool :=
   fun i => let row := packet.rows.get i; (row.feature, row.label)
+
+-- An effective date is not an acquisition date. Correction/removal availability
+-- is covered by the independent attestation of the complete loaded package.
+def historyKnownBy {m : Nat} (cutoff : Instant) (history : List (Change m)) : Bool :=
+  history.all fun change => match change with
+    | .observed row => decide (row.observedAt.ticks ≤ cutoff.ticks)
+    | .corrected edit => match edit.replacement with
+        | some row => decide (row.observedAt.ticks ≤ cutoff.ticks)
+        | none => true
+
+def calibrationTimeReady {m : Nat} (g : Gamma) (packet : CalibrationPacket m) : Bool :=
+  decide (packet.modelAvailableAt.ticks ≤ g.knowledgeCutoff.ticks ∧
+    packet.modelAvailableAt.ticks ≤ g.recordCutoff.ticks ∧
+    packet.acquiredAt.ticks ≤ g.knowledgeCutoff.ticks ∧
+    packet.acquiredAt.ticks ≤ g.recordCutoff.ticks) &&
+  historyKnownBy g.knowledgeCutoff packet.loaded.snapshot.history
 
 def calibrationReady {m : Nat} (state : RoundState m) (request : DecisionRequest m)
     (packet : CalibrationPacket m) (catalog : List (CalibrationPacket m)) : Bool :=
@@ -59,7 +76,7 @@ def calibrationReady {m : Nat} (state : RoundState m) (request : DecisionRequest
     state.service.journal.scope.ruleVersion = request.gamma.normVersion ∧
     state.service.journal.scope.mechanismVersion = request.gamma.mechanismVersion ∧
     packet.declaredAt.ticks < packet.acquiredAt.ticks ∧
-    packet.acquiredAt.ticks ≤ request.gamma.knowledgeCutoff.ticks ∧
+    calibrationTimeReady request.gamma packet = true ∧
     (∀ table ∈ packet.models, table.length = m) ∧
     packet.rows.Pairwise (fun a b => a.event ≠ b.event) ∧
     ∀ row ∈ packet.rows, row.event ∉ trainingEvents state.service.journal ∧
@@ -102,6 +119,36 @@ theorem changed_loaded_contents_refuse_old_calibration {m : Nat}
     (changed : packet.loaded ≠ readLoaded state.service) :
     loadedProbability state request packet catalog radius exponent = .unknown .scopeMismatch := by
   simp [loadedProbability, calibrationReady, changed]
+
+theorem known_probability_respects_cutoffs {m : Nat}
+    (state : RoundState m) (request : DecisionRequest m) (packet : CalibrationPacket m)
+    (catalog : List (CalibrationPacket m)) (radius : ℚ) (exponent : Nat)
+    (out : SampleProbability m)
+    (known : loadedProbability state request packet catalog radius exponent = .known out) :
+    (packet.modelAvailableAt.ticks ≤ request.gamma.knowledgeCutoff.ticks ∧
+      packet.modelAvailableAt.ticks ≤ request.gamma.recordCutoff.ticks ∧
+      packet.acquiredAt.ticks ≤ request.gamma.knowledgeCutoff.ticks ∧
+      packet.acquiredAt.ticks ≤ request.gamma.recordCutoff.ticks) ∧
+    historyKnownBy request.gamma.knowledgeCutoff packet.loaded.snapshot.history = true := by
+  have ready := (known_probability_binds_actual_loaded_and_sample state request packet
+    catalog radius exponent out known).1
+  simp only [calibrationReady, decide_eq_true_eq] at ready
+  have time : calibrationTimeReady request.gamma packet = true := by tauto
+  simpa only [calibrationTimeReady, Bool.and_eq_true, decide_eq_true_eq] using time
+
+theorem future_model_is_not_available_for_prior_question {m : Nat}
+    (state : RoundState m) (request : DecisionRequest m) (packet : CalibrationPacket m)
+    (catalog : List (CalibrationPacket m)) (radius : ℚ) (exponent : Nat)
+    (late : request.gamma.knowledgeCutoff.ticks < packet.modelAvailableAt.ticks) :
+    loadedProbability state request packet catalog radius exponent = .unknown .scopeMismatch := by
+  simp [loadedProbability, calibrationReady, calibrationTimeReady, not_le_of_gt late]
+
+theorem future_loaded_observations_stay_unknown {m : Nat}
+    (state : RoundState m) (request : DecisionRequest m) (packet : CalibrationPacket m)
+    (catalog : List (CalibrationPacket m)) (radius : ℚ) (exponent : Nat)
+    (future : historyKnownBy request.gamma.knowledgeCutoff packet.loaded.snapshot.history = false) :
+    loadedProbability state request packet catalog radius exponent = .unknown .scopeMismatch := by
+  simp [loadedProbability, calibrationReady, calibrationTimeReady, future]
 
 theorem missing_calibration_attestation_stays_unknown {m : Nat}
     (state : RoundState m) (request : DecisionRequest m) (packet : CalibrationPacket m)

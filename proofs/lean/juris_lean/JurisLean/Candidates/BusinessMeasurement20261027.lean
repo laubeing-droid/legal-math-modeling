@@ -181,10 +181,10 @@ theorem measurement_reads_actual_state_and_rows (post : Ledger.Handle)
         simp only [sumEq] at accepted
         split at accepted
         · cases accepted
-          exact ⟨rfl, rfl, rfl, rfl, sumEq, hv⟩
+          exact ⟨rfl, rfl, rfl, rfl, rfl, hv⟩
         · split at accepted
           · cases accepted
-            exact ⟨rfl, rfl, rfl, rfl, sumEq, hv⟩
+            exact ⟨rfl, rfl, rfl, rfl, rfl, hv⟩
           · simp at accepted
 
 theorem negative_requires_complete_closed_window (post : Ledger.Handle)
@@ -230,8 +230,9 @@ theorem accepted_rows_are_external_and_current (post : Ledger.Handle)
   simp only [measurementInputsValid, Bool.and_eq_true, decide_eq_true_eq] at valid
   refine ⟨valid.1.1, ?_⟩
   intro row member
-  have rowValid := Bool.and_eq_true.mp (List.all_eq_true.mp valid.2 row member)
-  have times := of_decide_eq_true rowValid.1
+  have rowValid := List.all_eq_true.mp valid.2 row member
+  simp only [Bool.and_eq_true, decide_eq_true_eq] at rowValid
+  have times := rowValid.1
   obtain ⟨entry, included, same⟩ := List.any_eq_true.mp rowValid.2
   exact ⟨times.1, times.2.1, times.2.2, entry, included, of_decide_eq_true same⟩
 
@@ -286,7 +287,7 @@ theorem performance_magnitude_is_actual_allocation (post : Ledger.Handle)
       split at measured
       · rename_i checked
         simp only [Option.some.injEq] at measured
-        exact ⟨receipt, found, measured.symm, checked.2.2.2.2.2.2.1,
+        exact ⟨receipt, rfl, measured.symm, checked.2.2.2.2.2.2.1,
           checked.2.2.2.2.1⟩
       · simp at measured
 
@@ -353,8 +354,8 @@ theorem unknown_appeal_labels_have_sharp_bounds (n : Nat) (hn : n ≤ 80) :
 theorem appeal_observations_cannot_identify_population_rate (estimator : (Nat × Nat) → ℚ) :
     ¬ (estimator (20, 8) = appealCompletionRate 0 ∧
        estimator (20, 8) = appealCompletionRate 80) := by
-  norm_num [appealCompletionRate]
   rintro ⟨a, b⟩
+  norm_num [appealCompletionRate] at a b
   linarith
 
 end JurisLean.Candidates.BusinessMeasurement20261027

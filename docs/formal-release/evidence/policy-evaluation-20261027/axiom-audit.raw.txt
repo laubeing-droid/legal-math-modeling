@@ -1,0 +1,259 @@
+JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw {X A : Type} [Fintype X] [Fintype A] (mass : X → ℚ)
+  (logging target outcome : X → A → ℚ) (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0) :
+  JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome =
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome
+'JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss (w c y : ℚ) (hw : 0 ≤ w) (hc : 0 ≤ c) (hy : 0 ≤ y)
+  (hy1 : y ≤ 1) :
+  w * y - min w c * y = max (w - c) 0 * y ∧ 0 ≤ w * y - min w c * y ∧ w * y - min w c * y ≤ max (w - c) 0
+'JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound.{u_1, u_2} {X : Type u_1} {A : Type u_2}
+  [Fintype X] [Fintype A] (mass : X → ℚ) (logging target outcome : X → A → ℚ) (cap : ℚ) (hm : ∀ (x : X), 0 ≤ mass x)
+  (hl : ∀ (x : X) (a : A), 0 ≤ logging x a) (ht : ∀ (x : X) (a : A), 0 ≤ target x a) (hc : 0 ≤ cap)
+  (hy : ∀ (x : X) (a : A), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  0 ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome -
+        JurisLean.Candidates.PolicyEvaluation20261027.clippedValue mass logging target outcome cap ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome -
+        JurisLean.Candidates.PolicyEvaluation20261027.clippedValue mass logging target outcome cap ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.discardedMass mass logging target cap
+'JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds.{u_1, u_2} {X : Type u_1} {A : Type u_2}
+  [Fintype X] [Fintype A] (mass : X → ℚ) (logging target outcome : X → A → ℚ) (hm : ∀ (x : X), 0 ≤ mass x)
+  (ht : ∀ (x : X) (a : A), 0 ≤ target x a) (hy : ∀ (x : X) (a : A), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target
+        (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome 0) ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target
+        (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome 1)
+'JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.unsupported_completions_same_visible_law.{u_1, u_2} {X : Type u_1}
+  {A : Type u_2} (mass : X → ℚ) (logging outcome : X → A → ℚ) (u v : ℚ) (x : X) (a : A) (y : Bool) :
+  JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw mass logging
+      (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome u) x a y =
+    JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw mass logging
+      (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome v) x a y
+'JurisLean.Candidates.PolicyEvaluation20261027.unsupported_completions_same_visible_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.original_policy_values_and_clipping :
+  JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+        JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy
+        JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+      9 / 20 ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+        11 / 20 ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.importanceValue
+            JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+            JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy
+            JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+          11 / 20 ∧
+        JurisLean.Candidates.PolicyEvaluation20261027.chooseOne false true /
+              JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy false true =
+            4 ∧
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne true true /
+                JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy true true =
+              4 / 3 ∧
+            JurisLean.Candidates.PolicyEvaluation20261027.clippedValue
+                  JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+                  JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy
+                  JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+                  JurisLean.Candidates.PolicyEvaluation20261027.originalMean 2 =
+                7 / 20 ∧
+              JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+                    JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+                    JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+                    JurisLean.Candidates.PolicyEvaluation20261027.originalMean -
+                  JurisLean.Candidates.PolicyEvaluation20261027.clippedValue
+                    JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+                    JurisLean.Candidates.PolicyEvaluation20261027.loggingPolicy
+                    JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+                    JurisLean.Candidates.PolicyEvaluation20261027.originalMean 2 =
+                1 / 5
+'JurisLean.Candidates.PolicyEvaluation20261027.original_policy_values_and_clipping' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.original_support_gap_sharp (u : ℚ) (hu : 0 ≤ u) (hu1 : u ≤ 1) :
+  JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+        JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+        (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+          JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+          JurisLean.Candidates.PolicyEvaluation20261027.originalMean u) =
+      u / 2 + 3 / 20 ∧
+    3 / 20 ≤
+        JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+          JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean u) ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean u) ≤
+        13 / 20
+'JurisLean.Candidates.PolicyEvaluation20261027.original_support_gap_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible :
+  (∀ (x a y : Bool),
+      JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw
+          JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 0)
+          x a y =
+        JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw
+          JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 1)
+          x a y) ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 0) =
+        3 / 20 ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 1) =
+        13 / 20
+'JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.heterogeneous_values_change_with_population :
+  JurisLean.Candidates.PolicyEvaluation20261027.originalMean false true -
+        JurisLean.Candidates.PolicyEvaluation20261027.originalMean false false =
+      2 / 5 ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.originalMean true true -
+          JurisLean.Candidates.PolicyEvaluation20261027.originalMean true false =
+        -2 / 5 ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+            JurisLean.Candidates.PolicyEvaluation20261027.chooseZero
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+          11 / 20 ∧
+        JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+              JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+              JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+              JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+            11 / 20 ∧
+          JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+                JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+                JurisLean.Candidates.PolicyEvaluation20261027.personalized
+                JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+              3 / 4 ∧
+            JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+                  JurisLean.Candidates.PolicyEvaluation20261027.shiftedMass
+                  JurisLean.Candidates.PolicyEvaluation20261027.chooseZero
+                  JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+                16 / 25 ∧
+              JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+                    JurisLean.Candidates.PolicyEvaluation20261027.shiftedMass
+                    JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+                    JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+                  2 / 5 ∧
+                JurisLean.Candidates.PolicyEvaluation20261027.policyValue
+                    JurisLean.Candidates.PolicyEvaluation20261027.shiftedMass
+                    JurisLean.Candidates.PolicyEvaluation20261027.personalized
+                    JurisLean.Candidates.PolicyEvaluation20261027.originalMean =
+                  18 / 25
+'JurisLean.Candidates.PolicyEvaluation20261027.heterogeneous_values_change_with_population' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.missing_world_is_probability (u : ℚ) (hu : 0 ≤ u) (hu1 : u ≤ 1) :
+  ∑ r, ∑ y, JurisLean.Candidates.PolicyEvaluation20261027.missingJoint u r y = 1 ∧
+    ∀ (r y : Bool), 0 ≤ JurisLean.Candidates.PolicyEvaluation20261027.missingJoint u r y
+'JurisLean.Candidates.PolicyEvaluation20261027.missing_world_is_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_visible_law_independent (u v : ℚ) (r : Bool)
+  (report : Option Bool) :
+  JurisLean.Candidates.PolicyEvaluation20261027.missingVisibleMass u r report =
+    JurisLean.Candidates.PolicyEvaluation20261027.missingVisibleMass v r report
+'JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_visible_law_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_interval_sharp (u : ℚ) (hu : 0 ≤ u) (hu1 : u ≤ 1) :
+  JurisLean.Candidates.PolicyEvaluation20261027.missingPopulationMean u = (1 + u) / 2 ∧
+    1 / 2 ≤ JurisLean.Candidates.PolicyEvaluation20261027.missingPopulationMean u ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.missingPopulationMean u ≤ 1 ∧
+        JurisLean.Candidates.PolicyEvaluation20261027.missingPopulationMean 0 = 1 / 2 ∧
+          JurisLean.Candidates.PolicyEvaluation20261027.missingPopulationMean 1 = 1
+'JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_interval_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value :
+  (∀ (a : Bool),
+      JurisLean.Candidates.PolicyEvaluation20261027.firstStageLog id a =
+        JurisLean.Candidates.PolicyEvaluation20261027.firstStageLog not a) ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.terminalValue id true = 1 ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.terminalValue not true = 0
+'JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform.{u_1, u_2, u_3} {Ω : Type u_1} {Z : Type u_2}
+  {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (score : H → Z → ℝ)
+  (measurable : ∀ h ∈ policies, Measurable (score h)) (W : ℝ) (positive : 0 < W)
+  (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 W) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ policies,
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w -
+                ∫ (z : Z), score h z ∂P| ≤
+            W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ}
+'JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret.{u_1} {H : Type u_1} (policies : Finset H)
+  (value estimate : H → ℝ) (chosen : H) (member : chosen ∈ policies) (radius : ℝ)
+  (valid : ∀ h ∈ policies, |estimate h - value h| ≤ radius) (winner : ∀ h ∈ policies, estimate h ≤ estimate chosen)
+  (h : H) : h ∈ policies → value h - value chosen ≤ 2 * radius
+'JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (score : H → Z → ℝ)
+  (measurable : ∀ h ∈ policies, Measurable (score h)) (W : ℝ) (positive : 0 < W)
+  (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 W) (chosen : Ω → H)
+  (member : ∀ (w : Ω), chosen w ∈ policies)
+  (winner :
+    ∀ (w : Ω),
+      ∀ h ∈ policies,
+        JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score (chosen w) (sample i w')) w)
+  (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ policies,
+          ∫ (z : Z), score h z ∂P - ∫ (z : Z), score (chosen w) z ∂P ≤
+            2 * (W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ)}
+'JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

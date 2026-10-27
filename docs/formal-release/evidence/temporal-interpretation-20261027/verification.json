@@ -1,0 +1,88 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+  "run_id": 40472856489,
+  "job_id": 122083892400,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+  "named_count": 24,
+  "named_theorems_full": [
+    "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+    "JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency",
+    "JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality",
+    "JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model",
+    "JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+    "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable",
+    "JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append",
+    "JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion",
+    "JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must",
+    "JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership",
+    "JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection",
+    "JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers",
+    "JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version",
+    "JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure",
+    "JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+      "sha256": "daeed74a372a1e090f3b6ba0c0fe6d5f82b3c2c0d83884b51af54a7f4ead92c0"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 24,
+    "axiom_vocabulary": {
+      "Classical.choice": 17,
+      "Quot.sound": 20,
+      "propext": 21
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "22 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

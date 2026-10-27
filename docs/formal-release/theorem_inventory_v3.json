@@ -6870,6 +6870,131 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "Reliable"
+    },
+    {
+     "kind": "def",
+     "name": "CellMeaning"
+    },
+    {
+     "kind": "def",
+     "name": "StoreMeaning"
+    },
+    {
+     "kind": "theorem",
+     "name": "confirmed_observation_has_fixed_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_cell_preserves_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "observation_updates_preserve_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "valid_correction_has_fixed_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "corrections_preserve_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "update_keeps_target_scope_and_external_catalog"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_feedback_preserves_fixed_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_journal_has_no_unreliable_active_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_fitted_sample_is_target_correct"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_returned_candidate_preserves_label_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_cell_repairs_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "approved_correction_repairs_target"
+    },
+    {
+     "kind": "def",
+     "name": "twoPointProtocol"
+    },
+    {
+     "kind": "def",
+     "name": "binaryLoss"
+    },
+    {
+     "kind": "def",
+     "name": "pseudoData"
+    },
+    {
+     "kind": "def",
+     "name": "trueData"
+    },
+    {
+     "kind": "def",
+     "name": "fittedOnSuggestions"
+    },
+    {
+     "kind": "theorem",
+     "name": "suggestions_fit_better_but_true_risk_worsens"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.EventFeedbackConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "da14d595d4d98547f8f6b5b9e725d51f515ef01299c9643e98cb583795382609",
+   "size_bytes": 13081,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.actual_fitted_sample_is_target_correct",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.actual_returned_candidate_preserves_label_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.approved_correction_repairs_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.confirmed_observation_has_fixed_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.corrections_preserve_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.empty_journal_has_no_unreliable_active_label",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.finite_feedback_preserves_fixed_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.observation_updates_preserve_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.record_cell_preserves_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.record_cell_repairs_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.update_keeps_target_scope_and_external_catalog",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.valid_correction_has_fixed_target"
+   ],
+   "sha256": "84dd940a1684b2a7725ce337342014329bad9d1b09a83e0869d19e7a123ca080",
+   "size_bytes": 3308,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "txRequest"
     },
     {
@@ -51152,6 +51277,7 @@
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
     "JurisLean.Candidates.EventFeedbackConsumer20261027",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.IntervalDecisionConsumer20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
@@ -51387,8 +51513,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "30a69e333ab6f17d9d4063c5aa251f7b846e9662ac04bf10e8768b8499a14967",
-   "size_bytes": 11754,
+   "sha256": "c62e79b371211ec7f49c4a8582e74e5277d2fb452ae0682ccbf8333329d78c2b",
+   "size_bytes": 11813,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -51552,22 +51678,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5691,
-   "file_count": 425,
+   "counted_declaration_count": 5704,
+   "file_count": 427,
    "lemma_count": 146,
-   "print_axioms_command_count": 4564,
-   "print_axioms_distinct_targets": 4477,
-   "theorem_count": 5545,
-   "theorem_count_bol_convention": 5445
+   "print_axioms_command_count": 4577,
+   "print_axioms_distinct_targets": 4490,
+   "theorem_count": 5558,
+   "theorem_count_bol_convention": 5458
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5672,
-   "file_count": 410,
+   "counted_declaration_count": 5685,
+   "file_count": 412,
    "lemma_count": 139,
-   "print_axioms_command_count": 4564,
-   "print_axioms_distinct_targets": 4477,
-   "theorem_count": 5533,
-   "theorem_count_bol_convention": 5433
+   "print_axioms_command_count": 4577,
+   "print_axioms_distinct_targets": 4490,
+   "theorem_count": 5546,
+   "theorem_count_bol_convention": 5446
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -51632,6 +51758,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -52055,6 +52183,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -52459,17 +52589,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "574974a6973a89ddafe64b8f01ee8f2426e462fd532aaadc137039814ddd658a",
+ "source_inventory_digest": "3c7ed7166f15a6ac547ee43e8a30973572b38634c74cbde161f159284b8888b3",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/event-feedback-20261027",
-  "commit": "66bf5839f10eb726ac7d0c4d8c344d0f1afbfa88",
-  "tree": "0eb8d8c19f4db6f58c0935daffe6fc59b5743d00"
+  "branch": "formal/feedback-label-semantics-20261027",
+  "commit": "65abef45cd1ff274c937d501c9a9f2d2a0d96542",
+  "tree": "94b1b8843c94ecc3b25db7301751cc1834ca0da8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 425,
+  "files_total": 427,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

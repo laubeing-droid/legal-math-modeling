@@ -332,6 +332,18 @@ theorem timed_compilation_has_actual_app_and_closure (s : MaterialSnapshot)
   exact ⟨(successful_version_is_applicable _ _ _ _ _ flow.1).2,
     actual_compilation_enters_finite_closure _ _ _ _ _ _ _ _ _ flow.2.2⟩
 
+theorem legal_applicability_requires_faithful_interpretation (s : MaterialSnapshot)
+    (history : List VersionRecord) (versions : List Nat) (app : App) (branch : Nat)
+    (catalog : List InterpretationRow) (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool)
+    (nodes : List Node) (root query : Nat) (out : TimedCompilation)
+    (LegalApp : Gamma → Nat → Prop)
+    (appFaithful : ∀ v ∈ versions, app s.gamma (visibleSet s.gamma history) v = .yes → LegalApp s.gamma v)
+    (accepted : compileTimed s history versions app branch catalog rules ruleGate nodes root query = .known out) :
+    LegalApp s.gamma out.selectedVersion := by
+  have flow := timed_compiler_consumes_selected_version _ _ _ _ _ _ _ _ _ _ _ _ accepted
+  have applicable := successful_version_is_applicable _ _ _ _ _ flow.1
+  exact appFaithful _ applicable.1 applicable.2
+
 theorem temporal_source_rule_semantic_composition (s : MaterialSnapshot)
     (history : List VersionRecord) (versions : List Nat) (app : App) (branch : Nat)
     (catalog : List InterpretationRow) (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool)

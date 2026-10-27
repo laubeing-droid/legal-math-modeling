@@ -1,5 +1,8 @@
 import JurisLean.Candidates.TemporalInterpretation20261027
 
+#check JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation
+
 #check JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency
 #print axioms JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency
 #check JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality
@@ -56,12 +59,33 @@ def selectAt (date : Int) := selectVersion (atDate date) history [8, 9] interval
 def completion (bEffective : Int) :=
   [record 1 8 0 (some bEffective) 0 0, record 2 9 bEffective none 4 4]
 
+-- All four dates are already interpreted in the example's declared calendar.
+-- Publication is a separate observation; neither effectiveFrom nor knownAt
+-- is defined from it. These completions happen to know B on its publication day.
+structure PublicationObservation where
+  oldEffective : LawDate
+  newPublication : LawDate
+  fact : LawDate
+  evaluation : LawDate
+  deriving DecidableEq, Repr
+
+def publicationObservation : PublicationObservation := ⟨⟨0⟩, ⟨4⟩, ⟨5⟩, ⟨6⟩⟩
+def knownPublicationOrder (p : PublicationObservation) : Prop :=
+  p.oldEffective.ordinal < p.newPublication.ordinal ∧
+    p.oldEffective.ordinal ≤ p.fact.ordinal ∧ p.fact.ordinal ≤ p.evaluation.ordinal
+instance (p : PublicationObservation) : Decidable (knownPublicationOrder p) :=
+  inferInstanceAs (Decidable (p.oldEffective.ordinal < p.newPublication.ordinal ∧
+    p.oldEffective.ordinal ≤ p.fact.ordinal ∧ p.fact.ordinal ≤ p.evaluation.ordinal))
+def earlyCompletion := (publicationObservation, completion 4)
+def lateCompletion := (publicationObservation, completion 10)
+
 theorem publication_does_not_identify_applicable_version :
-    (0 : Int) < 4 ∧ (0 : Int) ≤ 5 ∧ (5 : Int) ≤ 6 ∧
+    earlyCompletion.1 = lateCompletion.1 ∧ knownPublicationOrder earlyCompletion.1 ∧
+    earlyCompletion.1.fact = gamma.lawDate ∧
     selectVersion { gamma with knowledgeCutoff := ⟨6⟩, recordCutoff := ⟨6⟩ }
-      (completion 4) [8, 9] intervalApp = .known 9 ∧
+      earlyCompletion.2 [8, 9] intervalApp = .known 9 ∧
     selectVersion { gamma with knowledgeCutoff := ⟨6⟩, recordCutoff := ⟨6⟩ }
-      (completion 10) [8, 9] intervalApp = .known 8 := by decide
+      lateCompletion.2 [8, 9] intervalApp = .known 8 := by decide
 
 theorem global_latest_version_loses_first_event :
     selectAt 5 = .known 8 ∧ selectAt 12 = .known 9 ∧ selectAt 20 = .known 9 ∧

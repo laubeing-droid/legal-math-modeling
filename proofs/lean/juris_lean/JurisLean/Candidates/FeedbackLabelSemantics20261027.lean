@@ -173,6 +173,33 @@ theorem actual_fitted_sample_is_target_correct {m : Nat} (s : Store m) (target :
   | conflicted => simp [Cell.toSample, state] at produced
   | withdrawn => simp [Cell.toSample, state] at produced
 
+theorem actual_returned_candidate_preserves_label_target {m : Nat} (now : Instant)
+    (permits : List (CorrectionPermit m)) (s : Store m) (change : Change m)
+    (protocol : LearningProtocol) (loss : ℚ → Bool → ℚ) (models : List (List ℚ))
+    (out : TrainingCandidate m) (target : Target m) (reliable : Reliable s target)
+    (old : StoreMeaning s target)
+    (returned : (processAndFit now permits s change protocol loss models).candidate = .known out) :
+    out.snapshot = (applyChange now permits s change).post ∧
+      ∀ i : Fin (trainingRows out.snapshot).length,
+        ∃ cell ∈ out.snapshot.cells, cell.event = ((trainingRows out.snapshot).get i).event ∧
+          (trainingData out.snapshot i).2 =
+            target out.snapshot.scope cell.caseId cell.event (trainingData out.snapshot i).1 := by
+  have postMeaning : StoreMeaning (applyChange now permits s change).post target := by
+    cases change with
+    | observed row => exact observation_updates_preserve_target s now row target reliable old
+    | corrected edit => exact corrections_preserve_target s now permits edit target reliable old
+  unfold processAndFit at returned
+  dsimp only at returned
+  split at returned
+  · have fitted := successful_fit_reads_current_valid_sample
+      (applyChange now permits s change).post protocol loss models out returned
+    refine ⟨fitted.1, ?_⟩
+    intro i
+    apply actual_fitted_sample_is_target_correct out.snapshot target
+    rw [fitted.1]
+    exact postMeaning
+  · cases returned
+
 -- A previously wrong label need not satisfy Reliable. Repair instead requires
 -- the new external label to be correct and only the untouched events to retain
 -- their meanings; the old label is deliberately not assumed correct.

@@ -145,14 +145,11 @@ def run (p : ValidationPlan) (blocks : List (DomainBlock 2)) : Result (Evaluatio
 
 /-- info: true -/
 #guard_msgs in
-#eval decide (run plan [{ mixedBlock with rows :=
-    mixedBlock.rows.map (fun row => if row.event = ⟨100000⟩ then { row with event := ⟨1⟩ } else row) },
-    block 20 true] = Result.unknown Error.missingEvidence)
+#eval decide (run plan [{ mixedBlock with rows := mixedBlock.rows.map (fun row => if row.event = ⟨100000⟩ then { row with event := ⟨1⟩ } else row) }, block 20 true] = Result.unknown Error.missingEvidence)
 
 /-- info: true -/
 #guard_msgs in
-#eval decide (run plan [{ mixedBlock with rows :=
-    mixedBlock.rows.map (fun row => { row with event := ⟨800000⟩ }) }, block 20 true] =
+#eval decide (run plan [{ mixedBlock with rows := mixedBlock.rows.map (fun row => { row with event := ⟨800000⟩ }) }, block 20 true] =
   Result.unknown Error.missingEvidence)
 
 /-- info: true -/

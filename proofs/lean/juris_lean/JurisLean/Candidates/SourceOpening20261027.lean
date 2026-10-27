@@ -71,7 +71,7 @@ theorem known_frame_consumes_actual_legal_source {W : Type}
       | known frame =>
           simp only [frameReport, actual, framed, Result.known.injEq] at accepted
           subst out
-          exact ⟨actual, rfl, framed⟩
+          exact ⟨rfl, rfl, framed⟩
 
 theorem every_collected_frame_has_an_actual_report {W : Type}
     (rows : List (Nat × Result (ValidationReport W))) (frames : List (BranchOpening W))
@@ -195,11 +195,13 @@ theorem known_opening_keeps_every_common_branch {W : Type}
       split at accepted
       · rename_i common
         cases accepted
-        exact ⟨List.mem_of_find?_eq_some selected, rfl, of_decide_eq_true (List.find?_some selected),
+        have matched := List.find?_some selected
+        have same : anchor.frame.source.material = input.anchor := of_decide_eq_true matched
+        exact ⟨List.mem_of_find?_eq_some selected, rfl, same,
           rfl, List.all_eq_true.mp common⟩
       · cases accepted
 
-def initialize {W : Type} {m : Nat} (opening : SharedOpening W) (learning : RoundState m) : Result (State m) :=
+def initialState {W : Type} {m : Nat} (opening : SharedOpening W) (learning : RoundState m) : Result (State m) :=
   if learning.service.gamma = opening.handle.gamma then
     .known ⟨⟨.success, some opening.handle, [], []⟩, learning,
       .known [], .unknown .missingEvidence, [], []⟩
@@ -221,7 +223,7 @@ def openingFor {W : Type} (input : LegalInput W) : Result (SharedOpening W) :=
 
 def start {W : Type} {m : Nat} (input : LegalInput W) (learning : RoundState m) : Result (State m) :=
   match openingFor input with
-  | .known opening => initialize opening learning
+  | .known opening => initialState opening learning
   | .unknown e => .unknown e
   | .rejected e => .rejected e
   | .conflict a b => .conflict a b
@@ -240,7 +242,7 @@ theorem known_opening_consumes_the_actual_inspection {W : Type}
       | rejected e => simp [openingFor, framesFor, inspected, framed] at accepted
       | conflict a b => simp [openingFor, framesFor, inspected, framed] at accepted
       | known frames =>
-          exact ⟨reports, frames, inspected, framed,
+          exact ⟨reports, frames, rfl, framed,
             by simpa only [openingFor, framesFor, inspected, framed] using accepted⟩
 
 theorem known_common_opening_has_proved_business_invariant {W : Type}
@@ -256,10 +258,10 @@ theorem known_common_opening_has_proved_business_invariant {W : Type}
 
 theorem initialized_state_keeps_supplied_learner_and_actual_opening {W : Type} {m : Nat}
     (opening : SharedOpening W) (learning : RoundState m) (out : State m)
-    (accepted : initialize opening learning = .known out) :
+    (accepted : initialState opening learning = .known out) :
     out.learning = learning ∧ out.business.current = some opening.handle ∧
       learning.service.gamma = opening.handle.gamma := by
-  unfold initialize at accepted
+  unfold initialState at accepted
   split at accepted
   · rename_i same
     cases accepted
@@ -275,7 +277,7 @@ theorem source_initialized_state_has_proved_known_invariant {W : Type} {m : Nat}
   | rejected e => simp [start, opening] at accepted
   | conflict a b => simp [start, opening] at accepted
   | known opened =>
-      have initialized : initialize opened learning = .known out := by simpa only [start, opening] using accepted
+      have initialized : initialState opened learning = .known out := by simpa only [start, opening] using accepted
       have actual := initialized_state_keeps_supplied_learner_and_actual_opening opened learning out initialized
       refine ⟨?_, actual.1⟩
       intro post reported

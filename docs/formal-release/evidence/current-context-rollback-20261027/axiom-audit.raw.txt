@@ -1,0 +1,151 @@
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:4:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_proposal_uses_current_sample {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)
+  (produced :
+    JurisLean.Candidates.CurrentContextRollback20261027.proposeRollback s request =
+      JurisLean.Candidates.Final20261021.Result.known candidate) :
+  candidate.snapshot = s.journal ∧
+    candidate.fitted.protocol = request.protocol ∧
+      candidate.fitted.table = request.archived.fitted.table ∧
+        candidate.fitted.sampleSize =
+            (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows s.journal).length ∧
+          candidate.fitted.empiricalRisk =
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+              (JurisLean.Candidates.LearningConsumer20261027.tableLoss
+                JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss)
+              (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingData s.journal) candidate.fitted.table
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:5:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_proposal_uses_current_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:6:0: JurisLean.Candidates.CurrentContextRollback20261027.wrong_current_loss_blocks_rollback {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (wrong : request.protocol.lossVersion ≠ s.lossVersion) :
+  JurisLean.Candidates.CurrentContextRollback20261027.proposeRollback s request =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.targetMismatch
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:7:0: 'JurisLean.Candidates.CurrentContextRollback20261027.wrong_current_loss_blocks_rollback' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:8:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_evaluation_consumes_reissued_candidate {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.CurrentContextRollback20261027.evaluateRollback s request =
+      JurisLean.Candidates.Final20261021.Result.known evaluation) :
+  ∃ candidate,
+    JurisLean.Candidates.CurrentContextRollback20261027.proposeRollback s request =
+        JurisLean.Candidates.Final20261021.Result.known candidate ∧
+      JurisLean.Candidates.ProtectedFeedback20261027.evaluate request.plan
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s) candidate
+          JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss request.blocks =
+        JurisLean.Candidates.Final20261021.Result.known evaluation
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:9:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_evaluation_consumes_reissued_candidate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:10:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_attempt_is_actual_activation {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (out : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (produced :
+    JurisLean.Candidates.CurrentContextRollback20261027.attemptRollback s request samplingCatalog authorityCatalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ evaluation,
+    JurisLean.Candidates.CurrentContextRollback20261027.evaluateRollback s request =
+        JurisLean.Candidates.Final20261021.Result.known evaluation ∧
+      out =
+        JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog request.sampling
+          authorityCatalog request.permit
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:11:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_attempt_is_actual_activation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:12:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_loaded_weights_have_current_snapshot {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (out : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (produced :
+    JurisLean.Candidates.CurrentContextRollback20261027.attemptRollback s request samplingCatalog authorityCatalog =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (loaded : out.status = JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded out.post).fitted.table =
+      request.archived.fitted.table ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded out.post).snapshot = s.journal ∧
+      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded out.post).fitted.protocol = request.protocol ∧
+        out.readback = some (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded out.post)
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:13:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_loaded_weights_have_current_snapshot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:14:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_keeps_current_rules_and_training {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)) :
+  (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog authorityCatalog).gamma =
+      s.gamma ∧
+    (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog
+            authorityCatalog).journal =
+        s.journal ∧
+      (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog
+              authorityCatalog).principal =
+          s.principal ∧
+        (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog
+              authorityCatalog).lossVersion =
+          s.lossVersion
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:15:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_keeps_current_rules_and_training' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:16:0: JurisLean.Candidates.CurrentContextRollback20261027.rollback_preserves_current_history {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)) :
+  ∃ suffix,
+    (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog
+          authorityCatalog).history =
+      s.history ++ suffix
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:17:0: 'JurisLean.Candidates.CurrentContextRollback20261027.rollback_preserves_current_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:18:0: JurisLean.Candidates.CurrentContextRollback20261027.refused_rollback_keeps_actual_prediction {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (notLoaded :
+    ¬∃ out,
+        JurisLean.Candidates.CurrentContextRollback20261027.attemptRollback s request samplingCatalog authorityCatalog =
+            JurisLean.Candidates.Final20261021.Result.known out ∧
+          out.status = JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+        (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog authorityCatalog) =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    ∀ (query : Fin m),
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded
+          (JurisLean.Candidates.CurrentContextRollback20261027.rollbackPost s request samplingCatalog authorityCatalog)
+          query =
+        JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded s query
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:19:0: 'JurisLean.Candidates.CurrentContextRollback20261027.refused_rollback_keeps_actual_prediction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:20:0: JurisLean.Candidates.CurrentContextRollback20261027.historical_permission_cannot_authorize_new_evaluation {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (request : JurisLean.Candidates.CurrentContextRollback20261027.RollbackRequest m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (computed :
+    JurisLean.Candidates.CurrentContextRollback20261027.evaluateRollback s request =
+      JurisLean.Candidates.Final20261021.Result.known evaluation)
+  (different : request.permit.evaluation ≠ evaluation) :
+  ¬∃ out,
+      JurisLean.Candidates.CurrentContextRollback20261027.attemptRollback s request samplingCatalog authorityCatalog =
+          JurisLean.Candidates.Final20261021.Result.known out ∧
+        out.status = JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded
+info: JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean:21:0: 'JurisLean.Candidates.CurrentContextRollback20261027.historical_permission_cannot_authorize_new_evaluation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

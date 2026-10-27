@@ -6497,6 +6497,129 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "RollbackRequest"
+    },
+    {
+     "kind": "def",
+     "name": "proposeRollback"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateRollback"
+    },
+    {
+     "kind": "def",
+     "name": "attemptRollback"
+    },
+    {
+     "kind": "def",
+     "name": "rollbackPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_proposal_uses_current_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "wrong_current_loss_blocks_rollback"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_evaluation_consumes_reissued_candidate"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_attempt_is_actual_activation"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_loaded_weights_have_current_snapshot"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_keeps_current_rules_and_training"
+    },
+    {
+     "kind": "theorem",
+     "name": "rollback_preserves_current_history"
+    },
+    {
+     "kind": "theorem",
+     "name": "refused_rollback_keeps_actual_prediction"
+    },
+    {
+     "kind": "theorem",
+     "name": "historical_permission_cannot_authorize_new_evaluation"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "519cc8f35994f8bba4e3cb5126e9fd3b9dc099cf6a61dc15c53154d40527b804",
+   "size_bytes": 11051,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "currentScope"
+    },
+    {
+     "kind": "def",
+     "name": "currentFirst"
+    },
+    {
+     "kind": "def",
+     "name": "currentSecond"
+    },
+    {
+     "kind": "def",
+     "name": "currentStore"
+    },
+    {
+     "kind": "def",
+     "name": "currentPlan"
+    },
+    {
+     "kind": "def",
+     "name": "currentBlocks"
+    },
+    {
+     "kind": "def",
+     "name": "rollbackCheck"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CurrentContextRollback20261027",
+    "JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CurrentContextRollback20261027.historical_permission_cannot_authorize_new_evaluation",
+    "JurisLean.Candidates.CurrentContextRollback20261027.refused_rollback_keeps_actual_prediction",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_attempt_is_actual_activation",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_evaluation_consumes_reissued_candidate",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_keeps_current_rules_and_training",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_loaded_weights_have_current_snapshot",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_preserves_current_history",
+    "JurisLean.Candidates.CurrentContextRollback20261027.rollback_proposal_uses_current_sample",
+    "JurisLean.Candidates.CurrentContextRollback20261027.wrong_current_loss_blocks_rollback"
+   ],
+   "sha256": "b7b1dbb96909b601faaa601b69ea1b2db4b30bcdabfa9ca3bac058c499442a96",
+   "size_bytes": 7699,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "Instruction"
     },
@@ -51811,6 +51934,7 @@
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
+    "JurisLean.Candidates.CurrentContextRollback20261027",
     "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
     "JurisLean.Candidates.EventFeedbackConsumer20261027",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
@@ -52051,8 +52175,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "a5ecdb980e2a00ec3a781016a3f4aa2bcd73c0394b9738b821309207eceae6c5",
-   "size_bytes": 11980,
+   "sha256": "c13f68eeb2a86be358e57c4843cd1cb708b99351d9eadf7ebb8ffef6646d8226",
+   "size_bytes": 12039,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52216,22 +52340,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5737,
-   "file_count": 433,
+   "counted_declaration_count": 5746,
+   "file_count": 435,
    "lemma_count": 146,
-   "print_axioms_command_count": 4610,
-   "print_axioms_distinct_targets": 4523,
-   "theorem_count": 5591,
-   "theorem_count_bol_convention": 5491
+   "print_axioms_command_count": 4619,
+   "print_axioms_distinct_targets": 4532,
+   "theorem_count": 5600,
+   "theorem_count_bol_convention": 5500
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5718,
-   "file_count": 418,
+   "counted_declaration_count": 5727,
+   "file_count": 420,
    "lemma_count": 139,
-   "print_axioms_command_count": 4610,
-   "print_axioms_distinct_targets": 4523,
-   "theorem_count": 5579,
-   "theorem_count_bol_convention": 5479
+   "print_axioms_command_count": 4619,
+   "print_axioms_distinct_targets": 4532,
+   "theorem_count": 5588,
+   "theorem_count_bol_convention": 5488
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -52294,6 +52418,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
@@ -52725,6 +52851,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
@@ -53139,17 +53267,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "4b30f9aff01fa150477eb2898358ce4146f3bc84b2453e554cb1a0717e13784b",
+ "source_inventory_digest": "c5da0d0c3ac2247156ed7b9ff9869ac2834522dded0fa5e343db761e18f640dd",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/adaptive-validation-20261027",
-  "commit": "b0d254268a7166d4aeb12266692632f7c4059b29",
-  "tree": "2609a78a8d0d733552435fc67759727dde2ea979"
+  "branch": "formal/current-context-rollback-20261027",
+  "commit": "4f8f6260c49f951aaaab206bda0b67df1b8c0953",
+  "tree": "44d51544c065a044359c5928cc79c0a8c6628943"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 433,
+  "files_total": 435,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

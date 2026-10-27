@@ -114,6 +114,86 @@ theorem selection_stable_after_invisible_append (g : Gamma) (h extra : List Vers
 def intervalApp : App := fun g records version =>
   if ∃ e ∈ records, e.version = version ∧ applies g e = true then .yes else .no
 
+def selectThenCut (g : Gamma) (history : List VersionRecord) (versions : List Nat)
+    (app : App) : Result Nat :=
+  match selectFrom g history.toFinset versions app with
+  | .known v =>
+      if ∃ e ∈ visibleSet g history, e.version = v then .known v else .unknown .missingEvidence
+  | .unknown e => .unknown e
+  | .rejected e => .rejected e
+  | .conflict l r => .conflict l r
+
+theorem visible_records_preserve_key_consistency (g : Gamma) (history : List VersionRecord)
+    (keyed : KeyConsistent history.toFinset) : KeyConsistent (visibleSet g history) := by
+  intro e he f hf sameId
+  have eMember : e ∈ history :=
+    (List.mem_filter.mp (List.mem_toFinset.mp he)).1
+  have fMember : f ∈ history :=
+    (List.mem_filter.mp (List.mem_toFinset.mp hf)).1
+  exact keyed e (List.mem_toFinset.mpr eMember) f (List.mem_toFinset.mpr fMember) sameId
+
+-- Locality and visible support are substantive sufficient conditions.
+-- Neither is assumed for the late-exception counterexample.
+theorem cut_and_selection_commute_under_locality (g : Gamma) (history : List VersionRecord)
+    (versions : List Nat) (app : App) (keyed : KeyConsistent history.toFinset)
+    (locality : ∀ v, app g history.toFinset v = app g (visibleSet g history) v)
+    (visibleSupport : ∀ v, app g (visibleSet g history) v = .yes →
+      ∃ e ∈ visibleSet g history, e.version = v) :
+    selectThenCut g history versions app = selectVersion g history versions app := by
+  have equalSelection : selectFrom g history.toFinset versions app =
+      selectVersion g history versions app := by
+    simp only [selectFrom, selectVersion, candidates, pending]
+    simp_rw [locality]
+    simp [keyed, visible_records_preserve_key_consistency g history keyed]
+  unfold selectThenCut
+  rw [equalSelection]
+  cases selected : selectVersion g history versions app with
+  | known v =>
+      have supported := visibleSupport v (successful_version_is_applicable _ _ _ _ _ selected).2
+      simp [supported]
+  | unknown e => rfl
+  | rejected e => rfl
+  | conflict l r => rfl
+
+def InHalfOpenInterval (e : VersionRecord) (t : Int) : Prop :=
+  e.factFrom.ordinal ≤ t ∧ ∀ finish, e.factUntil = some finish → t < finish.ordinal
+
+-- Coverage, distinct starts and ordered nonoverlapping half-open boundaries
+-- justify the latest-start calculation only inside this restricted model.
+-- Actual App must additionally agree with these intervals and all records
+-- used here must be visible; transition/retroactivity exceptions are excluded.
+theorem latest_start_is_correct_in_ordered_interval_model
+    (records : List VersionRecord) (t : Int) (latest : VersionRecord)
+    (latestMember : latest ∈ records) (latestStarted : latest.factFrom.ordinal ≤ t)
+    (maximal : ∀ e ∈ records, e.factFrom.ordinal ≤ t →
+      e.factFrom.ordinal ≤ latest.factFrom.ordinal)
+    (coverage : ∃ e ∈ records, InHalfOpenInterval e t)
+    (distinct : ∀ e ∈ records, ∀ f ∈ records,
+      e.factFrom = f.factFrom → e = f)
+    (orderedEnds : ∀ e ∈ records, ∀ f ∈ records,
+      e.factFrom.ordinal < f.factFrom.ordinal →
+      ∃ finish, e.factUntil = some finish ∧ finish.ordinal ≤ f.factFrom.ordinal) :
+    InHalfOpenInterval latest t ∧
+      ∀ e ∈ records, InHalfOpenInterval e t → e = latest := by
+  have identifies : ∀ e ∈ records, InHalfOpenInterval e t → e = latest := by
+    intro e member inside
+    have startsLe := maximal e member inside.1
+    have sameStart : e.factFrom.ordinal = latest.factFrom.ordinal := by
+      by_contra different
+      have strict : e.factFrom.ordinal < latest.factFrom.ordinal := lt_of_le_of_ne startsLe different
+      obtain ⟨finish, endEq, before⟩ := orderedEnds e member latest latestMember strict
+      have beforeEnd := inside.2 finish endEq
+      omega
+    apply distinct e member latest latestMember
+    cases he : e.factFrom with
+    | mk a =>
+        cases hf : latest.factFrom with
+        | mk b =>
+            simp only [he, hf] at sameStart
+            exact congrArg LawDate.mk sameStart
+  obtain ⟨active, activeMember, inside⟩ := coverage
+  exact ⟨(identifies active activeMember inside) ▸ inside, identifies⟩
+
 structure PartialVersion where
   id : EventId
   version : Nat

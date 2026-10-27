@@ -18,10 +18,14 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.carrier_round_bound
 #check JurisLean.Candidates.FiniteLegalValidation20261027.total_trace_rule_count_bound
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.total_trace_rule_count_bound
+#check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_with_selected_facts_complete
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_with_selected_facts_complete
 #check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_consumes_every_source_fact
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_consumes_every_source_fact
 #check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_trace_is_checked
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_trace_is_checked
+#check JurisLean.Candidates.FiniteLegalValidation20261027.eligible_fact_has_actual_admitted_source
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.eligible_fact_has_actual_admitted_source
 #check JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy
 #check JurisLean.Candidates.FiniteLegalValidation20261027.selected_horn_cannot_rewrite_original_context
@@ -48,6 +52,7 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.pending_admission_is_reported_for_every_atom
 #check JurisLean.Candidates.FiniteLegalValidation20261027.omitted_opportunity_has_actual_failure_witness
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.omitted_opportunity_has_actual_failure_witness
+
 
 
 
@@ -105,7 +110,9 @@ def source : ConsumedView :=
 def rawClosed : RawProcess := ⟨[1], [1], [⟨1, 0, some ⟨11⟩, none, []⟩], some ⟨12⟩, false⟩
 
 def supplement : Supplement :=
-  ⟨material, 0, 2, 6, [], rawClosed, [⟨⟨11⟩, 0, 2, 3⟩, ⟨⟨12⟩, 0, 2, 3⟩]⟩
+  ⟨material, 0, 2, 6,
+    [quoted ⟨⟨1⟩, 1, .yes, true, true⟩, quoted ⟨⟨1⟩, 4, .yes, true, true⟩],
+    rawClosed, [⟨⟨11⟩, 0, 2, 3⟩, ⟨⟨12⟩, 0, 2, 3⟩]⟩
 
 def policy : ProcessPolicy := ⟨context, 6, [1], [⟨11⟩], [], [⟨12⟩]⟩
 
@@ -270,6 +277,25 @@ def procedureTag (r : Result (ValidationReport (List Nat))) : Result Procedure :
   | .rejected e => .rejected e
   | .conflict l r => .conflict l r
 
+/-- info: true -/
+#guard_msgs in
+#eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 1, .no, true, true⟩,
+    quoted ⟨⟨1⟩, 4, .yes, false, true⟩] } with
+  | .known out => match out.horn with
+    | .known horn => decide (horn.facts = [] ∧ 2 ∉ horn.closure ∧ 5 ∉ horn.closure ∧
+        FailureWitness.missingPremise 50 1 ∈ out.failures)
+    | _ => false
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 1, .unknown, true, true⟩] } with
+  | .known out => match out.horn with
+    | .known horn => decide (horn.facts = [] ∧ 2 ∉ horn.closure ∧
+        FailureWitness.pendingEvidence ⟨1⟩ 1 ∈ out.failures)
+    | _ => false
+  | _ => false
+
 def familyRun (entries : List BranchCase) : Result (List (Nat × Result (ValidationReport (List Nat)))) :=
   validateFamily material entries [⟨material, 0, source⟩, ⟨material, 1, source⟩]
     [supplement, { supplement with branch := 1, process := { rawClosed with records := [] } }]
@@ -360,6 +386,7 @@ theorem allowed_pairs_reject_unlicensed_cross_combination :
       true ∉ branchWorlds 0 ([(0, false), (1, true)] : List (Nat × Bool)) := by decide
 
 end JurisLean.Candidates.FiniteLegalValidation20261027.Audit
+
 
 #check JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth

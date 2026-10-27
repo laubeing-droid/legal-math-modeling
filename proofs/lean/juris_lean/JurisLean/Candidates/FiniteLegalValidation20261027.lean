@@ -116,6 +116,7 @@ structure HornReport where
   source : SourceCompilation20261027.ExtractedView
   selectedVersion : Nat
   active : List (Rule Nat)
+  facts : List Nat
   fuel : Nat
   trace : List (List (Rule Nat))
   closure : List Nat
@@ -123,12 +124,22 @@ structure HornReport where
 def sourceFacts (view : SourceCompilation20261027.ExtractedView) : List Nat := view.decoded.atoms.map SourceCompilation20261027.Quoted.value
 
 def fullHorn (view : SourceCompilation20261027.ExtractedView) (selected : Nat) (rules : List CompilerProvenance20261027.RuleUse)
-    (ruleGate : Gamma → CompilerProvenance20261027.RuleUse → Bool) : HornReport :=
+    (ruleGate : Gamma → CompilerProvenance20261027.RuleUse → Bool)
+    (facts : List Nat := sourceFacts view) : HornReport :=
   let active := CompilerProvenance20261027.activeRules view.material.gamma rules (TemporalInterpretation20261027.selectedGate selected ruleGate)
-  let facts := sourceFacts view
   let fuel := (finiteCarrier active facts).card
   let trace := traceRounds active fuel facts
-  ⟨view, selected, active, fuel, trace, replayTrace facts trace⟩
+  ⟨view, selected, active, facts, fuel, trace, replayTrace facts trace⟩
+
+theorem full_horn_with_selected_facts_complete (view : SourceCompilation20261027.ExtractedView)
+    (selected : Nat) (rules : List CompilerProvenance20261027.RuleUse)
+    (ruleGate : Gamma → CompilerProvenance20261027.RuleUse → Bool) (facts : List Nat) (a : Nat) :
+    a ∈ (fullHorn view selected rules ruleGate facts).closure ↔
+      Derives (· ∈ facts)
+        (· ∈ CompilerProvenance20261027.activeRules view.material.gamma rules
+          (TemporalInterpretation20261027.selectedGate selected ruleGate)) a := by
+  simp only [fullHorn, replay_generated_trace_is_exact_closure]
+  exact u03_2_computed_at_carrier_iff _ _ _
 
 theorem full_horn_consumes_every_source_fact (view : SourceCompilation20261027.ExtractedView) (selected : Nat)
     (rules : List CompilerProvenance20261027.RuleUse) (ruleGate : Gamma → CompilerProvenance20261027.RuleUse → Bool) (a : Nat) :
@@ -195,6 +206,31 @@ structure BoundData where
   supplement : Supplement
   policy : ProcessPolicy
 
+-- Source binding alone does not establish admissibility. Only actual positive,
+-- admitted, credible evidence at the same citation supplies a primitive fact.
+-- Opposing evidence is retained separately and may make the worlds incompatible.
+def eligibleFacts (bound : BoundData) : List Nat :=
+  (bound.source.decoded.atoms.filter fun f => bound.supplement.evidence.any fun e =>
+    decide (e.citation = f.citation) && usable f.value e.value && e.value.supports).map Quoted.value
+
+theorem eligible_fact_has_actual_admitted_source (bound : BoundData) (a : Nat) :
+    a ∈ eligibleFacts bound ↔ ∃ f ∈ bound.source.decoded.atoms,
+      f.value = a ∧ ∃ e ∈ bound.supplement.evidence,
+        e.citation = f.citation ∧ usable f.value e.value = true ∧ e.value.supports = true := by
+  constructor
+  · intro member
+    obtain ⟨f, chosen, sameValue⟩ := List.mem_map.mp member
+    have selected := List.mem_filter.mp chosen
+    obtain ⟨e, present, checks⟩ := List.any_eq_true.mp selected.2
+    refine ⟨f, selected.1, sameValue, e, present, ?_⟩
+    simpa only [Bool.and_eq_true, decide_eq_true_eq, and_assoc] using checks
+  · rintro ⟨f, present, sameValue, e, evidenceMember, checks⟩
+    apply List.mem_map.mpr
+    refine ⟨f, List.mem_filter.mpr ⟨present, ?_⟩, sameValue⟩
+    apply List.any_eq_true.mpr
+    refine ⟨e, evidenceMember, ?_⟩
+    simpa only [Bool.and_eq_true, decide_eq_true_eq, and_assoc] using checks
+
 def supplementalRows (view : ExtractedView) (rows : List Supplement) : List Supplement :=
   rows.filter fun s => decide (s.material = view.material ∧ s.branch = view.branch)
 
@@ -250,10 +286,11 @@ theorem bound_data_keeps_exact_source_and_independent_policy (view : ExtractedVi
           next invalid => cases accepted
 
 def selectedHorn (view : ExtractedView) (selection : Result Nat)
-    (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool) : Result HornReport :=
+    (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool)
+    (facts : List Nat := sourceFacts view) : Result HornReport :=
   match selection with
   | .known v =>
-      if v = view.material.gamma.normVersion then .known (fullHorn view v rules ruleGate)
+      if v = view.material.gamma.normVersion then .known (fullHorn view v rules ruleGate facts)
       else .rejected .versionConflict
   | .unknown e => .unknown e
   | .rejected e => .rejected e
@@ -261,9 +298,10 @@ def selectedHorn (view : ExtractedView) (selection : Result Nat)
 
 theorem selected_horn_cannot_rewrite_original_context (view : ExtractedView)
     (selection : Result Nat) (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool)
-    (out : HornReport) (accepted : selectedHorn view selection rules ruleGate = .known out) :
+    (facts : List Nat) (out : HornReport)
+    (accepted : selectedHorn view selection rules ruleGate facts = .known out) :
     selection = .known out.selectedVersion ∧ out.selectedVersion = view.material.gamma.normVersion ∧
-      out = fullHorn view out.selectedVersion rules ruleGate := by
+      out = fullHorn view out.selectedVersion rules ruleGate facts := by
   cases selection with
   | unknown e => cases accepted
   | rejected e => cases accepted
@@ -289,12 +327,12 @@ theorem model_check_exact {W : Type} (truth : W → Nat → Bool) (w : W)
 
 def hornWorlds {W : Type} (out : HornReport) (modelWorlds : List W)
     (truth : W → Nat → Bool) : List W :=
-  modelWorlds.filter fun w => modelCheck truth w (sourceFacts out.source) out.active
+  modelWorlds.filter fun w => modelCheck truth w out.facts out.active
 
 theorem horn_world_membership {W : Type} (out : HornReport) (modelWorlds : List W)
     (truth : W → Nat → Bool) (w : W) :
     w ∈ hornWorlds out modelWorlds truth ↔ w ∈ modelWorlds ∧
-      Models (· ∈ sourceFacts out.source) (· ∈ out.active) (fun a => truth w a = true) := by
+      Models (· ∈ out.facts) (· ∈ out.active) (fun a => truth w a = true) := by
   simp only [hornWorlds, List.mem_filter, model_check_exact]
 
 def joinedWorldView {W : Type} (bound : BoundData) (horn : Result HornReport)
@@ -371,7 +409,7 @@ def inspectBound {W : Type} (bound : BoundData) (history : List VersionRecord)
     (truth : W → Nat → Bool) : ValidationReport W :=
   let g := bound.source.material.gamma
   let selected := selectVersion g history versions app
-  let horn := selectedHorn bound.source selected rules ruleGate
+  let horn := selectedHorn bound.source selected rules ruleGate (eligibleFacts bound)
   let worldView := joinedWorldView bound horn modelWorlds truth
   ⟨bound, candidates g (visibleSet g history) versions app,
     TemporalInterpretation20261027.pending g (visibleSet g history) versions app,
@@ -438,15 +476,16 @@ theorem inspected_horn_is_applicable_and_complete {W : Type}
     (accepted : (inspectBound bound history versions app rules ruleGate modelWorlds truth).horn = .known horn) :
     horn.selectedVersion = bound.source.material.gamma.normVersion ∧
       app bound.source.material.gamma (visibleSet bound.source.material.gamma history) horn.selectedVersion = .yes ∧
-      ∀ a, a ∈ horn.closure ↔ Derives (· ∈ sourceFacts bound.source)
+      ∀ a, a ∈ horn.closure ↔ Derives (· ∈ eligibleFacts bound)
         (· ∈ activeRules bound.source.material.gamma rules (selectedGate horn.selectedVersion ruleGate)) a := by
   have flow := selected_horn_cannot_rewrite_original_context bound.source
-    (selectVersion bound.source.material.gamma history versions app) rules ruleGate horn accepted
+    (selectVersion bound.source.material.gamma history versions app) rules ruleGate (eligibleFacts bound) horn accepted
   have applicable := successful_version_is_applicable _ _ _ _ _ flow.1
   refine ⟨flow.2.1, applicable.2, ?_⟩
   intro a
-  have computed := full_horn_consumes_every_source_fact bound.source horn.selectedVersion rules ruleGate a
-  have sameClosure : horn.closure = (fullHorn bound.source horn.selectedVersion rules ruleGate).closure :=
+  have computed := full_horn_with_selected_facts_complete bound.source horn.selectedVersion rules ruleGate
+    (eligibleFacts bound) a
+  have sameClosure : horn.closure = (fullHorn bound.source horn.selectedVersion rules ruleGate (eligibleFacts bound)).closure :=
     congrArg HornReport.closure flow.2.2
   rw [sameClosure]
   exact computed
@@ -456,7 +495,7 @@ theorem inspected_query_truth_requires_primitive_model {W : Type}
     (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool) (modelWorlds : List W)
     (valuation : W → Nat → Bool) (horn : HornReport) (truth : Nat → Prop) (query : Nat)
     (accepted : (inspectBound bound history versions app rules ruleGate modelWorlds valuation).horn = .known horn)
-    (model : Models (· ∈ sourceFacts bound.source)
+    (model : Models (· ∈ eligibleFacts bound)
       (· ∈ activeRules bound.source.material.gamma rules (selectedGate horn.selectedVersion ruleGate)) truth)
     (derived : query ∈ horn.closure) : truth query := by
   have computed := (inspected_horn_is_applicable_and_complete bound history versions app rules ruleGate
@@ -562,8 +601,6 @@ theorem omitted_opportunity_has_actual_failure_witness (bound : BoundData) (o : 
   have member := (missing_witness_is_an_actual_uncovered_requirement bound.policy.required
     (processInput bound.supplement.process bound.policy) o).mpr ⟨required, missing⟩
   simp only [procedureWitnesses, List.mem_append]
-  exact Or.inl (List.mem_map.mpr ⟨o, member, rfl⟩)
-
-end JurisLean.Candidates.FiniteLegalValidation20261027
+  exact Or.inl (Or.inl (Or.inl (Or.inl (List.mem_map.mpr ⟨o, member, rfl⟩))))
 
 end JurisLean.Candidates.FiniteLegalValidation20261027

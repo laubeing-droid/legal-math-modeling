@@ -1,0 +1,61 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "dc8c9b159edfa64af7ad80ea6e57522311268526",
+  "run_id": 40449209254,
+  "job_id": 122007689620,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
+  "named_count": 12,
+  "named_theorems_full": [
+    "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized",
+    "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative",
+    "JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean",
+    "JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula",
+    "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery",
+    "JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization",
+    "JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law",
+    "JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect",
+    "JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both",
+    "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability",
+    "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target",
+    "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+      "sha256": "591c97532b00f53f68947c2544d534c9403a7eb711ca5420b121ddf086f9da84"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
+      "sha256": "9ddd8dabc19d9f5ff36a2c7ceb638670901be1761afb81d1f36fba079ee0ad8d"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 12,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "7 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -1,0 +1,158 @@
+JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized.{u_1, u_2, u_3} {X : Type u_1}
+  {U : Type u_2} {A : Type u_3} [Fintype X] [Fintype U] [Fintype A] (mass : X → ℚ) (latent : X → U → ℚ)
+  (assignment recording : X → A → ℚ) (massTotal : ∑ x, mass x = 1) (latentTotal : ∀ (x : X), ∑ u, latent x u = 1)
+  (assignmentTotal : ∀ (x : X), ∑ a, assignment x a = 1) :
+  ∑ x,
+      ∑ u,
+        ∑ a, ∑ s, JurisLean.Candidates.CausalSelection20261027.selectionJoint mass latent assignment recording x u a s =
+    1
+'JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative.{u_1, u_2, u_3} {X : Type u_1}
+  {U : Type u_2} {A : Type u_3} (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+  (hm : ∀ (x : X), 0 ≤ mass x) (hu : ∀ (x : X) (u : U), 0 ≤ latent x u) (ha : ∀ (x : X) (a : A), 0 ≤ assignment x a)
+  (hr : ∀ (x : X) (a : A), 0 ≤ recording x a ∧ recording x a ≤ 1) (x : X) (u : U) (a : A) (s : Bool) :
+  0 ≤ JurisLean.Candidates.CausalSelection20261027.selectionJoint mass latent assignment recording x u a s
+'JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean.{u_1, u_2, u_3} {X : Type u_1}
+  {U : Type u_2} {A : Type u_3} [Fintype U] (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+  (response : X → U → A → ℚ) (x : X) (action : A) (latentTotal : ∑ u, latent x u = 1) (populated : mass x ≠ 0)
+  (support : assignment x action ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.observedCellMean mass latent assignment recording response x action =
+    ∑ u, latent x u * response x u action
+'JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula.{u_1, u_2} {X : Type u_1} {U : Type u_2}
+  [Fintype X] [Fintype U] (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → Bool → ℚ)
+  (response : X → U → Bool → ℚ) (latentTotal : ∀ (x : X), ∑ u, latent x u = 1)
+  (support : ∀ (x : X), mass x ≠ 0 → ∀ (action : Bool), assignment x action ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response true -
+      JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response false =
+    ∑ x,
+      mass x *
+        (JurisLean.Candidates.CausalSelection20261027.observedCellMean mass latent assignment recording response x
+            true -
+          JurisLean.Candidates.CausalSelection20261027.observedCellMean mass latent assignment recording response x
+            false)
+'JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery.{u_1, u_2, u_3} {X : Type u_1} {U : Type u_2}
+  {A : Type u_3} [Fintype X] [Fintype U] (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+  (response : X → U → A → ℚ) (action : A)
+  (support : ∀ (x : X), mass x ≠ 0 → assignment x action ≠ 0 ∧ recording x action ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.selectionRecoveryValue mass latent assignment recording response action =
+    JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response action
+'JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization.{u_1, u_2, u_3}
+  {X : Type u_1} {U : Type u_2} {A : Type u_3} [Fintype X] [Fintype U] [Fintype A] (mass : X → ℚ) (latent : X → U → ℚ)
+  (assignment recording : X → A → ℚ) (response : X → U → A → ℚ) (action : A)
+  (support : ∀ (x : X), mass x ≠ 0 → assignment x action ≠ 0 ∧ recording x action ≠ 0)
+  (nonzero :
+    JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording *
+      (JurisLean.Candidates.CausalSelection20261027.selectionRecoveryValue mass latent assignment recording response
+          action /
+        JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording) =
+    JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response action
+'JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law (a s : Bool)
+  (y : Option Bool) :
+  JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+      JurisLean.Candidates.CausalSelection20261027.colliderVisible (a, s, y) =
+    JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+      JurisLean.Candidates.CausalSelection20261027.directVisible (a, s, y)
+'JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect :
+  JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+          JurisLean.Candidates.CausalSelection20261027.colliderVisible true -
+        JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+          JurisLean.Candidates.CausalSelection20261027.colliderVisible false =
+      1 ∧
+    JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+            JurisLean.Candidates.CausalSelection20261027.directVisible true -
+          JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+            JurisLean.Candidates.CausalSelection20261027.directVisible false =
+        1 ∧
+      JurisLean.Candidates.CausalSelection20261027.selectionEffect
+            JurisLean.Candidates.CausalSelection20261027.colliderPotential =
+          0 ∧
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+            JurisLean.Candidates.CausalSelection20261027.directPotential =
+          1
+'JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both
+  (estimator : (JurisLean.Candidates.CausalSelection20261027.SelectionVisible → ℚ) → ℚ) :
+  ¬(estimator
+          (JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+            JurisLean.Candidates.CausalSelection20261027.colliderVisible) =
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+          JurisLean.Candidates.CausalSelection20261027.colliderPotential ∧
+      estimator
+          (JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+            JurisLean.Candidates.CausalSelection20261027.directVisible) =
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+          JurisLean.Candidates.CausalSelection20261027.directPotential)
+'JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability.{u_1} {X : Type u_1}
+  [Fintype X] (source target sourceEffect targetEffect : X → ℚ) (overlap : ∀ (x : X), target x ≠ 0 → source x ≠ 0)
+  (stable : ∀ (x : X), target x ≠ 0 → sourceEffect x = targetEffect x) :
+  JurisLean.Candidates.CausalSelection20261027.transportedValue source target sourceEffect =
+    JurisLean.Candidates.CausalSelection20261027.populationEffect target targetEffect
+'JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target :
+  JurisLean.Candidates.CausalSelection20261027.populationEffect JurisLean.Candidates.CausalSelection20261027.sourceMix
+        JurisLean.Candidates.CausalSelection20261027.stableGroupEffect =
+      9 / 50 ∧
+    JurisLean.Candidates.CausalSelection20261027.transportedValue JurisLean.Candidates.CausalSelection20261027.sourceMix
+          JurisLean.Candidates.CausalSelection20261027.targetMix
+          JurisLean.Candidates.CausalSelection20261027.stableGroupEffect =
+        -9 / 50 ∧
+      JurisLean.Candidates.CausalSelection20261027.targetMix false /
+            JurisLean.Candidates.CausalSelection20261027.sourceMix false =
+          1 / 4 ∧
+        JurisLean.Candidates.CausalSelection20261027.targetMix true /
+            JurisLean.Candidates.CausalSelection20261027.sourceMix true =
+          4
+'JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect :
+  JurisLean.Candidates.CausalSelection20261027.transportVisible
+        JurisLean.Candidates.CausalSelection20261027.stableScenario =
+      JurisLean.Candidates.CausalSelection20261027.transportVisible
+        JurisLean.Candidates.CausalSelection20261027.changedScenario ∧
+    (∀ (x action : Bool),
+        0 ≤ JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans x action ∧
+          JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans x action ≤ 1 ∧
+            0 ≤ JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans x action ∧
+              JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans x action ≤ 1) ∧
+      JurisLean.Candidates.CausalSelection20261027.populationEffect
+            JurisLean.Candidates.CausalSelection20261027.stableScenario.targetDistribution
+            (JurisLean.Candidates.CausalSelection20261027.effectOfMean
+              JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans) =
+          -9 / 50 ∧
+        JurisLean.Candidates.CausalSelection20261027.populationEffect
+            JurisLean.Candidates.CausalSelection20261027.changedScenario.targetDistribution
+            (JurisLean.Candidates.CausalSelection20261027.effectOfMean
+              JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans) =
+          1
+'JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

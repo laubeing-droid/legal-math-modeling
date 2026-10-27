@@ -77,6 +77,8 @@ import JurisLean.Candidates.EvidenceWorldsAudit20261027
 import JurisLean.Candidates.FeedbackLabelSemantics20261027
 import JurisLean.Candidates.FiniteLegalValidation20261027
 import JurisLean.Candidates.FiniteLegalValidationAudit20261027
+import JurisLean.Candidates.HarnessRisk20261027
+import JurisLean.Candidates.HarnessRiskAudit20261027
 import JurisLean.Candidates.IntervalDecisionConsumer20261027
 import JurisLean.Candidates.LearningBoundary20261027
 import JurisLean.Candidates.LearningBridge20261027
@@ -86,6 +88,8 @@ import JurisLean.Candidates.LearningERM20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.LearningFiniteClass20261027
 import JurisLean.Candidates.LearningRisk20261027
+import JurisLean.Candidates.LegalActionDomain20261027
+import JurisLean.Candidates.LegalActionDomainAudit20261027
 import JurisLean.Candidates.MeasuredPolicy20261027
 import JurisLean.Candidates.PolicyEvaluation20261027
 import JurisLean.Candidates.PolicyResponse20261027

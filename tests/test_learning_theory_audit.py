@@ -13,6 +13,8 @@ from scripts.ci import check_axiom_audit_log as audit
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_CASES = [
     (ROOT / "docs/formal-release/evidence" / name, count) for name, count in (
+        ("legal-action-domain-20261027", 22),
+        ("harness-risk-20261027", 17),
         ("finite-legal-validation-20261027", 33),
         ("procedure-closure-20261027", 20),
         ("evidence-worlds-20261027", 20),

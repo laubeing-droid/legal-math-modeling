@@ -72,6 +72,8 @@ import JurisLean.Candidates.CompilerProvenance20261027
 import JurisLean.Candidates.CurrentContextRollback20261027
 import JurisLean.Candidates.DecisionTrajectoryConsumer20261027
 import JurisLean.Candidates.EventFeedbackConsumer20261027
+import JurisLean.Candidates.EvidenceWorlds20261027
+import JurisLean.Candidates.EvidenceWorldsAudit20261027
 import JurisLean.Candidates.FeedbackLabelSemantics20261027
 import JurisLean.Candidates.IntervalDecisionConsumer20261027
 import JurisLean.Candidates.LearningBoundary20261027

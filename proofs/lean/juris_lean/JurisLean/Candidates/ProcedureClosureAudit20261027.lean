@@ -143,7 +143,8 @@ theorem finite_inspection_does_not_end_retry_execution :
 
 /-- info: true -/
 #guard_msgs in
-#eval decide (procedure { closedInput with required := [1, 2], policyDomain := [1, 2],
+#eval decide (procedure { closedInput with
+  required := [1, 2], policyDomain := [1, 2],
   records := [⟨1, 0, some ⟨11⟩, none, [2]⟩, ⟨2, 1, some ⟨11⟩, none, [1]⟩] } = Procedure.open)
 
 /-- info: true -/

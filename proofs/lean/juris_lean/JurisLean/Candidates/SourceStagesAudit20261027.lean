@@ -176,13 +176,13 @@ def updateStagePayment (update : FullPayment → FullPayment) : ConsumedView :=
 /-- info: true -/
 #guard_msgs in
 #eval match runStageView stageView with
-  | .known out => decide (legacyAmount out = .known 7)
+  | .known out => decide (legacyAmount out = (Result.known 7 : Result Nat))
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match runStageView (updateStagePayment fun p => { p with payload := { p.payload with amount := ⟨1/2, stageTag⟩ } }) with
-  | .known out => decide (legacyAmount out = .rejected .unsupported)
+  | .known out => decide (legacyAmount out = (Result.rejected Error.unsupported : Result Nat))
   | _ => false
 
 namespace JurisLean.Candidates.SourceStages20261027

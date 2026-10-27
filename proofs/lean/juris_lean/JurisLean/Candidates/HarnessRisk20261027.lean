@@ -29,8 +29,8 @@ def eventRate {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
   else .unknown .notIdentified
 
 def violationAndBlockingRates {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
-    (accepted admissible unsafe : Set Ω) : Result ℝ × Result ℝ :=
-  (eventRate μ accepted unsafe, eventRate μ admissible acceptedᶜ)
+    (accepted admissible badEvent : Set Ω) : Result ℝ × Result ℝ :=
+  (eventRate μ accepted badEvent, eventRate μ admissible acceptedᶜ)
 
 theorem reported_population_rate_is_a_probability {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (population event : Set Ω) (rate : ℝ)
@@ -175,13 +175,15 @@ theorem independent_constant_risk_accumulates (p : ℝ≥0) (hp : p ≤ 1) (T : 
   have safeMass : (bernoulliPaths p hp).real (⋃ t ∈ Finset.range T, failureAt t)ᶜ =
       (1 - (p : ℝ)) ^ T := by
     rw [no_failure_is_the_false_cylinder, Measure.real, cylinder]
-    simp [ENNReal.toReal_pow, NNReal.coe_sub hp]
+    simp only [Bool.false_eq_true, if_false, Finset.card_range, ENNReal.toReal_pow,
+      ENNReal.coe_toReal, NNReal.coe_sub hp, NNReal.coe_one]
   have measurable : MeasurableSet (⋃ t ∈ Finset.range T, failureAt t) := by
     apply MeasurableSet.iUnion
     intro t
     apply MeasurableSet.iUnion
     intro _
-    exact (measurable_pi_apply t) (show MeasurableSet ({true} : Set Bool) from by trivial)
+    have coordinate : Measurable (fun path : Nat → Bool => path t) := measurable_pi_apply t
+    exact coordinate (show MeasurableSet ({true} : Set Bool) from by trivial)
   have complement := measureReal_add_measureReal_compl (μ := bernoulliPaths p hp) measurable
   rw [safeMass, probReal_univ] at complement
   linarith

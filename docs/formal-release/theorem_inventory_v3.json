@@ -12051,6 +12051,230 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "ConstructFamily"
+    },
+    {
+     "kind": "def",
+     "name": "constructFamily"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyEnvironment"
+    },
+    {
+     "kind": "structure",
+     "name": "TreatmentRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyObservation"
+    },
+    {
+     "kind": "def",
+     "name": "treatmentMatches"
+    },
+    {
+     "kind": "def",
+     "name": "consumeMeasurement"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasuredPolicyRun"
+    },
+    {
+     "kind": "def",
+     "name": "runMeasurementPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "measured_policy_row_preserves_actual_output"
+    },
+    {
+     "kind": "theorem",
+     "name": "measured_policy_pipeline_reads_actual_measurement"
+    },
+    {
+     "kind": "def",
+     "name": "observationDatum"
+    },
+    {
+     "kind": "def",
+     "name": "policyProbability"
+    },
+    {
+     "kind": "def",
+     "name": "policyScore"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyPlan"
+    },
+    {
+     "kind": "def",
+     "name": "policyClassSupported"
+    },
+    {
+     "kind": "def",
+     "name": "policyNumericsValid"
+    },
+    {
+     "kind": "def",
+     "name": "choosePolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_policy_reads_numeric_bounds_and_permission"
+    },
+    {
+     "kind": "theorem",
+     "name": "supported_scores_are_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "scaled_policy_score_mean"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_policy_advice_confidence"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyDesignReceipt"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyPermission"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyAdvice"
+    },
+    {
+     "kind": "def",
+     "name": "observedPolicyData"
+    },
+    {
+     "kind": "def",
+     "name": "adviseMeasured"
+    },
+    {
+     "kind": "theorem",
+     "name": "advice_consumes_actual_measured_values_and_allowed_policy"
+    },
+    {
+     "kind": "def",
+     "name": "measuredFeedback"
+    },
+    {
+     "kind": "def",
+     "name": "beginMeasuredRound"
+    },
+    {
+     "kind": "theorem",
+     "name": "feedback_reads_actual_external_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "measured_feedback_enters_actual_next_learner"
+    },
+    {
+     "kind": "theorem",
+     "name": "measured_feedback_prepares_from_actual_loaded_and_journal"
+    },
+    {
+     "kind": "theorem",
+     "name": "measured_data_update_keeps_rules_loaded_and_budget"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027",
+    "JurisLean.Candidates.BusinessMeasurement20261027",
+    "JurisLean.Candidates.PolicyEvaluation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "94433b7cbd50c9a4dfc84d56c91f3515b1d78da60f593ea64b4ec99845dfd0b6",
+   "size_bytes": 23580,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "environment"
+    },
+    {
+     "kind": "def",
+     "name": "plan"
+    },
+    {
+     "kind": "def",
+     "name": "datum"
+    },
+    {
+     "kind": "def",
+     "name": "dictionary"
+    },
+    {
+     "kind": "def",
+     "name": "treatment"
+    },
+    {
+     "kind": "def",
+     "name": "produced"
+    },
+    {
+     "kind": "def",
+     "name": "observations"
+    },
+    {
+     "kind": "def",
+     "name": "design"
+    },
+    {
+     "kind": "def",
+     "name": "permission"
+    },
+    {
+     "kind": "def",
+     "name": "advice"
+    },
+    {
+     "kind": "def",
+     "name": "feedbackCheck"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveRoundLedgerAudit20261027",
+    "JurisLean.Candidates.BusinessMeasurementAudit20261027",
+    "JurisLean.Candidates.MeasuredPolicy20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+    "JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy",
+    "JurisLean.Candidates.MeasuredPolicy20261027.feedback_reads_actual_external_label",
+    "JurisLean.Candidates.MeasuredPolicy20261027.measured_data_update_keeps_rules_loaded_and_budget",
+    "JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_enters_actual_next_learner",
+    "JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_prepares_from_actual_loaded_and_journal",
+    "JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement",
+    "JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_row_preserves_actual_output",
+    "JurisLean.Candidates.MeasuredPolicy20261027.scaled_policy_score_mean",
+    "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+    "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded"
+   ],
+   "sha256": "ace662e3121891923163c944f6b95f473b97334db109357474abb5ad6cd2fc5a",
+   "size_bytes": 8919,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "policyValue"
     },
@@ -53094,6 +53318,7 @@
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
+    "JurisLean.Candidates.MeasuredPolicy20261027",
     "JurisLean.Candidates.PolicyEvaluation20261027",
     "JurisLean.Candidates.PolicyResponse20261027",
     "JurisLean.Candidates.ProbabilityIntervalConsumer20261027",
@@ -53324,8 +53549,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "3316fec3332fa3f5f76f11e421974cbc11e6a0ac1ad8c1464ad91952539bf39d",
-   "size_bytes": 12364,
+   "sha256": "afffce0077046257fc393392d7582baad3f4e505e596bcc0df5fe64c51d0b087",
+   "size_bytes": 12415,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -53489,22 +53714,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5838,
-   "file_count": 447,
+   "counted_declaration_count": 5849,
+   "file_count": 449,
    "lemma_count": 146,
-   "print_axioms_command_count": 4708,
-   "print_axioms_distinct_targets": 4621,
-   "theorem_count": 5692,
-   "theorem_count_bol_convention": 5592
+   "print_axioms_command_count": 4719,
+   "print_axioms_distinct_targets": 4632,
+   "theorem_count": 5703,
+   "theorem_count_bol_convention": 5603
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5819,
-   "file_count": 432,
+   "counted_declaration_count": 5830,
+   "file_count": 434,
    "lemma_count": 139,
-   "print_axioms_command_count": 4708,
-   "print_axioms_distinct_targets": 4621,
-   "theorem_count": 5680,
-   "theorem_count_bol_convention": 5580
+   "print_axioms_command_count": 4719,
+   "print_axioms_distinct_targets": 4632,
+   "theorem_count": 5691,
+   "theorem_count_bol_convention": 5591
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -53623,6 +53848,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
@@ -54068,6 +54295,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicyAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
@@ -54440,17 +54669,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "61aaf99cd608a4d8de97109dbb597dd120c0fea7932fe093fe6c1d69396e69cb",
+ "source_inventory_digest": "06f6c9d77fe4eba24a4806197bd421342f54f43c4df5159b137647c958acc4b1",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/source-representation-20261027",
-  "commit": "0a85ee71c393b8d79c76fc611972d4969c756172",
-  "tree": "9a50108d53800ae8df713a7aac61971b853737dd"
+  "branch": "formal/measured-policy-20261027",
+  "commit": "63790cb2be111e2dd68a2f061cdd4d1994d6d9ed",
+  "tree": "e4df5c91c07bdb0e299993d615ab73879f2766d0"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 447,
+  "files_total": 449,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -46,8 +46,12 @@ def datum (i : Fin 400) : PolicyDatum 2 :=
   (0, decide (i.val % 2 = 0), decide (i.val % 2 = 0))
 
 def dictionary (id : Nat) : MeasurementDictionary :=
-  { procedureDictionary with event := ⟨100 + id⟩, opportunity := id,
-    unit := ⟨200 + id⟩, resultRecord := ⟨300 + id⟩, targetVersion := 2 }
+  { procedureDictionary with
+    event := ⟨100 + id⟩
+    opportunity := id
+    unit := ⟨200 + id⟩
+    resultRecord := ⟨300 + id⟩
+    targetVersion := 2 }
 
 def treatment (id : Nat) : TreatmentRecord 2 :=
   ⟨environment, dictionary id, 0, ⟨-2⟩, ⟨40⟩, decide (id % 2 = 0), ⟨-1⟩, ⟨50⟩, ⟨60⟩⟩

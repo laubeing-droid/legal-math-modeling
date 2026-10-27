@@ -1,0 +1,67 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+  "run_id": 40462004036,
+  "job_id": 122048554976,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+  "named_count": 9,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+    "JurisLean.Candidates.SourceCompilation20261027.actual_record_observations",
+    "JurisLean.Candidates.SourceCompilation20261027.extracted_observed_reference_resolves",
+    "JurisLean.Candidates.SourceCompilation20261027.accepted_leaf_has_actual_source",
+    "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+    "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+    "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+    "JurisLean.Candidates.SourceCompilation20261027.robust_compilation_retains_every_branch",
+    "JurisLean.Candidates.SourceCompilation20261027.successful_family_does_not_drop_unknown"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "sha256": "9d38f530ffb9fb3078ac92f9a646e4181b0268e55da7fc3b8b9282a71f53e6fa"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "Classical.choice": 4,
+      "Quot.sound": 6,
+      "propext": 8
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "16 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

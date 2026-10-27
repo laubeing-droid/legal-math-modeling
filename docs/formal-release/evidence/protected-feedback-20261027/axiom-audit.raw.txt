@@ -1,0 +1,205 @@
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:3:0: JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event.{u_1, u_2, u_3, u_4} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} {G : Type u_4} [MeasurableSpace Ω] [MeasurableSpace Z] [Fintype G]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : G → MeasureTheory.Measure Z)
+  [∀ (g : G), MeasureTheory.IsProbabilityMeasure (P g)] (n : G → ℕ) (positive : ∀ (g : G), 0 < n g) (models : Finset H)
+  (nonempty : models.Nonempty) (sample : (g : G) → Fin (n g) → Ω → Z)
+  (measurable : ∀ (g : G) (i : Fin (n g)), Measurable (sample g i))
+  (independent : ∀ (g : G), ProbabilityTheory.iIndepFun (sample g) μ)
+  (law : ∀ (g : G) (i : Fin (n g)), ProbabilityTheory.IdentDistrib (sample g i) id μ (P g)) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ models, Measurable fun z => ↑(loss h z))
+  (bounded : ∀ h ∈ models, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (delta : G → ℝ)
+  (deltaPositive : ∀ (g : G), 0 < delta g) (deltaBelowOne : ∀ (g : G), delta g < 1) :
+  MeasurableSet
+      {w |
+        ∀ (g : G),
+          ∀ h ∈ models,
+            |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample g i w) h) -
+                  ∫ (z : Z), ↑(loss h z) ∂P g| ≤
+              JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n g) models.card (delta g)} ∧
+    1 - ∑ g, delta g ≤
+      μ.real
+        {w |
+          ∀ (g : G),
+            ∀ h ∈ models,
+              |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample g i w) h) -
+                    ∫ (z : Z), ↑(loss h z) ∂P g| ≤
+                JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n g) models.card (delta g)}
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:4:0: 'JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:5:0: JurisLean.Candidates.ProtectedFeedback20261027.finite_radius_mono_models (n M K : ℕ) (positive : 0 < M) (larger : M ≤ K)
+  (delta : ℝ) (deltaPositive : 0 < delta) :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n M delta ≤
+    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n K delta
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:6:0: 'JurisLean.Candidates.ProtectedFeedback20261027.finite_radius_mono_models' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:7:0: JurisLean.Candidates.ProtectedFeedback20261027.verified_radius_covers_fixed_class (n M : ℕ) (delta radius : ℚ)
+  (exponent : ℕ)
+  (verified : JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified n M delta radius exponent = true) :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n M ↑delta ≤ ↑radius
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:8:0: 'JurisLean.Candidates.ProtectedFeedback20261027.verified_radius_covers_fixed_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:9:0: JurisLean.Candidates.ProtectedFeedback20261027.evaluation_is_actual_input_and_computation {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.ProtectedFeedback20261027.scopeValid plan parent candidate = true ∧
+    JurisLean.Candidates.ProtectedFeedback20261027.layoutValid plan parent candidate blocks = true ∧
+      (∀ block ∈ blocks,
+          JurisLean.Candidates.ProtectedFeedback20261027.blockValid plan parent candidate loss block = true) ∧
+        out = JurisLean.Candidates.ProtectedFeedback20261027.assembled plan parent candidate loss blocks
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:10:0: 'JurisLean.Candidates.ProtectedFeedback20261027.evaluation_is_actual_input_and_computation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:11:0: JurisLean.Candidates.ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  parent.fitted.table ∈ plan.models ∧ candidate.fitted.table ∈ plan.models
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:12:0: 'JurisLean.Candidates.ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:13:0: JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_checks_every_actual_domain {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (accepted : out.passesBounds = true) (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m)
+  (member : block ∈ blocks) :
+  JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block candidate.fitted.table + block.radius ≤
+      JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block parent.fitted.table - block.radius +
+        block.tolerance ∧
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified block.rows.length plan.models.toFinset.card
+        block.delta block.radius block.exponent =
+      true
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:14:0: 'JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_checks_every_actual_domain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:15:0: JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (accepted : out.passesBounds = true) (risk : ℕ → List ℚ → ℝ)
+  (confidence :
+    ∀ block ∈ blocks,
+      ∀ model ∈ plan.models,
+        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk block.domain model| ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card
+            ↑block.delta)
+  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :
+  block ∈ blocks → risk block.domain candidate.fitted.table ≤ risk block.domain parent.fitted.table + ↑block.tolerance
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:16:0: 'JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:17:0: JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement {m : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)
+  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))
+  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (produced :
+    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (passed : out.passesBounds = true) (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m)
+  (member : block ∈ blocks) (risk : List ℚ → ℝ)
+  (confidence :
+    ∀ model ∈ plan.models,
+      |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk model| ≤
+        JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card
+          ↑block.delta)
+  (strict :
+    JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block candidate.fitted.table + block.radius <
+      JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block parent.fitted.table - block.radius) :
+  risk candidate.fitted.table < risk parent.fitted.table
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:18:0: 'JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:19:0: JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement :
+  49 / 100 < 1 / 2 ∧
+    { domain := 1, snapshot := 1, sampleSize := 400, oldEmpirical := 1 / 2, newEmpirical := 49 / 100, radius := 1 / 10,
+            tolerance := 0, delta := 1 / 20 }.acceptable =
+        false ∧
+      { domain := 1, snapshot := 1, sampleSize := 400, oldEmpirical := 1 / 2, newEmpirical := 1 / 2, radius := 1 / 10,
+            tolerance := 1 / 5, delta := 1 / 20 }.acceptable =
+        true
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:20:0: 'JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:21:0: JurisLean.Candidates.ProtectedFeedback20261027.sampled_block_uses_exact_losses {m n : ℕ}
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (domain snapshot : ℕ) (delta radius : ℚ)
+  (exponent : ℕ) (tolerance : ℚ) (events : Fin n → JurisLean.Candidates.Final20261021.EventId)
+  (data : Fin n → Fin m × Bool) (loss : ℚ → Bool → ℚ) (table : List ℚ) :
+  JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss
+      (JurisLean.Candidates.ProtectedFeedback20261027.sampledBlock plan domain snapshot delta radius exponent tolerance
+        events data)
+      table =
+    JurisLean.Candidates.LearningERM20261027.empiricalScore
+      (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss) data table
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:22:0: 'JurisLean.Candidates.ProtectedFeedback20261027.sampled_block_uses_exact_losses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:23:0: JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence.{u_1} {Ω : Type u_1} {m G : ℕ}
+  [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (P : Fin G → MeasureTheory.Measure (Fin m × Bool)) [∀ (g : Fin G), MeasureTheory.IsProbabilityMeasure (P g)]
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (nonempty : plan.models.toFinset.Nonempty)
+  (n : Fin G → ℕ) (positive : ∀ (g : Fin G), 0 < n g) (sample : (g : Fin G) → Fin (n g) → Ω → Fin m × Bool)
+  (measurable : ∀ (g : Fin G) (i : Fin (n g)), Measurable (sample g i))
+  (independent : ∀ (g : Fin G), ProbabilityTheory.iIndepFun (sample g) μ)
+  (law : ∀ (g : Fin G) (i : Fin (n g)), ProbabilityTheory.IdentDistrib (sample g i) id μ (P g)) (loss : ℚ → Bool → ℚ)
+  (bounded :
+    ∀ table ∈ plan.models,
+      ∀ (z : Fin m × Bool), ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss table z) ∈ Set.Icc 0 1)
+  (delta : Fin G → ℚ) (deltaPositive : ∀ (g : Fin G), 0 < delta g) (deltaBelowOne : ∀ (g : Fin G), delta g < 1)
+  (budget : ∑ g, delta g ≤ plan.failureBudget) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑plan.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)
+            (domain snapshot : Fin G → ℕ) (radius tolerance : Fin G → ℚ) (exponent : Fin G → ℕ)
+            (events : (g : Fin G) → Fin (n g) → JurisLean.Candidates.Final20261021.EventId)
+            (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m),
+            JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss
+                  (List.ofFn fun g =>
+                    JurisLean.Candidates.ProtectedFeedback20261027.sampledBlock plan (domain g) (snapshot g) (delta g)
+                      (radius g) (exponent g) (tolerance g) (events g) fun i => sample g i w) =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              out.passesBounds = true →
+                ∀ (g : Fin G),
+                  ∫ (z : Fin m × Bool),
+                      ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss candidate.fitted.table z) ∂P g ≤
+                    ∫ (z : Fin m × Bool),
+                        ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss parent.fitted.table z) ∂P g +
+                      ↑(tolerance g)
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:24:0: 'JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:25:0: JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point :
+  9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false +
+        1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false =
+      9 / 10 ∧
+    9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false +
+          1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false =
+        1 / 10 ∧
+      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false = 0 ∧
+        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false = 1 ∧ 1 / 10 < 9 / 10
+info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:26:0: 'JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

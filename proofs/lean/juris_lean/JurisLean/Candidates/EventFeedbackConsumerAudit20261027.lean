@@ -16,6 +16,8 @@ import JurisLean.Candidates.EventFeedbackConsumer20261027
 #print axioms JurisLean.Candidates.EventFeedbackConsumer20261027.corrected_history_is_append_only
 #check JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training
 #print axioms JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training
+#check JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training
+#print axioms JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training
 #check JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row
 #print axioms JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row
 #check JurisLean.Candidates.EventFeedbackConsumer20261027.historical_replay_cannot_revive_superseded_label
@@ -43,8 +45,14 @@ def scope : DataScope := ⟨1, 2, 3, 6, 8, 9, 10, 12, 1, 1, 1, .behavior⟩
 def row (label : Bool) (event measurement record : Nat) : Observation 1 :=
   ⟨scope, ⟨1⟩, ⟨event⟩, ⟨measurement⟩, ⟨record⟩, 0, label, ⟨record⟩, .external, ⟨0⟩⟩
 
-def initial : Store 1 := emptyStore 1 scope
 def first : Observation 1 := row false 1 10 100
+def confirmations : List (ExternalConfirmation 1) :=
+  ([first, row true 1 11 101, row true 1 12 102, row true 1 13 103,
+    { row true 1 12 102 with caseId := ⟨2⟩ }] ++
+    (List.range 100).map (fun i => row false 1 i (100 + i)) ++
+    (List.range 100).map (fun i => row false i 1 (100 + i))).map
+      (fun observed => ⟨observed, ⟨10000 + observed.record.value⟩⟩)
+def initial : Store 1 := emptyStore 1 scope confirmations
 def one : Store 1 := (observe initial ⟨10⟩ first).post
 def oneCell : Cell 1 := ⟨⟨1⟩, ⟨1⟩, 0, .active 0 false⟩
 def edit : Correction 1 := ⟨oneCell, some (row true 1 11 101), ⟨5⟩, 1, ⟨500⟩⟩
@@ -87,6 +95,12 @@ def fittedValue (s : Store 1) : Result (List ℚ × Nat) :=
 /-- info: true -/
 #guard_msgs in
 #eval decide (observe initial ⟨10⟩ { first with origin := Origin.suggestion } =
+  (⟨Disposition.invalidObservation, initial⟩ : Receipt 1))
+
+-- Merely claiming an external origin without a matching confirmation is refused.
+/-- info: true -/
+#guard_msgs in
+#eval decide (observe initial ⟨10⟩ (row true 1 999 999) =
   (⟨Disposition.invalidObservation, initial⟩ : Receipt 1))
 
 -- Conflicting evidence is retained, and the event leaves the training view.

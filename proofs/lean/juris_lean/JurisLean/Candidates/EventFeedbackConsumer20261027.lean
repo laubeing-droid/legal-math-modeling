@@ -55,6 +55,13 @@ structure Observation (m : Nat) where
   observedAt : Instant
   deriving DecidableEq, Repr
 
+-- The caller supplies this registry from an independent external label source.
+-- Equality checks its exact statement, not the reliability of that source.
+structure ExternalConfirmation (m : Nat) where
+  observation : Observation m
+  witness : SourceRef
+  deriving DecidableEq, Repr
+
 inductive LabelState (m : Nat) where
   | active (feature : Fin m) (label : Bool)
   | conflicted
@@ -91,6 +98,7 @@ inductive Change (m : Nat) where
 
 structure Store (m : Nat) where
   scope : DataScope
+  confirmations : List (ExternalConfirmation m)
   history : List (Change m)
   cells : List (Cell m)
   deriving DecidableEq, Repr
@@ -105,7 +113,8 @@ structure Receipt (m : Nat) where
   post : Store m
   deriving DecidableEq, Repr
 
-def emptyStore (m : Nat) (scope : DataScope) : Store m := ⟨scope, [], []⟩
+def emptyStore (m : Nat) (scope : DataScope)
+    (confirmations : List (ExternalConfirmation m)) : Store m := ⟨scope, confirmations, [], []⟩
 
 def lookup {m : Nat} (s : Store m) (event : EventId) : Option (Cell m) :=
   s.cells.find? (fun cell => decide (cell.event = event))
@@ -124,8 +133,12 @@ def seenObservation {m : Nat} (s : Store m) (row : Observation m) : Bool :=
     | .observed old => decide (old = row)
     | .corrected edit => decide (edit.replacement = some row)
 
+def sourceConfirmed {m : Nat} (s : Store m) (row : Observation m) : Bool :=
+  s.confirmations.any (fun evidence => decide (evidence.observation = row))
+
 def observationValid {m : Nat} (s : Store m) (now : Instant) (row : Observation m) : Bool :=
-  decide (row.scope = s.scope ∧ row.origin = .external ∧ row.observedAt.ticks ≤ now.ticks)
+  decide (row.scope = s.scope ∧ row.origin = .external ∧ row.observedAt.ticks ≤ now.ticks) &&
+    sourceConfirmed s row
 
 def observe {m : Nat} (s : Store m) (now : Instant) (row : Observation m) : Receipt m :=
   if observationValid s now row = false then ⟨.invalidObservation, s⟩
@@ -288,7 +301,10 @@ theorem training_contains_no_repeated_event {m : Nat} (s : Store m) (unique : Un
   apply unique.filterMap Cell.toSample
   intro a b different sa ha sb hb
   cases hsa : a.state <;> cases hsb : b.state <;>
-    simp_all [Cell.toSample]
+    simp [Cell.toSample, hsa, hsb] at ha hb
+  cases ha
+  cases hb
+  exact different
 
 theorem observed_history_is_append_only {m : Nat} (s : Store m) (now : Instant)
     (row : Observation m) :
@@ -323,6 +339,11 @@ theorem suggestions_do_not_enter_training {m : Nat} (s : Store m) (now : Instant
     observe s now row = ⟨.invalidObservation, s⟩ := by
   simp [observe, observationValid, suggestion]
 
+theorem unconfirmed_labels_do_not_enter_training {m : Nat} (s : Store m) (now : Instant)
+    (row : Observation m) (missing : sourceConfirmed s row = false) :
+    observe s now row = ⟨.invalidObservation, s⟩ := by
+  simp [observe, observationValid, missing]
+
 theorem replay_has_no_extra_training_row {m : Nat} (s : Store m) (now : Instant)
     (row : Observation m) (old : Cell m) (valid : observationValid s now row = true)
     (found : lookup s row.event = some old)
@@ -345,7 +366,8 @@ theorem denied_correction_keeps_current_state {m : Nat} (s : Store m) (now : Ins
     (valid : correctionValid s now edit = true)
     (denied : correctionAuthorized s now permits edit = false) :
     correct s now permits edit = ⟨.authorityUnresolved, s⟩ := by
-  simp [correct, fresh, found, valid, denied]
+  have fresh' : Change.corrected edit ∉ s.history := by simpa using fresh
+  simp [correct, fresh', found, valid, denied]
 
 theorem approved_correction_replaces_exact_prior {m : Nat} (s : Store m) (now : Instant)
     (permits : List (CorrectionPermit m)) (edit : Correction m)
@@ -355,7 +377,14 @@ theorem approved_correction_replaces_exact_prior {m : Nat} (s : Store m) (now : 
     (allowed : correctionAuthorized s now permits edit = true) :
     lookup (correct s now permits edit).post edit.supersedes.event = some (correctedCell edit) ∧
       (correct s now permits edit).post.history = s.history ++ [.corrected edit] := by
-  simp [correct, fresh, found, valid, allowed, lookup, recordCell, putCell, correctedCell]
+  have fresh' : Change.corrected edit ∉ s.history := by simpa using fresh
+  have transition : (correct s now permits edit).post =
+      recordCell s (.corrected edit) (correctedCell edit) := by
+    simp [correct, fresh', found, valid, allowed]
+  rw [transition]
+  constructor
+  · simp [lookup, recordCell, putCell, correctedCell]
+  · rfl
 
 theorem successful_fit_reads_current_valid_sample {m : Nat} (s : Store m)
     (protocol : LearningProtocol) (loss : ℚ → Bool → ℚ) (models : List (List ℚ))

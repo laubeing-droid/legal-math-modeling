@@ -1,0 +1,81 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "973701f544c20cc95c308460eea624e5dbc106d8",
+  "run_id": 40498428052,
+  "job_id": 122169709713,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
+  "named_count": 12,
+  "named_theorems_full": [
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_respects_cutoffs",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.future_model_is_not_available_for_prior_question",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.future_loaded_observations_stay_unknown",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.selected_decision_reads_same_probability_and_quote",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_uses_actual_legal_validation",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_choice_uses_current_model",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_preserves_reported_business_invariant",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.unknown_loaded_probability_has_no_transaction_effect",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumer20261027.lean",
+      "sha256": "78e8a257a50eb61dbe4dfb5bf25642b9007b9ce87be8a98585715c7140b48bf3"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
+      "sha256": "18e5c9b2dccdab00d116e273834cb3be5f702fb2d17701562e003010257cd18c"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 12,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "27 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

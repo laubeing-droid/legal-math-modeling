@@ -1,0 +1,77 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+  "run_id": 40446553400,
+  "job_id": 121999119450,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
+  "named_count": 15,
+  "named_theorems_full": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+      "sha256": "8137187be49e0589cffbadb8e5d0acb73bd017a1e06fbf1166a39b0ec7c8b84c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
+      "sha256": "149ee3caee93281b93b8851aebee6cbed4de1563af9c6e58d2375b4087e79301"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 14,
+      "propext": 15
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "20 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

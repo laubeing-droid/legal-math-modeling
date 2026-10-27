@@ -1,0 +1,226 @@
+JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (free : s.pending = none)
+  (room : s.records.length < s.horizon) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).pending =
+      some
+        { learner := s.learner, generatedAt := now, visiblePrefix := s.records.length,
+          prepared :=
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now permits change protocol
+              s.learner.proposals,
+          plan :=
+            { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,
+              models :=
+                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table ::
+                  s.learner.proposals,
+              failureBudget := plan.failureBudget } } ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol
+              plan).service.journal =
+        (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s.service.journal change).post ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).records =
+        s.records
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m) :
+  List.take s.records.length (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records =
+      s.records ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records.length =
+        s.records.length + 1 ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).pending = none ∧
+        JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+            (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record) =
+          JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s + record.charge
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (computed :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge =
+    (List.map JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock.delta r.blocks).sum
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  0 ≤ (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s +
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits).post ≤
+    s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (same : old.request = r) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =
+    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.replayed, post := s, receipt := some old }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (changed : old.request ≠ r) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =
+    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.keyConflict, post := s, receipt := none }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (computed :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :
+  r.checker = s.checker ∧
+    r.claim = JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundClaim.currentFiniteRound ∧
+      d.plan.domains = s.protectedDomains ∧
+        ∀ event ∈ JurisLean.Candidates.AdaptiveRoundLedger20261027.requestedEvents r,
+          event ∉ JurisLean.Candidates.AdaptiveRoundLedger20261027.exposedRoundEvents s
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).service = s.service ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).checker = s.checker ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records = s.records ∧
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).limit = s.limit ∧
+          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon =
+              s.horizon ∧
+            (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog
+                  permit).protectedDomains =
+              s.protectedDomains
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (untrusted : permit ∉ catalog ∨ permit.checker ≠ s.checker) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit = s
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (changed : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).learner = next)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (corrections : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (free : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).pending = none)
+  (room :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length <
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit) now corrections
+        change protocol plan).pending =
+    some
+      { learner := next, generatedAt := now,
+        visiblePrefix :=
+          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length,
+        prepared :=
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now corrections change protocol
+            next.proposals,
+        plan :=
+          { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,
+            models :=
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table :: next.proposals,
+            failureBudget := plan.failureBudget } }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (actualEvaluation :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =
+      some (JurisLean.Candidates.Final20261021.Result.known evaluation))
+  (actualLoad :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded) :
+  loaded =
+    JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits r.permit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m) (actual : record.load = some loaded) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).service = loaded.post
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service' depends on axioms: [propext]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (action : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action).limit = s.limit ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action) ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget {m : ℕ}
+  (actions : List (JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m))
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions).limit = s.limit ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+        (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions) ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

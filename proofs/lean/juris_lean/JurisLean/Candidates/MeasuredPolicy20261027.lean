@@ -192,7 +192,8 @@ theorem selected_policy_reads_numeric_bounds_and_permission {m n : Nat}
   · rename_i verified
     have checks := verified
     simp only [policyNumericsValid, Bool.and_eq_true, decide_eq_true_eq] at checks
-    have eligible := of_decide_eq_true (List.find?_some selected)
+    have matched := List.find?_some selected
+    have eligible := of_decide_eq_true matched
     exact ⟨verified, checks.1.2.1, List.mem_of_find?_eq_some selected, eligible.1, eligible.2⟩
   · simp at selected
 
@@ -207,7 +208,9 @@ theorem supported_scores_are_bounded {m : Nat} (plan : PolicyPlan)
     cases truth : z.2.2 <;> simp [policyScore, Behavior.indicator, truth]
     · exact checks.1.le
     · exact ⟨weight.2.2.2.1, weight.2.2.2.2⟩
-  exact_mod_cast bound
+  constructor
+  · exact_mod_cast bound.1
+  · exact_mod_cast bound.2
 
 theorem scaled_policy_score_mean {m n : Nat} (plan : PolicyPlan)
     (data : Fin n → PolicyDatum m) (table : List ℚ) :
@@ -237,7 +240,8 @@ theorem actual_policy_advice_confidence {Ω : Type*} {m n : Nat}
   have supportedFacts := of_decide_eq_true supported
   have weightPositiveQ : 0 < plan.weightBound := supportedFacts.1
   have weightPositive : (0 : ℝ) < plan.weightBound := by exact_mod_cast weightPositiveQ
-  let scaled := fun h z => policyScore plan.logging h z / plan.weightBound
+  let scaled : List ℚ → PolicyDatum m → ℚ :=
+    fun h z => policyScore plan.logging h z / plan.weightBound
   have joint := protected_iid_joint_event (G := Unit) μ (fun _ => P) (fun _ => n)
     (fun _ => positive) plan.family.toFinset nonempty (fun _ => sample)
     (fun _ => measurable) (fun _ => independent) (fun _ => law) scaled

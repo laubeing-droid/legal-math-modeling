@@ -44,6 +44,12 @@ import JurisLean.Seams.UnifiedInstance
 #print axioms JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts
 #check JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique
 #print axioms JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique
+#check JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact
+#print axioms JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact
+#check JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts
+#print axioms JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts
+#check JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame
+#print axioms JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame
 #check JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts
 #print axioms JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts
 #check JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge
@@ -166,6 +172,18 @@ def updateStagePayment (update : FullPayment → FullPayment) : ConsumedView :=
 /-- info: true -/
 #guard_msgs in
 #eval !stageKnown (sourceStages { stageMaterial with parseVersion := 99 } 0 [⟨stageMaterial, 0, stageView⟩])
+
+/-- info: true -/
+#guard_msgs in
+#eval match runStageView stageView with
+  | .known out => decide (legacyAmount out = .known 7)
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match runStageView (updateStagePayment fun p => { p with payload := { p.payload with amount := ⟨1/2, stageTag⟩ } }) with
+  | .known out => decide (legacyAmount out = .rejected .unsupported)
+  | _ => false
 
 namespace JurisLean.Candidates.SourceStages20261027
 

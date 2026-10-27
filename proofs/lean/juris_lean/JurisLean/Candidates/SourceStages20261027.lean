@@ -422,6 +422,81 @@ theorem exact_nat_bridge_is_unique (amount : ℚ) (m n : Nat)
     (hm : (m : ℚ) = amount) (hn : (n : ℚ) = amount) : m = n := by
   exact_mod_cast hm.trans hn.symm
 
+-- The legacy record has a Nat slot. Read the actual rational payment, then
+-- check an exact cast; fractional values are never silently truncated.
+def legacyAmount (frame : SourceFrame) : Result Nat :=
+  let amount := frame.first.payment.value.payload.amount.value
+  let n := amount.num.toNat
+  if (n : ℚ) = amount then .known n else .rejected .unsupported
+
+theorem legacy_amount_success_is_exact (frame : SourceFrame) (n : Nat)
+    (accepted : legacyAmount frame = .known n) :
+    (n : ℚ) = frame.first.payment.value.payload.amount.value := by
+  unfold legacyAmount at accepted
+  split at accepted
+  next exactCast => cases accepted; exact exactCast
+  next inexact => cases accepted
+
+def checkedModel {V R : Type} [DecidableEq R] (background : UnifiedModel V R)
+    (frame : SourceFrame) : Result (UnifiedModel V RelationId) :=
+  match legacyAmount frame with
+  | .known n => .known (modelOf background frame n)
+  | .unknown e => .unknown e
+  | .rejected e => .rejected e
+  | .conflict l r => .conflict l r
+
+theorem checked_model_reads_exact_payment_and_old_contracts {V R : Type} [DecidableEq R]
+    (background : UnifiedModel V R) (frame : SourceFrame) (model : UnifiedModel V RelationId)
+    (accepted : checkedModel background frame = .known model) :
+    (model.performAmount : ℚ) = frame.first.payment.value.payload.amount.value ∧
+    model.ledger = frame.stages.beforeFormation.relations ∧ LegacyContracts model := by
+  cases amount : legacyAmount frame with
+  | unknown e => simp [checkedModel, amount] at accepted
+  | rejected e => simp [checkedModel, amount] at accepted
+  | conflict l r => simp [checkedModel, amount] at accepted
+  | known n =>
+      simp only [checkedModel, amount, Result.known.injEq] at accepted
+      cases accepted
+      exact ⟨legacy_amount_success_is_exact _ _ amount, rfl,
+        (fixed_background_preserves_exact_old_contracts _ _ _).1⟩
+
+def sourceModel {V R : Type} [DecidableEq R] (background : UnifiedModel V R)
+    (material : MaterialSnapshot) (branch : Nat) (catalog : List InterpretationRow) :
+    Result (SourceFrame × UnifiedModel V RelationId) :=
+  match sourceStages material branch catalog with
+  | .known frame =>
+      match checkedModel background frame with
+      | .known model => .known (frame, model)
+      | .unknown e => .unknown e
+      | .rejected e => .rejected e
+      | .conflict l r => .conflict l r
+  | .unknown e => .unknown e
+  | .rejected e => .rejected e
+  | .conflict l r => .conflict l r
+
+theorem public_model_consumes_the_actual_stage_frame {V R : Type} [DecidableEq R]
+    (background : UnifiedModel V R) (material : MaterialSnapshot) (branch : Nat)
+    (catalog : List InterpretationRow) (out : SourceFrame × UnifiedModel V RelationId)
+    (accepted : sourceModel background material branch catalog = .known out) :
+    sourceStages material branch catalog = .known out.1 ∧
+    checkedModel background out.1 = .known out.2 ∧
+    (out.2.performAmount : ℚ) = out.1.first.payment.value.payload.amount.value ∧
+    LegacyContracts out.2 := by
+  cases staged : sourceStages material branch catalog with
+  | unknown e => simp [sourceModel, staged] at accepted
+  | rejected e => simp [sourceModel, staged] at accepted
+  | conflict l r => simp [sourceModel, staged] at accepted
+  | known frame =>
+      cases modeled : checkedModel background frame with
+      | unknown e => simp [sourceModel, staged, modeled] at accepted
+      | rejected e => simp [sourceModel, staged, modeled] at accepted
+      | conflict l r => simp [sourceModel, staged, modeled] at accepted
+      | known model =>
+          simp only [sourceModel, staged, modeled, Result.known.injEq] at accepted
+          cases accepted
+          have exactModel := checked_model_reads_exact_payment_and_old_contracts _ _ _ modeled
+          exact ⟨rfl, modeled, exactModel.1, exactModel.2.2⟩
+
 -- Strong same-case semantics has named decoders for EVERY declared layer.
 -- Structural membership of the weak model does not produce these premises.
 def StrongSameCase {I X : Type} (W : I → Type) (read : (i : I) → X → W i)

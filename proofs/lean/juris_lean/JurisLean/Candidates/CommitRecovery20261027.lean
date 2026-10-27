@@ -63,7 +63,7 @@ theorem pending_for_retains_actual_plan {W : Type} {m : Nat}
             cases selected : execution.execution.proposal with
             | none => simp [current, ran, selected] at found
             | some proposal =>
-                exact ⟨initial, execution, proposal, current, ran, selected,
+                exact ⟨initial, execution, proposal, rfl, rfl, selected,
                   by simpa only [current, ran, selected] using found, stopped⟩
   · cases found
 
@@ -123,7 +123,7 @@ theorem actual_unknown_action_always_has_capture {W : Type} {m : Nat}
     ∃ pending, (capture before input).pending = some pending := by
   let execution := runLoaded input.legal input.model input.proposals before.learning input.request
     input.calibration input.calibrationCatalog input.radius input.exponent input.utility input.grants initial
-  have called : (act before input).run = some execution := by simp only [act, known]
+  have called : (act before input).run = some execution := by simp only [act, known, execution]
   have unknown : execution.execution.payment.current = none := by simpa only [act, known] using stopped
   cases selected : execution.execution.proposal with
   | none =>
@@ -168,7 +168,7 @@ theorem known_resolution_matches_current_capture {W : Type} {m : Nat}
   · rename_i same
     cases located : ticket.pending with
     | none => simp [located] at accepted
-    | some pending => exact ⟨same, pending, located, by simpa only [located] using accepted⟩
+    | some pending => exact ⟨same, pending, rfl, by simpa only [located] using accepted⟩
   · cases accepted
 
 theorem stale_resolution_cannot_replace_later_state {W : Type} {m : Nat}

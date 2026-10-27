@@ -210,7 +210,8 @@ theorem approved_correction_repairs_target {m : Nat} (s : Store m) (now : Instan
       recordCell s (.corrected edit) (correctedCell edit) := by
     simp [correct, fresh, found, valid, allowed]
   rw [transition]
-  apply record_cell_repairs_target _ _ _ _ untouched
+  apply record_cell_repairs_target s (.corrected edit) (correctedCell edit) target
+    (by simpa only [correctedCell] using untouched)
   intro feature label same
   simp only [correctedCell, replacement, LabelState.active.injEq] at same
   rcases same with ⟨rfl, rfl⟩

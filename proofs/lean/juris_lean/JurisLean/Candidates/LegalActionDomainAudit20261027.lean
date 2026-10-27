@@ -1,5 +1,8 @@
 import JurisLean.Candidates.LegalActionDomain20261027
 
+import JurisLean.Candidates.FiniteLegalValidationAudit20261027
+import JurisLean.Candidates.DecisionTrajectoryConsumerAudit20261027
+
 #check JurisLean.Candidates.LegalActionDomain20261027.meaning_row_binds_full_instructions
 #print axioms JurisLean.Candidates.LegalActionDomain20261027.meaning_row_binds_full_instructions
 #check JurisLean.Candidates.LegalActionDomain20261027.finite_row_checks_every_world_and_successor
@@ -34,8 +37,6 @@ import JurisLean.Candidates.LegalActionDomain20261027
 #print axioms JurisLean.Candidates.LegalActionDomain20261027.pure_filter_cannot_offer_an_unproposed_action
 #check JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown
 #print axioms JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown
-import JurisLean.Candidates.FiniteLegalValidationAudit20261027
-import JurisLean.Candidates.DecisionTrajectoryConsumerAudit20261027
 
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.Final20261021.EvidenceProcedure
@@ -278,6 +279,33 @@ def openInput : LegalInput (List Nat) :=
 #guard_msgs in
 #eval decide (rateReport 0 0 1 1 = (Result.unknown Error.notIdentified, Result.known 1))
 
+-- A valid plan can lose its external commit receipt. The runtime must stop
+-- without inventing a known poststate or executing the second payment.
+/-- info: true -/
+#guard_msgs in
+#eval
+  let plans := proposals.map fun p =>
+    {p with steps := [.pay (trajectoryRequest 1) .unknownCommit, .pay (trajectoryRequest 2) .submit]}
+  let model := {actionModel with
+    meanings := plans.map (fun p => meaning materialA.gamma p 2) ++
+      plans.map (fun p => meaning materialB.gamma p 5)
+    successors := fun _ _ before _ => [before]}
+  let result := fixture legalInput model plans
+  decide (result.review.allowed.length = 2 ∧ result.execution.payment.current = none ∧
+    result.execution.payment.outcomes = [Ledger.Outcome.unknownCommit ⟨1⟩ ⟨1⟩])
+
+-- Revalidation reads the actual new balance, even with an unchanged Gamma.
+/-- info: true -/
+#guard_msgs in
+#eval
+  let model := {actionModel with successors := fun g w before steps =>
+    if Ledger.balance before.state = 10 then actionModel.successors g w before steps else []}
+  let result := fixture legalInput model
+  match result.execution.payment.current with
+  | some post => decide (result.review.allowed.length = 2) &&
+      (review legalInput model post proposals).allowed.isEmpty
+  | none => false
+
 theorem schema_correct_can_be_normatively_forbidden :
     (fun (_ : Nat) => true) 1 = true ∧ ¬ (1 ≤ (0 : Nat)) := by decide
 
@@ -294,6 +322,7 @@ theorem syntax_and_proof_do_not_establish_external_fact_fidelity :
     (fun (fact : Bool) => fact) true = true ∧ (false : Bool) ≠ true := by decide
 
 end JurisLean.Candidates.LegalActionDomain20261027.Audit
+
 
 #check JurisLean.Candidates.LegalActionDomain20261027.Audit.schema_correct_can_be_normatively_forbidden
 #print axioms JurisLean.Candidates.LegalActionDomain20261027.Audit.schema_correct_can_be_normatively_forbidden

@@ -89,10 +89,11 @@ def confirmation (id : Nat) : ExternalConfirmation 2 :=
     ⟨100 + id⟩, ⟨200 + id⟩, ⟨300 + id⟩, 1, true, ⟨50⟩, .external, ⟨20⟩⟩, ⟨90⟩⟩
 
 def initial (service : Service 2) : State 2 :=
+  let confirmedJournal := {service.journal with
+    confirmations := (List.range 3).map confirmation ++ service.journal.confirmations}
   let actual := {service with
     gamma := LoadedLegalConsumer20261027.Audit.gamma
-    journal := {service.journal with confirmations :=
-      (List.range 3).map confirmation ++ service.journal.confirmations}}
+    journal := confirmedJournal}
   ⟨⟨.success, some LoadedLegalConsumer20261027.Audit.opening, [], []⟩,
     AdaptiveRoundLedgerFixture.base actual, .known [], .unknown .missingEvidence, [], []⟩
 

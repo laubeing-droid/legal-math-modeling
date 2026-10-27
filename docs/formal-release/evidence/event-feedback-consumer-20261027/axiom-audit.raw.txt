@@ -1,0 +1,161 @@
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:3:0: JurisLean.Candidates.EventFeedbackConsumer20261027.putCell_unique {m : ℕ}
+  (cells : List (JurisLean.Candidates.EventFeedbackConsumer20261027.Cell m))
+  (cell : JurisLean.Candidates.EventFeedbackConsumer20261027.Cell m)
+  (unique : List.Pairwise (fun a b => a.event ≠ b.event) cells) :
+  List.Pairwise (fun a b => a.event ≠ b.event) (JurisLean.Candidates.EventFeedbackConsumer20261027.putCell cells cell)
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:4:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.putCell_unique' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:5:0: JurisLean.Candidates.EventFeedbackConsumer20261027.observe_preserves_event_uniqueness {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m)
+  (unique : JurisLean.Candidates.EventFeedbackConsumer20261027.Unique s) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.Unique
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row).post
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:6:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.observe_preserves_event_uniqueness' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:7:0: JurisLean.Candidates.EventFeedbackConsumer20261027.correction_preserves_event_uniqueness {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (edit : JurisLean.Candidates.EventFeedbackConsumer20261027.Correction m)
+  (unique : JurisLean.Candidates.EventFeedbackConsumer20261027.Unique s) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.Unique
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.correct s now permits edit).post
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:8:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.correction_preserves_event_uniqueness' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:9:0: JurisLean.Candidates.EventFeedbackConsumer20261027.finite_updates_keep_one_cell_per_event {m : ℕ}
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m)
+  (changes : List (JurisLean.Candidates.EventFeedbackConsumer20261027.Change m))
+  (unique : JurisLean.Candidates.EventFeedbackConsumer20261027.Unique s) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.Unique
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.runChanges now permits s changes)
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:10:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.finite_updates_keep_one_cell_per_event' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:11:0: JurisLean.Candidates.EventFeedbackConsumer20261027.training_contains_no_repeated_event {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m)
+  (unique : JurisLean.Candidates.EventFeedbackConsumer20261027.Unique s) :
+  List.Pairwise (fun a b => a.event ≠ b.event) (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows s)
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:12:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.training_contains_no_repeated_event' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:13:0: JurisLean.Candidates.EventFeedbackConsumer20261027.observed_history_is_append_only {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m) :
+  ∃ suffix, (JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row).post.history = s.history ++ suffix
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:14:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.observed_history_is_append_only' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:15:0: JurisLean.Candidates.EventFeedbackConsumer20261027.corrected_history_is_append_only {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (edit : JurisLean.Candidates.EventFeedbackConsumer20261027.Correction m) :
+  ∃ suffix,
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.correct s now permits edit).post.history = s.history ++ suffix
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:16:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.corrected_history_is_append_only' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:17:0: JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m)
+  (suggestion : row.origin = JurisLean.Candidates.EventFeedbackConsumer20261027.Origin.suggestion) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row =
+    { disposition := JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.invalidObservation, post := s }
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:18:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.suggestions_do_not_enter_training' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:19:0: JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m)
+  (missing : JurisLean.Candidates.EventFeedbackConsumer20261027.sourceConfirmed s row = false) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row =
+    { disposition := JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.invalidObservation, post := s }
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:20:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.unconfirmed_labels_do_not_enter_training' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:21:0: JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m)
+  (old : JurisLean.Candidates.EventFeedbackConsumer20261027.Cell m)
+  (valid : JurisLean.Candidates.EventFeedbackConsumer20261027.observationValid s now row = true)
+  (found : JurisLean.Candidates.EventFeedbackConsumer20261027.lookup s row.event = some old)
+  (same :
+    old.caseId = row.caseId ∧
+      old.state = JurisLean.Candidates.EventFeedbackConsumer20261027.LabelState.active row.feature row.label) :
+  (JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row).disposition =
+      JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.replay ∧
+    JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows
+        (JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row).post =
+      JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows s
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:22:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.replay_has_no_extra_training_row' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:23:0: JurisLean.Candidates.EventFeedbackConsumer20261027.historical_replay_cannot_revive_superseded_label {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (row : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m)
+  (valid : JurisLean.Candidates.EventFeedbackConsumer20261027.observationValid s now row = true)
+  (seen : JurisLean.Candidates.EventFeedbackConsumer20261027.seenObservation s row = true) :
+  (JurisLean.Candidates.EventFeedbackConsumer20261027.observe s now row).post.cells = s.cells
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:24:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.historical_replay_cannot_revive_superseded_label' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:25:0: JurisLean.Candidates.EventFeedbackConsumer20261027.denied_correction_keeps_current_state {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (edit : JurisLean.Candidates.EventFeedbackConsumer20261027.Correction m)
+  (fresh : s.history.contains (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.corrected edit) = false)
+  (found : JurisLean.Candidates.EventFeedbackConsumer20261027.lookup s edit.supersedes.event = some edit.supersedes)
+  (valid : JurisLean.Candidates.EventFeedbackConsumer20261027.correctionValid s now edit = true)
+  (denied : JurisLean.Candidates.EventFeedbackConsumer20261027.correctionAuthorized s now permits edit = false) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.correct s now permits edit =
+    { disposition := JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.authorityUnresolved, post := s }
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:26:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.denied_correction_keeps_current_state' depends on axioms: [propext]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:27:0: JurisLean.Candidates.EventFeedbackConsumer20261027.approved_correction_replaces_exact_prior {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (edit : JurisLean.Candidates.EventFeedbackConsumer20261027.Correction m)
+  (fresh : s.history.contains (JurisLean.Candidates.EventFeedbackConsumer20261027.Change.corrected edit) = false)
+  (found : JurisLean.Candidates.EventFeedbackConsumer20261027.lookup s edit.supersedes.event = some edit.supersedes)
+  (valid : JurisLean.Candidates.EventFeedbackConsumer20261027.correctionValid s now edit = true)
+  (allowed : JurisLean.Candidates.EventFeedbackConsumer20261027.correctionAuthorized s now permits edit = true) :
+  JurisLean.Candidates.EventFeedbackConsumer20261027.lookup
+        (JurisLean.Candidates.EventFeedbackConsumer20261027.correct s now permits edit).post edit.supersedes.event =
+      some (JurisLean.Candidates.EventFeedbackConsumer20261027.correctedCell edit) ∧
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.correct s now permits edit).post.history =
+      s.history ++ [JurisLean.Candidates.EventFeedbackConsumer20261027.Change.corrected edit]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:28:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.approved_correction_replaces_exact_prior' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:29:0: JurisLean.Candidates.EventFeedbackConsumer20261027.successful_fit_reads_current_valid_sample {m : ℕ}
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ)) (out : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)
+  (accepted :
+    JurisLean.Candidates.EventFeedbackConsumer20261027.fitFromStore s protocol loss models =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.snapshot = s ∧
+    out.fitted.protocol = protocol ∧
+      out.fitted.sampleSize = (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows s).length ∧
+        out.fitted.table.length = m ∧
+          out.fitted.table ∈ models ∧
+            out.fitted.empiricalRisk =
+                JurisLean.Candidates.LearningERM20261027.empiricalScore
+                  (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss)
+                  (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingData s) out.fitted.table ∧
+              ∀ table ∈ models,
+                JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss)
+                    (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingData s) out.fitted.table ≤
+                  JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss)
+                    (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingData s) table
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:30:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.successful_fit_reads_current_valid_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:31:0: JurisLean.Candidates.EventFeedbackConsumer20261027.next_fit_consumes_actual_post {m : ℕ}
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (s : JurisLean.Candidates.EventFeedbackConsumer20261027.Store m)
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (accepted :
+    (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s change).disposition =
+        JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.inserted ∨
+      (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s change).disposition =
+          JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.replay ∨
+        (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s change).disposition =
+            JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.corrected ∨
+          (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s change).disposition =
+            JurisLean.Candidates.EventFeedbackConsumer20261027.Disposition.withdrawn) :
+  (JurisLean.Candidates.EventFeedbackConsumer20261027.processAndFit now permits s change protocol loss
+        models).candidate =
+    JurisLean.Candidates.EventFeedbackConsumer20261027.fitFromStore
+      (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s change).post protocol loss models
+info: JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean:32:0: 'JurisLean.Candidates.EventFeedbackConsumer20261027.next_fit_consumes_actual_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -13,6 +13,7 @@ created by the finite checker. Unknown/failed branches remain in the review.
 namespace JurisLean.Candidates.LegalActionDomain20261027
 
 open JurisLean.Candidates.Final20261021
+open JurisLean.Candidates.Final20261021.EvidenceProcedure
 open JurisLean.Candidates.SourceCompilation20261027
 open JurisLean.Candidates.CompilerProvenance20261027
 open JurisLean.Candidates.TemporalInterpretation20261027
@@ -79,14 +80,14 @@ theorem finite_row_checks_every_world_and_successor {W S : Type}
 def checkMeaning {W S : Type} (model : ActionModel W S) (truth : W → Nat → Bool)
     (before : S) (row : ActionMeaning) (worlds : List W) (procedure : Procedure) : Result Bool :=
   if worlds.isEmpty then .unknown .incompatibleFiber
-  else if row.requiresClosed && decide (procedure ≠ .closed) then .unknown .openMissingOpportunity
+  else if row.requiresClosed && decide (procedure ≠ .closedLawfully) then .unknown .openMissingOpportunity
   else .known (rowSafe model truth before row worlds)
 
 theorem accepted_meaning_has_nonempty_worlds_and_required_closure {W S : Type}
     (model : ActionModel W S) (truth : W → Nat → Bool) (before : S)
     (row : ActionMeaning) (worlds : List W) (procedure : Procedure)
     (accepted : checkMeaning model truth before row worlds procedure = .known true) :
-    worlds ≠ [] ∧ (row.requiresClosed = true → procedure = .closed) ∧
+    worlds ≠ [] ∧ (row.requiresClosed = true → procedure = .closedLawfully) ∧
       rowSafe model truth before row worlds = true := by
   unfold checkMeaning at accepted
   split at accepted
@@ -142,7 +143,7 @@ theorem branch_acceptance_uses_actual_worlds_and_unique_meaning {W S : Type}
           | nil => simp [rows] at accepted
           | cons row rest =>
               cases rest with
-              | nil => exact ⟨view, procedure, row, worldResult, processResult, rows,
+              | nil => exact ⟨view, procedure, row, rfl, rfl, rfl,
                   by simpa only [rows] using accepted⟩
               | cons other rest => simp [rows] at accepted
 
@@ -260,7 +261,7 @@ theorem domain_consumes_actual_validator {W S : Type} (input : LegalInput W)
   | known branches =>
       have filtered : proposal ∈ allowedProposals model input.truth before input.anchor.gamma
           branches proposals := by simpa only [review, inspected] using included
-      exact ⟨branches, inspected, (legal_domain_is_exact_filter_not_a_generator
+      exact ⟨branches, rfl, (legal_domain_is_exact_filter_not_a_generator
         model input.truth before input.anchor.gamma branches proposals proposal).mp filtered⟩
   | unknown e => simp [review, inspected] at included
   | rejected e => simp [review, inspected] at included

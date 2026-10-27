@@ -38,6 +38,7 @@ import JurisLean.Candidates.FiniteLegalValidationAudit20261027
 import JurisLean.Candidates.DecisionTrajectoryConsumerAudit20261027
 
 open JurisLean.Candidates.Final20261021
+open JurisLean.Candidates.Final20261021.EvidenceProcedure
 open JurisLean.Candidates.SourceCompilation20261027
 open JurisLean.Candidates.FiniteLegalValidation20261027
 open JurisLean.Candidates.IntervalDecisionConsumer20261027
@@ -121,7 +122,7 @@ def fixture (input : LegalInput (List Nat) := legalInput)
   | .known rows => decide (rows.map Prod.fst = [0, 1]) && rows.all (fun (_, result) =>
       match result with
       | .known report => (match report.horn with | .known _ => true | _ => false) &&
-          decide (report.procedure = .known Procedure.closed)
+          decide (report.procedure = .known Procedure.closedLawfully)
       | _ => false)
   | _ => false
 

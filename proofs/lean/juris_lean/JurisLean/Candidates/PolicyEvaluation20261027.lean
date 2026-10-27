@@ -295,21 +295,31 @@ theorem bounded_policy_winner_probability {Ω Z H : Type*}
     (W : ℝ) (positive : 0 < W)
     (bounded : ∀ h ∈ policies, ∀ z, score h z ∈ Set.Icc (0 : ℝ) W)
     (chosen : Ω → H) (member : ∀ w, chosen w ∈ policies)
+    (chosenValueMeasurable : Measurable (fun w => ∫ z, score (chosen w) z ∂P))
     (winner : ∀ w h, h ∈ policies →
       empiricalMean (fun i w' => score h (sample i w')) w ≤
         empiricalMean (fun i w' => score (chosen w) (sample i w')) w)
     (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+    MeasurableSet {w | ∀ h ∈ policies,
+      (∫ z, score h z ∂P) - (∫ z, score (chosen w) z ∂P) ≤
+        2 * (W * finiteRadius n policies.card δ)} ∧
     1 - δ ≤ μ.real {w | ∀ h ∈ policies,
       (∫ z, score h z ∂P) - (∫ z, score (chosen w) z ∂P) ≤
         2 * (W * finiteRadius n policies.card δ)} := by
-  have uniform := bounded_policy_score_uniform μ P hn policies nonempty sample
-    sampleMeasurable independent law score measurable W positive bounded δ hδ hδ1
-  apply le_trans uniform
-  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
-  intro w hw
-  exact empirical_policy_winner_regret policies (fun h => ∫ z, score h z ∂P)
-    (fun h => empiricalMean (fun i w' => score h (sample i w')) w)
-    (chosen w) (member w) (W * finiteRadius n policies.card δ) hw (winner w)
+  refine ⟨?_, ?_⟩
+  · have measurableEvent := policies.measurableSet_biInter
+      (f := fun h => {w | (∫ z, score h z ∂P) - (∫ z, score (chosen w) z ∂P) ≤
+        2 * (W * finiteRadius n policies.card δ)})
+      (fun _ _ => measurableSet_le (measurable_const.sub chosenValueMeasurable) measurable_const)
+    convert measurableEvent using 1 <;> ext w <;> simp
+  · have uniform := bounded_policy_score_uniform μ P hn policies nonempty sample
+      sampleMeasurable independent law score measurable W positive bounded δ hδ hδ1
+    apply le_trans uniform
+    apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+    intro w hw
+    exact empirical_policy_winner_regret policies (fun h => ∫ z, score h z ∂P)
+      (fun h => empiricalMean (fun i w' => score h (sample i w')) w)
+      (chosen w) (member w) (W * finiteRadius n policies.card δ) hw (winner w)
 
 end JurisLean.Candidates.PolicyEvaluation20261027
 

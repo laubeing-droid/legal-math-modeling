@@ -97,6 +97,21 @@ theorem closure_list_size_bound (rules : List (Rule Nat)) (fuel : Nat) (facts : 
       simp only [proposed_rule_input, Nat.succ_mul, advance_is_recorded_round]
       omega
 
+theorem carrier_round_bound (rules : List (Rule Nat)) (facts : List Nat) :
+    (finiteCarrier rules facts).card ≤ facts.length + rules.length := by
+  simpa only [finiteCarrier, List.length_append, List.length_map] using
+    List.toFinset_card_le (facts ++ rules.map Rule.conclusion)
+
+theorem total_trace_rule_count_bound (rules : List (Rule Nat)) (fuel : Nat) (facts : List Nat) :
+    ((traceRounds rules fuel facts).map List.length).sum ≤ fuel * rules.length := by
+  induction fuel generalizing facts with
+  | zero => simp [traceRounds]
+  | succ fuel ih =>
+      have tailBound := ih (advance rules facts)
+      have firstBound := enabled_count_bounded_by_rule_count rules facts
+      simp only [traceRounds, List.map_cons, List.sum_cons, Nat.succ_mul]
+      omega
+
 structure HornReport where
   source : SourceCompilation20261027.ExtractedView
   selectedVersion : Nat
@@ -299,7 +314,7 @@ inductive FailureWitness where
   | duplicateOpportunity
   | missingPremise (ruleReference atom : Nat)
   | queryNotDerived (atom : Nat)
-  | pendingEvidence (source : SourceRef)
+  | pendingEvidence (source : SourceRef) (query : Nat)
   | incompatibleWorlds
   | unresolved (reason : Error)
   | conflicting (left right : Nat)
@@ -327,11 +342,15 @@ def hornWitnesses (query : Nat) (rules : List RuleUse) (ruleGate : Gamma → Rul
   | .conflict l r => [.conflicting l r]
 
 def worldWitnesses {W : Type} : Result (EvidenceView W) → List FailureWitness
-  | .known out => out.pending.map FailureWitness.pendingEvidence ++
-      (if out.possibleWorlds.isEmpty then [.incompatibleWorlds] else [])
+  | .known out => if out.possibleWorlds.isEmpty then [.incompatibleWorlds] else []
   | .unknown e => [.unresolved e]
   | .rejected e => [.unresolved e]
   | .conflict l r => [.conflicting l r]
+
+-- Pending evidence about another atom can still change this query's worlds.
+def admissionWitnesses (bound : BoundData) : List FailureWitness :=
+  ((bound.supplement.evidence.map Quoted.value).filter fun e => decide (e.admissibility = .unknown)).map
+    (fun e => .pendingEvidence e.source e.query)
 
 structure ValidationReport (W : Type) where
   bound : BoundData
@@ -359,7 +378,7 @@ def inspectBound {W : Type} (bound : BoundData) (history : List VersionRecord)
     selected, horn, judgment bound.supplement.queryAtom (bound.supplement.evidence.map Quoted.value),
     checkProcess bound.policy.required (processInput bound.supplement.process bound.policy), worldView,
     procedureWitnesses bound ++ hornWitnesses bound.supplement.queryAtom rules ruleGate horn ++
-      worldWitnesses worldView⟩
+      worldWitnesses worldView ++ admissionWitnesses bound⟩
 
 def validate {W : Type} (s : MaterialSnapshot) (branch : Nat) (catalog : List InterpretationRow)
     (supplements : List Supplement) (policies : List ProcessPolicy) (history : List VersionRecord)
@@ -412,6 +431,38 @@ theorem inspected_closed_process_exhausts_independent_requirements {W : Type}
     ∀ o ∈ bound.policy.required, terminal (processInput bound.supplement.process bound.policy) o = true :=
   checked_closure_exhausts_independent_requirements _ _ closed
 
+theorem inspected_horn_is_applicable_and_complete {W : Type}
+    (bound : BoundData) (history : List VersionRecord) (versions : List Nat) (app : App)
+    (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool) (modelWorlds : List W)
+    (truth : W → Nat → Bool) (horn : HornReport)
+    (accepted : (inspectBound bound history versions app rules ruleGate modelWorlds truth).horn = .known horn) :
+    horn.selectedVersion = bound.source.material.gamma.normVersion ∧
+      app bound.source.material.gamma (visibleSet bound.source.material.gamma history) horn.selectedVersion = .yes ∧
+      ∀ a, a ∈ horn.closure ↔ Derives (· ∈ sourceFacts bound.source)
+        (· ∈ activeRules bound.source.material.gamma rules (selectedGate horn.selectedVersion ruleGate)) a := by
+  have flow := selected_horn_cannot_rewrite_original_context bound.source
+    (selectVersion bound.source.material.gamma history versions app) rules ruleGate horn accepted
+  have applicable := successful_version_is_applicable _ _ _ _ _ flow.1
+  refine ⟨flow.2.1, applicable.2, ?_⟩
+  intro a
+  have computed := full_horn_consumes_every_source_fact bound.source horn.selectedVersion rules ruleGate a
+  have sameClosure : horn.closure = (fullHorn bound.source horn.selectedVersion rules ruleGate).closure :=
+    congrArg HornReport.closure flow.2.2
+  rw [sameClosure]
+  exact computed
+
+theorem inspected_query_truth_requires_primitive_model {W : Type}
+    (bound : BoundData) (history : List VersionRecord) (versions : List Nat) (app : App)
+    (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool) (modelWorlds : List W)
+    (valuation : W → Nat → Bool) (horn : HornReport) (truth : Nat → Prop) (query : Nat)
+    (accepted : (inspectBound bound history versions app rules ruleGate modelWorlds valuation).horn = .known horn)
+    (model : Models (· ∈ sourceFacts bound.source)
+      (· ∈ activeRules bound.source.material.gamma rules (selectedGate horn.selectedVersion ruleGate)) truth)
+    (derived : query ∈ horn.closure) : truth query := by
+  have computed := (inspected_horn_is_applicable_and_complete bound history versions app rules ruleGate
+    modelWorlds valuation horn accepted).2.2 query
+  exact u03_1_relative_soundness model (computed.mp derived)
+
 theorem full_horn_worlds_keep_actual_truth_conditionally {W : Type}
     (view : ExtractedView) (selected : Nat) (rules : List RuleUse)
     (ruleGate : Gamma → RuleUse → Bool) (modelWorlds : List W) (truth : W → Nat → Bool)
@@ -424,5 +475,95 @@ theorem full_horn_worlds_keep_actual_truth_conditionally {W : Type}
       truth items := by
   apply faithful_evidence_retains_actual_world _ truth items actual _ faithful
   exact (horn_world_membership _ _ _ _).mpr ⟨covered, model⟩
+
+structure BranchCase where
+  key : Nat
+  material : MaterialSnapshot
+  parseBranch : Nat
+
+-- Interpretation and applicable norm may vary across explicit legal branches.
+-- Every other question/snapshot coordinate stays fixed; no Gamma is rewritten.
+def sameQuestionScope (a b : MaterialSnapshot) : Bool :=
+  decide (a.gamma.caseId = b.gamma.caseId ∧ a.gamma.caseRevision = b.gamma.caseRevision ∧
+    a.gamma.evidenceVersion = b.gamma.evidenceVersion ∧ a.gamma.jurisdiction = b.gamma.jurisdiction ∧
+    a.gamma.question = b.gamma.question ∧ a.gamma.lawDate = b.gamma.lawDate ∧
+    a.gamma.knowledgeCutoff = b.gamma.knowledgeCutoff ∧ a.gamma.recordCutoff = b.gamma.recordCutoff ∧
+    a.gamma.schemaVersion = b.gamma.schemaVersion ∧ a.gamma.observationFamily = b.gamma.observationFamily ∧
+    a.gamma.mechanismVersion = b.gamma.mechanismVersion ∧ a.parseVersion = b.parseVersion ∧
+    a.unitVersion = b.unitVersion ∧ a.fragments = b.fragments)
+
+def branchWorlds {W : Type} (key : Nat) (allowedPairs : List (Nat × W)) : List W :=
+  (allowedPairs.filter fun p => decide (p.1 = key)).map Prod.snd
+
+theorem branch_worlds_do_not_invent_cartesian_pairs {W : Type} (key : Nat)
+    (allowedPairs : List (Nat × W)) (w : W) :
+    w ∈ branchWorlds key allowedPairs ↔ (key, w) ∈ allowedPairs := by
+  constructor
+  · intro member
+    obtain ⟨⟨k, world⟩, selected, value⟩ := List.mem_map.mp member
+    have checked := List.mem_filter.mp selected
+    have same : k = key := of_decide_eq_true checked.2
+    subst k
+    change world = w at value
+    subst world
+    exact checked.1
+  · intro member
+    exact List.mem_map.mpr ⟨(key, w), List.mem_filter.mpr ⟨member, by simp⟩, rfl⟩
+
+def inspectBranch {W : Type} (anchor : MaterialSnapshot) (entry : BranchCase)
+    (catalog : List InterpretationRow) (supplements : List Supplement) (policies : List ProcessPolicy)
+    (history : List VersionRecord) (versions : List Nat) (app : App) (rules : List RuleUse)
+    (ruleGate : Gamma → RuleUse → Bool) (allowedPairs : List (Nat × W)) (truth : W → Nat → Bool) :
+    Result (ValidationReport W) :=
+  if sameQuestionScope anchor entry.material then
+    validate entry.material entry.parseBranch catalog supplements policies history versions app rules ruleGate
+      (branchWorlds entry.key allowedPairs) truth
+  else .rejected .scopeMismatch
+
+def validateFamily {W : Type} (anchor : MaterialSnapshot) (entries : List BranchCase)
+    (catalog : List InterpretationRow) (supplements : List Supplement) (policies : List ProcessPolicy)
+    (history : List VersionRecord) (versions : List Nat) (app : App) (rules : List RuleUse)
+    (ruleGate : Gamma → RuleUse → Bool) (allowedPairs : List (Nat × W)) (truth : W → Nat → Bool) :
+    Result (List (Nat × Result (ValidationReport W))) :=
+  if entries.isEmpty then .unknown .missingEvidence
+  else if (entries.map BranchCase.key).Nodup then
+    .known (entries.map fun entry => (entry.key, inspectBranch anchor entry catalog supplements policies
+      history versions app rules ruleGate allowedPairs truth))
+  else .rejected .observationBindingMismatch
+
+theorem family_retains_each_branch_including_failures {W : Type} (anchor : MaterialSnapshot)
+    (entries : List BranchCase) (catalog : List InterpretationRow) (supplements : List Supplement)
+    (policies : List ProcessPolicy) (history : List VersionRecord) (versions : List Nat) (app : App)
+    (rules : List RuleUse) (ruleGate : Gamma → RuleUse → Bool) (allowedPairs : List (Nat × W))
+    (truth : W → Nat → Bool) (out : List (Nat × Result (ValidationReport W)))
+    (accepted : validateFamily anchor entries catalog supplements policies history versions app rules ruleGate
+      allowedPairs truth = .known out) (entry : BranchCase) (member : entry ∈ entries) :
+    (entry.key, inspectBranch anchor entry catalog supplements policies history versions app rules ruleGate
+      allowedPairs truth) ∈ out := by
+  unfold validateFamily at accepted
+  split at accepted
+  next empty => cases accepted
+  next nonempty =>
+    split at accepted
+    next unique =>
+      cases accepted
+      exact List.mem_map.mpr ⟨entry, member, rfl⟩
+    next duplicate => cases accepted
+
+theorem pending_admission_is_reported_for_every_atom (bound : BoundData) (item : EvidenceItem)
+    (member : item ∈ bound.supplement.evidence.map Quoted.value)
+    (unresolved : item.admissibility = .unknown) :
+    FailureWitness.pendingEvidence item.source item.query ∈ admissionWitnesses bound := by
+  exact List.mem_map.mpr ⟨item, List.mem_filter.mpr ⟨member, by simp [unresolved]⟩, rfl⟩
+
+theorem omitted_opportunity_has_actual_failure_witness (bound : BoundData) (o : Nat)
+    (required : o ∈ bound.policy.required) (missing : o ∉ bound.supplement.process.domain) :
+    FailureWitness.omittedOpportunity o ∈ procedureWitnesses bound := by
+  have member := (missing_witness_is_an_actual_uncovered_requirement bound.policy.required
+    (processInput bound.supplement.process bound.policy) o).mpr ⟨required, missing⟩
+  simp only [procedureWitnesses, List.mem_append]
+  exact Or.inl (List.mem_map.mpr ⟨o, member, rfl⟩)
+
+end JurisLean.Candidates.FiniteLegalValidation20261027
 
 end JurisLean.Candidates.FiniteLegalValidation20261027

@@ -14,6 +14,10 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.enabled_count_bounded_by_rule_count
 #check JurisLean.Candidates.FiniteLegalValidation20261027.closure_list_size_bound
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.closure_list_size_bound
+#check JurisLean.Candidates.FiniteLegalValidation20261027.carrier_round_bound
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.carrier_round_bound
+#check JurisLean.Candidates.FiniteLegalValidation20261027.total_trace_rule_count_bound
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.total_trace_rule_count_bound
 #check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_consumes_every_source_fact
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_consumes_every_source_fact
 #check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_trace_is_checked
@@ -30,8 +34,21 @@ import JurisLean.Candidates.FiniteLegalValidation20261027
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.validator_consumes_actual_bound_source
 #check JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements
+#check JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete
+#check JurisLean.Candidates.FiniteLegalValidation20261027.inspected_query_truth_requires_primitive_model
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.inspected_query_truth_requires_primitive_model
 #check JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_worlds_keep_actual_truth_conditionally
 #print axioms JurisLean.Candidates.FiniteLegalValidation20261027.full_horn_worlds_keep_actual_truth_conditionally
+#check JurisLean.Candidates.FiniteLegalValidation20261027.branch_worlds_do_not_invent_cartesian_pairs
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.branch_worlds_do_not_invent_cartesian_pairs
+#check JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures
+#check JurisLean.Candidates.FiniteLegalValidation20261027.pending_admission_is_reported_for_every_atom
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.pending_admission_is_reported_for_every_atom
+#check JurisLean.Candidates.FiniteLegalValidation20261027.omitted_opportunity_has_actual_failure_witness
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.omitted_opportunity_has_actual_failure_witness
+
 
 
 open JurisLean.Candidates.Final20261021.Compiler
@@ -106,11 +123,11 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
 
 /-- info: true -/
 #guard_msgs in
-#eval match run with
+#eval match run supplement policy with
   | .known out => match out.horn, out.worldView with
     | .known horn, .known evidence => decide (horn.source.decoded.atoms.map Quoted.value = [1, 4] ∧
         2 ∈ horn.closure ∧ 5 ∈ horn.closure ∧ 10 ∉ horn.closure ∧
-        evidence.possibleWorldJudgment = .supported ∧ out.procedure = .known .closedLawfully ∧
+        evidence.possibleWorldJudgment = Judgment.supported ∧ out.procedure = Result.known Procedure.closedLawfully ∧
         out.bound.source.material.gamma.question = 3 ∧ out.bound.supplement.queryAtom = 2 ∧
         FailureWitness.missingPremise 52 9 ∈ out.failures)
     | _, _ => false
@@ -120,17 +137,18 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
 #guard_msgs in
 #eval match run { supplement with queryAtom := 7 } with
   | .known out => match out.worldView with
-    | .known evidence => decide (evidence.possibleWorldJudgment = .insufficient ∧
-        out.evidenceJudgment = .insufficient ∧ out.procedure = .known .closedLawfully ∧
+    | .known evidence => decide (evidence.possibleWorldJudgment = Judgment.insufficient ∧
+        out.evidenceJudgment = Judgment.insufficient ∧ out.procedure = Result.known Procedure.closedLawfully ∧
         FailureWitness.queryNotDerived 7 ∈ out.failures)
     | _ => false
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
-#eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 2, .yes, true, true⟩],
+#eval match run { supplement with
+    evidence := [quoted ⟨⟨1⟩, 2, .yes, true, true⟩]
     process := { rawClosed with records := [] } } with
-  | .known out => decide (out.evidenceJudgment = .supported ∧ out.procedure = .known .open ∧
+  | .known out => decide (out.evidenceJudgment = Judgment.supported ∧ out.procedure = Result.known Procedure.open ∧
       FailureWitness.unfinishedOpportunity 1 ∈ out.failures)
   | _ => false
 
@@ -139,49 +157,49 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
 #eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 2, .yes, true, true⟩,
     quoted ⟨⟨1⟩, 2, .yes, true, false⟩], process := { rawClosed with records := [] } } with
   | .known out => match out.worldView with
-    | .known evidence => decide (out.evidenceJudgment = .incompatible ∧
-        evidence.possibleWorldJudgment = .incompatible ∧ evidence.possibleWorlds = [] ∧
-        out.procedure = .known .open ∧ FailureWitness.incompatibleWorlds ∈ out.failures)
+    | .known evidence => decide (out.evidenceJudgment = Judgment.incompatible ∧
+        evidence.possibleWorldJudgment = Judgment.incompatible ∧ evidence.possibleWorlds = [] ∧
+        out.procedure = Result.known Procedure.open ∧ FailureWitness.incompatibleWorlds ∈ out.failures)
     | _ => false
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run { supplement with process := { rawClosed with records := [], blocked := true } } with
-  | .known out => decide (out.evidenceJudgment = .insufficient ∧ out.procedure = .known .blocked)
+  | .known out => decide (out.evidenceJudgment = Judgment.insufficient ∧ out.procedure = Result.known Procedure.blocked)
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run { supplement with process := { rawClosed with declaredRequired := [], domain := [], records := [] } } with
-  | .known out => decide (out.procedure = .rejected .scopeMismatch ∧
+  | .known out => decide (out.procedure = Result.rejected Error.scopeMismatch ∧
       FailureWitness.requiredMismatch ∈ out.failures ∧ FailureWitness.omittedOpportunity 1 ∈ out.failures)
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run supplement { policy with validClosures := [] } with
-  | .known out => decide (out.procedure = .known .open ∧ FailureWitness.missingClosureAuthority ∈ out.failures)
+  | .known out => decide (out.procedure = Result.known Procedure.open ∧ FailureWitness.missingClosureAuthority ∈ out.failures)
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run { supplement with process := { rawClosed with domain := [] } } with
-  | .known out => decide (out.procedure = .known .open ∧ FailureWitness.omittedOpportunity 1 ∈ out.failures)
+  | .known out => decide (out.procedure = Result.known Procedure.open ∧ FailureWitness.omittedOpportunity 1 ∈ out.failures)
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run { supplement with process := { rawClosed with records := [⟨1, 0, some ⟨11⟩, none, [1]⟩] } } with
-  | .known out => decide (out.procedure = .known .open ∧ FailureWitness.unfinishedOpportunity 1 ∈ out.failures)
+  | .known out => decide (out.procedure = Result.known Procedure.open ∧ FailureWitness.unfinishedOpportunity 1 ∈ out.failures)
   | _ => false
 
 /-- info: true -/
 #guard_msgs in
 #eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 7, .unknown, true, true⟩], queryAtom := 7 } with
   | .known out => match out.worldView with
-    | .known evidence => decide (evidence.pending = [⟨1⟩] ∧ evidence.possibleWorldJudgment = .insufficient ∧
-        FailureWitness.pendingEvidence ⟨1⟩ ∈ out.failures)
+    | .known evidence => decide (evidence.pending = [(⟨1⟩ : SourceRef)] ∧ evidence.possibleWorldJudgment = Judgment.insufficient ∧
+        FailureWitness.pendingEvidence ⟨1⟩ 7 ∈ out.failures)
     | _ => false
   | _ => false
 
@@ -203,7 +221,7 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
     (fun _ _ _ => .unknown) rules (fun _ _ => true) worlds valuation with
   | .known out => match out.horn, out.worldView with
     | .unknown .applicabilityUnknown, .unknown .applicabilityUnknown =>
-        decide (out.procedure = .known .closedLawfully ∧ out.pendingVersions = [8])
+        decide (out.procedure = Result.known Procedure.closedLawfully ∧ out.pendingVersions = [8])
     | _, _ => false
   | _ => false
 
@@ -226,7 +244,7 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
 /-- info: true -/
 #guard_msgs in
 #eval match run supplement { policy with validExecutions := [] } with
-  | .known out => decide (out.procedure = .known .open ∧ FailureWitness.unfinishedOpportunity 1 ∈ out.failures)
+  | .known out => decide (out.procedure = Result.known Procedure.open ∧ FailureWitness.unfinishedOpportunity 1 ∈ out.failures)
   | _ => false
 
 /-- info: true -/
@@ -240,9 +258,112 @@ def run (s : Supplement := supplement) (p : ProcessPolicy := policy) :
 #eval match validate material 0 [⟨material, 0, source⟩] [supplement] [policy] [] [8]
     app rules (fun _ _ => true) ([] : List (List Nat)) valuation with
   | .known out => match out.worldView with
-    | .known evidence => decide (evidence.possibleWorldJudgment = .incompatible ∧
+    | .known evidence => decide (evidence.possibleWorldJudgment = Judgment.incompatible ∧
         FailureWitness.incompatibleWorlds ∈ out.failures)
     | _ => false
   | _ => false
 
+def procedureTag (r : Result (ValidationReport (List Nat))) : Result Procedure :=
+  match r with
+  | .known out => out.procedure
+  | .unknown e => .unknown e
+  | .rejected e => .rejected e
+  | .conflict l r => .conflict l r
+
+def familyRun (entries : List BranchCase) : Result (List (Nat × Result (ValidationReport (List Nat)))) :=
+  validateFamily material entries [⟨material, 0, source⟩, ⟨material, 1, source⟩]
+    [supplement, { supplement with branch := 1, process := { rawClosed with records := [] } }]
+    [policy] [] [8] app rules (fun _ _ => true)
+    [(0, [1, 2, 4, 5]), (0, [1, 2, 4, 5, 7]), (1, [1, 2, 4, 5])] valuation
+
+/-- info: true -/
+#guard_msgs in
+#eval match familyRun [⟨0, material, 0⟩, ⟨1, material, 1⟩] with
+  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+      [(0, Result.known Procedure.closedLawfully), (1, Result.known Procedure.open)])
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match familyRun [⟨0, material, 0⟩, ⟨1, material, 99⟩] with
+  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+      [(0, Result.known Procedure.closedLawfully), (1, Result.unknown Error.missingEvidence)])
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match familyRun [⟨0, material, 0⟩,
+    ⟨1, { material with gamma := { context with knowledgeCutoff := ⟨99⟩ } }, 1⟩] with
+  | .known results => decide (results.map (fun p => (p.1, procedureTag p.2)) =
+      [(0, Result.known Procedure.closedLawfully), (1, Result.rejected Error.scopeMismatch)])
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match familyRun [⟨0, material, 0⟩, ⟨0, material, 1⟩] with
+  | .rejected .observationBindingMismatch => true
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match familyRun [] with
+  | .unknown .missingEvidence => true
+  | _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match run { supplement with evidence := [quoted ⟨⟨1⟩, 7, .unknown, true, false⟩] } with
+  | .known out => decide (out.bound.supplement.queryAtom = 2 ∧
+      FailureWitness.pendingEvidence ⟨1⟩ 7 ∈ out.failures)
+  | _ => false
+
+def history : List Temporal.VersionRecord :=
+  [⟨⟨1⟩, 8, "synthetic", 3, ⟨0⟩, some ⟨10⟩, ⟨0⟩, ⟨0⟩⟩,
+   ⟨⟨2⟩, 9, "synthetic", 3, ⟨10⟩, none, ⟨0⟩, ⟨0⟩⟩]
+
+def runAt (date : Int) (version : Nat) : Result (ValidationReport (List Nat)) :=
+  let g := { context with lawDate := ⟨date⟩, normVersion := version }
+  let m := { material with gamma := g }
+  validate m 0 [⟨m, 0, source⟩] [{ supplement with material := m }]
+    [{ policy with gamma := g }] history [8, 9] TemporalInterpretation20261027.intervalApp
+    [⟨50, 8, ⟨[1], 2⟩⟩, ⟨51, 9, ⟨[1], 6⟩⟩] (fun _ _ => true)
+    [[1, 2, 4], [1, 4, 6]] valuation
+
+/-- info: true -/
+#guard_msgs in
+#eval match runAt 5 8, runAt 12 9 with
+  | .known early, .known late => match early.horn, late.horn with
+    | .known old, .known newer => decide (old.selectedVersion = 8 ∧ newer.selectedVersion = 9 ∧
+        2 ∈ old.closure ∧ 6 ∉ old.closure ∧ 2 ∉ newer.closure ∧ 6 ∈ newer.closure)
+    | _, _ => false
+  | _, _ => false
+
+/-- info: true -/
+#guard_msgs in
+#eval match runAt 5 9 with
+  | .known out => match out.horn with
+    | .rejected .versionConflict => true
+    | _ => false
+  | _ => false
+
+theorem derivation_trace_does_not_prove_actual_source_truth :
+    2 ∈ replayTrace [1] (traceRounds [⟨[1], 2⟩] 2 [1]) ∧
+      (fun _ : Nat => false) 2 = false := by decide
+
+theorem observed_zero_amount_does_not_close_independent_process :
+    source.record.value.claimedAmount = 0 ∧
+      ProcedureClosure20261027.checkProcess policy.required
+        (processInput { rawClosed with records := [] } policy) = Result.known Procedure.open := by decide
+
+theorem allowed_pairs_reject_unlicensed_cross_combination :
+    branchWorlds 0 ([(0, false), (1, true)] : List (Nat × Bool)) = [false] ∧
+      true ∉ branchWorlds 0 ([(0, false), (1, true)] : List (Nat × Bool)) := by decide
+
 end JurisLean.Candidates.FiniteLegalValidation20261027.Audit
+
+#check JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth
+#check JurisLean.Candidates.FiniteLegalValidation20261027.Audit.observed_zero_amount_does_not_close_independent_process
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.Audit.observed_zero_amount_does_not_close_independent_process
+#check JurisLean.Candidates.FiniteLegalValidation20261027.Audit.allowed_pairs_reject_unlicensed_cross_combination
+#print axioms JurisLean.Candidates.FiniteLegalValidation20261027.Audit.allowed_pairs_reject_unlicensed_cross_combination

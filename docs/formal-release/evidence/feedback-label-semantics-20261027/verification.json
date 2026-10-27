@@ -1,0 +1,57 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "1ed7eae9d690f99278b0d4b1a3ef8a519c89ad8b",
+  "run_id": 40429431857,
+  "job_id": 121943232612,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
+  "named_count": 13,
+  "named_theorems_full": [
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.confirmed_observation_has_fixed_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.record_cell_preserves_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.observation_updates_preserve_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.valid_correction_has_fixed_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.corrections_preserve_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.update_keeps_target_scope_and_external_catalog",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.finite_feedback_preserves_fixed_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.empty_journal_has_no_unreliable_active_label",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.actual_fitted_sample_is_target_correct",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.actual_returned_candidate_preserves_label_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.record_cell_repairs_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.approved_correction_repairs_target",
+    "JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
+      "sha256": "da14d595d4d98547f8f6b5b9e725d51f515ef01299c9643e98cb583795382609"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
+      "sha256": "84dd940a1684b2a7725ce337342014329bad9d1b09a83e0869d19e7a123ca080"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 13,
+    "axiom_vocabulary": {
+      "Classical.choice": 2,
+      "Quot.sound": 8,
+      "propext": 11
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "2 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+  "run_id": 40489909383,
+  "job_id": 122140948062,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomainAudit20261027.lean",
+  "named_count": 22,
+  "named_theorems_full": [
+    "JurisLean.Candidates.LegalActionDomain20261027.meaning_row_binds_full_instructions",
+    "JurisLean.Candidates.LegalActionDomain20261027.finite_row_checks_every_world_and_successor",
+    "JurisLean.Candidates.LegalActionDomain20261027.accepted_meaning_has_nonempty_worlds_and_required_closure",
+    "JurisLean.Candidates.LegalActionDomain20261027.branch_acceptance_uses_actual_worlds_and_unique_meaning",
+    "JurisLean.Candidates.LegalActionDomain20261027.acceptance_binds_proposal_and_every_branch",
+    "JurisLean.Candidates.LegalActionDomain20261027.accepted_actual_branch_step_preserves_declared_invariant",
+    "JurisLean.Candidates.LegalActionDomain20261027.unresolved_branch_cannot_be_silently_removed",
+    "JurisLean.Candidates.LegalActionDomain20261027.legal_domain_is_exact_filter_not_a_generator",
+    "JurisLean.Candidates.LegalActionDomain20261027.domain_consumes_actual_validator",
+    "JurisLean.Candidates.LegalActionDomain20261027.selected_plan_was_approved_and_reproduces_the_decision",
+    "JurisLean.Candidates.LegalActionDomain20261027.no_selected_plan_preserves_all_business_state",
+    "JurisLean.Candidates.LegalActionDomain20261027.chosen_execution_uses_the_entire_approved_instruction_list",
+    "JurisLean.Candidates.LegalActionDomain20261027.execution_choice_preserves_reported_state_invariant",
+    "JurisLean.Candidates.LegalActionDomain20261027.complete_consumer_choice_has_actual_legal_validation",
+    "JurisLean.Candidates.LegalActionDomain20261027.indistinguishable_permission_prevents_sound_and_complete",
+    "JurisLean.Candidates.LegalActionDomain20261027.pure_filter_cannot_offer_an_unproposed_action",
+    "JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown",
+    "JurisLean.Candidates.LegalActionDomain20261027.Audit.schema_correct_can_be_normatively_forbidden",
+    "JurisLean.Candidates.LegalActionDomain20261027.Audit.checked_action_is_not_a_substituted_execution",
+    "JurisLean.Candidates.LegalActionDomain20261027.Audit.two_standalone_steps_need_the_actual_intermediate_state",
+    "JurisLean.Candidates.LegalActionDomain20261027.Audit.inaction_does_not_remove_deadline_loss",
+    "JurisLean.Candidates.LegalActionDomain20261027.Audit.syntax_and_proof_do_not_establish_external_fact_fidelity"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean",
+      "sha256": "72a239572366bbf5ae0f67b41419e06a54dad2e804f309f20c0157751b00ee2f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomainAudit20261027.lean",
+      "sha256": "aa24e219e4639f44b9e0fd12d150c78895b1ba336cb75baa78995c39f804f887"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 22,
+    "axiom_vocabulary": {
+      "Classical.choice": 7,
+      "Quot.sound": 12,
+      "propext": 16
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "29 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

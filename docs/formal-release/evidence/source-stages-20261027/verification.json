@@ -1,0 +1,92 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+  "run_id": 40468260025,
+  "job_id": 122068840408,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+  "named_count": 28,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain",
+    "JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified",
+    "JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows",
+    "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+    "JurisLean.Candidates.SourceStages20261027.quantity_step_is_existing_ledger_step",
+    "JurisLean.Candidates.SourceStages20261027.payment_preserves_complete_nonquantity_fields",
+    "JurisLean.Candidates.SourceStages20261027.scalar_and_item_projections_commute",
+    "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+    "JurisLean.Candidates.SourceStages20261027.adjacent_formation_projection",
+    "JurisLean.Candidates.SourceStages20261027.two_payments_balance_and_cash",
+    "JurisLean.Candidates.SourceStages20261027.frame_contains_actual_computed_stages",
+    "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+    "JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction",
+    "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+    "JurisLean.Candidates.SourceStages20261027.independent_local_witnesses_iff_tuple",
+    "JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts",
+    "JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber",
+    "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts",
+    "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+    "JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact",
+    "JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts",
+    "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+    "JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts",
+    "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+    "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+    "JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 28,
+    "axiom_vocabulary": {
+      "Classical.choice": 20,
+      "Quot.sound": 21,
+      "propext": 22
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "22 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

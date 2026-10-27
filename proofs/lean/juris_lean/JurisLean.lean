@@ -66,6 +66,7 @@ import JurisLean.Candidates.AdaptiveValidation20261027
 import JurisLean.Candidates.CalibrationSemantics20261027
 import JurisLean.Candidates.CompilerClosure20261026
 import JurisLean.Candidates.CompilerProvenance20261027
+import JurisLean.Candidates.CurrentContextRollback20261027
 import JurisLean.Candidates.DecisionTrajectoryConsumer20261027
 import JurisLean.Candidates.EventFeedbackConsumer20261027
 import JurisLean.Candidates.FeedbackLabelSemantics20261027

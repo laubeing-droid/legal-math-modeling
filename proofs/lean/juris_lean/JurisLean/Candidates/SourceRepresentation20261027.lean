@@ -131,7 +131,7 @@ def terminalBalance (payments : List ℚ) : ℚ := max (10 - payments.sum) 0
 
 theorem same_balance_does_not_identify_history :
     terminalBalance [10] = terminalBalance [4, 3, 3] ∧
-    ([10] : List ℚ) ≠ [4, 3, 3] := by decide
+    ([10] : List ℚ) ≠ [4, 3, 3] := by norm_num [terminalBalance]
 
 -- Literal preservation on an image says nothing about points outside that image.
 theorem preservation_without_reflection :

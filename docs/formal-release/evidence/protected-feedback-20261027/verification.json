@@ -1,0 +1,71 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "fece078f7ae6defe0c6e7cd55e021867efb89ae7",
+  "run_id": 40434490740,
+  "job_id": 121959790710,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+  "named_count": 12,
+  "named_theorems_full": [
+    "JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event",
+    "JurisLean.Candidates.ProtectedFeedback20261027.finite_radius_mono_models",
+    "JurisLean.Candidates.ProtectedFeedback20261027.verified_radius_covers_fixed_class",
+    "JurisLean.Candidates.ProtectedFeedback20261027.evaluation_is_actual_input_and_computation",
+    "JurisLean.Candidates.ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class",
+    "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_checks_every_actual_domain",
+    "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk",
+    "JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement",
+    "JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement",
+    "JurisLean.Candidates.ProtectedFeedback20261027.sampled_block_uses_exact_losses",
+    "JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence",
+    "JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
+      "sha256": "17a49e86e85d1c32d18d1f8b7105a6b3a75e6242a72758156312168f9f0564d2"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+      "sha256": "9fdeef9816023d6fc3110cb17a978e45f7d9f7ecc7460b0e4d790d334bf05da6"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 12,
+      "Quot.sound": 12,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "17 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

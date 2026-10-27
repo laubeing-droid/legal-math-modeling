@@ -1,0 +1,197 @@
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:3:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).post.gamma =
+      s.gamma ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+              permit).post.principal =
+        s.principal ∧
+      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+                permit).post.lossVersion =
+          s.lossVersion ∧
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                authorityCatalog permit).post.journal =
+          s.journal
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:4:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:5:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.every_activation_attempt_retains_history {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m) :
+  ∃ entry,
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).post.history =
+      s.history ++ [entry]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:6:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.every_activation_attempt_retains_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:7:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.refusal_keeps_actual_prediction {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (refused :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status ≠
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+            authorityCatalog permit).post =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).readback =
+        none ∧
+      ∀ (query : Fin m),
+        JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded
+            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                authorityCatalog permit).post
+            query =
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded s query
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:8:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.refusal_keeps_actual_prediction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:9:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  evaluation.parent = JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    evaluation.candidate.snapshot = s.journal ∧
+      JurisLean.Candidates.ProtectedFeedback20261027.evaluate evaluation.plan evaluation.parent evaluation.candidate
+            JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss evaluation.blocks =
+          JurisLean.Candidates.Final20261021.Result.known evaluation ∧
+        evaluation.passesBounds = true ∧
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.samplingMatches samplingCatalog evaluation receipt = true ∧
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.loadAllowed authorityCatalog s evaluation permit = true ∧
+              JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                        authorityCatalog permit).post =
+                  evaluation.candidate ∧
+                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                      authorityCatalog permit).readback =
+                  some
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                          authorityCatalog permit).post)
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:10:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:11:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.replaced_candidate_does_not_reuse_old_permit {m : ℕ}
+  (catalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (changed : permit.evaluation ≠ evaluation) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.loadAllowed catalog s evaluation permit = false
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:12:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.replaced_candidate_does_not_reuse_old_permit' depends on axioms: [propext]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:13:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (risk : ℕ → List ℚ → ℝ)
+  (confidence :
+    ∀ block ∈ evaluation.blocks,
+      ∀ model ∈ evaluation.plan.models,
+        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk
+                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss block model) -
+              risk block.domain model| ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length
+            evaluation.plan.models.toFinset.card ↑block.delta)
+  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :
+  block ∈ evaluation.blocks →
+    risk block.domain
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                  authorityCatalog permit).post).fitted.table ≤
+      risk block.domain (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table +
+        ↑block.tolerance
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:14:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:15:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.changed_validation_snapshot_does_not_reuse_sampling_receipt {m : ℕ}
+  (catalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (changed : receipt.blocks ≠ evaluation.blocks) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.samplingMatches catalog evaluation receipt = false
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:16:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.changed_validation_snapshot_does_not_reuse_sampling_receipt' depends on axioms: [propext]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:17:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.next_candidate_consumes_current_loaded_and_actual_post {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (correctionPermits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (proposals : List (List ℚ))
+  (lossSame : protocol.lossVersion = s.lossVersion) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+          proposals).parent =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+            proposals).models =
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table :: proposals ∧
+      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+              proposals).candidate =
+          (JurisLean.Candidates.EventFeedbackConsumer20261027.processAndFit now correctionPermits s.journal change
+              protocol JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+              ((JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table :: proposals)).candidate ∧
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+                  proposals).post.journal =
+            (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now correctionPermits s.journal
+                change).post ∧
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+                  proposals).post =
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:18:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.next_candidate_consumes_current_loaded_and_actual_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:19:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (correctionPermits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (proposals : List (List ℚ)) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).parent =
+      evaluation.candidate ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).models =
+      evaluation.candidate.fitted.table :: proposals
+info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:20:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

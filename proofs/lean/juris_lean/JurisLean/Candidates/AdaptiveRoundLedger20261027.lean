@@ -95,8 +95,9 @@ def beginAdaptiveRound {m : Nat} (s : RoundState m) (now : Instant)
   if s.pending.isSome ∨ s.horizon ≤ s.records.length then s
   else
     let prepared := prepareNext s.service now correctionPermits change protocol s.learner.proposals
-    { s with service := prepared.post, pending := some
-      ⟨s.learner, now, s.records.length, prepared, { plan with models := prepared.models }⟩ }
+    let declared : RoundDeclaration m :=
+      ⟨s.learner, now, s.records.length, prepared, { plan with models := prepared.models }⟩
+    { s with service := prepared.post, pending := some declared }
 
 def emptyRoundRecord {m : Nat} (d : RoundDeclaration m) (r : RoundRequest m)
     (status : RoundStatus) : RoundRecord m :=
@@ -131,10 +132,10 @@ def assessAdaptiveRound {m : Nat} (s : RoundState m) (d : RoundDeclaration m)
     | _ => emptyRoundRecord d r .generationUnresolved
 
 def appendRoundRecord {m : Nat} (s : RoundState m) (record : RoundRecord m) : RoundState m :=
-  { s with service := match record.load with
-      | some outcome => outcome.post
-      | none => s.service
-    records := s.records ++ [record], pending := none }
+  let actualPost := match record.load with
+    | some outcome => outcome.post
+    | none => s.service
+  { s with service := actualPost, records := s.records ++ [record], pending := none }
 
 structure RoundOutcome (m : Nat) where
   status : RoundStatus
@@ -202,10 +203,10 @@ theorem evaluated_round_spends_its_actual_block_budget {m : Nat}
     (computed : (assessAdaptiveRound s d r samples permits).status = .evaluated) :
     (assessAdaptiveRound s d r samples permits).charge =
       (r.blocks.map DomainBlock.delta).sum := by
-  unfold assessAdaptiveRound at computed ⊢
-  split_ifs at computed ⊢ <;> simp_all [emptyRoundRecord, roundCost]
-  all_goals split at computed ⊢ <;> simp_all [emptyRoundRecord, roundCost]
-  all_goals split at computed ⊢ <;> simp_all [emptyRoundRecord, roundCost]
+  cases candidateEq : d.prepared.candidate <;>
+    simp only [assessAdaptiveRound, candidateEq] at computed ⊢
+  all_goals split_ifs at computed ⊢ <;> try simp_all [emptyRoundRecord, roundCost]
+  all_goals split at computed <;> simp_all [emptyRoundRecord, roundCost]
 
 theorem assessed_round_stays_within_budget {m : Nat}
     (s : RoundState m) (d : RoundDeclaration m) (r : RoundRequest m)
@@ -213,10 +214,10 @@ theorem assessed_round_stays_within_budget {m : Nat}
     (bounded : roundSpent s ≤ s.limit) :
     0 ≤ (assessAdaptiveRound s d r samples permits).charge ∧
     roundSpent s + (assessAdaptiveRound s d r samples permits).charge ≤ s.limit := by
-  unfold assessAdaptiveRound
-  split_ifs <;> simp_all [emptyRoundRecord]
-  all_goals split <;> simp_all [emptyRoundRecord]
-  all_goals split <;> simp_all [emptyRoundRecord]
+  cases candidateEq : d.prepared.candidate <;>
+    simp only [assessAdaptiveRound, candidateEq]
+  all_goals split_ifs <;> try simp_all [emptyRoundRecord]
+  all_goals first | assumption | (split <;> simp_all [emptyRoundRecord])
 
 theorem finish_round_preserves_budget {m : Nat} (s : RoundState m) (r : RoundRequest m)
     (samples : List (SamplingReceipt m)) (permits : List (LoadPermit m))
@@ -303,10 +304,10 @@ theorem assessed_load_comes_from_actual_activation {m : Nat}
     (actualEvaluation : (assessAdaptiveRound s d r samples permits).evaluation = some (.known evaluation))
     (actualLoad : (assessAdaptiveRound s d r samples permits).load = some loaded) :
     loaded = activate s.service evaluation samples r.sampling permits r.permit := by
-  unfold assessAdaptiveRound at actualEvaluation actualLoad
-  split_ifs at actualEvaluation actualLoad <;> simp_all [emptyRoundRecord]
-  all_goals split at actualEvaluation actualLoad <;> simp_all [emptyRoundRecord]
-  all_goals split at actualEvaluation actualLoad <;> simp_all [emptyRoundRecord]
+  cases candidateEq : d.prepared.candidate <;>
+    simp only [assessAdaptiveRound, candidateEq] at actualEvaluation actualLoad
+  all_goals split_ifs at actualEvaluation actualLoad <;> try simp_all [emptyRoundRecord]
+  all_goals split at actualEvaluation <;> simp_all [emptyRoundRecord]
 
 theorem recorded_load_is_actual_next_service {m : Nat}
     (s : RoundState m) (record : RoundRecord m) (loaded : LoadOutcome m)
@@ -333,14 +334,17 @@ theorem every_round_action_keeps_budget_bound {m : Nat}
     roundSpent (applyRoundAction s action) ≤ s.limit := by
   cases action with
   | generate now permits change protocol plan =>
-      unfold applyRoundAction beginAdaptiveRound
+      simp only [applyRoundAction]
+      unfold beginAdaptiveRound
       split <;> exact ⟨rfl, bounded⟩
   | learner next catalog permit =>
-      unfold applyRoundAction changeRoundLearner
+      simp only [applyRoundAction]
+      unfold changeRoundLearner
       split <;> exact ⟨rfl, bounded⟩
   | assess r samples permits =>
+      simp only [applyRoundAction]
       refine ⟨?_, finish_round_preserves_budget s r samples permits bounded⟩
-      unfold applyRoundAction finishAdaptiveRound
+      unfold finishAdaptiveRound
       split
       · split <;> rfl
       · split_ifs <;> try rfl

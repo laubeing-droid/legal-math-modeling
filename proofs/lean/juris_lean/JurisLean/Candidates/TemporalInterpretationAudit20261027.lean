@@ -121,7 +121,7 @@ theorem time_cut_alone_does_not_choose_law :
     selectVersion early lateHistory [8, 9] (fun _ _ v => if v = 8 then .yes else .no) = .known 8 ∧
     selectVersion early lateHistory [8, 9] (fun _ _ v => if v = 9 then .yes else .no) = .known 9 := by decide
 
-def partial : PartialVersion := ⟨⟨2⟩, 9, "synthetic", 3, ⟨0⟩, none, ⟨1⟩, none⟩
+def partialRecord : PartialVersion := ⟨⟨2⟩, 9, "synthetic", 3, ⟨0⟩, none, ⟨1⟩, none⟩
 def options (_ : Unit) : List Nat := [8, 9]
 def sameAnswer (v : Nat) (_ : Unit) (q : Bool) : Nat := if q then v else 0
 
@@ -195,18 +195,18 @@ def isKnown : Result TimedCompilation → Bool
 
 /-- info: true -/
 #guard_msgs in
-#eval decide (knownAtAlternatives early [record 1 8 0 none 1 1] [8, 9] exceptionApp partial [⟨1⟩, ⟨3⟩] =
+#eval decide (knownAtAlternatives early [record 1 8 0 none 1 1] [8, 9] exceptionApp partialRecord [⟨1⟩, ⟨3⟩] =
   [(Result.known 9 : Result Nat), (Result.known 8 : Result Nat)])
 
 /-- info: true -/
 #guard_msgs in
-#eval decide (knownAtAlternatives early [record 1 8 0 none 1 1] [8, 9] exceptionApp partial [] =
+#eval decide (knownAtAlternatives early [record 1 8 0 none 1 1] [8, 9] exceptionApp partialRecord [] =
   [(Result.unknown Error.missingEvidence : Result Nat)])
 
 /-- info: true -/
 #guard_msgs in
 #eval decide (knownAtAlternatives early [record 1 8 0 none 1 1] [8, 9] exceptionApp
-  { partial with knownAt := some ⟨3⟩ } [⟨1⟩] = [(Result.known 8 : Result Nat)])
+  { partialRecord with knownAt := some ⟨3⟩ } [⟨1⟩] = [(Result.known 8 : Result Nat)])
 
 /-- info: true -/
 #guard_msgs in

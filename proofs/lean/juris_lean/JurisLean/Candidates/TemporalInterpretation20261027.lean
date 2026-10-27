@@ -312,9 +312,15 @@ theorem timed_compiler_consumes_selected_version (s : MaterialSnapshot)
   | known version =>
       by_cases sameVersion : version = s.gamma.normVersion
       · cases compiled : compileView s branch catalog rules (selectedGate version ruleGate) nodes root query with
-        | unknown e => simp [compileTimed, selected, sameVersion, compiled] at accepted
-        | rejected e => simp [compileTimed, selected, sameVersion, compiled] at accepted
-        | conflict l r => simp [compileTimed, selected, sameVersion, compiled] at accepted
+        | unknown e =>
+            simp only [compileTimed, selected, if_pos sameVersion, compiled] at accepted
+            cases accepted
+        | rejected e =>
+            simp only [compileTimed, selected, if_pos sameVersion, compiled] at accepted
+            cases accepted
+        | conflict l r =>
+            simp only [compileTimed, selected, if_pos sameVersion, compiled] at accepted
+            cases accepted
         | known result =>
             simp only [compileTimed, selected, if_pos sameVersion, compiled, Result.known.injEq] at accepted
             cases accepted

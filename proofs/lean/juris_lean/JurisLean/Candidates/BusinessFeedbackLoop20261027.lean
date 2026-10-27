@@ -257,7 +257,20 @@ def prepareQueued {m : Nat} (state : RoundState m) (input : FeedbackInput m)
 
 def unpreparedQueue {m : Nat} (queue : List (PolicyObservation m))
     (prepared : Result (RoundState m)) : List (PolicyObservation m) :=
-  match prepared with | .known _ => queue.tail | _ => queue
+  match prepared with
+  | .known next => match next.pending with
+      | some declared =>
+          if declared.prepared.observation.disposition = .invalidObservation then queue
+          else queue.tail
+      | none => queue
+  | _ => queue
+
+theorem unconfirmed_observation_remains_available_for_retry {m : Nat}
+    (queue : List (PolicyObservation m)) (next : RoundState m) (declared : RoundDeclaration m)
+    (pending : next.pending = some declared)
+    (unconfirmed : declared.prepared.observation.disposition = .invalidObservation) :
+    unpreparedQueue queue (.known next) = queue := by
+  simp [unpreparedQueue, pending, unconfirmed]
 
 theorem deferred_queue_keeps_every_unprocessed_row {m : Nat}
     (state : RoundState m) (input : FeedbackInput m) (row : PolicyObservation m)

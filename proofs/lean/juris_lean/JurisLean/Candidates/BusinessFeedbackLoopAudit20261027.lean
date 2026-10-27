@@ -22,6 +22,8 @@ import JurisLean.Candidates.MeasuredPolicyAudit20261027
 #print axioms JurisLean.Candidates.BusinessFeedbackLoop20261027.prepared_feedback_uses_actual_observation
 #check JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget
 #print axioms JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_observation_keeps_risk_budget
+#check JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry
+#print axioms JurisLean.Candidates.BusinessFeedbackLoop20261027.unconfirmed_observation_remains_available_for_retry
 #check JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row
 #print axioms JurisLean.Candidates.BusinessFeedbackLoop20261027.deferred_queue_keeps_every_unprocessed_row
 #check JurisLean.Candidates.BusinessFeedbackLoop20261027.preparing_queue_keeps_risk_budget
@@ -321,7 +323,26 @@ def assessed (state : State 2) (fallback : Evaluation 2) : State 2 :=
   decide (lookup out.continuation.post.learning.service.journal ⟨100⟩ = none ∧
     out.continuation.post.learning.service.journal = unconfirmed.learning.service.journal ∧
     out.continuation.post.learning.service.loaded = unconfirmed.learning.service.loaded ∧
-    out.continuation.post.observationHistory.length = 1))
+    out.continuation.post.observationHistory.length = 1 ∧ out.continuation.post.feedbackQueue.length = 1))
+
+/-- info: true -/
+#guard_msgs in
+#eval ValidatedFeedbackLoadFixture.check (fun service evaluation =>
+  let state := initial service
+  let unconfirmed := {state with learning := {state.learning with service :=
+    {state.learning.service with journal := {state.learning.service.journal with
+      confirmations := service.journal.confirmations}}}}
+  let observed := (episode unconfirmed (action unconfirmed) (measurement 0) policy feedback).continuation.post
+  let finished := assessed observed evaluation
+  -- An independently supplied source catalog now includes the exact same row.
+  let confirmed := {finished with learning := {finished.learning with service :=
+    {finished.learning.service with journal := {finished.learning.service.journal with
+      confirmations := confirmation 0 :: finished.learning.service.journal.confirmations}}}}
+  let retried := retryFeedback confirmed feedback
+  decide (finished.feedbackQueue.length = 1 ∧ roundSpent finished.learning = 0 ∧
+    retried.feedbackQueue = [] ∧ retried.learning.pending.isSome ∧
+    (lookup retried.learning.service.journal ⟨100⟩).map (fun cell => cell.state) = some (.active 1 true) ∧
+    retried.business = finished.business))
 
 def procedureMeasurement (id : Nat) : MeasurementInput 2 :=
   let d := {MeasuredPolicyFixture.dictionary id with context := LoadedLegalConsumer20261027.Audit.gamma}

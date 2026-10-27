@@ -34,7 +34,7 @@ theorem full_selection_kernel_normalized {X U A : Type*}
       (∑ s : Bool, selectionJoint mass latent assignment recording x u a s) =
         mass x * latent x u * assignment x a := by
     simp only [selectionJoint, ← Finset.mul_sum, retention_mass_sum, mul_one]
-  simp_rw [selectedSum, ← Finset.mul_sum, assignmentTotal, mul_one, latentTotal, massTotal]
+  simp only [selectedSum, ← Finset.mul_sum, assignmentTotal, mul_one, latentTotal, massTotal]
 
 theorem full_selection_kernel_nonnegative {X U A : Type*}
     (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
@@ -58,6 +58,71 @@ def interventionValue {X U A : Type*} [Fintype X] [Fintype U]
     (mass : X → ℚ) (latent : X → U → ℚ) (response : X → U → A → ℚ)
     (action : A) : ℚ :=
   ∑ x, mass x * ∑ u, latent x u * response x u action
+
+
+-- This ratio uses the actual observed joint kernel, with S marginalized out.
+-- A conditional mean is interpreted only on a nonzero conditioning cell.
+def observedCellMean {X U A : Type*} [Fintype U]
+    (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+    (response : X → U → A → ℚ) (x : X) (action : A) : ℚ :=
+  (∑ u, ∑ selected : Bool,
+    selectionJoint mass latent assignment recording x u action selected * response x u action) /
+  (∑ u, ∑ selected : Bool,
+    selectionJoint mass latent assignment recording x u action selected)
+
+theorem observed_cell_mean_equals_potential_mean {X U A : Type*} [Fintype U]
+    (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+    (response : X → U → A → ℚ) (x : X) (action : A)
+    (latentTotal : ∑ u, latent x u = 1) (populated : mass x ≠ 0)
+    (support : assignment x action ≠ 0) :
+    observedCellMean mass latent assignment recording response x action =
+      ∑ u, latent x u * response x u action := by
+  have marginal (u : U) :
+      (∑ selected : Bool, selectionJoint mass latent assignment recording x u action selected) =
+        mass x * latent x u * assignment x action := by
+    simp only [selectionJoint, ← Finset.mul_sum, retention_mass_sum, mul_one]
+  have denominator :
+      (∑ u, ∑ selected : Bool, selectionJoint mass latent assignment recording x u action selected) =
+        mass x * assignment x action := by
+    simp_rw [marginal]
+    calc
+      _ = ∑ u, (mass x * assignment x action) * latent x u := by
+        apply Finset.sum_congr rfl
+        intro u _
+        ring
+      _ = _ := by rw [← Finset.mul_sum, latentTotal, mul_one]
+  have numerator :
+      (∑ u, ∑ selected : Bool,
+        selectionJoint mass latent assignment recording x u action selected * response x u action) =
+        (mass x * assignment x action) * ∑ u, latent x u * response x u action := by
+    simp_rw [← Finset.sum_mul, marginal]
+    rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro u _
+    ring
+  unfold observedCellMean
+  rw [numerator, denominator]
+  field_simp [populated, support]
+
+theorem finite_observed_g_formula {X U : Type*} [Fintype X] [Fintype U]
+    (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → Bool → ℚ)
+    (response : X → U → Bool → ℚ) (latentTotal : ∀ x, ∑ u, latent x u = 1)
+    (support : ∀ x, mass x ≠ 0 → ∀ action, assignment x action ≠ 0) :
+    interventionValue mass latent response true - interventionValue mass latent response false =
+      ∑ x, mass x * (observedCellMean mass latent assignment recording response x true -
+        observedCellMean mass latent assignment recording response x false) := by
+  unfold interventionValue
+  rw [← Finset.sum_sub_distrib]
+  apply Finset.sum_congr rfl
+  intro x _
+  by_cases zero : mass x = 0
+  · simp [zero]
+  · rw [observed_cell_mean_equals_potential_mean mass latent assignment recording response x true
+        (latentTotal x) zero (support x zero true),
+      observed_cell_mean_equals_potential_mean mass latent assignment recording response x false
+        (latentTotal x) zero (support x zero false)]
+    ring
+
 
 -- Both treatment support and recording support are needed on populated X.
 -- No denominator condition is imposed on genuinely zero-mass strata.
@@ -130,12 +195,19 @@ def selectionEffect (potential : Bool → SelectionAtom → Bool) : ℚ :=
 theorem selection_countermodels_have_identical_visible_law :
     ∀ a s : Bool, ∀ y : Option Bool,
       visibleSelectionMass colliderVisible (a, s, y) =
-        visibleSelectionMass directVisible (a, s, y) := by decide
+        visibleSelectionMass directVisible (a, s, y) := by
+  intro a s y
+  fin_cases a <;> fin_cases s <;> fin_cases y <;>
+    norm_num [visibleSelectionMass, Fintype.sum_prod_type, Fintype.sum_bool,
+      colliderVisible, directVisible]
 
 theorem selected_association_is_not_population_effect :
     selectedVisibleMean colliderVisible true - selectedVisibleMean colliderVisible false = 1 ∧
     selectedVisibleMean directVisible true - selectedVisibleMean directVisible false = 1 ∧
-    selectionEffect colliderPotential = 0 ∧ selectionEffect directPotential = 1 := by decide
+    selectionEffect colliderPotential = 0 ∧ selectionEffect directPotential = 1 := by
+  norm_num [selectedVisibleMean, visibleSelectionMass, selectionEffect,
+    selectionInterventionMean, Fintype.sum_prod_type, Fintype.sum_bool,
+    colliderVisible, directVisible, colliderPotential, directPotential, Behavior.indicator]
 
 theorem no_visible_law_estimator_identifies_both
     (estimator : (SelectionVisible → ℚ) → ℚ) :
@@ -175,31 +247,50 @@ def sourceMix (x : Bool) : ℚ := if x then 1/5 else 4/5
 def targetMix (x : Bool) : ℚ := if x then 4/5 else 1/5
 def stableGroupEffect (x : Bool) : ℚ := if x then -3/10 else 3/10
 
+def sourceGroupMean (x action : Bool) : ℚ :=
+  if x then (if action then 3/10 else 3/5)
+  else (if action then 7/10 else 2/5)
+
+def effectOfMean (mean : Bool → Bool → ℚ) (x : Bool) : ℚ :=
+  mean x true - mean x false
+
 theorem actual_transport_reweights_the_target :
     populationEffect sourceMix stableGroupEffect = 9/50 ∧
     transportedValue sourceMix targetMix stableGroupEffect = -9/50 ∧
     targetMix false / sourceMix false = 1/4 ∧
-    targetMix true / sourceMix true = 4 := by decide
+    targetMix true / sourceMix true = 4 := by
+  norm_num [populationEffect, transportedValue, Fintype.sum_bool,
+    sourceMix, targetMix, stableGroupEffect]
 
 -- Source observables and the target X law stay fixed. The target outcome
 -- mechanism is unobserved; changing it can give effect 1 instead of -0.18.
 structure TransportScenario where
   sourceDistribution : Bool → ℚ
-  sourceEffects : Bool → ℚ
+  sourceMeans : Bool → Bool → ℚ
   targetDistribution : Bool → ℚ
-  targetEffects : Bool → ℚ
+  targetMeans : Bool → Bool → ℚ
 
 def transportVisible (w : TransportScenario) :=
-  (w.sourceDistribution, w.sourceEffects, w.targetDistribution)
+  (w.sourceDistribution, w.sourceMeans, w.targetDistribution)
 
-def stableScenario : TransportScenario := ⟨sourceMix, stableGroupEffect, targetMix, stableGroupEffect⟩
-def changedScenario : TransportScenario := ⟨sourceMix, stableGroupEffect, targetMix, fun _ => 1⟩
+def stableScenario : TransportScenario := ⟨sourceMix, sourceGroupMean, targetMix, sourceGroupMean⟩
+def changedScenario : TransportScenario :=
+  ⟨sourceMix, sourceGroupMean, targetMix, fun _ action => Behavior.indicator action⟩
 
 theorem source_and_target_mix_do_not_identify_new_effect :
     transportVisible stableScenario = transportVisible changedScenario ∧
-    populationEffect stableScenario.targetDistribution stableScenario.targetEffects = -9/50 ∧
-    populationEffect changedScenario.targetDistribution changedScenario.targetEffects = 1 := by
-  refine ⟨rfl, ?_, ?_⟩ <;> decide
+    (∀ x action, 0 ≤ stableScenario.targetMeans x action ∧ stableScenario.targetMeans x action ≤ 1 ∧
+      0 ≤ changedScenario.targetMeans x action ∧ changedScenario.targetMeans x action ≤ 1) ∧
+    populationEffect stableScenario.targetDistribution (effectOfMean stableScenario.targetMeans) = -9/50 ∧
+    populationEffect changedScenario.targetDistribution (effectOfMean changedScenario.targetMeans) = 1 := by
+  refine ⟨rfl, ?_, ?_, ?_⟩
+  · intro x action
+    cases x <;> cases action <;>
+      norm_num [stableScenario, changedScenario, sourceGroupMean, Behavior.indicator]
+  · norm_num [populationEffect, stableScenario, effectOfMean, sourceGroupMean,
+      targetMix, Fintype.sum_bool]
+  · norm_num [populationEffect, changedScenario, effectOfMean, Behavior.indicator,
+      targetMix, Fintype.sum_bool]
 
 end JurisLean.Candidates.CausalSelection20261027
 

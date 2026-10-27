@@ -4,6 +4,10 @@ import JurisLean.Candidates.CausalSelection20261027
 #print axioms JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized
 #check JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative
 #print axioms JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative
+#check JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean
+#print axioms JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean
+#check JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula
+#print axioms JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula
 #check JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery
 #print axioms JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery
 #check JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization
@@ -65,8 +69,16 @@ def response (_x _u : Bool) (a : Bool) : ℚ := Behavior.indicator a
 #guard_msgs in
 #eval decide (populationEffect sourceMix stableGroupEffect = 9/50 ∧
   transportedValue sourceMix targetMix stableGroupEffect = -9/50 ∧
-  populationEffect changedScenario.targetDistribution changedScenario.targetEffects = 1 ∧
+  populationEffect changedScenario.targetDistribution (effectOfMean changedScenario.targetMeans) = 1 ∧
   targetMix false / sourceMix false = 1/4 ∧ targetMix true / sourceMix true = 4)
+
+/-- info: true -/
+#guard_msgs in
+#eval decide (observedCellMean mass latent assignment recording response false true = 1 ∧
+  observedCellMean mass latent assignment recording response false false = 0 ∧
+  interventionValue mass latent response true - interventionValue mass latent response false =
+    ∑ x : Bool, mass x * (observedCellMean mass latent assignment recording response x true -
+      observedCellMean mass latent assignment recording response x false))
 
 end CausalSelectionFixture
 

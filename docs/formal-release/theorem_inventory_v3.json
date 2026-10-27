@@ -6378,6 +6378,193 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Instruction"
+    },
+    {
+     "kind": "def",
+     "name": "paymentPayloads"
+    },
+    {
+     "kind": "def",
+     "name": "runTrajectory"
+    },
+    {
+     "kind": "theorem",
+     "name": "committed_head_feeds_actual_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "replay_continues_from_current_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_commit_stops_the_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "authorized_refresh_feeds_actual_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_reported_post_has_an_actual_path"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_interpreter_preserves_full_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "evaluatedQuotes"
+    },
+    {
+     "kind": "def",
+     "name": "fitChooseMaximin"
+    },
+    {
+     "kind": "theorem",
+     "name": "selection_reads_actual_sample_and_quote"
+    },
+    {
+     "kind": "def",
+     "name": "executeSelected"
+    },
+    {
+     "kind": "structure",
+     "name": "DecisionRun"
+    },
+    {
+     "kind": "def",
+     "name": "runSampledDecision"
+    },
+    {
+     "kind": "theorem",
+     "name": "substituted_execution_is_refused"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_execution_preserves_full_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_consumer_uses_the_chosen_execution"
+    },
+    {
+     "kind": "theorem",
+     "name": "successful_execution_is_the_selected_plan"
+    },
+    {
+     "kind": "theorem",
+     "name": "sampled_consumer_preserves_known_state"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "c8eaa46329882ba638446915dad574a69e7dbc462599229782a3339b0475e503",
+   "size_bytes": 19755,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "trajectoryDebt"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryPayload"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryRequest"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryVersion"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryOpening"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryGrant"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryGrants"
+    },
+    {
+     "kind": "def",
+     "name": "trajectorySteps"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryQuotes"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryFixture"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryNextGamma"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryNextVersion"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryRefresh"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryRefreshGrant"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryNextRequest"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryRefreshedSteps"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
+    "JurisLean.Candidates.IntervalDecisionConsumerAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.authorized_refresh_feeds_actual_tail",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.committed_head_feeds_actual_tail",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.complete_consumer_uses_the_chosen_execution",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.every_reported_post_has_an_actual_path",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.finite_interpreter_preserves_full_invariant",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.replay_continues_from_current_state",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.sampled_consumer_preserves_known_state",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selected_execution_preserves_full_invariant",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.substituted_execution_is_refused",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.successful_execution_is_the_selected_plan",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027.unknown_commit_stops_the_tail"
+   ],
+   "sha256": "dba5d48c8d459e8fc3efb39c2194bfef1352385b253c208270a919f111fa6928",
+   "size_bytes": 12401,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "txRequest"
     },
@@ -50659,6 +50846,7 @@
     "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.IntervalDecisionConsumer20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
@@ -50894,8 +51082,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "41fdfda41fce94c49e5470136bf37075e8ac21a3e8f81f4ef1a892eb57b8834e",
-   "size_bytes": 11633,
+   "sha256": "88c56227b28400e0b956a220aa5d01c932e4467b57a7e3257eaf1790bbe896f2",
+   "size_bytes": 11696,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -51059,22 +51247,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5664,
-   "file_count": 421,
+   "counted_declaration_count": 5676,
+   "file_count": 423,
    "lemma_count": 146,
-   "print_axioms_command_count": 4537,
-   "print_axioms_distinct_targets": 4450,
-   "theorem_count": 5518,
-   "theorem_count_bol_convention": 5418
+   "print_axioms_command_count": 4549,
+   "print_axioms_distinct_targets": 4462,
+   "theorem_count": 5530,
+   "theorem_count_bol_convention": 5430
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5645,
-   "file_count": 406,
+   "counted_declaration_count": 5657,
+   "file_count": 408,
    "lemma_count": 139,
-   "print_axioms_command_count": 4537,
-   "print_axioms_distinct_targets": 4450,
-   "theorem_count": 5506,
-   "theorem_count_bol_convention": 5406
+   "print_axioms_command_count": 4549,
+   "print_axioms_distinct_targets": 4462,
+   "theorem_count": 5518,
+   "theorem_count_bol_convention": 5418
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -51135,6 +51323,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -51554,6 +51744,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -51958,17 +52150,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "636ae421c1e2551f20e615d1a104572f11398dd2b89b5ebcd962dad0e1dd0432",
+ "source_inventory_digest": "e0bb55fdb8460a392823c046996059563bc26e26825c8a25bfb3cfe006eb47d4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/probability-interval-consumer-20261027",
-  "commit": "fac9735dc9a97c3040b92924ee439a9aa02987b0",
-  "tree": "3a5384084a6e35326d79b4e46f2ce18d76e2a861"
+  "branch": "formal/decision-trajectory-20261027",
+  "commit": "7e2b9de926ee2ce33937ce00fe4df6740c34039d",
+  "tree": "2e7b08981b1b3c8688184046173e7f2f19160f29"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 421,
+  "files_total": 423,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

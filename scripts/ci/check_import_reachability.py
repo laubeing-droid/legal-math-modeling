@@ -86,6 +86,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
     "JurisLean.Candidates.IntervalDecisionConsumerAudit20261027": (
         "10 actual interval-decision and composed confidence targets; 10 compiled checks; run 40418104346 passed"
     ),
+    "JurisLean.Candidates.DecisionTrajectoryConsumerAudit20261027": (
+        "12 actual sampled-decision/finite-trajectory targets; 13 compiled checks; run 40422688565 passed"
+    ),
 }
 
 # Quarantine for modules whose own CI module build has not passed yet: AGENTS.md

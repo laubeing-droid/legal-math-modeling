@@ -22,6 +22,7 @@ EVIDENCE_CASES = [
         ("calibration-semantics-20261027", 8),
         ("probability-interval-consumer-20261027", 9),
         ("interval-decision-consumer-20261027", 10),
+        ("decision-trajectory-consumer-20261027", 12),
     )
 ]
 

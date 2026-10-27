@@ -1,0 +1,212 @@
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:4:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.committed_head_feeds_actual_tail
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before actualPost : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req : JurisLean.Candidates.Final20261021.PaymentRequest)
+  (mode : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (rest : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (committed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext before before req
+        (JurisLean.Candidates.Final20261021.Authorization.authorized grants before.gamma req.payload.payer 0
+          req.payload.normVersion (JurisLean.Candidates.Final20261021.ObjectId.relation req.payload.relation)
+          (some req.payload))
+        mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt actualPost) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants before
+      (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction.pay req mode :: rest) =
+    have tail := JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants actualPost rest;
+    { exit := tail.exit, current := tail.current,
+      outcomes := JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt actualPost :: tail.outcomes,
+      obligations := tail.obligations }
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:5:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.committed_head_feeds_actual_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:6:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.replay_continues_from_current_state
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (current : JurisLean.Candidates.Final20261021.Ledger.Handle) (req : JurisLean.Candidates.Final20261021.PaymentRequest)
+  (mode : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (rest : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (replayed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext current current req
+        (JurisLean.Candidates.Final20261021.Authorization.authorized grants current.gamma req.payload.payer 0
+          req.payload.normVersion (JurisLean.Candidates.Final20261021.ObjectId.relation req.payload.relation)
+          (some req.payload))
+        mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.replay receipt) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants current
+      (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction.pay req mode :: rest) =
+    have tail := JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants current rest;
+    { exit := tail.exit, current := tail.current,
+      outcomes := JurisLean.Candidates.Final20261021.Ledger.Outcome.replay receipt :: tail.outcomes,
+      obligations := tail.obligations }
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:7:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.replay_continues_from_current_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:8:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.unknown_commit_stops_the_tail
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (current : JurisLean.Candidates.Final20261021.Ledger.Handle) (req : JurisLean.Candidates.Final20261021.PaymentRequest)
+  (mode : JurisLean.Candidates.Final20261021.Ledger.Submission) (key : JurisLean.Candidates.Final20261021.PaymentId)
+  (attempt : JurisLean.Candidates.Final20261021.AttemptId)
+  (rest : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (unknown :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext current current req
+        (JurisLean.Candidates.Final20261021.Authorization.authorized grants current.gamma req.payload.payer 0
+          req.payload.normVersion (JurisLean.Candidates.Final20261021.ObjectId.relation req.payload.relation)
+          (some req.payload))
+        mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit key attempt) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants current
+      (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction.pay req mode :: rest) =
+    { exit := JurisLean.Candidates.Final20261021.Pipeline.Exit.undecided, current := none,
+      outcomes := [JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit key attempt],
+      obligations := [JurisLean.Candidates.Final20261021.Error.missingEvidence] }
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:9:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.unknown_commit_stops_the_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:10:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.authorized_refresh_feeds_actual_tail
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (current actualPost : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (rest : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (refreshed :
+    JurisLean.Candidates.Final20261021.Pipeline.refresh grants current change =
+      JurisLean.Candidates.Final20261021.Result.known actualPost) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants current
+      (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction.refresh change :: rest) =
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants actualPost rest
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:11:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.authorized_refresh_feeds_actual_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:12:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.every_reported_post_has_an_actual_path
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (reported :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = some final) :
+  JurisLean.Candidates.Final20261021.Trace.Path initial final
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:13:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.every_reported_post_has_an_actual_path' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:14:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.finite_interpreter_preserves_full_invariant
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (reported :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps).current = some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final ∧ initial.state.used ⊆ final.state.used
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:15:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.finite_interpreter_preserves_full_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:16:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote {m n k : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool) (radius : ℚ)
+  (exponent : ℕ) (supported : Bool) (utility : ℚ → ℚ) (allowed : List ℕ)
+  (quotes : List JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (accepted :
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.fitChooseMaximin request sampleProtocol loss models training
+        calibration radius exponent supported utility allowed quotes =
+      JurisLean.Candidates.Final20261021.Result.known selected) :
+  ∃ p,
+    ∃ quote ∈ quotes,
+      JurisLean.Candidates.ProbabilityIntervalConsumer20261027.runProbability request.protocol sampleProtocol loss
+            models training calibration request.query radius exponent request.calibrationSnapshot supported =
+          JurisLean.Candidates.Final20261021.Result.known p ∧
+        JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p quote =
+            JurisLean.Candidates.Final20261021.Result.known selected ∧
+          selected.probability = p ∧
+            selected.nominal.action.execution = quote.execution ∧
+              selected.nominal.gamma = request.gamma ∧
+                selected.nominal.action.id ∈ allowed ∧ selected.riskUpper ≤ request.riskLimit
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:17:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:18:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.substituted_execution_is_refused {m : ℕ}
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (changed :
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.paymentPayloads steps ≠ selected.nominal.action.execution) :
+  JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps =
+    { exit := JurisLean.Candidates.Final20261021.Pipeline.Exit.rejected, current := some initial, outcomes := [],
+      obligations := [JurisLean.Candidates.Final20261021.Error.scopeMismatch] }
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:19:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.substituted_execution_is_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:20:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selected_execution_preserves_full_invariant {m : ℕ}
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (reported :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps).current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:21:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.selected_execution_preserves_full_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:22:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.complete_consumer_uses_the_chosen_execution {m n k : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool) (radius : ℚ)
+  (exponent : ℕ) (supported : Bool) (utility : ℚ → ℚ) (allowed : List ℕ)
+  (quotes : List JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (accepted :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runSampledDecision request sampleProtocol loss models
+          training calibration radius exponent supported utility allowed quotes grants initial steps).decision =
+      JurisLean.Candidates.Final20261021.Result.known selected) :
+  (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runSampledDecision request sampleProtocol loss models
+        training calibration radius exponent supported utility allowed quotes grants initial steps).payment =
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:23:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.complete_consumer_uses_the_chosen_execution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:24:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.successful_execution_is_the_selected_plan {m : ℕ}
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (success :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps).exit =
+      JurisLean.Candidates.Final20261021.Pipeline.Exit.success) :
+  initial.gamma = selected.nominal.gamma ∧
+    JurisLean.Candidates.DecisionTrajectoryConsumer20261027.paymentPayloads steps = selected.nominal.action.execution ∧
+      JurisLean.Candidates.DecisionTrajectoryConsumer20261027.executeSelected selected grants initial steps =
+        JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runTrajectory grants initial steps
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:25:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.successful_execution_is_the_selected_plan' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:26:0: JurisLean.Candidates.DecisionTrajectoryConsumer20261027.sampled_consumer_preserves_known_state {m n k : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ)
+  (models : List (List ℚ))
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Bool) (radius : ℚ)
+  (exponent : ℕ) (supported : Bool) (utility : ℚ → ℚ) (allowed : List ℕ)
+  (quotes : List JurisLean.Candidates.IntervalDecisionConsumer20261027.BinaryQuote)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (reported :
+    (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.runSampledDecision request sampleProtocol loss models
+            training calibration radius exponent supported utility allowed quotes grants initial
+            steps).payment.current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final
+info: JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean:27:0: 'JurisLean.Candidates.DecisionTrajectoryConsumer20261027.sampled_consumer_preserves_known_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

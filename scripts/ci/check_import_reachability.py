@@ -39,6 +39,9 @@ IMPORT_RE = re.compile(r"^import\s+(\S+)", re.M)
 
 # Entry points CI runs directly with `lake env lean`; they are roots themselves.
 STANDALONE_DRIVERS: dict[str, str] = {
+    "JurisLean.Candidates.PolicyResponseAudit20261027": (
+        "17 response and stability targets, 7 executions; changed-module run 40451401604 passed"
+    ),
     "JurisLean.Candidates.PolicyEvaluationAudit20261027": (
         "16 finite policy targets, 8 executions; changed-module run 40451570271 passed"
     ),

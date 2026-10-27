@@ -1,0 +1,66 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "0cddf2c120de92f93c64eb7c4d0066d7934f74d7",
+  "run_id": 40451570271,
+  "job_id": 122015257624,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
+  "named_count": 16,
+  "named_theorems_full": [
+    "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+    "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+    "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+    "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds",
+    "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_completions_same_visible_law",
+    "JurisLean.Candidates.PolicyEvaluation20261027.original_policy_values_and_clipping",
+    "JurisLean.Candidates.PolicyEvaluation20261027.original_support_gap_sharp",
+    "JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible",
+    "JurisLean.Candidates.PolicyEvaluation20261027.heterogeneous_values_change_with_population",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_world_is_probability",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_visible_law_independent",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_interval_sharp",
+    "JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value",
+    "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+    "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+    "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+      "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
+      "sha256": "1d9d3f3d8a2393b7441a750f03833f723224cb9f9c3b427db0a649bef6683987"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 16,
+    "axiom_vocabulary": {
+      "Classical.choice": 15,
+      "Quot.sound": 16,
+      "propext": 16
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "8 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

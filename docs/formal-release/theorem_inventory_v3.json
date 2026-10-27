@@ -6486,6 +6486,221 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "retentionMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "retention_mass_sum"
+    },
+    {
+     "kind": "def",
+     "name": "selectionJoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_selection_kernel_normalized"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_selection_kernel_nonnegative"
+    },
+    {
+     "kind": "def",
+     "name": "selectionRecoveryValue"
+    },
+    {
+     "kind": "def",
+     "name": "interventionValue"
+    },
+    {
+     "kind": "def",
+     "name": "observedCellMean"
+    },
+    {
+     "kind": "theorem",
+     "name": "observed_cell_mean_equals_potential_mean"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_observed_g_formula"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_weight_recovery"
+    },
+    {
+     "kind": "def",
+     "name": "selectionPopulationMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_database_requires_population_normalization"
+    },
+    {
+     "kind": "def",
+     "name": "colliderVisible"
+    },
+    {
+     "kind": "def",
+     "name": "directVisible"
+    },
+    {
+     "kind": "def",
+     "name": "visibleSelectionMass"
+    },
+    {
+     "kind": "def",
+     "name": "selectedVisibleMean"
+    },
+    {
+     "kind": "def",
+     "name": "colliderPotential"
+    },
+    {
+     "kind": "def",
+     "name": "directPotential"
+    },
+    {
+     "kind": "def",
+     "name": "selectionInterventionMean"
+    },
+    {
+     "kind": "def",
+     "name": "selectionEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "selection_countermodels_have_identical_visible_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_association_is_not_population_effect"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_visible_law_estimator_identifies_both"
+    },
+    {
+     "kind": "def",
+     "name": "transportedValue"
+    },
+    {
+     "kind": "def",
+     "name": "populationEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "transport_requires_overlap_and_mean_stability"
+    },
+    {
+     "kind": "def",
+     "name": "sourceMix"
+    },
+    {
+     "kind": "def",
+     "name": "targetMix"
+    },
+    {
+     "kind": "def",
+     "name": "stableGroupEffect"
+    },
+    {
+     "kind": "def",
+     "name": "sourceGroupMean"
+    },
+    {
+     "kind": "def",
+     "name": "effectOfMean"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_transport_reweights_the_target"
+    },
+    {
+     "kind": "structure",
+     "name": "TransportScenario"
+    },
+    {
+     "kind": "def",
+     "name": "transportVisible"
+    },
+    {
+     "kind": "def",
+     "name": "stableScenario"
+    },
+    {
+     "kind": "def",
+     "name": "changedScenario"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_and_target_mix_do_not_identify_new_effect"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "Mathlib.Data.Fintype.BigOperators"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "591c97532b00f53f68947c2544d534c9403a7eb711ca5420b121ddf086f9da84",
+   "size_bytes": 14939,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "mass"
+    },
+    {
+     "kind": "def",
+     "name": "latent"
+    },
+    {
+     "kind": "def",
+     "name": "assignment"
+    },
+    {
+     "kind": "def",
+     "name": "recording"
+    },
+    {
+     "kind": "def",
+     "name": "response"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CausalSelection20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target",
+    "JurisLean.Candidates.CausalSelection20261027.finite_observed_g_formula",
+    "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative",
+    "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized",
+    "JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both",
+    "JurisLean.Candidates.CausalSelection20261027.observed_cell_mean_equals_potential_mean",
+    "JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect",
+    "JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization",
+    "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery",
+    "JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law",
+    "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect",
+    "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability"
+   ],
+   "sha256": "9ddd8dabc19d9f5ff36a2c7ceb638670901be1761afb81d1f36fba079ee0ad8d",
+   "size_bytes": 4838,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "mem_advance_iff"
     },
@@ -11610,6 +11825,193 @@
    ],
    "sha256": "cc076526085ea84e448edbc90bb2cf37b4f2e675341ec70498832054316ecdaf",
    "size_bytes": 2707,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "policyValue"
+    },
+    {
+     "kind": "def",
+     "name": "importanceValue"
+    },
+    {
+     "kind": "def",
+     "name": "clippedValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_policy_ipw"
+    },
+    {
+     "kind": "theorem",
+     "name": "rational_clipping_loss"
+    },
+    {
+     "kind": "def",
+     "name": "discardedMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_clipping_bias_bound"
+    },
+    {
+     "kind": "def",
+     "name": "fillUnsupported"
+    },
+    {
+     "kind": "theorem",
+     "name": "unsupported_value_bounds"
+    },
+    {
+     "kind": "def",
+     "name": "bernoulliVisibleLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "unsupported_completions_same_visible_law"
+    },
+    {
+     "kind": "def",
+     "name": "groupMass"
+    },
+    {
+     "kind": "def",
+     "name": "shiftedMass"
+    },
+    {
+     "kind": "def",
+     "name": "originalMean"
+    },
+    {
+     "kind": "def",
+     "name": "loggingPolicy"
+    },
+    {
+     "kind": "def",
+     "name": "chooseOne"
+    },
+    {
+     "kind": "def",
+     "name": "chooseZero"
+    },
+    {
+     "kind": "def",
+     "name": "personalized"
+    },
+    {
+     "kind": "def",
+     "name": "supportGapLogging"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_policy_values_and_clipping"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_support_gap_sharp"
+    },
+    {
+     "kind": "theorem",
+     "name": "support_gap_endpoints_observationally_compatible"
+    },
+    {
+     "kind": "theorem",
+     "name": "heterogeneous_values_change_with_population"
+    },
+    {
+     "kind": "def",
+     "name": "missingJoint"
+    },
+    {
+     "kind": "def",
+     "name": "missingVisibleMass"
+    },
+    {
+     "kind": "def",
+     "name": "missingPopulationMean"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_world_is_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_outcome_visible_law_independent"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_outcome_interval_sharp"
+    },
+    {
+     "kind": "def",
+     "name": "firstStageLog"
+    },
+    {
+     "kind": "def",
+     "name": "terminalValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "initial_logs_do_not_identify_terminal_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "bounded_policy_score_uniform"
+    },
+    {
+     "kind": "theorem",
+     "name": "empirical_policy_winner_regret"
+    },
+    {
+     "kind": "theorem",
+     "name": "bounded_policy_winner_probability"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.LearningFiniteClass20261027",
+    "Mathlib.Data.Fintype.BigOperators"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e",
+   "size_bytes": 16674,
+   "theorem_count": 16,
+   "theorem_count_bol_convention": 16
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.PolicyEvaluation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+    "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+    "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+    "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+    "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+    "JurisLean.Candidates.PolicyEvaluation20261027.heterogeneous_values_change_with_population",
+    "JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_interval_sharp",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_visible_law_independent",
+    "JurisLean.Candidates.PolicyEvaluation20261027.missing_world_is_probability",
+    "JurisLean.Candidates.PolicyEvaluation20261027.original_policy_values_and_clipping",
+    "JurisLean.Candidates.PolicyEvaluation20261027.original_support_gap_sharp",
+    "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+    "JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible",
+    "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_completions_same_visible_law",
+    "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds"
+   ],
+   "sha256": "1d9d3f3d8a2393b7441a750f03833f723224cb9f9c3b427db0a649bef6683987",
+   "size_bytes": 4603,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52158,6 +52560,7 @@
     "JurisLean.Candidates.AdaptiveRoundLedger20261027",
     "JurisLean.Candidates.AdaptiveValidation20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
+    "JurisLean.Candidates.CausalSelection20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.CurrentContextRollback20261027",
@@ -52174,6 +52577,7 @@
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
+    "JurisLean.Candidates.PolicyEvaluation20261027",
     "JurisLean.Candidates.ProbabilityIntervalConsumer20261027",
     "JurisLean.Candidates.ProtectedFeedback20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
@@ -52401,8 +52805,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "3aff54fbdb3a4581b4ea4d08c511294c23f0c78008e0a6d9be613b5b2043002f",
-   "size_bytes": 12095,
+   "sha256": "eccbd6f15f28794acfb3867b296081ef54a6c5492367f9c76c004676d403a500",
+   "size_bytes": 12200,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52566,22 +52970,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5761,
-   "file_count": 437,
+   "counted_declaration_count": 5790,
+   "file_count": 441,
    "lemma_count": 146,
-   "print_axioms_command_count": 4634,
-   "print_axioms_distinct_targets": 4547,
-   "theorem_count": 5615,
-   "theorem_count_bol_convention": 5515
+   "print_axioms_command_count": 4662,
+   "print_axioms_distinct_targets": 4575,
+   "theorem_count": 5644,
+   "theorem_count_bol_convention": 5544
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5742,
-   "file_count": 422,
+   "counted_declaration_count": 5771,
+   "file_count": 426,
    "lemma_count": 139,
-   "print_axioms_command_count": 4634,
-   "print_axioms_distinct_targets": 4547,
-   "theorem_count": 5603,
-   "theorem_count_bol_convention": 5503
+   "print_axioms_command_count": 4662,
+   "print_axioms_distinct_targets": 4575,
+   "theorem_count": 5632,
+   "theorem_count_bol_convention": 5532
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -52644,6 +53048,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
@@ -52696,6 +53102,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
@@ -53079,6 +53487,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelectionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollback20261027.lean",
@@ -53131,6 +53541,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
@@ -53497,17 +53909,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e70ddb6fef229c0d3c6543083b000018ffcbf1c96dc403b208ad4b1bd85b1cd7",
+ "source_inventory_digest": "b644fe24b79fead731e67b1873c2c2e5a931eaa74c88168cec7d375ea0d050c9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/adaptive-round-ledger-20261027",
-  "commit": "9f5610fd323163432f943290f481c5fe02f52833",
-  "tree": "e1c6520f7c3ef0d5e438269f4a37c7dbc84fa5c4"
+  "branch": "formal/policy-evaluation-20261027",
+  "commit": "d60edd17209d45574a4c74848ef459a2c79bffcf",
+  "tree": "1059fa8865ba06bb254939869d56951fa946ee81"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 437,
+  "files_total": 441,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

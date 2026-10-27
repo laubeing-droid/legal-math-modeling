@@ -12019,6 +12019,145 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "preparationScore"
+    },
+    {
+     "kind": "def",
+     "name": "preparationQuality"
+    },
+    {
+     "kind": "def",
+     "name": "preparationCost"
+    },
+    {
+     "kind": "def",
+     "name": "preparationUtility"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_response_payoffs"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_only_cannot_distinguish_preparation"
+    },
+    {
+     "kind": "theorem",
+     "name": "logit_is_original_softmax"
+    },
+    {
+     "kind": "theorem",
+     "name": "logit_is_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "logit_actual_means"
+    },
+    {
+     "kind": "theorem",
+     "name": "logit_zero_means"
+    },
+    {
+     "kind": "theorem",
+     "name": "logit_high_rationality_limits"
+    },
+    {
+     "kind": "def",
+     "name": "affineResponse"
+    },
+    {
+     "kind": "def",
+     "name": "dampedResponse"
+    },
+    {
+     "kind": "theorem",
+     "name": "affine_iterate_formula"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_maps_and_unique_fixed_points"
+    },
+    {
+     "kind": "theorem",
+     "name": "affine_converges_to_center"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflection_has_no_limit_except_center"
+    },
+    {
+     "kind": "theorem",
+     "name": "damped_as_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "damped_preserves_unit_interval"
+    },
+    {
+     "kind": "theorem",
+     "name": "damping_converges_for_all_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "local_affine_behavior_does_not_give_global_contraction"
+    },
+    {
+     "kind": "theorem",
+     "name": "stable_fixed_point_can_be_outside_legal_constraint"
+    },
+    {
+     "kind": "theorem",
+     "name": "behavior_only_cannot_recover_admissible_sets"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Policy",
+    "Mathlib.Analysis.SpecialFunctions.Exp",
+    "Mathlib.Analysis.SpecificLimits.Normed"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "43ad3c70bc0cba072980805fa66e55fd9293fbd8158c8b5f1e0d022bd1b481ef",
+   "size_bytes": 10696,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.PolicyResponse20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.PolicyResponse20261027.affine_converges_to_center",
+    "JurisLean.Candidates.PolicyResponse20261027.affine_iterate_formula",
+    "JurisLean.Candidates.PolicyResponse20261027.behavior_only_cannot_recover_admissible_sets",
+    "JurisLean.Candidates.PolicyResponse20261027.damped_as_affine",
+    "JurisLean.Candidates.PolicyResponse20261027.damped_preserves_unit_interval",
+    "JurisLean.Candidates.PolicyResponse20261027.damping_converges_for_all_iff",
+    "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+    "JurisLean.Candidates.PolicyResponse20261027.local_affine_behavior_does_not_give_global_contraction",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_actual_means",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_high_rationality_limits",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_is_original_softmax",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_is_probability",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_zero_means",
+    "JurisLean.Candidates.PolicyResponse20261027.original_maps_and_unique_fixed_points",
+    "JurisLean.Candidates.PolicyResponse20261027.reflection_has_no_limit_except_center",
+    "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+    "JurisLean.Candidates.PolicyResponse20261027.stable_fixed_point_can_be_outside_legal_constraint"
+   ],
+   "sha256": "6333195fa02b461c049295dfed672b587bd55abe669e2b112a90f6e82966e9de",
+   "size_bytes": 3965,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "scoreBin"
     },
     {
@@ -52578,6 +52717,7 @@
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
     "JurisLean.Candidates.PolicyEvaluation20261027",
+    "JurisLean.Candidates.PolicyResponse20261027",
     "JurisLean.Candidates.ProbabilityIntervalConsumer20261027",
     "JurisLean.Candidates.ProtectedFeedback20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
@@ -52805,8 +52945,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "eccbd6f15f28794acfb3867b296081ef54a6c5492367f9c76c004676d403a500",
-   "size_bytes": 12200,
+   "sha256": "cdab32d1752dc4e97335280a490903493e8c93015aa6bbc76237febf7c40eff8",
+   "size_bytes": 12251,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -52970,22 +53110,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5790,
-   "file_count": 441,
+   "counted_declaration_count": 5807,
+   "file_count": 443,
    "lemma_count": 146,
-   "print_axioms_command_count": 4662,
-   "print_axioms_distinct_targets": 4575,
-   "theorem_count": 5644,
-   "theorem_count_bol_convention": 5544
+   "print_axioms_command_count": 4679,
+   "print_axioms_distinct_targets": 4592,
+   "theorem_count": 5661,
+   "theorem_count_bol_convention": 5561
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5771,
-   "file_count": 426,
+   "counted_declaration_count": 5788,
+   "file_count": 428,
    "lemma_count": 139,
-   "print_axioms_command_count": 4662,
-   "print_axioms_distinct_targets": 4575,
-   "theorem_count": 5632,
-   "theorem_count_bol_convention": 5532
+   "print_axioms_command_count": 4679,
+   "print_axioms_distinct_targets": 4592,
+   "theorem_count": 5649,
+   "theorem_count_bol_convention": 5549
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -53104,6 +53244,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
@@ -53543,6 +53685,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
@@ -53909,17 +54053,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b644fe24b79fead731e67b1873c2c2e5a931eaa74c88168cec7d375ea0d050c9",
+ "source_inventory_digest": "2ccc5f805c54c26d392501ee32c2e7ab25ab23248fae39109e79b65fe3c342df",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/policy-evaluation-20261027",
-  "commit": "d60edd17209d45574a4c74848ef459a2c79bffcf",
-  "tree": "1059fa8865ba06bb254939869d56951fa946ee81"
+  "branch": "formal/policy-response-20261027",
+  "commit": "e895a49ee659e854facbf6123a9dfe988426beb2",
+  "tree": "0de1f867d02e07dec6d488664da6fbedb16cda7e"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 441,
+  "files_total": 443,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

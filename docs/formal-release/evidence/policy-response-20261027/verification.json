@@ -1,0 +1,66 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "c77fd50a8e6c0b937b0315ea1a6647387d7ba561",
+  "run_id": 40451401604,
+  "job_id": 122014729609,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
+  "named_count": 17,
+  "named_theorems_full": [
+    "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+    "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_is_original_softmax",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_is_probability",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_actual_means",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_zero_means",
+    "JurisLean.Candidates.PolicyResponse20261027.logit_high_rationality_limits",
+    "JurisLean.Candidates.PolicyResponse20261027.affine_iterate_formula",
+    "JurisLean.Candidates.PolicyResponse20261027.original_maps_and_unique_fixed_points",
+    "JurisLean.Candidates.PolicyResponse20261027.affine_converges_to_center",
+    "JurisLean.Candidates.PolicyResponse20261027.reflection_has_no_limit_except_center",
+    "JurisLean.Candidates.PolicyResponse20261027.damped_as_affine",
+    "JurisLean.Candidates.PolicyResponse20261027.damped_preserves_unit_interval",
+    "JurisLean.Candidates.PolicyResponse20261027.damping_converges_for_all_iff",
+    "JurisLean.Candidates.PolicyResponse20261027.local_affine_behavior_does_not_give_global_contraction",
+    "JurisLean.Candidates.PolicyResponse20261027.stable_fixed_point_can_be_outside_legal_constraint",
+    "JurisLean.Candidates.PolicyResponse20261027.behavior_only_cannot_recover_admissible_sets"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+      "sha256": "43ad3c70bc0cba072980805fa66e55fd9293fbd8158c8b5f1e0d022bd1b481ef"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
+      "sha256": "6333195fa02b461c049295dfed672b587bd55abe669e2b112a90f6e82966e9de"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 17,
+    "axiom_vocabulary": {
+      "Classical.choice": 15,
+      "Quot.sound": 17,
+      "propext": 17
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "7 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

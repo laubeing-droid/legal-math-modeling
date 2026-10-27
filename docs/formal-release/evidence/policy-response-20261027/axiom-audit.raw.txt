@@ -1,0 +1,117 @@
+JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs (threshold : ℚ) (positive : 0 < threshold)
+  (small : threshold ≤ 1) :
+  JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 0 = 0 ∧
+    JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 1 = 2 / 5 ∧
+      JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 2 = 9 / 10 ∧
+        ∀ (b : Fin 3),
+          b ≠ 2 →
+            JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold b <
+              JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 2
+'JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation (passProbability : ℚ → ℚ) :
+  passProbability (JurisLean.Candidates.PolicyResponse20261027.preparationScore 1) =
+      passProbability (JurisLean.Candidates.PolicyResponse20261027.preparationScore 2) ∧
+    JurisLean.Candidates.PolicyResponse20261027.preparationQuality 1 = 1 ∧
+      JurisLean.Candidates.PolicyResponse20261027.preparationQuality 2 = 0
+'JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.logit_is_original_softmax (beta : ℝ) (b : Fin 3) :
+  JurisLean.Candidates.PolicyResponse20261027.logitPreparation beta b =
+    Real.exp (beta * ↑(JurisLean.Candidates.PolicyResponse20261027.preparationUtility (1 / 2) b)) /
+      ∑ i, Real.exp (beta * ↑(JurisLean.Candidates.PolicyResponse20261027.preparationUtility (1 / 2) i))
+'JurisLean.Candidates.PolicyResponse20261027.logit_is_original_softmax' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.logit_is_probability (beta : ℝ) :
+  ∑ b, JurisLean.Candidates.PolicyResponse20261027.logitPreparation beta b = 1 ∧
+    ∀ (b : Fin 3), 0 < JurisLean.Candidates.PolicyResponse20261027.logitPreparation beta b
+'JurisLean.Candidates.PolicyResponse20261027.logit_is_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.logit_actual_means (beta : ℝ) :
+  JurisLean.Candidates.PolicyResponse20261027.logitQuality beta =
+      Real.exp (-(1 / 2) * beta) / (Real.exp (-(9 / 10) * beta) + Real.exp (-(1 / 2) * beta) + 1) ∧
+    JurisLean.Candidates.PolicyResponse20261027.logitScore beta =
+      (Real.exp (-(1 / 2) * beta) + 1) / (Real.exp (-(9 / 10) * beta) + Real.exp (-(1 / 2) * beta) + 1)
+'JurisLean.Candidates.PolicyResponse20261027.logit_actual_means' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.logit_zero_means :
+  JurisLean.Candidates.PolicyResponse20261027.logitQuality 0 = 1 / 3 ∧
+    JurisLean.Candidates.PolicyResponse20261027.logitScore 0 = 2 / 3
+'JurisLean.Candidates.PolicyResponse20261027.logit_zero_means' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.logit_high_rationality_limits :
+  Filter.Tendsto JurisLean.Candidates.PolicyResponse20261027.logitQuality Filter.atTop (nhds 0) ∧
+    Filter.Tendsto JurisLean.Candidates.PolicyResponse20261027.logitScore Filter.atTop (nhds 1)
+'JurisLean.Candidates.PolicyResponse20261027.logit_high_rationality_limits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.affine_iterate_formula.{u_1} {K : Type u_1} [Field K] (q x : K) (n : ℕ) :
+  (JurisLean.Candidates.PolicyResponse20261027.affineResponse q)^[n] x = 1 / 2 + q ^ n * (x - 1 / 2)
+'JurisLean.Candidates.PolicyResponse20261027.affine_iterate_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.original_maps_and_unique_fixed_points (x : ℝ) :
+  JurisLean.Candidates.PolicyResponse20261027.affineResponse (1 / 2) x = 1 / 4 + x / 2 ∧
+    JurisLean.Candidates.PolicyResponse20261027.affineResponse (-1) x = 1 - x ∧
+      (JurisLean.Candidates.PolicyResponse20261027.affineResponse (1 / 2) x = x ↔ x = 1 / 2) ∧
+        (JurisLean.Candidates.PolicyResponse20261027.affineResponse (-1) x = x ↔ x = 1 / 2)
+'JurisLean.Candidates.PolicyResponse20261027.original_maps_and_unique_fixed_points' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.affine_converges_to_center (q x : ℝ) (contractive : |q| < 1) :
+  Filter.Tendsto (fun n => (JurisLean.Candidates.PolicyResponse20261027.affineResponse q)^[n] x) Filter.atTop
+    (nhds (1 / 2))
+'JurisLean.Candidates.PolicyResponse20261027.affine_converges_to_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.reflection_has_no_limit_except_center (x : ℝ) (away : x ≠ 1 / 2) :
+  ¬∃ limit,
+      Filter.Tendsto (fun n => (JurisLean.Candidates.PolicyResponse20261027.affineResponse (-1))^[n] x) Filter.atTop
+        (nhds limit)
+'JurisLean.Candidates.PolicyResponse20261027.reflection_has_no_limit_except_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.damped_as_affine (rate : ℝ) :
+  JurisLean.Candidates.PolicyResponse20261027.dampedResponse rate =
+    JurisLean.Candidates.PolicyResponse20261027.affineResponse (1 - 2 * rate)
+'JurisLean.Candidates.PolicyResponse20261027.damped_as_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.damped_preserves_unit_interval (rate x : ℝ) (hr : rate ∈ Set.Icc 0 1)
+  (hx : x ∈ Set.Icc 0 1) : JurisLean.Candidates.PolicyResponse20261027.dampedResponse rate x ∈ Set.Icc 0 1
+'JurisLean.Candidates.PolicyResponse20261027.damped_preserves_unit_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.damping_converges_for_all_iff (rate : ℝ) :
+  (∀ x ∈ Set.Icc 0 1,
+      Filter.Tendsto (fun n => (JurisLean.Candidates.PolicyResponse20261027.dampedResponse rate)^[n] x) Filter.atTop
+        (nhds (1 / 2))) ↔
+    0 < rate ∧ rate < 1
+'JurisLean.Candidates.PolicyResponse20261027.damping_converges_for_all_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.local_affine_behavior_does_not_give_global_contraction :
+  (∀ x ≤ 1 / 2, JurisLean.Candidates.PolicyResponse20261027.localResponse x = x / 2) ∧
+    JurisLean.Candidates.PolicyResponse20261027.localResponse 0 = 0 ∧
+      JurisLean.Candidates.PolicyResponse20261027.localResponse 1 = 1
+'JurisLean.Candidates.PolicyResponse20261027.local_affine_behavior_does_not_give_global_contraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.stable_fixed_point_can_be_outside_legal_constraint :
+  JurisLean.Candidates.PolicyResponse20261027.affineResponse (1 / 2) (1 / 2) = 1 / 2 ∧
+    (∀ (x : ℝ),
+        Filter.Tendsto (fun n => (JurisLean.Candidates.PolicyResponse20261027.affineResponse (1 / 2))^[n] x)
+          Filter.atTop (nhds (1 / 2))) ∧
+      1 / 2 ∉ Set.Icc 0 (1 / 4)
+'JurisLean.Candidates.PolicyResponse20261027.stable_fixed_point_can_be_outside_legal_constraint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.behavior_only_cannot_recover_admissible_sets.{u_1} {Data : Type u_1}
+  (observations : Data) (algorithm : Data → Finset ℕ) : ¬(algorithm observations = {1} ∧ algorithm observations = ∅)
+'JurisLean.Candidates.PolicyResponse20261027.behavior_only_cannot_recover_admissible_sets' depends on axioms: [propext,
+ Quot.sound]

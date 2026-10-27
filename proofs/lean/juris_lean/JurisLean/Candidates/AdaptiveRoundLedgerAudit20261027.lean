@@ -44,15 +44,17 @@ open ValidatedFeedbackLoadFixture
 namespace AdaptiveRoundLedgerFixture
 
 def base (s : Service 2) : RoundState 2 :=
-  ⟨s, ⟨1, [[0, 1]]⟩, 55, 3, 1/5, [], none, []⟩
+  ⟨s, ⟨1, [[0, 1]]⟩, 55, 3, 1/5, [10, 20], [], none, []⟩
 
 def generate (s : RoundState 2) (loss : Nat := 7) : RoundState 2 :=
   beginAdaptiveRound s ⟨10 + 20 * s.records.length⟩ [] (.observed second)
-    { protocol with fit := { protocol.fit with modelVersion := 5 + s.records.length },
+    { protocol with
+      fit := { protocol.fit with modelVersion := 5 + s.records.length }
       lossVersion := loss } plan
 
 def freshBlocks (e : Evaluation 2) : List (DomainBlock 2) :=
-  e.blocks.map (fun b => { b with snapshot := b.snapshot + 1,
+  e.blocks.map (fun b => { b with
+    snapshot := b.snapshot + 1
     rows := b.rows.map (fun row => { row with event := ⟨row.event.value + 1000000⟩ }) })
 
 def request (s : RoundState 2) (fallback : Evaluation 2) (blocks : List (DomainBlock 2)) :
@@ -246,6 +248,36 @@ def learnerPermit (s : RoundState 2) (next : RoundLearner) : LearnerPermit :=
   let malformed : RoundLearner := ⟨2, [[2, 1]]⟩
   let p := learnerPermit initial malformed
   decide (changeRoundLearner initial malformed [p] p = initial))
+
+-- A failed protected comparison still used the sampled evidence.
+/-- info: true -/
+#guard_msgs in
+#eval check (fun s e =>
+  let generated := generate (base s)
+  let r := request generated e [mixedBlock, block 20 false]
+  let out := complete generated r
+  decide (out.status = .evaluated ∧ roundSpent out.post = 1/10 ∧
+    twoPointRisk out.post.service = 1/2 ∧
+    (out.receipt.bind RoundRecord.load).map LoadOutcome.status = some .protectedScopeFailed))
+
+/-- info: true -/
+#guard_msgs in
+#eval check (fun s e =>
+  let generated := generate (base s)
+  let original := request generated e e.blocks
+  let forged := { original with blocks := e.blocks.map (fun b => { b with delta := 1/1000 }) }
+  let out := finishAdaptiveRound generated forged [original.sampling] [original.permit]
+  decide (out.status = .riskCertificateMissing ∧ roundSpent out.post = 0))
+
+-- A subsequent caller cannot silently drop an originally protected domain.
+/-- info: true -/
+#guard_msgs in
+#eval check (fun s e =>
+  let generated := beginAdaptiveRound (base s) ⟨10⟩ [] (.observed second)
+    { protocol with fit := { protocol.fit with modelVersion := 5 } } { plan with domains := [10] }
+  let out := complete generated (request generated e [mixedBlock])
+  decide (out.status = .protectedScopeMismatch ∧ out.post.protectedDomains = [10, 20] ∧
+    roundSpent out.post = 0 ∧ twoPointRisk out.post.service = 1/2))
 
 end AdaptiveRoundLedgerFixture
 

@@ -45,7 +45,7 @@ structure RoundDeclaration (m : Nat) where
 inductive RoundStatus where
   | evaluated | generationUnresolved | evaluationUnresolved
   | adaptiveCertificateInvalid | riskCertificateMissing | budgetExceeded
-  | trustRootMismatch | claimScopeExceeded | generationMismatch
+  | trustRootMismatch | claimScopeExceeded | generationMismatch | protectedScopeMismatch
   | replayed | keyConflict | roundMismatch | generationMissing
   deriving DecidableEq, Repr
 
@@ -71,6 +71,7 @@ structure RoundState (m : Nat) where
   checker : Nat
   horizon : Nat
   limit : ℚ
+  protectedDomains : List Nat
   records : List (RoundRecord m)
   pending : Option (RoundDeclaration m)
   learnerChanges : List LearnerPermit
@@ -108,6 +109,7 @@ def assessAdaptiveRound {m : Nat} (s : RoundState m) (d : RoundDeclaration m)
     (authorityCatalog : List (LoadPermit m)) : RoundRecord m :=
   if r.checker ≠ s.checker then emptyRoundRecord d r .trustRootMismatch
   else if r.claim ≠ .currentFiniteRound then emptyRoundRecord d r .claimScopeExceeded
+  else if d.plan.domains ≠ s.protectedDomains then emptyRoundRecord d r .protectedScopeMismatch
   else if d.visiblePrefix ≠ s.records.length ∨ d.learner ≠ s.learner ∨
       d.prepared.post ≠ s.service then emptyRoundRecord d r .generationMismatch
   else if ¬ (∀ event ∈ requestedEvents r, event ∉ exposedRoundEvents s) then
@@ -252,7 +254,7 @@ theorem evaluated_round_has_fresh_events_and_current_checker {m : Nat}
     (s : RoundState m) (d : RoundDeclaration m) (r : RoundRequest m)
     (samples : List (SamplingReceipt m)) (permits : List (LoadPermit m))
     (computed : (assessAdaptiveRound s d r samples permits).status = .evaluated) :
-    r.checker = s.checker ∧ r.claim = .currentFiniteRound ∧
+    r.checker = s.checker ∧ r.claim = .currentFiniteRound ∧ d.plan.domains = s.protectedDomains ∧
     ∀ event ∈ requestedEvents r, event ∉ exposedRoundEvents s := by
   unfold assessAdaptiveRound at computed
   split_ifs at computed <;> simp_all [emptyRoundRecord]
@@ -265,9 +267,10 @@ theorem learner_change_keeps_service_budget_and_trusted_root {m : Nat}
     (changeRoundLearner s next catalog permit).checker = s.checker ∧
     (changeRoundLearner s next catalog permit).records = s.records ∧
     (changeRoundLearner s next catalog permit).limit = s.limit ∧
-    (changeRoundLearner s next catalog permit).horizon = s.horizon := by
+    (changeRoundLearner s next catalog permit).horizon = s.horizon ∧
+    (changeRoundLearner s next catalog permit).protectedDomains = s.protectedDomains := by
   unfold changeRoundLearner
-  split <;> exact ⟨rfl, rfl, rfl, rfl, rfl⟩
+  split <;> exact ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 theorem self_issued_or_new_checker_permission_cannot_change_learner {m : Nat}
     (s : RoundState m) (next : RoundLearner) (catalog : List LearnerPermit)

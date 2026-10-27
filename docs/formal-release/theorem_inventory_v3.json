@@ -7772,6 +7772,195 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "respects"
+    },
+    {
+     "kind": "def",
+     "name": "constrained"
+    },
+    {
+     "kind": "theorem",
+     "name": "constrained_membership"
+    },
+    {
+     "kind": "theorem",
+     "name": "additional_constraints_only_remove_worlds"
+    },
+    {
+     "kind": "theorem",
+     "name": "faithful_evidence_retains_actual_world"
+    },
+    {
+     "kind": "def",
+     "name": "worldJudgment"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_positive_and_negative_iff_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "world_incompatible_iff_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "world_supported_iff_nonempty_universal"
+    },
+    {
+     "kind": "theorem",
+     "name": "world_opposed_iff_nonempty_universal"
+    },
+    {
+     "kind": "theorem",
+     "name": "world_insufficient_iff_both_possibilities"
+    },
+    {
+     "kind": "theorem",
+     "name": "supported_world_judgment_needs_actual_membership"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_to_world_truth_is_conditional"
+    },
+    {
+     "kind": "def",
+     "name": "pendingSources"
+    },
+    {
+     "kind": "structure",
+     "name": "EvidenceView"
+    },
+    {
+     "kind": "def",
+     "name": "viewEvidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "output_world_label_reads_actual_filtered_worlds"
+    },
+    {
+     "kind": "def",
+     "name": "evidenceBits"
+    },
+    {
+     "kind": "def",
+     "name": "KnowledgeLe"
+    },
+    {
+     "kind": "theorem",
+     "name": "adding_evidence_is_monotone_in_information_bits"
+    },
+    {
+     "kind": "def",
+     "name": "compatibleWorlds"
+    },
+    {
+     "kind": "theorem",
+     "name": "compatible_pair_membership"
+    },
+    {
+     "kind": "theorem",
+     "name": "filtering_never_invents_legal_world_pair"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "ee352c1e1a1d77e83b1ce69a9f975cf77946f3274c081b9e20b083a943ad5249",
+   "size_bytes": 9807,
+   "theorem_count": 14,
+   "theorem_count_bol_convention": 14
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "positive"
+    },
+    {
+     "kind": "def",
+     "name": "negative"
+    },
+    {
+     "kind": "def",
+     "name": "unknownAdmission"
+    },
+    {
+     "kind": "def",
+     "name": "valuation"
+    },
+    {
+     "kind": "def",
+     "name": "modelWorlds"
+    },
+    {
+     "kind": "def",
+     "name": "run"
+    },
+    {
+     "kind": "theorem",
+     "name": "credible_but_inadmissible_has_no_constraint"
+    },
+    {
+     "kind": "theorem",
+     "name": "opposing_usable_directions_empty_classical_worlds"
+    },
+    {
+     "kind": "theorem",
+     "name": "adding_credible_evidence_can_destroy_determinacy"
+    },
+    {
+     "kind": "theorem",
+     "name": "admissible_is_not_source_truth"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_world_coverage_is_necessary"
+    },
+    {
+     "kind": "theorem",
+     "name": "marginal_coordinates_do_not_justify_cartesian_completion"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.EvidenceWorlds20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.actual_world_coverage_is_necessary",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.adding_credible_evidence_can_destroy_determinacy",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.admissible_is_not_source_truth",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.credible_but_inadmissible_has_no_constraint",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.marginal_coordinates_do_not_justify_cartesian_completion",
+    "JurisLean.Candidates.EvidenceWorlds20261027.Audit.opposing_usable_directions_empty_classical_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.adding_evidence_is_monotone_in_information_bits",
+    "JurisLean.Candidates.EvidenceWorlds20261027.additional_constraints_only_remove_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.all_positive_and_negative_iff_empty",
+    "JurisLean.Candidates.EvidenceWorlds20261027.compatible_pair_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.constrained_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.faithful_evidence_retains_actual_world",
+    "JurisLean.Candidates.EvidenceWorlds20261027.filtering_never_invents_legal_world_pair",
+    "JurisLean.Candidates.EvidenceWorlds20261027.output_world_label_reads_actual_filtered_worlds",
+    "JurisLean.Candidates.EvidenceWorlds20261027.source_to_world_truth_is_conditional",
+    "JurisLean.Candidates.EvidenceWorlds20261027.supported_world_judgment_needs_actual_membership",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_incompatible_iff_empty",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_insufficient_iff_both_possibilities",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_opposed_iff_nonempty_universal",
+    "JurisLean.Candidates.EvidenceWorlds20261027.world_supported_iff_nonempty_universal"
+   ],
+   "sha256": "592ede304d73fb6134e909858030b85f56a0d7b42af7bee52cfcb7909b1dde78",
+   "size_bytes": 9636,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "Reliable"
     },
     {
@@ -54167,6 +54356,8 @@
     "JurisLean.Candidates.CurrentContextRollback20261027",
     "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
     "JurisLean.Candidates.EventFeedbackConsumer20261027",
+    "JurisLean.Candidates.EvidenceWorlds20261027",
+    "JurisLean.Candidates.EvidenceWorldsAudit20261027",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.IntervalDecisionConsumer20261027",
@@ -54414,8 +54605,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0263eae1b47d209a0fb6e87ed5dbe22026bdcc174d07fe670724248d98fdaffa",
-   "size_bytes": 12695,
+   "sha256": "677a280e81ad2f0f7b9a4aea80dd67553f3d379699d16be2b7c584bb106673d2",
+   "size_bytes": 12802,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -54579,22 +54770,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5910,
-   "file_count": 455,
+   "counted_declaration_count": 5930,
+   "file_count": 457,
    "lemma_count": 146,
-   "print_axioms_command_count": 4780,
-   "print_axioms_distinct_targets": 4693,
-   "theorem_count": 5764,
-   "theorem_count_bol_convention": 5664
+   "print_axioms_command_count": 4800,
+   "print_axioms_distinct_targets": 4713,
+   "theorem_count": 5784,
+   "theorem_count_bol_convention": 5684
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5891,
-   "file_count": 440,
+   "counted_declaration_count": 5911,
+   "file_count": 442,
    "lemma_count": 139,
-   "print_axioms_command_count": 4780,
-   "print_axioms_distinct_targets": 4693,
-   "theorem_count": 5752,
-   "theorem_count_bol_convention": 5652
+   "print_axioms_command_count": 4800,
+   "print_axioms_distinct_targets": 4713,
+   "theorem_count": 5772,
+   "theorem_count_bol_convention": 5672
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -54669,6 +54860,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -55122,6 +55315,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -55546,17 +55741,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ca967f7fc55f479fdd28dbbea4908f8bbcd42756fd2d45beca6cfb04332e2a3d",
+ "source_inventory_digest": "36bb2b535998a813eaa9c1c2de9e6d77bacc7a73b37d117434b8abd8f77f5277",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/temporal-interpretation-20261027",
-  "commit": "419be918d00df887a0fc66030b4fd6288c0fca9b",
-  "tree": "78d9af31cdb6fdf32dbbc5afb1605ac4574d0908"
+  "branch": "formal/evidence-worlds-20261027",
+  "commit": "f3e14faecbf7e5306e98a825e0abf0836e3cd5a9",
+  "tree": "66a28440c3014498d4d2ef77965ed88ae11dcb84"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 455,
+  "files_total": 457,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

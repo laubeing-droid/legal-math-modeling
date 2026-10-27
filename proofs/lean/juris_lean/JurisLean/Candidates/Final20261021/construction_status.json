@@ -766,11 +766,17 @@
         "TAIL40清单.json"
       ],
       "one_pipeline": "archive-gap close ledger; no second track",
-      "open_formal_tail_remaining": 20,
-      "closed_this_round": 5,
-      "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND7_20261026/",
+      "open_formal_tail_remaining": 18,
+      "closed_this_round": 2,
+      "historical_cand7_closed": 5,
+      "independent_closed_ids": [
+        "U03.1",
+        "U03.2"
+      ],
+      "independent_receipt": "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
+      "close_pack": "docs/formal-release/evidence/u03-debt-close-20261027",
       "candidate_rows": 0,
-      "blocked_rows": 20,
+      "blocked_rows": 18,
       "narrow_not_reopened": [
         "U02.4",
         "U09.2",
@@ -816,7 +822,7 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 this round; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt; remaining OPEN are 20 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+      "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs; remaining OPEN are 18 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
@@ -854,8 +860,8 @@
       "放弃": 0,
       "未决": 0,
       "CLOSED_BY_NARROW": 8,
-      "CLOSED_BY_WIRING": 22,
-      "OPEN_FORMAL_TAIL": 20
+      "CLOSED_BY_WIRING": 24,
+      "OPEN_FORMAL_TAIL": 18
     }
   }
 }

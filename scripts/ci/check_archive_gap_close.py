@@ -17,6 +17,8 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -24,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts" / "ci"))
 
 import archive_gap_dispositions as disp  # noqa: E402
+import check_axiom_audit_log as axiom_audit  # noqa: E402
 
 CANDIDATE = ROOT / "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021"
 STATUS_PATH = CANDIDATE / "50_clause_status.json"
@@ -136,6 +139,9 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
                 "not_gate_run": disp.GATE_ONLY_RUN,
                 "discharges_archived_manuscript_gaps": False,
                 "formal_tail_prove": disp.formal_tail_record(clause),
+                **({"independent_closure": {"receipt": disp.POST_PIN_RECEIPT,
+                    "named_theorems_full": disp.POST_PIN_NAMES[clause]}}
+                    if clause in disp.POST_PIN_CLOSED_IDS else {}),
             }
         )
     counts = {
@@ -221,6 +227,7 @@ def pointer_view(row: dict) -> dict:
         "evidence_pointers": row["evidence_pointers"],
         "non_goals": row["non_goals"],
         "discharges_archived_manuscript_gaps": False,
+        **({"independent_closure": row["independent_closure"]} if "independent_closure" in row else {}),
         "formal_tail_prove": {
             "round": (row.get("formal_tail_prove") or {}).get("round", ""),
             "in_this_round": (row.get("formal_tail_prove") or {}).get("in_this_round"),
@@ -345,14 +352,14 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append(f"formal-tail summary omits pack file {name}")
     if summary.get("step_2_closed") is not False:
         errors.append("formal-tail round claims step 2 closed")
-    if summary.get("closed_this_round") != disp.CAND7_CLOSED_THIS_ROUND:
+    if summary.get("closed_this_round") != len(disp.POST_PIN_CLOSED_IDS):
         errors.append(
             f"formal-tail closed_this_round {summary.get('closed_this_round')!r} "
-            f"!= authorized {disp.CAND7_CLOSED_THIS_ROUND}"
+            f"!= authorized {len(disp.POST_PIN_CLOSED_IDS)}"
         )
     if disp.CAND7_CLOSED_THIS_ROUND != 5 or len(disp.CAND7_CLOSED_IDS) != 5:
         errors.append("CAND7 close authorization is not the five releasable ids")
-    if summary.get("close_pack") != disp.FORMAL_TAIL_CLOSE_PACK:
+    if summary.get("close_pack") != disp.POST_PIN_CLOSE_PACK:
         errors.append("formal-tail summary close_pack drifted")
     if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
         errors.append("formal-tail round flips discharges or math authorization")
@@ -367,7 +374,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("later tip gate is treated as a close or a retarget")
     if summary.get("narrow_not_reopened") != list(disp.CLOSED_NARROW_IDS):
         errors.append("narrow set was reopened or reordered")
-    if summary.get("wiring_not_reopened") != list(disp.CLOSED_WIRING_IDS):
+    if summary.get("wiring_not_reopened") != [c for c in disp.CLOSED_WIRING_IDS if c not in disp.POST_PIN_CLOSED_IDS]:
         errors.append("wiring set was reopened or reordered")
     if summary.get("one_pipeline") != "archive-gap close ledger; no second track":
         errors.append("formal-tail round is not on the archive-gap pipeline")
@@ -393,6 +400,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         | set(disp.CAND5BIS_CLOSED_IDS)
         | set(disp.CAND6_CLOSED_IDS)
         | set(disp.CAND7_CLOSED_IDS)
+        | set(disp.POST_PIN_CLOSED_IDS)
     )
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
@@ -515,10 +523,10 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append(f"CAND7 closed set {sorted(cand7_seen)} != {list(disp.CAND7_CLOSED_IDS)}")
     if summary.get("open_formal_tail_remaining") != open_rows:
         errors.append("formal-tail summary open count drifted")
-    if open_rows != 20:
-        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 20")
-    if summary.get("blocked_rows") != 20:
-        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != 20")
+    if open_rows != disp.POST_PIN_OPEN_REMAINING:
+        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != {disp.POST_PIN_OPEN_REMAINING}")
+    if summary.get("blocked_rows") != disp.POST_PIN_OPEN_REMAINING:
+        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != {disp.POST_PIN_OPEN_REMAINING}")
     if summary.get("candidate_rows") != 0:
         errors.append(
             f"candidate_rows {summary.get('candidate_rows')!r} != 0 after CAND7 close"
@@ -528,7 +536,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 22 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 24 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -587,7 +595,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     if overlap8:
         errors.append(f"CAND8 suffix overlaps PROVE_CANDIDATES: {overlap8}")
     for row in ledger.get("rows") or []:
-        if row.get("clause") not in cand8_ids:
+        if row.get("clause") not in cand8_ids or row.get("clause") in disp.POST_PIN_CLOSED_IDS:
             continue
         record = row.get("formal_tail_prove") or {}
         if row.get("archive_gap_status") != "OPEN_FORMAL_TAIL":
@@ -897,13 +905,71 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
         errors.append("construction formal_tail_round tip_pin is not the live retarget")
     if formal_tail.get("step_2_closed") is not False:
         errors.append("construction formal_tail_round claims step 2 closed")
-    if formal_tail.get("closed_this_round") != disp.CAND7_CLOSED_THIS_ROUND:
+    if formal_tail.get("closed_this_round") != len(disp.POST_PIN_CLOSED_IDS):
         errors.append(
             f"construction formal_tail_round closed_this_round "
-            f"{formal_tail.get('closed_this_round')!r} != {disp.CAND7_CLOSED_THIS_ROUND}"
+            f"{formal_tail.get('closed_this_round')!r} != {len(disp.POST_PIN_CLOSED_IDS)}"
         )
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")
+    return errors
+
+
+def independent_close_errors(receipt: dict, raw: str) -> list[str]:
+    """Accept only the two original residuals proved after the frozen pin."""
+    errors = []
+    expected = {name for names in disp.POST_PIN_NAMES.values() for name in names}
+    if receipt.get("closed_ids") != list(disp.POST_PIN_CLOSED_IDS):
+        errors.append("independent close: unauthorized clause set")
+    if receipt.get("names_by_clause") != disp.POST_PIN_NAMES:
+        errors.append("independent close: residual theorem mapping changed")
+    if receipt.get("closes_debt") is not True or receipt.get("closed_this_round") != 2:
+        errors.append("independent close: missing explicit two-row admission")
+    if receipt.get("discharges_archived_manuscript_gaps") is not False:
+        errors.append("independent close: global discharges changed")
+    if receipt.get("tip_pin") != disp.TIP_PIN:
+        errors.append("independent close: frozen pin changed")
+    if receipt.get("job_conclusion") != "success" or not receipt.get("run_id") or not receipt.get("job_id"):
+        errors.append("independent close: no successful named audit")
+    if (receipt.get("named_count"), receipt.get("open_before"), receipt.get("open_after")) != (15, 20, 18):
+        errors.append("independent close: target or debt count drifted")
+    subject = receipt.get("subject", "")
+    if not re.fullmatch(r"[0-9a-f]{40}", subject):
+        return errors + ["independent close: invalid exact subject"]
+    archive = {row["clause"]: row for row in load_json(ARCHIVE_PATH)["rows"]}
+    residuals = {clause: archive[clause]["remaining_obligations"] for clause in disp.POST_PIN_CLOSED_IDS}
+    if receipt.get("original_residuals") != residuals:
+        errors.append("independent close: original residual was replaced or omitted")
+    if receipt.get("driver_path") != disp.POST_PIN_DRIVER:
+        errors.append("independent close: wrong audit driver")
+    driver = (ROOT / disp.POST_PIN_DRIVER).read_text(encoding="utf-8")
+    for command in ("#check", "#print axioms"):
+        names = re.findall(rf"^{command} (\S+)$", driver, re.MULTILINE)
+        if len(names) != len(expected) or set(names) != expected:
+            errors.append(f"independent close: {command} target set changed")
+    actual = [m.group(1) for pattern in (axiom_audit.TARGET, axiom_audit.CLEAN) for m in pattern.finditer(raw)]
+    report = axiom_audit.parse(raw)
+    if len(actual) != len(expected) or set(actual) != expected or report != receipt.get("axiom_audit"):
+        errors.append("independent close: raw axiom evidence differs from named targets")
+    if any(report[k] for k in ("targets_with_sorryAx", "targets_outside_standard_axioms", "conflicting_target_lines")):
+        errors.append("independent close: unsupported kernel dependencies")
+    for name in expected:
+        if not re.search(r"(?m)^" + re.escape(name) + r"(?:\.\{|\s|$)", raw):
+            errors.append(f"independent close: full type absent for {name}")
+    sources = receipt.get("sources", [])
+    if len(sources) != len(disp.POST_PIN_SOURCES) or {s.get("path") for s in sources} != set(disp.POST_PIN_SOURCES):
+        errors.append("independent close: source/consumer inventory incomplete")
+    for source in sources:
+        rel = source.get("path")
+        if rel not in disp.POST_PIN_SOURCES:
+            continue
+        current = (ROOT / rel).read_bytes().replace(b"\r\n", b"\n")
+        built = subprocess.run(["git", "show", f"{subject}:{rel}"], cwd=ROOT, capture_output=True)
+        if built.returncode or current != built.stdout or sha256_bytes(current) != source.get("sha256"):
+            errors.append(f"independent close: source differs from successful audit: {rel}")
+    root = (ROOT / "proofs/lean/juris_lean/JurisLean.lean").read_text(encoding="utf-8")
+    if "import JurisLean.Candidates.U03DebtClosureAudit20261027" not in root.splitlines():
+        errors.append("independent close: proof/consumer audit is outside the full build root")
     return errors
 
 
@@ -917,6 +983,11 @@ def check(write: bool = False) -> tuple[list[str], dict]:
     lines = theorem_lines(CANDIDATE)
     ledger = build_ledger(status, archive, lines)
     extracted = binding.reextract((ROOT / binding.ZIP_REL).read_bytes())
+    independent = load_json(ROOT / disp.POST_PIN_RECEIPT)
+    raw = (ROOT / disp.POST_PIN_CLOSE_PACK / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+    errors = independent_close_errors(independent, raw)
+    if errors:
+        return errors, ledger
     if write:
         dump_json(LEDGER_PATH, ledger)
         sync_pointers(status, construction, ledger)

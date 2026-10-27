@@ -1,0 +1,205 @@
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust (interpretations : List (List ℕ))
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (a : ℕ)
+  (derived :
+    JurisLean.Candidates.Final20261021.Compiler.Derives (fun b => ∀ facts ∈ interpretations, b ∈ facts)
+      (fun x => x ∈ rules) a)
+  (facts : List ℕ) :
+  facts ∈ interpretations →
+    JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ facts) (fun x => x ∈ rules) a
+'JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust' does not depend on any axioms
+JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts :
+  have rules := [{ premises := [1], conclusion := 3 }, { premises := [2], conclusion := 3 }];
+  JurisLean.Candidates.Final20261021.Compiler.proposed_robust_queries rules [[1], [2]] [3] =
+      JurisLean.Candidates.Final20261021.Result.known [3] ∧
+    3 ∉
+      JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input rules
+        (JurisLean.Candidates.Final20261021.Compiler.finiteCarrier rules []).card []
+'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (facts : List ℕ) :
+  ∃ k ≤ (JurisLean.Candidates.Final20261021.Compiler.finiteCarrier rules facts).card,
+    JurisLean.Candidates.Final20261021.Compiler.closed rules
+        (JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input rules k facts) =
+      true
+'JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (facts : List ℕ) (fuel : ℕ)
+  (enough : (JurisLean.Candidates.Final20261021.Compiler.finiteCarrier rules facts).card ≤ fuel) :
+  JurisLean.Candidates.Final20261021.Compiler.closed rules
+      (JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input rules fuel facts) =
+    true
+'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (facts : List ℕ) (fuel : ℕ)
+  (enough : (JurisLean.Candidates.Final20261021.Compiler.finiteCarrier rules facts).card ≤ fuel) :
+  ∃ known,
+    JurisLean.Candidates.Final20261021.Compiler.proposed_checked_rule_input rules fuel facts =
+        JurisLean.Candidates.Final20261021.Result.known known ∧
+      ∀ (a : ℕ),
+        a ∈ known ↔ JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ facts) (fun x => x ∈ rules) a
+'JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (facts : List ℕ) (a : ℕ) :
+  a ∈
+      JurisLean.Candidates.Final20261021.Compiler.proposed_rule_input rules
+        (JurisLean.Candidates.Final20261021.Compiler.finiteCarrier rules facts).card facts ↔
+    JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ facts) (fun x => x ∈ rules) a
+'JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (interpretations : List (List ℕ))
+  (queries known : List ℕ)
+  (accepted :
+    JurisLean.Candidates.Final20261021.Compiler.proposed_robust_queries rules interpretations queries =
+      JurisLean.Candidates.Final20261021.Result.known known)
+  (a : ℕ) :
+  interpretations ≠ [] ∧
+    (a ∈ known ↔
+      a ∈ queries ∧
+        ∀ facts ∈ interpretations,
+          JurisLean.Candidates.Final20261021.Compiler.Derives (fun x => x ∈ facts) (fun x => x ∈ rules) a)
+'JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected
+  (rules : List (JurisLean.Candidates.Final20261021.Compiler.Rule ℕ)) (queries : List ℕ) :
+  JurisLean.Candidates.Final20261021.Compiler.proposed_robust_queries rules [] queries =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+'JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.SourceCompilation20261027.CompiledView)
+  (accepted :
+    JurisLean.Candidates.SourceCompilation20261027.compileView s branch catalog rules ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SourceCompilation20261027.extractView s branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out.source ∧
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input out.source.material.gamma rules
+          (JurisLean.Candidates.SourceCompilation20261027.leafCheck out.source) ruleGate nodes root query =
+        JurisLean.Candidates.Final20261021.Result.known out.evidence ∧
+      out.closure =
+        JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence out.source.material.gamma rules ruleGate
+          out.evidence
+'JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.SourceCompilation20261027.CompiledView)
+  (accepted :
+    JurisLean.Candidates.SourceCompilation20261027.compileView s branch catalog rules ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ out.closure ∧ JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+'JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.SourceCompilation20261027.CompiledView)
+  (Interpret :
+    JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot →
+      JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Prop)
+  (truth : ℕ → Prop)
+  (catalogFaithful : ∀ row ∈ catalog, row.material = s → row.branch = branch → Interpret s row.decoded)
+  (primitiveMeaning :
+    ∀ (decoded : JurisLean.Candidates.SourceCompilation20261027.ConsumedView),
+      Interpret s decoded → ∀ f ∈ decoded.atoms, truth f.value)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules s.gamma rules ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.SourceCompilation20261027.compileView s branch catalog rules ruleGate nodes root query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+'JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

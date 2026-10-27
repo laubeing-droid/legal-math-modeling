@@ -510,7 +510,7 @@ def check() -> tuple[list[str], dict[str, int]]:
             if not str(archived.get("remaining_obligations") or "").strip():
                 errors.append(f"{clause}: archived remaining_obligations empty")
 
-    lean_files = sorted((ROOT / CANDIDATE).glob("*.lean"))
+    lean_files = sorted((ROOT / CANDIDATE).glob("*.lean"), key=lambda p: p.relative_to(ROOT).as_posix())
     expected_paths = [p.relative_to(ROOT).as_posix() for p in lean_files]
     hashed = {item["path"]: item["sha256"] for item in receipt.get("source_hashes", [])}
     if sorted(hashed) != expected_paths:

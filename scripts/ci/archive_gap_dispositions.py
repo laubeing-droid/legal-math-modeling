@@ -296,12 +296,8 @@ UNWIRED: dict[str, list[str]] = {
     "U07.3": [
         "Source truth and arbitrary extractor fidelity are not proved by the fixed-history projection theorem.",
     ],
-    "U03.1": [
-        "Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure.",
-    ],
-    "U03.2": [
-        "A verified finite carrier/fuel bound for this list implementation is still missing.",
-    ],
+    "U03.1": [],  # Independently proved and audited by the later U03 closure package.
+    "U03.2": [],  # Independently proved and audited by the later U03 closure package.
     "U02.1": [
         "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
     ],
@@ -353,6 +349,23 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U03.1": (
+        "Independent U03 residual closure: CompilerProvenance20261027 checks a finite "
+        "acyclic graph and passes its actual accepted leaves and enabled rules into "
+        "CompilerClosure20261026. The executable robust-query countermodel is strict "
+        "beyond the common-facts closure. SourceCompilation20261027 consumes that "
+        "actual output; semantic soundness keeps source/rule truth as explicit premises. "
+        "Exact named evidence: docs/formal-release/evidence/u03-debt-close-20261027. "
+        "This does not derive source truth, rule legal force, or absence of exceptions."
+    ),
+    "U03.2": (
+        "Independent U03 residual closure: CompilerClosure20261026 bounds the actual "
+        "duplicate-list computation by the number of distinct initial facts and rule "
+        "heads, proves closure for every sufficient fuel and checked derivability "
+        "equivalence. The actual provenance/source consumer supplies that bound. "
+        "Exact named evidence: docs/formal-release/evidence/u03-debt-close-20261027. "
+        "No infinite-generation termination or real-world negation is claimed."
+    ),
     "U01.0": (
         "Wired statements are the independent bounded-sum two-tail at a strictly "
         "positive threshold and the D=0 null tail, together with the clause-listed "
@@ -635,6 +648,8 @@ CLOSED_NARROW_IDS = (
     "U00",
 )
 CLOSED_WIRING_IDS = (
+    "U03.1",
+    "U03.2",
     "U02.2",
     "U01.0",
     "U06.4",
@@ -698,6 +713,41 @@ FORMAL_TAIL_CLOSE_PACK = (
 # CAND8 true-proof v1.1 (pack formal_tail_真证CAND8_20261026). Naming is not a close.
 # U01.1/U01.2 stay in the pack id set as deferred OPEN rows; theorems for them are out.
 CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
+
+# Later owner-authorized debt closure; never a retarget or promotion of CAND8.
+POST_PIN_CLOSED_IDS = ("U03.1", "U03.2")
+POST_PIN_CLOSE_PACK = "docs/formal-release/evidence/u03-debt-close-20261027"
+POST_PIN_RECEIPT = POST_PIN_CLOSE_PACK + "/verification.json"
+POST_PIN_OPEN_REMAINING = 18
+POST_PIN_NAMES = {
+    "U03.1": [
+        "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+        "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+        "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+        "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+        "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+        "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+        "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+    ],
+    "U03.2": [
+        "JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact",
+        "JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected",
+        "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+    ],
+}
+POST_PIN_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean"
+POST_PIN_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+    POST_PIN_DRIVER,
+)
 FORMAL_TAIL_CAND8_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_真证CAND8_20261026/"
 )
@@ -1107,6 +1157,7 @@ def formal_tail_record(clause: str) -> dict:
                 or clause in CAND5BIS_CLOSED_IDS
                 or clause in CAND6_CLOSED_IDS
                 or clause in CAND7_CLOSED_IDS
+                or clause in POST_PIN_CLOSED_IDS
             ),
             "step_2_closed": False,
             "discharges_archived_manuscript_gaps": False,
@@ -1209,8 +1260,11 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "pack_files": list(FORMAL_TAIL_PACK_FILES),
         "one_pipeline": "archive-gap close ledger; no second track",
         "open_formal_tail_remaining": len(open_rows),
-        "closed_this_round": CAND7_CLOSED_THIS_ROUND,
-        "close_pack": FORMAL_TAIL_CLOSE_PACK,
+        "closed_this_round": len(POST_PIN_CLOSED_IDS),
+        "historical_cand7_closed": CAND7_CLOSED_THIS_ROUND,
+        "independent_closed_ids": list(POST_PIN_CLOSED_IDS),
+        "independent_receipt": POST_PIN_RECEIPT,
+        "close_pack": POST_PIN_CLOSE_PACK,
         "candidate_rows": sum(
             1 for row in open_rows if (row.get("formal_tail_prove") or {}).get("disposition") == "CANDIDATE_NOT_AUDITED"
         ),
@@ -1220,7 +1274,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             if (row.get("formal_tail_prove") or {}).get("disposition") == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
         ),
         "narrow_not_reopened": list(CLOSED_NARROW_IDS),
-        "wiring_not_reopened": list(CLOSED_WIRING_IDS),
+        "wiring_not_reopened": [c for c in CLOSED_WIRING_IDS if c not in POST_PIN_CLOSED_IDS],
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
@@ -1234,12 +1288,13 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             f"(closed_this_round={CAND6_CLOSED_THIS_ROUND} historical). "
             "CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack "
             "formal_tail_关≥1_CAND7_20261026 "
-            f"(closed_this_round={CAND7_CLOSED_THIS_ROUND} this round; OPEN_FORMAL_TAIL=20; "
+            f"(closed_this_round={CAND7_CLOSED_THIS_ROUND} historical; OPEN_FORMAL_TAIL=20; "
             "CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; "
             "ci-tip-dc7b7430 stays 37. FormalTail short names stay out of "
             "wired_declarations; discharges stay false; step_2_closed stays false; "
             "tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close "
-            "debt; remaining OPEN are 20 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
+            "debt. The later independent U03 package closes U03.1/U03.2 using new exact "
+            "residual proofs; remaining OPEN are 18 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -1264,7 +1319,7 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = "WIRED_TO_TIP_PIN_DECLARATIONS"
+    text = "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else "WIRED_TO_TIP_PIN_DECLARATIONS"
     if goals:
         text += " || NON_GOAL_POINTER: " + " | ".join(goals)
     return text

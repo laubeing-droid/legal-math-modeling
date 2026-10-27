@@ -1,5 +1,6 @@
 -- JurisLean root module
 import JurisLean.Basic
+import JurisLean.Candidates.U03DebtClosureAudit20261027
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027

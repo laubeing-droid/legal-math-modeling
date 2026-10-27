@@ -1,0 +1,71 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "3a76c7165a809440f1035cc964c0dbffe2e8d12d",
+  "run_id": 40494315274,
+  "job_id": 122155785856,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
+  "named_count": 9,
+  "named_theorems_full": [
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.selected_decision_reads_same_probability_and_quote",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_uses_actual_legal_validation",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_choice_uses_current_model",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_preserves_reported_business_invariant",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.unknown_loaded_probability_has_no_transaction_effect",
+    "JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumer20261027.lean",
+      "sha256": "8a87587f0de1934122f1792f99f980cd32d44d034b366e8691bd552d3d3aa77c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LoadedLegalConsumerAudit20261027.lean",
+      "sha256": "f574b40690605bd033ca1dafb8e811fb1f50453fb9591bb5d0b14b2df2cf1e8f"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "Classical.choice": 9,
+      "Quot.sound": 9,
+      "propext": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "20 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

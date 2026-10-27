@@ -1,0 +1,202 @@
+JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m)
+  (known :
+    JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.calibrationReady state request packet catalog = true ∧
+    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval request.protocol
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service).fitted packet.models
+          (JurisLean.Candidates.LoadedLegalConsumer20261027.calibrationData packet) request.query radius exponent
+          packet.snapshot packet.supported =
+        JurisLean.Candidates.Final20261021.Result.known out ∧
+      packet ∈ catalog ∧
+        packet.loaded = JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service ∧
+          out.fitted = (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service).fitted ∧
+            out.fitted.table.getD (↑request.query) 0 =
+              JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded state.service request.query
+'JurisLean.Candidates.LoadedLegalConsumer20261027.known_probability_binds_actual_loaded_and_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (changed : packet.loaded ≠ JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.scopeMismatch
+'JurisLean.Candidates.LoadedLegalConsumer20261027.changed_loaded_contents_refuse_old_calibration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown {m : ℕ}
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (missing : packet ∉ catalog) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.loadedProbability state request packet catalog radius exponent =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.scopeMismatch
+'JurisLean.Candidates.LoadedLegalConsumer20261027.missing_calibration_attestation_stays_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.selected_decision_reads_same_probability_and_quote {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (probability :
+    JurisLean.Candidates.Final20261021.Result
+      (JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m))
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (chosen :
+    JurisLean.Candidates.LoadedLegalConsumer20261027.chooseLoaded request utility proposals probability =
+      JurisLean.Candidates.Final20261021.Result.known selected) :
+  ∃ p quote,
+    probability = JurisLean.Candidates.Final20261021.Result.known p ∧
+      quote ∈ List.map JurisLean.Candidates.LegalActionDomain20261027.Proposal.quote proposals ∧
+        JurisLean.Candidates.IntervalDecisionConsumer20261027.evaluateInterval request utility p quote =
+            JurisLean.Candidates.Final20261021.Result.known selected ∧
+          selected.probability = p ∧ selected.nominal.gamma = request.gamma ∧ selected.riskUpper ≤ request.riskLimit
+'JurisLean.Candidates.LoadedLegalConsumer20261027.selected_decision_reads_same_probability_and_quote' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_uses_actual_legal_validation {W : Type} {m : ℕ}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model :
+    JurisLean.Candidates.LegalActionDomain20261027.ActionModel W JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (utility : ℚ → ℚ) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (chosen :
+    (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input model proposals state request packet catalog
+            radius exponent utility grants initial).execution.proposal =
+      some proposal) :
+  ∃ branches,
+    input.inspect = JurisLean.Candidates.Final20261021.Result.known branches ∧
+      proposal ∈ proposals ∧
+        JurisLean.Candidates.LegalActionDomain20261027.accepts model input.truth initial input.anchor.gamma branches
+            proposal =
+          true
+'JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_uses_actual_legal_validation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_choice_uses_current_model {W : Type} {m : ℕ}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model :
+    JurisLean.Candidates.LegalActionDomain20261027.ActionModel W JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (utility : ℚ → ℚ) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (chosen :
+    (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input model proposals state request packet catalog
+          radius exponent utility grants initial).decision =
+      JurisLean.Candidates.Final20261021.Result.known selected) :
+  selected.probability.fitted = (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service).fitted ∧
+    selected.probability.fitted.table.getD (↑request.query) 0 =
+        JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded state.service request.query ∧
+      selected.nominal.gamma = request.gamma ∧ selected.riskUpper ≤ request.riskLimit
+'JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_choice_uses_current_model' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_preserves_reported_business_invariant {W : Type} {m : ℕ}
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model :
+    JurisLean.Candidates.LegalActionDomain20261027.ActionModel W JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (utility : ℚ → ℚ) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (valid : JurisLean.Candidates.Final20261021.Trace.Invariant initial)
+  (reported :
+    (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input model proposals state request packet catalog
+              radius exponent utility grants initial).execution.payment.current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant final
+'JurisLean.Candidates.LoadedLegalConsumer20261027.loaded_run_preserves_reported_business_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.unknown_loaded_probability_has_no_transaction_effect {m : ℕ}
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m) (utility : ℚ → ℚ)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle) (reason : JurisLean.Candidates.Final20261021.Error) :
+  (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals
+            (JurisLean.Candidates.LoadedLegalConsumer20261027.chooseLoaded request utility proposals
+              (JurisLean.Candidates.Final20261021.Result.unknown reason))
+            grants initial).payment.current =
+      some initial ∧
+    (JurisLean.Candidates.LegalActionDomain20261027.executeDecision request utility proposals
+            (JurisLean.Candidates.LoadedLegalConsumer20261027.chooseLoaded request utility proposals
+              (JurisLean.Candidates.Final20261021.Result.unknown reason))
+            grants initial).payment.outcomes =
+      []
+'JurisLean.Candidates.LoadedLegalConsumer20261027.unknown_loaded_probability_has_no_transaction_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence.{u_1} {Ω : Type u_1} {m n : ℕ}
+  [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Bool))
+  [MeasureTheory.IsProbabilityMeasure P] (hm : 0 < m) (hn : 0 < n)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (first : List ℚ) (rest : List (List ℚ))
+  (sample : Fin n → Ω → Fin m × Bool) (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i))
+  (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (hδ : 0 < protocol.failureBudget)
+  (hδ1 : protocol.failureBudget < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (query : Fin m) (radius : ℚ)
+            (exponent snapshot : ℕ) (supported : Bool)
+            (out : JurisLean.Candidates.ProbabilityIntervalConsumer20261027.SampleProbability m),
+            JurisLean.Candidates.ProbabilityIntervalConsumer20261027.produceInterval protocol fitted (first :: rest)
+                  (fun i => sample i w) query radius exponent snapshot supported =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              0 <
+                  P.real
+                    {z |
+                      JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin (out.fitted.table, out.query)
+                          z =
+                        true} ∧
+                ↑out.lower ≤
+                    P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                (out.fitted.table, out.query) z =
+                              true ∧
+                            z.2 = true} /
+                      P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                              (out.fitted.table, out.query) z =
+                            true} ∧
+                  P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                (out.fitted.table, out.query) z =
+                              true ∧
+                            z.2 = true} /
+                      P.real
+                        {z |
+                          JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                              (out.fitted.table, out.query) z =
+                            true} ≤
+                    ↑out.upper
+'JurisLean.Candidates.LoadedLegalConsumer20261027.frozen_family_probability_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

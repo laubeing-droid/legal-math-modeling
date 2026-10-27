@@ -1,0 +1,77 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+  "run_id": 40476074285,
+  "job_id": 122094508524,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+  "named_count": 20,
+  "named_theorems_full": [
+    "JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks",
+    "JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted",
+    "JurisLean.Candidates.ProcedureClosure20261027.checked_closure_exhausts_independent_requirements",
+    "JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage",
+    "JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain",
+    "JurisLean.Candidates.ProcedureClosure20261027.missing_witness_is_an_actual_uncovered_requirement",
+    "JurisLean.Candidates.ProcedureClosure20261027.unfinished_witness_is_an_actual_open_policy_opportunity",
+    "JurisLean.Candidates.ProcedureClosure20261027.final_undetermined_exact",
+    "JurisLean.Candidates.ProcedureClosure20261027.successful_inspection_reads_actual_process_result",
+    "JurisLean.Candidates.ProcedureClosure20261027.inspected_final_undetermined_retains_coverage",
+    "JurisLean.Candidates.ProcedureClosure20261027.branch_inspection_does_not_drop_open_results",
+    "JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count",
+    "JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution",
+    "JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.required_exhaustion_need_not_exhaust_larger_policy_domain",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.same_current_record_has_different_future_extensions",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.current_record_does_not_imply_future_impossibility",
+    "JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+      "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+      "sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 20,
+    "axiom_vocabulary": {
+      "Quot.sound": 17,
+      "propext": 18
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "16 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

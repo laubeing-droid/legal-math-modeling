@@ -120,10 +120,10 @@ def fixture (input : LegalInput (List Nat) := legalInput)
 /-- info: true -/
 #guard_msgs in
 #eval match (fixture).review.validation with
-  | .known rows => decide (rows.map Prod.fst = [0, 1]) && rows.all (fun (_, result) =>
-      match result with
+  | .known rows => decide (rows.map Prod.fst = [0, 1]) && rows.all (fun (branch : Nat × Result (ValidationReport (List Nat))) =>
+      match branch.2 with
       | .known report => (match report.horn with | .known _ => true | _ => false) &&
-          decide (report.procedure = .known Procedure.closedLawfully)
+          decide (report.procedure = Result.known Procedure.closedLawfully)
       | _ => false)
   | _ => false
 
@@ -298,8 +298,9 @@ def openInput : LegalInput (List Nat) :=
 /-- info: true -/
 #guard_msgs in
 #eval
-  let model := {actionModel with successors := fun g w before steps =>
-    if Ledger.balance before.state = 10 then actionModel.successors g w before steps else []}
+  let model := {actionModel with
+    successors := fun g w before steps =>
+      if Ledger.balance before.state = 10 then actionModel.successors g w before steps else []}
   let result := fixture legalInput model
   match result.execution.payment.current with
   | some post => decide (result.review.allowed.length = 2) &&

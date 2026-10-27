@@ -251,7 +251,12 @@ theorem actual_policy_advice_confidence {Ω : Type*} {m n : Nat}
       push_cast
       exact ⟨div_nonneg bound.1 weightPositive.le, (div_le_one weightPositive).mpr bound.2⟩)
     (fun _ => (plan.delta : ℝ))
-    (fun _ => by exact_mod_cast deltaPositive) (fun _ => by exact_mod_cast deltaBelowOne)
+    (fun _ => by
+      change (0 : ℝ) < (plan.delta : ℝ)
+      exact_mod_cast deltaPositive)
+    (fun _ => by
+      change (plan.delta : ℝ) < 1
+      exact_mod_cast deltaBelowOne)
   refine ⟨_, joint.1, ?_, ?_⟩
   · simpa using joint.2
   · intro w hw allowed chosen selected

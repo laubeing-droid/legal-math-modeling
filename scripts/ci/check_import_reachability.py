@@ -43,7 +43,7 @@ STANDALONE_DRIVERS: dict[str, str] = {
         "9 actual authorized load and next-fit targets, 15 execution checks; changed-module run 40435047031 passed"
     ),
     "JurisLean.Candidates.ProtectedFeedbackAudit20261027": (
-        "12 protected-domain validation targets, 17 execution checks; changed-module run 40434490740 passed"
+        "12 protected-domain validation targets, 17 execution checks; changed-module run 40436410064 passed"
     ),
     "JurisLean.Candidates.FeedbackLabelSemanticsAudit20261027": (
         "13 fixed-target and correction semantics targets, 2 execution checks; changed-module run 40429431857 passed"

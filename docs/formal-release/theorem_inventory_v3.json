@@ -12966,6 +12966,163 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "interpreted_same_symmetric"
+    },
+    {
+     "kind": "theorem",
+     "name": "interpreted_same_transitive"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_identity_is_equivalence"
+    },
+    {
+     "kind": "theorem",
+     "name": "semantic_key_exact"
+    },
+    {
+     "kind": "def",
+     "name": "resolveObject"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolution_uses_unique_matching_object"
+    },
+    {
+     "kind": "def",
+     "name": "identityExample"
+    },
+    {
+     "kind": "def",
+     "name": "bareEventExample"
+    },
+    {
+     "kind": "theorem",
+     "name": "copies_and_distinct_payments_are_separate"
+    },
+    {
+     "kind": "theorem",
+     "name": "reference_strings_can_split_copies"
+    },
+    {
+     "kind": "def",
+     "name": "firstAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "first_match_depends_on_order"
+    },
+    {
+     "kind": "def",
+     "name": "ObservationAdequate"
+    },
+    {
+     "kind": "theorem",
+     "name": "adequate_representation_preserves_all_declared_observations"
+    },
+    {
+     "kind": "theorem",
+     "name": "adequate_separating_representation_is_injective"
+    },
+    {
+     "kind": "def",
+     "name": "terminalBalance"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_balance_does_not_identify_history"
+    },
+    {
+     "kind": "theorem",
+     "name": "preservation_without_reflection"
+    },
+    {
+     "kind": "inductive",
+     "name": "RationalQty"
+    },
+    {
+     "kind": "def",
+     "name": "quantityDenote"
+    },
+    {
+     "kind": "def",
+     "name": "encodeQuantity"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_rational_amounts_have_exact_tagged_encoding"
+    },
+    {
+     "kind": "theorem",
+     "name": "quantity_addition_preserves_full_tag"
+    },
+    {
+     "kind": "theorem",
+     "name": "quantity_addition_refuses_tag_mismatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "dimensionless_scaling_preserves_amount_tag"
+    },
+    {
+     "kind": "theorem",
+     "name": "old_division_free_syntax_cannot_represent_half"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Seams.UnifiedNeedlesS3b"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "40607d55d0912d6f5b135c13efc874c1f432a2899db5060a85c7f132a6d2c207",
+   "size_bytes": 8582,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "sourceIdentityTable"
+    },
+    {
+     "kind": "def",
+     "name": "representationAmount"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SourceRepresentation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations",
+    "JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective",
+    "JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding",
+    "JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate",
+    "JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag",
+    "JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order",
+    "JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half",
+    "JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection",
+    "JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag",
+    "JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch",
+    "JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies",
+    "JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object",
+    "JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence",
+    "JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history",
+    "JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact"
+   ],
+   "sha256": "a53fa4dd305a0e5999437eaf1f184957426f926fb24b015a675a4789ed1a53af",
+   "size_bytes": 5345,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "SamplingReceipt"
     },
@@ -52943,6 +53100,7 @@
     "JurisLean.Candidates.ProtectedFeedback20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
     "JurisLean.Candidates.SelectiveCalibration20261027",
+    "JurisLean.Candidates.SourceRepresentation20261027",
     "JurisLean.Candidates.ValidatedFeedbackLoad20261027",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
@@ -53166,8 +53324,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "9195a13bb36ed9919e492615d3c1a65c5a000328d455d670c0e223d4fa88eac7",
-   "size_bytes": 12307,
+   "sha256": "3316fec3332fa3f5f76f11e421974cbc11e6a0ac1ad8c1464ad91952539bf39d",
+   "size_bytes": 12364,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -53331,22 +53489,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5821,
-   "file_count": 445,
+   "counted_declaration_count": 5838,
+   "file_count": 447,
    "lemma_count": 146,
-   "print_axioms_command_count": 4693,
-   "print_axioms_distinct_targets": 4606,
-   "theorem_count": 5675,
-   "theorem_count_bol_convention": 5575
+   "print_axioms_command_count": 4708,
+   "print_axioms_distinct_targets": 4621,
+   "theorem_count": 5692,
+   "theorem_count_bol_convention": 5592
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5802,
-   "file_count": 430,
+   "counted_declaration_count": 5819,
+   "file_count": 432,
    "lemma_count": 139,
-   "print_axioms_command_count": 4693,
-   "print_axioms_distinct_targets": 4606,
-   "theorem_count": 5663,
-   "theorem_count_bol_convention": 5563
+   "print_axioms_command_count": 4708,
+   "print_axioms_distinct_targets": 4621,
+   "theorem_count": 5680,
+   "theorem_count_bol_convention": 5580
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -53477,6 +53635,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -53920,6 +54080,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -54278,17 +54440,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2b0b4129505afd53e1402a02c91daef7c528da8d2757497ecfcadbf3e5aca519",
+ "source_inventory_digest": "61aaf99cd608a4d8de97109dbb597dd120c0fea7932fe093fe6c1d69396e69cb",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/business-measurement-20261027",
-  "commit": "776a37b0f1d76f0ce5d355f26cb3fdf869ddebcd",
-  "tree": "ee3fa5c9e828c7a647f51f408bdb74b773d55dd2"
+  "branch": "formal/source-representation-20261027",
+  "commit": "0a85ee71c393b8d79c76fc611972d4969c756172",
+  "tree": "9a50108d53800ae8df713a7aac61971b853737dd"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 445,
+  "files_total": 447,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

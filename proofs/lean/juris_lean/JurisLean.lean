@@ -82,6 +82,7 @@ import JurisLean.Candidates.LearningERM20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.LearningFiniteClass20261027
 import JurisLean.Candidates.LearningRisk20261027
+import JurisLean.Candidates.MeasuredPolicy20261027
 import JurisLean.Candidates.PolicyEvaluation20261027
 import JurisLean.Candidates.PolicyResponse20261027
 import JurisLean.Candidates.ProbabilityIntervalConsumer20261027

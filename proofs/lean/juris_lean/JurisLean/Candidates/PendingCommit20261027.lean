@@ -82,8 +82,8 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
               refine ⟨tail.1, .cons (Trace.u10_2_committed_executor_is_step
                 initial initial request _ mode receipt after executed) tail.2.1,
                 tail.2.2.1, ?_, ?_⟩
-              · simpa only [runTrajectory, ← permission, executed] using tail.2.2.2.1
-              · simpa only [runTrajectory, ← permission, executed, List.mem_cons] using
+              · simpa only [runTrajectory, executed] using tail.2.2.2.1
+              · simpa only [runTrajectory, executed, List.mem_cons] using
                   (Or.inr tail.2.2.2.2 :
                     Ledger.Outcome.unknownCommit pending.request.key pending.request.attempt =
                         Ledger.Outcome.committed receipt after ∨
@@ -92,22 +92,22 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
           | replay receipt =>
               have tail := ih initial (by simpa only [locate, executed] using found)
               refine ⟨tail.1, tail.2.1, tail.2.2.1, ?_, ?_⟩
-              · simpa only [runTrajectory, ← permission, executed] using tail.2.2.2.1
-              · simpa only [runTrajectory, ← permission, executed, List.mem_cons] using
+              · simpa only [runTrajectory, executed] using tail.2.2.2.1
+              · simpa only [runTrajectory, executed, List.mem_cons] using
                   (Or.inr tail.2.2.2.2 :
                     Ledger.Outcome.unknownCommit pending.request.key pending.request.attempt =
                         Ledger.Outcome.replay receipt ∨
                       Ledger.Outcome.unknownCommit pending.request.key pending.request.attempt ∈
                         (runTrajectory grants initial rest).outcomes)
           | unknownCommit key attempt =>
-              have identity := unknown_outcome_keeps_request_identity initial request _ mode key attempt executed
+              obtain ⟨key_eq, attempt_eq⟩ := unknown_outcome_keeps_request_identity initial request _ mode key attempt executed
               subst key
               subst attempt
               simp only [locate, executed, Option.some.injEq] at found
               subst pending
               exact ⟨rfl, .nil initial, executed,
-                by simp [runTrajectory, ← permission, executed, Pipeline.finishPayment],
-                by simp [runTrajectory, ← permission, executed, Pipeline.finishPayment]⟩
+                by simp [runTrajectory, executed, Pipeline.finishPayment],
+                by simp [runTrajectory, executed, Pipeline.finishPayment]⟩
           | rejectedNoCommit attempt error => simp [locate, executed] at found
           | conflict registered requested => simp [locate, executed] at found
           | pending error => simp [locate, executed] at found

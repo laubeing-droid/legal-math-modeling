@@ -16670,6 +16670,40 @@
    "theorem_count_bol_convention": 0
   },
   {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveRoundLedgerAudit20261027",
+    "JurisLean.Candidates.AdaptiveValidationAudit20261027",
+    "JurisLean.Candidates.BusinessFeedbackLoopAudit20261027",
+    "JurisLean.Candidates.HarnessRiskAudit20261027",
+    "JurisLean.Candidates.ProtectedFeedbackAudit20261027",
+    "JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget",
+    "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+    "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+    "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027.next_action_reads_actual_assessment_post",
+    "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+    "JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence",
+    "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk",
+    "JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement",
+    "JurisLean.Candidates.ProtectedFeedback20261027.protected_iid_joint_event",
+    "JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback",
+    "JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent"
+   ],
+   "sha256": "4a8a6fa39aa6b5f66b3b20024606d2d8c5f1afa033010e8a8a255a6e878dac32",
+   "size_bytes": 3481,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
    "declarations": [
     {
      "kind": "structure",
@@ -56621,7 +56655,6 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
-    "JurisLean.Candidates.AdaptiveValidation20261027",
     "JurisLean.Candidates.BusinessFeedbackLoop20261027",
     "JurisLean.Candidates.BusinessFeedbackLoopAudit20261027",
     "JurisLean.Candidates.CalibrationSemantics20261027",
@@ -56635,8 +56668,6 @@
     "JurisLean.Candidates.ExactProbabilityAudit20261027",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
-    "JurisLean.Candidates.HarnessRisk20261027",
-    "JurisLean.Candidates.HarnessRiskAudit20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
     "JurisLean.Candidates.LearningDependence20261027",
     "JurisLean.Candidates.LearningEventSplit20261027",
@@ -56653,6 +56684,7 @@
     "JurisLean.Candidates.SourceOpeningAudit20261027",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
+    "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
     "JurisLean.CertificateCheckerV2",
@@ -56855,8 +56887,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "c5a000056d544b7e414e2b37a082b34144b39c452105e93ac8e33d96b89c3a1c",
-   "size_bytes": 11730,
+   "sha256": "6b6e5c66c9786f9d3d5f5510814e89f1cbc21f2e811bd67143236339915c1913",
+   "size_bytes": 11632,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57021,18 +57053,18 @@
  "scope_summary": {
   "all_tracked_lean": {
    "counted_declaration_count": 6113,
-   "file_count": 482,
+   "file_count": 483,
    "lemma_count": 146,
-   "print_axioms_command_count": 5000,
+   "print_axioms_command_count": 5015,
    "print_axioms_distinct_targets": 4900,
    "theorem_count": 5967,
    "theorem_count_bol_convention": 5867
   },
   "juris_lean_package": {
    "counted_declaration_count": 6094,
-   "file_count": 467,
+   "file_count": 468,
    "lemma_count": 139,
-   "print_axioms_command_count": 5000,
+   "print_axioms_command_count": 5015,
    "print_axioms_distinct_targets": 4900,
    "theorem_count": 5955,
    "theorem_count_bol_convention": 5855
@@ -57203,6 +57235,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -57683,6 +57716,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -58041,17 +58075,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "60dfa3119d7014400e61f6139b602188cb6625e1d939ff3b4e31042a17bd5703",
+ "source_inventory_digest": "1861b3ee844e7e85c231e20769a1421543f77c9c21569f47e8ec97e9208ee4f7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u04-5-debt-20261027",
-  "commit": "4eebf1df2ec34cb4e66ac443bfc887d9e607a518",
-  "tree": "b1324b7f9be3906eb5ec30aba08e8648bad45948"
+  "branch": "formal/close-u14-1-debt-20261028",
+  "commit": "77585e25e6f845d9ec26b67f7f6987a1afe39d5d",
+  "tree": "0a999eebf5f12c3ee2da630aac4e3aecccd4f0ce"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 482,
+  "files_total": 483,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

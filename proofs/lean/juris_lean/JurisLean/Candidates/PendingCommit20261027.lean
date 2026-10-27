@@ -79,6 +79,7 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
               (permission grants initial request) mode with
           | committed receipt after =>
               have tail := ih after (by simpa only [locate, executed] using found)
+              dsimp only [permission] at executed
               refine ⟨tail.1, .cons (Trace.u10_2_committed_executor_is_step
                 initial initial request _ mode receipt after executed) tail.2.1,
                 tail.2.2.1, ?_, ?_⟩
@@ -91,6 +92,7 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
                         (runTrajectory grants after rest).outcomes)
           | replay receipt =>
               have tail := ih initial (by simpa only [locate, executed] using found)
+              dsimp only [permission] at executed
               refine ⟨tail.1, tail.2.1, tail.2.2.1, ?_, ?_⟩
               · simpa only [runTrajectory, executed] using tail.2.2.2.1
               · simpa only [runTrajectory, executed, List.mem_cons] using
@@ -105,6 +107,7 @@ theorem captured_pending_has_actual_prefix_and_stopped_result
               subst attempt
               simp only [locate, executed, Option.some.injEq] at found
               subst pending
+              dsimp only [permission] at executed
               exact ⟨rfl, .nil initial, executed,
                 by simp [runTrajectory, executed, Pipeline.finishPayment],
                 by simp [runTrajectory, executed, Pipeline.finishPayment]⟩

@@ -27,6 +27,13 @@ import JurisLean.Candidates.PolicyEvaluation20261027
 #check JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value
 #print axioms JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value
 
+#check JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform
+#print axioms JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform
+#check JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret
+#print axioms JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret
+#check JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability
+#print axioms JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability
+
 open JurisLean.Candidates.PolicyEvaluation20261027
 
 /-- info: true -/

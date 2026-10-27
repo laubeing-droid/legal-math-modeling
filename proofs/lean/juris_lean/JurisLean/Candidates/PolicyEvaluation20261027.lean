@@ -1,5 +1,6 @@
 import JurisLean.Candidates.Final20261021.Policy
 import JurisLean.Candidates.Final20261021.Behavior
+import JurisLean.Candidates.LearningFiniteClass20261027
 import Mathlib.Data.Fintype.BigOperators
 
 /-!
@@ -170,8 +171,9 @@ theorem support_gap_endpoints_observationally_compatible :
     policyValue groupMass chooseOne (fillUnsupported supportGapLogging originalMean 1) = 13/20 := by
   refine ⟨fun x a y => unsupported_completions_same_visible_law _ _ _ _ _ x a y, ?_, ?_⟩
   · simpa using (original_support_gap_sharp 0 (by norm_num) (by norm_num)).1
-  · norm_num at *
-    simpa using (original_support_gap_sharp 1 (by norm_num) (by norm_num)).1
+  · calc
+      _ = (1 : ℚ)/2 + 3/20 := (original_support_gap_sharp 1 (by norm_num) (by norm_num)).1
+      _ = 13/20 := by norm_num
 
 theorem heterogeneous_values_change_with_population :
     originalMean false true - originalMean false false = 2/5 ∧
@@ -220,14 +222,13 @@ theorem missing_outcome_interval_sharp (u : ℚ) (hu : 0 ≤ u) (hu1 : u ≤ 1) 
     intro v
     norm_num [missingPopulationMean, missingJoint, Behavior.indicator, Fintype.sum_bool]
     <;> ring
-  simp only [value]
-  constructor
-  · rfl
-  · constructor
-    · linarith
-    · constructor
-      · linarith
-      · norm_num
+  refine ⟨value u, ?_, ?_, ?_, ?_⟩
+  · rw [value]
+    linarith
+  · rw [value]
+    linarith
+  · norm_num [value]
+  · norm_num [value]
 
 def firstStageLog (_transition : Bool → Bool) (action : Bool) : Bool × ℚ := (action, 0)
 def terminalValue (transition : Bool → Bool) (action : Bool) : ℚ :=
@@ -237,6 +238,78 @@ theorem initial_logs_do_not_identify_terminal_value :
     (∀ a, firstStageLog id a = firstStageLog Bool.not a) ∧
     terminalValue id true = 1 ∧ terminalValue Bool.not true = 0 := by
   refine ⟨fun _ => rfl, ?_, ?_⟩ <;> norm_num [terminalValue, Behavior.indicator]
+
+open MeasureTheory ProbabilityTheory
+open JurisLean.Candidates.LearningFiniteClass20261027
+
+-- A score is the actual bounded importance-weighted observation for a fixed
+-- policy. Its population expectation is a causal value only under the
+-- separately stated identification/support/measurement premises above.
+theorem bounded_policy_score_uniform {Ω Z H : Type*}
+    [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ}
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (P : Measure Z) [IsProbabilityMeasure P]
+    (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty)
+    (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
+    (score : H → Z → ℝ) (measurable : ∀ h ∈ policies, Measurable (score h))
+    (W : ℝ) (positive : 0 < W)
+    (bounded : ∀ h ∈ policies, ∀ z, score h z ∈ Set.Icc (0 : ℝ) W)
+    (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+    1 - δ ≤ μ.real {w | ∀ h ∈ policies,
+      |empiricalMean (fun i w' => score h (sample i w')) w - ∫ z, score h z ∂P| ≤
+        W * finiteRadius n policies.card δ} := by
+  have uniform := u01_1_iid_empirical_risk_uniform μ P hn policies nonempty
+    sample sampleMeasurable independent law (fun h z => score h z / W)
+    (fun h hh => (measurable h hh).div_const W)
+    (fun h hh z => ⟨div_nonneg (bounded h hh z).1 positive.le,
+      (div_le_one positive).mpr (bounded h hh z).2⟩) δ hδ hδ1
+  apply le_trans uniform
+  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+  intro w hw h hh
+  have scaled := hw h hh
+  have empirical : empiricalMean (fun i w' => score h (sample i w') / W) w =
+      empiricalMean (fun i w' => score h (sample i w')) w / W := by
+    simp only [empiricalMean, ← Finset.sum_div]
+    ring
+  rw [empirical, integral_div, ← sub_div, abs_div, abs_of_pos positive] at scaled
+  simpa [mul_comm] using (div_le_iff₀ positive).mp scaled
+
+theorem empirical_policy_winner_regret {H : Type*} (policies : Finset H)
+    (value estimate : H → ℝ) (chosen : H) (member : chosen ∈ policies)
+    (radius : ℝ) (valid : ∀ h ∈ policies, |estimate h - value h| ≤ radius)
+    (winner : ∀ h ∈ policies, estimate h ≤ estimate chosen) :
+    ∀ h ∈ policies, value h - value chosen ≤ 2 * radius := by
+  intro h hh
+  have selected := abs_le.mp (valid chosen member)
+  have compared := abs_le.mp (valid h hh)
+  have maximizes := winner h hh
+  linarith
+
+theorem bounded_policy_winner_probability {Ω Z H : Type*}
+    [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ}
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (P : Measure Z) [IsProbabilityMeasure P]
+    (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty)
+    (sample : Fin n → Ω → Z) (sampleMeasurable : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
+    (score : H → Z → ℝ) (measurable : ∀ h ∈ policies, Measurable (score h))
+    (W : ℝ) (positive : 0 < W)
+    (bounded : ∀ h ∈ policies, ∀ z, score h z ∈ Set.Icc (0 : ℝ) W)
+    (chosen : Ω → H) (member : ∀ w, chosen w ∈ policies)
+    (winner : ∀ w h, h ∈ policies →
+      empiricalMean (fun i w' => score h (sample i w')) w ≤
+        empiricalMean (fun i w' => score (chosen w) (sample i w')) w)
+    (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+    1 - δ ≤ μ.real {w | ∀ h ∈ policies,
+      (∫ z, score h z ∂P) - (∫ z, score (chosen w) z ∂P) ≤
+        2 * (W * finiteRadius n policies.card δ)} := by
+  have uniform := bounded_policy_score_uniform μ P hn policies nonempty sample
+    sampleMeasurable independent law score measurable W positive bounded δ hδ hδ1
+  apply le_trans uniform
+  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+  intro w hw
+  exact empirical_policy_winner_regret policies (fun h => ∫ z, score h z ∂P)
+    (fun h => empiricalMean (fun i w' => score h (sample i w')) w)
+    (chosen w) (member w) (W * finiteRadius n policies.card δ) hw (winner w)
 
 end JurisLean.Candidates.PolicyEvaluation20261027
 

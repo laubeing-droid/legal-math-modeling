@@ -179,7 +179,7 @@ structure DomainStatistics where
   delta : ℚ
   deriving DecidableEq, Repr
 
-def statistics {m : Nat} (parent candidate : TrainingCandidate m)
+def domainStatistics {m : Nat} (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (block : DomainBlock m) : DomainStatistics :=
   ⟨block.domain, block.snapshot, block.rows.length,
     blockRisk loss block parent.fitted.table, blockRisk loss block candidate.fitted.table,
@@ -204,7 +204,7 @@ def Evaluation.passesBounds {m : Nat} (evaluation : Evaluation m) : Bool :=
 
 def assembled {m : Nat} (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) : Evaluation m :=
-  ⟨plan, parent, candidate, blocks, blocks.map (statistics parent candidate loss)⟩
+  ⟨plan, parent, candidate, blocks, blocks.map (domainStatistics parent candidate loss)⟩
 
 def evaluate {m : Nat} (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) : Result (Evaluation m) :=
@@ -258,11 +258,11 @@ theorem bounds_gate_checks_every_actual_domain {m : Nat}
     radiusVerified block.rows.length plan.models.toFinset.card block.delta block.radius block.exponent = true := by
   obtain ⟨_, _, checked, rfl⟩ :=
     evaluation_is_actual_input_and_computation plan parent candidate loss blocks out produced
-  have metric := List.all_eq_true.mp accepted (statistics parent candidate loss block)
+  have metric := List.all_eq_true.mp accepted (domainStatistics parent candidate loss block)
     (List.mem_map.mpr ⟨block, member, rfl⟩)
   have valid := checked block member
   simp only [blockValid, Bool.and_eq_true] at valid
-  exact ⟨by simpa [statistics, DomainStatistics.acceptable] using metric,
+  exact ⟨by simpa [domainStatistics, DomainStatistics.acceptable] using metric,
     valid.2⟩
 
 -- This is a consequence of the actual executable gate on a common confidence

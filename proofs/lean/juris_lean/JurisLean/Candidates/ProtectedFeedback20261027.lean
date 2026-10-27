@@ -83,9 +83,11 @@ theorem protected_iid_joint_event {Ω Z H G : Type*}
   have total : μ.real Set.univ = 1 := by simp
   rw [total] at unionBound
   have jointBound : 1 - (∑ g, delta g) ≤ μ.real (⋂ g, good g) := by linarith
-  constructor
-  · convert jointMeasurable using 1 <;> ext w <;> simp [good]
-  · convert jointBound using 1 <;> ext w <;> simp [good]
+  have events : {w | ∀ g, w ∈ good g} = ⋂ g, good g := by ext w; simp
+  change MeasurableSet {w | ∀ g, w ∈ good g} ∧
+    1 - (∑ g, delta g) ≤ μ.real {w | ∀ g, w ∈ good g}
+  rw [events]
+  exact ⟨jointMeasurable, jointBound⟩
 
 theorem finite_radius_mono_models (n M K : ℕ) (positive : 0 < M) (larger : M ≤ K)
     (delta : ℝ) (deltaPositive : 0 < delta) :
@@ -194,8 +196,11 @@ structure Evaluation (m : Nat) where
   statistics : List DomainStatistics
   deriving DecidableEq, Repr
 
-def Evaluation.accepted {m : Nat} (evaluation : Evaluation m) : Bool :=
+def Evaluation.passesBounds {m : Nat} (evaluation : Evaluation m) : Bool :=
   evaluation.statistics.all DomainStatistics.acceptable
+
+-- This Boolean records computed interval comparisons only. External sampling
+-- premises, authorization, and service loading remain separate obligations.
 
 def assembled {m : Nat} (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) : Evaluation m :=
@@ -243,11 +248,11 @@ theorem evaluated_models_are_in_predeclared_class {m : Nat}
     simpa only [layoutValid, decide_eq_true_eq] using layout
   exact ⟨details.2.2.2.1, details.2.2.2.2.1⟩
 
-theorem accepted_checks_every_actual_domain {m : Nat}
+theorem bounds_gate_checks_every_actual_domain {m : Nat}
     (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) (out : Evaluation m)
     (produced : evaluate plan parent candidate loss blocks = .known out)
-    (accepted : out.accepted = true) (block : DomainBlock m) (member : block ∈ blocks) :
+    (accepted : out.passesBounds = true) (block : DomainBlock m) (member : block ∈ blocks) :
     blockRisk loss block candidate.fitted.table + block.radius ≤
       blockRisk loss block parent.fitted.table - block.radius + block.tolerance ∧
     radiusVerified block.rows.length plan.models.toFinset.card block.delta block.radius block.exponent = true := by
@@ -262,11 +267,11 @@ theorem accepted_checks_every_actual_domain {m : Nat}
 
 -- This is a consequence of the actual executable gate on a common confidence
 -- event. The two population bounds are not supplied as acceptance decisions.
-theorem accepted_on_joint_event_preserves_each_risk {m : Nat}
+theorem bounds_gate_on_joint_event_preserves_each_risk {m : Nat}
     (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
     (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) (out : Evaluation m)
     (produced : evaluate plan parent candidate loss blocks = .known out)
-    (accepted : out.accepted = true) (risk : Nat → List ℚ → ℝ)
+    (accepted : out.passesBounds = true) (risk : Nat → List ℚ → ℝ)
     (confidence : ∀ block ∈ blocks, ∀ model ∈ plan.models,
       |(blockRisk loss block model : ℝ) - risk block.domain model| ≤
         finiteRadius block.rows.length plan.models.toFinset.card (block.delta : ℝ)) :
@@ -274,15 +279,43 @@ theorem accepted_on_joint_event_preserves_each_risk {m : Nat}
       risk block.domain parent.fitted.table + (block.tolerance : ℝ) := by
   have models := evaluated_models_are_in_predeclared_class plan parent candidate loss blocks out produced
   intro block hb
-  obtain ⟨checked, verified⟩ := accepted_checks_every_actual_domain
+  obtain ⟨checked, verified⟩ := bounds_gate_checks_every_actual_domain
     plan parent candidate loss blocks out produced accepted block hb
   have radius := verified_radius_covers_fixed_class _ _ _ _ _ verified
-  have old := (abs_le.mp (confidence block hb parent.fitted.table models.1)).1
-  have new := (abs_le.mp (confidence block hb candidate.fitted.table models.2)).2
+  have old := (abs_le.mp (confidence block hb parent.fitted.table models.1)).2
+  have new := (abs_le.mp (confidence block hb candidate.fitted.table models.2)).1
   have gate : (blockRisk loss block candidate.fitted.table : ℝ) + block.radius ≤
       (blockRisk loss block parent.fitted.table : ℝ) - block.radius + block.tolerance := by
     exact_mod_cast checked
   linarith
+
+theorem strict_bounds_prove_strict_improvement {m : Nat}
+    (plan : ValidationPlan) (parent candidate : TrainingCandidate m)
+    (loss : ℚ → Bool → ℚ) (blocks : List (DomainBlock m)) (out : Evaluation m)
+    (produced : evaluate plan parent candidate loss blocks = .known out)
+    (passed : out.passesBounds = true) (block : DomainBlock m) (member : block ∈ blocks)
+    (risk : List ℚ → ℝ)
+    (confidence : ∀ model ∈ plan.models,
+      |(blockRisk loss block model : ℝ) - risk model| ≤
+        finiteRadius block.rows.length plan.models.toFinset.card (block.delta : ℝ))
+    (strict : blockRisk loss block candidate.fitted.table + block.radius <
+      blockRisk loss block parent.fitted.table - block.radius) :
+    risk candidate.fitted.table < risk parent.fitted.table := by
+  have members := evaluated_models_are_in_predeclared_class plan parent candidate loss blocks out produced
+  have verified := (bounds_gate_checks_every_actual_domain
+    plan parent candidate loss blocks out produced passed block member).2
+  have radius := verified_radius_covers_fixed_class _ _ _ _ _ verified
+  have old := (abs_le.mp (confidence parent.fitted.table members.1)).2
+  have new := (abs_le.mp (confidence candidate.fitted.table members.2)).1
+  have gate : (blockRisk loss block candidate.fitted.table : ℝ) + block.radius <
+      (blockRisk loss block parent.fitted.table : ℝ) - block.radius := by exact_mod_cast strict
+  linarith
+
+theorem observed_improvement_is_not_certified_improvement :
+    (49/100 : ℚ) < 1/2 ∧
+    (DomainStatistics.mk 1 1 400 (1/2) (49/100) (1/10) 0 (1/20)).acceptable = false ∧
+    (DomainStatistics.mk 1 1 400 (1/2) (1/2) (1/10) (1/5) (1/20)).acceptable = true := by
+  norm_num [DomainStatistics.acceptable]
 
 def sampledBlock {m n : Nat} (plan : ValidationPlan) (domain snapshot : Nat)
     (delta radius : ℚ) (exponent : Nat) (tolerance : ℚ)
@@ -297,9 +330,13 @@ theorem sampled_block_uses_exact_losses {m n : Nat}
     blockRisk loss (sampledBlock plan domain snapshot delta radius exponent tolerance events data) table =
       empiricalScore (tableLoss loss) data table := by
   simp [blockRisk, blockData, sampledBlock, empiricalScore]
+  congr 1
+  apply Finset.sum_congr rfl
+  intro i _
+  rfl
 
 -- Counts and budgets are fixed outside the confidence event; returned models,
--- tolerances and verified radii may depend on its data. Every actual accepted
+-- tolerances and verified radii may depend on its data. Every actual bounds-qualified
 -- evaluation made from these very samples receives the same joint guarantee.
 theorem actual_protected_evaluation_confidence {Ω : Type*} {m G : Nat}
     [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)]
@@ -313,7 +350,7 @@ theorem actual_protected_evaluation_confidence {Ω : Type*} {m G : Nat}
     (independent : ∀ g, iIndepFun (sample g) μ)
     (law : ∀ g i, IdentDistrib (sample g i) id μ (P g))
     (loss : ℚ → Bool → ℚ)
-    (bounded : ∀ table ∈ plan.models, ∀ z,
+    (bounded : ∀ table ∈ plan.models, ∀ z : Fin m × Bool,
       (tableLoss loss table z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
     (delta : Fin G → ℚ) (deltaPositive : ∀ g, 0 < delta g)
     (deltaBelowOne : ∀ g, delta g < 1)
@@ -327,7 +364,7 @@ theorem actual_protected_evaluation_confidence {Ω : Type*} {m G : Nat}
         evaluate plan parent candidate loss
           (List.ofFn (fun g => sampledBlock plan (domain g) (snapshot g) (delta g) (radius g)
             (exponent g) (tolerance g) (events g) (fun i => sample g i w))) = .known out →
-        out.accepted = true →
+        out.passesBounds = true →
         ∀ g, (∫ z, (tableLoss loss candidate.fitted.table z : ℝ) ∂P g) ≤
           (∫ z, (tableLoss loss parent.fitted.table z : ℝ) ∂P g) + (tolerance g : ℝ) := by
   have joint := protected_iid_joint_event μ P n positive plan.models.toFinset nonempty
@@ -335,8 +372,8 @@ theorem actual_protected_evaluation_confidence {Ω : Type*} {m G : Nat}
     (fun _ _ => measurable_of_finite _)
     (fun h hh => bounded h (List.mem_toFinset.mp hh))
     (fun g => (delta g : ℝ))
-    (fun g => by exact_mod_cast deltaPositive g)
-    (fun g => by exact_mod_cast deltaBelowOne g)
+    (fun g => by change (0 : ℝ) < (delta g : ℝ); exact_mod_cast deltaPositive g)
+    (fun g => by change (delta g : ℝ) < 1; exact_mod_cast deltaBelowOne g)
   have budgetR : (∑ g, (delta g : ℝ)) ≤ (plan.failureBudget : ℝ) := by exact_mod_cast budget
   refine ⟨_, joint.1, le_trans (by linarith) joint.2, ?_⟩
   intro w hw parent candidate domain snapshot radius tolerance exponent events out produced accepted g
@@ -346,17 +383,21 @@ theorem actual_protected_evaluation_confidence {Ω : Type*} {m G : Nat}
   have hb : block ∈ List.ofFn (fun j => sampledBlock plan (domain j) (snapshot j)
       (delta j) (radius j) (exponent j) (tolerance j) (events j) (fun i => sample j i w)) := by
     exact List.mem_ofFn.mpr ⟨g, rfl⟩
-  obtain ⟨checked, verified⟩ := accepted_checks_every_actual_domain
+  obtain ⟨checked, verified⟩ := bounds_gate_checks_every_actual_domain
     plan parent candidate loss _ out produced accepted block hb
   have verified' : radiusVerified (n g) plan.models.toFinset.card (delta g)
       (radius g) (exponent g) = true := by simpa [block, sampledBlock] using verified
   have conservative := verified_radius_covers_fixed_class _ _ _ _ _ verified'
-  have old := (abs_le.mp (hw g parent.fitted.table (List.mem_toFinset.mpr members.1))).1
-  have new := (abs_le.mp (hw g candidate.fitted.table (List.mem_toFinset.mpr members.2))).2
+  have old := (abs_le.mp (hw g parent.fitted.table (List.mem_toFinset.mpr members.1))).2
+  have new := (abs_le.mp (hw g candidate.fitted.table (List.mem_toFinset.mpr members.2))).1
   have gateQ :
       empiricalScore (tableLoss loss) (fun i => sample g i w) candidate.fitted.table + radius g ≤
       empiricalScore (tableLoss loss) (fun i => sample g i w) parent.fitted.table - radius g + tolerance g := by
-    simpa only [block, sampled_block_uses_exact_losses, sampledBlock] using checked
+    change blockRisk loss (sampledBlock plan (domain g) (snapshot g) (delta g) (radius g)
+      (exponent g) (tolerance g) (events g) (fun i => sample g i w)) candidate.fitted.table + radius g ≤
+      blockRisk loss (sampledBlock plan (domain g) (snapshot g) (delta g) (radius g)
+      (exponent g) (tolerance g) (events g) (fun i => sample g i w)) parent.fitted.table - radius g + tolerance g at checked
+    simpa only [sampled_block_uses_exact_losses] using checked
   have gateR :
       (empiricalScore (tableLoss loss) (fun i => sample g i w) candidate.fitted.table : ℝ) + radius g ≤
       (empiricalScore (tableLoss loss) (fun i => sample g i w) parent.fitted.table : ℝ) - radius g + tolerance g := by

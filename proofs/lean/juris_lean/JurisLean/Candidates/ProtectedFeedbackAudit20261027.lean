@@ -10,10 +10,14 @@ import JurisLean.Candidates.ProtectedFeedback20261027
 #print axioms JurisLean.Candidates.ProtectedFeedback20261027.evaluation_is_actual_input_and_computation
 #check JurisLean.Candidates.ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class
 #print axioms JurisLean.Candidates.ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class
-#check JurisLean.Candidates.ProtectedFeedback20261027.accepted_checks_every_actual_domain
-#print axioms JurisLean.Candidates.ProtectedFeedback20261027.accepted_checks_every_actual_domain
-#check JurisLean.Candidates.ProtectedFeedback20261027.accepted_on_joint_event_preserves_each_risk
-#print axioms JurisLean.Candidates.ProtectedFeedback20261027.accepted_on_joint_event_preserves_each_risk
+#check JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_checks_every_actual_domain
+#print axioms JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_checks_every_actual_domain
+#check JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk
+#print axioms JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk
+#check JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement
+#print axioms JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement
+#check JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement
+#print axioms JurisLean.Candidates.ProtectedFeedback20261027.observed_improvement_is_not_certified_improvement
 #check JurisLean.Candidates.ProtectedFeedback20261027.sampled_block_uses_exact_losses
 #print axioms JurisLean.Candidates.ProtectedFeedback20261027.sampled_block_uses_exact_losses
 #check JurisLean.Candidates.ProtectedFeedback20261027.actual_protected_evaluation_confidence
@@ -74,7 +78,7 @@ def run (p : ValidationPlan) (blocks : List (DomainBlock 2)) : Result (Evaluatio
 #eval
   match run plan [mixedBlock, block 20 true] with
   | .known out => decide (out.parent.fitted.table = [0, 0] ∧ out.candidate.fitted.table = [0, 1] ∧
-      out.accepted = true ∧ out.statistics.map DomainStatistics.oldEmpirical = [1/2, 1] ∧
+      out.passesBounds = true ∧ out.statistics.map DomainStatistics.oldEmpirical = [1/2, 1] ∧
       out.statistics.map DomainStatistics.newEmpirical = [0, 0] ∧ out.blocks = [mixedBlock, block 20 true])
   | _ => false
 
@@ -84,7 +88,7 @@ def run (p : ValidationPlan) (blocks : List (DomainBlock 2)) : Result (Evaluatio
 #guard_msgs in
 #eval
   match run plan [block 10 true, block 20 false] with
-  | .known out => decide (out.accepted = false ∧
+  | .known out => decide (out.passesBounds = false ∧
       out.statistics.map DomainStatistics.oldEmpirical = [1, 0] ∧
       out.statistics.map DomainStatistics.newEmpirical = [0, 1])
   | _ => false
@@ -166,7 +170,7 @@ def run (p : ValidationPlan) (blocks : List (DomainBlock 2)) : Result (Evaluatio
     evaluate plan parent { candidate with fitted := { candidate.fitted with
       protocol := { candidate.fitted.protocol with fit := { candidate.fitted.protocol.fit with modelVersion := 55 } } } }
       binaryLoss [mixedBlock, block 20 true]) with
-  | .known out => out.accepted
+  | .known out => out.passesBounds
   | _ => false
 
 -- Original 14.2 literal contrast: 100 different CASES/events, each externally

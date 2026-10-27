@@ -1,0 +1,66 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "b806ad4d5f042d125bc30cff7984df0ede569516",
+  "run_id": 40490426903,
+  "job_id": 122142702614,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRiskAudit20261027.lean",
+  "named_count": 17,
+  "named_theorems_full": [
+    "JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability",
+    "JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk",
+    "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal",
+    "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal",
+    "JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound",
+    "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+    "JurisLean.Candidates.HarnessRisk20261027.countable_summable_risk_budget",
+    "JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget",
+    "JurisLean.Candidates.HarnessRisk20261027.bernoulli_coordinates_are_independent",
+    "JurisLean.Candidates.HarnessRisk20261027.bernoulli_cylinder_probability",
+    "JurisLean.Candidates.HarnessRisk20261027.bernoulli_one_attempt_risk",
+    "JurisLean.Candidates.HarnessRisk20261027.no_failure_is_the_false_cylinder",
+    "JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates",
+    "JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit",
+    "JurisLean.Candidates.HarnessRisk20261027.two_attempts_are_not_one_budget",
+    "JurisLean.Candidates.HarnessRisk20261027.Audit.resetting_the_per_attempt_number_is_not_a_total_bound",
+    "JurisLean.Candidates.HarnessRisk20261027.Audit.ten_percent_each_is_nineteen_percent_after_two"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
+      "sha256": "b42842573e4d3edd29d611dc7505f46335d147d262ee7e35b10acc7762597b4d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRiskAudit20261027.lean",
+      "sha256": "3e35a999cd2cad21d26d7a1946d00906c6e9585866aeec0333327838400d594a"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 17,
+    "axiom_vocabulary": {
+      "Classical.choice": 17,
+      "Quot.sound": 17,
+      "propext": 17
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "7 #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

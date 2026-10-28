@@ -536,7 +536,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 29 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 30 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )

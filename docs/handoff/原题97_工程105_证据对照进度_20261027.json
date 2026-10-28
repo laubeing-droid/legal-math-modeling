@@ -3,15 +3,21 @@
   "current_source_reconciliation": {
     "baseline_main": "0633d362cd32be74b322bc72501894d17a2f6354",
     "source_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-    "ci_status": "CI_NOT_RUN",
+    "ci_status": "CHANGED_MODULE_SUCCESS; ULM_AUTHORITY_FULL_RELEASE_NOT_RUN",
     "closes_debt": false,
-    "current_archive_open": 13,
-    "scope": "仅13.2/13.3/13.5源级对照与边13源码复核；其余保留原快照，不代表本轮复核；旧reference_main/open_formal_tail/latest_archive_closure以及根closes_debt字段均是历史快照；本current_source_reconciliation.closes_debt=false表示本轮未闭债。",
+    "current_archive_open": 12,
+    "scope": "仅13.2/13.3/13.5源级对照与边13源码复核；六目标changed-module CI已由run/job/subject绑定。冻结archive原始OPEN=13，派生archive-gap ledger当前OPEN=12；97原题行仍仅部分映射，其他行保留旧快照且未复核。reference_main/open_formal_tail/latest_archive_closure及root closes_debt等字段是历史快照；本对象closes_debt=false表示本对照不关闭其余原题义务，最终发布全链尚未验证。原tip_pin、全局discharges及其余OPEN不变。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge13_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
-    }
+    },
+    "ci_run_id": 40714963358,
+    "ci_job_id": 122910040136,
+    "ci_subject": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+    "ci_artifact": "changed-module-only-40714963358-1",
+    "ci_artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+    "archive_gap_ledger_status": "U13.3_CLOSED_BY_WIRING;_FULL_RELEASE_NOT_RUN"
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
@@ -3182,21 +3188,48 @@
             21
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "六个#check/#print axioms目标之一，见独立CI run 40714963358/job 122910040136及subject c4baf6d1dcf81a53cbf1e58abf87e18e4c500711；只支持此声明，不闭合原题13.2/U13.2其他义务。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
-          "symbol": "u13_1_noninterference; u13_2_personal_frame",
+          "symbol": "u13_1_noninterference",
           "lines": [
             43,
+            47
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "FORMAL_MODULE_SOURCE_BUILT",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "此声明是成功changed-module CI六个具名#check/#print axioms目标之一；不闭合原题13.2/U13.2其他义务。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "u13_2_personal_frame",
+          "lines": [
+            49,
             54
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE_SOURCE_BUILT",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "RSI源码作为成功changed-module构建依赖绑定于同一subject；该personal-frame声明不在六个#check/#print axioms目标中，仍属模块源码证据，不冒称逐项公理审计。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": false
         }
       ],
       "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：U13.2规则/机制更新权限及完整观察/交换关系。"
@@ -3234,9 +3267,14 @@
             21
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "此声明列入成功changed-module CI的六个具名#check/#print axioms目标；不据此把原题13.3或U13.4扩大义务升为全完成。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
@@ -3246,9 +3284,14 @@
             35
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE_SOURCE_BUILT",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "源码随成功changed-module构建绑定；其中示例或依赖定义没有独立#check/#print axioms目标。六个具名CI目标见同一run/job/subject；本原题行仍PARTIAL。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": false
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
@@ -3258,9 +3301,14 @@
             80
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "此声明列入成功changed-module CI的六个具名#check/#print axioms目标；不据此把原题13.3或U13.4扩大义务升为全完成。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
@@ -3270,9 +3318,14 @@
             104
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE_SOURCE_BUILT",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "源码随成功changed-module构建绑定；其中示例或依赖定义没有独立#check/#print axioms目标。六个具名CI目标见同一run/job/subject；本原题行仍PARTIAL。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": false
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
@@ -3282,12 +3335,18 @@
             74
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE_SOURCE_BUILT",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "two-world theorem是成功changed-module CI六个具名#check/#print axioms目标之一；worldTarget/visibleTraining作为该目标依赖随模块源码绑定，不声称逐个定义单独审计。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true,
+          "audited_symbol": "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
         }
       ],
-      "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：U13.4各fallback适用性/来源/误差、确定规范计算与未知行为参数的分支实例。"
+      "remaining": "U13.4 fallback适用性、来源、错误处理及原题分支实例未由本次证据闭合；仍待核对既有实现及原题实例。"
     },
     {
       "id": "13.4",
@@ -3348,9 +3407,14 @@
             21
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "成功changed-module CI将相关RSI/bridge源码绑定到subject；原题13.5的InScope实际判据及规范/检索/预测回退消费链仍待核对既有实现及原题实例，不能升为COVERED。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
@@ -3360,9 +3424,14 @@
             80
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "成功changed-module CI将相关RSI/bridge源码绑定到subject；原题13.5的InScope实际判据及规范/检索/预测回退消费链仍待核对既有实现及原题实例，不能升为COVERED。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true
         },
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
@@ -3372,12 +3441,18 @@
             104
           ],
           "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-          "layer": "SOURCE_ONLY/CI_NOT_RUN",
-          "ci_status": "CI_NOT_RUN",
-          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "missing-checkpoint UNKNOWN theorem是成功changed-module CI六个具名#check/#print axioms目标之一；该模块证明不闭合原题13.5消费链。",
+          "run_id": 40714963358,
+          "job_id": 122910040136,
+          "artifact": "changed-module-only-40714963358-1",
+          "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+          "audited_target": true,
+          "audited_symbol": "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default"
         }
       ],
-      "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：InScope实际判据及规范/检索/预测回退消费链。"
+      "remaining": "InScope实际判据及规范/检索/预测回退消费链未由本次证据闭合；仍待核对既有实现及原题实例。"
     },
     {
       "id": "14.1",

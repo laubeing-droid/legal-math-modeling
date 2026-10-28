@@ -1,0 +1,68 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+  "run_id": 40714963358,
+  "job_id": 122910040136,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-40714963358-1",
+  "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "U13.3": [
+      "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
+      "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+      "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+      "JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse",
+      "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+      "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+      "sha256": "57a39fad7695ab6ec04221062d25c32049d115adf9cc00725de448d002850ae9"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+      "sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "Classical.choice": 3,
+      "Quot.sound": 5,
+      "propext": 5
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U13.3": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain."
+  },
+  "closed_ids": [
+    "U13.3"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 13,
+  "open_after": 12,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

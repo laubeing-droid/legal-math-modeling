@@ -6,6 +6,6 @@
 - 冷启动边界：复用既有双世界同观测反例、空样本实例、未观测输入的两个端点，以及全部 checkpoint 缺失时返回 UNKNOWN 的声明。
 - CI: [run 40714963358](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40714963358), [job 122910040136](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40714963358/job/122910040136), subject `c4baf6d1dcf81a53cbf1e58abf87e18e4c500711`, SUCCESS. Artifact: `changed-module-only-40714963358-1`. `axiom-audit.raw.txt` 是从该 artifact 中 driver 第39–55行对应的六组真实 `#check` / `#print axioms` 输出提取，保留完整类型续行。
 
-U13.2 的规则更新权限及完整观察/交换关系、U13.4 各 fallback 的适用性/来源/错误处理与原题实例、U13.5 的 InScope 判据及规范/检索/预测回退消费链仍待核对既有实现和原题实例。本包不关闭这些义务，也不改变其余 OPEN。
+U13.2 的规则更新权限及完整观察/交换关系、U13.4 各 fallback 的适用性/来源/错误处理与原题实例、原题13.5 的 InScope 判据及规范/检索/预测回退消费链仍待核对既有实现和原题实例。本包不关闭这些义务，也不改变其余 OPEN。
 
-全局 `discharges_archived_manuscript_gaps=false`、冻结 `tip_pin`、CAND8 与原题其他范围保持不变。PR 触发的 ULM、Authority、full-release 与正式证书尚未运行；在这些检查通过前，本包只是本轮独立 CI 和源绑定回执。
+全局 `discharges_archived_manuscript_gaps=false`、冻结 `tip_pin`、CAND8 与原题其他范围保持不变。整体放行以最终PR head的ULM、Authority、final-gate和正式证书核验为准；本包仅为独立模块CI/源绑定回执。

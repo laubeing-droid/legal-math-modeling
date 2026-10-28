@@ -143,6 +143,11 @@ theorem actual_closed_pipeline_refines_gate
           | .known value => some value
           | _ => none)
     | _ => none) = choice at decision reported
+  -- The compiled match helpers are definitionally equal; rewrite every
+  -- occurrence explicitly before inspecting the chosen option.
+  erw [choiceDefinition] at decision reported
+  repeat' erw [choiceDefinition] at decision
+  repeat' erw [choiceDefinition] at reported
   cases choice with
   | none => simp [Pipeline.stop] at reported
   | some picked =>

@@ -1,0 +1,5178 @@
+{
+  "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
+  "current_source_reconciliation": {
+    "baseline_main": "0633d362cd32be74b322bc72501894d17a2f6354",
+    "source_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+    "ci_status": "CI_NOT_RUN",
+    "closes_debt": false,
+    "current_archive_open": 13,
+    "scope": "仅13.2/13.3/13.5源级对照与边13源码复核；其余保留原快照，不代表本轮复核；旧reference_main/open_formal_tail/latest_archive_closure以及根closes_debt字段均是历史快照；本current_source_reconciliation.closes_debt=false表示本轮未闭债。",
+    "legacy_source": {
+      "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+      "edge13_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+      "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+    }
+  },
+  "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
+  "reference_main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
+  "counts": {
+    "math_main_questions": 97,
+    "math_subparagraphs": 266,
+    "engineering_requirements": 105,
+    "designated_cuts": 6
+  },
+  "consumer_edge_audit": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+  "status_meanings": {
+    "NOT_RECONCILED": "本表尚未完成精确源码与证据对照，不表示无理论或无代码。",
+    "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED": "已定位部分经过权威CI的准确模块及作用域；未把原题所有义务记为完成。"
+  },
+  "math_rows": [
+    {
+      "id": "01.1",
+      "heading": "### 01.1 先把拟合目标说清，证明目标偷换为什么会出错",
+      "original_manifest_row": "01.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        97,
+        106
+      ],
+      "clauses": [
+        "U01.2",
+        "U01.4"
+      ],
+      "subparagraph_lines": [
+        [
+          99,
+          99
+        ],
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ],
+        [
+          105,
+          105
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-boundary-20261027",
+          "subject": "b25cb9f6723063450a9daed7caa773994d4c98ba",
+          "run_id": 40380565418,
+          "job_id": 121775341571,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
+          "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+          "run_id": 40369446453,
+          "job_id": 121735932469,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "已定位实际拟合的标签/真值反例、训练零部署一及风险桥。标签争议输入、原文全部子句及U00同源解释仍需逐项收口。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean"
+      ]
+    },
+    {
+      "id": "01.2",
+      "heading": "### 01.2 泛化界的样本与选择条件是什么？",
+      "original_manifest_row": "01.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        107,
+        119
+      ],
+      "clauses": [
+        "U01.0",
+        "U01.1"
+      ],
+      "subparagraph_lines": [
+        [
+          109,
+          109
+        ],
+        [
+          111,
+          112
+        ],
+        [
+          114,
+          114
+        ],
+        [
+          116,
+          116
+        ],
+        [
+          118,
+          118
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
+          "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+          "run_id": 40369446453,
+          "job_id": 121735932469,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-erm-20261027",
+          "subject": "daf2a08624c4677b4cabe76dbf52eb8d0b913c4e",
+          "run_id": 40378405554,
+          "job_id": 121767689066,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "已定位固定有限类联合界、实际样本ERM及其总体风险组合。不得把固定族界扩成任意自适应搜索；全部原文段落与独立评价的调用义务仍需逐项核对。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningFiniteClass20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningERM20261027.lean"
+      ]
+    },
+    {
+      "id": "01.3",
+      "heading": "### 01.3 记录复制、同事件泄漏与划分单位怎样改变保证？",
+      "original_manifest_row": "01.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        120,
+        129
+      ],
+      "clauses": [
+        "U01.4",
+        "U04.5",
+        "U14.2"
+      ],
+      "subparagraph_lines": [
+        [
+          122,
+          122
+        ],
+        [
+          124,
+          124
+        ],
+        [
+          126,
+          126
+        ],
+        [
+          128,
+          128
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-provenance-20261027",
+          "subject": "7ddb79313adb77e372a323db7913ddfe7c064d78",
+          "run_id": 40376634346,
+          "job_id": 121761360006,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-event-split-20261027",
+          "subject": "1d74048a9c96b8fbdec3b0905b0812dcdc7df350",
+          "run_id": 40394833453,
+          "job_id": 121825006993,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "已定位独立/复制/共同原因模型，以及按真实EventId分区的执行合同。分组不证明iid；跨事件偏差、未来与标签泄漏仍按原文逐项核验。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningDependence20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningEventSplit20261027.lean"
+      ]
+    },
+    {
+      "id": "01.4",
+      "heading": "### 01.4 表示误差与拟合误差如何拆开？",
+      "original_manifest_row": "01.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        130,
+        141
+      ],
+      "clauses": [
+        "U01.1",
+        "U01.4"
+      ],
+      "subparagraph_lines": [
+        [
+          132,
+          132
+        ],
+        [
+          134,
+          134
+        ],
+        [
+          136,
+          136
+        ],
+        [
+          138,
+          138
+        ],
+        [
+          140,
+          140
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
+          "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+          "run_id": 40369446453,
+          "job_id": 121735932469,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "已定位风险分解、表示类包含、任务充分表示和二点信息丢失反例。共同选择表示与预测器时须维持整个预定类的量词，不能借模块名判全部完成。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningRisk20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningFiniteClass20261027.lean"
+      ]
+    },
+    {
+      "id": "01.5",
+      "heading": "### 01.5 泛化结论何时能转移到部署分布？",
+      "original_manifest_row": "01.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        142,
+        151
+      ],
+      "clauses": [
+        "U01.3",
+        "U01.4"
+      ],
+      "subparagraph_lines": [
+        [
+          144,
+          144
+        ],
+        [
+          146,
+          146
+        ],
+        [
+          148,
+          148
+        ],
+        [
+          150,
+          150
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
+          "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+          "run_id": 40369446453,
+          "job_id": 121735932469,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-boundary-20261027",
+          "subject": "b25cb9f6723063450a9daed7caa773994d4c98ba",
+          "run_id": 40380565418,
+          "job_id": 121775341571,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "已定位有限联合空间风险转移界和任意确定学习器的不可见两世界反例。真实部署距离与目标语义桥仍是具名外部前提。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean"
+      ]
+    },
+    {
+      "id": "01.6",
+      "heading": "### 01.6 什么才是本阶段可以输出的数学合同？",
+      "original_manifest_row": "01.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        152,
+        160
+      ],
+      "clauses": [
+        "U01.2",
+        "U00"
+      ],
+      "subparagraph_lines": [
+        [
+          154,
+          154
+        ],
+        [
+          156,
+          156
+        ],
+        [
+          158,
+          158
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-consumer-20261027",
+          "subject": "c6505137168377be821fbcc65dbb8842bd0eed33",
+          "run_id": 40388553512,
+          "job_id": 121803172754,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\sample-calibration-consumer-20261027",
+          "subject": "3ec7fe89cbafd09410f68400e923db3bc0dd208c",
+          "run_id": 40407520488,
+          "job_id": 121869022779,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\probability-interval-consumer-20261027",
+          "subject": "098224d9cd7a1f7f956b49745ea162bc866ff9be",
+          "run_id": 40418104346,
+          "job_id": 121905397514,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\interval-decision-consumer-20261027",
+          "subject": "098224d9cd7a1f7f956b49745ea162bc866ff9be",
+          "run_id": 40418104346,
+          "job_id": 121905397514,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-boundary-20261027",
+          "subject": "b25cb9f6723063450a9daed7caa773994d4c98ba",
+          "run_id": 40380565418,
+          "job_id": 121775341571,
+          "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        }
+      ],
+      "remaining": "实际拟合表及样本已被后续分数、概率区间与决策调用。旧U00未因此接通；法律授权非蕴含、原题全部定义/非空见证和总入口义务仍分开验收。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\SampleCalibrationConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProbabilityIntervalConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\IntervalDecisionConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean"
+      ]
+    },
+    {
+      "id": "02.1",
+      "heading": "### 02.1 输出集合受约束与真实安全差了哪些前提？",
+      "original_manifest_row": "02.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        97,
+        104
+      ],
+      "clauses": [
+        "U02.1"
+      ],
+      "subparagraph_lines": [
+        [
+          99,
+          99
+        ],
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
+          "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+          "run_id": 40489909383,
+          "job_id": 122140948062,
+          "named_targets": 22,
+          "guarded_executions": 29,
+          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "02.2",
+      "heading": "### 02.2 单步安全何时能提升为整条轨迹安全？",
+      "original_manifest_row": "02.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        105,
+        112
+      ],
+      "clauses": [
+        "U10.2",
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ],
+        [
+          111,
+          111
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
+          "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+          "run_id": 40489909383,
+          "job_id": 122140948062,
+          "named_targets": 22,
+          "guarded_executions": 29,
+          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "02.3",
+      "heading": "### 02.3 约束压制的代价：覆盖、误阻断与不可避免的保守性",
+      "original_manifest_row": "02.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        113,
+        122
+      ],
+      "clauses": [
+        "U02.3"
+      ],
+      "subparagraph_lines": [
+        [
+          115,
+          115
+        ],
+        [
+          117,
+          117
+        ],
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
+          "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+          "run_id": 40489909383,
+          "job_id": 122140948062,
+          "named_targets": 22,
+          "guarded_executions": 29,
+          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\harness-risk-20261027",
+          "subject": "b806ad4d5f042d125bc30cff7984df0ede569516",
+          "run_id": 40490426903,
+          "job_id": 122142702614,
+          "named_targets": 17,
+          "guarded_executions": 7,
+          "scope": "条件期望到边际、有限/可数风险界、实际Bernoulli乘积测度与无限风险极限、违规/误阻断的不同条件分母；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "02.4",
+      "heading": "### 02.4 随机模型与随机监控的风险如何累积？",
+      "original_manifest_row": "02.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        123,
+        130
+      ],
+      "clauses": [
+        "U02.4",
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          125,
+          125
+        ],
+        [
+          127,
+          127
+        ],
+        [
+          129,
+          129
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\harness-risk-20261027",
+          "subject": "b806ad4d5f042d125bc30cff7984df0ede569516",
+          "run_id": 40490426903,
+          "job_id": 122142702614,
+          "named_targets": 17,
+          "guarded_executions": 7,
+          "scope": "条件期望到边际、有限/可数风险界、实际Bernoulli乘积测度与无限风险极限、违规/误阻断的不同条件分母；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "02.5",
+      "heading": "### 02.5 不可见语义与监控器能力的限制是什么？",
+      "original_manifest_row": "02.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        131,
+        138
+      ],
+      "clauses": [
+        "U02.3"
+      ],
+      "subparagraph_lines": [
+        [
+          133,
+          133
+        ],
+        [
+          135,
+          135
+        ],
+        [
+          137,
+          137
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
+          "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+          "run_id": 40489909383,
+          "job_id": 122140948062,
+          "named_targets": 22,
+          "guarded_executions": 29,
+          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "02.6",
+      "heading": "### 02.6 失败封闭是否包括拒绝、重试、降级与见证更新？",
+      "original_manifest_row": "02.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        139,
+        149
+      ],
+      "clauses": [
+        "U02.2"
+      ],
+      "subparagraph_lines": [
+        [
+          141,
+          141
+        ],
+        [
+          143,
+          143
+        ],
+        [
+          145,
+          145
+        ],
+        [
+          147,
+          147
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
+          "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+          "run_id": 40489909383,
+          "job_id": 122140948062,
+          "named_targets": 22,
+          "guarded_executions": 29,
+          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+        },
+        {
+          "pr": 55,
+          "subject": "f8b7f41c3ad58d50f700a3aea7227f0be12ed67e",
+          "tree": "df65430c8a49807fec73810e114a98c03be1401c",
+          "ulm_run": 40492959217,
+          "authority_run": 40492959607,
+          "final_job": 122157074617,
+          "main": "f663e9d17c58726eb0be42f5fab5683c1851d5cb",
+          "main_run": 40494913976,
+          "main_run_status": "SUCCESS",
+          "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
+          "main_final_job": 122163252919
+        }
+      ],
+      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+    },
+    {
+      "id": "03.1",
+      "heading": "### 03.1 类型正确为什么不等于解释忠实？",
+      "original_manifest_row": "03.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        109,
+        116
+      ],
+      "clauses": [
+        "U03.1",
+        "U07.3"
+      ],
+      "subparagraph_lines": [
+        [
+          111,
+          111
+        ],
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
+          "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+          "run_id": 40462004036,
+          "job_id": 122048554976,
+          "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+        }
+      ],
+      "remaining": "SourceCompilation PR50合后main40465704078全PASS；SourceStages最新28目标22执行独立PASS，接根中。原03/07全部段落、规范/证据消费者和U00继续。"
+    },
+    {
+      "id": "03.2",
+      "heading": "### 03.2 歧义和遗漏如何保留，而不被悄悄变成一个答案？",
+      "original_manifest_row": "03.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        117,
+        124
+      ],
+      "clauses": [
+        "U03.1",
+        "U03.2"
+      ],
+      "subparagraph_lines": [
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ],
+        [
+          123,
+          123
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "03.3",
+      "heading": "### 03.3 从有支持事实到符号结论的健全性如何合成？",
+      "original_manifest_row": "03.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        125,
+        132
+      ],
+      "clauses": [
+        "U03.1"
+      ],
+      "subparagraph_lines": [
+        [
+          127,
+          127
+        ],
+        [
+          129,
+          129
+        ],
+        [
+          131,
+          131
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "03.4",
+      "heading": "### 03.4 查询完备性为什么不等于材料或现实完备性？",
+      "original_manifest_row": "03.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        133,
+        140
+      ],
+      "clauses": [
+        "U03.2"
+      ],
+      "subparagraph_lines": [
+        [
+          135,
+          135
+        ],
+        [
+          137,
+          137
+        ],
+        [
+          139,
+          139
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "03.5",
+      "heading": "### 03.5 溯源图、哈希与事件身份各证明什么？",
+      "original_manifest_row": "03.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        141,
+        150
+      ],
+      "clauses": [
+        "U03.1",
+        "U04.5",
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          143,
+          143
+        ],
+        [
+          145,
+          145
+        ],
+        [
+          147,
+          147
+        ],
+        [
+          149,
+          149
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
+          "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+          "run_id": 40462004036,
+          "job_id": 122048554976,
+          "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+        }
+      ],
+      "remaining": "SourceCompilation PR50合后main40465704078全PASS；SourceStages最新28目标22执行独立PASS，接根中。原03/07全部段落、规范/证据消费者和U00继续。"
+    },
+    {
+      "id": "03.6",
+      "heading": "### 03.6 抽取鲁棒性、抽象精化与拒绝的总合同是什么？",
+      "original_manifest_row": "03.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        151,
+        161
+      ],
+      "clauses": [
+        "U03.1",
+        "U03.2"
+      ],
+      "subparagraph_lines": [
+        [
+          153,
+          153
+        ],
+        [
+          155,
+          155
+        ],
+        [
+          157,
+          157
+        ],
+        [
+          159,
+          159
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.1",
+      "heading": "## 问题一：共同空间存在、联合识别与约束相容性",
+      "original_manifest_row": "04.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        87,
+        94
+      ],
+      "clauses": [
+        "U04.1",
+        "U04.2"
+      ],
+      "subparagraph_lines": [
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          91
+        ],
+        [
+          93,
+          93
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.2",
+      "heading": "## 问题二：何为一次观测，复制是否增加证据",
+      "original_manifest_row": "04.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        95,
+        102
+      ],
+      "clauses": [
+        "U04.5",
+        "U01.4"
+      ],
+      "subparagraph_lines": [
+        [
+          97,
+          97
+        ],
+        [
+          99,
+          99
+        ],
+        [
+          101,
+          101
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.3",
+      "heading": "## 问题三：共轭更新、预测与误差保证的假设分层",
+      "original_manifest_row": "04.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        103,
+        110
+      ],
+      "clauses": [
+        "U04.1",
+        "U04.2",
+        "U01.0"
+      ],
+      "subparagraph_lines": [
+        [
+          105,
+          105
+        ],
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.4",
+      "heading": "## 问题四：选择与缺失为什么阻止识别",
+      "original_manifest_row": "04.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        111,
+        118
+      ],
+      "clauses": [
+        "U04.2",
+        "U11.1"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ],
+        [
+          117,
+          117
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.5",
+      "heading": "## 问题五：有限局部界的条件与污染放大",
+      "original_manifest_row": "04.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        119,
+        126
+      ],
+      "clauses": [
+        "U04.2"
+      ],
+      "subparagraph_lines": [
+        [
+          121,
+          121
+        ],
+        [
+          123,
+          123
+        ],
+        [
+          125,
+          125
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "04.6",
+      "heading": "## 问题六：几乎处处、全称可能性与可识别性的停止线",
+      "original_manifest_row": "04.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        127,
+        135
+      ],
+      "clauses": [
+        "U04.2",
+        "U04.5"
+      ],
+      "subparagraph_lines": [
+        [
+          129,
+          129
+        ],
+        [
+          131,
+          131
+        ],
+        [
+          133,
+          133
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.1",
+      "heading": "## 问题一：评分映射为概率还缺什么",
+      "original_manifest_row": "05.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        85,
+        92
+      ],
+      "clauses": [
+        "U05.2"
+      ],
+      "subparagraph_lines": [
+        [
+          87,
+          87
+        ],
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          91
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.2",
+      "heading": "## 问题二：总体、群体与条件校准能否相互替代",
+      "original_manifest_row": "05.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        93,
+        100
+      ],
+      "clauses": [
+        "U05.2"
+      ],
+      "subparagraph_lines": [
+        [
+          95,
+          95
+        ],
+        [
+          97,
+          97
+        ],
+        [
+          99,
+          99
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.3",
+      "heading": "## 问题三：拒答阈值、覆盖率与选择风险",
+      "original_manifest_row": "05.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        101,
+        108
+      ],
+      "clauses": [
+        "U05.2"
+      ],
+      "subparagraph_lines": [
+        [
+          103,
+          103
+        ],
+        [
+          105,
+          105
+        ],
+        [
+          107,
+          107
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.4",
+      "heading": "## 问题四：保形覆盖保证的精确适用范围",
+      "original_manifest_row": "05.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        109,
+        116
+      ],
+      "clauses": [
+        "U05.1"
+      ],
+      "subparagraph_lines": [
+        [
+          111,
+          111
+        ],
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.5",
+      "heading": "## 问题五：分布漂移与 OOD 检测的识别边界",
+      "original_manifest_row": "05.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        117,
+        124
+      ],
+      "clauses": [
+        "U01.3",
+        "U05.1",
+        "U05.2"
+      ],
+      "subparagraph_lines": [
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ],
+        [
+          123,
+          123
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "05.6",
+      "heading": "## 问题六：持续监测、重复检验与可撤回的保证",
+      "original_manifest_row": "05.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        125,
+        133
+      ],
+      "clauses": [
+        "U14.1",
+        "U05.2"
+      ],
+      "subparagraph_lines": [
+        [
+          127,
+          127
+        ],
+        [
+          129,
+          129
+        ],
+        [
+          131,
+          131
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.1",
+      "heading": "## 问题一：先把收益账做成对事件身份不变",
+      "original_manifest_row": "06.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        87,
+        94
+      ],
+      "clauses": [
+        "U09.2",
+        "U06.3"
+      ],
+      "subparagraph_lines": [
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          91
+        ],
+        [
+          93,
+          93
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.2",
+      "heading": "## 问题二：从成功概率到效用比较需要哪些条件",
+      "original_manifest_row": "06.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        95,
+        102
+      ],
+      "clauses": [
+        "U06.3",
+        "U06.4"
+      ],
+      "subparagraph_lines": [
+        [
+          97,
+          97
+        ],
+        [
+          99,
+          99
+        ],
+        [
+          101,
+          101
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.3",
+      "heading": "## 问题三：法律分支下的可行策略与稳健选择",
+      "original_manifest_row": "06.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        103,
+        110
+      ],
+      "clauses": [
+        "U06.1"
+      ],
+      "subparagraph_lines": [
+        [
+          105,
+          105
+        ],
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.4",
+      "heading": "## 问题四：信息有价值不等于值得购买",
+      "original_manifest_row": "06.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        111,
+        118
+      ],
+      "clauses": [
+        "U06.1",
+        "U06.5"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ],
+        [
+          117,
+          117
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.5",
+      "heading": "## 问题五：序贯采集与停止必须服从非预知性",
+      "original_manifest_row": "06.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        119,
+        126
+      ],
+      "clauses": [
+        "U06.1"
+      ],
+      "subparagraph_lines": [
+        [
+          121,
+          121
+        ],
+        [
+          123,
+          123
+        ],
+        [
+          125,
+          125
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.6",
+      "heading": "## 问题六：风险限制、策略评估与因果接口",
+      "original_manifest_row": "06.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        127,
+        134
+      ],
+      "clauses": [
+        "U06.3",
+        "U11.1",
+        "U12.1"
+      ],
+      "subparagraph_lines": [
+        [
+          129,
+          129
+        ],
+        [
+          131,
+          131
+        ],
+        [
+          133,
+          133
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "06.7",
+      "heading": "## 问题七：从单人策略到议价与均衡的桥接边界",
+      "original_manifest_row": "06.7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        135,
+        143
+      ],
+      "clauses": [
+        "U06.2",
+        "U06.5"
+      ],
+      "subparagraph_lines": [
+        [
+          137,
+          137
+        ],
+        [
+          139,
+          139
+        ],
+        [
+          141,
+          141
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "07.1",
+      "heading": "### 07.1 法律对象与规范身份如何由 μ 获得，而非由字符串冒充？",
+      "original_manifest_row": "07.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        269,
+        272
+      ],
+      "clauses": [
+        "U07.1",
+        "U07.3"
+      ],
+      "subparagraph_lines": [
+        [
+          271,
+          271
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "module": "SourceRepresentation20261027",
+          "subject": "9a2d0bbfff264c8593fe148378a64460741a250a",
+          "targets": 15,
+          "executions": 12,
+          "scope": "scoped identity, observation adequacy, exact rational quantity bridge; not whole topic 07",
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-representation-20261027",
+          "run_id": 40457212969,
+          "job_id": 122033215316
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.2",
+      "heading": "### 07.2 什么来源视图完整性足以支撑当前所有读数？",
+      "original_manifest_row": "07.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        273,
+        276
+      ],
+      "clauses": [
+        "U07.3",
+        "U00"
+      ],
+      "subparagraph_lines": [
+        [
+          275,
+          275
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
+          "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+          "run_id": 40462004036,
+          "job_id": 122048554976,
+          "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.3",
+      "heading": "### 07.3 CaseRecord 桥与 observedRef/observedRel 应满足什么交换式？",
+      "original_manifest_row": "07.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        277,
+        280
+      ],
+      "clauses": [
+        "U07.3"
+      ],
+      "subparagraph_lines": [
+        [
+          279,
+          279
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
+          "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+          "run_id": 40462004036,
+          "job_id": 122048554976,
+          "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.4",
+      "heading": "### 07.4 round-trip、观察保持、语义反映与表示充分性分别意味着什么？",
+      "original_manifest_row": "07.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        281,
+        284
+      ],
+      "clauses": [
+        "U07.1"
+      ],
+      "subparagraph_lines": [
+        [
+          283,
+          283
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "module": "SourceRepresentation20261027",
+          "subject": "9a2d0bbfff264c8593fe148378a64460741a250a",
+          "targets": 15,
+          "executions": 12,
+          "scope": "scoped identity, observation adequacy, exact rational quantity bridge; not whole topic 07",
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-representation-20261027",
+          "run_id": 40457212969,
+          "job_id": 122033215316
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.5",
+      "heading": "### 07.5 五项局部契约何时有同一案件的共同见证？",
+      "original_manifest_row": "07.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        285,
+        288
+      ],
+      "clauses": [
+        "U07.2"
+      ],
+      "subparagraph_lines": [
+        [
+          287,
+          287
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.6",
+      "heading": "### 07.6 固定背景 modelOf(c,p) 达到哪种共同模型？",
+      "original_manifest_row": "07.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        289,
+        292
+      ],
+      "clauses": [
+        "U07.2",
+        "U07.3"
+      ],
+      "subparagraph_lines": [
+        [
+          291,
+          291
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.7",
+      "heading": "### 07.7 一个 ledger 与有限阶段账本如何相容？",
+      "original_manifest_row": "07.7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        293,
+        296
+      ],
+      "clauses": [
+        "U09.1",
+        "U07.2"
+      ],
+      "subparagraph_lines": [
+        [
+          295,
+          295
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "07.8",
+      "heading": "### 07.8 QtyAst 与 ℚ 的最小跨表示桥及最终条件定理是什么？",
+      "original_manifest_row": "07.8",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        297,
+        300
+      ],
+      "clauses": [
+        "U06.3",
+        "U07.2",
+        "U00"
+      ],
+      "subparagraph_lines": [
+        [
+          299,
+          299
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "module": "SourceRepresentation20261027",
+          "subject": "9a2d0bbfff264c8593fe148378a64460741a250a",
+          "targets": 15,
+          "executions": 12,
+          "scope": "scoped identity, observation adequacy, exact rational quantity bridge; not whole topic 07",
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-representation-20261027",
+          "run_id": 40457212969,
+          "job_id": 122033215316
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+          "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+          "run_id": 40468260025,
+          "job_id": 122068840408,
+          "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        }
+      ],
+      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+    },
+    {
+      "id": "08.1",
+      "heading": "## 08.1 法律 Horn 推导究竟能证明什么",
+      "original_manifest_row": "08.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        99,
+        104
+      ],
+      "clauses": [
+        "U03.1",
+        "U03.2"
+      ],
+      "subparagraph_lines": [
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+          "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+          "run_id": 40472856489,
+          "job_id": 122083892400,
+          "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+        }
+      ],
+      "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。"
+    },
+    {
+      "id": "08.2",
+      "heading": "## 08.2 版本适用的可识别性与逐事件结构",
+      "original_manifest_row": "08.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        105,
+        110
+      ],
+      "clauses": [
+        "U08.2"
+      ],
+      "subparagraph_lines": [
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+          "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+          "run_id": 40472856489,
+          "job_id": 122083892400,
+          "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+        }
+      ],
+      "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。"
+    },
+    {
+      "id": "08.3",
+      "heading": "## 08.3 时间截面、迟到材料与输入置换",
+      "original_manifest_row": "08.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        111,
+        118
+      ],
+      "clauses": [
+        "U08.1",
+        "U08.2"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ],
+        [
+          117,
+          117
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+          "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+          "run_id": 40472856489,
+          "job_id": 122083892400,
+          "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+        }
+      ],
+      "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。"
+    },
+    {
+      "id": "08.4",
+      "heading": "## 08.4 对象真值、证据状态与认知集合",
+      "original_manifest_row": "08.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        119,
+        124
+      ],
+      "clauses": [
+        "U08.3"
+      ],
+      "subparagraph_lines": [
+        [
+          121,
+          121
+        ],
+        [
+          123,
+          123
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\evidence-worlds-20261027",
+          "subject": "2cf77d06d6047b3dc04395f3eb0ef5dbe6570313",
+          "run_id": 40474394071,
+          "job_id": 122088971259,
+          "scope": "20目标16执行：有限可能世界/非空四状态/来源忠实与真实世界覆盖/知识位偏序/相容法律世界对。根/完整PR及实际跨层消费者尚待"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+        },
+        {
+          "pr": 54,
+          "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+          "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+          "ulm_run": 40485466352,
+          "authority_run": 40485467117,
+          "final_job": 122132576496,
+          "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+          "main_run": 40488021816,
+          "main_final_job": 122141376859,
+          "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+        }
+      ],
+      "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+    },
+    {
+      "id": "08.5",
+      "heading": "## 08.5 任意策略的耗尽为什么可能空洞",
+      "original_manifest_row": "08.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        125,
+        130
+      ],
+      "clauses": [
+        "U08.2",
+        "U08.3"
+      ],
+      "subparagraph_lines": [
+        [
+          127,
+          127
+        ],
+        [
+          129,
+          129
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\procedure-closure-20261027",
+          "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+          "run_id": 40476074285,
+          "job_id": 122094508524,
+          "scope": "20目标16执行：独立required覆盖/耗尽方向/四乘积/未来扩展反例/实际过程结果消费/分支保留/严格Nat降秩；不是完整跨层有限验证器"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+        },
+        {
+          "pr": 54,
+          "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+          "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+          "ulm_run": 40485466352,
+          "authority_run": 40485467117,
+          "final_job": 122132576496,
+          "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+          "main_run": 40488021816,
+          "main_final_job": 122141376859,
+          "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+        }
+      ],
+      "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+    },
+    {
+      "id": "08.6",
+      "heading": "## 08.6 “未决”与“终局”的乘积状态",
+      "original_manifest_row": "08.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        131,
+        136
+      ],
+      "clauses": [
+        "U08.3"
+      ],
+      "subparagraph_lines": [
+        [
+          133,
+          133
+        ],
+        [
+          135,
+          135
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\procedure-closure-20261027",
+          "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+          "run_id": 40476074285,
+          "job_id": 122094508524,
+          "scope": "20目标16执行：独立required覆盖/耗尽方向/四乘积/未来扩展反例/实际过程结果消费/分支保留/严格Nat降秩；不是完整跨层有限验证器"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+        },
+        {
+          "pr": 54,
+          "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+          "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+          "ulm_run": 40485466352,
+          "authority_run": 40485467117,
+          "final_job": 122132576496,
+          "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+          "main_run": 40488021816,
+          "main_final_job": 122141376859,
+          "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+        }
+      ],
+      "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+    },
+    {
+      "id": "08.7",
+      "heading": "## 08.7 相连的法律推导与终局推导不得互相冒充",
+      "original_manifest_row": "08.7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        137,
+        142
+      ],
+      "clauses": [
+        "U00",
+        "U10.2"
+      ],
+      "subparagraph_lines": [
+        [
+          139,
+          139
+        ],
+        [
+          141,
+          141
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+          "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+          "run_id": 40472856489,
+          "job_id": 122083892400,
+          "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+        },
+        {
+          "pr": 54,
+          "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+          "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+          "ulm_run": 40485466352,
+          "authority_run": 40485467117,
+          "final_job": 122132576496,
+          "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+          "main_run": 40488021816,
+          "main_final_job": 122141376859,
+          "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+        }
+      ],
+      "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+    },
+    {
+      "id": "08.8",
+      "heading": "## 08.8 有限验证器与确定的完成终点",
+      "original_manifest_row": "08.8",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        143,
+        149
+      ],
+      "clauses": [
+        "U08.2",
+        "U08.3",
+        "U10.3"
+      ],
+      "subparagraph_lines": [
+        [
+          145,
+          145
+        ],
+        [
+          147,
+          147
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\procedure-closure-20261027",
+          "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+          "run_id": 40476074285,
+          "job_id": 122094508524,
+          "scope": "20目标16执行：独立required覆盖/耗尽方向/四乘积/未来扩展反例/实际过程结果消费/分支保留/严格Nat降秩；不是完整跨层有限验证器"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+        },
+        {
+          "pr": 54,
+          "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+          "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+          "ulm_run": 40485466352,
+          "authority_run": 40485467117,
+          "final_job": 122132576496,
+          "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+          "main_run": 40488021816,
+          "main_final_job": 122141376859,
+          "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+        }
+      ],
+      "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+    },
+    {
+      "id": "09.1",
+      "heading": "### 09.1 非负单债一步与完整原记录保持能证明到哪里？",
+      "original_manifest_row": "09.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        143,
+        148
+      ],
+      "clauses": [
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          145,
+          145
+        ],
+        [
+          147,
+          147
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.2",
+      "heading": "### 09.2 有限步守恒、顺序推进与数量偏序有什么精确关系？",
+      "original_manifest_row": "09.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        149,
+        154
+      ],
+      "clauses": [
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          151,
+          151
+        ],
+        [
+          153,
+          153
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.3",
+      "heading": "### 09.3 来源控制的付款身份怎样保障至多消费一次？",
+      "original_manifest_row": "09.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        155,
+        160
+      ],
+      "clauses": [
+        "U02.2",
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          157,
+          157
+        ],
+        [
+          159,
+          159
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.4",
+      "heading": "### 09.4 列表抵充、利息与法律分配应如何参数化而不偷渡法律？",
+      "original_manifest_row": "09.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        161,
+        168
+      ],
+      "clauses": [
+        "U09.3"
+      ],
+      "subparagraph_lines": [
+        [
+          163,
+          163
+        ],
+        [
+          165,
+          165
+        ],
+        [
+          167,
+          167
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.5",
+      "heading": "### 09.5 权限、义务、发生与文书效果应怎样证明语义独立？",
+      "original_manifest_row": "09.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        169,
+        176
+      ],
+      "clauses": [
+        "U09.3"
+      ],
+      "subparagraph_lines": [
+        [
+          171,
+          171
+        ],
+        [
+          173,
+          173
+        ],
+        [
+          175,
+          175
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.6",
+      "heading": "### 09.6 形成、真实支付、清偿与未成立后的效果如何分开？",
+      "original_manifest_row": "09.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        177,
+        184
+      ],
+      "clauses": [
+        "U09.3",
+        "U09.2"
+      ],
+      "subparagraph_lines": [
+        [
+          179,
+          179
+        ],
+        [
+          181,
+          181
+        ],
+        [
+          183,
+          183
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.7",
+      "heading": "### 09.7 W6+ 中裁判与再次支付怎样避免双扣、复制原债或漏记现金？",
+      "original_manifest_row": "09.7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        185,
+        201
+      ],
+      "clauses": [
+        "U09.3"
+      ],
+      "subparagraph_lines": [
+        [
+          187,
+          187
+        ],
+        [
+          189,
+          189
+        ],
+        [
+          191,
+          196
+        ],
+        [
+          198,
+          198
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "09.8",
+      "heading": "### 09.8 返还流程与双账守恒怎样有限闭合，而不抹写历史？",
+      "original_manifest_row": "09.8",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        202,
+        209
+      ],
+      "clauses": [
+        "U09.2",
+        "U09.3"
+      ],
+      "subparagraph_lines": [
+        [
+          204,
+          204
+        ],
+        [
+          206,
+          206
+        ],
+        [
+          208,
+          208
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.1",
+      "heading": "## 10.1 授权绑定、经验建议与循环自证",
+      "original_manifest_row": "10.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        99,
+        106
+      ],
+      "clauses": [
+        "U10.1"
+      ],
+      "subparagraph_lines": [
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ],
+        [
+          105,
+          105
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.2",
+      "heading": "## 10.2 finalize 到下一次评价的桥接定理",
+      "original_manifest_row": "10.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        107,
+        114
+      ],
+      "clauses": [
+        "U10.1"
+      ],
+      "subparagraph_lines": [
+        [
+          109,
+          109
+        ],
+        [
+          111,
+          111
+        ],
+        [
+          113,
+          113
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.3",
+      "heading": "## 10.3 追加式撤销与双时态历史",
+      "original_manifest_row": "10.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        115,
+        122
+      ],
+      "clauses": [
+        "U08.1",
+        "U10.1"
+      ],
+      "subparagraph_lines": [
+        [
+          117,
+          117
+        ],
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.4",
+      "heading": "## 10.4 部分步骤的门控与失败路径边界",
+      "original_manifest_row": "10.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        123,
+        130
+      ],
+      "clauses": [
+        "U02.2",
+        "U10.2"
+      ],
+      "subparagraph_lines": [
+        [
+          125,
+          125
+        ],
+        [
+          127,
+          127
+        ],
+        [
+          129,
+          129
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.5",
+      "heading": "## 10.5 多步归纳不变量及“履行不等于创设”",
+      "original_manifest_row": "10.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        131,
+        138
+      ],
+      "clauses": [
+        "U10.2",
+        "U09.1"
+      ],
+      "subparagraph_lines": [
+        [
+          133,
+          133
+        ],
+        [
+          135,
+          135
+        ],
+        [
+          137,
+          137
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.6",
+      "heading": "## 10.6 逐边合同与已封闭终止结论的边界",
+      "original_manifest_row": "10.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        139,
+        146
+      ],
+      "clauses": [
+        "U00",
+        "U10.3"
+      ],
+      "subparagraph_lines": [
+        [
+          141,
+          141
+        ],
+        [
+          143,
+          143
+        ],
+        [
+          145,
+          145
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.7",
+      "heading": "## 10.7 跨表示精化与可交换图",
+      "original_manifest_row": "10.7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        147,
+        154
+      ],
+      "clauses": [
+        "U10.3"
+      ],
+      "subparagraph_lines": [
+        [
+          149,
+          149
+        ],
+        [
+          151,
+          151
+        ],
+        [
+          153,
+          153
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "10.8",
+      "heading": "## 10.8 固定推进器的精确量词与有限交付",
+      "original_manifest_row": "10.8",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        155,
+        163
+      ],
+      "clauses": [
+        "U07.3",
+        "U10.2"
+      ],
+      "subparagraph_lines": [
+        [
+          157,
+          157
+        ],
+        [
+          159,
+          159
+        ],
+        [
+          161,
+          161
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "11.1",
+      "heading": "## 问题一：案件单位与行为构念，是否被可得标签替代？",
+      "original_manifest_row": "11.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        91,
+        100
+      ],
+      "clauses": [
+        "U11.1"
+      ],
+      "subparagraph_lines": [
+        [
+          93,
+          93
+        ],
+        [
+          95,
+          97
+        ],
+        [
+          99,
+          99
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/business-measurement-20261027",
+          "subject": "6923d4bbb07d305ab9087bd49fea3680d461e8a4",
+          "run_id": 40453954728,
+          "job_id": 122022821909,
+          "scope": "14目标18执行独立PASS；实际后态到三类测量、期限/完整窗口/事件身份、撤销非缺陷和原100案锐界；150相关PASS，完整PR待验"
+        }
+      ],
+      "remaining": "PR47全部PR及新main40458404590 PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS，PR49最终65776fb4完整双链待验。全部原段落及U00继续。"
+    },
+    {
+      "id": "11.2",
+      "heading": "## 问题二：完美预测能否识别干预效果？",
+      "original_manifest_row": "11.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        101,
+        116
+      ],
+      "clauses": [
+        "U11.1"
+      ],
+      "subparagraph_lines": [
+        [
+          103,
+          103
+        ],
+        [
+          105,
+          106
+        ],
+        [
+          108,
+          108
+        ],
+        [
+          110,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "11.3",
+      "heading": "## 问题三：从案件记录到平均效果，最小假设是什么？",
+      "original_manifest_row": "11.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        117,
+        127
+      ],
+      "clauses": [
+        "U11.1"
+      ],
+      "subparagraph_lines": [
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          124
+        ],
+        [
+          126,
+          126
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/causal-selection-20261027",
+          "subject": "dc8c9b159edfa64af7ad80ea6e57522311268526",
+          "run_id": 40449209254,
+          "job_id": 122007689620,
+          "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        }
+      ],
+      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+    },
+    {
+      "id": "11.4",
+      "heading": "## 问题四：只有进入诉讼或公开裁判的案件，够不够？",
+      "original_manifest_row": "11.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        128,
+        141
+      ],
+      "clauses": [
+        "U11.1",
+        "U12.1"
+      ],
+      "subparagraph_lines": [
+        [
+          130,
+          130
+        ],
+        [
+          132,
+          133
+        ],
+        [
+          135,
+          138
+        ],
+        [
+          140,
+          140
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/causal-selection-20261027",
+          "subject": "dc8c9b159edfa64af7ad80ea6e57522311268526",
+          "run_id": 40449209254,
+          "job_id": 122007689620,
+          "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        }
+      ],
+      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+    },
+    {
+      "id": "11.5",
+      "heading": "## 问题五：跨法院、时期与律师群体能否直接迁移？",
+      "original_manifest_row": "11.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        142,
+        155
+      ],
+      "clauses": [
+        "U11.1"
+      ],
+      "subparagraph_lines": [
+        [
+          144,
+          144
+        ],
+        [
+          146,
+          147
+        ],
+        [
+          149,
+          152
+        ],
+        [
+          154,
+          154
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/causal-selection-20261027",
+          "subject": "dc8c9b159edfa64af7ad80ea6e57522311268526",
+          "run_id": 40449209254,
+          "job_id": 122007689620,
+          "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        }
+      ],
+      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+    },
+    {
+      "id": "11.6",
+      "heading": "## 问题六：把“可用的行为证据”封闭成有限接口",
+      "original_manifest_row": "11.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        156,
+        163
+      ],
+      "clauses": [
+        "U11.1",
+        "U13.1"
+      ],
+      "subparagraph_lines": [
+        [
+          158,
+          158
+        ],
+        [
+          160,
+          160
+        ],
+        [
+          162,
+          162
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "12.1",
+      "heading": "## 问题一：分数改善是否可能只是策略性迎合？",
+      "original_manifest_row": "12.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        93,
+        103
+      ],
+      "clauses": [
+        "U12.4"
+      ],
+      "subparagraph_lines": [
+        [
+          95,
+          95
+        ],
+        [
+          97,
+          100
+        ],
+        [
+          102,
+          102
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/policy-response-20261027",
+          "subject": "c77fd50a8e6c0b937b0315ea1a6647387d7ba561",
+          "run_id": 40451401604,
+          "job_id": 122014729609,
+          "scope": "17目标7执行独立PASS；原logit等价与质量0/评分1极限、任意初值收缩、振荡、阻尼全区间充要条件及规范不识别；接根待完整验收"
+        }
+      ],
+      "remaining": "PR46完整双链、同树合并0eb7a4ab及合后main40456323702全部PASS，actual final122035171853。全部原段落与U00仍继续。"
+    },
+    {
+      "id": "12.2",
+      "heading": "## 问题二：自洽、稳定与正当是否是同一性质？",
+      "original_manifest_row": "12.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        104,
+        114
+      ],
+      "clauses": [
+        "U12.2"
+      ],
+      "subparagraph_lines": [
+        [
+          106,
+          106
+        ],
+        [
+          108,
+          111
+        ],
+        [
+          113,
+          113
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/policy-response-20261027",
+          "subject": "c77fd50a8e6c0b937b0315ea1a6647387d7ba561",
+          "run_id": 40451401604,
+          "job_id": 122014729609,
+          "scope": "17目标7执行独立PASS；原logit等价与质量0/评分1极限、任意初值收缩、振荡、阻尼全区间充要条件及规范不识别；接根待完整验收"
+        }
+      ],
+      "remaining": "PR46完整双链、同树合并0eb7a4ab及合后main40456323702全部PASS，actual final122035171853。全部原段落与U00仍继续。"
+    },
+    {
+      "id": "12.3",
+      "heading": "## 问题三：历史日志究竟能评价哪些新政策？",
+      "original_manifest_row": "12.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        115,
+        125
+      ],
+      "clauses": [
+        "U12.1",
+        "U12.3"
+      ],
+      "subparagraph_lines": [
+        [
+          117,
+          117
+        ],
+        [
+          119,
+          122
+        ],
+        [
+          124,
+          124
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "b25b14dde466b667284de537aad7640bba0f5a1b",
+          "run_id": 40450127416,
+          "job_id": 122010649641,
+          "scope": "16精确目标8执行独立PASS；146相关测试PASS，12清单及后续完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "0cddf2c120de92f93c64eb7c4d0066d7934f74d7",
+          "run_id": 40451570271,
+          "job_id": 122015257624,
+          "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        }
+      ],
+      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+    },
+    {
+      "id": "12.4",
+      "heading": "## 问题四：结果缺失与长期反馈怎样破坏离线评价？",
+      "original_manifest_row": "12.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        126,
+        136
+      ],
+      "clauses": [
+        "U12.3"
+      ],
+      "subparagraph_lines": [
+        [
+          128,
+          128
+        ],
+        [
+          130,
+          133
+        ],
+        [
+          135,
+          135
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "b25b14dde466b667284de537aad7640bba0f5a1b",
+          "run_id": 40450127416,
+          "job_id": 122010649641,
+          "scope": "16精确目标8执行独立PASS；146相关测试PASS，12清单及后续完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "0cddf2c120de92f93c64eb7c4d0066d7934f74d7",
+          "run_id": 40451570271,
+          "job_id": 122015257624,
+          "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        }
+      ],
+      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+    },
+    {
+      "id": "12.5",
+      "heading": "## 问题五：局部异质性是否支持律师或案件个性化？",
+      "original_manifest_row": "12.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        137,
+        147
+      ],
+      "clauses": [
+        "U12.3"
+      ],
+      "subparagraph_lines": [
+        [
+          139,
+          139
+        ],
+        [
+          141,
+          144
+        ],
+        [
+          146,
+          146
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "b25b14dde466b667284de537aad7640bba0f5a1b",
+          "run_id": 40450127416,
+          "job_id": 122010649641,
+          "scope": "16精确目标8执行独立PASS；146相关测试PASS，12清单及后续完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/policy-evaluation-20261027",
+          "subject": "0cddf2c120de92f93c64eb7c4d0066d7934f74d7",
+          "run_id": 40451570271,
+          "job_id": 122015257624,
+          "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        }
+      ],
+      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+    },
+    {
+      "id": "12.6",
+      "heading": "## 问题六：行为更新怎样不越界为法律创制？",
+      "original_manifest_row": "12.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        148,
+        158
+      ],
+      "clauses": [
+        "U12.1",
+        "U13.1",
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          150,
+          150
+        ],
+        [
+          152,
+          155
+        ],
+        [
+          157,
+          157
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "13.1",
+      "heading": "## 13.1 参数分区的非干扰到底可以证明到哪里",
+      "original_manifest_row": "13.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        93,
+        98
+      ],
+      "clauses": [
+        "U13.1",
+        "U13.2"
+      ],
+      "subparagraph_lines": [
+        [
+          95,
+          95
+        ],
+        [
+          97,
+          97
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "13.2",
+      "heading": "## 13.2 三种可更新对象如何保持语义",
+      "original_manifest_row": "13.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        99,
+        104
+      ],
+      "clauses": [
+        "U13.2",
+        "U13.3"
+      ],
+      "subparagraph_lines": [
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+          "symbol": "same_loss_risk_under_used_inverse",
+          "lines": [
+            12,
+            21
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "u13_1_noninterference; u13_2_personal_frame",
+          "lines": [
+            43,
+            54
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        }
+      ],
+      "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：U13.2规则/机制更新权限及完整观察/交换关系。"
+    },
+    {
+      "id": "13.3",
+      "heading": "## 13.3 冷启动与无权重服务的定义域",
+      "original_manifest_row": "13.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        105,
+        110
+      ],
+      "clauses": [
+        "U13.3",
+        "U13.4"
+      ],
+      "subparagraph_lines": [
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+          "symbol": "same_loss_risk_under_used_inverse",
+          "lines": [
+            12,
+            21
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+          "symbol": "empty-sample two-world and unseen-input endpoint examples",
+          "lines": [
+            24,
+            35
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "u13_3_representation_transfer",
+          "lines": [
+            78,
+            80
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "proposed_checkpoint_service; u13_4_missing_checkpoint_no_default",
+          "lines": [
+            97,
+            104
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+          "symbol": "worldTarget; visibleTraining; u01_3_two_worlds_same_training_uncontrolled_deployment",
+          "lines": [
+            53,
+            74
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        }
+      ],
+      "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：U13.4各fallback适用性/来源/误差、确定规范计算与未知行为参数的分支实例。"
+    },
+    {
+      "id": "13.4",
+      "heading": "## 13.4 条件推断与永久更新不能混同",
+      "original_manifest_row": "13.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        111,
+        116
+      ],
+      "clauses": [
+        "U13.2"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "13.5",
+      "heading": "## 13.5 域外回退与可信服务边界",
+      "original_manifest_row": "13.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        117,
+        122
+      ],
+      "clauses": [
+        "U13.3",
+        "U01.4"
+      ],
+      "subparagraph_lines": [
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+          "symbol": "same_loss_risk_under_used_inverse",
+          "lines": [
+            12,
+            21
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "u13_3_representation_transfer",
+          "lines": [
+            78,
+            80
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+          "symbol": "proposed_checkpoint_service; u13_4_missing_checkpoint_no_default",
+          "lines": [
+            97,
+            104
+          ],
+          "subject_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+          "layer": "SOURCE_ONLY/CI_NOT_RUN",
+          "ci_status": "CI_NOT_RUN",
+          "note": "当前记录为源级定位，CI_NOT_RUN；被复用声明可能有历史CI证据，但历史CI不构成本次U13.3审计driver的CI证据。"
+        }
+      ],
+      "remaining": "未由本次证据闭合；仍待核对既有实现及原题实例：InScope实际判据及规范/检索/预测回退消费链。"
+    },
+    {
+      "id": "14.1",
+      "heading": "## 14.1 什么结果可以进入学习",
+      "original_manifest_row": "14.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        87,
+        92
+      ],
+      "clauses": [
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          91
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\event-feedback-consumer-20261027",
+          "subject": "283c5521db265c4a9815805c3f49f37677f91b6c",
+          "run_id": 40426485868,
+          "job_id": 121933418793,
+          "scope": "15精确类型/公理目标及18实际求值；模块PASS，完整PR验收另行进行，不等于原题全部完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\feedback-label-semantics-20261027",
+          "subject": "1ed7eae9d690f99278b0d4b1a3ef8a519c89ad8b",
+          "run_id": 40429431857,
+          "job_id": 121943232612,
+          "scope": "13精确目标和2实际执行；固定目标保持、错误旧标签修复、实际返回候选组合和指定两点风险反例；PR38完整最终双链及合后新main全部适用门已通过"
+        }
+      ],
+      "remaining": "本批已补固定目标/外部可靠确认下任意有限更新的语义保持、允许旧标签错误的授权修复定理、实际返回训练候选的组合证明及1/2->0训练风险同时1/2->1真实风险的指定实际拟合反例。独立模块、PR38最终ULM/Authority及合后新main40432100560全部适用门已PASS；逐段合同总核仍需完成。外部标签可靠性/真实身份/规范解释保持具名前提；旧U00/RSI/Loaded闭环不因本批自动完成。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\EventFeedbackConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\FeedbackLabelSemantics20261027.lean"
+      ]
+    },
+    {
+      "id": "14.2",
+      "heading": "## 14.2 重放、污染与样本身份",
+      "original_manifest_row": "14.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        93,
+        98
+      ],
+      "clauses": [
+        "U14.2",
+        "U04.5"
+      ],
+      "subparagraph_lines": [
+        [
+          95,
+          95
+        ],
+        [
+          97,
+          97
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\event-feedback-consumer-20261027",
+          "subject": "283c5521db265c4a9815805c3f49f37677f91b6c",
+          "run_id": 40426485868,
+          "job_id": 121933418793,
+          "scope": "15精确类型/公理目标及18实际求值；模块PASS，完整PR验收另行进行，不等于原题全部完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-provenance-20261027",
+          "subject": "7ddb79313adb77e372a323db7913ddfe7c064d78",
+          "run_id": 40376634346,
+          "job_id": 121761360006,
+          "scope": "已核原声明的错标/依赖/选择偏差/信息泄漏相关见证；不自动代表14.2全部完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-boundary-20261027",
+          "subject": "b25cb9f6723063450a9daed7caa773994d4c98ba",
+          "run_id": 40380565418,
+          "job_id": 121775341571,
+          "scope": "已核原声明的错标/依赖/选择偏差/信息泄漏相关见证；不自动代表14.2全部完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-event-split-20261027",
+          "subject": "1d74048a9c96b8fbdec3b0905b0812dcdc7df350",
+          "run_id": 40394833453,
+          "job_id": 121825006993,
+          "scope": "已核原声明的错标/依赖/选择偏差/信息泄漏相关见证；不自动代表14.2全部完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\protected-feedback-20261027",
+          "subject": "04942c277eacf3bd7f3b86be1fc353e94b92a9f3",
+          "run_id": 40436410064,
+          "job_id": 121965999424,
+          "scope": "12目标17执行独立PASS；PR39完整双链、main59dd5f58同树及合后新main40440496556全部适用门PASS"
+        }
+      ],
+      "remaining": "五类风险已分别定位数学见证/条件，新增保护域损害及逐域实际验证，并补齐原题100不同案件与同案100测量的实际拟合实例；事件数/案件数仍不证明iid。PR39已完整双绿合并，合后新main已全PASS；仍须统一五风险的入口责任和U00/business-to-feedback整体接线与最终同提交验收。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\EventFeedbackConsumer20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningDependence20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningEventSplit20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProtectedFeedback20261027.lean"
+      ],
+      "mapped_witnesses": {
+        "mislabel": "LearningBoundary.u01_1_actual_fit_label_risk_not_truth_risk: same fitted predictor has observed-label risk0 but target risk1.",
+        "repetition": "LearningDependence: iid mean variance1/(4n), copies variance1/4; actual fairCoinMeasure witness proves distinct IDs need not be independent.",
+        "selection_bias": "LearningBoundary.u01_3_actual_fit_zero_train_one_deploy and two_worlds_same_training_uncontrolled_deployment: absent support permits total deployment error.",
+        "answer_leakage": "LearningEventSplit.u01_3_event_split_does_not_certify_information: actual event-disjoint split still contains future features, copied labels and wrong targets.",
+        "protected_capability_harm": "ProtectedFeedback.average_improvement_can_harm_protected_point proves average9/10->1/10 and protected0->1; actual evaluate rejects protected harm. 100differentcases vs100measurementssamecase actual fitter checks now passed."
+      }
+    },
+    {
+      "id": "14.3",
+      "heading": "## 14.3 候选更新的有效接纳条件",
+      "original_manifest_row": "14.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        99,
+        104
+      ],
+      "clauses": [
+        "U14.1",
+        "U01.1"
+      ],
+      "subparagraph_lines": [
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\protected-feedback-20261027",
+          "subject": "04942c277eacf3bd7f3b86be1fc353e94b92a9f3",
+          "run_id": 40436410064,
+          "job_id": 121965999424,
+          "scope": "12目标17执行独立PASS；PR39完整双链、main59dd5f58同树及合后新main40440496556全部适用门PASS"
+        }
+      ],
+      "remaining": "有限预固定模型类（含父模型）×各保护域的联合事件、各域n/预算、实际样本/输出消费、容忍不劣及严格改善、观察改善非证实改善、平均改善保护域恶化均已独立模块证明/执行。PR39完整双链已PASS并合并，合后新main已全PASS；真实抽样/标签及固定类前提保持条件，实际接纳授权/Loaded由另批消费；仍需原段落总核与U00同提交完整验收。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProtectedFeedback20261027.lean"
+      ]
+    },
+    {
+      "id": "14.4",
+      "heading": "## 14.4 学习器自身被更新时的责任",
+      "original_manifest_row": "14.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        105,
+        110
+      ],
+      "clauses": [
+        "U13.2",
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "14.5",
+      "heading": "## 14.5 阻断后如何保留可用状态",
+      "original_manifest_row": "14.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        111,
+        116
+      ],
+      "clauses": [
+        "U02.2",
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\validated-feedback-load-20261027",
+          "subject": "1314be955e72a2577dc754f9f9d8f8a1b126059f",
+          "run_id": 40435047031,
+          "job_id": 121961611215,
+          "scope": "9目标15执行独立PASS；PR40最终双链全PASS，合main03de4f36同树，合后新main40442390294全部适用门PASS"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\current-context-rollback-20261027",
+          "subject": "e579de9351b9fd6510b1c9f0ceadc8f003f67dc3",
+          "run_id": 40442236021,
+          "job_id": 121985036697,
+          "scope": "9目标8执行独立PASS；PR42最终858fcd41双链40444148103/40444148632全PASS，合main7c56e946同树；新main40445480104全PASS"
+        }
+      ],
+      "remaining": "PR40加载/下一拟合、PR42当前上下文回退均完成最终双链、合并同树及合后新main全门PASS。逐轮预算/固定保护域/学习器变更在AdaptiveRoundLedger独立审计修复，未接根；整个U00继续。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ValidatedFeedbackLoad20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\CurrentContextRollback20261027.lean"
+      ]
+    },
+    {
+      "id": "15.1",
+      "heading": "## 15.1 “每轮更好”到底是什么命题",
+      "original_manifest_row": "15.1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        87,
+        92
+      ],
+      "clauses": [
+        "U15.1",
+        "U15.2"
+      ],
+      "subparagraph_lines": [
+        [
+          89,
+          89
+        ],
+        [
+          91,
+          91
+        ]
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "evidence": [],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+    },
+    {
+      "id": "15.2",
+      "heading": "## 15.2 自适应挑选与验证集过拟合",
+      "original_manifest_row": "15.2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        93,
+        98
+      ],
+      "clauses": [
+        "U14.1",
+        "U15.1"
+      ],
+      "subparagraph_lines": [
+        [
+          95,
+          95
+        ],
+        [
+          97,
+          97
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027",
+          "subject": "149dee0f69c9158f43af3c26e61a5bcfce1632be",
+          "run_id": 40439612934,
+          "job_id": 121976530560,
+          "scope": "12目标6执行独立PASS；PR41最终ULM40442511126/Authority40442511600全PASS，合main3781a5b5同树，合后main40444019650全PASS"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027",
+          "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+          "run_id": 40446553400,
+          "job_id": 121999119450,
+          "scope": "15目标20执行独立PASS；142相关和12清单PASS；PR43最终5774fdfe双链40447865003/40447865403全PASS，合main ed326eaf同树；新main40449236177也已全部适用门PASS，actual final122012756789"
+        }
+      ],
+      "remaining": "条件历史数学PR41已完成最终双链与新main全PASS。实际冻结候选/验证事件防重用在新轮账模块独立15目标20执行PASS，PR43双链全PASS、合main ed326eaf同树，新main40449236177也已全部适用门PASS，actual final122012756789；共同实验与真实条件iid前提仍须在最终U00精确绑定。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveValidation20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean"
+      ]
+    },
+    {
+      "id": "15.3",
+      "heading": "## 15.3 多轮错误预算如何避免自证",
+      "original_manifest_row": "15.3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        99,
+        104
+      ],
+      "clauses": [
+        "U02.4",
+        "U14.1"
+      ],
+      "subparagraph_lines": [
+        [
+          101,
+          101
+        ],
+        [
+          103,
+          103
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027",
+          "subject": "149dee0f69c9158f43af3c26e61a5bcfce1632be",
+          "run_id": 40439612934,
+          "job_id": 121976530560,
+          "scope": "12目标6执行独立PASS；PR41最终ULM40442511126/Authority40442511600全PASS，合main3781a5b5同树，合后main40444019650全PASS"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027",
+          "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+          "run_id": 40446553400,
+          "job_id": 121999119450,
+          "scope": "15目标20执行独立PASS；142相关和12清单PASS；PR43最终5774fdfe双链40447865003/40447865403全PASS，合main ed326eaf同树；新main40449236177也已全部适用门PASS，actual final122012756789"
+        }
+      ],
+      "remaining": "条件概率预算PR41全链与新main已PASS；实际逐轮费用求和、拒绝后仍记支出、同键重放/冲突及任意有限真实动作序列的上限不变量，已在轮账模块独立PASS，PR43双链全PASS、合main ed326eaf同树，新main40449236177也已全部适用门PASS，actual final122012756789。概率定理的失效事件/历史/费用与实际U00轨迹之间仍需共同见证，不把确定性扣账当统计有效性。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveValidation20261027.lean",
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean"
+      ]
+    },
+    {
+      "id": "15.4",
+      "heading": "## 15.4 能力扩展与保持旧能力的条件",
+      "original_manifest_row": "15.4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        105,
+        110
+      ],
+      "clauses": [
+        "U15.2"
+      ],
+      "subparagraph_lines": [
+        [
+          107,
+          107
+        ],
+        [
+          109,
+          109
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027",
+          "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+          "run_id": 40446553400,
+          "job_id": 121999119450,
+          "scope": "15目标20执行独立PASS；142相关和12清单PASS；PR43最终5774fdfe双链40447865003/40447865403全PASS，合main ed326eaf同树；新main40449236177也已全部适用门PASS，actual final122012756789"
+        }
+      ],
+      "remaining": "逐保护域实际验证/真实加载PR39-40全验收；轮账固定保护域和学习器更新不改服务/规则/机制/可信根的frame已独立PASS、PR43双链全PASS、合main ed326eaf同树，新main40449236177也已全部适用门PASS，actual final122012756789。原题全部模拟/非干扰和行为相等与纠错的边界，继续对照旧Iteration及原题各段；不把声明域有限验证升级成所有新任务可靠。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean"
+      ]
+    },
+    {
+      "id": "15.5",
+      "heading": "## 15.5 “自我改进”不能给自己扩权",
+      "original_manifest_row": "15.5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        111,
+        116
+      ],
+      "clauses": [
+        "U13.1",
+        "U13.2",
+        "U10.1"
+      ],
+      "subparagraph_lines": [
+        [
+          113,
+          113
+        ],
+        [
+          115,
+          115
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027",
+          "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+          "run_id": 40446553400,
+          "job_id": 121999119450,
+          "scope": "15目标20执行独立PASS；142相关和12清单PASS；PR43最终5774fdfe双链40447865003/40447865403全PASS，合main ed326eaf同树；新main40449236177也已全部适用门PASS，actual final122012756789"
+        }
+      ],
+      "remaining": "实际有限学习器新proposal被下一fit消费；当前固定检查器、外部完整许可、版本推进和不改服务/规则/机制/保护域/预算历史的15目标包独立PASS，PR43双链全PASS、合main ed326eaf同树，新main40449236177也已全部适用门PASS，actual final122012756789。保留外部catalogue与授权真实性前提；实际checker代码不能由本API自换。整个U00的规范/权限同源绑定继续。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean"
+      ]
+    },
+    {
+      "id": "15.6",
+      "heading": "## 15.6 今晚可以形成的有限结论，而非无限保证",
+      "original_manifest_row": "15.6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        117,
+        122
+      ],
+      "clauses": [
+        "U15.3"
+      ],
+      "subparagraph_lines": [
+        [
+          119,
+          119
+        ],
+        [
+          121,
+          121
+        ]
+      ],
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027",
+          "subject": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+          "run_id": 40446553400,
+          "job_id": 121999119450,
+          "scope": "15目标20执行独立PASS；142相关和12清单PASS；PR43最终5774fdfe双链40447865003/40447865403全PASS，合main ed326eaf同树；新main40449236177也已全部适用门PASS，actual final122012756789"
+        }
+      ],
+      "remaining": "实际两轮已独立执行：模型真实风险1/2到0加载，下一轮错目标拒绝并保持模型、已花预算及历史；有限声明、可信根、身份、授权失败分支含于20执行。PR43双链全PASS、合main ed326eaf同树，新main40449236177也已全部适用门PASS，actual final122012756789；域外相反行为反例等仍按原题逐段对照已有学习边界代码，不能把两轮通过提升成无限或整个模型完成。",
+      "modules": [
+        "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean"
+      ]
+    }
+  ],
+  "engineering_rows": [
+    {
+      "id": "01.E1",
+      "original_manifest_row": "01.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        168,
+        168
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E2",
+      "original_manifest_row": "01.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        169,
+        169
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E3",
+      "original_manifest_row": "01.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        170,
+        170
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E4",
+      "original_manifest_row": "01.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        171,
+        171
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E5",
+      "original_manifest_row": "01.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        172,
+        172
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E6",
+      "original_manifest_row": "01.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        173,
+        173
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "01.E7",
+      "original_manifest_row": "01.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\01_连接拟合与泛化误差.md",
+      "source_lines": [
+        174,
+        174
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E1",
+      "original_manifest_row": "02.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        157,
+        157
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E2",
+      "original_manifest_row": "02.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        158,
+        158
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E3",
+      "original_manifest_row": "02.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        159,
+        159
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E4",
+      "original_manifest_row": "02.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        160,
+        160
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E5",
+      "original_manifest_row": "02.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        161,
+        161
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E6",
+      "original_manifest_row": "02.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        162,
+        162
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "02.E7",
+      "original_manifest_row": "02.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\02_Harness约束与失败封闭.md",
+      "source_lines": [
+        163,
+        163
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E1",
+      "original_manifest_row": "03.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        169,
+        169
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E2",
+      "original_manifest_row": "03.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        170,
+        170
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E3",
+      "original_manifest_row": "03.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        171,
+        171
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E4",
+      "original_manifest_row": "03.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        172,
+        172
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E5",
+      "original_manifest_row": "03.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        173,
+        173
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E6",
+      "original_manifest_row": "03.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        174,
+        174
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "03.E7",
+      "original_manifest_row": "03.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\03_神经符号编译与来源解释.md",
+      "source_lines": [
+        175,
+        175
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E1",
+      "original_manifest_row": "04.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        143,
+        143
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E2",
+      "original_manifest_row": "04.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        144,
+        144
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E3",
+      "original_manifest_row": "04.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        145,
+        145
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E4",
+      "original_manifest_row": "04.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        146,
+        146
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E5",
+      "original_manifest_row": "04.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        147,
+        147
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E6",
+      "original_manifest_row": "04.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        148,
+        148
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "04.E7",
+      "original_manifest_row": "04.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        149,
+        149
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E1",
+      "original_manifest_row": "05.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        141,
+        141
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E2",
+      "original_manifest_row": "05.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        142,
+        142
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E3",
+      "original_manifest_row": "05.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        143,
+        143
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E4",
+      "original_manifest_row": "05.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        144,
+        144
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E5",
+      "original_manifest_row": "05.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        145,
+        145
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E6",
+      "original_manifest_row": "05.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        146,
+        146
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "05.E7",
+      "original_manifest_row": "05.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        147,
+        147
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E1",
+      "original_manifest_row": "06.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        151,
+        151
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E2",
+      "original_manifest_row": "06.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        152,
+        152
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E3",
+      "original_manifest_row": "06.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        153,
+        153
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E4",
+      "original_manifest_row": "06.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        154,
+        154
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E5",
+      "original_manifest_row": "06.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        155,
+        155
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E6",
+      "original_manifest_row": "06.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        156,
+        156
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "06.E7",
+      "original_manifest_row": "06.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        157,
+        157
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E1",
+      "original_manifest_row": "07.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        315,
+        315
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E2",
+      "original_manifest_row": "07.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        316,
+        316
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E3",
+      "original_manifest_row": "07.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        317,
+        317
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E4",
+      "original_manifest_row": "07.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        318,
+        318
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E5",
+      "original_manifest_row": "07.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        319,
+        319
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E6",
+      "original_manifest_row": "07.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        320,
+        320
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "07.E7",
+      "original_manifest_row": "07.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+      "source_lines": [
+        321,
+        321
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E1",
+      "original_manifest_row": "08.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        157,
+        157
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E2",
+      "original_manifest_row": "08.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        158,
+        158
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E3",
+      "original_manifest_row": "08.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        159,
+        159
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E4",
+      "original_manifest_row": "08.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        160,
+        160
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E5",
+      "original_manifest_row": "08.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        161,
+        161
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E6",
+      "original_manifest_row": "08.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        162,
+        162
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "08.E7",
+      "original_manifest_row": "08.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+      "source_lines": [
+        163,
+        163
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E1",
+      "original_manifest_row": "09.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        224,
+        224
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E2",
+      "original_manifest_row": "09.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        225,
+        225
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E3",
+      "original_manifest_row": "09.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        226,
+        226
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E4",
+      "original_manifest_row": "09.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        227,
+        227
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E5",
+      "original_manifest_row": "09.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        228,
+        228
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E6",
+      "original_manifest_row": "09.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        229,
+        229
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "09.E7",
+      "original_manifest_row": "09.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+      "source_lines": [
+        230,
+        230
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E1",
+      "original_manifest_row": "10.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        171,
+        171
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E2",
+      "original_manifest_row": "10.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        172,
+        172
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E3",
+      "original_manifest_row": "10.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        173,
+        173
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E4",
+      "original_manifest_row": "10.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        174,
+        174
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E5",
+      "original_manifest_row": "10.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        175,
+        175
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E6",
+      "original_manifest_row": "10.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        176,
+        176
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "10.E7",
+      "original_manifest_row": "10.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\10_授权变更与多步法律轨迹.md",
+      "source_lines": [
+        177,
+        177
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E1",
+      "original_manifest_row": "11.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        190,
+        190
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E2",
+      "original_manifest_row": "11.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        191,
+        191
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E3",
+      "original_manifest_row": "11.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        192,
+        192
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E4",
+      "original_manifest_row": "11.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        193,
+        193
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E5",
+      "original_manifest_row": "11.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        194,
+        194
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E6",
+      "original_manifest_row": "11.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        195,
+        195
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "11.E7",
+      "original_manifest_row": "11.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\11_行为法学测量与因果识别.md",
+      "source_lines": [
+        196,
+        196
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E1",
+      "original_manifest_row": "12.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        183,
+        183
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E2",
+      "original_manifest_row": "12.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        184,
+        184
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E3",
+      "original_manifest_row": "12.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        185,
+        185
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E4",
+      "original_manifest_row": "12.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        186,
+        186
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E5",
+      "original_manifest_row": "12.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        187,
+        187
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E6",
+      "original_manifest_row": "12.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        188,
+        188
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "12.E7",
+      "original_manifest_row": "12.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\12_行为响应反馈与政策学习.md",
+      "source_lines": [
+        189,
+        189
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E1",
+      "original_manifest_row": "13.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        139,
+        139
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E2",
+      "original_manifest_row": "13.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        140,
+        140
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E3",
+      "original_manifest_row": "13.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        141,
+        141
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E4",
+      "original_manifest_row": "13.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        142,
+        142
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E5",
+      "original_manifest_row": "13.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        143,
+        143
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E6",
+      "original_manifest_row": "13.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        144,
+        144
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "13.E7",
+      "original_manifest_row": "13.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        145,
+        145
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E1",
+      "original_manifest_row": "14.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        133,
+        133
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E2",
+      "original_manifest_row": "14.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        134,
+        134
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E3",
+      "original_manifest_row": "14.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        135,
+        135
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E4",
+      "original_manifest_row": "14.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        136,
+        136
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E5",
+      "original_manifest_row": "14.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        137,
+        137
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E6",
+      "original_manifest_row": "14.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        138,
+        138
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "14.E7",
+      "original_manifest_row": "14.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        139,
+        139
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E1",
+      "original_manifest_row": "15.E1",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        137,
+        137
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E2",
+      "original_manifest_row": "15.E2",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        138,
+        138
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E3",
+      "original_manifest_row": "15.E3",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        139,
+        139
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E4",
+      "original_manifest_row": "15.E4",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        140,
+        140
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E5",
+      "original_manifest_row": "15.E5",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        141,
+        141
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E6",
+      "original_manifest_row": "15.E6",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        142,
+        142
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    },
+    {
+      "id": "15.E7",
+      "original_manifest_row": "15.E7",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        143,
+        143
+      ],
+      "reconciliation": "NOT_RECONCILED",
+      "remaining": "按原14和现有实现逐字段核生产者、消费者、正反例及证据，不把规格存在当完成。"
+    }
+  ],
+  "designated_cuts": [
+    {
+      "topic": "04",
+      "heading": "## 指定实现切口：JC 逻辑回归与可回放的概率入口",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
+      "source_lines": [
+        153,
+        157
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    },
+    {
+      "topic": "05",
+      "heading": "## 指定评分切口：Brier 不是证明标准",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\05_校准域外检测与风险保证.md",
+      "source_lines": [
+        151,
+        155
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    },
+    {
+      "topic": "06",
+      "heading": "## 指定金额接口：概率 × ExactExpr × IR 及合法和解",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
+      "source_lines": [
+        161,
+        165
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    },
+    {
+      "topic": "13",
+      "heading": "## 工程接口问题（必须随数学答案交付）",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\13_RSI机制规则与个性权重.md",
+      "source_lines": [
+        123,
+        131
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    },
+    {
+      "topic": "14",
+      "heading": "## 工程接口问题（不是执行授权）",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
+      "source_lines": [
+        117,
+        125
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    },
+    {
+      "topic": "15",
+      "heading": "## 工程接口问题",
+      "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\15_多轮改进验证与能力边界.md",
+      "source_lines": [
+        123,
+        129
+      ],
+      "reconciliation": "NOT_RECONCILED"
+    }
+  ],
+  "open_formal_tail": 14,
+  "closes_debt": true,
+  "latest_consumer_integration": {
+    "pr": 58,
+    "main": "f647f6da163538840ecba0eefb55adee0e28a24e",
+    "tree": "92c4fda54f2956859d552f3d18eaac1d72cef7bf",
+    "pr_head": "65545d443581798f6bf01bf0357e304fa5f8e8b5",
+    "ulm_run": 40519526696,
+    "authority_run": 40519527958,
+    "final_job": 122252150764,
+    "pr_status": "ALL_APPLICABLE_CHECKS_SUCCESS_AND_MERGED",
+    "main_run_status": "SUCCESS",
+    "scope": "Existing commit recovery 18 named targets with 21 guarded executions; exact probability 11 targets. Actual main and accepted PR/certificate trees identical. Whole original model not complete.",
+    "main_run": 40522539326,
+    "main_final_job": 122263283920
+  },
+  "latest_archive_closure": {
+    "pr": 61,
+    "main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
+    "tree": "4c279e5023caff55a68918bd921865ae8b98e781",
+    "pr_head": "3953c8de78de0592f9b81c71025ea95a06a0e829",
+    "clauses": [
+      "U04.5"
+    ],
+    "open_before": 15,
+    "open_after": 14,
+    "closed_this_round": 1,
+    "closes_debt": true,
+    "global_discharges": false,
+    "ulm_run": 40537928164,
+    "authority_run": 40537929001,
+    "final_job": 122318736879,
+    "status": "FULL_PR_CI_SUCCESS_MERGED_AND_ACTUAL_MAIN_RECHECKED",
+    "main_fresh_run": 40541087589,
+    "main_fresh_run_status": "IN_PROGRESS",
+    "main_final_job": null
+  },
+  "archive_closure_history": [
+    {
+      "pr": 59,
+      "main": "742c152e2d1bd6df9ac53a445c02b2672bba18ec",
+      "tree": "3e733b2a0a30837ac42be6f3f5d0d44c98ec1b9b",
+      "pr_head": "ca7cb59da31f32c85feee16c02566db963dd714e",
+      "clauses": [
+        "U03.1",
+        "U03.2"
+      ],
+      "open_before": 20,
+      "open_after": 18,
+      "closed_this_round": 2,
+      "status": "FULL_PR_CI_SUCCESS_MERGED_AND_ACTUAL_MAIN_RECHECKED",
+      "ulm_run": 40522861501,
+      "authority_run": 40522863103,
+      "final_job": 122264984928,
+      "closes_debt": true,
+      "global_discharges": false,
+      "main_fresh_run_status": "SUCCESS",
+      "main_fresh_run": 40526141919,
+      "main_final_job": 122276011865
+    },
+    {
+      "pr": 60,
+      "main": "7d438f89f5172942eefa2ff973a79b517e862a5e",
+      "tree": "9fb082795eaebdf4c9a27b5a46f9ff91c2d04bf4",
+      "pr_head": "cdae3ee918ac390e9cb087b8a7bfe57b028d1eea",
+      "clauses": [
+        "U01.1",
+        "U01.2",
+        "U01.3"
+      ],
+      "open_before": 18,
+      "open_after": 15,
+      "closed_this_round": 3,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 40532080415,
+      "authority_run": 40532080971,
+      "final_job": 122300631722,
+      "status": "FULL_PR_CI_SUCCESS_MERGED_AND_ACTUAL_MAIN_RECHECKED",
+      "main_fresh_run": 40536768335,
+      "main_fresh_run_status": "SUCCESS",
+      "main_final_job": 122312317431
+    },
+    {
+      "pr": 61,
+      "main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
+      "tree": "4c279e5023caff55a68918bd921865ae8b98e781",
+      "pr_head": "3953c8de78de0592f9b81c71025ea95a06a0e829",
+      "clauses": [
+        "U04.5"
+      ],
+      "open_before": 15,
+      "open_after": 14,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 40537928164,
+      "authority_run": 40537929001,
+      "final_job": 122318736879,
+      "status": "FULL_PR_CI_SUCCESS_MERGED_AND_ACTUAL_MAIN_RECHECKED",
+      "main_fresh_run": 40541087589,
+      "main_fresh_run_status": "IN_PROGRESS",
+      "main_final_job": null
+    }
+  ],
+  "handoff_to_zcode": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\CODEX_TO_ZCODE_关债交接_20261028.md",
+    "time": "2026-10-28T00:29:54+08:00",
+    "complete_theory_goal": false,
+    "codex_new_construction_stopped": true
+  }
+}

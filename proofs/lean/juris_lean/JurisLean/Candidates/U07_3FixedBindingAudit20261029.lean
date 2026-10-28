@@ -4,6 +4,7 @@ namespace JurisLean.Candidates.U07_3FixedBindingAudit20261029
 
 open JurisLean.Candidates.SourceStages20261027
 open JurisLean.Candidates.SourceCompilation20261027
+open JurisLean.Candidates.U07_2JointObject20261029
 open JurisLean.Candidates.Final20261021
 open JurisLean.Seams
 
@@ -45,6 +46,8 @@ theorem amount_does_not_identify_payment_fields {V : Type}
       (paymentFields a).1 ≠ (paymentFields b).1 ∧
       (paymentFields a).2.2 = (paymentFields c).2.2 ∧
       (paymentFields a).2.1 ≠ (paymentFields c).2.1 := by
+  change (7 : Nat) = 7 ∧ ("1" : String) ≠ "2" ∧
+    (7 : Nat) = 7 ∧ ("1" : String) ≠ "2"
   decide
 
 -- Exercise the frozen Representation boundary: annotation is not payload,
@@ -125,7 +128,6 @@ theorem actual_record_and_binding_interpretation {V R : Type} [DecidableEq R]
         cases tail with
         | nil =>
           cases resolved
-          rw [valuesEq]
           simp
         | cons b more => cases resolved
     obtain ⟨entry, entryIn, entryObj⟩ := List.mem_map.mp member
@@ -136,11 +138,29 @@ theorem actual_record_and_binding_interpretation {V R : Type} [DecidableEq R]
   have candidateMember : ∀ (view : ExtractedView) (index : Nat) (bound : BoundPayment),
       candidatePayment view index = some bound → bound.payment ∈ view.decoded.payments := by
     intro view index bound selected
-    simp only [candidatePayment, Option.bind_eq_some_iff, Option.some.injEq] at selected
-    obtain ⟨history, hIndex, key, hKey, p, hPay, debt, hDebt, relation, hRelation, hChosen⟩ :=
-      selected
-    cases hChosen
-    exact List.mem_of_find?_eq_some hPay
+    cases hHistory : view.decoded.historyEvents[index]? with
+    | none => simp [candidatePayment, hHistory] at selected
+    | some history =>
+      cases hValue : history.value with
+      | formation source relationId =>
+        simp [candidatePayment, hHistory, hValue] at selected
+      | payment source key =>
+        cases hPay : view.decoded.payments.find? (fun p => p.value.key == key) with
+        | none => simp [candidatePayment, hHistory, hValue, hPay] at selected
+        | some paymentRow =>
+          cases hDebt : view.decoded.ledger.find?
+              (fun d => d.value.item.ident == paymentRow.value.targetDebt) with
+          | none => simp [candidatePayment, hHistory, hValue, hPay, hDebt] at selected
+          | some debtRow =>
+            cases hRelation : view.decoded.relations.find?
+                (fun r => r.value.relation == debtRow.value.debtRel) with
+            | none =>
+              simp [candidatePayment, hHistory, hValue, hPay, hDebt, hRelation] at selected
+            | some relationRow =>
+              have outEq : (⟨history, paymentRow, debtRow, relationRow⟩ : BoundPayment) = bound := by
+                simpa [candidatePayment, hHistory, hValue, hPay, hDebt, hRelation] using selected
+              have paymentEq : paymentRow = bound.payment := congrArg BoundPayment.payment outEq
+              exact paymentEq ▸ (List.mem_of_find?_eq_some hPay)
   have producerFacts := public_model_consumes_the_actual_stage_frame
     background material branch catalog out accepted
   have extracted := public_consumer_reads_actual_extraction
@@ -241,11 +261,19 @@ theorem same_material_record_do_not_determine_semantics (gamma : Gamma)
   let s : MaterialSnapshot := ⟨gamma, 0, 0, [fragment]⟩
   let p0 : FullPayment :=
     {payment with payload :=
-      {payment.payload with caseId := gamma.caseId, caseRevision := gamma.caseRevision,
-        source := ref0, relation := rel0, cashId := event0, payer := party0}}
+      {payment.payload with
+        caseId := gamma.caseId
+        caseRevision := gamma.caseRevision
+        source := ref0
+        relation := rel0
+        cashId := event0
+        payer := party0}}
   let p1 : FullPayment :=
     {p0 with payload :=
-      {p0.payload with relation := rel1, cashId := event1, payer := party1}}
+      {p0.payload with
+        relation := rel1
+        cashId := event1
+        payer := party1}}
   let decoded0 : ConsumedView :=
     ⟨⟨c, record⟩, [], [], [⟨c, p0⟩], [], [],
       [⟨c, (ref0, LegalObject.relation rel0)⟩], ⟨c, (ref0, rel0)⟩, []⟩

@@ -56742,7 +56742,6 @@
     "JurisLean.Candidates.LoadedLegalConsumerAudit20261027",
     "JurisLean.Candidates.MeasurementLikelihoodAudit20261027",
     "JurisLean.Candidates.PendingCommit20261027",
-    "JurisLean.Candidates.PolicyResponse20261027",
     "JurisLean.Candidates.ProcedureClosureAudit20261027",
     "JurisLean.Candidates.SourceAction20261027",
     "JurisLean.Candidates.SourceActionAudit20261027",
@@ -56955,8 +56954,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "10cb8b756c2794a9b72c013189baa7cb499001a408ae21f98f47f80c502576a8",
-   "size_bytes": 11695,
+   "sha256": "c1647449e6897062bf693bbdd20dff77767ed99498722c8cc5a02fb8e355f690",
+   "size_bytes": 11644,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58147,19 +58146,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "99d5175a87b525fa972b0b6aaad684f609fb885ac016fbea0ef817e4f75c8672",
+ "source_inventory_digest": "906a94130060c5fb21fcf3ec146abbabe58669518f8552c0b96d7d7b5476d14a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "formal/close-u12-4-debt-20261029",
-  "commit": "845163f918573c17d89be3def6eff2bfd316a18f",
-  "tree": "8f38d3e727378e18e5a972edcd72b38b2cf22c55"
+  "commit": "e1fb496295b82a47eecb5cf216e566443445bb27",
+  "tree": "2d653f17eb5f8685921449c79ee4fdc7420e7ae6"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 485,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

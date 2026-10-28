@@ -117,7 +117,6 @@ theorem actual_closed_pipeline_refines_gate
   -- Name the actual output, then retain the actual program's let bindings.
   generalize runResult : Pipeline.runClosed i p1 p2 derived = output at decision reported
   delta Pipeline.runClosed at runResult
-  dsimp (config := { zeta := false }) only at runResult
   extract_lets (config := { onlyGivenNames := true, merge := false, useContext := false })
     g candidates allowed fit checkpointRequest checkpoint prediction values chosen at runResult
   rw [← runResult] at decision reported

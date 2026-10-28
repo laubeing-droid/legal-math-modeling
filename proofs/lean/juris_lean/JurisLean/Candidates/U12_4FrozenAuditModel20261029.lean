@@ -87,3 +87,14 @@ example : auditedUtility 1 0 1 = 2/5 ∧ auditedUtility 1 0 2 = -(1/10) := by
   exact ⟨effort, gaming⟩
 
 end JurisLean.Candidates.U12_4FrozenAuditModel20261029
+
+#check JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive
+#print axioms JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive
+#check JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient
+#print axioms JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient
+#check JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs
+#print axioms JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs
+#check JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation
+#print axioms JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation
+#check JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance
+#print axioms JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance

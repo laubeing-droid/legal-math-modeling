@@ -50,10 +50,10 @@ theorem frozen_audit_model_acceptance (pE pG : ℝ)
     norm_num [auditedUtility, preparationCost]
   have payoffE : auditedUtility pE pG 1 = pE - 3/5 := by
     norm_num [auditedUtility, auditRate, auditMass, auditReward, univ,
-      preparationScore, preparationCost] <;> ring
+      preparationScore, preparationCost, Fin.ext_iff] <;> ring
   have payoffG : auditedUtility pE pG 2 = pG - 1/10 := by
     norm_num [auditedUtility, auditRate, auditMass, auditReward, univ,
-      preparationScore, preparationCost] <;> ring
+      preparationScore, preparationCost, Fin.ext_iff] <;> ring
   refine ⟨noReward, normalized, payoff0, payoffE, payoffG, ?_⟩
   have comparison :
       (∀ b : Fin 3, b ≠ 1 → auditedUtility pE pG b < auditedUtility pE pG 1) ↔
@@ -65,9 +65,13 @@ theorem frozen_audit_model_acceptance (pE pG : ℝ)
       · simpa only [payoff0, payoffE] using best 0 (by decide)
     · rintro ⟨betterG, better0⟩ b hb
       fin_cases b
-      · simpa only [payoff0, payoffE] using better0
+      · change auditedUtility pE pG (0 : Fin 3) < auditedUtility pE pG (1 : Fin 3)
+        rw [payoff0, payoffE]
+        exact better0
       · exact (hb rfl).elim
-      · simpa only [payoffG, payoffE] using betterG
+      · change auditedUtility pE pG (2 : Fin 3) < auditedUtility pE pG (1 : Fin 3)
+        rw [payoffG, payoffE]
+        exact betterG
   exact comparison.trans
     (JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive pE pG)
 

@@ -1,0 +1,53 @@
+JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive (pE pG : ℝ) :
+  pG - 1 / 10 < pE - 3 / 5 ∧ 0 < pE - 3 / 5 ↔ 1 / 2 < pE - pG ∧ 3 / 5 < pE
+'JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient :
+  3 / 5 ≠ 1 / 2 ∧ 3 / 5 - 3 / 5 < 1 / 2 - 1 / 10
+'JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs (threshold : ℚ) (positive : 0 < threshold)
+  (small : threshold ≤ 1) :
+  JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 0 = 0 ∧
+    JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 1 = 2 / 5 ∧
+      JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 2 = 9 / 10 ∧
+        ∀ (b : Fin 3),
+          b ≠ 2 →
+            JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold b <
+              JurisLean.Candidates.PolicyResponse20261027.preparationUtility threshold 2
+'JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation (passProbability : ℚ → ℚ) :
+  passProbability (JurisLean.Candidates.PolicyResponse20261027.preparationScore 1) =
+      passProbability (JurisLean.Candidates.PolicyResponse20261027.preparationScore 2) ∧
+    JurisLean.Candidates.PolicyResponse20261027.preparationQuality 1 = 1 ∧
+      JurisLean.Candidates.PolicyResponse20261027.preparationQuality 2 = 0
+'JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance (pE pG : ℝ) (hE : 0 ≤ pE ∧ pE ≤ 1)
+  (hG : 0 ≤ pG ∧ pG ≤ 1) :
+  (∀ (v : Bool), JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditReward 0 v = 0) ∧
+    (∀ (b : Fin 3),
+        b ≠ 0 →
+          (∀ (v : Bool),
+              0 ≤
+                JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditMass
+                  (JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditRate pE pG b) v) ∧
+            ∑ v,
+                JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditMass
+                  (JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditRate pE pG b) v =
+              1) ∧
+      JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditedUtility pE pG 0 = 0 ∧
+        JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditedUtility pE pG 1 = pE - 3 / 5 ∧
+          JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditedUtility pE pG 2 = pG - 1 / 10 ∧
+            ((∀ (b : Fin 3),
+                b ≠ 1 →
+                  JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditedUtility pE pG b <
+                    JurisLean.Candidates.U12_4FrozenAuditModel20261029.auditedUtility pE pG 1) ↔
+              1 / 2 < pE - pG ∧ 3 / 5 < pE)
+'JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

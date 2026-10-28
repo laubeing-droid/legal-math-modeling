@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 12,
+    "open_formal_tail_remaining": 11,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -53,20 +53,22 @@
       "U01.3",
       "U04.5",
       "U14.1",
-      "U13.3"
+      "U13.3",
+      "U12.4"
     ],
-    "independent_closed_total": 8,
+    "independent_closed_total": 9,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
-      "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json"
+      "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json",
+      "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json",
-    "close_pack": "docs/formal-release/evidence/u13-3-debt-close-20261028",
+    "independent_receipt": "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json",
+    "close_pack": "docs/formal-release/evidence/u12-4-debt-close-20261029",
     "candidate_rows": 0,
-    "blocked_rows": 12,
+    "blocked_rows": 11,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -78,6 +80,7 @@
       "U00"
     ],
     "wiring_not_reopened": [
+      "U13.3",
       "U14.1",
       "U04.5",
       "U01.1",
@@ -157,8 +160,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 30,
-    "OPEN_FORMAL_TAIL": 12
+    "CLOSED_BY_WIRING": 31,
+    "OPEN_FORMAL_TAIL": 11
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -3448,7 +3451,7 @@
     {
       "clause": "U12.4",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI.",
       "claimed_scope": "",
@@ -3482,11 +3485,9 @@
       "non_goals": [
         "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities."
       ],
-      "unwired_formal_obligations": [
-        "Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations. || NON_GOAL_POINTER: 真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U12.4 source-bound close: the frozen finite binary-audit, three-action model proves nonnegative normalized audit masses for each nonzero action, zero reward for the zero action, and the exact payoffs 0, pE-3/5, and pG-1/10. Its strict-best-action-1 iff reuses the existing Policy theorem, with all three actions compared and pE,pG quantified over their probability-valid range. The existing distinguishability counterexample, finite response payoff table, and score-only quality separation are also audited by the same changed-module run. Exact named evidence: docs/formal-release/evidence/u12-4-debt-close-20261029. Real costs, preferences, and audit legality remain non-goals; this does not close the other U12.1 causal/measurement or support-gap obligations, nor adjacent OPE consumer edges. The CI run audits named Lean declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U12_4_PROOFS || NON_GOAL_POINTER: 真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -3500,35 +3501,22 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations."
-        ],
-        "non_goals_same_row": [
-          "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities."
-        ],
-        "companion_scope_notes": "companion_缩: 真实成本/偏好/审计合法性",
-        "companion_required": true,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+          "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+          "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+          "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+          "JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance"
+        ]
       }
     },
     {

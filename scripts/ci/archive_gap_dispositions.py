@@ -330,9 +330,7 @@ UNWIRED: dict[str, list[str]] = {
     "U12.3": [
         "Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them.",
     ],
-    "U12.4": [
-        "Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations.",
-    ],
+    "U12.4": [],  # Independently audited against the full frozen model in the U12.4 close pack.
     "U13.3": [],  # The source-audited independent package closes this row only.
 
     "U13.4": [
@@ -344,6 +342,21 @@ UNWIRED: dict[str, list[str]] = {
 SCOPE_REVIEW: dict[str, str] = {
     "U13.3": (
         "Independent U13.3 source-bound close: the existing representation-transfer declaration supplies pointwise prediction equality for the bijective representation change; the new audit bridge substitutes equality under the frozen used-input inverse premise inside the same-law, same-loss integral; and the existing two-world theorem supplies a finite nonidentification witness, with the empty-sample instance and two endpoint worlds. The missing-checkpoint declaration supplies UNKNOWN when all checkpoint inputs are absent. Exact named evidence: docs/formal-release/evidence/u13-3-debt-close-20261028. This does not establish that every unsupported-domain case is represented by these witnesses, nor does it close U13.2/U13.4/原题13.5 obligations listed as non-goals; those remain to be checked against existing implementations and original-question instances. The CI run audits named Lean declarations and their source binding only."
+    ),
+    "U12.4": (
+        "Independent U12.4 source-bound close: the frozen finite binary-audit, "
+        "three-action model proves nonnegative normalized audit masses for each "
+        "nonzero action, zero reward for the zero action, and the exact payoffs "
+        "0, pE-3/5, and pG-1/10. Its strict-best-action-1 iff reuses the existing "
+        "Policy theorem, with all three actions compared and pE,pG quantified over "
+        "their probability-valid range. The existing distinguishability counterexample, "
+        "finite response payoff table, and score-only quality separation are also "
+        "audited by the same changed-module run. Exact named evidence: "
+        "docs/formal-release/evidence/u12-4-debt-close-20261029. Real costs, "
+        "preferences, and audit legality remain non-goals; this does not close the "
+        "other U12.1 causal/measurement or support-gap obligations, nor adjacent "
+        "OPE consumer edges. The CI run audits named Lean declarations and source "
+        "binding only."
     ),
     "U14.1": (
         "Independent U14.1 residual closure: ProtectedFeedback20261027 supplies "
@@ -712,6 +725,7 @@ CLOSED_NARROW_IDS = (
 )
 CLOSED_WIRING_IDS = (
     "U13.3",
+    "U12.4",
     "U14.1",
     "U04.5",
     "U01.1", "U01.2", "U01.3",
@@ -923,6 +937,24 @@ U13_3_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
     U13_3_DRIVER,
 )
+U12_4_CLOSED_IDS = ("U12.4",)
+U12_4_CLOSE_PACK = "docs/formal-release/evidence/u12-4-debt-close-20261029"
+U12_4_RECEIPT = U12_4_CLOSE_PACK + "/verification.json"
+U12_4_NAMES = {
+    "U12.4": [
+        "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+        "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+        "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+        "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+        "JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance",
+    ]
+}
+U12_4_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean"
+U12_4_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+    U12_4_DRIVER,
+)
 
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
@@ -945,12 +977,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U13_3_RECEIPT, "names": U13_3_NAMES,
      "driver": U13_3_DRIVER, "sources": U13_3_SOURCES,
      "open_before": 13, "open_after": 12},
+    {"closed_ids": U12_4_CLOSED_IDS, "pack": U12_4_CLOSE_PACK,
+     "receipt": U12_4_RECEIPT, "names": U12_4_NAMES,
+     "driver": U12_4_DRIVER, "sources": U12_4_SOURCES,
+     "open_before": 12, "open_after": 11},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1537,6 +1573,7 @@ def remaining_after(clause: str) -> str:
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
     text = ("WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U12_4_PROOFS" if clause in U12_4_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else

@@ -523,10 +523,11 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append(f"CAND7 closed set {sorted(cand7_seen)} != {list(disp.CAND7_CLOSED_IDS)}")
     if summary.get("open_formal_tail_remaining") != open_rows:
         errors.append("formal-tail summary open count drifted")
-    if open_rows != disp.POST_PIN_OPEN_REMAINING:
-        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != {disp.POST_PIN_OPEN_REMAINING}")
-    if summary.get("blocked_rows") != disp.POST_PIN_OPEN_REMAINING:
-        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != {disp.POST_PIN_OPEN_REMAINING}")
+    current_open = disp.INDEPENDENT_CLOSE_PACKS[-1]["open_after"]
+    if open_rows != current_open:
+        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != {current_open}")
+    if summary.get("blocked_rows") != current_open:
+        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != {current_open}")
     if summary.get("candidate_rows") != 0:
         errors.append(
             f"candidate_rows {summary.get('candidate_rows')!r} != 0 after CAND7 close"
@@ -536,7 +537,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 30 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 31 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )

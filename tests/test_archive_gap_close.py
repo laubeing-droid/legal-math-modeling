@@ -7,10 +7,9 @@ close_admitted=true, UNWIRED empty, SCOPE_REVIEW present.
 The independent U03 closure retains two original residuals; the later U01
 package closes three more; U04.5 closes one further original residual; the
 U14.1 package names existing independent statistical validation, adaptive
-conditional budgets and service-load proofs for its residual. The current U13.3
-package binds the same-law/same-loss used-inverse bridge and existing
-nonidentification boundary to one successful changed-module audit.
-closed_this_round=1, OPEN_FORMAL_TAIL=12, CLOSED_BY_WIRING=30, blocked_rows=12.
+conditional budgets and service-load proofs for its residual. The current U13.3 and U12.4 packages bind their original residuals to successful
+changed-module audits. The U12.4 audit is the current close.
+closed_this_round=1, OPEN_FORMAL_TAIL=11, CLOSED_BY_WIRING=31, blocked_rows=11.
 Historical CAND8 still closes nothing.
 discharges stays false; math_flip stays false; step 2 stays open.
 The expand receipt ci-tip-21862d9b stays named_count=61, closes_debt=false,
@@ -44,8 +43,8 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
     assert "narrow 8" in proc.stdout
-    assert "wiring 30" in proc.stdout
-    assert "open_formal_tail 12" in proc.stdout
+    assert "wiring 31" in proc.stdout
+    assert "open_formal_tail 11" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "40274167574" in proc.stdout
     assert "formal_tail_closed_this_round 1" in proc.stdout
@@ -79,13 +78,13 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     summary = ledger["formal_tail_round"]
     assert summary["step_2_closed"] is False
     assert summary["closed_this_round"] == 1
-    assert summary["open_formal_tail_remaining"] == 12
+    assert summary["open_formal_tail_remaining"] == 11
     assert summary["candidate_rows"] == 0
-    assert summary["blocked_rows"] == 12
+    assert summary["blocked_rows"] == 11
     assert summary["discharges_archived_manuscript_gaps"] is False
     assert summary["math_flip_authorized"] is False
     assert summary["step_2_closed"] is False
-    assert summary["close_pack"] == checker.disp.U13_3_CLOSE_PACK
+    assert summary["close_pack"] == checker.disp.U12_4_CLOSE_PACK
     assert summary["tip_pin_not_retargeted"] is False
     assert summary["tip_pin"]["subject"] == "21862d9bdd94bfa15e5da39079538b5eb30ff235"
     assert summary["tip_pin"]["run_id"] == 40274167574
@@ -100,8 +99,8 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["formal_tail_expand_audit"]["job_id"] == 121413235107
     assert summary["formal_tail_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND7_20261026"
     assert ledger["tip_pin_not_retargeted"] is False
-    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 12
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 30
+    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 11
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 31
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
     assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
     assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False
@@ -109,6 +108,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U02.4", "U09.2", "U01.4", "U04.1", "U04.4", "U05.1", "U06.5", "U00",
     ]
     assert summary["wiring_not_reopened"] == [
+        "U13.3",
         "U14.1",
         "U04.5",
         "U01.1", "U01.2", "U01.3",
@@ -173,10 +173,10 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U02.1",
         "U04.2", "U06.1", "U06.2",
         "U07.2", "U07.3",
-        "U10.1", "U11.1", "U12.1", "U12.3", "U12.4",
+        "U10.1", "U11.1", "U12.1", "U12.3",
         "U13.4",
     ]
-    assert len(blocked) == 12
+    assert len(blocked) == 11
     cand6_shorts = [
         "u08_3_four_states_do_not_exhaust_dependency_policies",
         "u08_3_judgment_not_compatibility_world_classification",
@@ -342,7 +342,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "集成" in u13["companion_scope_notes"] and "另证" in u13["companion_scope_notes"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
-    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3"}
+    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4"}
     assert all(
         row["formal_tail_prove"]["close_admitted"] is (row["clause"] in admitted)
         for row in ledger["rows"]
@@ -364,7 +364,7 @@ def test_u03_closure_covers_only_original_residuals_with_independent_proofs():
         assert row["independent_closure"]["named_theorems_full"] == checker.disp.POST_PIN_NAMES[clause]
         assert row["independent_closure"]["receipt"] == checker.disp.POST_PIN_RECEIPT
     assert ledger["formal_tail_round"]["historical_cand7_closed"] == 5
-    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3"]
+    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4"]
     assert ledger["formal_tail_round"]["historical_u03_closed"] == 2
 
 
@@ -403,8 +403,8 @@ def test_u01_close_uses_general_theorems_and_keeps_u03_evidence():
             "named_theorems_full": checker.disp.U01_NAMES[clause],
         }
     summary = ledger["formal_tail_round"]
-    assert summary["independent_closed_total"] == 8
-    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT, checker.disp.U13_3_RECEIPT]
+    assert summary["independent_closed_total"] == 9
+    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT, checker.disp.U13_3_RECEIPT, checker.disp.U12_4_RECEIPT]
     import copy
     pack = checker.disp.INDEPENDENT_CLOSE_PACKS[1]
     receipt = checker.load_json(ROOT / pack["receipt"])
@@ -486,6 +486,48 @@ def test_u13_3_close_binds_exact_ci_receipt_and_preserves_other_open_rows():
         lambda r: r["names_by_clause"]["U13.3"].pop(),
         lambda r: r["sources"].pop(),
         lambda r: r.update(open_after=13),
+        lambda r: r.update(job_conclusion="failure"),
+        lambda r: r["tip_pin"].update({"subject": "0" * 40}),
+    ):
+        changed = copy.deepcopy(receipt)
+        mutate(changed)
+        assert checker.independent_close_errors(changed, raw, pack)
+    assert checker.independent_close_errors(receipt, raw.replace("depends on axioms", "audit omitted", 1), pack)
+
+
+def test_u12_4_close_binds_full_frozen_audit_model_acceptance():
+    import copy
+    errors, ledger = checker.check(write=False)
+    assert errors == []
+    row = next(r for r in ledger["rows"] if r["clause"] == "U12.4")
+    assert row["archive_gap_status"] == "CLOSED_BY_WIRING"
+    assert row["independent_closure"] == {
+        "receipt": checker.disp.U12_4_RECEIPT,
+        "named_theorems_full": checker.disp.U12_4_NAMES["U12.4"],
+    }
+    assert row["remaining_after_close"].startswith("WIRED_TO_INDEPENDENT_U12_4_PROOFS")
+    assert any("真实成本" in item and "偏好" in item and "审计合法性" in item for item in row["non_goals"])
+    assert row["formal_tail_prove"]["close_admitted"] is True
+    pack = checker.disp.INDEPENDENT_CLOSE_PACKS[5]
+    receipt = checker.load_json(ROOT / pack["receipt"])
+    raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+    assert checker.independent_close_errors(receipt, raw, pack) == []
+    assert receipt["named_count"] == 5
+    assert (receipt["open_before"], receipt["open_after"]) == (12, 11)
+    assert receipt["subject"] == "845163f918573c17d89be3def6eff2bfd316a18f"
+    assert receipt["axiom_audit"]["audited_targets"] == 5
+    assert receipt["original_residuals"]["U12.4"] == (
+        "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
+    )
+    assert ledger["discharges_archived_manuscript_gaps"] is False
+    assert ledger["math_flip_authorized"] is False
+    assert ledger["formal_tail_round"]["step_2_closed"] is False
+    for mutate in (
+        lambda r: r["closed_ids"].append("U07.2"),
+        lambda r: r["original_residuals"].update({"U12.4": "inequalities only"}),
+        lambda r: r["names_by_clause"]["U12.4"].pop(),
+        lambda r: r["sources"].pop(),
+        lambda r: r.update(open_after=12),
         lambda r: r.update(job_conclusion="failure"),
         lambda r: r["tip_pin"].update({"subject": "0" * 40}),
     ):

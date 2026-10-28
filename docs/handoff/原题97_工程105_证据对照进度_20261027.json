@@ -1,23 +1,23 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "0633d362cd32be74b322bc72501894d17a2f6354",
-    "source_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-    "ci_status": "CHANGED_MODULE_SUCCESS; ULM_AUTHORITY_FULL_RELEASE_NOT_RUN",
+    "baseline_main": "c6b30fb2bedce30f6643359d04e2c9e871d1a9cf",
+    "source_checkpoint": "845163f918573c17d89be3def6eff2bfd316a18f",
+    "ci_status": "U12.4_CHANGED_MODULE_SUCCESS; PR_ULM_AUTHORITY_FINAL_RELEASE_NOT_YET_RUN",
     "closes_debt": false,
-    "current_archive_open": 12,
-    "scope": "仅13.2/13.3/13.5源级对照与边13源码复核；六目标changed-module CI已由run/job/subject绑定。冻结archive原始OPEN=13，派生archive-gap ledger当前OPEN=12；97原题行仍仅部分映射，其他行保留旧快照且未复核。reference_main/open_formal_tail/latest_archive_closure及root closes_debt等字段是历史快照；本对象closes_debt=false表示本对照不关闭其余原题义务，最终发布全链尚未验证。原tip_pin、全局discharges及其余OPEN不变。",
+    "current_archive_open": 11,
+    "scope": "仅原题12.1中U12.4冻结审计模型接受子义务的源级补证；五个具名目标由成功changed-module run/job绑定。原题12.1整体仍PARTIAL，既有阈值/softmax/β极限证据保留；其他数学行、工程要求及切口沿用旧快照且未由本次复核。closes_debt=false表示没有关闭原题12.1整行或全局债务。全局discharges、step2与tip pin不变。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
-      "edge13_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
-      "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+      "role": "以上为只读历史原件；本施工树同名文件为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 40714963358,
-    "ci_job_id": 122910040136,
-    "ci_subject": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
-    "ci_artifact": "changed-module-only-40714963358-1",
-    "ci_artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
-    "archive_gap_ledger_status": "U13.3_CLOSED_BY_WIRING;_FULL_RELEASE_NOT_RUN"
+    "ci_run_id": 40728881795,
+    "ci_job_id": 122959474942,
+    "ci_subject": "845163f918573c17d89be3def6eff2bfd316a18f",
+    "ci_artifact": "changed-module-only-40728881795-1",
+    "ci_artifact_sha256": "b0c55f0a8ebfef71471e29525f15e40809703d82989cb3b5628b934d74d0d06f",
+    "archive_gap_ledger_status": "U12.4_CLOSED_BY_WIRING; CURRENT_OPEN=11; FULL_PR_RELEASE_GATES_NOT_YET_RUN"
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
@@ -2918,9 +2918,16 @@
           "run_id": 40451401604,
           "job_id": 122014729609,
           "scope": "17目标7执行独立PASS；原logit等价与质量0/评分1极限、任意初值收缩、振荡、阻尼全区间充要条件及规范不识别；接根待完整验收"
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-4-debt-close-20261029",
+          "subject": "845163f918573c17d89be3def6eff2bfd316a18f",
+          "run_id": 40728881795,
+          "job_id": 122959474942,
+          "scope": "五个具名目标独立changed-module SUCCESS：冻结二元审计/三行动玩具的审计质量非负归一、零行动无奖励、三个实际payoff及严格最佳响应 iff；仅补U12.4子义务。原题12.1整行仍PARTIAL；既有17目标阈值/softmax/β极限证据保留。"
         }
       ],
-      "remaining": "PR46完整双链、同树合并0eb7a4ab及合后main40456323702全部PASS，actual final122035171853。全部原段落与U00仍继续。"
+      "remaining": "PR46完整双链、同树合并0eb7a4ab及合后main40456323702全部PASS，actual final122035171853。全部原段落与U00仍继续。 本轮另将U12.4原残余绑定到冻结模型审计包与独立CI；原题12.1整体仍PARTIAL，完整因果/测量解释、支持缺口识别区间、所有原段落与U00仍继续；既有17目标阈值/softmax/β极限证据沿用。"
     },
     {
       "id": "12.2",
@@ -5249,5 +5256,26 @@
     "time": "2026-10-28T00:29:54+08:00",
     "complete_theory_goal": false,
     "codex_new_construction_stopped": true
-  }
+  },
+  "reconciliation_history": [
+    {
+      "baseline_main": "0633d362cd32be74b322bc72501894d17a2f6354",
+      "source_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+      "ci_status": "CHANGED_MODULE_SUCCESS; ULM_AUTHORITY_FULL_RELEASE_NOT_RUN",
+      "closes_debt": false,
+      "current_archive_open": 12,
+      "scope": "仅13.2/13.3/13.5源级对照与边13源码复核；六目标changed-module CI已由run/job/subject绑定。冻结archive原始OPEN=13，派生archive-gap ledger当前OPEN=12；97原题行仍仅部分映射，其他行保留旧快照且未复核。reference_main/open_formal_tail/latest_archive_closure及root closes_debt等字段是历史快照；本对象closes_debt=false表示本对照不关闭其余原题义务，最终发布全链尚未验证。原tip_pin、全局discharges及其余OPEN不变。",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge13_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 40714963358,
+      "ci_job_id": 122910040136,
+      "ci_subject": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+      "ci_artifact": "changed-module-only-40714963358-1",
+      "ci_artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+      "archive_gap_ledger_status": "U13.3_CLOSED_BY_WIRING;_FULL_RELEASE_NOT_RUN"
+    }
+  ]
 }

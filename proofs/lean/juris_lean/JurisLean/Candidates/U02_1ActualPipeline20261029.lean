@@ -104,30 +104,31 @@ theorem actual_closed_pipeline_refines_gate
     | unknown e => cases chosen
     | rejected e => cases chosen
     | conflict left right => cases chosen
-  let initial : Ledger.Handle :=
-    let base := Trace.initial i.view.gamma i.debt
-    { base with state := { base.state with
-      normHistory := i.normHistory,
-      env := Temporal.proposed_applicability i.view.gamma i.normHistory } }
-  have initialValid : Trace.Invariant initial := by
-    rcases Trace.initial_invariant i.view.gamma i.debt opening with ⟨quantity, cash, _, coherent⟩
-    exact ⟨quantity, cash, rfl, coherent⟩
-  have initialProjection : stateProjection initial = true := by
-    simpa only [stateProjection, decide_eq_true_eq] using initialValid
+
   -- Name the actual output, then retain the actual program's let bindings.
   generalize runResult : Pipeline.runClosed i p1 p2 derived = output at decision reported
   delta Pipeline.runClosed at runResult
   extract_lets (config := { onlyGivenNames := true, merge := false, useContext := false })
     g candidates allowed fit checkpointRequest checkpoint prediction values chosen at runResult
+  let initial : Ledger.Handle :=
+    let base := Trace.initial g i.debt
+    { base with state := { base.state with
+      normHistory := i.normHistory,
+      env := Temporal.proposed_applicability g i.normHistory } }
+  have initialValid : Trace.Invariant initial := by
+    rcases Trace.initial_invariant g i.debt opening with ⟨quantity, cash, _, coherent⟩
+    exact ⟨quantity, cash, rfl, coherent⟩
+  have initialProjection : stateProjection initial = true := by
+    simpa only [stateProjection, decide_eq_true_eq] using initialValid
   rw [← runResult] at decision reported
   cases chosenResult : chosen with
   | none => simp [chosenResult, Pipeline.stop, apply_ite] at reported
   | some picked =>
       by_cases payloadMatches : picked.action.execution = [p1, p2]
       · simp [chosenResult, payloadMatches, apply_ite] at decision reported
-        cases environment : Temporal.proposed_applicability i.view.gamma i.normHistory with
+        cases environment : Temporal.proposed_applicability g i.normHistory with
         | known version =>
-            by_cases currentVersion : version = i.view.gamma.normVersion
+            by_cases currentVersion : version = g.normVersion
             · simp [environment, currentVersion] at decision reported
               have same : picked = selected := by simpa using decision
               subst picked
@@ -137,7 +138,8 @@ theorem actual_closed_pipeline_refines_gate
                 actual_payment_pipeline_preserves_invariant initial final
                   ⟨i.firstKey, ⟨1⟩, p1, .yes, Pipeline.interpretPayment i.view p1⟩
                   ⟨i.secondKey, ⟨2⟩, p2, .yes, Pipeline.interpretPayment i.view p2⟩
-                  i.grants i.secondSubmission i.secondRefresh initialValid reported
+                  i.grants i.secondSubmission i.secondRefresh initialValid
+                  (by simpa only [initial, environment] using reported)
               have actualStep : stateProjection final = true := by
                 simpa only [stateProjection, decide_eq_true_eq] using validFinal
               have safe := ((Harness.u02_3_finite_gate_enumeration (W := Bool) (S := Bool)

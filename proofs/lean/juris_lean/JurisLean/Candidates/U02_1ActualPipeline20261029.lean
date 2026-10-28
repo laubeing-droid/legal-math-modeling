@@ -229,29 +229,29 @@ theorem finite_failure_and_completion_boundaries :
   · rintro ⟨after, impossible⟩
     exact impossible
 
-#check actual_payment_pipeline_preserves_invariant
-#print axioms actual_payment_pipeline_preserves_invariant
-#check actual_closed_pipeline_refines_gate
-#print axioms actual_closed_pipeline_refines_gate
-#check actual_pipeline_refines_gate
-#print axioms actual_pipeline_refines_gate
-#check finite_failure_and_completion_boundaries
-#print axioms finite_failure_and_completion_boundaries
-#check Harness.u02_1_gate_sound_under_Ke
-#print axioms Harness.u02_1_gate_sound_under_Ke
-#check Harness.u02_3_finite_gate_enumeration
-#print axioms Harness.u02_3_finite_gate_enumeration
-#check Decision.u06_3_decision_respects_allowed
-#print axioms Decision.u06_3_decision_respects_allowed
-#check Trace.initial_invariant
-#print axioms Trace.initial_invariant
-#check Trace.step_preserves
-#print axioms Trace.step_preserves
-#check Trace.u10_2_committed_executor_is_step
-#print axioms Trace.u10_2_committed_executor_is_step
-#check Trace.u10_2_known_executor_post_preserves
-#print axioms Trace.u10_2_known_executor_post_preserves
-#check Pipeline.u10_1_authorized_refresh_is_step
-#print axioms Pipeline.u10_1_authorized_refresh_is_step
+#check JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant
+#print axioms JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant
+#check JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate
+#print axioms JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate
+#check JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate
+#print axioms JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate
+#check JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries
+#print axioms JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries
+#check JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke
+#print axioms JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke
+#check JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration
+#print axioms JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration
+#check JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed
+#check JurisLean.Candidates.Final20261021.Trace.initial_invariant
+#print axioms JurisLean.Candidates.Final20261021.Trace.initial_invariant
+#check JurisLean.Candidates.Final20261021.Trace.step_preserves
+#print axioms JurisLean.Candidates.Final20261021.Trace.step_preserves
+#check JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step
+#print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step
+#check JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves
+#print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves
+#check JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step
 
 end JurisLean.Candidates.U02_1ActualPipeline20261029

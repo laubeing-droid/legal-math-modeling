@@ -766,7 +766,7 @@
         "TAIL40清单.json"
       ],
       "one_pipeline": "archive-gap close ledger; no second track",
-      "open_formal_tail_remaining": 13,
+      "open_formal_tail_remaining": 12,
       "closed_this_round": 1,
       "historical_cand7_closed": 5,
       "historical_u03_closed": 2,
@@ -778,19 +778,21 @@
         "U01.2",
         "U01.3",
         "U04.5",
-        "U14.1"
+        "U14.1",
+        "U13.3"
       ],
-      "independent_closed_total": 7,
+      "independent_closed_total": 8,
       "independent_receipts": [
         "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
         "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
         "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
-        "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json"
+        "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
+        "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json"
       ],
-      "independent_receipt": "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
-      "close_pack": "docs/formal-release/evidence/u14-1-debt-close-20261028",
+      "independent_receipt": "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json",
+      "close_pack": "docs/formal-release/evidence/u13-3-debt-close-20261028",
       "candidate_rows": 0,
-      "blocked_rows": 13,
+      "blocked_rows": 12,
       "narrow_not_reopened": [
         "U02.4",
         "U09.2",
@@ -802,6 +804,7 @@
         "U00"
       ],
       "wiring_not_reopened": [
+        "U14.1",
         "U04.5",
         "U01.1",
         "U01.2",
@@ -880,8 +883,8 @@
       "放弃": 0,
       "未决": 0,
       "CLOSED_BY_NARROW": 8,
-      "CLOSED_BY_WIRING": 29,
-      "OPEN_FORMAL_TAIL": 13
+      "CLOSED_BY_WIRING": 30,
+      "OPEN_FORMAL_TAIL": 12
     }
   }
 }

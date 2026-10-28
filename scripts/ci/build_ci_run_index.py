@@ -41,7 +41,9 @@ REPO = "laubeing-droid/legal-math-modeling"
 RUN_ID_RE = re.compile(r"\b\d{11,12}\b")
 # Job ids occupy the same numeric range. Their explicit labels and URL paths
 # identify them as jobs, while an unlabelled 11-12 digit quote remains a run.
-JOB_ID_RE = re.compile(r"\bjobs?(?:\s+|/)\d{11,12}\b", re.IGNORECASE)
+JOB_ID_RE = re.compile(r"\bjobs?(?:\s+|/)`?\d{11,12}`?\b", re.IGNORECASE)
+# Historical handoff logs encode the final job id in `*-final-<id>.raw.txt`.
+FINAL_JOB_LOG_RE = re.compile(r"final-\d{11,12}\.raw\.txt\b", re.IGNORECASE)
 SCHEMA = "ci-run-index-v1"
 STATUS = "external_actions_metadata_snapshot_not_release_certificate"
 AUTHORITY = (
@@ -77,6 +79,7 @@ def run_ids_in_markdown() -> dict[str, list[str]]:
         except UnicodeDecodeError:
             continue
         for n, line in enumerate(text.splitlines(), 1):
+            line = FINAL_JOB_LOG_RE.sub("", line)
             for rid in set(RUN_ID_RE.findall(JOB_ID_RE.sub("", line))):
                 found.setdefault(rid, []).append(f"{rel}:{n}")
     return found
@@ -282,7 +285,7 @@ def build(ids: dict[str, list[str]]) -> dict:
         "repository": REPO,
         "verify_command": "python scripts/ci/build_ci_run_index.py --check",
         "quote_scan": "scripts/ci/build_ci_run_index.py:run_ids_in_markdown "
-                      "(11-12 digit quotes excluding explicitly labelled job ids)",
+                      "(11-12 digit quotes excluding explicit job labels and final-job log filenames)",
         "runs": [describe(rid, quoted) for rid, quoted in sorted(ids.items())],
     }
 

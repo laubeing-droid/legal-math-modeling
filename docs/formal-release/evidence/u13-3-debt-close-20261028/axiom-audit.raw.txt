@@ -1,0 +1,43 @@
+JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer {X Z Z' Y : Type} (phi : X → Z) (b : Z ≃ Z')
+  (g : Z → Y) (x : X) : (fun z' => g (b.symm z')) (b (phi x)) = g (phi x)
+'JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer' depends on axioms: [propext, Quot.sound]
+JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference {X Y : Type} (eval : ℕ → ℕ → X → Y)
+  (s : JurisLean.Candidates.Final20261021.RSI.State) (x : X) (who : JurisLean.Candidates.Final20261021.PartyId)
+  (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :
+  JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval
+      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value) x =
+    JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval s x
+'JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference' does not depend on any axioms
+JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability (visible : Bool) :
+  (∀ (x : Bool), 0 ≤ JurisLean.Candidates.LearningBoundary20261027.pointWeight visible x) ∧
+    ∑ x, JurisLean.Candidates.LearningBoundary20261027.pointWeight visible x = 1
+'JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment (n : ℕ)
+  (learner : (Fin n → Bool × Bool) → Bool → Bool) :
+  JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false =
+      JurisLean.Candidates.LearningBoundary20261027.visibleTraining n true ∧
+    JurisLean.Candidates.LearningBoundary20261027.worldTarget false ≠
+        JurisLean.Candidates.LearningBoundary20261027.worldTarget true ∧
+      ∃ hiddenLabel,
+        JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk true
+            (JurisLean.Candidates.LearningBoundary20261027.worldTarget hiddenLabel)
+            (learner (JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false)) =
+          1
+'JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse {Ω Z Z' Y : Type}
+  [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (phi : Ω → Z) (b : Z → Z')
+  (back : Z' → Z) (g : Z → Y) (inverse_on_used : ∀ (ω : Ω), back (b (phi ω)) = phi ω) (loss : Y → Ω → ℝ) :
+  ∫ (ω : Ω), loss (g (back (b (phi ω)))) ω ∂μ = ∫ (ω : Ω), loss (g (phi ω)) ω ∂μ
+'JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default
+  (r : JurisLean.Candidates.Final20261021.RSI.PredictionRequest) :
+  JurisLean.Candidates.Final20261021.RSI.proposed_checkpoint_service r none none none none =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+'JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default' depends on axioms: [propext, Quot.sound]
+Build completed successfully (8484 jobs).

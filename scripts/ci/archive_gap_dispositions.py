@@ -226,6 +226,10 @@ NON_GOALS: dict[str, list[str]] = {
     "U13.1": [
         "Authority integration is an explicit non-goal of this candidate row (exact_scope: 另证).",
     ],
+    "U13.3": [
+        "This close is limited to same-law/same-loss risk transfer on represented inputs under the used-domain inverse premise, plus the existing two-world nonidentification boundary.",
+        "U13.2 rule-update permission and complete observation/exchange relation; U13.4 fallback applicability, provenance, error handling and original examples; and 原题13.5 InScope criteria and normative/retrieval/prediction fallback consumption remain to be checked against existing implementations and original-question instances.",
+    ],
     "U09.1": [
         "Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim.",
     ],
@@ -329,9 +333,8 @@ UNWIRED: dict[str, list[str]] = {
     "U12.4": [
         "Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations.",
     ],
-    "U13.3": [
-        "Same-loss risk transfer and unsupported-domain witnesses remain unproved.",
-    ],
+    "U13.3": [],  # The source-audited independent package closes this row only.
+
     "U13.4": [
         "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone.",
     ],
@@ -339,6 +342,9 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U13.3": (
+        "Independent U13.3 source-bound close: the existing representation-transfer declaration supplies pointwise prediction equality for the bijective representation change; the new audit bridge substitutes equality under the frozen used-input inverse premise inside the same-law, same-loss integral; and the existing two-world theorem supplies a finite nonidentification witness, with the empty-sample instance and two endpoint worlds. The missing-checkpoint declaration supplies UNKNOWN when all checkpoint inputs are absent. Exact named evidence: docs/formal-release/evidence/u13-3-debt-close-20261028. This does not establish that every unsupported-domain case is represented by these witnesses, nor does it close U13.2/U13.4/原题13.5 obligations listed as non-goals; those remain to be checked against existing implementations and original-question instances. The CI run audits named Lean declarations and their source binding only."
+    ),
     "U14.1": (
         "Independent U14.1 residual closure: ProtectedFeedback20261027 supplies "
         "the independent statistical validation core: the iid joint event over "
@@ -705,6 +711,7 @@ CLOSED_NARROW_IDS = (
     "U00",
 )
 CLOSED_WIRING_IDS = (
+    "U13.3",
     "U14.1",
     "U04.5",
     "U01.1", "U01.2", "U01.3",
@@ -778,7 +785,7 @@ CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
 POST_PIN_CLOSED_IDS = ("U03.1", "U03.2")
 POST_PIN_CLOSE_PACK = "docs/formal-release/evidence/u03-debt-close-20261027"
 POST_PIN_RECEIPT = POST_PIN_CLOSE_PACK + "/verification.json"
-POST_PIN_OPEN_REMAINING = 13
+POST_PIN_OPEN_REMAINING = 12
 POST_PIN_NAMES = {
     "U03.1": [
         "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
@@ -896,6 +903,27 @@ U14_1_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/BusinessFeedbackLoop20261027.lean",
     U14_1_DRIVER,
 )
+U13_3_CLOSED_IDS = ("U13.3",)
+U13_3_CLOSE_PACK = "docs/formal-release/evidence/u13-3-debt-close-20261028"
+U13_3_RECEIPT = U13_3_CLOSE_PACK + "/verification.json"
+U13_3_NAMES = {
+    "U13.3": [
+        "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
+        "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+        "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+        "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+        "JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse",
+        "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    ]
+}
+U13_3_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean"
+U13_3_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+    U13_3_DRIVER,
+)
+
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -913,12 +941,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U14_1_RECEIPT, "names": U14_1_NAMES,
      "driver": U14_1_DRIVER, "sources": U14_1_SOURCES,
      "open_before": 14, "open_after": 13},
+    {"closed_ids": U13_3_CLOSED_IDS, "pack": U13_3_CLOSE_PACK,
+     "receipt": U13_3_RECEIPT, "names": U13_3_NAMES,
+     "driver": U13_3_DRIVER, "sources": U13_3_SOURCES,
+     "open_before": 13, "open_after": 12},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1504,7 +1536,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else

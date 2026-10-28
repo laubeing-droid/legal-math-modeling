@@ -1,7 +1,7 @@
 {
   "authority": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
   "authority_note": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
-  "quote_scan": "scripts/ci/build_ci_run_index.py:run_ids_in_markdown (11-12 digit quotes excluding explicitly labelled job ids)",
+  "quote_scan": "scripts/ci/build_ci_run_index.py:run_ids_in_markdown (11-12 digit quotes excluding explicit job labels and final-job log filenames)",
   "repository": "laubeing-droid/legal-math-modeling",
   "runs": [
     {
@@ -27479,6 +27479,68 @@
       "workflow": "Lean Authority + Formal Release Pipeline"
     },
     {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-26T21:25:13Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "main",
+      "head_sha": "57425c416c5053cdc7c7182a5382884ba916c3d5",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40404187854",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Compute finite selective calibration with a proved risk bound (#32)",
+      "quoted_by": [
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:31"
+      ],
+      "run_id": 40404187854,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T21:37:22Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
       "artifacts_total": 1,
       "conclusion": "success",
       "created_at": "2026-10-26T21:30:09Z",
@@ -31883,6 +31945,69 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-27T17:20:27Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-28T15:20:36Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-u13-3-debt-20261028",
+      "head_sha": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40714963358",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/u13-3-debt-close-20261028/README.md:7",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:190"
+      ],
+      "run_id": 40714963358,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-28T15:22:59Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

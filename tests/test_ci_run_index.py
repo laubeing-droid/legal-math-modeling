@@ -72,7 +72,9 @@ def test_quote_scan_distinguishes_job_ids_from_runs(tmp_path, monkeypatch) -> No
         "[run 40356561660, job 121690497738]"
         "(https://github.com/owner/repo/actions/runs/40356561660/job/121690497738)\n"
         "run 121690497738 is still a run when explicitly quoted separately\n"
-        "123456789012, jobs 123456789013, /jobs/123456789014, 1234567890123\n",
+        "123456789012, jobs 123456789013, /jobs/123456789014, 1234567890123\n"
+        "run 123456789015 / job `123456789016`\n"
+        "final job `123456789017`, see pr55-main-final-123456789017.raw.txt\n",
         encoding="utf-8",
     )
     monkeypatch.setattr(build_ci_run_index, "ROOT", tmp_path)
@@ -84,6 +86,7 @@ def test_quote_scan_distinguishes_job_ids_from_runs(tmp_path, monkeypatch) -> No
         "40356561660": ["quotes.md:1"],
         "121690497738": ["quotes.md:2"],
         "123456789012": ["quotes.md:3"],
+        "123456789015": ["quotes.md:4"],
     }
 
 

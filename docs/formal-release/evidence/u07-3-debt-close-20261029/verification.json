@@ -1,0 +1,79 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "4b88591bb4f48712adb54c1b40557f0ebcd0c23b",
+  "run_id": 40771310113,
+  "job_id": 123108948361,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-40771310113-1",
+  "artifact_id": 12853086110,
+  "artifact_sha256": "49f4af9fc0a0614dc4a1a05f4157eee3ac000342ff20006e213590b392a735cc",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+  "named_count": 12,
+  "names_by_clause": {
+    "U07.3": [
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique",
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.amount_does_not_identify_payment_fields",
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_boundary_examples",
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation",
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique",
+      "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics",
+      "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+      "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+      "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+      "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+      "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+      "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "sha256": "5aa5ed96cbf9062826c6997a7045649fc81525b895c51cdf4463b8776cb29b96"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+      "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 10,
+      "propext": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U07.3": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
+  },
+  "closed_ids": [
+    "U07.3"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 10,
+  "open_after": 9,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

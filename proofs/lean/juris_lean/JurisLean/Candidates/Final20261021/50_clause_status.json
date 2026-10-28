@@ -674,22 +674,42 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Representation.lean:79"
         ],
-        "non_goals": [],
+        "non_goals": [
+          "The semantic interpretation of the selected finite catalog row is an explicit external condition; this proof does not derive source truth or historical identity O05 from raw material.",
+          "The clause is not quantified over every extractor. This package does not connect the old Final20261021.Pipeline consumer to the new source-model witness, nor close all original-question 07.3/07.5/07.6 obligations."
+        ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u07-3-debt-close-20261029/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.amount_does_not_identify_payment_fields",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_boundary_examples",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics",
+            "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+            "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+            "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+            "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+            "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+            "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+          "criteria_pack": "",
           "non_goals_same_row": []
         }
       }

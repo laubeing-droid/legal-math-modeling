@@ -16711,6 +16711,65 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "paymentFields"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_binding_model_projection_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "amount_does_not_identify_payment_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_binding_boundary_examples"
+    },
+    {
+     "kind": "def",
+     "name": "PayloadInterpretation"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_record_and_binding_interpretation"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_source_model_projection_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_material_record_do_not_determine_semantics"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.U07_2JointObject20261029"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+    "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+    "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+    "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+    "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+    "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.amount_does_not_identify_payment_fields",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_boundary_examples",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics"
+   ],
+   "sha256": "5aa5ed96cbf9062826c6997a7045649fc81525b895c51cdf4463b8776cb29b96",
+   "size_bytes": 20285,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "auditMass"
     },
     {
@@ -56788,6 +56847,7 @@
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U07_2JointObject20261029",
+    "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
     "JurisLean.Candidates.U12_4FrozenAuditModel20261029",
     "JurisLean.Candidates.U13_3DebtClosureAudit20261028",
     "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
@@ -56993,8 +57053,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0c4f892ef133643e2c13314ce3538f446e70142382aef2be0233eec984ee320d",
-   "size_bytes": 11697,
+   "sha256": "fd46464b533b61dcabf9bd86b85a90b3bdeca2ca6f346527d058060b015b7748",
+   "size_bytes": 11756,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57158,22 +57218,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6116,
-   "file_count": 486,
+   "counted_declaration_count": 6122,
+   "file_count": 487,
    "lemma_count": 146,
-   "print_axioms_command_count": 5032,
-   "print_axioms_distinct_targets": 4903,
-   "theorem_count": 5970,
-   "theorem_count_bol_convention": 5870
+   "print_axioms_command_count": 5044,
+   "print_axioms_distinct_targets": 4909,
+   "theorem_count": 5976,
+   "theorem_count_bol_convention": 5876
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6097,
-   "file_count": 471,
+   "counted_declaration_count": 6103,
+   "file_count": 472,
    "lemma_count": 139,
-   "print_axioms_command_count": 5032,
-   "print_axioms_distinct_targets": 4903,
-   "theorem_count": 5958,
-   "theorem_count_bol_convention": 5858
+   "print_axioms_command_count": 5044,
+   "print_axioms_distinct_targets": 4909,
+   "theorem_count": 5964,
+   "theorem_count_bol_convention": 5864
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -57342,6 +57402,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
@@ -57826,6 +57887,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
@@ -58187,17 +58249,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "bebe9b7b553305409e56a82ac4341403e9f4c96972e9212262bc4095671890aa",
+ "source_inventory_digest": "f493268b8cf0f7f0996124d89a82034c9ff519ec10b0f3bf649d8bfdb6b09b04",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u07-2-debt-20261029",
-  "commit": "84449d6b95c86e6a17da0b4bec5ca6def3f0b920",
-  "tree": "3ca45b01a060bbe79909473c536fce9e9cbd2a14"
+  "branch": "formal/close-u07-3-debt-20261029",
+  "commit": "4b88591bb4f48712adb54c1b40557f0ebcd0c23b",
+  "tree": "f1e29cafb6401aff0307051f61de649fb8a86a14"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 486,
+  "files_total": 487,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

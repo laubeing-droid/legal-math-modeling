@@ -66,13 +66,13 @@ theorem actual_source_has_joint_object {V R : Type} [DecidableEq R]
     (accepted : sourceModel background material branch catalog = .ok out) :
     ∃ x : JointObject, suppliedLayers out = jointLayers background x ∧
       JointContract background material branch catalog x := by
-  have public := public_model_consumes_the_actual_stage_frame
+  have producerFacts := public_model_consumes_the_actual_stage_frame
     background material branch catalog out accepted
   have extracted := public_consumer_reads_actual_extraction
-    material branch catalog out.1 public.1
+    material branch catalog out.1 producerFacts.1
   have bound := accepted_view_binds_both_actual_payments out.1.source out.1 extracted.2
-  have conserved := successful_source_stages_conserve material branch catalog out.1 public.1
-  have checked := public.2.1
+  have conserved := successful_source_stages_conserve material branch catalog out.1 producerFacts.1
+  have checked := producerFacts.2.1
   cases amount : legacyAmount out.1 with
   | unknown e => simp [checkedModel, amount] at checked
   | rejected e => simp [checkedModel, amount] at checked

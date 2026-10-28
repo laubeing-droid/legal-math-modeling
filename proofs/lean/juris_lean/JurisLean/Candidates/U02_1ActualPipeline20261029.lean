@@ -94,7 +94,6 @@ theorem actual_closed_pipeline_refines_gate
     (reported : (Pipeline.runClosed i p1 p2 derived).payment.current = some final) :
     selected.action.id ∈ (if world then i.world1Actions else i.world0Actions) ∧
       selected.action.execution = [p1, p2] ∧ Trace.Invariant final ∧ stateProjection final = true := by
-  classical
   have choiceAdmission (prediction : Result Calibration.BoundPrediction)
       (values : List Decision.DecisionIR) (picked : Decision.DecisionIR)
       (chosen : (match prediction with
@@ -143,11 +142,6 @@ theorem actual_closed_pipeline_refines_gate
           | .known value => some value
           | _ => none)
     | _ => none) = choice at decision reported
-  -- The compiled match helpers are definitionally equal; rewrite every
-  -- occurrence explicitly before inspecting the chosen option.
-  erw [choiceDefinition] at decision reported
-  repeat' erw [choiceDefinition] at decision
-  repeat' erw [choiceDefinition] at reported
   cases choice with
   | none => simp [Pipeline.stop] at reported
   | some picked =>

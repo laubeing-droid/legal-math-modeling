@@ -117,47 +117,72 @@ theorem actual_closed_pipeline_refines_gate
     simpa only [stateProjection, decide_eq_true_eq] using initialValid
   unfold Pipeline.runClosed at decision reported
   dsimp only at decision reported
-  split at reported
-  · simp only [Pipeline.stop, reduceCtorEq] at reported
-  · rename_i choicePresent
-    split at reported
-    · simp only [Pipeline.stop, reduceCtorEq] at reported
-    · rename_i payloadMatches
-      simp only [if_neg choicePresent, if_neg payloadMatches] at decision
-      cases environment : Temporal.proposed_applicability i.view.gamma i.normHistory with
-      | known version =>
-          by_cases currentVersion : version = i.view.gamma.normVersion
-          · simp only [environment, if_neg (not_not.mpr currentVersion)] at decision reported
-            have admitted : selected.action.id ∈ pipelineGate i derived :=
-              choiceAdmission _ _ selected decision
-            have execution : selected.action.execution = [p1, p2] := by
-              simpa only [decision, Option.any, decide_eq_true_eq, not_not] using payloadMatches
-            have validFinal : Trace.Invariant final :=
-              actual_payment_pipeline_preserves_invariant initial final
-                ⟨i.firstKey, ⟨1⟩, p1, .yes, Pipeline.interpretPayment i.view p1⟩
-                ⟨i.secondKey, ⟨2⟩, p2, .yes, Pipeline.interpretPayment i.view p2⟩
-                i.grants i.secondSubmission i.secondRefresh initialValid reported
-            have actualStep : stateProjection final = true := by
-              simpa only [stateProjection, decide_eq_true_eq] using validFinal
-            have safe := ((Harness.u02_3_finite_gate_enumeration (W := Bool) (S := Bool)
-              (fun _ => true)
-              (fun w _ action => decide (action ∈ if w then i.world1Actions else i.world0Actions))
-              (fun _ _ _ after => after) (fun _ after => after) true
-              (if i.permissionAtom ∈ derived then i.world0Actions else []) selected.action.id).mp admitted).2
-            have atActual := Harness.u02_1_gate_sound_under_Ke
-              (fun (_ : Bool) => true = true)
-              (fun w (_ : Bool) action =>
-                decide (action ∈ if w then i.world1Actions else i.world0Actions) = true)
-              (fun (_ : Bool) (_ : Bool) (_ : Nat) after => after = true)
-              (fun (_ : Bool) after => after = true)
-              (stateProjection initial) (stateProjection final) selected.action.id world rfl
-              (by simpa only [initialProjection] using safe) actualStep
-            refine ⟨?_, execution, validFinal, atActual.2⟩
-            simpa only [decide_eq_true_eq] using atActual.1
-          · simp only [environment, if_pos currentVersion, Pipeline.stop, reduceCtorEq] at reported
-      | unknown e => simp only [environment, Pipeline.stop, reduceCtorEq] at reported
-      | rejected e => simp only [environment, Pipeline.stop, reduceCtorEq] at reported
-      | conflict left right => simp only [environment, Pipeline.stop, reduceCtorEq] at reported
+  -- Generalize the actual chosen option, retaining its defining equation.
+  -- This avoids splitting an inner prediction match instead of the control flow.
+  generalize choiceDefinition :
+    (match
+      (match Learning.proposed_fit_contract i.fitExpected i.fitSupplied,
+        RSI.proposed_checkpoint_service
+          ⟨i.oldModel.scope.principal, i.fitExpected.task, i.fitExpected.target,
+            i.fitExpected.featureVersion, i.view.gamma.normVersion,
+            i.view.gamma.mechanismVersion, i.oldModel.model.scope⟩
+          (some i.oldModel.model) none none none with
+      | .known _, .known model =>
+          if model.version = i.fitExpected.modelVersion then
+            Calibration.proposed_calibration_support_gate i.fitExpected i.calibration i.riskLimit i.supported
+          else .unknown .scopeMismatch
+      | _, _ => .unknown .targetMismatch) with
+    | .known _ => Decision.proposed_decision
+        (Harness.proposed_harness_gate (W := Bool) (S := Bool)
+          (fun _ => true)
+          (fun world _ action => decide (action ∈ if world then i.world1Actions else i.world0Actions))
+          (fun _ _ _ after => after) (fun _ after => after) true
+          (if i.permissionAtom ∈ derived then i.world0Actions else []))
+        (i.alternatives.filterMap fun a =>
+          match Decision.evaluate i.view.gamma i.utility i.utilityVersion i.riskLimit a with
+          | .known value => some value
+          | _ => none)
+    | _ => none) = choice at decision reported
+  cases choice with
+  | none => simp [Pipeline.stop] at reported
+  | some picked =>
+      by_cases payloadMatches : picked.action.execution = [p1, p2]
+      · simp [payloadMatches] at decision reported
+        cases environment : Temporal.proposed_applicability i.view.gamma i.normHistory with
+        | known version =>
+            by_cases currentVersion : version = i.view.gamma.normVersion
+            · simp [environment, currentVersion] at decision reported
+              have same : picked = selected := by simpa using decision
+              subst picked
+              have admitted : selected.action.id ∈ pipelineGate i derived :=
+                choiceAdmission _ _ selected choiceDefinition
+              have validFinal : Trace.Invariant final :=
+                actual_payment_pipeline_preserves_invariant initial final
+                  ⟨i.firstKey, ⟨1⟩, p1, .yes, Pipeline.interpretPayment i.view p1⟩
+                  ⟨i.secondKey, ⟨2⟩, p2, .yes, Pipeline.interpretPayment i.view p2⟩
+                  i.grants i.secondSubmission i.secondRefresh initialValid reported
+              have actualStep : stateProjection final = true := by
+                simpa only [stateProjection, decide_eq_true_eq] using validFinal
+              have safe := ((Harness.u02_3_finite_gate_enumeration (W := Bool) (S := Bool)
+                (fun _ => true)
+                (fun w _ action => decide (action ∈ if w then i.world1Actions else i.world0Actions))
+                (fun _ _ _ after => after) (fun _ after => after) true
+                (if i.permissionAtom ∈ derived then i.world0Actions else []) selected.action.id).mp admitted).2
+              have atActual := Harness.u02_1_gate_sound_under_Ke
+                (fun (_ : Bool) => true = true)
+                (fun w (_ : Bool) action =>
+                  decide (action ∈ if w then i.world1Actions else i.world0Actions) = true)
+                (fun (_ : Bool) (_ : Bool) (_ : Nat) after => after = true)
+                (fun (_ : Bool) after => after = true)
+                (stateProjection initial) (stateProjection final) selected.action.id world rfl
+                (by simpa only [initialProjection] using safe) actualStep
+              refine ⟨?_, payloadMatches, validFinal, atActual.2⟩
+              simpa only [decide_eq_true_eq] using atActual.1
+            · simp [environment, currentVersion, Pipeline.stop] at reported
+        | unknown e => simp [environment, Pipeline.stop] at reported
+        | rejected e => simp [environment, Pipeline.stop] at reported
+        | conflict left right => simp [environment, Pipeline.stop] at reported
+      · simp [payloadMatches, Pipeline.stop] at reported
 
 /-- The public pipeline, including actual source binding and rule checking,
     reaches the same gate refinement. The checked full payment list is read
@@ -184,7 +209,7 @@ theorem actual_pipeline_refines_gate
       have bound := actual_closed_pipeline_refines_gate i p1 p2 derived world selected final opening
         (by simpa only [Pipeline.runBound, closure] using decision)
         (by simpa only [Pipeline.runBound, closure] using reported)
-      exact ⟨bound.1, bound.2.2.1, bound.2.2.2, p1, p2, firstBinding, secondBinding, bound.2.1⟩
+      exact ⟨bound.1, bound.2.2.1, bound.2.2.2, p1, p2, rfl, rfl, bound.2.1⟩
   | unknown e => simp only [Pipeline.runBound, closure, Pipeline.stop, reduceCtorEq] at reported
   | rejected e => simp only [Pipeline.runBound, closure, Pipeline.stop, reduceCtorEq] at reported
   | conflict left right => simp only [Pipeline.runBound, closure, Pipeline.stop, reduceCtorEq] at reported
@@ -211,7 +236,19 @@ theorem finite_failure_and_completion_boundaries :
       (fun (_ : Bool) (_ : Bool) => False) false false ∧
     ¬ ∃ after : Bool, (fun (_ : Bool) (_ : Bool) (_ : Bool) (_ : Bool) => False)
       false false false after := by
-  decide
+  refine ⟨⟨rfl, rfl⟩, ⟨rfl, rfl, rfl, rfl⟩, ⟨rfl, rfl⟩, ?_, ?_, ?_, ?_⟩
+  · rintro ⟨action, allWorlds⟩
+    have impossible : (false : Bool) = true :=
+      Option.some.inj ((allWorlds false).symm.trans (allWorlds true))
+    cases impossible
+  · intro world
+    exact Or.inl rfl
+  · intro world possible
+    refine ⟨True.intro, ?_⟩
+    intro after impossible
+    exact impossible
+  · rintro ⟨after, impossible⟩
+    exact impossible
 
 #check actual_payment_pipeline_preserves_invariant
 #print axioms actual_payment_pipeline_preserves_invariant

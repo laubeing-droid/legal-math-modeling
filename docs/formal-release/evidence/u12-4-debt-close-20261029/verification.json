@@ -1,0 +1,64 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "845163f918573c17d89be3def6eff2bfd316a18f",
+  "run_id": 40728881795,
+  "job_id": 122959474942,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-40728881795-1",
+  "artifact_id": 12834257400,
+  "artifact_sha256": "b0c55f0a8ebfef71471e29525f15e40809703d82989cb3b5628b934d74d0d06f",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
+  "named_count": 5,
+  "names_by_clause": {
+    "U12.4": [
+      "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+      "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+      "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+      "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+      "JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+      "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+      "sha256": "43ad3c70bc0cba072980805fa66e55fd9293fbd8158c8b5f1e0d022bd1b481ef"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
+      "sha256": "9908d8daea6e8f9af9225732a07bf5a821a8ea4077958c32d65ba44e15172c8b"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 5,
+    "axiom_vocabulary": {
+      "Classical.choice": 4,
+      "Quot.sound": 5,
+      "propext": 5
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U12.4": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
+  },
+  "closed_ids": [
+    "U12.4"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 12,
+  "open_after": 11,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

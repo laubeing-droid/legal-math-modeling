@@ -90,6 +90,24 @@ def test_quote_scan_distinguishes_job_ids_from_runs(tmp_path, monkeypatch) -> No
     }
 
 
+def test_quote_scan_distinguishes_artifact_ids_from_runs(tmp_path, monkeypatch) -> None:
+    from types import SimpleNamespace
+
+    (tmp_path / "quotes.md").write_text(
+        "run 40743855261 produced Artifact `changed-module-only-40743855261-1`, "
+        "ID `12840926438`, with SHA256 evidence\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(build_ci_run_index, "ROOT", tmp_path)
+    monkeypatch.setattr(build_ci_run_index, "MD_OUT", tmp_path / "index.md")
+    monkeypatch.setattr(build_ci_run_index, "EVIDENCE_ROOT", tmp_path / "evidence")
+    monkeypatch.setattr(build_ci_run_index.subprocess, "run",
+                        lambda *args, **kwargs: SimpleNamespace(stdout="quotes.md\0"))
+    assert build_ci_run_index.run_ids_in_markdown() == {
+        "40743855261": ["quotes.md:1"],
+    }
+
+
 def test_citations_in_the_index_are_real_locations() -> None:
     """The index may not invent the quotes it says it checked."""
 

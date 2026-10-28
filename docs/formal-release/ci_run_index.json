@@ -26974,7 +26974,8 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/formal-release/evidence/learning-consumer-20261027/README.md:3"
+        "docs/formal-release/evidence/learning-consumer-20261027/README.md:3",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:5"
       ],
       "run_id": 40388553512,
       "started": true,
@@ -27718,7 +27719,8 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/formal-release/evidence/sample-calibration-consumer-20261027/README.md:5"
+        "docs/formal-release/evidence/sample-calibration-consumer-20261027/README.md:5",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:31"
       ],
       "run_id": 40407520488,
       "started": true,
@@ -28215,7 +28217,8 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/formal-release/evidence/interval-decision-consumer-20261027/README.md:5",
-        "docs/formal-release/evidence/probability-interval-consumer-20261027/README.md:5"
+        "docs/formal-release/evidence/probability-interval-consumer-20261027/README.md:5",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:33"
       ],
       "run_id": 40418104346,
       "started": true,
@@ -32071,6 +32074,70 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-28T16:51:12Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-28T18:18:21Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-u07-2-debt-20261029",
+      "head_sha": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40743855261",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/u07-2-debt-close-20261029/README.md:5",
+        "docs/formal-release/evidence/u07-2-debt-close-20261029/README.md:6",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:210"
+      ],
+      "run_id": 40743855261,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-28T18:20:43Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

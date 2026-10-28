@@ -114,39 +114,18 @@ theorem actual_closed_pipeline_refines_gate
     exact ⟨quantity, cash, rfl, coherent⟩
   have initialProjection : stateProjection initial = true := by
     simpa only [stateProjection, decide_eq_true_eq] using initialValid
-  unfold Pipeline.runClosed at decision reported
-  dsimp only at decision reported
-  -- Generalize the actual chosen option, retaining its defining equation.
-  -- This avoids splitting an inner prediction match instead of the control flow.
-  generalize choiceDefinition :
-    (match
-      (match Learning.proposed_fit_contract i.fitExpected i.fitSupplied,
-        RSI.proposed_checkpoint_service
-          ⟨i.oldModel.scope.principal, i.fitExpected.task, i.fitExpected.target,
-            i.fitExpected.featureVersion, i.view.gamma.normVersion,
-            i.view.gamma.mechanismVersion, i.oldModel.model.scope⟩
-          (some i.oldModel.model) none none none with
-      | .known _, .known model =>
-          if model.version = i.fitExpected.modelVersion then
-            Calibration.proposed_calibration_support_gate i.fitExpected i.calibration i.riskLimit i.supported
-          else .unknown .scopeMismatch
-      | _, _ => .unknown .targetMismatch) with
-    | .known _ => Decision.proposed_decision
-        (Harness.proposed_harness_gate (W := Bool) (S := Bool)
-          (fun _ => true)
-          (fun world _ action => decide (action ∈ if world then i.world1Actions else i.world0Actions))
-          (fun _ _ _ after => after) (fun _ after => after) true
-          (if i.permissionAtom ∈ derived then i.world0Actions else []))
-        (i.alternatives.filterMap fun a =>
-          match Decision.evaluate i.view.gamma i.utility i.utilityVersion i.riskLimit a with
-          | .known value => some value
-          | _ => none)
-    | _ => none) = choice at decision reported
-  cases choice with
-  | none => simp [Pipeline.stop] at reported
+  -- Name the actual output, then retain the actual program's let bindings.
+  generalize runResult : Pipeline.runClosed i p1 p2 derived = output at decision reported
+  delta Pipeline.runClosed at runResult
+  dsimp (config := { zeta := false }) only at runResult
+  extract_lets (config := { onlyGivenNames := true, merge := false, useContext := false })
+    g candidates allowed fit checkpointRequest checkpoint prediction values chosen at runResult
+  rw [← runResult] at decision reported
+  cases chosenResult : chosen with
+  | none => simp [chosenResult, Pipeline.stop, apply_ite] at reported
   | some picked =>
       by_cases payloadMatches : picked.action.execution = [p1, p2]
-      · simp [payloadMatches] at decision reported
+      · simp [chosenResult, payloadMatches, apply_ite] at decision reported
         cases environment : Temporal.proposed_applicability i.view.gamma i.normHistory with
         | known version =>
             by_cases currentVersion : version = i.view.gamma.normVersion
@@ -154,7 +133,7 @@ theorem actual_closed_pipeline_refines_gate
               have same : picked = selected := by simpa using decision
               subst picked
               have admitted : selected.action.id ∈ pipelineGate i derived :=
-                choiceAdmission _ _ selected choiceDefinition
+                choiceAdmission prediction values selected chosenResult
               have validFinal : Trace.Invariant final :=
                 actual_payment_pipeline_preserves_invariant initial final
                   ⟨i.firstKey, ⟨1⟩, p1, .yes, Pipeline.interpretPayment i.view p1⟩
@@ -181,7 +160,7 @@ theorem actual_closed_pipeline_refines_gate
         | unknown e => simp [environment, Pipeline.stop] at reported
         | rejected e => simp [environment, Pipeline.stop] at reported
         | conflict left right => simp [environment, Pipeline.stop] at reported
-      · simp [payloadMatches, Pipeline.stop] at reported
+      · simp [chosenResult, payloadMatches, Pipeline.stop, apply_ite] at reported
 
 /-- The public pipeline, including actual source binding and rule checking,
     reaches the same gate refinement. The checked full payment list is read

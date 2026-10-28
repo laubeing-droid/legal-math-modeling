@@ -1,0 +1,275 @@
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R) (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (index : ℕ) (left right : JurisLean.Candidates.SourceStages20261027.SourceFrame) (nL nR : ℕ)
+  (hl :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known left.first)
+  (hr :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known right.first)
+  (el : ↑nL = left.first.payment.value.payload.amount.value)
+  (er : ↑nR = right.first.payment.value.payload.amount.value) :
+  JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields
+      (JurisLean.Candidates.SourceStages20261027.modelOf background left nL) =
+    JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields
+      (JurisLean.Candidates.SourceStages20261027.modelOf background right nR)
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.amount_does_not_identify_payment_fields {V : Type}
+  (seed : JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId) :
+  have a :=
+    { norms := seed.norms, atom := seed.atom, aaf := seed.aaf, pol := seed.pol, disputed := seed.disputed,
+      hBaseConflictFree := ⋯, round := seed.round, hPolicyClosed := ⋯, hBaseInGrounded := ⋯, evalDom := seed.evalDom,
+      candidate := seed.candidate, hAdmissibleNonempty := ⋯, hCollapse := ⋯, ledger := seed.ledger,
+      eventId := seed.eventId, relFormed := seed.relFormed, relObserved := seed.relObserved, performEventId := "1",
+      obligor := "1", performAmount := 7, env := seed.env, ad := seed.ad, hwf := ⋯, atDay := seed.atDay,
+      production := seed.production, hUnauthorized := ⋯, asOf := seed.asOf, past := seed.past, future₁ := seed.future₁,
+      future₂ := seed.future₂, hFuture₁ := ⋯, hFuture₂ := ⋯, someLate := seed.someLate, weight := seed.weight,
+      truthAssessment := seed.truthAssessment, hWeightPos := ⋯, hWeightTotal := ⋯, contaminated := seed.contaminated,
+      observation := seed.observation, caseBurden := seed.caseBurden, sanction := seed.sanction };
+  have b :=
+    { norms := a.norms, atom := a.atom, aaf := a.aaf, pol := a.pol, disputed := a.disputed, hBaseConflictFree := ⋯,
+      round := a.round, hPolicyClosed := ⋯, hBaseInGrounded := ⋯, evalDom := a.evalDom, candidate := a.candidate,
+      hAdmissibleNonempty := ⋯, hCollapse := ⋯, ledger := a.ledger, eventId := a.eventId, relFormed := a.relFormed,
+      relObserved := a.relObserved, performEventId := "2", obligor := a.obligor, performAmount := a.performAmount,
+      env := a.env, ad := a.ad, hwf := ⋯, atDay := a.atDay, production := a.production, hUnauthorized := ⋯,
+      asOf := a.asOf, past := a.past, future₁ := a.future₁, future₂ := a.future₂, hFuture₁ := ⋯, hFuture₂ := ⋯,
+      someLate := a.someLate, weight := a.weight, truthAssessment := a.truthAssessment, hWeightPos := ⋯,
+      hWeightTotal := ⋯, contaminated := a.contaminated, observation := a.observation, caseBurden := a.caseBurden,
+      sanction := a.sanction };
+  have c :=
+    { norms := a.norms, atom := a.atom, aaf := a.aaf, pol := a.pol, disputed := a.disputed, hBaseConflictFree := ⋯,
+      round := a.round, hPolicyClosed := ⋯, hBaseInGrounded := ⋯, evalDom := a.evalDom, candidate := a.candidate,
+      hAdmissibleNonempty := ⋯, hCollapse := ⋯, ledger := a.ledger, eventId := a.eventId, relFormed := a.relFormed,
+      relObserved := a.relObserved, performEventId := a.performEventId, obligor := "2",
+      performAmount := a.performAmount, env := a.env, ad := a.ad, hwf := ⋯, atDay := a.atDay,
+      production := a.production, hUnauthorized := ⋯, asOf := a.asOf, past := a.past, future₁ := a.future₁,
+      future₂ := a.future₂, hFuture₁ := ⋯, hFuture₂ := ⋯, someLate := a.someLate, weight := a.weight,
+      truthAssessment := a.truthAssessment, hWeightPos := ⋯, hWeightTotal := ⋯, contaminated := a.contaminated,
+      observation := a.observation, caseBurden := a.caseBurden, sanction := a.sanction };
+  (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields a).2.2 =
+      (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields b).2.2 ∧
+    (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields a).1 ≠
+        (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields b).1 ∧
+      (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields a).2.2 =
+          (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields c).2.2 ∧
+        (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields a).2.1 ≠
+          (JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields c).2.1
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.amount_does_not_identify_payment_fields' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_boundary_examples
+  (gamma : JurisLean.Candidates.Final20261021.Gamma) (payment : JurisLean.Candidates.Final20261021.PaymentPayload) :
+  have p :=
+    { caseId := { value := 0 }, caseRevision := payment.caseRevision, relation := payment.relation,
+      payer := payment.payer, payee := payment.payee, amount := payment.amount, source := payment.source,
+      cashId := payment.cashId, normVersion := payment.normVersion, factDate := payment.factDate };
+  have v :=
+    {
+      gamma :=
+        { caseId := { value := 0 }, caseRevision := p.caseRevision, evidenceVersion := gamma.evidenceVersion,
+          jurisdiction := gamma.jurisdiction, question := gamma.question, interpretation := gamma.interpretation,
+          normVersion := gamma.normVersion, lawDate := gamma.lawDate, knowledgeCutoff := gamma.knowledgeCutoff,
+          recordCutoff := gamma.recordCutoff, schemaVersion := gamma.schemaVersion,
+          observationFamily := gamma.observationFamily, mechanismVersion := gamma.mechanismVersion },
+      history := [JurisLean.Candidates.Final20261021.Representation.HistoryEvent.performance p],
+      objectMap := [(p.source, JurisLean.Candidates.Final20261021.ObjectId.relation p.relation)],
+      observedRef := p.source, observedRelation := p.relation };
+  have a := { payload := p, annotation := "note-a" };
+  have b := { payload := p, annotation := "note-b" };
+  JurisLean.Candidates.Final20261021.Representation.proposed_common_model v 0 =
+      JurisLean.Candidates.Final20261021.Result.known p ∧
+    JurisLean.Candidates.Final20261021.Representation.proposed_binding v 0 "note-a" = some a ∧
+      JurisLean.Candidates.Final20261021.Representation.proposed_binding v 0 "note-b" = some b ∧
+        a.payload = b.payload ∧
+          a ≠ b ∧
+            JurisLean.Candidates.Final20261021.Representation.proposed_common_model
+                  {
+                    gamma :=
+                      have __src := v.gamma;
+                      { caseId := { value := 1 }, caseRevision := __src.caseRevision,
+                        evidenceVersion := __src.evidenceVersion, jurisdiction := __src.jurisdiction,
+                        question := __src.question, interpretation := __src.interpretation,
+                        normVersion := __src.normVersion, lawDate := __src.lawDate,
+                        knowledgeCutoff := __src.knowledgeCutoff, recordCutoff := __src.recordCutoff,
+                        schemaVersion := __src.schemaVersion, observationFamily := __src.observationFamily,
+                        mechanismVersion := __src.mechanismVersion },
+                    history := v.history, objectMap := v.objectMap, observedRef := v.observedRef,
+                    observedRelation := v.observedRelation }
+                  0 =
+                JurisLean.Candidates.Final20261021.Result.unknown
+                  JurisLean.Candidates.Final20261021.Error.identityUnknown ∧
+              JurisLean.Candidates.Final20261021.Representation.proposed_common_model v 1 =
+                JurisLean.Candidates.Final20261021.Result.unknown
+                  JurisLean.Candidates.Final20261021.Error.identityUnknown
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_boundary_examples' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation {V R : Type}
+  [DecidableEq R] (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (objectMeaning :
+    JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot →
+      ℕ →
+        JurisLean.Candidates.Final20261021.SourceRef →
+          Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (paymentMeaning :
+    JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot →
+      ℕ →
+        JurisLean.Candidates.SourceCompilation20261027.Citation →
+          JurisLean.Candidates.Final20261021.PaymentPayload → Prop)
+  (catalogInterpreted :
+    ∀ row ∈ catalog,
+      row.material = material →
+        row.branch = branch →
+          JurisLean.Candidates.U07_3FixedBindingAudit20261029.PayloadInterpretation objectMeaning paymentMeaning
+            material branch row.decoded)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  ∃ row ∈ catalog,
+    row.material = material ∧
+      row.branch = branch ∧
+        row.decoded = out.1.source.decoded ∧
+          (JurisLean.Candidates.SourceCompilation20261027.recordOf out.1.source).key = row.decoded.record.value.key ∧
+            (JurisLean.Candidates.SourceCompilation20261027.recordOf out.1.source).claimedAmount =
+                row.decoded.record.value.claimedAmount ∧
+              (JurisLean.Candidates.SourceCompilation20261027.recordOf out.1.source).registered =
+                  row.decoded.record.value.registered ∧
+                objectMeaning material branch out.1.source.decoded.observed.value.1 =
+                    some
+                      (JurisLean.Candidates.SourceCompilation20261027.LegalObject.relation
+                        out.1.source.decoded.observed.value.2) ∧
+                  out.1.first.history.value =
+                      JurisLean.Candidates.SourceCompilation20261027.SourceHistory.payment
+                        out.1.first.history.citation.source out.1.first.payment.value.key ∧
+                    paymentMeaning material branch out.1.first.history.citation out.1.first.payment.value.payload
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (outL outR :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (acceptedL :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok outL)
+  (acceptedR :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok outR) :
+  JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields outL.2 =
+    JurisLean.Candidates.U07_3FixedBindingAudit20261029.paymentFields outR.2
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics
+  (gamma : JurisLean.Candidates.Final20261021.Gamma) (record : JurisLean.Seams.UnifiedNeedlesS0S1.CaseRecord)
+  (payment : JurisLean.Candidates.SourceCompilation20261027.FullPayment) :
+  ∃ s v0 v1 cat0 cat1 objectMeaning paymentMeaning,
+    v0.material = s ∧
+      v1.material = s ∧
+        JurisLean.Candidates.SourceCompilation20261027.extractView s 0 cat0 =
+            JurisLean.Candidates.Final20261021.Result.known v0 ∧
+          JurisLean.Candidates.SourceCompilation20261027.extractView s 0 cat1 =
+              JurisLean.Candidates.Final20261021.Result.known v1 ∧
+            JurisLean.Candidates.SourceCompilation20261027.extractView s 0 (cat0 ++ cat1) =
+                JurisLean.Candidates.Final20261021.Result.conflict 0 2 ∧
+              JurisLean.Candidates.SourceCompilation20261027.recordOf v0 =
+                  JurisLean.Candidates.SourceCompilation20261027.recordOf v1 ∧
+                List.map (fun q => q.value.payload) v0.decoded.payments ≠
+                    List.map (fun q => q.value.payload) v1.decoded.payments ∧
+                  JurisLean.Candidates.U07_3FixedBindingAudit20261029.PayloadInterpretation objectMeaning paymentMeaning
+                      s 0 v0.decoded ∧
+                    ¬JurisLean.Candidates.U07_3FixedBindingAudit20261029.PayloadInterpretation objectMeaning
+                          paymentMeaning s 0 v1.decoded ∧
+                      objectMeaning s 0 v1.decoded.observed.value.1 ≠
+                        some
+                          (JurisLean.Candidates.SourceCompilation20261027.LegalObject.relation
+                            v1.decoded.observed.value.2)
+'JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding
+  (v : JurisLean.Candidates.Final20261021.Representation.SourceView) (j : ℕ) (n1 n2 : String)
+  (r1 r2 : JurisLean.Candidates.Final20261021.Representation.PaymentRow)
+  (h1 : JurisLean.Candidates.Final20261021.Representation.proposed_binding v j n1 = some r1)
+  (h2 : JurisLean.Candidates.Final20261021.Representation.proposed_binding v j n2 = some r2) : r1.payload = r2.payload
+'JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding' depends on axioms: [propext]
+JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView) (index : ℕ)
+  (left right : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (hl :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known left)
+  (hr :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known right) :
+  left = right
+'JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique' depends on axioms: [propext, Quot.sound]
+JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique (amount : ℚ) (m n : ℕ) (hm : ↑m = amount)
+  (hn : ↑n = amount) : m = n
+'JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  ∃ x,
+    JurisLean.Candidates.U07_2JointObject20261029.suppliedLayers out =
+        JurisLean.Candidates.U07_2JointObject20261029.jointLayers background x ∧
+      JurisLean.Candidates.U07_2JointObject20261029.JointContract background material branch catalog x
+'JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (resolveFaithful :
+    ∀ (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView),
+      JurisLean.Candidates.SourceCompilation20261027.extractView material branch catalog =
+          JurisLean.Candidates.Final20261021.Result.known view →
+        ∀ (ref : JurisLean.Candidates.Final20261021.SourceRef)
+          (obj : JurisLean.Candidates.SourceCompilation20261027.LegalObject),
+          JurisLean.Candidates.SourceCompilation20261027.resolve view.decoded ref =
+              JurisLean.Candidates.Final20261021.Result.known obj →
+            mu ref = some obj)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  mu out.source.decoded.observed.value.1 =
+      some (JurisLean.Candidates.SourceCompilation20261027.LegalObject.relation out.source.decoded.observed.value.2) ∧
+    (JurisLean.Candidates.SourceCompilation20261027.recordOf out.source).key = out.source.decoded.record.value.key ∧
+      out.stages.afterSecond =
+          JurisLean.Candidates.SourceStages20261027.payStage out.stages.afterFirst out.second.payment.value.payload ∧
+        JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+            (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity
+              out.stages.afterSecond.state.debt.amount) =
+          some out.stages.afterSecond.state.debt.amount
+'JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload
+  (s : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (accepted :
+    JurisLean.Candidates.SourceCompilation20261027.extractView s branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.material = s ∧
+    out.branch = branch ∧
+      JurisLean.Candidates.SourceCompilation20261027.viewChecks s out.decoded = true ∧
+        ∃ row ∈ catalog, row.material = s ∧ row.branch = branch ∧ row.decoded = out.decoded
+'JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload' depends on axioms: [propext]

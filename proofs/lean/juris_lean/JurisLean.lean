@@ -7,6 +7,7 @@ import JurisLean.Candidates.U14_1DebtClosureAudit20261028
 import JurisLean.Candidates.U13_3DebtClosureAudit20261028
 import JurisLean.Candidates.U12_4FrozenAuditModel20261029
 import JurisLean.Candidates.U07_2JointObject20261029
+import JurisLean.Candidates.U07_3FixedBindingAudit20261029
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027

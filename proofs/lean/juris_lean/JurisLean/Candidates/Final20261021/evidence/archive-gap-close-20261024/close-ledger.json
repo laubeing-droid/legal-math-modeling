@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 11,
+    "open_formal_tail_remaining": 10,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -54,21 +54,23 @@
       "U04.5",
       "U14.1",
       "U13.3",
-      "U12.4"
+      "U12.4",
+      "U07.2"
     ],
-    "independent_closed_total": 9,
+    "independent_closed_total": 10,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u04-5-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u14-1-debt-close-20261028/verification.json",
       "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json",
-      "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json"
+      "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json",
+      "docs/formal-release/evidence/u07-2-debt-close-20261029/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json",
-    "close_pack": "docs/formal-release/evidence/u12-4-debt-close-20261029",
+    "independent_receipt": "docs/formal-release/evidence/u07-2-debt-close-20261029/verification.json",
+    "close_pack": "docs/formal-release/evidence/u07-2-debt-close-20261029",
     "candidate_rows": 0,
-    "blocked_rows": 11,
+    "blocked_rows": 10,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -81,6 +83,7 @@
     ],
     "wiring_not_reopened": [
       "U13.3",
+      "U12.4",
       "U14.1",
       "U04.5",
       "U01.1",
@@ -122,7 +125,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13); remaining OPEN are 13 BLOCKED_NOT_IN_TIP_PIN_AUDIT.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. Current OPEN_FORMAL_TAIL=10; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -160,8 +163,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 31,
-    "OPEN_FORMAL_TAIL": 11
+    "CLOSED_BY_WIRING": 32,
+    "OPEN_FORMAL_TAIL": 10
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -282,7 +285,7 @@
     {
       "clause": "U07.2",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Fresh CI and actual semantic compatibility of supplied layers remain separate.",
       "claimed_scope": "",
@@ -313,12 +316,13 @@
         "Representation.lean:30",
         "Representation.lean:38"
       ],
-      "non_goals": [],
-      "unwired_formal_obligations": [
-        "Actual semantic compatibility of supplied layers remains a separate unproved obligation."
+      "non_goals": [
+        "This close covers the conditional joint object produced by a successful frozen sourceModel output only; it does not assert real-source truth/faithfulness or compatibility for arbitrary supplied layers.",
+        "No universal StrongSameCase/localSound premise is added, and the CAND8 negative boundary declarations remain historical evidence rather than positive close evidence."
       ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Actual semantic compatibility of supplied layers remains a separate unproved obligation.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U07.2 source-model close: for an actually accepted sourceModel output, construct x=(frame,n) so suppliedLayers equals jointLayers and the JointContract records the actual extracted source, both bound payments, exact sourceModel modelOf output, exact amount, LegacyContracts, frozen background fields, sequential four-stage projections, and final ledger balance/conservation/cash/quantity projections. The implication is conditional on sourceModel returning .ok; the ambient JointObject type does not assert every pair succeeds. This does not establish real-source fidelity, arbitrary-layer compatibility, StrongSameCase/localSound, or close U07.3. The two CAND8 negative declarations remain negative boundaries and are not positive close evidence. Exact named evidence: docs/formal-release/evidence/u07-2-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U07_2_PROOFS || NON_GOAL_POINTER: This close covers the conditional joint object produced by a successful frozen sourceModel output only; it does not assert real-source truth/faithfulness or compatibility for arbitrary supplied layers. | No universal StrongSameCase/localSound premise is added, and the CAND8 negative boundary declarations remain historical evidence rather than positive close evidence.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -332,33 +336,24 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Actual semantic compatibility of supplied layers remains a separate unproved obligation."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u07-2-debt-close-20261029/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+          "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+          "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+          "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+          "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+          "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+          "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+        ]
       }
     },
     {

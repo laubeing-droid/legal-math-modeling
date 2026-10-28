@@ -537,7 +537,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 31 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 32 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -575,11 +575,11 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     missing_from_prove = [name for name in cand6_suffix + cand7_suffix if name not in prove_names]
     if missing_from_prove:
         errors.append(f"CAND6/CAND7 suffix missing from PROVE_CANDIDATES: {missing_from_prove}")
-    # CAND8 v1.1 (pack formal_tail_真证CAND8_20261026): eight theorems only.
-    # U01.1/U01.2 deferred out of this knife (owner+math). Intentionally absent
-    # from PROVE_CANDIDATES so U03.1/U03.2/U07.2 (and deferred U01) stay
-    # BLOCKED_NOT_IN_TIP_PIN_AUDIT. Closed increment stays 0. OPEN stays 20.
-    # tip_pin is not retargeted. named_count stays 61.
+    # CAND8 v1.1 (pack formal_tail_真证CAND8_20261026): eight negative theorems only.
+    # They remain absent from PROVE_CANDIDATES. U07.2 is separately closed by its
+    # independent positive source-model package; this does not promote CAND8 or
+    # treat its negative declarations as close evidence. The historical expand
+    # receipt stays closes_debt=false / closed_this_round=0 / named_count=61.
     cand8_suffix = [
         "u03_1_relative_soundness_not_provenance_dag_to_finite_closure",
         "u03_1_computed_sound_not_dag_connected_to_executable_closure",

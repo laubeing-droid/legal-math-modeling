@@ -139,7 +139,7 @@ theorem actual_closed_pipeline_refines_gate
                   ⟨i.firstKey, ⟨1⟩, p1, .yes, Pipeline.interpretPayment i.view p1⟩
                   ⟨i.secondKey, ⟨2⟩, p2, .yes, Pipeline.interpretPayment i.view p2⟩
                   i.grants i.secondSubmission i.secondRefresh initialValid
-                  (by simpa only [initial, environment] using reported)
+                  (by simpa only [initial, environment, currentVersion] using reported)
               have actualStep : stateProjection final = true := by
                 simpa only [stateProjection, decide_eq_true_eq] using validFinal
               have safe := ((Harness.u02_3_finite_gate_enumeration (W := Bool) (S := Bool)

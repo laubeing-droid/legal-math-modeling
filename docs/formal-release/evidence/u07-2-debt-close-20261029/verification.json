@@ -1,0 +1,70 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+  "run_id": 40743855261,
+  "job_id": 123012322952,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-40743855261-1",
+  "artifact_id": 12840926438,
+  "artifact_sha256": "bfb00fa1004acc614f7546f23b4e1ce54bd514f4cf9d3049ea8d17360a7746ea",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+  "named_count": 7,
+  "names_by_clause": {
+    "U07.2": [
+      "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+      "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+      "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+      "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+      "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+      "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+      "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+      "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
+      "sha256": "5835cdf887ea03160ead11b501106ed52271f0533ffa7252fcdb67bc84e4ce58"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 7,
+    "axiom_vocabulary": {
+      "Classical.choice": 6,
+      "Quot.sound": 6,
+      "propext": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U07.2": "Fresh CI and actual semantic compatibility of supplied layers remain separate."
+  },
+  "closed_ids": [
+    "U07.2"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 11,
+  "open_after": 10,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

@@ -206,6 +206,10 @@ PATHS: dict[str, str] = {
 # Explicit non-goals. Narrow rows must have some. Prove rows carry the pack
 # companion here, in the same record as the wiring.
 NON_GOALS: dict[str, list[str]] = {
+    "U07.2": [
+        "This close covers the conditional joint object produced by a successful frozen sourceModel output only; it does not assert real-source truth/faithfulness or compatibility for arbitrary supplied layers.",
+        "No universal StrongSameCase/localSound premise is added, and the CAND8 negative boundary declarations remain historical evidence rather than positive close evidence.",
+    ],
     "U02.2": [
         "Full refinement of concrete Ledger/Pipeline into Store/Trace, including external occurrences, is an explicit non-goal.",
         "真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here.",
@@ -294,9 +298,7 @@ CLAIMED_SCOPE: dict[str, str] = {
 # Formal sentences the wired declarations do not state. Empty means the
 # suggested path is fully dispositioned (narrow, or wiring plus non-goals).
 UNWIRED: dict[str, list[str]] = {
-    "U07.2": [
-        "Actual semantic compatibility of supplied layers remains a separate unproved obligation.",
-    ],
+    "U07.2": [],  # Closed only by the independent successful-source joint-object package.
     "U07.3": [
         "Source truth and arbitrary extractor fidelity are not proved by the fixed-history projection theorem.",
     ],
@@ -340,6 +342,9 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U07.2": (
+        "Independent U07.2 source-model close: for an actually accepted sourceModel output, construct x=(frame,n) so suppliedLayers equals jointLayers and the JointContract records the actual extracted source, both bound payments, exact sourceModel modelOf output, exact amount, LegacyContracts, frozen background fields, sequential four-stage projections, and final ledger balance/conservation/cash/quantity projections. The implication is conditional on sourceModel returning .ok; the ambient JointObject type does not assert every pair succeeds. This does not establish real-source fidelity, arbitrary-layer compatibility, StrongSameCase/localSound, or close U07.3. The two CAND8 negative declarations remain negative boundaries and are not positive close evidence. Exact named evidence: docs/formal-release/evidence/u07-2-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
+    ),
     "U13.3": (
         "Independent U13.3 source-bound close: the existing representation-transfer declaration supplies pointwise prediction equality for the bijective representation change; the new audit bridge substitutes equality under the frozen used-input inverse premise inside the same-law, same-loss integral; and the existing two-world theorem supplies a finite nonidentification witness, with the empty-sample instance and two endpoint worlds. The missing-checkpoint declaration supplies UNKNOWN when all checkpoint inputs are absent. Exact named evidence: docs/formal-release/evidence/u13-3-debt-close-20261028. This does not establish that every unsupported-domain case is represented by these witnesses, nor does it close U13.2/U13.4/原题13.5 obligations listed as non-goals; those remain to be checked against existing implementations and original-question instances. The CI run audits named Lean declarations and their source binding only."
     ),
@@ -753,6 +758,7 @@ CLOSED_WIRING_IDS = (
     "U04.3",
     "U05.2",
     "U06.3",
+    "U07.2",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -955,6 +961,27 @@ U12_4_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
     U12_4_DRIVER,
 )
+U07_2_CLOSED_IDS = ("U07.2",)
+U07_2_CLOSE_PACK = "docs/formal-release/evidence/u07-2-debt-close-20261029"
+U07_2_RECEIPT = U07_2_CLOSE_PACK + "/verification.json"
+U07_2_NAMES = {
+    "U07.2": [
+        "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+        "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+        "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+        "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+        "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+        "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+        "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
+    ]
+}
+U07_2_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean"
+U07_2_SOURCES = (
+    U07_2_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
+)
 
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
@@ -981,12 +1008,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U12_4_RECEIPT, "names": U12_4_NAMES,
      "driver": U12_4_DRIVER, "sources": U12_4_SOURCES,
      "open_before": 12, "open_after": 11},
+    {"closed_ids": U07_2_CLOSED_IDS, "pack": U07_2_CLOSE_PACK,
+     "receipt": U07_2_RECEIPT, "names": U07_2_NAMES,
+     "driver": U07_2_DRIVER, "sources": U07_2_SOURCES,
+     "open_before": 11, "open_after": 10},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1546,8 +1577,11 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "independent U04.5 package proves general likelihood and copy information "
             "(15 to 14). The later independent U14.1 package names the existing "
             "independent statistical validation, adaptive conditional budgets and "
-            "service-load proofs against its original residual (14 to 13); remaining "
-            "OPEN are 13 BLOCKED_NOT_IN_TIP_PIN_AUDIT."
+            "service-load proofs against its original residual (14 to 13). CAND8 still "
+            "retains both U07.2 negative boundary declarations and they remain outside "
+            "PROVE_CANDIDATES; a separate positive successful-source joint-object package "
+            "closes only the current U07.2 residual. Current OPEN_FORMAL_TAIL=10; the "
+            "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -1572,7 +1606,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U07_2_PROOFS" if clause in U07_2_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U12_4_PROOFS" if clause in U12_4_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else

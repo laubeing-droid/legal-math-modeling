@@ -1,23 +1,24 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "c6b30fb2bedce30f6643359d04e2c9e871d1a9cf",
-    "source_checkpoint": "845163f918573c17d89be3def6eff2bfd316a18f",
-    "ci_status": "U12.4_CHANGED_MODULE_SUCCESS; PR_ULM_AUTHORITY_FINAL_RELEASE_NOT_YET_RUN",
+    "baseline_main": "b9db5f7d28d99e9424195dcdc059ca83e98f6812",
+    "source_checkpoint": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+    "ci_status": "U07.2_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR full-release gates not represented by this module receipt",
     "closes_debt": false,
-    "current_archive_open": 11,
-    "scope": "仅原题12.1中U12.4冻结审计模型接受子义务的源级补证；五个具名目标由成功changed-module run/job绑定。原题12.1整体仍PARTIAL，既有阈值/softmax/β极限证据保留；其他数学行、工程要求及切口沿用旧快照且未由本次复核。closes_debt=false表示没有关闭原题12.1整行或全局债务。全局discharges、step2与tip pin不变。",
+    "current_archive_open": 10,
+    "scope": "仅U07.2在冻结background/material/branch/catalog下对成功 sourceModel=.ok 输出的条件joint-object及supplied/joint layers投影；七目标独立changed-module run/job/source绑定。U07.3及原题07.5/07.6其余义务、U00既有消费边的完整消费接线仍保持既有PARTIAL；本记录不是PR全链或整体原题关账。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名文件为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 40728881795,
-    "ci_job_id": 122959474942,
-    "ci_subject": "845163f918573c17d89be3def6eff2bfd316a18f",
-    "ci_artifact": "changed-module-only-40728881795-1",
-    "ci_artifact_sha256": "b0c55f0a8ebfef71471e29525f15e40809703d82989cb3b5628b934d74d0d06f",
-    "archive_gap_ledger_status": "U12.4_CLOSED_BY_WIRING; CURRENT_OPEN=11; FULL_PR_RELEASE_GATES_NOT_YET_RUN"
+    "ci_run_id": 40743855261,
+    "ci_job_id": 123012322952,
+    "ci_subject": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+    "ci_artifact": "changed-module-only-40743855261-1",
+    "ci_artifact_id": 12840926438,
+    "ci_artifact_sha256": "bfb00fa1004acc614f7546f23b4e1ce54bd514f4cf9d3049ea8d17360a7746ea",
+    "archive_gap_ledger_status": "U07.2_CLOSED_BY_WIRING; CURRENT_OPEN=10; evidence layer is independent changed-module/source binding only; U07.3 and overall original-question progress remain partial; PR full-release not represented here."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
@@ -1685,9 +1686,28 @@
           "run_id": 40468260025,
           "job_id": 122068840408,
           "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        },
+        {
+          "package": "docs/formal-release/evidence/u07-2-debt-close-20261029",
+          "subject": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+          "run_id": 40743855261,
+          "job_id": 123012322952,
+          "artifact": "changed-module-only-40743855261-1",
+          "artifact_id": 12840926438,
+          "artifact_sha256": "bfb00fa1004acc614f7546f23b4e1ce54bd514f4cf9d3049ea8d17360a7746ea",
+          "named_targets": [
+            "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+            "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+            "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+            "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+            "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+            "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+            "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+          ],
+          "scope": "SOURCE_ONLY / independent changed-module CI: conditional on sourceModel returning .ok out; constructs x=(frame,n) and binds actual extraction, two payments, four-stage projections, modelOf and ledger projections. Does not assert real-source faithfulness, arbitrary-layer compatibility, or U07.3 closure."
         }
       ],
-      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+      "remaining": "本轮独立证据仅关闭U07.2关于成功sourceModel输出的条件共同对象与投影兼容残余；总体仍PARTIAL。未由本次证据闭合/仍待核对既有实现及原题实例：原题07其它段落与U00消费链的整体验收；本driver不是旧Final20261021.Pipeline的调用接线。"
     },
     {
       "id": "07.6",
@@ -1716,9 +1736,28 @@
           "run_id": 40468260025,
           "job_id": 122068840408,
           "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+        },
+        {
+          "package": "docs/formal-release/evidence/u07-2-debt-close-20261029",
+          "subject": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+          "run_id": 40743855261,
+          "job_id": 123012322952,
+          "artifact": "changed-module-only-40743855261-1",
+          "artifact_id": 12840926438,
+          "artifact_sha256": "bfb00fa1004acc614f7546f23b4e1ce54bd514f4cf9d3049ea8d17360a7746ea",
+          "named_targets": [
+            "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+            "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+            "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+            "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+            "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+            "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+            "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+          ],
+          "scope": "SOURCE_ONLY / independent changed-module CI: conditional on sourceModel returning .ok out; constructs x=(frame,n) and binds actual extraction, two payments, four-stage projections, modelOf and ledger projections. Does not assert real-source faithfulness, arbitrary-layer compatibility, or U07.3 closure."
         }
       ],
-      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+      "remaining": "本轮独立证据仅覆盖U07.2在成功sourceModel输出上的条件共同对象；U07.3及强语义/现实来源忠实性仍未由本次证据闭合/仍待核对既有实现及原题实例。该行总体仍PARTIAL，未证明旧Pipeline消费新driver。"
     },
     {
       "id": "07.7",
@@ -5276,6 +5315,33 @@
       "ci_artifact": "changed-module-only-40714963358-1",
       "ci_artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
       "archive_gap_ledger_status": "U13.3_CLOSED_BY_WIRING;_FULL_RELEASE_NOT_RUN"
+    },
+    {
+      "baseline_main": "c6b30fb2bedce30f6643359d04e2c9e871d1a9cf",
+      "source_checkpoint": "845163f918573c17d89be3def6eff2bfd316a18f",
+      "ci_status": "U12.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; release verification belongs to PR64",
+      "closes_debt": false,
+      "current_archive_open": 11,
+      "scope": "仅原题12.1中U12.4冻结审计模型接受子义务的源级补证；五个具名目标由成功changed-module run/job绑定。原题12.1整体仍PARTIAL，既有阈值/softmax/β极限证据保留；其他数学行、工程要求及切口沿用旧快照且未由本次复核。closes_debt=false表示没有关闭原题12.1整行或全局债务。全局discharges、step2与tip pin不变。",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名文件为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 40728881795,
+      "ci_job_id": 122959474942,
+      "ci_subject": "845163f918573c17d89be3def6eff2bfd316a18f",
+      "ci_artifact": "changed-module-only-40728881795-1",
+      "ci_artifact_sha256": "b0c55f0a8ebfef71471e29525f15e40809703d82989cb3b5628b934d74d0d06f",
+      "archive_gap_ledger_status": "U12.4_CLOSED_BY_WIRING; source receipt remains bound to 845163f/run40728881795; PR64 release evidence: head 98b2740ecf18bb541d79fbe0c69a46036fa317ea, ULM 40735567164, Authority 40735567910, final-gate job 122993096912 PASS, merged main b9db5f7d28d99e9424195dcdc059ca83e98f6812; this release evidence is not U07.2 evidence.",
+      "release_evidence": {
+        "scope": "U12.4 PR64 only; does not rebind its source CI receipt or establish U07.2 validation.",
+        "pr_head": "98b2740ecf18bb541d79fbe0c69a46036fa317ea",
+        "ulm_run_id": 40735567164,
+        "authority_run_id": 40735567910,
+        "final_gate_job_id": 122993096912,
+        "merged_main": "b9db5f7d28d99e9424195dcdc059ca83e98f6812"
+      }
     }
   ]
 }

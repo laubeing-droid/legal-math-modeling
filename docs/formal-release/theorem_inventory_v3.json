@@ -3942,7 +3942,6 @@
     "JurisLean.Seams.bridge_partial_inverse_suspended",
     "JurisLean.Seams.bridge_shared_legal_status_point",
     "JurisLean.Seams.unified_claim_is_not_general",
-    "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
     "JurisLean.Seams.unified_model_is_not_vacuous",
     "JurisLean.all_clean_inputs_clean_output",
     "JurisLean.authority_strictly_ordered",
@@ -4427,8 +4426,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "f13736a652fb51be6d5e1b6d055501620fa5b0bd44b5486b1eeea22cb352dd8f",
-   "size_bytes": 270094,
+   "sha256": "68e44fef6dd79c5c94047dcc4d25fd21c6afd40fd1c482d73e95b3494773f688",
+   "size_bytes": 270018,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16668,6 +16667,45 @@
    "size_bytes": 2915,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "jointLayers"
+    },
+    {
+     "kind": "def",
+     "name": "suppliedLayers"
+    },
+    {
+     "kind": "def",
+     "name": "JointContract"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_source_has_joint_object"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.SourceStages20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+    "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+    "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+    "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+    "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+    "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+    "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+   ],
+   "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f",
+   "size_bytes": 6542,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
   },
   {
    "declarations": [
@@ -56749,6 +56787,7 @@
     "JurisLean.Candidates.SourceOpeningAudit20261027",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
+    "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U12_4FrozenAuditModel20261029",
     "JurisLean.Candidates.U13_3DebtClosureAudit20261028",
     "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
@@ -56954,8 +56993,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "c1647449e6897062bf693bbdd20dff77767ed99498722c8cc5a02fb8e355f690",
-   "size_bytes": 11644,
+   "sha256": "0c4f892ef133643e2c13314ce3538f446e70142382aef2be0233eec984ee320d",
+   "size_bytes": 11697,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57119,22 +57158,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6115,
-   "file_count": 485,
+   "counted_declaration_count": 6116,
+   "file_count": 486,
    "lemma_count": 146,
-   "print_axioms_command_count": 5026,
-   "print_axioms_distinct_targets": 4902,
-   "theorem_count": 5969,
-   "theorem_count_bol_convention": 5869
+   "print_axioms_command_count": 5032,
+   "print_axioms_distinct_targets": 4903,
+   "theorem_count": 5970,
+   "theorem_count_bol_convention": 5870
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6096,
-   "file_count": 470,
+   "counted_declaration_count": 6097,
+   "file_count": 471,
    "lemma_count": 139,
-   "print_axioms_command_count": 5026,
-   "print_axioms_distinct_targets": 4902,
-   "theorem_count": 5957,
-   "theorem_count_bol_convention": 5857
+   "print_axioms_command_count": 5032,
+   "print_axioms_distinct_targets": 4903,
+   "theorem_count": 5958,
+   "theorem_count_bol_convention": 5858
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -57302,6 +57341,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
@@ -57785,6 +57825,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
@@ -58146,17 +58187,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "906a94130060c5fb21fcf3ec146abbabe58669518f8552c0b96d7d7b5476d14a",
+ "source_inventory_digest": "bebe9b7b553305409e56a82ac4341403e9f4c96972e9212262bc4095671890aa",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u12-4-debt-20261029",
-  "commit": "e1fb496295b82a47eecb5cf216e566443445bb27",
-  "tree": "2d653f17eb5f8685921449c79ee4fdc7420e7ae6"
+  "branch": "formal/close-u07-2-debt-20261029",
+  "commit": "84449d6b95c86e6a17da0b4bec5ca6def3f0b920",
+  "tree": "3ca45b01a060bbe79909473c536fce9e9cbd2a14"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 485,
+  "files_total": 486,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

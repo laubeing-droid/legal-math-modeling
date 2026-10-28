@@ -42,6 +42,13 @@ RUN_ID_RE = re.compile(r"\b\d{11,12}\b")
 # Job ids occupy the same numeric range. Their explicit labels and URL paths
 # identify them as jobs, while an unlabelled 11-12 digit quote remains a run.
 JOB_ID_RE = re.compile(r"\bjobs?(?:\s+|/)`?\d{11,12}`?\b", re.IGNORECASE)
+# Artifact identifiers share the same width as run ids. Recognize only the
+# explicit metadata form `Artifact <name>, ID <number>`; do not discard a run
+# merely because it appears in an artifact name or nearby prose.
+ARTIFACT_ID_RE = re.compile(
+    r"\bArtifact\b(?:(?!\b(?:run|job)\b).){0,160}?\bID\s+`?(\d{11,12})`?\b",
+    re.IGNORECASE,
+)
 # Historical handoff logs encode the final job id in `*-final-<id>.raw.txt`.
 FINAL_JOB_LOG_RE = re.compile(r"final-\d{11,12}\.raw\.txt\b", re.IGNORECASE)
 SCHEMA = "ci-run-index-v1"
@@ -80,7 +87,8 @@ def run_ids_in_markdown() -> dict[str, list[str]]:
             continue
         for n, line in enumerate(text.splitlines(), 1):
             line = FINAL_JOB_LOG_RE.sub("", line)
-            for rid in set(RUN_ID_RE.findall(JOB_ID_RE.sub("", line))):
+            artifact_ids = set(ARTIFACT_ID_RE.findall(line))
+            for rid in set(RUN_ID_RE.findall(JOB_ID_RE.sub("", line))) - artifact_ids:
                 found.setdefault(rid, []).append(f"{rel}:{n}")
     return found
 

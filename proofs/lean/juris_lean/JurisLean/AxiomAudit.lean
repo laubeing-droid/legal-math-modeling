@@ -3361,7 +3361,6 @@ open HornSystem
 #print axioms JurisLean.Seams.bridge_partial_inverse_suspended
 #print axioms JurisLean.Seams.bridge_shared_legal_status_point
 #print axioms JurisLean.Seams.unified_claim_is_not_general
-#print axioms JurisLean.Seams.unified_legal_derivation_on_declared_fragment
 #print axioms JurisLean.Seams.unified_model_is_not_vacuous
 
 /-! Generated boundary-carrier audit surface. Regenerate with

@@ -1,0 +1,85 @@
+JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  ∃ x,
+    JurisLean.Candidates.U07_2JointObject20261029.suppliedLayers out =
+        JurisLean.Candidates.U07_2JointObject20261029.jointLayers background x ∧
+      JurisLean.Candidates.U07_2JointObject20261029.JointContract background material branch catalog x
+'JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty {I B : Type} [Fintype I] (W : I → Type)
+  (projection : (i : I) → W i → B) (b : B) (localWitness : ∀ (i : I), ∃ w, projection i w = b) :
+  ∃ ws, ∀ (i : I), projection i (ws i) = b
+'JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber : ¬∃ b, false = b ∧ true = b
+'JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber' does not depend on any axioms
+JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out.1 ∧
+    JurisLean.Candidates.SourceStages20261027.checkedModel background out.1 = Except.ok out.2 ∧
+      ↑out.2.performAmount = out.1.first.payment.value.payload.amount.value ∧
+        JurisLean.Candidates.SourceStages20261027.LegacyContracts out.2
+'JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (first second : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (relation : JurisLean.Candidates.Final20261021.RelationId) :
+  have frame := JurisLean.Candidates.SourceStages20261027.buildStages view first second source relation;
+  frame.afterFormation = JurisLean.Candidates.SourceStages20261027.formStage frame.beforeFormation source relation ∧
+    frame.afterFirst =
+        JurisLean.Candidates.SourceStages20261027.payStage frame.afterFormation first.payment.value.payload ∧
+      frame.afterSecond =
+          JurisLean.Candidates.SourceStages20261027.payStage frame.afterFirst second.payment.value.payload ∧
+        frame.afterFirst.relations = frame.afterFormation.relations ∧
+          frame.afterSecond.relations = frame.afterFirst.relations
+'JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state =
+      max
+        (out.first.relation.value.amount.value -
+          (out.first.payment.value.payload.amount.value + out.second.payment.value.payload.amount.value))
+        0 ∧
+    JurisLean.Candidates.Final20261021.Ledger.Conserves out.stages.afterSecond.state ∧
+      JurisLean.Candidates.Final20261021.Ledger.CashConsistent out.stages.afterSecond.state ∧
+        out.stages.afterSecond.quantity.item.amount =
+          JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state
+'JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Seams.unified_legal_derivation_on_declared_fragment {V Rel : Type} [DecidableEq Rel]
+  (M : JurisLean.Seams.UnifiedModel V Rel) :
+  JurisLean.Seams.UnifiedNonDegenerate ∧
+    JurisLean.Seams.UnifiedInterpretationPreserved V Rel M ∧
+      JurisLean.Seams.UnifiedChainCorrespondence V Rel M ∧
+        JurisLean.Seams.UnifiedFiniteProcessComposition V Rel M ∧
+          JurisLean.Seams.UnifiedTimeAndUncertaintyPreserved V Rel M
+'JurisLean.Seams.unified_legal_derivation_on_declared_fragment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -95,11 +95,11 @@ theorem finite_expect_positiveAffine_preference
   rw [finite_expect_affine, finite_expect_affine]
   constructor
   · intro h
-    exact (mul_le_mul_left positive).mp
+    exact (mul_le_mul_iff_of_pos_left positive).mp
       ((add_le_add_iff_right shift).mp h)
   · intro h
     exact (add_le_add_iff_right shift).mpr
-      ((mul_le_mul_left positive).mpr h)
+      ((mul_le_mul_iff_of_pos_left positive).mpr h)
 
 /-- The mixed transfer also permits different finite action types by player. -/
 theorem product_pmf_equilibrium_transfer
@@ -128,15 +128,17 @@ theorem product_pmf_equilibrium_transfer
           (fun a => u a i) ≤ ε i + 2 * η i := by
   have transfer :=
     JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer
-      (u := fun i σ =>
+      (Player := I)
+      (Profile := ∀ i, PMF (A i))
+      (u := fun (i : I) (σ : ∀ j, PMF (A j)) =>
         Math.Probability.expect
           (Math.PMFProduct.pmfPi (A := A) σ)
           (fun a => u a i))
-      (v := fun i σ =>
+      (v := fun (i : I) (σ : ∀ j, PMF (A j)) =>
         Math.Probability.expect
           (Math.PMFProduct.pmfPi (A := A) σ)
           (fun a => v a i))
-      (deviation := fun i σ σ' =>
+      (deviation := fun (i : I) (σ σ' : ∀ j, PMF (A j)) =>
         ∃ τ : PMF (A i), σ' = Function.update σ i τ)
       (chosen := chosen)
       (ε := ε) (η := η)
@@ -175,14 +177,15 @@ theorem equiv_deviation_equilibrium_transfer
         v i a - v i chosen ≤ ε i) :
     ∀ i b, targetDeviation i (e chosen) b →
       u i b - u i (e chosen) ≤ ε i + 2 * η i := by
-  have transfer :=
+  have transfer :
+      ∀ (i : Player) (a : Source),
+        sourceDeviation i chosen a →
+          u i (e a) - u i (e chosen) ≤ ε i + 2 * η i :=
     JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer
-      (u := fun i a => u i (e a))
-      (v := v)
-      (deviation := sourceDeviation)
-      (chosen := chosen)
-      (ε := ε) (η := η)
-      disturbance approximate
+      (Player := Player) (Profile := Source)
+      (u := fun (i : Player) (a : Source) => u i (e a))
+      (v := v) (deviation := sourceDeviation) (chosen := chosen)
+      (ε := ε) (η := η) (disturbance := disturbance) (approximate := approximate)
   intro i b hb
   have hb' :
       targetDeviation i (e chosen) (e (e.symm b)) := by
@@ -207,6 +210,7 @@ theorem legalGame_mixedExtension_expect
       Math.Probability.expect
         (Math.PMFProduct.pmfPi (A := fun _ : I => Act) σ)
         (fun a => u a i) := by
+  letI : Nonempty Act := ⟨(σ i).support_nonempty.choose⟩
   rw [legalGame_mixedExtension_eu,
     Math.Probability.expect_eq_sum]
   simp only [Math.PMFProduct.pmfPi_apply, ENNReal.toReal_prod]
@@ -244,8 +248,7 @@ theorem legalGame_mixedExtension_affine
     (u : (I → Act) → I → ℝ)
     (scale shift : I → ℝ)
     (σ : ∀ _ : I, PMF Act) (i : I) :
-    (legalGame (fun a j => scale j * u a j + shift j))
-        .mixedExtension.eu σ i =
+    (legalGame (fun a j => scale j * u a j + shift j)).mixedExtension.eu σ i =
       scale i * (legalGame u).mixedExtension.eu σ i + shift i := by
   simpa only [legalGame_mixedExtension_expect] using
     finite_expect_affine
@@ -259,10 +262,9 @@ theorem legalGame_positiveAffine_bestResponse
     (positive : ∀ i, 0 < scale i)
     (chosen : ∀ _ : I, PMF Act) (i : I) :
     (∀ τ : PMF Act,
-      (legalGame (fun a j => scale j * u a j + shift j))
-          .mixedExtension.eu (Function.update chosen i τ) i ≤
-        (legalGame (fun a j => scale j * u a j + shift j))
-          .mixedExtension.eu chosen i) ↔
+      (legalGame (fun a j => scale j * u a j + shift j)).mixedExtension.eu
+          (Function.update chosen i τ) i ≤
+        (legalGame (fun a j => scale j * u a j + shift j)).mixedExtension.eu chosen i) ↔
     (∀ τ : PMF Act,
       (legalGame u).mixedExtension.eu
           (Function.update chosen i τ) i ≤
@@ -272,13 +274,13 @@ theorem legalGame_positiveAffine_bestResponse
     have hτ := h τ
     rw [legalGame_mixedExtension_affine,
       legalGame_mixedExtension_affine] at hτ
-    exact (mul_le_mul_left (positive i)).mp
+    exact (mul_le_mul_iff_of_pos_left (positive i)).mp
       ((add_le_add_iff_right (shift i)).mp hτ)
   · intro h τ
     rw [legalGame_mixedExtension_affine,
       legalGame_mixedExtension_affine]
     exact (add_le_add_iff_right (shift i)).mpr
-      ((mul_le_mul_left (positive i)).mpr (h τ))
+      ((mul_le_mul_iff_of_pos_left (positive i)).mpr (h τ))
 
 end ActualLegalGame
 
@@ -336,7 +338,7 @@ theorem strictMono_expected_preference_reversal :
         linarith
   let d : PMF (Fin 2) :=
     PMF.ofFintype
-      (fun _ : Fin 2 => (1 / 2 : ℝ≥0∞))
+      (fun _ : Fin 2 => (1 / 2 : ENNReal))
       (by norm_num [Fin.sum_univ_succ])
   have mass (a : Fin 2) :
       (d a).toReal = (1 / 2 : ℝ) := by
@@ -364,10 +366,18 @@ def BargainStrategy : Bool → Type
   | true => BargainBStrategy
 
 instance bargainStrategyFintype (i : Bool) : Fintype (BargainStrategy i) := by
-  cases i <;> infer_instance
+  cases i
+  · change Fintype BargainAStrategy
+    infer_instance
+  · change Fintype BargainBStrategy
+    infer_instance
 
 instance bargainStrategyDecidableEq (i : Bool) : DecidableEq (BargainStrategy i) := by
-  cases i <;> infer_instance
+  cases i
+  · change DecidableEq BargainAStrategy
+    infer_instance
+  · change DecidableEq BargainBStrategy
+    infer_instance
 
 abbrev BargainTargetProfile := ∀ i : Bool, BargainStrategy i
 
@@ -445,10 +455,14 @@ def BargainAction : BargainHistory → Type
 def bargainStep : (h : BargainHistory) → BargainAction h → BargainHistory
   | .root, q => .offered0 q
   | .offered0 q, accept =>
-      if accept then .terminal (.accept0 q) else .rejected0 q
+      match (accept : Bool) with
+      | true => .terminal (.accept0 q)
+      | false => .rejected0 q
   | .rejected0 q, r => .offered1 q r
   | .offered1 q r, accept =>
-      if accept then .terminal (.accept1 q r) else .terminal (.failure q r)
+      match (accept : Bool) with
+      | true => .terminal (.accept1 q r)
+      | false => .terminal (.failure q r)
   | .terminal _, a => nomatch a
 
 /- The policy specifies an action at every nonterminal history, including off-path ones. -/
@@ -703,6 +717,8 @@ theorem bargain_equilibrium_transfer_instance :
     (deviationCorrespondence := bargain_allowedDeviation_iff)
     (disturbance := by
       intro i s
+      change |bargainAbstractTerminalPay
+        (bargainTargetRun (bargainProfileEquiv s)) i - bargainConcretePayoff i s| ≤ (0 : ℝ)
       rw [← bargain_profile_payoff_eq s i]
       norm_num)
     (approximate := by
@@ -728,6 +744,7 @@ theorem bargain_mixed_transfer_instance
         bargain_abstractGame.mixedExtension.eu chosen i ≤ ε i := by
   have transfer :=
     JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer
+      (Player := Bool) (Profile := ∀ i : Bool, PMF (BargainStrategy i))
       (u := fun i σ => bargain_abstractGame.mixedExtension.eu σ i)
       (v := fun i σ => bargain_treeGame.mixedExtension.eu σ i)
       (deviation := fun i σ ρ =>
@@ -735,7 +752,18 @@ theorem bargain_mixed_transfer_instance
       (chosen := chosen) (ε := ε) (η := fun _ => 0)
       (disturbance := by
         intro i σ
-        rw [bargain_games_eq]
+        change
+          |Math.Probability.expect
+              ((Math.PMFProduct.pmfPi (A := BargainStrategy) σ).bind bargainTargetKernel)
+              (fun z => bargainAbstractTerminalPay z i) -
+            Math.Probability.expect
+              ((Math.PMFProduct.pmfPi (A := BargainStrategy) σ).bind bargainTargetKernel)
+              (fun z => bargainLedgerPay z i)| ≤ (0 : ℝ)
+        have hu : (fun z => bargainAbstractTerminalPay z i) =
+            (fun z => bargainLedgerPay z i) := by
+          funext z
+          exact (bargain_ledger_payoff_eq z i).symm
+        rw [hu]
         norm_num)
       (approximate := by
         rintro i ρ ⟨τ, rfl⟩

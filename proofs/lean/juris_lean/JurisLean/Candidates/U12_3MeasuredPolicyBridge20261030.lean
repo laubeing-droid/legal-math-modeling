@@ -471,4 +471,36 @@ theorem actual_policy_clipping_bias {m : Nat}
   rw [fullEq, mean.2] at exactBias
   exact exactBias
 
+
+/-- Original 12.5 L143, W = 0: squeeze the actual score to zero;
+instantiate the existing winner regret theorem at radius zero. -/
+theorem zero_bound_policy_scores_and_regret
+    {Ω Z H : Type*} [MeasurableSpace Z] {n : ℕ}
+    (P : Measure Z) (policies : Finset H) (score : H → Z → ℝ)
+    (bounded : ∀ h ∈ policies, ∀ z, score h z ∈ Set.Icc (0 : ℝ) 0)
+    (sample : Fin n → Ω → Z) (chosen : H) (member : chosen ∈ policies) :
+    ∀ (w : Ω) (h : H), h ∈ policies →
+      empiricalMean (fun i w' => score h (sample i w')) w = 0 ∧
+      (∫ z, score h z ∂P) = 0 ∧
+      (∫ z, score h z ∂P) - (∫ z, score chosen z ∂P) = 0 ∧
+      (∫ z, score h z ∂P) - (∫ z, score chosen z ∂P) ≤ 0 := by
+  have pointZero (h : H) (hh : h ∈ policies) : score h = fun _ => 0 := by
+    funext z
+    exact le_antisymm (bounded h hh z).2 (bounded h hh z).1
+  have meanZero (h : H) (hh : h ∈ policies) (w : Ω) :
+      empiricalMean (fun i w' => score h (sample i w')) w = 0 := by
+    simp [pointZero h hh, empiricalMean]
+  have valueZero (h : H) (hh : h ∈ policies) : (∫ z, score h z ∂P) = 0 := by
+    simp [pointZero h hh]
+  intro w h hh
+  have regret := empirical_policy_winner_regret policies
+    (fun k => ∫ z, score k z ∂P)
+    (fun k => empiricalMean (fun i w' => score k (sample i w')) w)
+    chosen member 0
+    (by intro k hk; simp [meanZero k hk w, valueZero k hk])
+    (by intro k hk; simp [meanZero k hk w, meanZero chosen member w])
+  refine ⟨meanZero h hh w, valueZero h hh, ?_, ?_⟩
+  · rw [valueZero h hh, valueZero chosen member]
+    ring
+  · simpa only [mul_zero] using regret h hh
 end JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030

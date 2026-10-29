@@ -23,6 +23,8 @@ This driver records only the named proof and public object surfaces below. -/
 #print axioms JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact
 #check JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias
 #print axioms JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias
+#check JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret
+#print axioms JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret
 #check JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization
 #print axioms JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization
 #check JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent

@@ -12,6 +12,9 @@ import JurisLean.Candidates.U02_1ActualPipeline20261029
 import JurisLean.Candidates.U04_2SharpConditioning20261029
 import JurisLean.Candidates.U06_1FiniteBellman20261030
 import JurisLean.Candidates.U06_2EquilibriumTransfer20261030
+import JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030
+import JurisLean.Candidates.U12_3MARSequential20261030
+import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027
@@ -100,6 +103,7 @@ import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.ProcedureClosureAudit20261027
 import JurisLean.Candidates.TemporalInterpretationAudit20261027
+import JurisLean.Candidates.U12_3PolicyLearningAudit20261030
 import JurisLean.CanonicalSerialization
 import JurisLean.CertificateCheckerV2
 import JurisLean.CertificateV2

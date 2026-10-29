@@ -537,7 +537,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 37 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 38 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -955,9 +955,11 @@ def independent_close_errors(receipt: dict, raw: str,
     if receipt.get("driver_path") != pack["driver"]:
         errors.append("independent close: wrong audit driver")
     driver = (ROOT / pack["driver"]).read_text(encoding="utf-8")
+    expected_checks = expected | set(pack.get("object_checks", ()))
     for command in ("#check", "#print axioms"):
         names = re.findall(rf"^{command} (\S+)$", driver, re.MULTILINE)
-        if len(names) != len(expected) or set(names) != expected:
+        wanted = expected_checks if command == "#check" else expected
+        if len(names) != len(wanted) or set(names) != wanted:
             errors.append(f"independent close: {command} target set changed")
     actual = [m.group(1) for pattern in (axiom_audit.TARGET, axiom_audit.CLEAN) for m in pattern.finditer(raw)]
     report = axiom_audit.parse(raw)

@@ -1,0 +1,146 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+  "run_id": 40964036223,
+  "job_id": 123763838851,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40964036223",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40964036223/job/123763838851",
+  "artifact_name": "changed-module-only-40964036223-1",
+  "artifact_id": 12937870526,
+  "artifact_sha256": "dd8a379bec390cfc92478ea5a652f57e4ffb42f049a41d94758fa16bab82a77e",
+  "artifact_size_bytes": 9349,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 78437,
+      "sha256": "31a791c9e5a9c1f4895d738baf15de3e3005fa121529e0b4c3533f076aef4ad6"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 271,
+      "sha256": "becdfcdadef7a353ec85eda5cfcc1b4bd0a7a3979eeea93f0552c643209bd3d2"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3PolicyLearningAudit20261030.lean",
+  "named_count": 34,
+  "names_by_clause": {
+    "U12.3": [
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret",
+      "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight",
+      "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+      "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+      "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+      "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+      "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+      "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+      "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+      "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+      "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+      "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+      "JurisLean.Candidates.LearningERM20261027.empiricalScore_cast",
+      "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded",
+      "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+      "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+      "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass",
+      "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+      "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
+      "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3PolicyLearningAudit20261030.lean",
+      "sha256": "d1eaafa6ea56bda83a04dc528e548391bd23bd5b0572782998ea57c0d7734a33"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MeasuredPolicyBridge20261030.lean",
+      "sha256": "907e1be96f0f23d40d3c2936d2bc112d61e1c797bd7847f9e3ee7fb52728e395"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MARSequential20261030.lean",
+      "sha256": "e76c308e292d0cdfd01697f70f1b55bc49e5d24324a5840d81fbe14c3f1c2fad"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3SequentialFinite20261030.lean",
+      "sha256": "80f2395d4d582d96cb33bbe25244b9d83e808a4f6119657383f30dda7bb3926d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+      "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+      "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+      "sha256": "3ce4768676de75a5f2d32173bb2500c8d0763bed9027c979cfb78c796efe945e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+      "sha256": "3dd7e325a499c8547a71755ef436f7db3268a480dcd863a5deb00da515f210d8"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+      "sha256": "94433b7cbd50c9a4dfc84d56c91f3515b1d78da60f593ea64b4ec99845dfd0b6"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 34,
+    "axiom_vocabulary": {
+      "Classical.choice": 34,
+      "Quot.sound": 34,
+      "propext": 34
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U12.3": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 40955915098,
+      "job_id": 123735869325,
+      "head": "d42436b452586cb08153b72732e3f21e32397015",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    }
+  ],
+  "closed_ids": [
+    "U12.3"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 5,
+  "open_after": 4,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

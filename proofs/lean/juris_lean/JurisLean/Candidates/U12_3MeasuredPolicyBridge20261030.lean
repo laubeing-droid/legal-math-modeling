@@ -123,7 +123,7 @@ theorem actual_policy_score_integrable_and_mean {m : Nat}
     (outcome : Fin m → Bool → ℚ)
     (hy : ∀ x a, 0 ≤ outcome x a ∧ outcome x a ≤ 1)
     (table : List ℚ)
-    (support : ∀ x a,
+    (support : ∀ (x : Fin m) (a : Bool),
       policyProbability table x a ≠ 0 →
         policyProbability logging x a ≠ 0) :
     Integrable (fun z => (policyScore logging table z : ℝ))
@@ -277,6 +277,7 @@ theorem actual_find_policy_oracle_probability
       supported_scores_are_bounded plan supported h
         (List.mem_toFinset.mp hh) z)
     δ hδ hδ1
+  norm_num only
   apply le_trans uniform
   apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
   intro w hw
@@ -350,10 +351,12 @@ theorem actual_find_frozen_policyValue_probability
     constructor
     · rintro ⟨h, hh, rfl⟩
       refine ⟨h, hh, ?_⟩
-      rw [means h (List.mem_toFinset.mp hh)]
+      exact congrArg (fun t : ℝ => -t)
+        (means h (List.mem_toFinset.mp hh)).symm
     · rintro ⟨h, hh, rfl⟩
       refine ⟨h, hh, ?_⟩
-      rw [means h (List.mem_toFinset.mp hh)]
+      exact congrArg (fun t : ℝ => -t)
+        (means h (List.mem_toFinset.mp hh))
   have raw := actual_find_policy_oracle_probability
     μ P plan supported nonempty positive sample sampleMeasurable
     independent law allowed δ hδ hδ1

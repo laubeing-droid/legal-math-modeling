@@ -20,6 +20,10 @@ private theorem dependentPairPMF_apply
   simp only [dependentPairPMF, PMF.bind_apply, PMF.pure_apply, Prod.mk.injEq]
   rw [tsum_eq_single b]
   · simp [mul_ite]
+    rw [tsum_eq_single c]
+    · simp
+    · intro c' different
+      simp [Ne.symm different]
   · intro b' different
     simp [Ne.symm different]
 
@@ -117,15 +121,15 @@ theorem sequential_mass_transport {S A : Type}
       simp [sequentialLaw, sequentialRatio]
   | succ n ih =>
       intro logging target kernel supported h
-      rcases h with ⟨prefix, action, state⟩
-      have previous := ih logging.1 target.1 kernel.1 supported.1 prefix
+      rcases h with ⟨past, action, state⟩
+      have previous := ih logging.1 target.1 kernel.1 supported.1 past
       rw [sequentialLaw_step_mass, sequentialLaw_step_mass]
-      let p : ℝ := ((sequentialLaw initial n target.1 kernel.1) prefix).toReal
-      let l : ℝ := ((sequentialLaw initial n logging.1 kernel.1) prefix).toReal
-      let r : ℝ := sequentialRatio n logging.1 target.1 prefix
-      let pi : ℝ := (target.2 prefix action).toReal
-      let mu : ℝ := (logging.2 prefix action).toReal
-      let k : ℝ := (kernel.2 prefix action state).toReal
+      let p : ℝ := ((sequentialLaw initial n target.1 kernel.1) past).toReal
+      let l : ℝ := ((sequentialLaw initial n logging.1 kernel.1) past).toReal
+      let r : ℝ := sequentialRatio n logging.1 target.1 past
+      let pi : ℝ := (target.2 past action).toReal
+      let mu : ℝ := (logging.2 past action).toReal
+      let k : ℝ := (kernel.2 past action state).toReal
       change p * pi * k = (r * (pi / mu)) * (l * mu * k)
       have prefixIdentity : p = r * l := previous
       by_cases zeroPrefix : p = 0
@@ -143,7 +147,7 @@ theorem sequential_mass_transport {S A : Type}
             lt_of_le_of_ne (show 0 ≤ pi from ENNReal.toReal_nonneg)
               (Ne.symm zeroAction)
           have loggingPositive : 0 < mu :=
-            supported.2 prefix action prefixPositive actionPositive
+            supported.2 past action prefixPositive actionPositive
           have loggingNonzero : mu ≠ 0 := ne_of_gt loggingPositive
           rw [prefixIdentity]
           field_simp [loggingNonzero] <;> ring

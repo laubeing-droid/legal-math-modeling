@@ -141,6 +141,7 @@ noncomputable def marWorldLaw : PMF (MARWorld X A Y) :=
         (recordingPMF (recording x a) (recordingNonnegative x a)
           (recordingBelowOne x a)).bind (fun r => PMF.pure (x, a, y, r)))))
 
+include responseNormalized in
 /-- U12.3 MAR blocker: verify the generated conditional row really satisfies
 finite conditional independence, rather than relabeling a desired weighted mean. -/
 theorem mar_generated_row_independent (x : X) (a : A) :

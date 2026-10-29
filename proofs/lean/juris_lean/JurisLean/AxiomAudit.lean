@@ -2656,7 +2656,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedNeedlesS2.final_binary_decisions_exclusive_witness
 #print axioms JurisLean.Seams.UnifiedNeedlesS2.final_undetermined_iff_exhausted
 #print axioms JurisLean.Seams.UnifiedNeedlesS2.proof_failure_not_ontic_negation
-#print axioms JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq
 #print axioms JurisLean.Seams.UnifiedNeedlesS3a.betaInt_step
 #print axioms JurisLean.Seams.UnifiedNeedlesS3a.betaInt_zero_left
 #print axioms JurisLean.Seams.UnifiedNeedlesS3a.betaTwoConst_pos

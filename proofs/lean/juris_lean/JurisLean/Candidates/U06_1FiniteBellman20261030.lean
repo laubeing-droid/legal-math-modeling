@@ -78,7 +78,13 @@ theorem policy_value_le_bellman (m : Control S A) (r : ℕ → S → A → ℝ)
           intro s' _
           exact mul_le_mul_of_nonneg_left (ih _ _) (m.kernel_nonneg n s a ha s')
         simp only [policyValue, bellman, dif_pos hn]
-        exact (add_le_add_left hs _).trans (Finset.le_sup' _ ha)
+        calc
+          r (n + 1) s a + (∑ s', m.kernel (n + 1) s a s' *
+              policyValue m r g π n ((s, a) :: h) s') ≤
+            r (n + 1) s a + ∑ s', m.kernel (n + 1) s a s' * bellman m r g n s' :=
+              add_le_add (le_refl _) hs
+          _ ≤ _ := Finset.le_sup' (fun b => r (n + 1) s b +
+            ∑ s', m.kernel (n + 1) s b s' * bellman m r g n s') ha
       · simp [policyValue, bellman, hn]
 
 noncomputable def greedy (m : Control S A) (r : ℕ → S → A → ℝ)
@@ -166,7 +172,7 @@ theorem trajectory_weight_nonneg (m : Control S A) (π : Policy m)
     (n : ℕ) (h : History S A) (s : S) (x : Trace S n) :
     0 ≤ trajectoryWeight m π n h s x := by
   classical
-  induction n generalizing h s x with
+  induction n generalizing h s with
   | zero => norm_num [trajectoryWeight]
   | succ n ih =>
       by_cases hn : (m.legal (n + 1) s).Nonempty
@@ -226,10 +232,10 @@ theorem trajectory_expectation_eq_policy_value (m : Control S A)
                 m.kernel (n + 1) s a s' * policyValue m r g π n ((s, a) :: h) s' := by
           calc
             _ = ∑ x : Trace S n,
-                (m.kernel (n + 1) s a s' * r (n + 1) s a) *
+                ((m.kernel (n + 1) s a s' * r (n + 1) s a) *
                   trajectoryWeight m π n ((s, a) :: h) s' x +
                 m.kernel (n + 1) s a s' * (trajectoryWeight m π n ((s, a) :: h) s' x *
-                  realizedReturn m r g π n ((s, a) :: h) s' x) := by
+                  realizedReturn m r g π n ((s, a) :: h) s' x)) := by
                     apply Finset.sum_congr rfl
                     intro x _
                     ring

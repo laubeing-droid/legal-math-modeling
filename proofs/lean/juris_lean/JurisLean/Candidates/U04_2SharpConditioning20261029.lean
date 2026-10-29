@@ -264,7 +264,7 @@ theorem three_event_endpoints (p₁ p₂ p₃ : ℝ)
 /-- The actual mixture measure; coefficients are nonnegative and sum to one. -/
 def contaminated {Ω : Type*} [MeasurableSpace Ω] (ε : ℝ)
     (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (P Q : Measure Ω) : Measure Ω :=
-  (⟨1 - ε, sub_nonneg.mpr h1⟩ : ℝ≥0) • P + (⟨ε, h0⟩ : ℝ≥0) • Q
+  NNReal.mk (1 - ε) (sub_nonneg.mpr h1) • P + NNReal.mk ε h0 • Q
 
 theorem contaminated_real {Ω : Type*} [MeasurableSpace Ω] (ε : ℝ)
     (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (P Q : Measure Ω)
@@ -361,7 +361,7 @@ theorem conditional_contamination_bound {Ω : Type*} [MeasurableSpace Ω]
     (ε : ℝ) (hε : 0 ≤ ε ∧ ε < 1) (A B : Set Ω)
     (hB : MeasurableSet B) (hρ : 0 < P.real B) :
     let M := contaminated ε hε.1 hε.2.le P Q
-    let η := ((⟨ε, hε.1⟩ : ℝ≥0) • Q).real B / M.real B
+    let η := (NNReal.mk ε hε.1 • Q).real B / M.real B
     0 < M.real B ∧
       η = ε * Q.real B / ((1 - ε) * P.real B + ε * Q.real B) ∧
       |(cond M B).real A - (cond P B).real A| ≤ η ∧
@@ -384,11 +384,11 @@ theorem conditional_contamination_zero_component {Ω : Type*} [MeasurableSpace �
     (ε : ℝ) (hε : 0 ≤ ε ∧ ε < 1) (A B : Set Ω)
     (hB : MeasurableSet B) (hρ : 0 < P.real B) (hq : Q.real B = 0) :
     let M := contaminated ε hε.1 hε.2.le P Q
-    ((⟨ε, hε.1⟩ : ℝ≥0) • Q).real B / M.real B = 0 ∧
+    (NNReal.mk ε hε.1 • Q).real B / M.real B = 0 ∧
       (cond M B).real A = (cond P B).real A := by
   have h := conditional_contamination_bound P Q ε hε A B hB hρ
   dsimp only at h ⊢
-  have heta : ((⟨ε, hε.1⟩ : ℝ≥0) • Q).real B /
+  have heta : (NNReal.mk ε hε.1 • Q).real B /
       (contaminated ε hε.1 hε.2.le P Q).real B = 0 := by
     rw [measureReal_nnreal_smul_apply, hq, mul_zero, zero_div]
   refine ⟨heta, sub_eq_zero.mp (abs_eq_zero.mp (le_antisymm ?_ (abs_nonneg _)))⟩

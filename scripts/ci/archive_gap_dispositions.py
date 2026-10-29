@@ -284,6 +284,10 @@ NON_GOALS: dict[str, list[str]] = {
     "U12.4": [
         "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities.",
     ],
+    "U06.1": [
+        "This package proves the finite, fully observed, single-branch Markov control model and its actual trajectory law; it does not establish a common feasible policy or max-min value across legal branches.",
+        "Signal acquisition/stopping costs and partially observed belief updates are not modeled here. The old Pipeline decision consumer has not been wired to these finite-control values, and this is not deployment or legal/empirical validation.",
+    ],
     "U13.4": [
         "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
     ],
@@ -325,8 +329,7 @@ UNWIRED: dict[str, list[str]] = {
     "U04.2": [],  # Independently audited against the full frozen probability residual in the U04.2 close pack.
     "U04.5": [],  # General event likelihood and copy-information proofs independently accepted.
     "U06.1": [
-        "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
-    ],
+    ],  # The independent finite Bellman/trajectory package closes this archived residual.
     "U06.2": [
         "Mixed expectations and an explicit strategy/tree bridge remain unproved.",
     ],
@@ -378,6 +381,9 @@ SCOPE_REVIEW: dict[str, str] = {
         "other U12.1 causal/measurement or support-gap obligations, nor adjacent "
         "OPE consumer edges. The CI run audits named Lean declarations and source "
         "binding only."
+    ),
+    "U06.1": (
+        "Independent U06.1 finite-control close: in the finite, fully observed, single-branch timed Markov model with general terminal reward g, the manuscript requires the empty-action case to be explicitly terminal or BLOCKED with a specified value; this module chooses the terminal branch with value g(s). A history-based legal policy has a trajectory law built from the actual transition kernel. The package proves trajectory mass/expectation equals policy value, constructs a legal greedy policy attaining the Bellman optimum and dominating all legal history policies, and counts same-policy cost once. Its finite nonrectangular example separates a fixed model choice from statewise choices. The reused free-information theorem remains its existing finite-law/list-policy result. This does not prove a common feasible strategy or max-min value across legal branches, signal-acquisition/stopping costs, partial-observation belief updates, or actual numeric consumption by the old Pipeline; those remain outside this close. Exact named evidence: docs/formal-release/evidence/u06-1-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
     ),
     "U14.1": (
         "Independent U14.1 residual closure: ProtectedFeedback20261027 supplies "
@@ -778,6 +784,7 @@ CLOSED_WIRING_IDS = (
     "U07.3",
     "U02.1",
     "U04.2",
+    "U06.1",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1083,6 +1090,32 @@ U04_2_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
     "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS3a.lean",
 )
+U06_1_CLOSED_IDS = ("U06.1",)
+U06_1_CLOSE_PACK = "docs/formal-release/evidence/u06-1-debt-close-20261030"
+U06_1_RECEIPT = U06_1_CLOSE_PACK + "/verification.json"
+U06_1_NAMES = {
+    "U06.1": [
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
+        "JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample",
+        "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+    ]
+}
+U06_1_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean"
+U06_1_SOURCES = (
+    U06_1_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+)
 
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
@@ -1129,12 +1162,20 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 40879691794, "expected_job_id": 123467594841,
      "expected_attempt": 1, "expected_artifact_id": 12899702798,
      "expected_artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2"},
+    {"closed_ids": U06_1_CLOSED_IDS, "pack": U06_1_CLOSE_PACK,
+     "receipt": U06_1_RECEIPT, "names": U06_1_NAMES,
+     "driver": U06_1_DRIVER, "sources": U06_1_SOURCES,
+     "open_before": 7, "open_after": 6,
+     "expected_subject": "8340ffa6d88138b89ec9083253414d8b69e96803",
+     "expected_run_id": 40919387762, "expected_job_id": 123608188128,
+     "expected_attempt": 1, "expected_artifact_id": 12917367581,
+     "expected_artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1703,7 +1744,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. Current "
-            "OPEN_FORMAL_TAIL=7; CLOSED_BY_WIRING=35; the "
+        "OPEN_FORMAL_TAIL=6; CLOSED_BY_WIRING=36; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -1729,7 +1770,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U06_1_PROOFS" if clause in U06_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_3_PROOFS" if clause in U07_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_2_PROOFS" if clause in U07_2_CLOSED_IDS else

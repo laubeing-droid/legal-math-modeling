@@ -1528,9 +1528,21 @@
           109
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
+          "subject": "8340ffa6d88138b89ec9083253414d8b69e96803",
+          "run_id": 40919387762,
+          "job_id": 123608188128,
+          "artifact_id": 12917367581,
+          "artifact_name": "changed-module-only-40919387762-1",
+          "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
+          "artifact_size_bytes": 3136,
+          "scope": "Partial formal evidence for 06.3: `policy_value_le_bellman`, `greedy_step`, `greedy_value_eq_bellman`, `bellman_full_policy_optimum`, and `nonrectangular_bellman_counterexample` establish finite single-branch legal-policy Bellman facts and a finite nonrectangular boundary. They do not establish a common feasible strategy across legal branches, branchwise max-min existence/value, or an actual old-Pipeline consumer. This row remains PARTIAL."
+        }
+      ],
+      "remaining": "Still requires the reachable-history L_j/F and information-feasibility constraints, an empty common-strategy treatment, attainment for finite nonempty Π in the max-min formulation, and the requested two-branch numeric example. The manuscript treats legal-permission determinations and risk preferences as external inputs (original 06.3 line 109); deriving real-case permissions or preferences is not added as a mathematical premise by this package."
     },
     {
       "id": "06.4",
@@ -1559,9 +1571,21 @@
           117
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
+          "subject": "8340ffa6d88138b89ec9083253414d8b69e96803",
+          "run_id": 40919387762,
+          "job_id": 123608188128,
+          "artifact_id": 12917367581,
+          "artifact_name": "changed-module-only-40919387762-1",
+          "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
+          "artifact_size_bytes": 3136,
+          "scope": "Partial formal evidence for 06.4: the reused `JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information` is audited in this independent run in its existing finite-law/list-policy scope. It does not cover signal acquisition cost or the full noisy-signal purchase decision. This row remains PARTIAL."
+        }
+      ],
+      "remaining": "Still requires checking the original conditional value expression V_Y=E[max_a E[u|Y]] against the existing finite policyScore/selector declarations and their actual signal connection; the original noisy two-state net-value and purchase-threshold example including acquisition and waiting costs; and multi-branch robust signal monotonicity under same-model/old-policy inclusion. This is an evidence-mapping remainder, not a claim that no such implementation exists."
     },
     {
       "id": "06.5",
@@ -1589,9 +1613,21 @@
           125
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
+          "subject": "8340ffa6d88138b89ec9083253414d8b69e96803",
+          "run_id": 40919387762,
+          "job_id": 123608188128,
+          "artifact_id": 12917367581,
+          "artifact_name": "changed-module-only-40919387762-1",
+          "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
+          "artifact_size_bytes": 3136,
+          "scope": "Partial formal evidence for 06.5: `terminal_and_empty_action`, `bellman_full_policy_optimum`, the trajectory mass/expectation declarations, `cost_counted_once`, and `nonrectangular_bellman_counterexample` cover the finite fully observed single-branch timed Markov model with history-based legal policies, general terminal reward g, and the manuscript-authorized empty-action treatment: this module explicitly chooses termination with terminal value g(s), rather than BLOCKED. The actual transition kernel constructs the path law. This is not partial-observation or information-acquisition execution. This row remains PARTIAL."
+        }
+      ],
+      "remaining": "Still requires the original finite sequential observe/act/stop model and its cost stages, the two-world indistinguishability/nonanticipation example against hidden-truth peeking, and connection of numeric values to the actual consumer. The frozen U06.1 branch is fully observed; observation-kernel and belief/history updates are conditional only if a partially observed version is adopted (original 06.5 line 123; master lines 531–536)."
     },
     {
       "id": "06.6",

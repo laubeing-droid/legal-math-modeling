@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 7,
+    "open_formal_tail_remaining": 6,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -58,9 +58,10 @@
       "U07.2",
       "U07.3",
       "U02.1",
-      "U04.2"
+      "U04.2",
+      "U06.1"
     ],
-    "independent_closed_total": 13,
+    "independent_closed_total": 14,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -71,12 +72,13 @@
       "docs/formal-release/evidence/u07-2-debt-close-20261029/verification.json",
       "docs/formal-release/evidence/u07-3-debt-close-20261029/verification.json",
       "docs/formal-release/evidence/u02-1-debt-close-20261029/verification.json",
-      "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json"
+      "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json",
+      "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json",
-    "close_pack": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+    "independent_receipt": "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u06-1-debt-close-20261030",
     "candidate_rows": 0,
-    "blocked_rows": 7,
+    "blocked_rows": 6,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -121,7 +123,8 @@
       "U06.3",
       "U07.2",
       "U07.3",
-      "U02.1"
+      "U02.1",
+      "U04.2"
     ],
     "companion_tail_ids": [
       "U10.1",
@@ -134,7 +137,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. Current OPEN_FORMAL_TAIL=7; CLOSED_BY_WIRING=35; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. Current OPEN_FORMAL_TAIL=6; CLOSED_BY_WIRING=36; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -172,8 +175,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 35,
-    "OPEN_FORMAL_TAIL": 7
+    "CLOSED_BY_WIRING": 36,
+    "OPEN_FORMAL_TAIL": 6
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -2832,7 +2835,7 @@
     {
       "clause": "U06.1",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain.",
       "claimed_scope": "",
@@ -2852,12 +2855,13 @@
       "evidence_pointers": [
         "Decision.lean:221"
       ],
-      "non_goals": [],
-      "unwired_formal_obligations": [
-        "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved."
+      "non_goals": [
+        "This package proves the finite, fully observed, single-branch Markov control model and its actual trajectory law; it does not establish a common feasible policy or max-min value across legal branches.",
+        "Signal acquisition/stopping costs and partially observed belief updates are not modeled here. The old Pipeline decision consumer has not been wired to these finite-control values, and this is not deployment or legal/empirical validation."
       ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U06.1 finite-control close: in the finite, fully observed, single-branch timed Markov model with general terminal reward g, the manuscript requires the empty-action case to be explicitly terminal or BLOCKED with a specified value; this module chooses the terminal branch with value g(s). A history-based legal policy has a trajectory law built from the actual transition kernel. The package proves trajectory mass/expectation equals policy value, constructs a legal greedy policy attaining the Bellman optimum and dominating all legal history policies, and counts same-policy cost once. Its finite nonrectangular example separates a fixed model choice from statewise choices. The reused free-information theorem remains its existing finite-law/list-policy result. This does not prove a common feasible strategy or max-min value across legal branches, signal-acquisition/stopping costs, partial-observation belief updates, or actual numeric consumption by the old Pipeline; those remain outside this close. Exact named evidence: docs/formal-release/evidence/u06-1-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U06_1_PROOFS || NON_GOAL_POINTER: This package proves the finite, fully observed, single-branch Markov control model and its actual trajectory law; it does not establish a common feasible policy or max-min value across legal branches. | Signal acquisition/stopping costs and partially observed belief updates are not modeled here. The old Pipeline decision consumer has not been wired to these finite-control values, and this is not deployment or legal/empirical validation.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2871,33 +2875,31 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
+          "JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample",
+          "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information"
+        ]
       }
     },
     {

@@ -1,0 +1,178 @@
+JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) (hempty : ¬(m.legal (n + 1) s).Nonempty) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g 0 s = g s ∧
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π 0 h s = g s ∧
+      JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g (n + 1) s = g s ∧
+        JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π (n + 1) h s = g s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s ≤
+    JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step.{u, v} {S : Type u} {A : Type v} [Fintype S] [DecidableEq A]
+  (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) (hn : (m.legal (n + 1) s).Nonempty) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g (n + 1) s =
+    r (n + 1) s ↑(JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g n h s hn) +
+      ∑ s',
+        m.kernel (n + 1) s (↑(JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g n h s hn)) s' *
+          JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s'
+'JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g
+      (JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g) n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ) :
+  ∃ πstar,
+    ∀ (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S),
+      JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g πstar n h s =
+          JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s ∧
+        ∀ (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m),
+          JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s ≤
+            JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g πstar n h s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x = 1
+'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value.{u, v} {S : Type u} {A : Type v}
+  [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ)
+  (g : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m r g π n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation.{u, v} {S : Type u}
+  {A : Type v} [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (r : ℕ → S → A → ℝ) (g : S → ℝ) :
+  ∃ πstar,
+    ∀ (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S),
+      (∀ (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n),
+          0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x) ∧
+        ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x = 1 ∧
+          ∑ x,
+                ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                  JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x =
+              JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s ∧
+            ∀ (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m),
+              ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g π n h s x ≤
+                ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x
+'JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r₁ r₂ : ℕ → S → A → ℝ)
+  (g₁ g₂ : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m (fun t s a => r₁ t s a - r₂ t s a)
+      (fun s => g₁ s - g₂ s) π n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r₁ g₁ π n h s -
+      JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r₂ g₂ π n h s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (reward cost : ℕ → S → A → ℝ)
+  (g : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m (fun t s a => reward t s a - cost t s a) g π n
+      h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m reward g π n h s -
+      JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m cost (fun x => 0) π n h s
+'JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample :
+  (∀ (model : Bool),
+      (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model false +
+            JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model true) /
+          2 =
+        1 / 2) ∧
+    (min (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff false false)
+              (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff true false) +
+            min (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff false true)
+              (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff true true)) /
+          2 =
+        0 ∧
+      0 < 1 / 2 ∧
+        ¬∃ model, ∀ (state : Bool), JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model state = 0
+'JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information {Ω A Y : Type} [Fintype Ω]
+  (P : JurisLean.Candidates.Final20261021.Probability.FiniteLaw Ω) (observation : Ω → Y) (utility : A → Ω → ℚ)
+  (actions : List A) (policies : List (Y → A)) (old : A) (chosen : Y → A) (oracle : Ω → A)
+  (ignore : (fun x => old) ∈ policies) (feasible : ∀ pi ∈ policies, ∀ (y : Y), pi y ∈ actions)
+  (signalChoice :
+    JurisLean.Candidates.Final20261021.Decision.best
+        (JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility) policies =
+      some chosen)
+  (perfectChoice :
+    ∀ (w : Ω), JurisLean.Candidates.Final20261021.Decision.best (fun a => utility a w) actions = some (oracle w)) :
+  JurisLean.Candidates.Final20261021.Probability.expectation P (utility old) ≤
+      JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility chosen ∧
+    JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility chosen ≤
+      JurisLean.Candidates.Final20261021.Probability.expectation P fun w => utility (oracle w) w
+'JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8489 jobs).

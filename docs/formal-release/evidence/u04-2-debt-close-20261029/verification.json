@@ -1,0 +1,113 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+  "run_id": 40879691794,
+  "job_id": 123467594841,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40879691794",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40879691794/job/123467594841",
+  "artifact_name": "changed-module-only-40879691794-1",
+  "artifact_id": 12899702798,
+  "artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2",
+  "artifact_size_bytes": 3321,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 19526,
+      "sha256": "567b078aafb1f64f23dcb23304a40bf9cc829c472639e1d6902e78b68475bab3"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 267,
+      "sha256": "ce8b063bb99c26cd2c4db347e15e119d45cdfeb9d53ed8d7a5761efc02fc91b2"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+  "named_count": 15,
+  "names_by_clause": {
+    "U04.2": [
+      "JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound",
+      "JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.frozen_enclosure_width",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_sharp_realization",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_identified_interval",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_endpoints",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_real",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_probability",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.compatible_law_mixture",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_bound",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_zero_component",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.conditioning_amplification_example",
+      "JurisLean.Candidates.U04_2SharpConditioning20261029.invalid_conditioning_and_enclosure_inputs"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+      "sha256": "e29d09e901e1e76de62bc3010616954a36ab16efe5bbd517c5ecc887c0b89203"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS3a.lean",
+      "sha256": "2d116ff22aad9c5a09ea9bde712d09f4a37accbf3765d8403a095270007db5cb"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "Classical.choice": 15,
+      "Quot.sound": 15,
+      "propext": 15
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U04.2": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 40803315553,
+      "job_id": 123216274274,
+      "head": "464a469a793ab1cbc617ddfa2e6fdec66683b0c8",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 40878295116,
+      "job_id": 123462726738,
+      "head": "1a69126314f4d706c5c7574e83ed19f990d8edb7",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 40879131680,
+      "job_id": 123465637395,
+      "head": "f77d4c0851780a203dcd2bf95a4e40fc7ca56738",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    }
+  ],
+  "closed_ids": [
+    "U04.2"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 8,
+  "open_after": 7,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

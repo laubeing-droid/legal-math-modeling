@@ -537,7 +537,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 34 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 35 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )
@@ -942,6 +942,16 @@ def independent_close_errors(receipt: dict, raw: str,
     residuals = {clause: archive[clause]["remaining_obligations"] for clause in pack["closed_ids"]}
     if receipt.get("original_residuals") != residuals:
         errors.append("independent close: original residual was replaced or omitted")
+    for receipt_key, pack_key in (
+        ("subject", "expected_subject"),
+        ("run_id", "expected_run_id"),
+        ("job_id", "expected_job_id"),
+        ("attempt", "expected_attempt"),
+        ("artifact_id", "expected_artifact_id"),
+        ("artifact_sha256", "expected_artifact_sha256"),
+    ):
+        if pack.get(pack_key) is not None and receipt.get(receipt_key) != pack[pack_key]:
+            errors.append(f"independent close: {receipt_key} differs from the pinned receipt")
     if receipt.get("driver_path") != pack["driver"]:
         errors.append("independent close: wrong audit driver")
     driver = (ROOT / pack["driver"]).read_text(encoding="utf-8")

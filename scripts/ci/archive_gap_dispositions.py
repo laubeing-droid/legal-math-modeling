@@ -210,6 +210,11 @@ NON_GOALS: dict[str, list[str]] = {
         "The result is conditional on the frozen finite Bool-world/action table and the manuscript's d0≥0 opening-debt premise; it does not derive the real legal permission domain or world table from source materials.",
         "The theorem covers runs that report a concrete current poststate; it makes no claim about unknownCommit outcomes without a known poststate, deployment, or general operation beyond this pipeline.",
     ],
+    "U04.2": [
+        "The declarations prove the stated probability and measure claims under their explicit mathematical premises; invalid examples mark failed premises and are not runtime input validators.",
+        "This package does not close original-question 04.4: missing-group all-failure/all-success models, endpoint identified sets, and external identification conditions shared with U11.1 were not individually checked here.",
+        "U00 edge 6 remains numerically unconnected: the old decision consumer still reads i.alternatives probabilities; this package does not wire the new probability results into that consumer.",
+    ],
     "U07.2": [
         "This close covers the conditional joint object produced by a successful frozen sourceModel output only; it does not assert real-source truth/faithfulness or compatibility for arbitrary supplied layers.",
         "No universal StrongSameCase/localSound premise is added, and the CAND8 negative boundary declarations remain historical evidence rather than positive close evidence.",
@@ -317,9 +322,7 @@ UNWIRED: dict[str, list[str]] = {
     "U01.1": [],  # Original residual proved in the independent U01 package.
     "U01.2": [],  # Original residual proved in the independent U01 package.
     "U01.3": [],  # Original residual proved in the independent U01 package.
-    "U04.2": [
-        "Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved.",
-    ],
+    "U04.2": [],  # Independently audited against the full frozen probability residual in the U04.2 close pack.
     "U04.5": [],  # General event likelihood and copy-information proofs independently accepted.
     "U06.1": [
         "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
@@ -348,6 +351,9 @@ UNWIRED: dict[str, list[str]] = {
 SCOPE_REVIEW: dict[str, str] = {
     "U02.1": (
         "Independent U02.1 actual-pipeline close: the actual public Pipeline.run path binds its two accepted payment payloads and checked rule output to the frozen finite Bool-world/action gate; a reported current poststate is shown to preserve Trace.Invariant and to be the true successor-table state. The proof uses the manuscript's d0≥0 opening-debt premise and the original Bool-world/action table; it does not derive a real-world permission domain or the table from source materials. The finite counterexamples retain the distinctions between schema and norm checks, checked action and executed action, and context-version invalidation, plus the common idle/empty-successor boundary. Unknown-commit outcomes without a reported concrete poststate are outside the reported-result premise. Exact named evidence: docs/formal-release/evidence/u02-1-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
+    ),
+    "U04.2": (
+        "Independent U04.2 frozen probability residual close: the package audits the general real interval width connection, the exact Beta(2,3) half-point integral/rate instance, and a common Fin 8 probability mass function realizing every admissible real three-event joint probability for arbitrary marginals, including endpoints and same-margin mixtures. It also audits the actual contamination measure and conditional difference bound under the stated positive-conditioning premises, including the zero-Q(B) branch and a numerical amplification witness. The invalid-input examples indicate failed premises or infeasible endpoints; they are not runtime validators. The four archived U04.2 residual components are thereby addressed. This does not close original-question 04.4: its missing-group all-failure/all-success models, endpoint identified sets, and external identification conditions shared with U11.1 were not individually checked; no absence-of-code claim is made. U00 edge 6 remains numerically unconnected because the old Pipeline decision path still reads i.alternatives probabilities. Exact named evidence: docs/formal-release/evidence/u04-2-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
     ),
     "U07.2": (
         "Independent U07.2 source-model close: for an actually accepted sourceModel output, construct x=(frame,n) so suppliedLayers equals jointLayers and the JointContract records the actual extracted source, both bound payments, exact sourceModel modelOf output, exact amount, LegacyContracts, frozen background fields, sequential four-stage projections, and final ledger balance/conservation/cash/quantity projections. The implication is conditional on sourceModel returning .ok; the ambient JointObject type does not assert every pair succeeds. This does not establish real-source fidelity, arbitrary-layer compatibility, StrongSameCase/localSound, or close U07.3. The two CAND8 negative declarations remain negative boundaries and are not positive close evidence. Exact named evidence: docs/formal-release/evidence/u07-2-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
@@ -771,6 +777,7 @@ CLOSED_WIRING_IDS = (
     "U07.2",
     "U07.3",
     "U02.1",
+    "U04.2",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1048,6 +1055,34 @@ U02_1_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
     "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
 )
+U04_2_CLOSED_IDS = ("U04.2",)
+U04_2_CLOSE_PACK = "docs/formal-release/evidence/u04-2-debt-close-20261029"
+U04_2_RECEIPT = U04_2_CLOSE_PACK + "/verification.json"
+U04_2_NAMES = {
+    "U04.2": [
+        "JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound",
+        "JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.frozen_enclosure_width",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_sharp_realization",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_identified_interval",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_endpoints",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_real",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_probability",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.compatible_law_mixture",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_bound",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_zero_component",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.conditioning_amplification_example",
+        "JurisLean.Candidates.U04_2SharpConditioning20261029.invalid_conditioning_and_enclosure_inputs",
+    ]
+}
+U04_2_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean"
+U04_2_SOURCES = (
+    U04_2_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS3a.lean",
+)
 
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
@@ -1086,12 +1121,20 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U02_1_RECEIPT, "names": U02_1_NAMES,
      "driver": U02_1_DRIVER, "sources": U02_1_SOURCES,
      "open_before": 9, "open_after": 8},
+    {"closed_ids": U04_2_CLOSED_IDS, "pack": U04_2_CLOSE_PACK,
+     "receipt": U04_2_RECEIPT, "names": U04_2_NAMES,
+     "driver": U04_2_DRIVER, "sources": U04_2_SOURCES,
+     "open_before": 8, "open_after": 7,
+     "expected_subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+     "expected_run_id": 40879691794, "expected_job_id": 123467594841,
+     "expected_attempt": 1, "expected_artifact_id": 12899702798,
+     "expected_artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1657,7 +1700,10 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "closes only the current U07.2 residual. The later U07.3 package closes only "
             "its fixed-history selected-row semantic/projection residual under explicit "
             "interpretation inputs; source truth/O05 and old Pipeline consumption remain "
-            "outside that proof. Current OPEN_FORMAL_TAIL=8; CLOSED_BY_WIRING=34; the "
+            "outside that proof. The later independent U04.2 package closes only its frozen "
+            "probability residual and leaves original-question 04.4 identification "
+            "obligations and U00 edge 6 numeric consumption open. Current "
+            "OPEN_FORMAL_TAIL=7; CLOSED_BY_WIRING=35; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -1683,7 +1729,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_3_PROOFS" if clause in U07_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_2_PROOFS" if clause in U07_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else

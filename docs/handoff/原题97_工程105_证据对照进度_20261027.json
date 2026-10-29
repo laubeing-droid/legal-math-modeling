@@ -1094,9 +1094,26 @@
           109
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+          "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+          "run_id": 40879691794,
+          "job_id": 123467594841,
+          "artifact_id": 12899702798,
+          "artifact_name": "changed-module-only-40879691794-1",
+          "artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2",
+          "named_targets": [
+            "JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound",
+            "JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.frozen_enclosure_width",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half"
+          ],
+          "scope": "SOURCE_ONLY / FORMAL_MODULE: direct overlap only for the real interval width connection and Beta(2,3) half-point integral/rate. This does not verify the other 04.3 conjugacy, prediction, calibration, or Hoeffding requirements; the row remains PARTIAL."
+        }
+      ],
+      "remaining": "本轮只补入原题04.3中与U04.2直接重合的实区间宽度及Beta积分/比率证据。共轭、预测、校准、Hoeffding等其余段落仍待对照既有实现和原题实例；未核不等于仓内没有实现。"
     },
     {
       "id": "04.4",
@@ -1155,9 +1172,59 @@
           125
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+          "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+          "run_id": 40879691794,
+          "job_id": 123467594841,
+          "artifact_id": 12899702798,
+          "artifact_name": "changed-module-only-40879691794-1",
+          "artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2",
+          "named_targets": [
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_sharp_realization",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_identified_interval",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_endpoints",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.compatible_law_mixture"
+          ],
+          "scope": "FORMAL_MODULE / SOURCE_ONLY: original 04.5 paragraph 121; for arbitrary real marginals in [0,1], a common Fin 8 PMF realizes the full feasible joint interval, including endpoints, and same-margin mixtures."
+        },
+        {
+          "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+          "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+          "run_id": 40879691794,
+          "job_id": 123467594841,
+          "artifact_id": 12899702798,
+          "artifact_name": "changed-module-only-40879691794-1",
+          "artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2",
+          "named_targets": [
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_real",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_probability",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_bound",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_zero_component"
+          ],
+          "scope": "FORMAL_MODULE / SOURCE_ONLY: original 04.5 paragraph 123; actual contamination measure, eta component-mass fraction, conditional difference bound for arbitrary A under P(B)>0 and M(B)>0, and Q(B)=0 branch."
+        },
+        {
+          "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+          "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+          "run_id": 40879691794,
+          "job_id": 123467594841,
+          "artifact_id": 12899702798,
+          "artifact_name": "changed-module-only-40879691794-1",
+          "artifact_sha256": "1187cd23da95b79f3ffbdf90c64f99588063009dace4b6bf886ab273621c1cc2",
+          "named_targets": [
+            "JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.conditioning_amplification_example",
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.invalid_conditioning_and_enclosure_inputs"
+          ],
+          "scope": "FORMAL_MODULE / SOURCE_ONLY: original 04.5 paragraph 125; exact Beta instance and amplification witness, plus examples identifying failed premise/infeasible-boundary cases. These examples are not runtime input validators."
+        }
+      ],
+      "remaining": "本小问冻结原题04.5第121/123/125段的数学义务已由具名声明及独立权威模块CI覆盖，状态为COVERED；这不表示原题04.4已覆盖，也不把数学边界例称为运行时验证器或整体验收。"
     },
     {
       "id": "04.6",

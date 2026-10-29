@@ -1,0 +1,113 @@
+JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound (N B nL nU bL bU : ℝ)
+  (nonnegative : 0 ≤ N) (belowTotal : N ≤ B) (numeratorLower : nL ≤ N) (numeratorUpper : N ≤ nU)
+  (denominatorPositive : 0 < bL) (denominatorLower : bL ≤ B) (denominatorUpper : B ≤ bU) :
+  0 ≤ min 1 (nU / bL) - max 0 (nL / bU) ∧
+    min 1 (nU / bL) - max 0 (nL / bU) ≤ 1 ∧
+      min 1 (nU / bL) - max 0 (nL / bU) ≤ (nU - nL) / bU + nU * (bU - bL) / (bL * bU)
+'JurisLean.Candidates.ExactProbability20261027.supplied_enclosure_has_explicit_width_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq (m n : ℕ) :
+  Seams.UnifiedNeedlesS3a.betaInt m n = ↑(Seams.UnifiedNeedlesS3a.betaTwoConst m n)
+'JurisLean.Seams.UnifiedNeedlesS3a.betaInt_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.frozen_enclosure_width (N B nL nU bL bU : ℝ) (hN : 0 ≤ N)
+  (hNB : N ≤ B) (hnL : nL ≤ N) (hnU : N ≤ nU) (hbL : 0 < bL) (hLB : bL ≤ B) (hBU : B ≤ bU) :
+  0 ≤ min 1 (nU / bL) - max 0 (nL / bU) ∧
+    min 1 (nU / bL) - max 0 (nL / bU) ≤ 1 ∧
+      min 1 (nU / bL) - max 0 (nL / bU) ≤ (nU - max 0 nL) / bL + max 0 nL * (bU - bL) / (bL * bU)
+'JurisLean.Candidates.U04_2SharpConditioning20261029.frozen_enclosure_width' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half :
+  ∫ (x : ℝ) in 0..1, x * (1 - x) ^ 2 = 1 / 12 ∧
+    ∫ (x : ℝ) in 0..1 / 2, x * (1 - x) ^ 2 = 11 / 192 ∧
+      (∫ (x : ℝ) in 0..1 / 2, x * (1 - x) ^ 2) / ∫ (x : ℝ) in 0..1, x * (1 - x) ^ 2 = 11 / 16
+'JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (μ : Measure Ω) [IsProbabilityMeasure μ] (A B C : Set Ω) (hA : MeasurableSet A) (hB : MeasurableSet B)
+  (hC : MeasurableSet C) :
+  max 0 (μ.real A + μ.real B + μ.real C - 2) ≤ μ.real (A ∩ B ∩ C) ∧
+    μ.real (A ∩ B ∩ C) ≤ min (min (μ.real A) (μ.real B)) (μ.real C)
+'JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_sharp_realization (p₁ p₂ p₃ t : ℝ)
+  (h₁ : 0 ≤ p₁ ∧ p₁ ≤ 1) (h₂ : 0 ≤ p₂ ∧ p₂ ≤ 1) (h₃ : 0 ≤ p₃ ∧ p₃ ≤ 1)
+  (ht : max 0 (p₁ + p₂ + p₃ - 2) ≤ t ∧ t ≤ min (min p₁ p₂) p₃) :
+  ∃ μ, IsProbabilityMeasure μ ∧ μ.real ↑eventA = p₁ ∧ μ.real ↑eventB = p₂ ∧ μ.real ↑eventC = p₃ ∧ μ.real ↑eventABC = t
+'JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_sharp_realization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_identified_interval (p₁ p₂ p₃ t : ℝ)
+  (h₁ : 0 ≤ p₁ ∧ p₁ ≤ 1) (h₂ : 0 ≤ p₂ ∧ p₂ ≤ 1) (h₃ : 0 ≤ p₃ ∧ p₃ ≤ 1) :
+  (∃ μ,
+      IsProbabilityMeasure μ ∧ μ.real ↑eventA = p₁ ∧ μ.real ↑eventB = p₂ ∧ μ.real ↑eventC = p₃ ∧ μ.real ↑eventABC = t) ↔
+    max 0 (p₁ + p₂ + p₃ - 2) ≤ t ∧ t ≤ min (min p₁ p₂) p₃
+'JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_identified_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_endpoints (p₁ p₂ p₃ : ℝ) (h₁ : 0 ≤ p₁ ∧ p₁ ≤ 1)
+  (h₂ : 0 ≤ p₂ ∧ p₂ ≤ 1) (h₃ : 0 ≤ p₃ ∧ p₃ ≤ 1) (t : ℝ) :
+  t = max 0 (p₁ + p₂ + p₃ - 2) ∨ t = min (min p₁ p₂) p₃ →
+    ∃ μ, IsProbabilityMeasure μ ∧ μ.real ↑eventA = p₁ ∧ μ.real ↑eventB = p₂ ∧ μ.real ↑eventC = p₃ ∧ μ.real ↑eventABC = t
+'JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_real.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] (ε : ℝ)
+  (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (P Q : Measure Ω) [IsProbabilityMeasure P] [IsProbabilityMeasure Q] (S : Set Ω) :
+  (contaminated ε h0 h1 P Q).real S = (1 - ε) * P.real S + ε * Q.real S
+'JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_real' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_probability.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (ε : ℝ) (h0 : 0 ≤ ε) (h1 : ε ≤ 1) (P Q : Measure Ω) [IsProbabilityMeasure P] [IsProbabilityMeasure Q] :
+  IsProbabilityMeasure (contaminated ε h0 h1 P Q)
+'JurisLean.Candidates.U04_2SharpConditioning20261029.contaminated_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.compatible_law_mixture (P Q : Measure (Fin 8))
+  [IsProbabilityMeasure P] [IsProbabilityMeasure Q] (p₁ p₂ p₃ l u θ : ℝ) (hθ : 0 ≤ θ ∧ θ ≤ 1)
+  (hP : P.real ↑eventA = p₁ ∧ P.real ↑eventB = p₂ ∧ P.real ↑eventC = p₃ ∧ P.real ↑eventABC = l)
+  (hQ : Q.real ↑eventA = p₁ ∧ Q.real ↑eventB = p₂ ∧ Q.real ↑eventC = p₃ ∧ Q.real ↑eventABC = u) :
+  IsProbabilityMeasure (contaminated θ ⋯ ⋯ P Q) ∧
+    (contaminated θ ⋯ ⋯ P Q).real ↑eventA = p₁ ∧
+      (contaminated θ ⋯ ⋯ P Q).real ↑eventB = p₂ ∧
+        (contaminated θ ⋯ ⋯ P Q).real ↑eventC = p₃ ∧ (contaminated θ ⋯ ⋯ P Q).real ↑eventABC = (1 - θ) * l + θ * u
+'JurisLean.Candidates.U04_2SharpConditioning20261029.compatible_law_mixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_bound.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] (P Q : Measure Ω) [IsProbabilityMeasure P] [IsProbabilityMeasure Q] (ε : ℝ) (hε : 0 ≤ ε ∧ ε < 1)
+  (A B : Set Ω) (hB : MeasurableSet B) (hρ : 0 < P.real B) :
+  have M := contaminated ε ⋯ ⋯ P Q;
+  have η := (NNReal.mk ε ⋯ • Q).real B / M.real B;
+  0 < M.real B ∧
+    η = ε * Q.real B / ((1 - ε) * P.real B + ε * Q.real B) ∧
+      |M[|B].real A - P[|B].real A| ≤ η ∧ η ≤ ε / ((1 - ε) * P.real B + ε)
+'JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_zero_component.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] (P Q : Measure Ω) [IsProbabilityMeasure P] [IsProbabilityMeasure Q] (ε : ℝ) (hε : 0 ≤ ε ∧ ε < 1)
+  (A B : Set Ω) (hB : MeasurableSet B) (hρ : 0 < P.real B) (hq : Q.real B = 0) :
+  have M := contaminated ε ⋯ ⋯ P Q;
+  (NNReal.mk ε ⋯ • Q).real B / M.real B = 0 ∧ M[|B].real A = P[|B].real A
+'JurisLean.Candidates.U04_2SharpConditioning20261029.conditional_contamination_zero_component' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.conditioning_amplification_example :
+  have A := ↑{1};
+  have B := ↑{0, 1};
+  have M := contaminated (1 / 10) ⋯ ⋯ smallP smallQ;
+  smallP.real B = 1 / 100 ∧
+    smallQ.real B = 1 ∧ smallP[|B].real A = 0 ∧ M[|B].real A = 100 / 109 ∧ |M[|B].real A - smallP[|B].real A| > 1 / 10
+'JurisLean.Candidates.U04_2SharpConditioning20261029.conditioning_amplification_example' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U04_2SharpConditioning20261029.invalid_conditioning_and_enclosure_inputs :
+  ¬0 < smallP.real ↑{1} ∧ ¬(3 / 2 ≤ 11 / 16 ∧ 11 / 16 ≤ 8 / 5) ∧ ¬max 0 (1 + 1 + 1 - 2) ≤ 0
+'JurisLean.Candidates.U04_2SharpConditioning20261029.invalid_conditioning_and_enclosure_inputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -103,8 +103,8 @@ theorem finite_expect_positiveAffine_preference
 
 /-- The mixed transfer also permits different finite action types by player. -/
 theorem product_pmf_equilibrium_transfer
-    {I : Type*} [Fintype I] [DecidableEq I]
-    {A : I → Type*} [∀ i, Fintype (A i)]
+    {I : Type} [Fintype I] [DecidableEq I]
+    {A : I → Type} [∀ i, Fintype (A i)]
     (u v : (∀ i, A i) → I → ℝ)
     (chosen : ∀ i, PMF (A i))
     (ε η : I → ℝ)
@@ -159,7 +159,7 @@ An actual equivalence and a two-way deviation correspondence cover every target
 deviation. The target equilibrium is a conclusion, never an assumption.
 -/
 theorem equiv_deviation_equilibrium_transfer
-    {Player Source Target : Type*}
+    {Player Source : Type} {Target : Type*}
     [Fintype Player] [Fintype Source] [Fintype Target]
     (e : Source ≃ Target)
     (u : Player → Target → ℝ)
@@ -339,7 +339,9 @@ theorem strictMono_expected_preference_reversal :
   let d : PMF (Fin 2) :=
     PMF.ofFintype
       (fun _ : Fin 2 => (1 / 2 : ENNReal))
-      (by norm_num [Fin.sum_univ_succ])
+      (by
+        norm_num [Fin.sum_univ_succ]
+        exact ENNReal.mul_inv_cancel (by norm_num) (by norm_num))
   have mass (a : Fin 2) :
       (d a).toReal = (1 / 2 : ℝ) := by
     norm_num [d, PMF.ofFintype_apply]

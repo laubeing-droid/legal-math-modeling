@@ -1,0 +1,654 @@
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability {m : ℕ} (mass : Fin m → ℚ)
+  (hm : ∀ (x : Fin m), 0 ≤ mass x) (hmass : ∑ x, mass x = 1) (logging : List ℚ)
+  (hl : ∀ (x : Fin m), 0 ≤ logging.getD (↑x) 0 ∧ logging.getD (↑x) 0 ≤ 1) (outcome : Fin m → Bool → ℚ)
+  (hy : ∀ (x : Fin m) (a : Bool), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  (∀ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+      0 ≤ JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom mass logging outcome z) ∧
+    ∑ z, JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom mass logging outcome z = 1
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable {m : ℕ}
+  [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (logging table : List ℚ) :
+  Measurable fun z => ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore logging table z)
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean {m : ℕ}
+  [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (mass : Fin m → ℚ)
+  (hm : ∀ (x : Fin m), 0 ≤ mass x) (hmass : ∑ x, mass x = 1) (logging : List ℚ)
+  (hl : ∀ (x : Fin m), 0 ≤ logging.getD (↑x) 0 ∧ logging.getD (↑x) 0 ≤ 1) (outcome : Fin m → Bool → ℚ)
+  (hy : ∀ (x : Fin m) (a : Bool), 0 ≤ outcome x a ∧ outcome x a ≤ 1) (table : List ℚ)
+  (support :
+    ∀ (x : Fin m) (a : Bool),
+      JurisLean.Candidates.MeasuredPolicy20261027.policyProbability table x a ≠ 0 →
+        JurisLean.Candidates.MeasuredPolicy20261027.policyProbability logging x a ≠ 0) :
+  MeasureTheory.Integrable (fun z => ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore logging table z))
+      (JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF mass hm hmass logging hl outcome
+          hy).toMeasure ∧
+    ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+        ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore logging table
+            z) ∂(JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF mass hm hmass logging hl
+            outcome hy).toMeasure =
+      ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass
+          (JurisLean.Candidates.MeasuredPolicy20261027.policyProbability table) outcome)
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates {m n : ℕ} (logging : List ℚ)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (chosen : List ℚ) (family : List (List ℚ))
+  (h : List ℚ) :
+  h ∈ family →
+    JurisLean.Candidates.LearningERM20261027.empiricalScore
+          (JurisLean.Candidates.MeasuredPolicy20261027.policyScore logging) data h -
+        JurisLean.Candidates.LearningERM20261027.empiricalScore
+          (JurisLean.Candidates.MeasuredPolicy20261027.policyScore logging) data chosen ≤
+      JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap logging data chosen family
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event {m n : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (allowed : List (List ℚ))
+  (value : List ℚ → ℝ) (ε : ℝ)
+  (uniform :
+    ∀ h ∈ plan.family,
+      |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data h) -
+            value h| ≤
+        ε) :
+  match JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan data allowed with
+  | none => True
+  | some chosen =>
+    -JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => -value h) ↑plan.family.toFinset - value chosen ≤
+      2 * ε +
+        ↑(JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap plan.logging data chosen
+            plan.family)
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability.{u_1} {Ω : Type u_1}
+  {m n : ℕ} [MeasurableSpace Ω] [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ]
+  (P : MeasureTheory.Measure (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m))
+  [MeasureTheory.IsProbabilityMeasure P] (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true)
+  (nonempty : plan.family.toFinset.Nonempty) (positive : 0 < n)
+  (sample : Fin n → Ω → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (allowed : List (List ℚ)) (δ : ℝ) (hδ : 0 < δ)
+  (hδ1 : δ < 1) :
+  ↑1 - δ ≤
+    μ.real
+      {w |
+        match JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan (fun i => sample i w) allowed with
+        | none => True
+        | some chosen =>
+          -JurisLean.Candidates.LearningRisk20261027.riskInf
+                  (fun h =>
+                    -∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                        ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging h z) ∂P)
+                  ↑plan.family.toFinset -
+              ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging chosen z) ∂P ≤
+            2 *
+                (↑plan.weightBound *
+                  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n plan.family.toFinset.card δ) +
+              ↑(JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap plan.logging
+                  (fun i => sample i w) chosen plan.family)}
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability.{u_1} {Ω : Type u_1}
+  {m n : ℕ} [MeasurableSpace Ω] [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true) (mass : Fin m → ℚ)
+  (hm : ∀ (x : Fin m), 0 ≤ mass x) (hmass : ∑ x, mass x = 1) (outcome : Fin m → Bool → ℚ)
+  (hy : ∀ (x : Fin m) (a : Bool), 0 ≤ outcome x a ∧ outcome x a ≤ 1) (nonempty : plan.family.toFinset.Nonempty)
+  (positive : 0 < n) (sample : Fin n → Ω → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law :
+    ∀ (i : Fin n),
+      ProbabilityTheory.IdentDistrib (sample i) id μ
+        (JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF mass hm hmass plan.logging ⋯
+            outcome hy).toMeasure)
+  (allowed : List (List ℚ)) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  ↑1 - δ ≤
+    μ.real
+      {w |
+        match JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan (fun i => sample i w) allowed with
+        | none => True
+        | some chosen =>
+          -JurisLean.Candidates.LearningRisk20261027.riskInf
+                  (fun h =>
+                    -↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass
+                          (JurisLean.Candidates.MeasuredPolicy20261027.policyProbability h) outcome))
+                  ↑plan.family.toFinset -
+              ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass
+                  (JurisLean.Candidates.MeasuredPolicy20261027.policyProbability chosen) outcome) ≤
+            2 *
+                (↑plan.weightBound *
+                  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n plan.family.toFinset.card δ) +
+              ↑(JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap plan.logging
+                  (fun i => sample i w) chosen plan.family)}
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact.{u_1} {Z : Type u_1}
+  [MeasurableSpace Z] (P : MeasureTheory.Measure Z) (w y : Z → ℝ) (c : ℝ) (weightMeasurable : Measurable w)
+  (outcomeMeasurable : Measurable y) (weightNonnegative : ∀ (z : Z), 0 ≤ w z) (capNonnegative : 0 ≤ c)
+  (outcomeBounded : ∀ (z : Z), 0 ≤ y z ∧ y z ≤ 1) (fullIntegrable : MeasureTheory.Integrable (fun z => w z * y z) P) :
+  MeasureTheory.Integrable (fun z => min (w z) c * y z) P ∧
+    MeasureTheory.Integrable (fun z => max (w z - c) 0 * y z) P ∧
+      ∫ (z : Z), w z * y z ∂P - ∫ (z : Z), min (w z) c * y z ∂P = ∫ (z : Z), max (w z - c) 0 * y z ∂P
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias {m : ℕ}
+  [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true) (mass : Fin m → ℚ)
+  (hm : ∀ (x : Fin m), 0 ≤ mass x) (hmass : ∑ x, mass x = 1) (outcome : Fin m → Bool → ℚ)
+  (hy : ∀ (x : Fin m) (a : Bool), 0 ≤ outcome x a ∧ outcome x a ≤ 1) (table : List ℚ) (member : table ∈ plan.family)
+  (c : ℝ) (capNonnegative : 0 ≤ c) :
+  have d :=
+    JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF mass hm hmass plan.logging ⋯ outcome hy;
+  have weight := fun z =>
+    ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyProbability table z.1 z.2.1 /
+        JurisLean.Candidates.MeasuredPolicy20261027.policyProbability plan.logging z.1 z.2.1);
+  have result := fun z => ↑(JurisLean.Candidates.Final20261021.Behavior.indicator z.2.2);
+  ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass
+          (JurisLean.Candidates.MeasuredPolicy20261027.policyProbability table) outcome) -
+      ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m), min (weight z) c * result z ∂d.toMeasure =
+    ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m), max (weight z - c) 0 * result z ∂d.toMeasure
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret.{u_1, u_2, u_3}
+  {Ω : Type u_1} {Z : Type u_2} {H : Type u_3} [MeasurableSpace Z] {n : ℕ} (P : MeasureTheory.Measure Z)
+  (policies : Finset H) (score : H → Z → ℝ) (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 0)
+  (sample : Fin n → Ω → Z) (chosen : H) (member : chosen ∈ policies) (w : Ω) (h : H) :
+  h ∈ policies →
+    JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w = 0 ∧
+      ∫ (z : Z), score h z ∂P = 0 ∧
+        ∫ (z : Z), score h z ∂P - ∫ (z : Z), score chosen z ∂P = 0 ∧
+          ∫ (z : Z), score h z ∂P - ∫ (z : Z), score chosen z ∂P ≤ 0
+
+'JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization.{u_1} {Y : Type u_1} [Fintype Y]
+  (joint : Y → Bool → ℚ) (normalized : ∑ y, ∑ r, joint y r = 1)
+  (independent : JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow joint) (y : Y) (r : Bool) :
+  joint y r = (∑ r', joint y r') * JurisLean.Candidates.U12_3MARSequential20261030.recordingMass (∑ y', joint y' true) r
+
+'JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent {X A Y : Type} [Fintype X] [Fintype A]
+  [Fintype Y] (response : X → A → Y → ℚ) (responseNormalized : ∀ (x : X) (a : A), ∑ y, response x a y = 1)
+  (recording : X → A → ℚ) (x : X) (a : A) :
+  JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow fun y r =>
+    response x a y * JurisLean.Candidates.U12_3MARSequential20261030.recordingMass (recording x a) r
+
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum {X A Y : Type} [Fintype X] [Fintype A] [Fintype Y]
+  (mass : X → ℚ) (logging : X → A → ℚ) (response : X → A → Y → ℚ) (recording target : X → A → ℚ) (reward : Y → ℚ)
+  (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0)
+  (recordingSupport : ∀ (x : X) (a : A), target x a ≠ 0 → recording x a ≠ 0) :
+  ∑ x,
+      mass x *
+        ∑ a,
+          logging x a *
+            ∑ y,
+              response x a y *
+                ∑ r,
+                  JurisLean.Candidates.U12_3MARSequential20261030.recordingMass (recording x a) r *
+                    JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward
+                      (JurisLean.Candidates.U12_3MARSequential20261030.marReport (x, a, y, r)) =
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target fun x a => ∑ y, response x a y * reward y
+
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation {X A Y : Type} [Fintype X] [Fintype A]
+  [Fintype Y] (mass : X → ℚ) (massNonnegative : ∀ (x : X), 0 ≤ mass x) (massNormalized : ∑ x, mass x = 1)
+  (logging : X → A → ℚ) (loggingNonnegative : ∀ (x : X) (a : A), 0 ≤ logging x a)
+  (loggingNormalized : ∀ (x : X), ∑ a, logging x a = 1) (response : X → A → Y → ℚ)
+  (responseNonnegative : ∀ (x : X) (a : A) (y : Y), 0 ≤ response x a y)
+  (responseNormalized : ∀ (x : X) (a : A), ∑ y, response x a y = 1) (recording : X → A → ℚ)
+  (recordingNonnegative : ∀ (x : X) (a : A), 0 ≤ recording x a)
+  (recordingBelowOne : ∀ (x : X) (a : A), recording x a ≤ 1) (target : X → A → ℚ) (reward : Y → ℚ)
+  (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0)
+  (recordingSupport : ∀ (x : X) (a : A), target x a ≠ 0 → recording x a ≠ 0) :
+  (Math.Probability.expect
+      (JurisLean.Candidates.U12_3MARSequential20261030.marVisibleLaw
+        (JurisLean.Candidates.U12_3MARSequential20261030.marWorldLaw mass massNonnegative massNormalized logging
+          loggingNonnegative loggingNormalized response responseNonnegative responseNormalized recording
+          recordingNonnegative recordingBelowOne))
+      fun z => ↑(JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward z)) =
+    ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target fun x a => ∑ y, response x a y * reward y)
+
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral {X A Y : Type} [Fintype X] [Fintype A]
+  [Fintype Y] (mass : X → ℚ) (massNonnegative : ∀ (x : X), 0 ≤ mass x) (massNormalized : ∑ x, mass x = 1)
+  (logging : X → A → ℚ) (loggingNonnegative : ∀ (x : X) (a : A), 0 ≤ logging x a)
+  (loggingNormalized : ∀ (x : X), ∑ a, logging x a = 1) (response : X → A → Y → ℚ)
+  (responseNonnegative : ∀ (x : X) (a : A) (y : Y), 0 ≤ response x a y)
+  (responseNormalized : ∀ (x : X) (a : A), ∑ y, response x a y = 1) (recording : X → A → ℚ)
+  (recordingNonnegative : ∀ (x : X) (a : A), 0 ≤ recording x a)
+  (recordingBelowOne : ∀ (x : X) (a : A), recording x a ≤ 1)
+  [MeasurableSpace (JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y)]
+  [MeasurableSingletonClass (JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y)] (target : X → A → ℚ)
+  (reward : Y → ℚ) (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0)
+  (recordingSupport : ∀ (x : X) (a : A), target x a ≠ 0 → recording x a ≠ 0) :
+  have visible :=
+    JurisLean.Candidates.U12_3MARSequential20261030.marVisibleLaw
+      (JurisLean.Candidates.U12_3MARSequential20261030.marWorldLaw mass massNonnegative massNormalized logging
+        loggingNonnegative loggingNormalized response responseNonnegative responseNormalized recording
+        recordingNonnegative recordingBelowOne);
+  MeasureTheory.Integrable
+      (fun z => ↑(JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward z))
+      visible.toMeasure ∧
+    ∫ (z : JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y),
+        ↑(JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward
+            z) ∂visible.toMeasure =
+      ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target fun x a => ∑ y, response x a y * reward y)
+
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight.{u_1, u_2, u_3} {X : Type u_1}
+  {A : Type u_2} {Y : Type u_3} (logging target recording : X → A → ℚ) (reward : Y → ℚ) (x : X) (a : A) (y : Y)
+  (r : Bool) :
+  JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward
+      (JurisLean.Candidates.U12_3MARSequential20261030.marReport (x, a, y, r)) =
+    target x a * JurisLean.Candidates.Final20261021.Behavior.indicator r * reward y / (logging x a * recording x a)
+
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform.{u_1, u_2, u_3} {Ω : Type u_1} {Z : Type u_2}
+  {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (score : H → Z → ℝ)
+  (measurable : ∀ h ∈ policies, Measurable (score h)) (W : ℝ) (positive : 0 < W)
+  (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 W) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ policies,
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w -
+                ∫ (z : Z), score h z ∂P| ≤
+            W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ}
+
+'JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret.{u_1} {H : Type u_1} (policies : Finset H)
+  (value estimate : H → ℝ) (chosen : H) (member : chosen ∈ policies) (radius : ℝ)
+  (valid : ∀ h ∈ policies, |estimate h - value h| ≤ radius) (winner : ∀ h ∈ policies, estimate h ≤ estimate chosen)
+  (h : H) : h ∈ policies → value h - value chosen ≤ 2 * radius
+
+'JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (score : H → Z → ℝ)
+  (measurable : ∀ h ∈ policies, Measurable (score h)) (W : ℝ) (positive : 0 < W)
+  (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 W) (chosen : Ω → H)
+  (member : ∀ (w : Ω), chosen w ∈ policies)
+  (chosenValueMeasurable : Measurable fun w => ∫ (z : Z), score (chosen w) z ∂P)
+  (winner :
+    ∀ (w : Ω),
+      ∀ h ∈ policies,
+        JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score (chosen w) (sample i w')) w)
+  (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∀ h ∈ policies,
+          ∫ (z : Z), score h z ∂P - ∫ (z : Z), score (chosen w) z ∂P ≤
+            2 * (W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ)} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∀ h ∈ policies,
+            ∫ (z : Z), score h z ∂P - ∫ (z : Z), score (chosen w) z ∂P ≤
+              2 * (W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ)}
+
+'JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw {X A : Type} [Fintype X] [Fintype A] (mass : X → ℚ)
+  (logging target outcome : X → A → ℚ) (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0) :
+  JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome =
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome
+
+'JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw {X A : Type} [Fintype X] [Fintype A] (mass : X → ℚ)
+  (logging target outcome : X → A → ℚ) (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0) :
+  ∑ x, mass x * ∑ a, logging x a * (target x a / logging x a) * outcome x a =
+    ∑ x, mass x * ∑ a, target x a * outcome x a
+
+'JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias (w c y : ℝ) (hw : 0 ≤ w) (hc : 0 ≤ c) (hy : 0 ≤ y)
+  (hy1 : y ≤ 1) :
+  w * y - min w c * y = max (w - c) 0 * y ∧ 0 ≤ w * y - min w c * y ∧ w * y - min w c * y ≤ max (w - c) 0
+
+'JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss (w c y : ℚ) (hw : 0 ≤ w) (hc : 0 ≤ c) (hy : 0 ≤ y)
+  (hy1 : y ≤ 1) :
+  w * y - min w c * y = max (w - c) 0 * y ∧ 0 ≤ w * y - min w c * y ∧ w * y - min w c * y ≤ max (w - c) 0
+
+'JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound.{u_1, u_2} {X : Type u_1} {A : Type u_2}
+  [Fintype X] [Fintype A] (mass : X → ℚ) (logging target outcome : X → A → ℚ) (cap : ℚ) (hm : ∀ (x : X), 0 ≤ mass x)
+  (hl : ∀ (x : X) (a : A), 0 ≤ logging x a) (ht : ∀ (x : X) (a : A), 0 ≤ target x a) (hc : 0 ≤ cap)
+  (hy : ∀ (x : X) (a : A), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  0 ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome -
+        JurisLean.Candidates.PolicyEvaluation20261027.clippedValue mass logging target outcome cap ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.importanceValue mass logging target outcome -
+        JurisLean.Candidates.PolicyEvaluation20261027.clippedValue mass logging target outcome cap ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.discardedMass mass logging target cap
+
+'JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle.{u_1} {H : Type u_1} (risk empirical : H → ℝ)
+  (models : Set H) (chosen : H) (member : chosen ∈ models) (ε opt : ℝ)
+  (uniform : ∀ h ∈ models, |risk h - empirical h| ≤ ε)
+  (optimization : ∀ h ∈ models, empirical chosen ≤ empirical h + opt) :
+  risk chosen ≤ JurisLean.Candidates.LearningRisk20261027.riskInf risk models + 2 * ε + opt
+
+'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm.{u_1, u_2, u_3} {Ω : Type u_1} {Z : Type u_2}
+  {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (models : Finset H) (nonempty : models.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℝ)
+  (lossMeasurable : ∀ h ∈ models, Measurable (loss h)) (lossRange : ∀ h ∈ models, ∀ (z : Z), loss h z ∈ Set.Icc 0 1)
+  (chosen : Ω → H) (member : ∀ (w : Ω), chosen w ∈ models)
+  (chosenRiskMeasurable : Measurable fun w => ∫ (z : Z), loss (chosen w) z ∂P) (opt : ℝ)
+  (optimization :
+    ∀ (w : Ω),
+      ∀ h ∈ models,
+        JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => loss (chosen w) (sample i w')) w ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => loss h (sample i w')) w + opt)
+  (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z), loss (chosen w) z ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), loss h z ∂P) ↑models +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ +
+            opt} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z), loss (chosen w) z ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), loss h z ∂P) ↑models +
+                2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ +
+              opt}
+
+'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningERM20261027.empiricalScore_cast.{u_1, u_2} {H : Type u_1} {Z : Type u_2} {n : ℕ}
+  (loss : H → Z → ℚ) (data : Fin n → Z) (h : H) :
+  ↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss data h) = (∑ i, ↑(loss h (data i))) / ↑n
+
+'JurisLean.Candidates.LearningERM20261027.empiricalScore_cast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded {m : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true) (table : List ℚ)
+  (member : table ∈ plan.family) (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) :
+  ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging table z) ∈ Set.Icc 0 ↑plan.weightBound
+
+'JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission {m n : ℕ}
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (allowed : List (List ℚ)) (chosen : List ℚ)
+  (selected : JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan data allowed = some chosen) :
+  JurisLean.Candidates.MeasuredPolicy20261027.policyNumericsValid m n plan = true ∧
+    plan.parent ∈ plan.family ∧
+      chosen ∈ plan.family ∧
+        chosen ∈ allowed ∧
+          JurisLean.Candidates.LearningERM20261027.empiricalScore
+                  (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data plan.parent +
+                plan.radius -
+              plan.tolerance ≤
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging) data chosen -
+              plan.radius
+
+'JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence.{u_1} {Ω : Type u_1} {m n : ℕ}
+  [MeasurableSpace Ω] [MeasurableSpace (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)]
+  [MeasurableSingletonClass (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ]
+  (P : MeasureTheory.Measure (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m))
+  [MeasureTheory.IsProbabilityMeasure P] (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (supported : JurisLean.Candidates.MeasuredPolicy20261027.policyClassSupported m plan = true)
+  (nonempty : plan.family.toFinset.Nonempty) (positive : 0 < n)
+  (sample : Fin n → Ω → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)
+  (measurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (deltaPositive : 0 < plan.delta)
+  (deltaBelowOne : plan.delta < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑plan.delta ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (allowed : List (List ℚ)) (chosen : List ℚ),
+            JurisLean.Candidates.MeasuredPolicy20261027.choosePolicy plan (fun i => sample i w) allowed = some chosen →
+              ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                  ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging plan.parent z) ∂P ≤
+                ∫ (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m),
+                    ↑(JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging chosen z) ∂P +
+                  ↑plan.tolerance
+
+'JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass {S A : Type} (initial : PMF S) (n : ℕ)
+  (policy : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A (n + 1))
+  (kernel : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A (n + 1))
+  (h : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n) (a : A) (s : S) :
+  ((JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial (n + 1) policy kernel) (h, a, s)).toReal =
+    ((JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n policy.1 kernel.1) h).toReal *
+        ((policy.2 h) a).toReal *
+      ((kernel.2 h a) s).toReal
+
+'JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport {S A : Type} (initial : PMF S) (n : ℕ)
+  (logging target : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n)
+  (kernel : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A n) :
+  JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialSupported initial n logging target kernel →
+    ∀ (h : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n),
+      ((JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n target kernel) h).toReal =
+        JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio n logging target h *
+          ((JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n logging kernel) h).toReal
+
+'JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport {S A : Type} [Fintype S] [Fintype A]
+  (initial : PMF S) (n : ℕ) (logging target : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n)
+  (kernel : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A n)
+  (supported : JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialSupported initial n logging target kernel)
+  (returnValue : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n → ℝ) :
+  (Math.Probability.expect (JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n logging kernel)
+      fun h => JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio n logging target h * returnValue h) =
+    Math.Probability.expect (JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n target kernel)
+      returnValue
+
+'JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport {S A : Type} [Fintype S] [Fintype A]
+  (initial : PMF S) (n : ℕ)
+  [MeasurableSpace (JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n)]
+  [MeasurableSingletonClass (JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n)]
+  (logging target : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n)
+  (kernel : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A n)
+  (supported : JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialSupported initial n logging target kernel)
+  (returnValue : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n → ℝ) :
+  MeasureTheory.Integrable returnValue
+      (JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n target kernel).toMeasure ∧
+    MeasureTheory.Integrable
+        (fun h => JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio n logging target h * returnValue h)
+        (JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n logging kernel).toMeasure ∧
+      ∫ (h : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n),
+          JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio n logging target h *
+            returnValue
+              h ∂(JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n logging kernel).toMeasure =
+        ∫ (h : JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n),
+          returnValue
+            h ∂(JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw initial n target kernel).toMeasure
+
+'JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom {m : ℕ} (mass : Fin m → ℚ) (logging : List ℚ)
+  (outcome : Fin m → Bool → ℚ) (z : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) : ℚ
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF {m : ℕ} (mass : Fin m → ℚ)
+  (hm : ∀ (x : Fin m), 0 ≤ mass x) (hmass : ∑ x, mass x = 1) (logging : List ℚ)
+  (hl : ∀ (x : Fin m), 0 ≤ logging.getD (↑x) 0 ∧ logging.getD (↑x) 0 ≤ 1) (outcome : Fin m → Bool → ℚ)
+  (hy : ∀ (x : Fin m) (a : Bool), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  PMF (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m)
+
+JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap {m n : ℕ} (logging : List ℚ)
+  (data : Fin n → JurisLean.Candidates.MeasuredPolicy20261027.PolicyDatum m) (chosen : List ℚ) : List (List ℚ) → ℚ
+
+JurisLean.Candidates.U12_3MARSequential20261030.recordingMass (p : ℚ) (r : Bool) : ℚ
+
+JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow.{u_1} {Y : Type u_1} [Fintype Y] (joint : Y → Bool → ℚ) :
+  Prop
+
+JurisLean.Candidates.U12_3MARSequential20261030.MARWorld.{u_1, u_2, u_3} (X : Type u_1) (A : Type u_2) (Y : Type u_3) :
+  Type (max u_1 u_3 u_2)
+
+JurisLean.Candidates.U12_3MARSequential20261030.MARVisible.{u_1, u_2, u_3} (X : Type u_1) (A : Type u_2)
+  (Y : Type u_3) : Type (max u_1 u_3 u_2)
+
+JurisLean.Candidates.U12_3MARSequential20261030.marReport.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {Y : Type u_3}
+  (z : JurisLean.Candidates.U12_3MARSequential20261030.MARWorld X A Y) :
+  JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y
+
+JurisLean.Candidates.U12_3MARSequential20261030.marVisibleLaw.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2}
+  {Y : Type u_3} (joint : PMF (JurisLean.Candidates.U12_3MARSequential20261030.MARWorld X A Y)) :
+  PMF (JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y)
+
+JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2}
+  {Y : Type u_3} (logging target recording : X → A → ℚ) (reward : Y → ℚ)
+  (z : JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y) : ℚ
+
+JurisLean.Candidates.U12_3MARSequential20261030.marWorldLaw {X A Y : Type} [Fintype X] [Fintype A] [Fintype Y]
+  (mass : X → ℚ) (massNonnegative : ∀ (x : X), 0 ≤ mass x) (massNormalized : ∑ x, mass x = 1) (logging : X → A → ℚ)
+  (loggingNonnegative : ∀ (x : X) (a : A), 0 ≤ logging x a) (loggingNormalized : ∀ (x : X), ∑ a, logging x a = 1)
+  (response : X → A → Y → ℚ) (responseNonnegative : ∀ (x : X) (a : A) (y : Y), 0 ≤ response x a y)
+  (responseNormalized : ∀ (x : X) (a : A), ∑ y, response x a y = 1) (recording : X → A → ℚ)
+  (recordingNonnegative : ∀ (x : X) (a : A), 0 ≤ recording x a)
+  (recordingBelowOne : ∀ (x : X) (a : A), recording x a ≤ 1) :
+  PMF (JurisLean.Candidates.U12_3MARSequential20261030.MARWorld X A Y)
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory (S A : Type) : ℕ → Type
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialHistoryFintype {S A : Type} [Fintype S] [Fintype A]
+  (n : ℕ) : Fintype (JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n)
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy (S A : Type) : ℕ → Type
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel (S A : Type) : ℕ → Type
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw {S A : Type} (initial : PMF S) (n : ℕ) :
+  JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n →
+    JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A n →
+      PMF (JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n)
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio {S A : Type} (n : ℕ) :
+  JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n →
+    JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n →
+      JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory S A n → ℝ
+
+JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialSupported {S A : Type} (initial : PMF S) (n : ℕ) :
+  JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n →
+    JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy S A n →
+      JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel S A n → Prop
+Build completed successfully (8531 jobs).

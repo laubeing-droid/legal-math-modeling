@@ -292,6 +292,11 @@ NON_GOALS: dict[str, list[str]] = {
         "The positive-affine and ε+2η results are mathematical payoff-transfer statements, not a general equilibrium-existence theorem.",
         "The W4 bridge is the fixed two-round instance; it does not claim the old Pipeline consumes these numeric KernelGame values or close original-question 06.7 as a whole.",
     ],
+    "U12.3": [
+        "The finite selector result is conditional on the stated iid law, score bounds, support and frozen causal assumptions; it does not derive causal truth from SourceRef fields.",
+        "The MAR result keeps the recording indicator and visible Option projection explicit under assignment/recording support. Sequential transport is finite-horizon, uses a shared full-history environment kernel and target-reachable-history coverage, and is not an infinite-horizon RL theorem.",
+        "The old Pipeline numeric consumer and RSI feedback path remain unwired; no U00 consumer edge is newly closed.",
+    ],
     "U13.4": [
         "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
     ],
@@ -314,6 +319,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U05.1": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and the marginal-versus-group numeric split.",
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
     "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
+    "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
     "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
 }
 
@@ -342,9 +348,7 @@ UNWIRED: dict[str, list[str]] = {
     "U12.1": [
         "Complete causal/measurement interpretation and the support-gap identified range remain unproved. Finite IPW cancellation does not state them.",
     ],
-    "U12.3": [
-        "Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them.",
-    ],
+    "U12.3": [],  # Independent selector, MAR, and finite-horizon history-kernel proofs close this archived residual.
     "U12.4": [],  # Independently audited against the full frozen model in the U12.4 close pack.
     "U13.3": [],  # The source-audited independent package closes this row only.
 
@@ -387,6 +391,9 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U06.2": (
         "Independent U06.2 close: the finite mixed-payoff declarations establish the general allowed-deviation real payoff transfer with ε+2η and preserve the existing full-deviation and positive-affine conditions. The fixed W4 instance connects complete strategies, the two-round tree, action/history/information data, deterministic kernel, terminal ledger payoff and the equilibrium-transfer declarations. This is not a general mixed-equilibrium existence theorem and does not assert that the old Pipeline consumes the new numeric KernelGame values. For original-question 06.7, only the fixed two-round tree and KernelGame payoff bridge are mapped; the manuscript's mixed-NE existence conditions, matching-pennies/general backward-induction alignment, and overall seven-question obligation remain PARTIAL. No U00 edge is newly connected. Exact named evidence: docs/formal-release/evidence/u06-2-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
+    ),
+    "U12.3": (
+        "Independent U12.3 source-bound close: the generic finite-class 2ε winner bound is reused; the actual find? selector is connected on its Some branch to a 2ε plus computed empirical optimization-gap oracle inequality, while None is abstention. Under the explicitly constructed finite logging law, the actual score expectation is connected to finite policyValue. The MAR bridge keeps the recording indicator and visible Option projection explicit and proves the assignment/recording weighted correction under stated support. The finite-horizon sequential bridge generates trajectories from a shared full-history environment kernel, proves the product of per-history target/logging ratios, and transports expected returns under target-reachable-history coverage. These results are conditional on the stated law and causal identification premises; SourceRef does not prove them. The old Pipeline numeric consumer and RSI feedback path remain unwired, and this is not an infinite-horizon RL theorem or deployment claim. Exact named evidence: docs/formal-release/evidence/u12-3-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
     ),
     "U06.1": (
         "Independent U06.1 finite-control close: in the finite, fully observed, single-branch timed Markov model with general terminal reward g, the manuscript requires the empty-action case to be explicitly terminal or BLOCKED with a specified value; this module chooses the terminal branch with value g(s). A history-based legal policy has a trajectory law built from the actual transition kernel. The package proves nonnegative trajectory weights of total mass one and equality of trajectory expected return with policy value, constructs a legal greedy policy attaining the Bellman optimum and dominating all legal history policies, and counts same-policy cost once. Its finite nonrectangular example separates a fixed model choice from statewise choices. The reused free-information theorem remains its existing finite-law/list-policy result. This does not prove a common feasible strategy or max-min value across legal branches, signal-acquisition/stopping costs, partial-observation belief updates, or actual numeric consumption by the old Pipeline; those remain outside this close. Exact named evidence: docs/formal-release/evidence/u06-1-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
@@ -792,6 +799,7 @@ CLOSED_WIRING_IDS = (
     "U04.2",
     "U06.1",
     "U06.2",
+    "U12.3",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1171,6 +1179,84 @@ U06_2_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
 )
 
+U12_3_CLOSED_IDS = ("U12.3",)
+U12_3_CLOSE_PACK = "docs/formal-release/evidence/u12-3-debt-close-20261030"
+U12_3_RECEIPT = U12_3_CLOSE_PACK + "/verification.json"
+U12_3_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U12_3PolicyLearningAudit20261030.lean"
+U12_3_NAMES = {
+    "U12.3": [
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias",
+        "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret",
+        "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight",
+        "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+        "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+        "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+        "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+        "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+        "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+        "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+        "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+        "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+        "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+        "JurisLean.Candidates.LearningERM20261027.empiricalScore_cast",
+        "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded",
+        "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+        "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+        "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass",
+        "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+        "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
+        "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport",
+    ]
+}
+U12_3_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom",
+    "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyJointPMF",
+    "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap",
+    "JurisLean.Candidates.U12_3MARSequential20261030.recordingMass",
+    "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow",
+    "JurisLean.Candidates.U12_3MARSequential20261030.MARWorld",
+    "JurisLean.Candidates.U12_3MARSequential20261030.MARVisible",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marReport",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marVisibleLaw",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marWorldLaw",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialHistory",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialHistoryFintype",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialPolicy",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.SequentialKernel",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialRatio",
+    "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialSupported",
+)
+U12_3_DRIVER_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MeasuredPolicyBridge20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MARSequential20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3SequentialFinite20261030.lean",
+)
+U12_3_SOURCES = (
+    U12_3_DRIVER,
+    *U12_3_DRIVER_SOURCES,
+    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+)
+
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -1232,12 +1318,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 40939134896, "expected_job_id": 123677528713,
      "expected_attempt": 1, "expected_artifact_id": 12925329796,
      "expected_artifact_sha256": "46591a17cd3591eccbd2ffc912718b10b538f159a9c05f32bea2762905bd820e"},
+    {"closed_ids": U12_3_CLOSED_IDS, "pack": U12_3_CLOSE_PACK,
+     "receipt": U12_3_RECEIPT, "names": U12_3_NAMES,
+     "driver": U12_3_DRIVER, "sources": U12_3_SOURCES,
+     "object_checks": U12_3_OBJECT_CHECKS,
+     "open_before": 5, "open_after": 4,
+     "expected_subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+     "expected_run_id": 40964036223, "expected_job_id": 123763838851,
+     "expected_attempt": 1, "expected_artifact_id": 12937870526,
+     "expected_artifact_sha256": "dd8a379bec390cfc92478ea5a652f57e4ffb42f049a41d94758fa16bab82a77e"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1806,7 +1901,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. Current "
-        "OPEN_FORMAL_TAIL=5; CLOSED_BY_WIRING=37; the "
+        "OPEN_FORMAL_TAIL=4; CLOSED_BY_WIRING=38; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -1833,6 +1928,7 @@ def remaining_after(clause: str) -> str:
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
     text = ("WIRED_TO_INDEPENDENT_U06_2_PROOFS" if clause in U06_2_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U12_3_PROOFS" if clause in U12_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U06_1_PROOFS" if clause in U06_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else

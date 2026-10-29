@@ -3275,9 +3275,25 @@
           "run_id": 40451570271,
           "job_id": 122015257624,
           "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            120
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean"
+          ],
+          "scope": "L120: the clipping population difference equals the expected tail weight, and the actual score expectation under the constructed finite logging law is connected to policyValue. The L121 sharp interval [3/20,13/20] and same-log endpoint worlds remain supported by earlier evidence."
         }
       ],
-      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+      "remaining": "L119 causal interpretation from potential outcomes to observed logging data under consistency, conditional exchangeability, positivity, and the frozen same environment remains with U12.1; finite IPW cancellation does not prove that bridge. The logging mechanism and frozen environment remain conditions, not source-derived facts."
     },
     {
       "id": "12.4",
@@ -3305,7 +3321,7 @@
           135
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/policy-evaluation-20261027",
@@ -3320,9 +3336,75 @@
           "run_id": 40451570271,
           "job_id": 122015257624,
           "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            130
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.PolicyEvaluation20261027.missing_world_is_probability",
+            "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_visible_law_independent",
+            "JurisLean.Candidates.PolicyEvaluation20261027.missing_outcome_interval_sharp"
+          ],
+          "scope": "L130: the finite missing-outcome models have identical visible laws and the sharp compatible value interval [1/2,1]."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            131
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight"
+          ],
+          "scope": "L131: an explicit recording indicator, visible Option report, and joint πR/(μρ) correction are proved under separate MAR, positive-recording, and action-support premises; these premises are not interchangeable."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            132
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.PolicyEvaluation20261027.initial_logs_do_not_identify_terminal_value"
+          ],
+          "scope": "L132: the two-stage F1/F2 models agree on saved initial logs but differ on the terminal value of always choosing action 1."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            133
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport"
+          ],
+          "scope": "L133: finite-horizon generated trajectories use a shared full-history environment kernel and per-time target-reachable support to establish the cumulative likelihood-ratio and expectation transport. The original question asks only for the finite models, not an infinite-horizon RL algorithm."
         }
       ],
-      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+      "remaining": ""
     },
     {
       "id": "12.5",
@@ -3350,7 +3432,7 @@
           146
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/policy-evaluation-20261027",
@@ -3365,9 +3447,72 @@
           "run_id": 40451570271,
           "job_id": 122015257624,
           "scope": "加强实际选胜者真值可测性，明确可测好事件及概率界；16目标8执行PASS，146相关155.86s PASS，完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            141
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.PolicyEvaluation20261027.heterogeneous_values_change_with_population"
+          ],
+          "scope": "L141: the finite heterogeneous-response values change with the population distribution; an average treatment effect of zero does not erase group-specific effects."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            142,
+            146
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+            "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence"
+          ],
+          "scope": "L142/L146: predicted heterogeneity is separated from individual causal attribution and normative permission; the actual selector reads numeric bounds and an allowlisted policy choice, not a legal authorization theorem."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            143
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+            "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+            "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret"
+          ],
+          "scope": "L143: the existing fixed finite-class iid Hoeffding/union bound yields simultaneous value error and 2ε winner regret for positive score bound; the added W=0 instance squeezes every score, empirical mean and value to zero and applies the existing regret theorem at radius zero."
+        },
+        {
+          "package": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+          "subject": "935b1bd8420c9433c9918d53d935b0948bf51089",
+          "run_id": 40964036223,
+          "job_id": 123763838851,
+          "artifact_id": 12937870526,
+          "manuscript_lines": [
+            144
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability"
+          ],
+          "scope": "L144: the theorem premises require a fixed family and iid logging law; changing candidates or the logging distribution through feedback invalidates those premises. The README records the question’s independent-validation sample with a pre-fixed family as its stated correction; this is not a theorem for arbitrary adaptive policy generation."
         }
       ],
-      "remaining": "PR45全验收PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS。PR49最终65776fb4/tree831bd9a5双链40461689514/40461690139待验；全部原段落、共同实验和U00继续。"
+      "remaining": ""
     },
     {
       "id": "12.6",

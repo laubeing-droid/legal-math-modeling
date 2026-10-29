@@ -4106,22 +4106,65 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Policy.lean:25"
         ],
-        "non_goals": [],
+        "non_goals": [
+          "The finite selector result is conditional on the stated iid law, score bounds, support and frozen causal assumptions; it does not derive causal truth from SourceRef fields.",
+          "The MAR result keeps the recording indicator and visible Option projection explicit under assignment/recording support. Sequential transport is finite-horizon, uses a shared full-history environment kernel and target-reachable-history coverage, and is not an infinite-horizon RL theorem.",
+          "The old Pipeline numeric consumer and RSI feedback path remain unwired; no U00 consumer edge is newly closed."
+        ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias",
+            "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret",
+            "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight",
+            "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+            "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+            "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+            "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+            "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+            "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+            "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+            "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+            "JurisLean.Candidates.LearningERM20261027.empiricalScore_cast",
+            "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded",
+            "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+            "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
+            "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+          "criteria_pack": "",
           "non_goals_same_row": []
         }
       }

@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 5,
+    "open_formal_tail_remaining": 4,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -60,9 +60,10 @@
       "U02.1",
       "U04.2",
       "U06.1",
-      "U06.2"
+      "U06.2",
+      "U12.3"
     ],
-    "independent_closed_total": 15,
+    "independent_closed_total": 16,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -75,12 +76,13 @@
       "docs/formal-release/evidence/u02-1-debt-close-20261029/verification.json",
       "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json",
       "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json",
-      "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json"
+      "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json",
+      "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u06-2-debt-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u12-3-debt-close-20261030",
     "candidate_rows": 0,
-    "blocked_rows": 5,
+    "blocked_rows": 4,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -127,7 +129,8 @@
       "U07.3",
       "U02.1",
       "U04.2",
-      "U06.1"
+      "U06.1",
+      "U06.2"
     ],
     "companion_tail_ids": [
       "U10.1",
@@ -140,7 +143,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. Current OPEN_FORMAL_TAIL=5; CLOSED_BY_WIRING=37; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. Current OPEN_FORMAL_TAIL=4; CLOSED_BY_WIRING=38; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -178,8 +181,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 37,
-    "OPEN_FORMAL_TAIL": 5
+    "CLOSED_BY_WIRING": 38,
+    "OPEN_FORMAL_TAIL": 4
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -3401,10 +3404,10 @@
     {
       "clause": "U12.3",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED.",
-      "claimed_scope": "",
+      "claimed_scope": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
       "companion_scope_notes": "",
       "wired_declarations": [
         {
@@ -3421,12 +3424,14 @@
       "evidence_pointers": [
         "Policy.lean:25"
       ],
-      "non_goals": [],
-      "unwired_formal_obligations": [
-        "Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them."
+      "non_goals": [
+        "The finite selector result is conditional on the stated iid law, score bounds, support and frozen causal assumptions; it does not derive causal truth from SourceRef fields.",
+        "The MAR result keeps the recording indicator and visible Option projection explicit under assignment/recording support. Sequential transport is finite-horizon, uses a shared full-history environment kernel and target-reachable-history coverage, and is not an infinite-horizon RL theorem.",
+        "The old Pipeline numeric consumer and RSI feedback path remain unwired; no U00 consumer edge is newly closed."
       ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U12.3 source-bound close: the generic finite-class 2ε winner bound is reused; the actual find? selector is connected on its Some branch to a 2ε plus computed empirical optimization-gap oracle inequality, while None is abstention. Under the explicitly constructed finite logging law, the actual score expectation is connected to finite policyValue. The MAR bridge keeps the recording indicator and visible Option projection explicit and proves the assignment/recording weighted correction under stated support. The finite-horizon sequential bridge generates trajectories from a shared full-history environment kernel, proves the product of per-history target/logging ratios, and transports expected returns under target-reachable-history coverage. These results are conditional on the stated law and causal identification premises; SourceRef does not prove them. The old Pipeline numeric consumer and RSI feedback path remain unwired, and this is not an infinite-horizon RL theorem or deployment claim. Exact named evidence: docs/formal-release/evidence/u12-3-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U12_3_PROOFS || NON_GOAL_POINTER: The finite selector result is conditional on the stated iid law, score bounds, support and frozen causal assumptions; it does not derive causal truth from SourceRef fields. | The MAR result keeps the recording indicator and visible Option projection explicit under assignment/recording support. Sequential transport is finite-horizon, uses a shared full-history environment kernel and target-reachable-history coverage, and is not an infinite-horizon RL theorem. | The old Pipeline numeric consumer and RSI feedback path remain unwired; no U00 consumer edge is newly closed.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -3440,33 +3445,51 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.frozenPolicyAtom_probability",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_measurable",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_score_integrable_and_mean",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.policyOptimizationGap_dominates",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_on_uniform_event",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_policy_oracle_probability",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_find_frozen_policyValue_probability",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.actual_policy_clipping_bias",
+          "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret",
+          "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+          "JurisLean.Candidates.U12_3MARSequential20261030.mar_generated_row_independent",
+          "JurisLean.Candidates.U12_3MARSequential20261030.mar_weighted_sum",
+          "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_expectation",
+          "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+          "JurisLean.Candidates.U12_3MARSequential20261030.mar_reported_score_joint_weight",
+          "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+          "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
+          "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
+          "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
+          "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+          "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+          "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+          "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
+          "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+          "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+          "JurisLean.Candidates.LearningERM20261027.empiricalScore_cast",
+          "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded",
+          "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+          "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+          "JurisLean.Candidates.U12_3SequentialFinite20261030.sequentialLaw_step_mass",
+          "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+          "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
+          "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport"
+        ]
       }
     },
     {

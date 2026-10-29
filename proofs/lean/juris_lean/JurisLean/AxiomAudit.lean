@@ -220,6 +220,9 @@ import JurisLean.Seams.UnifiedQuantLedger
 
 import JurisLean.Seams.UnifiedMasterNeedle
 
+import JurisLean.Candidates.Final20261021.Decision
+import JurisLean.Candidates.U06_1FiniteBellman20261030
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -572,6 +575,36 @@ open HornSystem
 #print axioms JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP
 #print axioms JurisLean.Genealogy.General.P083_sortEvpi_sortedP
 #print axioms JurisLean.Genealogy.General.P083_sortedDesc_witness
+
+-- U06.1 independent finite Bellman and trajectory audit.
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once
+#check JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample
+#print axioms JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample
+#check JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information
 
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

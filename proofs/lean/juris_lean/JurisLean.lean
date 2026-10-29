@@ -10,6 +10,7 @@ import JurisLean.Candidates.U07_2JointObject20261029
 import JurisLean.Candidates.U07_3FixedBindingAudit20261029
 import JurisLean.Candidates.U02_1ActualPipeline20261029
 import JurisLean.Candidates.U04_2SharpConditioning20261029
+import JurisLean.Candidates.U06_1FiniteBellman20261030
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027

@@ -13,7 +13,7 @@ branch. No assertion about probabilities of real legal interpretations is made.
 noncomputable section
 
 open MeasureTheory ProbabilityTheory Set
-open scoped BigOperators
+open scoped BigOperators NNReal
 
 namespace JurisLean.Candidates.U04_2SharpConditioning20261029
 
@@ -160,10 +160,33 @@ private theorem sharpMass_properties (p₁ p₂ p₃ t : ℝ)
     fin_cases i <;> norm_num <;> linarith
   · simp [Fin.sum_univ_succ, z, v, u, q, c, b, a]
     <;> ring
-  · norm_num [eventA, a] <;> ring
-  · norm_num [eventB, b] <;> ring
-  · norm_num [eventC, z, q] <;> ring
-  · norm_num [eventABC]
+  · unfold eventA
+    rw [Finset.sum_insert (show (4 : Fin 8) ∉ ({5, 6, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (5 : Fin 8) ∉ ({6, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (6 : Fin 8) ∉ ({7} : Finset (Fin 8)) by decide),
+      Finset.sum_singleton]
+    change (a - u) + (u + ((r - t) + t)) = p₁
+    dsimp [a]
+    ring
+  · unfold eventB
+    rw [Finset.sum_insert (show (2 : Fin 8) ∉ ({3, 6, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (3 : Fin 8) ∉ ({6, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (6 : Fin 8) ∉ ({7} : Finset (Fin 8)) by decide),
+      Finset.sum_singleton]
+    change (b - v) + (v + ((r - t) + t)) = p₂
+    dsimp [b]
+    ring
+  · unfold eventC
+    rw [Finset.sum_insert (show (1 : Fin 8) ∉ ({3, 5, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (3 : Fin 8) ∉ ({5, 7} : Finset (Fin 8)) by decide),
+      Finset.sum_insert (show (5 : Fin 8) ∉ ({7} : Finset (Fin 8)) by decide),
+      Finset.sum_singleton]
+    change z + (v + (u + t)) = p₃
+    dsimp [z, q]
+    ring
+  · unfold eventABC
+    rw [Finset.sum_singleton]
+    rfl
 
 private def law (w : Fin 8 → ℝ) (h0 : ∀ i, 0 ≤ w i) (h1 : ∑ i, w i = 1) :
     Measure (Fin 8) :=
@@ -214,7 +237,7 @@ theorem three_event_identified_interval (p₁ p₂ p₃ t : ℝ)
     letI := hμ
     have hi : (eventA : Set (Fin 8)) ∩ eventB ∩ eventC = eventABC := by
       ext i
-      fin_cases i <;> norm_num [eventA, eventB, eventC, eventABC]
+      fin_cases i <;> decide
     have h := three_event_bounds μ eventA eventB eventC
       (by exact .of_discrete) (by exact .of_discrete) (by exact .of_discrete)
     simpa only [hi, ha, hb, hc, ht] using h

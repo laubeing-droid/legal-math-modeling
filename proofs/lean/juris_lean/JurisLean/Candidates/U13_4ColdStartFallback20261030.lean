@@ -232,18 +232,17 @@ theorem audited_success_reads_actual_inputs {m : Nat} (q : Query m)
         | known score =>
             rw [predicted] at accepted
             dsimp only at accepted
-            by_cases valueGuard : 0 ≤ score.value ∧ score.value ≤ 1 ∧
-                (match personal with | none => True | some c => c.prediction = score.value)
-            · have acceptedKnown :
-                  (Result.known (.audited personal a calibrated score) : Result (Prediction m)) =
-                    .known out := by
-                simpa only [if_pos valueGuard] using accepted
-              exact ⟨calibrated, score, ready, rfl, predicted,
-                (Result.known.inj acceptedKnown).symm⟩
-            · have impossible : (Result.unknown .unsupported : Result (Prediction m)) =
-                  .known out := by
-                simpa only [if_neg valueGuard] using accepted
-              cases impossible
+            cases personal with
+            | none =>
+                split at accepted
+                · exact ⟨calibrated, score, ready, rfl, predicted,
+                    (Result.known.inj accepted).symm⟩
+                · cases accepted
+            | some checkpoint =>
+                split at accepted
+                · exact ⟨calibrated, score, ready, rfl, predicted,
+                    (Result.known.inj accepted).symm⟩
+                · cases accepted
         | unknown e => simp [predicted] at accepted
         | rejected e => simp [predicted] at accepted
         | conflict a b => simp [predicted] at accepted

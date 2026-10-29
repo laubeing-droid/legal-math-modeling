@@ -376,7 +376,7 @@ theorem conditional_contamination_bound {Ω : Type*} [MeasurableSpace Ω]
   dsimp only
   simp only [measureReal_nnreal_smul_apply, NNReal.coe_mk,
     conditional_real _ _ _ hB, contaminated_real]
-  exact ⟨h.1, rfl, h.2.1, h.2.2⟩
+  exact ⟨h.1, True.intro, h.2.1, h.2.2⟩
 
 /-- Zero Q(B) leaves P(.|B) unchanged, without interpreting Q(.|B). -/
 theorem conditional_contamination_zero_component {Ω : Type*} [MeasurableSpace Ω]

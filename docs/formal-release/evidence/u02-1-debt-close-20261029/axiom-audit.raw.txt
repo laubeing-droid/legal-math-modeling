@@ -1,0 +1,89 @@
+JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant
+  (initial final : Ledger.Handle) (first second : PaymentRequest) (grants : List Authorization.Grant)
+  (mode : Ledger.Submission) (change : Option Pipeline.RefreshInput) (valid : Trace.Invariant initial)
+  (reported : (Pipeline.executePayments initial first second grants mode change).current = some final) :
+  Trace.Invariant final
+'JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate (i : Pipeline.Input)
+  (p1 p2 : PaymentPayload) (derived : List ℕ) (world : Bool) (selected : Decision.DecisionIR) (final : Ledger.Handle)
+  (opening : 0 ≤ i.debt.amount.value) (decision : (Pipeline.runClosed i p1 p2 derived).decision = some selected)
+  (reported : (Pipeline.runClosed i p1 p2 derived).payment.current = some final) :
+  (selected.action.id ∈ if world = true then i.world1Actions else i.world0Actions) ∧
+    selected.action.execution = [p1, p2] ∧ Trace.Invariant final ∧ stateProjection final = true
+'JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate (i : Pipeline.Input) (world : Bool)
+  (selected : Decision.DecisionIR) (final : Ledger.Handle) (opening : 0 ≤ i.debt.amount.value)
+  (decision : (Pipeline.run i).decision = some selected) (reported : (Pipeline.run i).payment.current = some final) :
+  (selected.action.id ∈ if world = true then i.world1Actions else i.world0Actions) ∧
+    Trace.Invariant final ∧
+      stateProjection final = true ∧
+        ∃ p1 p2,
+          Representation.proposed_common_model i.view i.firstIndex = Result.known p1 ∧
+            Representation.proposed_common_model i.view i.secondIndex = Result.known p2 ∧
+              selected.action.execution = [p1, p2]
+'JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries :
+  (schemaAccept false = true ∧ normAllows true false = false) ∧
+    (normAllows true true = true ∧
+        writeState true false = true ∧ writeState false false = false ∧ normAllows true false = false) ∧
+      (normAllows true true = true ∧ normAllows false true = false) ∧
+        (¬∃ action, ∀ (world : Bool), action = some world) ∧
+          (∀ (world : Bool), none = none ∨ none = some world) ∧
+            Harness.Safe (fun x => True) (fun x x_1 x_2 => True) (fun x x_1 x_2 x_3 => False) (fun x x_1 => False) false
+                false ∧
+              ¬∃ after, (fun x x_1 x_2 x_3 => False) false false false after
+'JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries' does not depend on any axioms
+JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke {W S A : Type} (possible : W → Prop)
+  (allowed : W → S → A → Prop) (successor : W → S → A → S → Prop) (invariant : W → S → Prop) (s t : S) (a : A) (w : W)
+  (actualWorld : possible w) (safe : Harness.Safe possible allowed successor invariant s a)
+  (actualStep : successor w s a t) : allowed w s a ∧ invariant w t
+'JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke' does not depend on any axioms
+JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration {W S A : Type} [Fintype W] [Fintype S]
+  (possible : W → Bool) (allowed : W → S → A → Bool) (successor : W → S → A → S → Bool) (invariant : W → S → Bool)
+  (s : S) (candidates : List A) (a : A) :
+  a ∈ Harness.proposed_harness_gate possible allowed successor invariant s candidates ↔
+    a ∈ candidates ∧
+      Harness.Safe (fun w => possible w = true) (fun w s a => allowed w s a = true)
+        (fun w s a t => successor w s a t = true) (fun w t => invariant w t = true) s a
+'JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration' depends on axioms: [propext, Quot.sound]
+JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed (allowed : List ℕ)
+  (values : List Decision.DecisionIR) (selected : Decision.DecisionIR)
+  (h : Decision.proposed_decision allowed values = some selected) :
+  selected.action.id ∈ allowed ∧ selected.probabilityOfLoss ≤ selected.riskLimit
+'JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed' depends on axioms: [propext, Quot.sound]
+JurisLean.Candidates.Final20261021.Trace.initial_invariant (g : Gamma) (debt : DebtRecord)
+  (nonneg : 0 ≤ debt.amount.value) : Trace.Invariant (Trace.initial g debt)
+'JurisLean.Candidates.Final20261021.Trace.initial_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+JurisLean.Candidates.Final20261021.Trace.step_preserves {s t : Ledger.Handle} (step : Trace.Step s t)
+  (hs : Trace.Invariant s) : Trace.Invariant t
+'JurisLean.Candidates.Final20261021.Trace.step_preserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step (before previous_output_ref : Ledger.Handle)
+  (req : PaymentRequest) (permission : Bool) (mode : Ledger.Submission) (receipt : Ledger.Receipt)
+  (after : Ledger.Handle)
+  (committed :
+    Ledger.consume_ext before previous_output_ref req permission mode = Ledger.Outcome.committed receipt after) :
+  Trace.Step before after
+'JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves
+  (before previous_output_ref : Ledger.Handle) (req : PaymentRequest) (permission : Bool) (mode : Ledger.Submission)
+  (after : Ledger.Handle) (initial : Trace.Invariant before)
+  (reported :
+    Ledger.Outcome.post before (Ledger.consume_ext before previous_output_ref req permission mode) = some after) :
+  Trace.Invariant after
+'JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step (grants : List Authorization.Grant)
+  (before after : Ledger.Handle) (change : Pipeline.RefreshInput)
+  (published : Pipeline.refresh grants before change = Result.known after) : Trace.Step before after
+'JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

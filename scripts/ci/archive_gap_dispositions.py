@@ -206,6 +206,10 @@ PATHS: dict[str, str] = {
 # Explicit non-goals. Narrow rows must have some. Prove rows carry the pack
 # companion here, in the same record as the wiring.
 NON_GOALS: dict[str, list[str]] = {
+    "U02.1": [
+        "The result is conditional on the frozen finite Bool-world/action table and the manuscript's d0≥0 opening-debt premise; it does not derive the real legal permission domain or world table from source materials.",
+        "The theorem covers runs that report a concrete current poststate; it makes no claim about unknownCommit outcomes without a known poststate, deployment, or general operation beyond this pipeline.",
+    ],
     "U07.2": [
         "This close covers the conditional joint object produced by a successful frozen sourceModel output only; it does not assert real-source truth/faithfulness or compatibility for arbitrary supplied layers.",
         "No universal StrongSameCase/localSound premise is added, and the CAND8 negative boundary declarations remain historical evidence rather than positive close evidence.",
@@ -306,9 +310,7 @@ UNWIRED: dict[str, list[str]] = {
     "U07.3": [],  # Finite selected-row semantics and actual projections are audited by the independent U07.3 package; O05 truth remains a non-goal.
     "U03.1": [],  # Independently proved and audited by the later U03 closure package.
     "U03.2": [],  # Independently proved and audited by the later U03 closure package.
-    "U02.1": [
-        "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
-    ],
+    "U02.1": [],  # Closed by the independent actual-pipeline refinement package.
     "U10.1": [
         "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it.",
     ],
@@ -344,6 +346,9 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U02.1": (
+        "Independent U02.1 actual-pipeline close: the actual public Pipeline.run path binds its two accepted payment payloads and checked rule output to the frozen finite Bool-world/action gate; a reported current poststate is shown to preserve Trace.Invariant and to be the true successor-table state. The proof uses the manuscript's d0≥0 opening-debt premise and the original Bool-world/action table; it does not derive a real-world permission domain or the table from source materials. The finite counterexamples retain the distinctions between schema and norm checks, checked action and executed action, and context-version invalidation, plus the common idle/empty-successor boundary. Unknown-commit outcomes without a reported concrete poststate are outside the reported-result premise. Exact named evidence: docs/formal-release/evidence/u02-1-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
+    ),
     "U07.2": (
         "Independent U07.2 source-model close: for an actually accepted sourceModel output, construct x=(frame,n) so suppliedLayers equals jointLayers and the JointContract records the actual extracted source, both bound payments, exact sourceModel modelOf output, exact amount, LegacyContracts, frozen background fields, sequential four-stage projections, and final ledger balance/conservation/cash/quantity projections. The implication is conditional on sourceModel returning .ok; the ambient JointObject type does not assert every pair succeeds. This does not establish real-source fidelity, arbitrary-layer compatibility, StrongSameCase/localSound, or close U07.3. The two CAND8 negative declarations remain negative boundaries and are not positive close evidence. Exact named evidence: docs/formal-release/evidence/u07-2-debt-close-20261029; independent changed-module CI audits the named declarations and source binding only."
     ),
@@ -765,6 +770,7 @@ CLOSED_WIRING_IDS = (
     "U06.3",
     "U07.2",
     "U07.3",
+    "U02.1",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1015,6 +1021,33 @@ U07_3_SOURCES = (
     U07_2_DRIVER,
     "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
 )
+U02_1_CLOSED_IDS = ("U02.1",)
+U02_1_CLOSE_PACK = "docs/formal-release/evidence/u02-1-debt-close-20261029"
+U02_1_RECEIPT = U02_1_CLOSE_PACK + "/verification.json"
+U02_1_NAMES = {
+    "U02.1": [
+        "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+        "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate",
+        "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate",
+        "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries",
+        "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+        "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+        "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+        "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+        "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+        "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+        "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+        "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+    ]
+}
+U02_1_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean"
+U02_1_SOURCES = (
+    U02_1_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+)
 
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
@@ -1049,12 +1082,16 @@ INDEPENDENT_CLOSE_PACKS = (
      "receipt": U07_3_RECEIPT, "names": U07_3_NAMES,
      "driver": U07_3_DRIVER, "sources": U07_3_SOURCES,
      "open_before": 10, "open_after": 9},
+    {"closed_ids": U02_1_CLOSED_IDS, "pack": U02_1_CLOSE_PACK,
+     "receipt": U02_1_RECEIPT, "names": U02_1_NAMES,
+     "driver": U02_1_DRIVER, "sources": U02_1_SOURCES,
+     "open_before": 9, "open_after": 8},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1620,7 +1657,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "closes only the current U07.2 residual. The later U07.3 package closes only "
             "its fixed-history selected-row semantic/projection residual under explicit "
             "interpretation inputs; source truth/O05 and old Pipeline consumption remain "
-            "outside that proof. Current OPEN_FORMAL_TAIL=9; CLOSED_BY_WIRING=33; the "
+            "outside that proof. Current OPEN_FORMAL_TAIL=8; CLOSED_BY_WIRING=34; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -1646,7 +1683,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U07_3_PROOFS" if clause in U07_3_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U07_3_PROOFS" if clause in U07_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_2_PROOFS" if clause in U07_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U13_3_PROOFS" if clause in U13_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U12_4_PROOFS" if clause in U12_4_CLOSED_IDS else

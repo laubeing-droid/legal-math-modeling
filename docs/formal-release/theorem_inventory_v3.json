@@ -16640,6 +16640,65 @@
    "theorem_count_bol_convention": 6
   },
   {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "actual_payment_pipeline_preserves_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "pipelineGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_closed_pipeline_refines_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_pipeline_refines_gate"
+    },
+    {
+     "kind": "def",
+     "name": "schemaAccept"
+    },
+    {
+     "kind": "def",
+     "name": "normAllows"
+    },
+    {
+     "kind": "def",
+     "name": "writeState"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_failure_and_completion_boundaries"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Pipeline"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+    "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+    "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+    "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+    "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+    "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+    "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate",
+    "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+    "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate",
+    "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries"
+   ],
+   "sha256": "2f111e342b7ee780aeb03d3d44e14b24b4e3d694d924d31fcc24c986aa2b712d",
+   "size_bytes": 16389,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
    "declarations": [],
    "imports": [
     "JurisLean.Candidates.SourceCompilationAudit20261027"
@@ -56845,6 +56904,7 @@
     "JurisLean.Candidates.SourceOpening20261027",
     "JurisLean.Candidates.SourceOpeningAudit20261027",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
+    "JurisLean.Candidates.U02_1ActualPipeline20261029",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
@@ -57053,8 +57113,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "fd46464b533b61dcabf9bd86b85a90b3bdeca2ca6f346527d058060b015b7748",
-   "size_bytes": 11756,
+   "sha256": "0d722bb29ad913e1e4e1d74c363fce7b77315152f1a99cc5980c9a4bc8bb17ea",
+   "size_bytes": 11812,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57218,22 +57278,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6122,
-   "file_count": 487,
+   "counted_declaration_count": 6126,
+   "file_count": 488,
    "lemma_count": 146,
-   "print_axioms_command_count": 5044,
-   "print_axioms_distinct_targets": 4909,
-   "theorem_count": 5976,
-   "theorem_count_bol_convention": 5876
+   "print_axioms_command_count": 5056,
+   "print_axioms_distinct_targets": 4913,
+   "theorem_count": 5980,
+   "theorem_count_bol_convention": 5880
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6103,
-   "file_count": 472,
+   "counted_declaration_count": 6107,
+   "file_count": 473,
    "lemma_count": 139,
-   "print_axioms_command_count": 5044,
-   "print_axioms_distinct_targets": 4909,
-   "theorem_count": 5964,
-   "theorem_count_bol_convention": 5864
+   "print_axioms_command_count": 5056,
+   "print_axioms_distinct_targets": 4913,
+   "theorem_count": 5968,
+   "theorem_count_bol_convention": 5868
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -57400,6 +57460,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
@@ -57885,6 +57946,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
@@ -58249,19 +58311,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f493268b8cf0f7f0996124d89a82034c9ff519ec10b0f3bf649d8bfdb6b09b04",
+ "source_inventory_digest": "1277cc3b67ffbba5d1f966c7c57f880c457ab92b5c0a0e6e0b8ac635c95ba8c6",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u07-3-debt-20261029",
-  "commit": "4b88591bb4f48712adb54c1b40557f0ebcd0c23b",
-  "tree": "f1e29cafb6401aff0307051f61de649fb8a86a14"
+  "branch": "formal/close-u02-1-debt-20261029",
+  "commit": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+  "tree": "10f1e8742acf74436f95a1167847739d25420be8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 487,
+  "files_total": 488,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

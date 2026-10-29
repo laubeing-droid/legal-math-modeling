@@ -963,9 +963,7 @@ def independent_close_errors(receipt: dict, raw: str,
             errors.append(f"independent close: {command} target set changed")
     actual = [m.group(1) for pattern in (axiom_audit.TARGET, axiom_audit.CLEAN) for m in pattern.finditer(raw)]
     report = axiom_audit.parse(raw)
-    expected_counts = {name: 1 for name in expected}
-    actual_counts = {name: actual.count(name) for name in set(actual)}
-    if actual_counts != expected_counts or report != receipt.get("axiom_audit"):
+    if len(actual) != len(expected) or set(actual) != expected or report != receipt.get("axiom_audit"):
         errors.append("independent close: raw axiom evidence differs from named targets")
     if any(report[k] for k in ("targets_with_sorryAx", "targets_outside_standard_axioms", "conflicting_target_lines")):
         errors.append("independent close: unsupported kernel dependencies")

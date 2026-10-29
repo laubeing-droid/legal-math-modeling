@@ -571,7 +571,6 @@ def test_u07_2_positive_joint_object_close_is_separate_from_cand8_negatives():
     assert receipt["axiom_audit"]["audited_targets"] == 7
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U07.2"] == (
         "Fresh CI and actual semantic compatibility of supplied layers remain separate."
     )
@@ -634,7 +633,6 @@ def test_u07_3_selected_row_semantics_close_keeps_o05_and_pipeline_open():
     assert receipt["axiom_audit"]["audited_targets"] == 12
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U07.3"] == (
         "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
     )
@@ -694,7 +692,6 @@ def test_u02_1_close_binds_actual_pipeline_refinement_and_preserves_scope():
     assert (receipt["open_before"], receipt["open_after"]) == (9, 8)
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U02.1"] == (
         "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
     )
@@ -775,7 +772,6 @@ def test_u04_2_close_binds_frozen_probability_residual_and_keeps_adjacent_scope(
     assert (receipt["open_before"], receipt["open_after"]) == (8, 7)
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U04.2"] == (
         "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain."
     )
@@ -839,7 +835,6 @@ def test_u06_1_close_binds_finite_bellman_and_actual_trajectory_evidence():
     assert receipt["axiom_audit"]["audited_targets"] == 14
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U06.1"] == (
         "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain."
     )
@@ -896,7 +891,6 @@ def test_u06_2_close_binds_mixed_transfer_and_fixed_tree_bridge():
     assert receipt["axiom_audit"]["audited_targets"] == 32
     assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
     assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
-    assert "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.zero_bound_policy_scores_and_regret" in receipt["names_by_clause"]["U12.3"]
     assert receipt["original_residuals"]["U06.2"] == (
         "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain."
     )

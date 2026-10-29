@@ -435,6 +435,7 @@
     "JurisLean.BusinessRoot.Analytics",
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.DungFixedPoint",
     "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
     "JurisLean.External.FixedPointTheorems.brouwer",
@@ -875,6 +876,7 @@
     "JurisLean.BusinessRoot.weighted_sub",
     "JurisLean.BusinessRoot.weighted_twoBranch",
     "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+    "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
@@ -888,6 +890,36 @@
     "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
     "JurisLean.FullMath.Probability.Gamma_add_nat",
     "JurisLean.FullMath.Probability.betaCDF_one",
     "JurisLean.FullMath.Probability.betaCDF_zero",
@@ -4441,8 +4473,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "5c59e13d837ab44c7ec475d93befb62ae301800f0b350c695aa3261d4710357a",
-   "size_bytes": 272503,
+   "sha256": "035d95e74dce66b2fac448b62969d900e27df4f4156bd42b9f75c9df3bad7f3a",
+   "size_bytes": 278513,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16944,6 +16976,279 @@
    "size_bytes": 17710,
    "theorem_count": 13,
    "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "finite_expect_disturbance"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_expect_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_expect_positiveAffine_preference"
+    },
+    {
+     "kind": "theorem",
+     "name": "product_pmf_equilibrium_transfer"
+    },
+    {
+     "kind": "theorem",
+     "name": "equiv_deviation_equilibrium_transfer"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_mixedExtension_expect"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_mixed_equilibrium_transfer"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_mixedExtension_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_positiveAffine_bestResponse"
+    },
+    {
+     "kind": "theorem",
+     "name": "added_action_counterexample"
+    },
+    {
+     "kind": "theorem",
+     "name": "strictMono_expected_preference_reversal"
+    },
+    {
+     "kind": "def",
+     "name": "BargainStrategy"
+    },
+    {
+     "kind": "def",
+     "name": "bargainProfileEquiv"
+    },
+    {
+     "kind": "def",
+     "name": "bargainSourceUpdate"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargainProfileEquiv_update"
+    },
+    {
+     "kind": "def",
+     "name": "bargainSourceDeviation"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTargetDeviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_allowedDeviation_iff"
+    },
+    {
+     "kind": "inductive",
+     "name": "BargainTerminal"
+    },
+    {
+     "kind": "inductive",
+     "name": "BargainHistory"
+    },
+    {
+     "kind": "def",
+     "name": "bargainActor"
+    },
+    {
+     "kind": "def",
+     "name": "BargainAction"
+    },
+    {
+     "kind": "def",
+     "name": "bargainStep"
+    },
+    {
+     "kind": "def",
+     "name": "bargainMove"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTargetMove"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_actions_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "bargainRun"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTargetRun"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTrace"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTargetTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_trace_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_trace_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "bargainPublicHistory"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_perfect_information"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_publicInfo_preserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_deterministic_kernel_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "bargainX"
+    },
+    {
+     "kind": "def",
+     "name": "bargainY"
+    },
+    {
+     "kind": "structure",
+     "name": "BargainTerminalLedger"
+    },
+    {
+     "kind": "def",
+     "name": "bargainLedger"
+    },
+    {
+     "kind": "def",
+     "name": "bargainLedgerPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_delay_loss_formula"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_ledger_values"
+    },
+    {
+     "kind": "def",
+     "name": "bargainAbstractTerminalPayQ"
+    },
+    {
+     "kind": "def",
+     "name": "bargainAbstractTerminalPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_ledger_payoff_eq"
+    },
+    {
+     "kind": "def",
+     "name": "bargainConcretePayoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_profile_payoff_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_games_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_treeGame_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_abstractGame_eu"
+    },
+    {
+     "kind": "def",
+     "name": "bargainBIProfile"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_bi_profile_payoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_bi_all_deviations_nonpositive"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_equilibrium_transfer_instance"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_mixed_transfer_instance"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Seams.UnifiedEquilExist",
+    "JurisLean.Seams.UnifiedW4Games"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
+    "JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu"
+   ],
+   "sha256": "bbc3f3c3a3084d0087030060499fcf59298c5ea6acfa88f1f90580ed45729829",
+   "size_bytes": 35711,
+   "theorem_count": 30,
+   "theorem_count_bol_convention": 30
   },
   {
    "declarations": [
@@ -57126,6 +57431,7 @@
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
+    "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
     "JurisLean.Candidates.U12_4FrozenAuditModel20261029",
@@ -57333,8 +57639,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "aa5a03c01ba9de21d7dc2969859ebb2bac6e9a05c0cceb379cd0e693a3f51c09",
-   "size_bytes": 11926,
+   "sha256": "702dd3c7c237d0d8934969c8f1d9e52a7d87efb87269d2660ad407e901bafd88",
+   "size_bytes": 11987,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57498,22 +57804,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6152,
-   "file_count": 490,
+   "counted_declaration_count": 6182,
+   "file_count": 491,
    "lemma_count": 146,
-   "print_axioms_command_count": 5098,
-   "print_axioms_distinct_targets": 4939,
-   "theorem_count": 6006,
-   "theorem_count_bol_convention": 5906
+   "print_axioms_command_count": 5161,
+   "print_axioms_distinct_targets": 4969,
+   "theorem_count": 6036,
+   "theorem_count_bol_convention": 5936
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6133,
-   "file_count": 475,
+   "counted_declaration_count": 6163,
+   "file_count": 476,
    "lemma_count": 139,
-   "print_axioms_command_count": 5098,
-   "print_axioms_distinct_targets": 4939,
-   "theorem_count": 5994,
-   "theorem_count_bol_convention": 5894
+   "print_axioms_command_count": 5161,
+   "print_axioms_distinct_targets": 4969,
+   "theorem_count": 6024,
+   "theorem_count_bol_convention": 5924
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -57684,6 +57990,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
@@ -58172,6 +58479,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
@@ -58535,17 +58843,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "af0c3b57af20848d44ba7edb8c4b7e4de0665410a632bb7c639b4ca44d64731e",
+ "source_inventory_digest": "c4e8a57665e90005eaa10ea03e04cc2d27d15131e1b7773de32ca9168f5ef373",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u06-1-debt-20261030",
-  "commit": "d3b1abb64564593a35956b03e32a3d012f7c5b96",
-  "tree": "21f77f5b472a0e5b359b2e29c4b768c195d75d87"
+  "branch": "formal/close-u06-2-debt-20261030",
+  "commit": "827dd639f33880bf773d8455a69a3fa02d0a7cb5",
+  "tree": "5f76ddccb8f7ef4275827c465d0d7b4f7de0a253"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 490,
+  "files_total": 491,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": true
  },

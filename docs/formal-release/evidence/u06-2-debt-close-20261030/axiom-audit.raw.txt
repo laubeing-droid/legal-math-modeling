@@ -1,0 +1,298 @@
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance.{u_1} {Ω : Type u_1} [Fintype Ω]
+  (d : PMF Ω) (f g : Ω → ℝ) (η : ℝ) (disturbance : ∀ (ω : Ω), |f ω - g ω| ≤ η) :
+  |Math.Probability.expect d f - Math.Probability.expect d g| ≤ η
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine.{u_1} {Ω : Type u_1} [Fintype Ω] (d : PMF Ω)
+  (f : Ω → ℝ) (scale shift : ℝ) :
+  (Math.Probability.expect d fun ω => scale * f ω + shift) = scale * Math.Probability.expect d f + shift
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference.{u_1} {Ω : Type u_1}
+  [Fintype Ω] (d q : PMF Ω) (f g : Ω → ℝ) (scale shift : ℝ) (positive : 0 < scale) :
+  ((Math.Probability.expect d fun ω => scale * f ω + shift) ≤ Math.Probability.expect q fun ω => scale * g ω + shift) ↔
+    Math.Probability.expect d f ≤ Math.Probability.expect q g
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer {I : Type} [Fintype I]
+  [DecidableEq I] {A : I → Type} [(i : I) → Fintype (A i)] (u v : ((i : I) → A i) → I → ℝ)
+  (chosen : (i : I) → PMF (A i)) (ε η : I → ℝ) (disturbance : ∀ (i : I) (a : (i : I) → A i), |u a i - v a i| ≤ η i)
+  (approximate :
+    ∀ (i : I) (τ : PMF (A i)),
+      ((Math.Probability.expect (Math.PMFProduct.pmfPi (Function.update chosen i τ)) fun a => v a i) -
+          Math.Probability.expect (Math.PMFProduct.pmfPi chosen) fun a => v a i) ≤
+        ε i)
+  (i : I) (τ : PMF (A i)) :
+  ((Math.Probability.expect (Math.PMFProduct.pmfPi (Function.update chosen i τ)) fun a => u a i) -
+      Math.Probability.expect (Math.PMFProduct.pmfPi chosen) fun a => u a i) ≤
+    ε i + 2 * η i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer.{u_1} {Player Source : Type}
+  {Target : Type u_1} [Fintype Player] [Fintype Source] [Fintype Target] (e : Source ≃ Target) (u : Player → Target → ℝ)
+  (v : Player → Source → ℝ) (sourceDeviation : Player → Source → Source → Prop)
+  (targetDeviation : Player → Target → Target → Prop) (chosen : Source) (ε η : Player → ℝ)
+  (deviationCorrespondence : ∀ (i : Player) (a b : Source), targetDeviation i (e a) (e b) ↔ sourceDeviation i a b)
+  (disturbance : ∀ (i : Player) (a : Source), |u i (e a) - v i a| ≤ η i)
+  (approximate : ∀ (i : Player) (a : Source), sourceDeviation i chosen a → v i a - v i chosen ≤ ε i) (i : Player)
+  (b : Target) : targetDeviation i (e chosen) b → u i b - u i (e chosen) ≤ ε i + 2 * η i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect {I : Type} [Fintype I]
+  [DecidableEq I] {Act : Type} [Fintype Act] [DecidableEq Act] (u : (I → Act) → I → ℝ) (σ : I → PMF Act) (i : I) :
+  (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu σ i =
+    Math.Probability.expect (Math.PMFProduct.pmfPi σ) fun a => u a i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer {I : Type} [Fintype I]
+  [DecidableEq I] {Act : Type} [Fintype Act] [DecidableEq Act] (u v : (I → Act) → I → ℝ) (chosen : I → PMF Act)
+  (ε η : I → ℝ) (disturbance : ∀ (i : I) (a : I → Act), |u a i - v a i| ≤ η i)
+  (approximate :
+    ∀ (i : I) (τ : PMF Act),
+      (JurisLean.Seams.UnifiedEquilExist.legalGame v).mixedExtension.eu (Function.update chosen i τ) i -
+          (JurisLean.Seams.UnifiedEquilExist.legalGame v).mixedExtension.eu chosen i ≤
+        ε i)
+  (i : I) (τ : PMF Act) :
+  (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu (Function.update chosen i τ) i -
+      (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu chosen i ≤
+    ε i + 2 * η i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine {I : Type} [Fintype I]
+  [DecidableEq I] {Act : Type} [Fintype Act] [DecidableEq Act] (u : (I → Act) → I → ℝ) (scale shift : I → ℝ)
+  (σ : I → PMF Act) (i : I) :
+  (JurisLean.Seams.UnifiedEquilExist.legalGame fun a j => scale j * u a j + shift j).mixedExtension.eu σ i =
+    scale i * (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu σ i + shift i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse {I : Type} [Fintype I]
+  [DecidableEq I] {Act : Type} [Fintype Act] [DecidableEq Act] (u : (I → Act) → I → ℝ) (scale shift : I → ℝ)
+  (positive : ∀ (i : I), 0 < scale i) (chosen : I → PMF Act) (i : I) :
+  (∀ (τ : PMF Act),
+      (JurisLean.Seams.UnifiedEquilExist.legalGame fun a j => scale j * u a j + shift j).mixedExtension.eu
+          (Function.update chosen i τ) i ≤
+        (JurisLean.Seams.UnifiedEquilExist.legalGame fun a j => scale j * u a j + shift j).mixedExtension.eu chosen i) ↔
+    ∀ (τ : PMF Act),
+      (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu (Function.update chosen i τ) i ≤
+        (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu chosen i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample :
+  ∃ embed oldPayoff newPayoff,
+    Function.Injective embed ∧
+      (∀ (a : Fin 1), |newPayoff (embed a) - oldPayoff a| ≤ 0) ∧
+        (∀ (a : Fin 1), oldPayoff a - oldPayoff 0 ≤ 0) ∧ ¬∀ (a : Fin 2), newPayoff a - newPayoff (embed 0) ≤ 0
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal :
+  ∃ φ d,
+    StrictMono φ ∧
+      ((Math.Probability.expect d fun x => 2) > Math.Probability.expect d fun a => if a = 0 then 0 else 3) ∧
+        (Math.Probability.expect d fun x => φ 2) < Math.Probability.expect d fun a => φ (if a = 0 then 0 else 3)
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer {Player Profile : Type}
+  (u v : Player → Profile → ℝ) (deviation : Player → Profile → Profile → Prop) (chosen : Profile) (ε η : Player → ℝ)
+  (disturbance : ∀ (i : Player) (a : Profile), |u i a - v i a| ≤ η i)
+  (approximate : ∀ (i : Player) (a : Profile), deviation i chosen a → v i a - v i chosen ≤ ε i) (i : Player)
+  (a : Profile) : deviation i chosen a → u i a - u i chosen ≤ ε i + 2 * η i
+'JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu {I : Type} [Fintype I] [DecidableEq I] {Act : Type}
+  [Fintype Act] [DecidableEq Act] [Nonempty Act] (u : (I → Act) → I → ℝ) (σ : I → PMF Act) (i : I) :
+  (JurisLean.Seams.UnifiedEquilExist.legalGame u).mixedExtension.eu σ i =
+    JurisLean.Seams.UnifiedEquilExist.euR u (JurisLean.Seams.UnifiedEquilExist.toRow σ) i
+'JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) (i : Bool)
+  (τ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainSourceUpdate s i τ) =
+    Function.update (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s) i τ
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff (i : Bool)
+  (s t : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetDeviation i
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s)
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv t) ↔
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainSourceDeviation i s t
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile)
+  (h : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainHistory) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetMove
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s) h =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainMove s h
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved' depends on axioms: [Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) :
+  (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTrace s).getLast? =
+    some
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainHistory.terminal
+        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainRun s))
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal' depends on axioms: [propext]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetTrace
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s) =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTrace s
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved' depends on axioms: [Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information
+  (h k : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainHistory) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainPublicHistory h =
+      JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainPublicHistory k ↔
+    h = k
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information' does not depend on any axioms
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) :
+  List.map JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainPublicHistory
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetTrace
+        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s)) =
+    List.map JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainPublicHistory
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTrace s)
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved' depends on axioms: [Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetKernel
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s) =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTreeKernel s
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula (share : ℚ) :
+  share - (1 - JurisLean.Seams.UnifiedW4Games.bParamsDemo.delta) * share =
+    JurisLean.Seams.UnifiedW4Games.bParamsDemo.delta * share
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedger
+        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 false) =
+      { grossA := 60, grossB := 40, delayLossA := 0, delayLossB := 0, failed := false } ∧
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedger
+          (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 true) =
+        { grossA := 40, grossB := 60, delayLossA := 0, delayLossB := 0, failed := false } ∧
+      (∀ (q : Bool),
+          JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedger
+              (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 q false) =
+            { grossA := 20, grossB := 80, delayLossA := 10, delayLossB := 40, failed := false }) ∧
+        (∀ (q : Bool),
+            JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedger
+                (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 q true) =
+              { grossA := 50, grossB := 50, delayLossA := 25, delayLossB := 25, failed := false }) ∧
+          ∀ (q r : Bool),
+            JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedger
+                (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.failure q r) =
+              { grossA := 0, grossB := 0, delayLossA := 0, delayLossB := 0, failed := true }
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq
+  (z : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal) (i : Bool) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainLedgerPay z i =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainAbstractTerminalPay z i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq
+  (s : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile) (i : Bool) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff i s =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainAbstractTerminalPay
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetRun
+        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv s))
+      i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu
+  (σ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTargetProfile) (i : Bool) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame.eu σ i =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff i (σ false, σ true)
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu
+  (σ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTargetProfile) (i : Bool) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame.eu σ i =
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainAbstractTerminalPay
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetRun σ) i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainRun
+        JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile =
+      JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 false ∧
+    (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff false
+          JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile,
+        JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff true
+          JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile) =
+      (↑(JurisLean.Seams.UnifiedW4Games.biOutcome JurisLean.Seams.UnifiedW4Games.bParamsDemo).1,
+        ↑(JurisLean.Seams.UnifiedW4Games.biOutcome JurisLean.Seams.UnifiedW4Games.bParamsDemo).2)
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive (i : Bool)
+  (τ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff i
+        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainSourceUpdate
+          JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile i τ) -
+      JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainConcretePayoff i
+        JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile ≤
+    0
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance (i : Bool)
+  (ρ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTargetProfile) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainTargetDeviation i
+      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv
+        JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile)
+      ρ →
+    JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame.eu ρ i -
+        JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame.eu
+          (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv
+            JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainBIProfile)
+          i ≤
+      0
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance
+  (chosen : (i : Bool) → PMF (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i)) (ε : Bool → ℝ)
+  (approximate :
+    ∀ (i : Bool) (τ : PMF (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i)),
+      JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame.mixedExtension.eu
+            (Function.update chosen i τ) i -
+          JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame.mixedExtension.eu chosen i ≤
+        ε i)
+  (i : Bool) (τ : PMF (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i)) :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame.mixedExtension.eu
+        (Function.update chosen i τ) i -
+      JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame.mixedExtension.eu chosen i ≤
+    ε i
+'JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

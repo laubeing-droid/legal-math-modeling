@@ -3550,22 +3550,62 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Decision.lean:205"
         ],
-        "non_goals": [],
+        "non_goals": [
+          "The positive-affine and ε+2η results are mathematical payoff-transfer statements, not a general equilibrium-existence theorem.",
+          "The W4 bridge is the fixed two-round instance; it does not claim the old Pipeline consumes these numeric KernelGame values or close original-question 06.7 as a whole."
+        ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
+            "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+            "JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance",
+            "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+          "criteria_pack": "",
           "non_goals_same_row": []
         }
       }

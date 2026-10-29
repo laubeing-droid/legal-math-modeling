@@ -221,7 +221,6 @@ theorem audited_success_reads_actual_inputs {m : Nat} (q : Query m)
       out = .audited personal a calibrated score := by
   classical
   unfold auditedPrediction at accepted
-  dsimp only at accepted
   split at accepted
   · rename_i ready
     cases produced : auditProduction q a with
@@ -268,7 +267,7 @@ private theorem equal_weight_estimate (ys : List ℚ) (positive : 0 < (ys.length
           (ys.map (fun _ => (1 : ℚ))) ys = y :: ys
         rw [one_mul, ih]
   have total : (ys.map (fun _ => (1 : ℚ))).sum = (ys.length : ℚ) := by
-    clear positive
+    clear zipped positive
     induction ys with
     | nil => simp
     | cons y ys ih =>
@@ -276,7 +275,7 @@ private theorem equal_weight_estimate (ys : List ℚ) (positive : 0 < (ys.length
         rw [ih, Nat.cast_add, Nat.cast_one]
         ring
   have negatives : (ys.map (fun _ => (1 : ℚ))).any (fun w => decide (w < 0)) = false := by
-    clear positive
+    clear total zipped positive
     induction ys with
     | nil => rfl
     | cons y ys ih =>
@@ -494,10 +493,14 @@ theorem sample_prediction_error_under_existing_conditions
     ∃ confidence : Set Ω, MeasurableSet confidence ∧
       1 - (q.protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
       ∀ w ∈ confidence, ∀ out,
-        samplePrediction q { d with rows := (fun i => rows i w),
-          labels := (fun i => sample i w) } = .known out →
+        samplePrediction q
+          { d with
+            rows := (fun i => rows i w)
+            labels := (fun i => sample i w) } = .known out →
         ∃ value, out = .sampled
-            { d with rows := (fun i => rows i w), labels := (fun i => sample i w) } value ∧
+          { d with
+            rows := (fun i => rows i w)
+            labels := (fun i => sample i w) } value ∧
           |(value : ℝ) - ∫ y, (Behavior.indicator y : ℝ) ∂P| ≤ (d.radius : ℝ) := by
   let mean : Ω → ℝ := fun w =>
     empiricalMean (fun i w' => (Behavior.indicator (sample i w') : ℝ)) w

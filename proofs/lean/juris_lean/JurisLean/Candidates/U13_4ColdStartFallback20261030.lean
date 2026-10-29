@@ -124,13 +124,18 @@ def auditedReady {m : Nat} (q : Query m) (personal : Option RSI.Checkpoint)
 
 def auditedPrediction {m : Nat} (q : Query m) (personal : Option RSI.Checkpoint)
     (a : ModelSource m) : Result (Prediction m) := by
-  classical
+  letI : Decidable (auditedReady q personal a) := by
+    unfold auditedReady
+    cases personal <;> infer_instance
   exact if auditedReady q personal a then
     match auditProduction q a with
     | .known calibrated =>
         match predictCalibrated q.protocol calibrated q.point q.riskLimit
             (decide (a.basis.applicability = .yes)) with
         | .known score =>
+            letI : Decidable
+                (match personal with | none => True | some c => c.prediction = score.value) := by
+              cases personal <;> infer_instance
             if 0 ≤ score.value ∧ score.value ≤ 1 ∧
                 (match personal with | none => True | some c => c.prediction = score.value) then
               .known (.audited personal a calibrated score)
@@ -216,17 +221,20 @@ theorem audited_success_reads_actual_inputs {m : Nat} (q : Query m)
       out = .audited personal a calibrated score := by
   classical
   unfold auditedPrediction at accepted
+  dsimp only at accepted
   split at accepted
   · rename_i ready
     cases produced : auditProduction q a with
     | known calibrated =>
         rw [produced] at accepted
+        dsimp only at accepted
         cases predicted : predictCalibrated q.protocol calibrated q.point q.riskLimit
             (decide (a.basis.applicability = .yes)) with
         | known score =>
             rw [predicted] at accepted
+            dsimp only at accepted
             split at accepted
-            · exact ⟨calibrated, score, ready, produced, predicted,
+            · exact ⟨calibrated, score, ready, rfl, predicted,
                 (Result.known.inj accepted).symm⟩
             · cases accepted
         | unknown e => simp [predicted] at accepted
@@ -252,18 +260,36 @@ private theorem equal_weight_estimate (ys : List ℚ) (positive : 0 < (ys.length
       .known (ys.sum / (ys.length : ℚ)) := by
   have zipped : List.zipWith (fun x y : ℚ => x * y)
       (ys.map (fun _ => (1 : ℚ))) ys = ys := by
+    clear positive
     induction ys with
     | nil => rfl
-    | cons y ys ih => simp [ih]
+    | cons y ys ih =>
+        change (1 : ℚ) * y :: List.zipWith (fun x y : ℚ => x * y)
+          (ys.map (fun _ => (1 : ℚ))) ys = y :: ys
+        rw [one_mul, ih]
   have total : (ys.map (fun _ => (1 : ℚ))).sum = (ys.length : ℚ) := by
+    clear positive
     induction ys with
     | nil => simp
-    | cons y ys ih => simp [ih, Nat.cast_add, add_comm]
+    | cons y ys ih =>
+        change (1 : ℚ) + (ys.map (fun _ => (1 : ℚ))).sum = ((ys.length + 1 : ℕ) : ℚ)
+        rw [ih, Nat.cast_add, Nat.cast_one]
+        ring
   have negatives : (ys.map (fun _ => (1 : ℚ))).any (fun w => decide (w < 0)) = false := by
+    clear positive
     induction ys with
     | nil => rfl
-    | cons y ys ih => simp [ih]
-  simp [RSI.conditionalEstimate, negatives, total, zipped, positive]
+    | cons y ys ih =>
+        change (decide ((1 : ℚ) < 0) ||
+          (ys.map (fun _ => (1 : ℚ))).any (fun w => decide (w < 0))) = false
+        rw [ih]
+        norm_num
+  have valid : ¬ ((ys.map (fun _ => (1 : ℚ))).length ≠ ys.length ∨
+      (ys.map (fun _ => (1 : ℚ))).any (fun w => decide (w < 0)) = true) := by
+    rw [List.length_map, negatives]
+    simp
+  unfold RSI.conditionalEstimate
+  rw [if_neg valid, total, if_pos positive, zipped]
 
 private theorem data_estimate_is_actual_mean {m : Nat} (d : DataSource m) (hn : 0 < d.n) :
     RSI.conditionalEstimate ((dataValues d).map (fun _ => (1 : ℚ))) (dataValues d) =
@@ -287,12 +313,22 @@ theorem description_success_reads_measurements {m : Nat} (q : Query m)
         ((dataValues d).map (fun _ => (1 : ℚ))) (dataValues d) with
     | known value =>
         rw [estimated] at accepted
+        dsimp only at accepted
         have same := Result.known.inj accepted
         subst out
-        exact ⟨ready, rfl, estimated⟩
-    | unknown e => simp [estimated] at accepted
-    | rejected e => simp [estimated] at accepted
-    | conflict a b => simp [estimated] at accepted
+        exact ⟨ready, rfl, rfl⟩
+    | unknown e =>
+        rw [estimated] at accepted
+        dsimp only at accepted
+        cases accepted
+    | rejected e =>
+        rw [estimated] at accepted
+        dsimp only at accepted
+        cases accepted
+    | conflict a b =>
+        rw [estimated] at accepted
+        dsimp only at accepted
+        cases accepted
   · cases accepted
 
 theorem sample_success_reads_actual_mean {m : Nat} (q : Query m)
@@ -458,10 +494,10 @@ theorem sample_prediction_error_under_existing_conditions
     ∃ confidence : Set Ω, MeasurableSet confidence ∧
       1 - (q.protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
       ∀ w ∈ confidence, ∀ out,
-        samplePrediction q { d with rows := fun i => rows i w,
-          labels := fun i => sample i w } = .known out →
+        samplePrediction q { d with rows := (fun i => rows i w),
+          labels := (fun i => sample i w) } = .known out →
         ∃ value, out = .sampled
-            { d with rows := fun i => rows i w, labels := fun i => sample i w } value ∧
+            { d with rows := (fun i => rows i w), labels := (fun i => sample i w) } value ∧
           |(value : ℝ) - ∫ y, (Behavior.indicator y : ℝ) ∂P| ≤ (d.radius : ℝ) := by
   let mean : Ω → ℝ := fun w =>
     empiricalMean (fun i w' => (Behavior.indicator (sample i w') : ℝ)) w

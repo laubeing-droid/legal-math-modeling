@@ -433,6 +433,8 @@
     "JurisLean.AuthorityLattice",
     "JurisLean.BanachCertificate",
     "JurisLean.BusinessRoot.Analytics",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.DungFixedPoint",
     "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
     "JurisLean.External.FixedPointTheorems.brouwer",
@@ -872,6 +874,20 @@
     "JurisLean.BusinessRoot.weighted_congr",
     "JurisLean.BusinessRoot.weighted_sub",
     "JurisLean.BusinessRoot.weighted_twoBranch",
+    "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
     "JurisLean.FullMath.Probability.Gamma_add_nat",
     "JurisLean.FullMath.Probability.betaCDF_one",
     "JurisLean.FullMath.Probability.betaCDF_zero",
@@ -4425,8 +4441,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "e64ef802cbb6c3c1c220f1874eb247ec6854e88e78693fbfba6b74ebfbf0950d",
-   "size_bytes": 269959,
+   "sha256": "5c59e13d837ab44c7ec475d93befb62ae301800f0b350c695aa3261d4710357a",
+   "size_bytes": 272503,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16828,6 +16844,104 @@
    ],
    "sha256": "e29d09e901e1e76de62bc3010616954a36ab16efe5bbd517c5ecc887c0b89203",
    "size_bytes": 23917,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Control"
+    },
+    {
+     "kind": "theorem",
+     "name": "terminal_and_empty_action"
+    },
+    {
+     "kind": "theorem",
+     "name": "policy_value_le_bellman"
+    },
+    {
+     "kind": "theorem",
+     "name": "greedy_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "greedy_value_eq_bellman"
+    },
+    {
+     "kind": "theorem",
+     "name": "bellman_full_policy_optimum"
+    },
+    {
+     "kind": "def",
+     "name": "Trace"
+    },
+    {
+     "kind": "def",
+     "name": "terminalTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "trajectory_weight_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "trajectory_weight_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "trajectory_law_mass"
+    },
+    {
+     "kind": "theorem",
+     "name": "trajectory_expectation_eq_policy_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "bellman_optimum_of_actual_trajectory_expectation"
+    },
+    {
+     "kind": "theorem",
+     "name": "policy_value_sub"
+    },
+    {
+     "kind": "theorem",
+     "name": "cost_counted_once"
+    },
+    {
+     "kind": "def",
+     "name": "coupledPayoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonrectangular_bellman_counterexample"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Decision",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one"
+   ],
+   "sha256": "230d5492821f6f5762da2d550894ebcd5f40a5866163852718d5c2c33b35698d",
+   "size_bytes": 17710,
    "theorem_count": 13,
    "theorem_count_bol_convention": 13
   },
@@ -57011,6 +57125,7 @@
     "JurisLean.Candidates.U02_1ActualPipeline20261029",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
+    "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
     "JurisLean.Candidates.U12_4FrozenAuditModel20261029",
@@ -57218,8 +57333,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "b2dff5f9ea2ef36054a9238827e5253cbd4e34a19ad7a2569efa2418f0a52b3c",
-   "size_bytes": 11871,
+   "sha256": "aa5a03c01ba9de21d7dc2969859ebb2bac6e9a05c0cceb379cd0e693a3f51c09",
+   "size_bytes": 11926,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -57383,22 +57498,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6139,
-   "file_count": 489,
+   "counted_declaration_count": 6152,
+   "file_count": 490,
    "lemma_count": 146,
-   "print_axioms_command_count": 5070,
-   "print_axioms_distinct_targets": 4926,
-   "theorem_count": 5993,
-   "theorem_count_bol_convention": 5893
+   "print_axioms_command_count": 5098,
+   "print_axioms_distinct_targets": 4939,
+   "theorem_count": 6006,
+   "theorem_count_bol_convention": 5906
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6120,
-   "file_count": 474,
+   "counted_declaration_count": 6133,
+   "file_count": 475,
    "lemma_count": 139,
-   "print_axioms_command_count": 5070,
-   "print_axioms_distinct_targets": 4926,
-   "theorem_count": 5981,
-   "theorem_count_bol_convention": 5881
+   "print_axioms_command_count": 5098,
+   "print_axioms_distinct_targets": 4939,
+   "theorem_count": 5994,
+   "theorem_count_bol_convention": 5894
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -57568,6 +57683,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
@@ -58055,6 +58171,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
@@ -58418,17 +58535,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c8dac032ef778ccae130c9dba564fe0bc97e96efa9debd63a8dc7f2d17d2cace",
+ "source_inventory_digest": "af0c3b57af20848d44ba7edb8c4b7e4de0665410a632bb7c639b4ca44d64731e",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u04-2-debt-20261029",
-  "commit": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
-  "tree": "590b5382ec021fedb92f64f0c3470e06fb451c63"
+  "branch": "formal/close-u06-1-debt-20261030",
+  "commit": "d3b1abb64564593a35956b03e32a3d012f7c5b96",
+  "tree": "21f77f5b472a0e5b359b2e29c4b768c195d75d87"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 489,
+  "files_total": 490,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": true
  },

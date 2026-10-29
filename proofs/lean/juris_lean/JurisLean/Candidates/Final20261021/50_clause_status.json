@@ -964,22 +964,42 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Harness.lean:10"
         ],
-        "non_goals": [],
+        "non_goals": [
+          "The result is conditional on the frozen finite Bool-world/action table and the manuscript's d0≥0 opening-debt premise; it does not derive the real legal permission domain or world table from source materials.",
+          "The theorem covers runs that report a concrete current poststate; it makes no claim about unknownCommit outcomes without a known poststate, deployment, or general operation beyond this pipeline."
+        ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u02-1-debt-close-20261029/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries",
+            "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+            "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+            "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+            "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+            "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+            "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+          "criteria_pack": "",
           "non_goals_same_row": []
         }
       }

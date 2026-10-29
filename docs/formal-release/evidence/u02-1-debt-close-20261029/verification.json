@@ -1,0 +1,79 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+  "run_id": 40791067212,
+  "job_id": 123176137083,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-40791067212-1",
+  "artifact_id": 12861283251,
+  "artifact_sha256": "20cbbe172c3bc787c6daf13f479612eb010bc006fb3148e87b2fdc9b603f2152",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
+  "named_count": 12,
+  "names_by_clause": {
+    "U02.1": [
+      "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+      "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate",
+      "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate",
+      "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries",
+      "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+      "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+      "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+      "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+      "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+      "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+      "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+      "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_1ActualPipeline20261029.lean",
+      "sha256": "2f111e342b7ee780aeb03d3d44e14b24b4e3d694d924d31fcc24c986aa2b712d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+      "sha256": "c8168df7159fa9a8989cd287bfa6327da8016ddbf17e00705328c68be5b9bd17"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+      "sha256": "885c69582ea1dedbc98be512744ba98f3f84360a8372dd983c0192c287484972"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 10,
+      "propext": 10
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U02.1": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
+  },
+  "closed_ids": [
+    "U02.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 9,
+  "open_after": 8,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

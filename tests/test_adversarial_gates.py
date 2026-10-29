@@ -107,10 +107,10 @@ def test_unbooked_external_arrival_is_quarantined_and_cannot_sneak_into_the_root
 
     root = tree / "proofs/lean/juris_lean/JurisLean.lean"
     text = root.read_text(encoding="utf-8")
-    root.write_text(text.replace(
-        "import JurisLean.External.GameTheory.Math.Probability\n",
-        "import JurisLean.External.GameTheory.Math.Probability\n"
-        "import JurisLean.External.GameTheory.Math.Rogue\n"), encoding="utf-8")
+    root.write_text(
+        text + "import JurisLean.External.GameTheory.Math.Rogue\n",
+        encoding="utf-8",
+    )
     proc = run_reach(tree)
     assert proc.returncode == 1, proc.stdout + proc.stderr
     assert "quarantined module(s) reached" in proc.stderr, proc.stderr

@@ -288,6 +288,10 @@ NON_GOALS: dict[str, list[str]] = {
         "This package proves the finite, fully observed, single-branch Markov control model and its actual trajectory law; it does not establish a common feasible policy or max-min value across legal branches.",
         "Signal acquisition/stopping costs and partially observed belief updates are not modeled here. The old Pipeline decision consumer has not been wired to these finite-control values, and this is not deployment or legal/empirical validation.",
     ],
+    "U06.2": [
+        "The positive-affine and ε+2η results are mathematical payoff-transfer statements, not a general equilibrium-existence theorem.",
+        "The W4 bridge is the fixed two-round instance; it does not claim the old Pipeline consumes these numeric KernelGame values or close original-question 06.7 as a whole.",
+    ],
     "U13.4": [
         "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
     ],
@@ -309,6 +313,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U04.4": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, the r=-1 quadratic form, and the zero-denominator branch.",
     "U05.1": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and the marginal-versus-group numeric split.",
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
+    "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
     "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
 }
 
@@ -330,9 +335,7 @@ UNWIRED: dict[str, list[str]] = {
     "U04.5": [],  # General event likelihood and copy-information proofs independently accepted.
     "U06.1": [
     ],  # The independent finite Bellman/trajectory package closes this archived residual.
-    "U06.2": [
-        "Mixed expectations and an explicit strategy/tree bridge remain unproved.",
-    ],
+    "U06.2": [],  # The independent mixed-payoff and fixed W4 strategy/tree package closes the archived residual.
     "U11.1": [
         "The g formula, K1/K2 selection, sharp support gaps, and measurement bridges remain unproved.",
     ],
@@ -381,6 +384,9 @@ SCOPE_REVIEW: dict[str, str] = {
         "other U12.1 causal/measurement or support-gap obligations, nor adjacent "
         "OPE consumer edges. The CI run audits named Lean declarations and source "
         "binding only."
+    ),
+    "U06.2": (
+        "Independent U06.2 close: the finite mixed-payoff declarations establish the general allowed-deviation real payoff transfer with ε+2η and preserve the existing full-deviation and positive-affine conditions. The fixed W4 instance connects complete strategies, the two-round tree, action/history/information data, deterministic kernel, terminal ledger payoff and the equilibrium-transfer declarations. This is not a general mixed-equilibrium existence theorem and does not assert that the old Pipeline consumes the new numeric KernelGame values. For original-question 06.7, only the fixed two-round tree and KernelGame payoff bridge are mapped; the manuscript's mixed-NE existence conditions, matching-pennies/general backward-induction alignment, and overall seven-question obligation remain PARTIAL. No U00 edge is newly connected. Exact named evidence: docs/formal-release/evidence/u06-2-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
     ),
     "U06.1": (
         "Independent U06.1 finite-control close: in the finite, fully observed, single-branch timed Markov model with general terminal reward g, the manuscript requires the empty-action case to be explicitly terminal or BLOCKED with a specified value; this module chooses the terminal branch with value g(s). A history-based legal policy has a trajectory law built from the actual transition kernel. The package proves nonnegative trajectory weights of total mass one and equality of trajectory expected return with policy value, constructs a legal greedy policy attaining the Bellman optimum and dominating all legal history policies, and counts same-policy cost once. Its finite nonrectangular example separates a fixed model choice from statewise choices. The reused free-information theorem remains its existing finite-law/list-policy result. This does not prove a common feasible strategy or max-min value across legal branches, signal-acquisition/stopping costs, partial-observation belief updates, or actual numeric consumption by the old Pipeline; those remain outside this close. Exact named evidence: docs/formal-release/evidence/u06-1-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
@@ -785,6 +791,7 @@ CLOSED_WIRING_IDS = (
     "U02.1",
     "U04.2",
     "U06.1",
+    "U06.2",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1117,6 +1124,53 @@ U06_1_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
 )
 
+U06_2_CLOSED_IDS = ("U06.2",)
+U06_2_CLOSE_PACK = "docs/formal-release/evidence/u06-2-debt-close-20261030"
+U06_2_RECEIPT = U06_2_CLOSE_PACK + "/verification.json"
+U06_2_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean"
+U06_2_NAMES = {
+    "U06.2": [
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
+        "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+        "JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance",
+        "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance",
+    ]
+}
+U06_2_SOURCES = (
+    U06_2_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+)
+
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -1170,12 +1224,20 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 40919387762, "expected_job_id": 123608188128,
      "expected_attempt": 1, "expected_artifact_id": 12917367581,
      "expected_artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8"},
+    {"closed_ids": U06_2_CLOSED_IDS, "pack": U06_2_CLOSE_PACK,
+     "receipt": U06_2_RECEIPT, "names": U06_2_NAMES,
+     "driver": U06_2_DRIVER, "sources": U06_2_SOURCES,
+     "open_before": 6, "open_after": 5,
+     "expected_subject": "fe9e4b689d317e75d91415ea65d701583a205929",
+     "expected_run_id": 40939134896, "expected_job_id": 123677528713,
+     "expected_attempt": 1, "expected_artifact_id": 12925329796,
+     "expected_artifact_sha256": "46591a17cd3591eccbd2ffc912718b10b538f159a9c05f32bea2762905bd820e"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1744,7 +1806,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. Current "
-        "OPEN_FORMAL_TAIL=6; CLOSED_BY_WIRING=36; the "
+        "OPEN_FORMAL_TAIL=5; CLOSED_BY_WIRING=37; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -1770,7 +1832,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U06_1_PROOFS" if clause in U06_1_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U06_2_PROOFS" if clause in U06_2_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U06_1_PROOFS" if clause in U06_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U02_1_PROOFS" if clause in U02_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U07_3_PROOFS" if clause in U07_3_CLOSED_IDS else

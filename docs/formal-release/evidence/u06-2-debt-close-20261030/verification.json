@@ -1,0 +1,127 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "fe9e4b689d317e75d91415ea65d701583a205929",
+  "run_id": 40939134896,
+  "job_id": 123677528713,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40939134896",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40939134896/job/123677528713",
+  "artifact_name": "changed-module-only-40939134896-1",
+  "artifact_id": 12925329796,
+  "artifact_sha256": "46591a17cd3591eccbd2ffc912718b10b538f159a9c05f32bea2762905bd820e",
+  "artifact_size_bytes": 4930,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 38312,
+      "sha256": "4f30dc224ac7ef3223ea7820f8e703d06622166e41e6957651c3a4c0957567e0"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 271,
+      "sha256": "00de261f74cf71685f98d0d61e77c863a5aea6d0cd4008d31fb6bc2a1090cee9"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+  "named_count": 32,
+  "names_by_clause": {
+    "U06.2": [
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_disturbance",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_affine",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.finite_expect_positiveAffine_preference",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.equiv_deviation_equilibrium_transfer",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_expect",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixed_equilibrium_transfer",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_mixedExtension_affine",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.added_action_counterexample",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
+      "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+      "JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv_update",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_allowedDeviation_iff",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_delay_loss_formula",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_values",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_games_eq",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_treeGame_eu",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_abstractGame_eu",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_all_deviations_nonpositive",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_equilibrium_transfer_instance",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_mixed_transfer_instance"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "sha256": "bbc3f3c3a3084d0087030060499fcf59298c5ea6acfa88f1f90580ed45729829"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+      "sha256": "65065e301b35efba8de2f38ede9f57fabcfd8a66893d05ed0b5d08f750c84549"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+      "sha256": "f2e8db01e8ff4b04e00ae1c523716bf11ca57615165e603cd89642fe4be864f9"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 32,
+    "axiom_vocabulary": {
+      "propext": 28,
+      "Classical.choice": 25,
+      "Quot.sound": 30
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U06.2": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 40934394264,
+      "job_id": 123660979431,
+      "head": "acd3bd3308d855260d0d7c43c2ac4c0f179d079e",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 40937488083,
+      "job_id": 123671796893,
+      "head": "487c7f56de5158c369e0f960ff11bb7cd3ab4363",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    }
+  ],
+  "closed_ids": [
+    "U06.2"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 6,
+  "open_after": 5,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

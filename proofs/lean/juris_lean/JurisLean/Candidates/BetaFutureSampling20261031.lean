@@ -49,8 +49,9 @@ private theorem measurable_coinMass (b : Bool) :
 private theorem coinMeasure_singleton (θ : ℝ) (b : Bool) :
     coinMeasure θ {b} = coinMass θ b := by
   unfold coinMeasure
-  rw [(PMF.bernoulli (coinParameter θ) (coinParameter_le_one θ)).
-    toMeasure_apply_singleton b (by trivial), PMF.bernoulli_apply]
+  rw [PMF.toMeasure_apply_singleton
+    (PMF.bernoulli (coinParameter θ) (coinParameter_le_one θ)) b (by trivial),
+    PMF.bernoulli_apply]
   cases b <;> rfl
 
 private def pairAtom (θ : ℝ) (z : Bool × Bool) : ℝ≥0∞ :=
@@ -91,7 +92,8 @@ private theorem half_copy_generation (θ : ℝ) :
   have hcopy :
       (coinMeasure θ).map (fun c : Bool => (c, c)) {(a, b)} =
         if a = b then coinMass θ a else 0 := by
-    rw [Measure.map_apply (measurable_id.prodMk measurable_id)
+    rw [Measure.map_apply
+      (show Measurable (fun c : Bool => (c, c)) from by fun_prop)
       (measurableSet_singleton _)]
     by_cases hab : a = b
     · subst b
@@ -116,14 +118,21 @@ private theorem half_copy_generation (θ : ℝ) :
       coinMeasure_singleton, coinMeasure_singleton]
   rw [halfCopyKernel_singleton]
   simp only [Measure.add_apply, Measure.smul_apply, smul_eq_mul, hcopy, hprod]
-  rfl
+  simp only [pairAtom, mul_assoc]
 
 instance halfCopyKernel_markov : IsMarkovKernel halfCopyKernel where
   isProbabilityMeasure θ := by
     refine ⟨?_⟩
+    have hmap :
+        ((coinMeasure θ).map (fun b : Bool => (b, b))) Set.univ = 1 := by
+      rw [Measure.map_apply
+        (show Measurable (fun b : Bool => (b, b)) from by fun_prop)
+        MeasurableSet.univ]
+      simp
     rw [half_copy_generation θ]
-    norm_num [Measure.add_apply, Measure.smul_apply, smul_eq_mul,
-      Measure.map_apply (measurable_id.prodMk measurable_id)]
+    simp only [Measure.add_apply, Measure.smul_apply, smul_eq_mul,
+      hmap, measure_univ, mul_one]
+    simpa only [one_div] using ENNReal.inv_two_add_inv_two
 
 /-- The finite-atom kernel is exactly the copy/independent mixture,
 not a distribution defined by the final integrated constants. -/
@@ -170,7 +179,7 @@ theorem beta_future_success_of_channel
       lintegral_congr_ae channel
     _ = ENNReal.ofReal ((α + s) / ((α + s) + (β + f))) := by
       rw [lintegral_withDensity_eq_lintegral_mul volume hd
-        measurable_id.ennreal_ofReal]
+        (show Measurable (fun θ : ℝ => ENNReal.ofReal θ) from by fun_prop)]
       simpa only [Pi.mul_apply, mul_comm] using
         positive_real_beta_predictive_mean α β hα hβ s f
 
@@ -180,8 +189,9 @@ private instance beta11_probability :
 
 private theorem beta11_support :
     ∀ᵐ θ ∂betaMeasure 1 1, 0 < θ ∧ θ < 1 := by
-  rw [betaMeasure,
-    ae_withDensity_iff (measurable_betaPDFReal 1 1).ennreal_ofReal]
+  change ∀ᵐ θ ∂(volume.withDensity
+    (fun x : ℝ => ENNReal.ofReal (betaPDFReal 1 1 x))), 0 < θ ∧ θ < 1
+  rw [ae_withDensity_iff (measurable_betaPDFReal 1 1).ennreal_ofReal]
   exact Filter.Eventually.of_forall fun θ hθ => by
     by_contra hout
     exact hθ (by simp [betaPDF, betaPDFReal, hout])
@@ -210,11 +220,14 @@ private theorem coinMass_on_unit (θ : ℝ) (h0 : 0 ≤ θ) (h1 : θ ≤ 1)
 private theorem beta11_likelihood_integral (s f : ℕ) :
     (∫⁻ θ, ENNReal.ofReal (bernoulliLikelihood s f θ)
       ∂betaMeasure 1 1) = ENNReal.ofReal (betaEvidence 1 1 s f) := by
-  rw [betaMeasure, lintegral_withDensity_eq_lintegral_mul volume
+  change (∫⁻ θ, ENNReal.ofReal (bernoulliLikelihood s f θ)
+    ∂(volume.withDensity (fun x : ℝ => ENNReal.ofReal (betaPDFReal 1 1 x)))) =
+      ENNReal.ofReal (betaEvidence 1 1 s f)
+  rw [lintegral_withDensity_eq_lintegral_mul volume
     (measurable_betaPDFReal 1 1).ennreal_ofReal
     (by unfold bernoulliLikelihood; fun_prop)]
-  exact beta_likelihood_normalization_integral 1 1
-    (by norm_num) (by norm_num) s f
+  simpa only [betaPDF, Pi.mul_apply] using
+    beta_likelihood_normalization_integral 1 1 (by norm_num) (by norm_num) s f
 
 private theorem beta11_evidence (s f : ℕ) :
     betaEvidence 1 1 s f =
@@ -239,7 +252,8 @@ private theorem beta11_coin_integral (b : Bool) :
       cases b <;> simp [bernoulliLikelihood]
     _ = (1 / 2 : ℝ≥0∞) := by
       rw [beta11_likelihood_integral, beta11_evidence]
-      cases b <;> norm_num [rising]
+      cases b <;> norm_num [rising,
+        ENNReal.ofReal_div_of_pos (by norm_num : 0 < (2 : ℝ))]
 
 private theorem beta11_coin_product_integral (a b : Bool) :
     (∫⁻ θ, coinMass θ a * coinMass θ b ∂betaMeasure 1 1) =
@@ -263,7 +277,9 @@ private theorem beta11_coin_product_integral (a b : Bool) :
       cases a <;> cases b <;> norm_num [bernoulliLikelihood] <;> ring
     _ = if a = b then (1 / 3 : ℝ≥0∞) else 1 / 6 := by
       rw [beta11_likelihood_integral, beta11_evidence]
-      cases a <;> cases b <;> norm_num [rising]
+      cases a <;> cases b <;> norm_num [rising,
+        ENNReal.ofReal_div_of_pos (by norm_num : 0 < (3 : ℝ)),
+        ENNReal.ofReal_div_of_pos (by norm_num : 0 < (6 : ℝ))]
 
 private theorem beta11_pairAtom_integral (a b : Bool) :
     (∫⁻ θ, pairAtom θ (a, b) ∂betaMeasure 1 1) =
@@ -287,7 +303,13 @@ private theorem beta11_pairAtom_integral (a b : Bool) :
         lintegral_const_mul' _ _ (by norm_num)]
     _ = if a = b then (5 / 12 : ℝ≥0∞) else 1 / 12 := by
       rw [hfirst, beta11_coin_product_integral]
-      by_cases hab : a = b <;> norm_num [hab]
+      by_cases hab : a = b
+      · simp only [hab, if_true]
+        apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+        simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
+      · simp only [hab, if_false, mul_zero, zero_add]
+        apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+        norm_num
 
 /-- Actual generation: first sample the uniform Beta parameter, then the
 half-copy/half-independent pair kernel. -/
@@ -308,6 +330,7 @@ private theorem halfCopyLaw_atom (a b : Bool) :
   simp_rw [halfCopyKernel_singleton]
   exact beta11_pairAtom_integral a b
 
+open scoped Classical in
 private theorem halfCopyLaw_apply (s : Set (Bool × Bool)) :
     halfCopyLaw s =
       ∑ a : Bool, ∑ b : Bool,
@@ -341,21 +364,33 @@ theorem half_copy_exchangeable_counterexample :
     cases a <;> cases b <;> simp
   have hneq : halfCopyLaw {z | z.1 ≠ z.2} = (1 / 6 : ℝ≥0∞) := by
     norm_num [halfCopyLaw_apply, Fintype.univ_bool]
+    all_goals
+      apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+      simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
   have hfirst : halfCopyLaw {z | z.1 = true} = (1 / 2 : ℝ≥0∞) := by
     norm_num [halfCopyLaw_apply, Fintype.univ_bool]
+    all_goals
+      apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+      simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
   have hc :
       (ProbabilityTheory.cond halfCopyLaw {z | z.1 = true})
         {z | z.2 = true} = (5 / 6 : ℝ≥0∞) := by
     rw [ProbabilityTheory.cond_apply
-      (show MeasurableSet {z : Bool × Bool | z.1 = true} from .of_discrete)]
+      (show MeasurableSet {z : Bool × Bool | z.1 = true} from .of_discrete),
+      hfirst]
     norm_num [halfCopyLaw_apply, Fintype.univ_bool]
+    all_goals
+      apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+      simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
   refine ⟨hswap, hneq, ?_, ?_, hc, ?_⟩
   · rw [hneq]
     norm_num
   · rw [hfirst]
     norm_num
   · rw [hc]
-    norm_num
+    intro same
+    have sameReal := congrArg ENNReal.toReal same
+    norm_num at sameReal
 
 open scoped MeasureTheory
 
@@ -375,7 +410,6 @@ def observedFutureKernel (joint : Kernel ℝ (Bool × Bool)) : Kernel ℝ Bool :
   change Measurable (fun θ =>
     (if joint θ fixedDataEvent = 0 then Measure.dirac false
       else (ProbabilityTheory.cond (joint θ) fixedDataEvent).map Prod.snd) s)
-  simp only [apply_ite]
   simp_rw [Measure.map_apply measurable_snd hs,
     ProbabilityTheory.cond_apply
       (show MeasurableSet fixedDataEvent from .of_discrete)]
@@ -416,11 +450,14 @@ private theorem normalized_beta_absolutelyContinuous (α β : ℝ) (s f : ℕ) :
   have heq :
       volume.withDensity (normalizedBetaLikelihood α β s f) =
         (betaMeasure α β).withDensity w := by
-    rw [betaMeasure, ← withDensity_mul volume
+    change volume.withDensity (normalizedBetaLikelihood α β s f) =
+      (volume.withDensity
+        (fun x : ℝ => ENNReal.ofReal (betaPDFReal α β x))).withDensity w
+    rw [← withDensity_mul volume
       (measurable_betaPDFReal α β).ennreal_ofReal hw]
     congr 1
     funext θ
-    dsimp [w, c, normalizedBetaLikelihood]
+    dsimp [w, c, normalizedBetaLikelihood, betaPDF]
     ring
   rw [heq]
   exact withDensity_absolutelyContinuous _ _
@@ -458,9 +495,12 @@ theorem beta_future_success_of_conditional_independence
   have hsupport :
       ∀ᵐ θ ∂(volume.withDensity (normalizedBetaLikelihood α β s f)),
         0 < θ ∧ θ < 1 := by
-    rw [positive_real_beta_posterior_measure α β hα hβ s f, betaMeasure,
-      ae_withDensity_iff
-        (measurable_betaPDFReal (α + s) (β + f)).ennreal_ofReal]
+    rw [positive_real_beta_posterior_measure α β hα hβ s f]
+    change ∀ᵐ θ ∂(volume.withDensity
+      (fun x : ℝ => ENNReal.ofReal (betaPDFReal (α + s) (β + f) x))),
+        0 < θ ∧ θ < 1
+    rw [ae_withDensity_iff
+      (measurable_betaPDFReal (α + s) (β + f)).ennreal_ofReal]
     exact Filter.Eventually.of_forall fun θ hθ => by
       by_contra hout
       exact hθ (by simp [betaPDF, betaPDFReal, hout])
@@ -477,10 +517,11 @@ theorem beta_future_success_of_conditional_independence
       ENNReal.ofReal θ
   rw [if_neg (ne_of_gt hpos),
     Measure.map_apply measurable_snd (measurableSet_singleton true)]
-  change (ProbabilityTheory.cond (joint θ) fixedDataEvent) nextSuccessEvent =
+  change (ProbabilityTheory.cond (joint θ) {z | z.1 = true}) {z | z.2 = true} =
     ENNReal.ofReal θ
   rw [cond_event_of_indepSet (joint θ)
-    (show MeasurableSet fixedDataEvent from .of_discrete) hpos hiθ, hfθ]
+    (show MeasurableSet {z : Bool × Bool | z.1 = true} from .of_discrete)
+    hpos hiθ, hfθ]
 end
 
 end JurisLean.Candidates.BetaFutureSampling20261031

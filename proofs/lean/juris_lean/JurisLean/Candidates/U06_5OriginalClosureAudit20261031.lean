@@ -1,0 +1,12 @@
+import JurisLean.Candidates.U06_5OriginalModels20261031
+
+#check JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law
+#check JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values
+#check JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
+
+#check JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw
+#check JurisLean.Candidates.U06_5OriginalModels20261031.originalGame
+#check JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile

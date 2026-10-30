@@ -319,7 +319,7 @@ private theorem continueAt_started {W : Type} (grants : List Authorization.Grant
       | conflict l r => simp [continueAt, evaluated, checked, stopAt] at started
       | known unit =>
           cases unit
-          exact ⟨bound, out, evaluated, checked, by simp only [continueAt, evaluated, checked]⟩
+          exact ⟨bound, out, rfl, checked, by simp only [continueAt, evaluated, checked]⟩
 
 private theorem continueAt_stopped {W : Type} (grants : List Authorization.Grant)
     (current : Ledger.Handle) (input : LegalInput W) (branch : Nat) (meaning : ActionMeaning)
@@ -389,7 +389,7 @@ theorem continued_protocol_refines_actual_calls {W : Type} (grants : List Author
         checkNext_known after meaning bound out checked
       have frame : {after.state with normHistory := before.state.normHistory, env := before.state.env} = before.state := by
         rw [refresh_success_post grants before after change refreshed]
-      refine ⟨after, bound, out, procedure, refreshed, evaluated, flow.2.2.2.2.2.1,
+      refine ⟨after, bound, out, procedure, rfl, evaluated, flow.2.2.2.2.2.1,
         flow.2.2.2.2.2.2.1, flow.2.2.2.2.2.2.2, flow.1, flow.2.1,
         sameGamma, permissions, process, closed, ?_, frame, ?_⟩
       · simpa only [refreshEvaluateContinue, refreshed] using tail

@@ -57,11 +57,17 @@ private lemma signal_state_mass (ω : Bool) :
     signalMeasure {z | z.1 = ω} = (1 / 2 : ℝ≥0∞) := by
   rw [signal_event_mass _ (measurableSet_eq_fun measurable_fst measurable_const)]
   cases ω <;> norm_num [pair_univ, signalWeight]
+  all_goals
+    apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+    simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
 
 private lemma signal_correct_mass :
     signalMeasure {z | z.2 = z.1} = (4 / 5 : ℝ≥0∞) := by
   rw [signal_event_mass _ (measurableSet_eq_fun measurable_snd measurable_fst)]
   norm_num [pair_univ, signalWeight]
+  all_goals
+    apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+    simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
 
 private lemma signal_correct_given_state (ω : Bool) :
     ProbabilityTheory.cond signalMeasure {z | z.1 = ω} {z | z.2 = ω} =
@@ -73,6 +79,9 @@ private lemma signal_correct_given_state (ω : Bool) :
   rw [ProbabilityTheory.cond_apply hstate signalMeasure,
     signal_state_mass, signal_event_mass _ (hstate.inter hsignal)]
   cases ω <;> norm_num [pair_univ, signalWeight]
+  all_goals
+    apply (ENNReal.toReal_eq_toReal_iff' (by finiteness) (by finiteness)).mp
+    simp (disch := finiteness) [ENNReal.toReal_add] <;> norm_num
 
 /-- Actual fair state prior and 4/5 signal accuracy, including given-state accuracy. -/
 theorem signal_joint_law :

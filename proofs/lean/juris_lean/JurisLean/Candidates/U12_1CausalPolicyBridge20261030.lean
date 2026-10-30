@@ -206,8 +206,11 @@ private theorem fiber_ipw_bound
         fiberSum ν p (fun a v => ‖v a‖) := by
     funext z
     rw [fiberSum_apply, fiberSum_apply]
+    have coefficientNonnegative :
+        0 ≤ p z.2 / ν.real {w : JointOutcome Act | w.2 = z.2} :=
+      div_nonneg (nonnegative z.2) ENNReal.toReal_nonneg
     rw [norm_mul, Real.norm_eq_abs,
-      abs_of_nonneg (div_nonneg (nonnegative z.2) ENNReal.toReal_nonneg)]
+      abs_of_nonneg coefficientNonnegative]
   rw [normIdentity, absoluteMoment.2]
   apply Finset.sum_le_sum
   intro a _
@@ -266,6 +269,7 @@ private theorem policy_return_integrable
   apply (potentialIntegrable a).bdd_mul
     ((measurablePolicy a).comp measurableX).aestronglyMeasurable (c := 1)
   filter_upwards with ω
+  change ‖π (X ω) a‖ ≤ (1 : ℝ)
   rw [Real.norm_eq_abs, abs_of_nonneg (nonnegative (X ω) a)]
   exact probability_row_le_one (π (X ω)) (nonnegative (X ω)) (normalized (X ω)) a
 
@@ -440,7 +444,6 @@ private theorem finite_value_from_potential_means {m : Nat}
       (policyValue mass (policyProbability table) outcome : ℝ) := by
   classical
   let π : Fin m → Bool → ℝ := fun x a => (policyProbability table x a : ℝ)
-  let σ : MeasurableSpace Ω := MeasurableSpace.comap X inferInstance
   have measurablePolicy (a : Bool) : Measurable (fun x => π x a) :=
     measurable_of_finite _
   have nonnegative (x : Fin m) (a : Bool) : 0 ≤ π x a := by
@@ -458,22 +461,29 @@ private theorem finite_value_from_potential_means {m : Nat}
     apply (potentialIntegrable a).bdd_mul
       ((measurablePolicy a).comp measurableX).aestronglyMeasurable (c := 1)
     filter_upwards with ω
+    change ‖π (X ω) a‖ ≤ (1 : ℝ)
     rw [Real.norm_eq_abs, abs_of_nonneg (nonnegative (X ω) a)]
     exact probability_row_le_one (π (X ω)) (nonnegative (X ω)) (normalized (X ω)) a
   have replacePotential (a : Bool) :
       (∫ ω, π (X ω) a * potential a ω ∂P) =
         ∫ ω, π (X ω) a * (outcome (X ω) a : ℝ) ∂P := by
-    have measurableAtX : StronglyMeasurable[σ] (fun ω => π (X ω) a) :=
+    have measurableAtX :
+        StronglyMeasurable[MeasurableSpace.comap X
+          (inferInstance : MeasurableSpace (Fin m))] (fun ω => π (X ω) a) :=
       (measurablePolicy a).stronglyMeasurable.comp_measurable
         (Measurable.of_comap_le le_rfl)
     have pullout := condExp_mul_of_stronglyMeasurable_left
-      (μ := P) (m := σ) measurableAtX (productIntegrable a) (potentialIntegrable a)
+      (μ := P)
+      (m := MeasurableSpace.comap X (inferInstance : MeasurableSpace (Fin m)))
+      measurableAtX (productIntegrable a) (potentialIntegrable a)
     calc
       (∫ ω, π (X ω) a * potential a ω ∂P) =
-          ∫ ω, P[(fun ω => π (X ω) a * potential a ω) | σ] ω ∂P :=
+          ∫ ω, P[(fun ω => π (X ω) a * potential a ω) |
+            MeasurableSpace.comap X (inferInstance : MeasurableSpace (Fin m))] ω ∂P :=
         (integral_condExp (μ := P)
           (f := fun ω => π (X ω) a * potential a ω) measurableX.comap_le).symm
-      _ = ∫ ω, π (X ω) a * P[potential a | σ] ω ∂P :=
+      _ = ∫ ω, π (X ω) a * P[potential a |
+          MeasurableSpace.comap X (inferInstance : MeasurableSpace (Fin m))] ω ∂P :=
         integral_congr_ae pullout
       _ = _ := by
         apply integral_congr_ae
@@ -621,7 +631,6 @@ theorem actual_measured_policy_causal_value {m : Nat}
           (Behavior.indicator (rows ω).measured.label : ℝ) =
       π (X ω) (actualA ω) / loggingMass K (X ω) (actualA ω) * Y ω
     rw [← hlog (actualA ω), hmeasurement]
-    rfl
   refine ⟨?_, causal.1.congr scoreEquality.symm, ?_, ?_⟩
   · filter_upwards [accepted] with ω hω
     exact measured_policy_row_preserves_actual_output env (measurement ω)

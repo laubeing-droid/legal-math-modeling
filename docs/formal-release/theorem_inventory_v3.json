@@ -437,6 +437,7 @@
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.U01_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
+    "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
@@ -904,6 +905,9 @@
     "JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law",
     "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect",
     "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability",
+    "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
+    "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
+    "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
     "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
     "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
     "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split",
@@ -4587,8 +4591,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "34cbfc035074c99495a10684321466d489c5b93511737fafd7d5acaa2f428dc3",
-   "size_bytes": 299128,
+   "sha256": "5879bde7b56c520e066f8558eb684245067dbf80b5719677f52379b74ffb1379",
+   "size_bytes": 299839,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -8132,6 +8136,36 @@
    "size_bytes": 12401,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "equicorrelated_mean_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "equicorrelated_mean_branches"
+    },
+    {
+     "kind": "theorem",
+     "name": "fair_coin_complement_witness"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.LearningDependence20261027",
+    "JurisLean.Candidates.LearningFiniteClass20261027",
+    "Mathlib.Probability.Moments.Variance",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
+   "print_axioms_targets": [],
+   "sha256": "4e6cf9c1e8f87587af358279412dbdbeca82de4c903bb5817fa27280b00c0c43",
+   "size_bytes": 7534,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
   },
   {
    "declarations": [
@@ -17062,6 +17096,24 @@
    "size_bytes": 23917,
    "theorem_count": 13,
    "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.EquicorrelatedMean20261030"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
+    "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
+    "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+   ],
+   "sha256": "6c91454ef85b5c6f766e2e1029972d4807a0bed08e5dede5e0401437ac3a382e",
+   "size_bytes": 1078,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -58350,6 +58402,7 @@
     "JurisLean.Candidates.CommitRecovery20261027",
     "JurisLean.Candidates.CommitRecoveryAudit20261027",
     "JurisLean.Candidates.CurrentContextRollback20261027",
+    "JurisLean.Candidates.EquicorrelatedMean20261030",
     "JurisLean.Candidates.EvidenceWorldsAudit20261027",
     "JurisLean.Candidates.ExactProbability20261027",
     "JurisLean.Candidates.ExactProbabilityAudit20261027",
@@ -58374,6 +58427,7 @@
     "JurisLean.Candidates.U02_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
+    "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U07_2JointObject20261029",
@@ -58574,8 +58628,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "2f5d65db3220a4eec229907010c10bf358d1795d7be7a03de40228db03783020",
-   "size_bytes": 11751,
+   "sha256": "7aac26de56d5012b59a1f12ba66bc6735cce5f97be4991d716faa524e2b27fe1",
+   "size_bytes": 11868,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58739,22 +58793,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6235,
-   "file_count": 509,
+   "counted_declaration_count": 6238,
+   "file_count": 511,
    "lemma_count": 146,
-   "print_axioms_command_count": 5393,
-   "print_axioms_distinct_targets": 5025,
-   "theorem_count": 6089,
-   "theorem_count_bol_convention": 5989
+   "print_axioms_command_count": 5400,
+   "print_axioms_distinct_targets": 5028,
+   "theorem_count": 6092,
+   "theorem_count_bol_convention": 5992
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6216,
-   "file_count": 494,
+   "counted_declaration_count": 6219,
+   "file_count": 496,
    "lemma_count": 139,
-   "print_axioms_command_count": 5393,
-   "print_axioms_distinct_targets": 5025,
-   "theorem_count": 6077,
-   "theorem_count_bol_convention": 5977
+   "print_axioms_command_count": 5400,
+   "print_axioms_distinct_targets": 5028,
+   "theorem_count": 6080,
+   "theorem_count_bol_convention": 5980
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -58832,6 +58886,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
@@ -58927,6 +58982,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
@@ -59339,6 +59395,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/CurrentContextRollbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumerAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EventFeedbackConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
@@ -59434,6 +59491,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
@@ -59814,17 +59872,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2cda5c3bcbe4f93ddf673d0c7046a5794c5cdf26fb94eac3bba3b45d2a96f931",
+ "source_inventory_digest": "d57bb8f057f94e65ce1c07a1e8dd5e334a98735a9d8f34e9a1fd4e9827942bf5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u01-4-original-20261030",
-  "commit": "a20008bfa927c2f7cfd7726c70ca528e3254eeda",
-  "tree": "69bb7096ae683bc129ed21bbf3610af262e81f5b"
+  "branch": "formal/close-u04-4-original-20261031",
+  "commit": "09c47c4af27d0f1e9a2b47afc79a49d057cf8761",
+  "tree": "313119226e989e8f1c6c48d45b147afd0595440b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 509,
+  "files_total": 511,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

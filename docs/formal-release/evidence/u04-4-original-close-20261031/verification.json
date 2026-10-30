@@ -1,0 +1,113 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
+  "subject_tree": "3c12367dac3fd20c4ed7287bf6bc91bf9753c5aa",
+  "run_id": 41098286355,
+  "job_id": 124209655817,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41098286355",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41098286355/job/124209655817",
+  "artifact_name": "changed-module-only-41098286355-1",
+  "artifact_id": 12998165175,
+  "artifact_sha256": "c5c898f2f1a0b6a290781885cc98b40bf01b75335a90551b3014b969acd32199",
+  "artifact_size_bytes": 3379,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "fae4bf3af604cf818595160a141c88a35e1fa16e05f1058ee2c68cd227f5026f"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 22194,
+      "sha256": "98cc80bcd8d1d7e2cb315075ca5b0f8f00c4e5219c7011236c4d86b4ad14c7be"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+  "named_count": 4,
+  "names_by_clause": {
+    "U04.4": [
+      "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
+      "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
+      "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
+      "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean",
+    "JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure",
+    "JurisLean.Candidates.Final20261021.Probability.EffectiveCount",
+    "JurisLean.Candidates.Final20261021.Probability.u04_4_variance_equivalent"
+  ],
+  "axiom_audit": {
+    "audited_targets": 4,
+    "axiom_vocabulary": {
+      "Classical.choice": 4,
+      "Quot.sound": 4,
+      "propext": 4
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+      "sha256": "6c91454ef85b5c6f766e2e1029972d4807a0bed08e5dede5e0401437ac3a382e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
+      "sha256": "4e6cf9c1e8f87587af358279412dbdbeca82de4c903bb5817fa27280b00c0c43"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+      "sha256": "d7826bb633877896d5e66bce574fa7b4585092b06b196b1795d05d1843c523c7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "sha256": "7ad8f61204e15027797124014eadc9159a43767ed7afc54858b495be777fab8c"
+    }
+  ],
+  "original_residuals": {
+    "U04.4": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, and the r=-1 quadratic form are named. The pre-existing u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance remains the zero-denominator branch. n_eff does not restore independence. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a restoration of independence."
+  },
+  "closed_ids": [
+    "U04.4"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 5,
+  "narrow_after": 4,
+  "wiring_before": 45,
+  "wiring_after": 46,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u04-4-original-close-20261031/axiom-audit.raw.txt",
+    "sha256": "6462503c011a7b08b071932b23141b9337a8dfc18a0fc77ee8217704d6cc85e0",
+    "blocks": 12
+  }
+}

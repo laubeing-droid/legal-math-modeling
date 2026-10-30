@@ -323,8 +323,8 @@ def check_ledger(ledger: dict, status: dict, archive: dict, extracted: dict, lin
     if len(rows) != 50:
         errors.append(f"ledger rows {len(rows)} != 50")
     counts = ledger.get("counts") or {}
-    if counts.get("证") != 45 or counts.get("缩") != 5 or counts.get("放弃") != 0 or counts.get("未决") != 0:
-        errors.append(f"ledger counts {counts} != prove 45 / narrow 5 / abandon 0 / undecided 0")
+    if counts.get("证") != 46 or counts.get("缩") != 4 or counts.get("放弃") != 0 or counts.get("未决") != 0:
+        errors.append(f"ledger counts {counts} != prove 46 / narrow 4 / abandon 0 / undecided 0")
     status_rows = {row["clause"]: row for row in status["rows"]}
     open_count = 0
     for row, archived_row in zip(rows, archived):
@@ -537,7 +537,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 45 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 46 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )

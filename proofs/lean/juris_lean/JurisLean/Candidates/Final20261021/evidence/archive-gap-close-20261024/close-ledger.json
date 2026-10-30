@@ -68,9 +68,10 @@
       "U10.1",
       "U02.4",
       "U09.2",
-      "U01.4"
+      "U01.4",
+      "U04.4"
     ],
-    "independent_closed_total": 23,
+    "independent_closed_total": 24,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -91,15 +92,15 @@
       "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json",
       "docs/formal-release/evidence/u09-2-original-close-20261030/verification.json",
-      "docs/formal-release/evidence/u01-4-original-close-20261030/verification.json"
+      "docs/formal-release/evidence/u01-4-original-close-20261030/verification.json",
+      "docs/formal-release/evidence/u04-4-original-close-20261031/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u01-4-original-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u01-4-original-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u04-4-original-close-20261031/verification.json",
+    "close_pack": "docs/formal-release/evidence/u04-4-original-close-20261031",
     "candidate_rows": 0,
     "blocked_rows": 0,
     "narrow_not_reopened": [
       "U04.1",
-      "U04.4",
       "U05.1",
       "U06.5",
       "U00"
@@ -148,7 +149,8 @@
       "U12.1",
       "U10.1",
       "U02.4",
-      "U09.2"
+      "U09.2",
+      "U01.4"
     ],
     "companion_tail_ids": [
       "U08.3",
@@ -160,7 +162,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=45; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=46; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -193,12 +195,12 @@
     "local_lean_is_not_closure": true
   },
   "counts": {
-    "证": 45,
-    "缩": 5,
+    "证": 46,
+    "缩": 4,
     "放弃": 0,
     "未决": 0,
-    "CLOSED_BY_NARROW": 5,
-    "CLOSED_BY_WIRING": 45,
+    "CLOSED_BY_NARROW": 4,
+    "CLOSED_BY_WIRING": 46,
     "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
@@ -2568,12 +2570,12 @@
     },
     {
       "clause": "U04.4",
-      "suggested_close_path": "缩",
-      "archive_gap_status": "CLOSED_BY_NARROW",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, and the r=-1 quadratic form are named. The pre-existing u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance remains the zero-denominator branch. n_eff does not restore independence. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a restoration of independence.",
-      "claimed_scope": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, the r=-1 quadratic form, and the zero-denominator branch.",
-      "companion_scope_notes": "",
+      "claimed_scope": "Under the archived equal-variance/equal-correlation premises, the actual empirical-mean variance is v(1+(n-1)r)/n and the factor is nonnegative. For positive denominator the finite effective count n_eff=n/(1+(n-1)r) gives the same variance as v/n_eff; the zero-denominator branch proves the actual mean variance is zero and connects the forced rational boundary to the existing degenerate constructor. The B/(1-B) fair-coin witness and reused common-cause counterexample distinguish aggregate variance from coordinate independence.",
+      "companion_scope_notes": "The variance-derived effective count is conditional on the archived equal-variance/equal-correlation model; it does not imply independence or validate a software consumer.",
       "wired_declarations": [
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_covariance_expansion",
@@ -2634,12 +2636,12 @@
         "Acceptance.lean:334"
       ],
       "non_goals": [
-        "n_eff does not restore independence. Restoration of independence is an explicit non-goal.",
-        "Run 39783481932 compiling the covariance expansion does not discharge a restoration of independence."
+        "The effective count summarizes the variance of the aggregate mean and does not restore independence among the original coordinates.",
+        "No full covariance-matrix classification or original-coordinate independence theorem is claimed."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "",
-      "remaining_after_close": "NON_GOAL_POINTER: n_eff does not restore independence. Restoration of independence is an explicit non-goal. | Run 39783481932 compiling the covariance expansion does not discharge a restoration of independence.",
+      "scope_review": "Independent U04.4 source-bound close: under n≥2, common variance v>0, coordinate measurability and the archived common off-diagonal covariance v*r premise, `equicorrelated_mean_variance` proves the actual empirical-mean variance v*(1+(n-1)*r)/n and nonnegativity of the factor D=1+(n-1)*r. `equicorrelated_mean_branches` proves the positive-D branch has n_eff=n/D and variance v/n_eff; at D=0 it proves actual mean variance zero, forces r=-1/(n-1), and connects the rational boundary to the existing `u04_4_variance_equivalent` degenerate constructor. The `fair_coin_complement_witness` gives the actual B/(1-B) model with variances 1/4, covariance -1/4, constant mean 1/2 and mean variance 0. Reused `u01_4_concrete_common_cause_counterexample` gives distinct identifiers with non-independent coordinates and empirical-mean variance 1/4 for n>1; when r=1, D=n and n_eff=1, which is an aggregate-variance summary rather than restored independence. The existing zero-denominator constructor remains rational-valued; this is not a claim that an old software API accepts arbitrary real inputs. Four targets and four object checks were independently audited at subject 7dcee7f360758bebc15e7a2efc49ee76c7d97201, run 41098286355, job 124209655817. This closes only the archived U04.4 mathematical scope; no full PSD classification, Gaussian assumption, restored independence, real-data claim, original-question 04.4 row, or consumer-edge call is claimed. Original-question 04.2 receives only the effective-count subparagraph evidence and remains PARTIAL.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U04_4_PROOFS || NON_GOAL_POINTER: The effective count summarizes the variance of the aggregate mean and does not restore independence among the original coordinates. | No full covariance-matrix classification or original-coordinate independence theorem is claimed.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2655,10 +2657,19 @@
       "formal_tail_prove": {
         "in_this_round": false,
         "not_reopened": true,
-        "archive_gap_status": "CLOSED_BY_NARROW",
-        "close_admitted": false,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u04-4-original-close-20261031/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
+          "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
+          "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
+          "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+        ]
       }
     },
     {

@@ -70,7 +70,7 @@ def load_binding():
 
 def theorem_lines(candidate: Path) -> dict[tuple[str, str], int]:
     found: dict[tuple[str, str], int] = {}
-    paths = [*candidate.glob("*.lean"), candidate.parent / "U10_1RefreshRuleProtocol20261030.lean"]
+    paths = list(candidate.glob("*.lean"))
     for path in sorted(paths):
         if not path.is_file():
             continue
@@ -83,8 +83,6 @@ def theorem_lines(candidate: Path) -> dict[tuple[str, str], int]:
 
 
 def qualified(file_name: str, short: str) -> str:
-    if Path(file_name).stem == "U10_1RefreshRuleProtocol20261030":
-        return f"JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.{short}"
     return f"{disp.PREFIX}{Path(file_name).stem}.{short}"
 
 

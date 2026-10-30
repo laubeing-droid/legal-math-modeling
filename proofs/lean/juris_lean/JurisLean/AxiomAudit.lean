@@ -235,6 +235,7 @@ import JurisLean.Candidates.U12_3MARSequential20261030
 import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
+import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -829,6 +830,14 @@ open HornSystem
 #print axioms JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers
 #check JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton
 #print axioms JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton
+
+/-! U04.4 actual equicorrelated variance and effective-count targets. The reused common-cause theorem is audited above. -/
+#check JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance
+#check JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches
+#check JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness
 
 /-! U12.1 source audit additions. -/
 #check JurisLean.Candidates.U12_1CausalPolicyBridge20261030.finite_action_causal_ipw

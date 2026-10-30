@@ -1,0 +1,70 @@
+JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} {X : Fin n → Ω → ℝ} {v r : ℝ}
+  (hn : 2 ≤ n) (hv : 0 < v) (hXm : ∀ (i : Fin n), AEMeasurable (X i) μ)
+  (hvar : ∀ (i : Fin n), ProbabilityTheory.variance (X i) μ = v)
+  (hcov : ∀ (i j : Fin n), i ≠ j → ProbabilityTheory.covariance (X i) (X j) μ = v * r) :
+  ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X) μ =
+      v * (1 + (↑n - 1) * r) / ↑n ∧
+    0 ≤ 1 + (↑n - 1) * r
+
+'JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  {μ : MeasureTheory.Measure Ω} [MeasureTheory.IsProbabilityMeasure μ] {n : ℕ} {X : Fin n → Ω → ℝ} {v r : ℝ}
+  (hn : 2 ≤ n) (hv : 0 < v) (hXm : ∀ (i : Fin n), AEMeasurable (X i) μ)
+  (hvar : ∀ (i : Fin n), ProbabilityTheory.variance (X i) μ = v)
+  (hcov : ∀ (i j : Fin n), i ≠ j → ProbabilityTheory.covariance (X i) (X j) μ = v * r) :
+  (0 < 1 + (↑n - 1) * r →
+      0 < ↑n / (1 + (↑n - 1) * r) ∧
+        ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X) μ =
+          v / (↑n / (1 + (↑n - 1) * r))) ∧
+    (1 + (↑n - 1) * r = 0 →
+      ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X) μ = 0 ∧
+        r = ↑(-1 / (↑n - 1)) ∧
+          JurisLean.Candidates.Final20261021.Probability.u04_4_variance_equivalent n (-1 / (↑n - 1)) =
+            JurisLean.Candidates.Final20261021.Probability.EffectiveCount.degenerateZeroVariance)
+
+'JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness :
+  ProbabilityTheory.variance id JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure = 1 / 4 ∧
+    ProbabilityTheory.variance (fun ω => 1 - ω) JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure =
+        1 / 4 ∧
+      ProbabilityTheory.covariance id (fun ω => 1 - ω) JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure =
+          -1 / 4 ∧
+        (∀ (ω : ℝ),
+            JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w => if i = 0 then w else 1 - w) ω =
+              1 / 2) ∧
+          ProbabilityTheory.variance
+              (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean fun i w => if i = 0 then w else 1 - w)
+              JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure =
+            0
+
+'JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample {n : ℕ} (hn : 1 < n) :
+  (Function.Injective fun event => event) ∧
+    ProbabilityTheory.variance (JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean fun x => id)
+          JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure =
+        1 / 4 ∧
+      ¬ProbabilityTheory.iIndepFun (fun x => id) JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure
+
+'JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean.{u_1} {Ω : Type u_1} {n : ℕ} (X : Fin n → Ω → ℝ)
+  (w : Ω) : ℝ
+
+JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure : MeasureTheory.Measure ℝ
+
+JurisLean.Candidates.Final20261021.Probability.EffectiveCount : Type
+
+JurisLean.Candidates.Final20261021.Probability.u04_4_variance_equivalent (n : ℕ) (r : ℚ) :
+  JurisLean.Candidates.Final20261021.Probability.EffectiveCount

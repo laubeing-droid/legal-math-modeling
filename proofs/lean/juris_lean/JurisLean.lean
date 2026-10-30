@@ -115,6 +115,7 @@ import JurisLean.Candidates.U11_1DebtClosureAudit20261030
 import JurisLean.Candidates.U11_1NamedCausalBridge20261030
 import JurisLean.Candidates.U12_3PolicyLearningAudit20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
+import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030
 import JurisLean.CanonicalSerialization

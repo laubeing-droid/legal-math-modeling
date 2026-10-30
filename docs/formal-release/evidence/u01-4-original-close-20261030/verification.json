@@ -1,0 +1,128 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+  "subject_tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+  "run_id": 41081311144,
+  "job_id": 124150886815,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41081311144",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41081311144/job/124150886815",
+  "artifact_name": "changed-module-only-41081311144-1",
+  "artifact_id": 12989961441,
+  "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+  "artifact_size_bytes": 3510,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "33e48402d6a657ce9f78462bf75b3d002c7b5881c4a4cf16f643c4530ddf72b5"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 21815,
+      "sha256": "18d8ecfc313963831b4563857c1ccd302433c0312842d6e3c678240c56ec2cfc"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U01_4OriginalClosureAudit20261030.lean",
+  "named_count": 10,
+  "names_by_clause": {
+    "U01.4": [
+      "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+      "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
+      "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization",
+      "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+      "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+      "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+      "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.LearningDependence20261027.FairBinary",
+    "JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure",
+    "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit",
+    "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk",
+    "JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean"
+  ],
+  "axiom_audit": {
+    "audited_targets": 10,
+    "axiom_vocabulary": {
+      "Classical.choice": 9,
+      "Quot.sound": 9,
+      "propext": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U01_4OriginalClosureAudit20261030.lean",
+      "sha256": "e3b50420ca7fa4ff7ba06567050bc61b492f0f5326003e747c5fa348878737d0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+      "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+      "sha256": "d7826bb633877896d5e66bce574fa7b4585092b06b196b1795d05d1843c523c7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+      "sha256": "01021bb7a6a20ce6cd6338e07b287085a6f5ee6663edfb66214904d721596674"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
+      "sha256": "3dd7e325a499c8547a71755ef436f7db3268a480dcd863a5deb00da515f210d8"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+      "sha256": "3ce4768676de75a5f2d32173bb2500c8d0763bed9027c979cfb78c796efe945e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d"
+    }
+  ],
+  "original_residuals": {
+    "U01.4": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the named finite witnesses into a claim about real data. This does not assert that real data follow the bad mechanism."
+  },
+  "closed_ids": [
+    "U01.4"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 6,
+  "narrow_after": 5,
+  "wiring_before": 44,
+  "wiring_after": 45,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u01-4-original-close-20261030/axiom-audit.raw.txt",
+    "sha256": "7bd068de16d40cff9864c638c77ea1cf0727b25788a3fb7eb8e73ed63a7c5811",
+    "blocks": 25
+  }
+}

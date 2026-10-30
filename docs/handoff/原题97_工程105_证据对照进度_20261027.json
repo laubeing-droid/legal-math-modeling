@@ -1,35 +1,38 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
-    "source_checkpoint": "22f281620cd861ec4308b8f0745064c332e1d7c2",
-    "ci_status": "U02.4_RUN2_SUCCESS; U09.2_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; no PR/merge; full-release gates are not represented here",
+    "baseline_main": "872930a8bc5af51e493de3baf609ab0295c3664f",
+    "source_checkpoint": "f80e790e6d6ecbd8449f2181433673945540e5af",
+    "source_tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+    "ci_status": "U01.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "本记录登记原题02.4数学行已按既有COVERED定义具名证明并经独立CI验证：125的generic有限conditional union经新P_H界连接，127的countable/summable与实际Bernoulli无限模型及无固定次单位horizon边界由旧17目标和新countable界覆盖，129的每次新尝试在同一global t继续编号、使用包含此前尝试的完整history并纳入同一累计sum；Finset.sum_range_add给出任一路径prefix+suffix=total，global cap ε即suffix≤ε−spentprefix；条件δ须对每一完整历史持续有效。新证据目前仅SOURCE_EVIDENCE_ONLY，尚未PR/合并；工程105、六切口、完整理论与部署不据此覆盖。main仍是U10.1 PR75实际合后tree；全局discharges/math_flip/Step2仍false。 本轮另有U09.2的09.8现金守恒子段源与独立changed-module证据；其余09.8义务、U09.3和15条消费边不据此覆盖。",
+    "scope": "仅登记冻结U01.4有限见证的独立source/module证据：字面标签/真值与实际拟合的有限训练0/部署1见证、source/deployment点质量与任意确定learner两世界有限反例、独立/复制/共同原因有限方差及n>1见证、以及解释域内分组单值性。映射到原题01.1标签/拟合、01.3依赖与分组、01.5有限source/deployment子段和04.2独立/复制方差子段；四行中04.2从NOT_RECONCILED提升为PARTIAL，其余仍PARTIAL。原题01.4的表示误差问题、这些行的其他要求、真实数据机制、源真实性、法律授权、部署验收均未由本记录关闭。独立changed-module仅审计具名source，不表示PR/full-release/merge；main已合入PR76且实际archive账为44/6/0，本branch草稿账为45/5/0。全局discharges、Step2、math_flip仍false。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41065859816,
-    "ci_job_id": 124096972537,
-    "ci_subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
-    "ci_artifact": "changed-module-only-41065859816-1",
-    "ci_artifact_id": 12982083685,
-    "ci_artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
-    "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 22f28162 carries U02.4 run2 and U09.2 changed-module evidence; the current draft ledger proposes 44 / 6 / 0, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false."
+    "ci_run_id": 41081311144,
+    "ci_job_id": 124150886815,
+    "ci_subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+    "ci_subject_tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+    "ci_attempt": 1,
+    "ci_artifact": "changed-module-only-41081311144-1",
+    "ci_artifact_id": 12989961441,
+    "ci_artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+    "archive_gap_ledger_status": "main@872930a8bc5af51e493de3baf609ab0295c3664f / tree da83c841f6768b07337c9f44b734ad1e32d27c4a retains PR76 post-merge checks at 44 CLOSED_BY_WIRING / 6 CLOSED_BY_NARROW / 0 OPEN. Branch f80e790e has U01.4 source evidence and draft 45 / 5 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
+  "reference_main": "872930a8bc5af51e493de3baf609ab0295c3664f",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
     "COVERED": 15,
-    "PARTIAL": 52,
-    "NOT_RECONCILED": 30
+    "PARTIAL": 53,
+    "NOT_RECONCILED": 29
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -84,12 +87,30 @@
           "run_id": 40369446453,
           "job_id": 121735932469,
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+          "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+          "tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+          "run_id": 41081311144,
+          "job_id": 124150886815,
+          "attempt": 1,
+          "artifact_id": 12989961441,
+          "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+          "scope": "Finite same-point label/truth and actual-fit witness: pointPopulationRisk_eq and actualConstantFit_value, instantiated at visible=false with label=(fun _=>false), truth=(fun _=>true), and h=actualConstantFit false, establish training risk 0 and truth/deployment risk 1. This is only the mapped subclaim; the row remains partial.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+            "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
+            "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value"
+          ]
         }
       ],
       "remaining": "已定位实际拟合的标签/真值反例、训练零部署一及风险桥。标签争议输入、原文全部子句及U00同源解释仍需逐项收口。",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
-        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean"
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean"
       ]
     },
     {
@@ -197,12 +218,31 @@
           "run_id": 40394833453,
           "job_id": 121825006993,
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+          "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+          "tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+          "run_id": 41081311144,
+          "job_id": 124150886815,
+          "attempt": 1,
+          "artifact_id": 12989961441,
+          "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+          "scope": "Finite dependence and grouping witnesses: independent and copied empirical-mean variances, the distinct-ID common-cause counterexample for n>1, and grouped_unit_not_split. Grouping is not an iid or leakage theorem; the row remains partial.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+            "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split"
+          ]
         }
       ],
       "remaining": "已定位独立/复制/共同原因模型，以及按真实EventId分区的执行合同。分组不证明iid；跨事件偏差、未来与标签泄漏仍按原文逐项核验。",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningDependence20261027.lean",
-        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningEventSplit20261027.lean"
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningEventSplit20261027.lean",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean"
       ]
     },
     {
@@ -302,12 +342,28 @@
           "run_id": 40380565418,
           "job_id": 121775341571,
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
+        },
+        {
+          "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+          "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+          "tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+          "run_id": 41081311144,
+          "job_id": 124150886815,
+          "attempt": 1,
+          "artifact_id": 12989961441,
+          "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+          "scope": "Finite source/deployment point-mass witness and two-world theorem for finite samples generated from P and every deterministic learner. This does not derive source truth or general deployment transfer; the row remains partial.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+          ]
         }
       ],
       "remaining": "已定位有限联合空间风险转移界和任意确定学习器的不可见两世界反例。真实部署距离与目标语义桥仍是具名外部前提。",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean",
-        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean"
+        "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean"
       ]
     },
     {
@@ -1082,9 +1138,29 @@
           101
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+          "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+          "tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+          "run_id": 41081311144,
+          "job_id": 124150886815,
+          "attempt": 1,
+          "artifact_id": 12989961441,
+          "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+          "scope": "Independent-versus-copied variance and common-cause finite counterexample are now source-mapped by exact declarations. This is the U01.4 variance subsegment only; it does not establish every statistical question or any actual source process.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+          ]
+        }
+      ],
+      "remaining": "The finite independent/copy/common-cause variance subsegment is now mapped to U01.4 declarations. Other 04.2 claims, source-generation premises, and actual consumer evidence remain to be reconciled.",
+      "modules": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean"
+      ]
     },
     {
       "id": "04.3",
@@ -6144,22 +6220,23 @@
     "main_final_job": 122263283920
   },
   "latest_archive_closure": {
-    "pr": 75,
-    "main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
-    "tree": "acadb43a61dfa0782d246c70a5c422e8f7d103c9",
-    "pr_head": "5964b9a48cda705e6651c976ae0361be4745fc98",
+    "pr": 76,
+    "main": "872930a8bc5af51e493de3baf609ab0295c3664f",
+    "tree": "da83c841f6768b07337c9f44b734ad1e32d27c4a",
+    "pr_head": "7ce7c4e0ac6f7a11fe74b9116dde5b585b2bce29",
     "clauses": [
-      "U10.1"
+      "U02.4",
+      "U09.2"
     ],
-    "open_before": 1,
+    "open_before": 0,
     "open_after": 0,
-    "closed_this_round": 1,
+    "closed_this_round": 2,
     "closes_debt": true,
     "global_discharges": false,
-    "ulm_run": 41025138708,
-    "authority_run": 41025139030,
-    "final_job": 123971145550,
-    "certificate_artifact_id": 12964572413,
+    "ulm_run": 41076257507,
+    "authority_run": 41076259412,
+    "final_job": 124144028425,
+    "certificate_artifact_id": 12988018644,
     "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
     "postmerge_archive_checker_exit_code": 0
   },
@@ -6256,8 +6333,8 @@
     "time": "2026-10-28T00:29:54+08:00",
     "complete_theory_goal": false,
     "codex_new_construction_stopped": false,
-    "latest_source_checkpoint": "22f281620cd861ec4308b8f0745064c332e1d7c2",
-    "latest_source_checkpoint_status": "U09.2 run41065859816 at22f28162 and U02.4 run41062973614 at814c10b0 succeeded; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending"
+    "latest_source_checkpoint": "f80e790e6d6ecbd8449f2181433673945540e5af",
+    "latest_source_checkpoint_status": "U01.4 changed-module run41081311144/job124150886815 succeeded at f80e790e; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending"
   },
   "reconciliation_history": [
     {
@@ -6365,6 +6442,26 @@
       "ci_artifact_id": 12861283251,
       "ci_artifact_sha256": "20cbbe172c3bc787c6daf13f479612eb010bc006fb3148e87b2fdc9b603f2152",
       "archive_gap_ledger_status": "U02.1_CLOSED_BY_WIRING; SOURCE_EVIDENCE_ONLY; row 02.1 COVERED under its frozen conditional scope; remaining archive OPEN=8; global discharges/math flip/step 2 remain false/open. This field is not full-release evidence."
+    },
+    {
+      "baseline_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
+      "source_checkpoint": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+      "ci_status": "U02.4_RUN2_SUCCESS; U09.2_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; no PR/merge; full-release gates are not represented here",
+      "closes_debt": false,
+      "current_archive_open": 0,
+      "scope": "本记录登记原题02.4数学行已按既有COVERED定义具名证明并经独立CI验证：125的generic有限conditional union经新P_H界连接，127的countable/summable与实际Bernoulli无限模型及无固定次单位horizon边界由旧17目标和新countable界覆盖，129的每次新尝试在同一global t继续编号、使用包含此前尝试的完整history并纳入同一累计sum；Finset.sum_range_add给出任一路径prefix+suffix=total，global cap ε即suffix≤ε−spentprefix；条件δ须对每一完整历史持续有效。新证据目前仅SOURCE_EVIDENCE_ONLY，尚未PR/合并；工程105、六切口、完整理论与部署不据此覆盖。main仍是U10.1 PR75实际合后tree；全局discharges/math_flip/Step2仍false。 本轮另有U09.2的09.8现金守恒子段源与独立changed-module证据；其余09.8义务、U09.3和15条消费边不据此覆盖。",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 41065859816,
+      "ci_job_id": 124096972537,
+      "ci_subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+      "ci_artifact": "changed-module-only-41065859816-1",
+      "ci_artifact_id": 12982083685,
+      "ci_artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
+      "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 22f28162 carries U02.4 run2 and U09.2 changed-module evidence; the current draft ledger proposes 44 / 6 / 0, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false."
     }
   ]
 }

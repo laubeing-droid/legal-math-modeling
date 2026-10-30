@@ -986,9 +986,12 @@ def test_u13_4_close_binds_fallback_selection_and_conditional_risk():
     assert ledger["counts"]["CLOSED_BY_WIRING"] == 41
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 1
     assert ledger["formal_tail_round"]["independent_closed_total"] == 19
-    assert ledger["formal_tail_round"]["wiring_not_reopened"][-1] == "U13.4"
+    assert "U13.4" in ledger["formal_tail_round"]["wiring_not_reopened"]
 
-    pack = checker.disp.INDEPENDENT_CLOSE_PACKS[-2]
+    pack = next(
+        p for p in checker.disp.INDEPENDENT_CLOSE_PACKS
+        if p["pack"] == checker.disp.U13_4_CLOSE_PACK
+    )
     receipt = checker.load_json(ROOT / pack["receipt"])
     raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
     assert checker.independent_close_errors(receipt, raw, pack) == []

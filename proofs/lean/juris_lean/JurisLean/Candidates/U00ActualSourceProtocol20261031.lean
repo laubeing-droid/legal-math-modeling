@@ -122,7 +122,9 @@ theorem successful_joint_source_is_actual_current_rule_input
       view input.supplements input.policies bound admitted).1.trans viewSame
   refine ⟨x, after, bound, horn, sameLayers, joint, boundSource,
     refreshed, evaluated, environment, version, anchor, history, ?_, step, ?_⟩
-  · simpa only [boundSource] using full
+  · exact full.trans
+      (congrArg (fun source => fullHorn source horn.selectedVersion input.rules input.ruleGate
+        (eligibleFacts bound)) boundSource)
   · intro final initial reported
     have reportedActual :
         (refreshEvaluateContinue grants before change input branch meaning renewals).payment.current =

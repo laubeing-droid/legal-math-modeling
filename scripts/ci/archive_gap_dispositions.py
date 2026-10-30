@@ -2074,7 +2074,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "interpretation inputs; source truth/O05 and old Pipeline consumption remain "
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
-            "obligations and U00 edge 6 numeric consumption open. Current "
+            "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. Current "
         "OPEN_FORMAL_TAIL=2; CLOSED_BY_WIRING=40; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),

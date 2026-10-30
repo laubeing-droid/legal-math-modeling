@@ -2,23 +2,23 @@
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
     "baseline_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
-    "source_checkpoint": "814c10b0d404eaba8848636de8169b815460d70a",
-    "ci_status": "U02.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; no PR/merge; full-release gates are not represented here",
+    "source_checkpoint": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+    "ci_status": "U02.4_RUN2_SUCCESS; U09.2_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; no PR/merge; full-release gates are not represented here",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "本记录登记原题02.4数学行已按既有COVERED定义具名证明并经独立CI验证：125的generic有限conditional union经新P_H界连接，127的countable/summable与实际Bernoulli无限模型及无固定次单位horizon边界由旧17目标和新countable界覆盖，129的每次新尝试在同一global t继续编号、使用包含此前尝试的完整history并纳入同一累计sum；Finset.sum_range_add给出任一路径prefix+suffix=total，global cap ε即suffix≤ε−spentprefix；条件δ须对每一完整历史持续有效。新证据目前仅SOURCE_EVIDENCE_ONLY，尚未PR/合并；工程105、六切口、完整理论与部署不据此覆盖。main仍是U10.1 PR75实际合后tree；全局discharges/math_flip/Step2仍false。",
+    "scope": "本记录登记原题02.4数学行已按既有COVERED定义具名证明并经独立CI验证：125的generic有限conditional union经新P_H界连接，127的countable/summable与实际Bernoulli无限模型及无固定次单位horizon边界由旧17目标和新countable界覆盖，129的每次新尝试在同一global t继续编号、使用包含此前尝试的完整history并纳入同一累计sum；Finset.sum_range_add给出任一路径prefix+suffix=total，global cap ε即suffix≤ε−spentprefix；条件δ须对每一完整历史持续有效。新证据目前仅SOURCE_EVIDENCE_ONLY，尚未PR/合并；工程105、六切口、完整理论与部署不据此覆盖。main仍是U10.1 PR75实际合后tree；全局discharges/math_flip/Step2仍false。 本轮另有U09.2的09.8现金守恒子段源与独立changed-module证据；其余09.8义务、U09.3和15条消费边不据此覆盖。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41062973614,
-    "ci_job_id": 124087082984,
-    "ci_subject": "814c10b0d404eaba8848636de8169b815460d70a",
-    "ci_artifact": "changed-module-only-41062973614-1",
-    "ci_artifact_id": 12980527206,
-    "ci_artifact_sha256": "bbbb5f89a0d9d621b1322d4d3527106cfdb131d4e057b194da6359b6fff8eef4",
-    "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 814c10b0 has run41062973614 six-target evidence and proposes 43 / 7 / 0 in its draft ledger, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false; this field is not full-release evidence."
+    "ci_run_id": 41065859816,
+    "ci_job_id": 124096972537,
+    "ci_subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+    "ci_artifact": "changed-module-only-41065859816-1",
+    "ci_artifact_id": 12982083685,
+    "ci_artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
+    "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 22f28162 carries U02.4 run2 and U09.2 changed-module evidence; the current draft ledger proposes 44 / 6 / 0, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
@@ -26,7 +26,10 @@
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
-    "designated_cuts": 6
+    "designated_cuts": 6,
+    "COVERED": 15,
+    "PARTIAL": 52,
+    "NOT_RECONCILED": 30
   },
   "consumer_edge_audit": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2723,9 +2726,28 @@
           208
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u09-2-original-close-20261030",
+          "subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+          "subject_tree": "b5bb08d89185f578be03fd6742810a811710d52a",
+          "run_id": 41065859816,
+          "job_id": 124096972537,
+          "attempt": 1,
+          "artifact_id": 12982083685,
+          "artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
+          "named_targets": [
+            "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+            "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.Final20261021.Ledger.cashVector"
+          ],
+          "scope": "仅映射冻结09.8现金守恒子段：原题ℚ金额域下，两个既有Ledger有限和定理在每事件平衡、同单位封闭账户前提下经changed-module独立CI核验；实际事件发生、账户边界完整性仍为原文明示外部前提。未覆盖09.8其余返还/数量联合要求、U09.3或真实法律清偿。"
+        }
+      ],
+      "remaining": "本轮只覆盖09.8现金有限和守恒子段。返还节点、身份和数量分项及最强联合条件结论仍未在本轮完整核对；U09.3保持独立。实际事件发生与边界账户完整性继续作为冻结命题的明示外部前提。"
     },
     {
       "id": "10.1",

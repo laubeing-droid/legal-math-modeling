@@ -1,0 +1,15 @@
+JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation {A : Type} [Fintype A] (events : List (A → ℚ))
+  (balanced : ∀ e ∈ events, ∑ a, e a = 0) : (List.map (fun e => ∑ a, e a) events).sum = 0
+
+'JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account {A : Type} [Fintype A] (events : List (A → ℚ))
+  (balanced : ∀ e ∈ events, ∑ a, e a = 0) : ∑ a, JurisLean.Candidates.Final20261021.Ledger.cashVector events a = 0
+
+'JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Ledger.cashVector {A : Type} (events : List (A → ℚ)) (a : A) : ℚ

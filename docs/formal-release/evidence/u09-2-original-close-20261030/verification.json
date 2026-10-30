@@ -1,0 +1,96 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+  "subject_tree": "b5bb08d89185f578be03fd6742810a811710d52a",
+  "run_id": 41065859816,
+  "job_id": 124096972537,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41065859816",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41065859816/job/124096972537",
+  "artifact_name": "changed-module-only-41065859816-1",
+  "artifact_id": 12982083685,
+  "artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
+  "artifact_size_bytes": 985,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "c557a85a4a3d424c1ebe4fd02346f3d5fc32776b94017a45affdce1990bab91e"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 1684,
+      "sha256": "a86ddcd7902da9b32f5aa51007e2ab5a6fe90411a0bc0abdf82faac021fef935"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U09_2OriginalClosureAudit20261030.lean",
+  "named_count": 2,
+  "names_by_clause": {
+    "U09.2": [
+      "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.Final20261021.Ledger.cashVector"
+  ],
+  "axiom_audit": {
+    "audited_targets": 2,
+    "axiom_vocabulary": {
+      "Classical.choice": 2,
+      "Quot.sound": 2,
+      "propext": 2
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U09_2OriginalClosureAudit20261030.lean",
+      "sha256": "f937ca7e179ae67ef3ea323e1ce192a0fa7fdbab73dd413197c570813667db24"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d"
+    }
+  ],
+  "original_residuals": {
+    "U09.2": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises."
+  },
+  "closed_ids": [
+    "U09.2"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 7,
+  "narrow_after": 6,
+  "wiring_before": 43,
+  "wiring_after": 44,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u09-2-original-close-20261030/axiom-audit.raw.txt",
+    "sha256": "e50b1696fcd30771a5632cfce0e5c5fa84e226b883f0b35f94a19874d8d6b5f2",
+    "blocks": 5
+  }
+}

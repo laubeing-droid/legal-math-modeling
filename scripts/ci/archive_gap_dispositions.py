@@ -142,6 +142,7 @@ EXTRA_WIRED: dict[str, list[tuple[str, str, str]]] = {
 COMPANION_NOTES: dict[str, str] = {
     "U02.2": "companion_缩: 真实DB精化/外部副作用/最终完成",
     "U02.4": "The finite/countable risk bounds and single global-attempt cumulative-budget contract are audited under the stated premises; Finset.sum_range_add identifies each prefix plus its suffix. No separate reserve/commit object or runtime execution is introduced.",
+    "U09.2": "The existing rational-valued finite cash theorems are audited under the archived per-event balance and closed-account premises; no actual occurrence, boundary-account completeness, lawful discharge, or 15-edge consumer call is claimed.",
     "U10.1": "companion_缩: external legal authority / 真实授权合法性",
     "U08.3": "non_goal: 现实真值定理",
     "U10.3": "companion_缩: 公平/外部响应",
@@ -171,7 +172,7 @@ PATHS: dict[str, str] = {
     "U08.3": "证",
     "U10.3": "证",
     "U09.1": "证",
-    "U09.2": "缩",
+    "U09.2": "证",
     "U09.3": "证",
     "U01.0": "证",
     "U01.1": "证",
@@ -255,8 +256,8 @@ NON_GOALS: dict[str, list[str]] = {
         "Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim.",
     ],
     "U09.2": [
-        "Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum.",
-        "Completeness of boundary accounts is an external premise and an explicit non-goal.",
+        "Actual occurrence of the cash events is an explicit external premise of the frozen proposition, not a theorem of the finite closed-account sum.",
+        "Completeness of boundary accounts is an explicit external premise; fees and boundary flows must be included or named.",
         "A real transfer does not by itself establish lawful discharge. The China-law column stays separate.",
     ],
     "U01.4": [
@@ -316,7 +317,7 @@ NON_GOALS: dict[str, list[str]] = {
 
 CLAIMED_SCOPE: dict[str, str] = {
     "U02.4": "For finite T and countably many rounds, under the actual conditional measure P_H=P(·|H), conditional failure bounds and finite-prefix cumulative risk budgets imply conditional union risk ≤ ε; with P(Hᶜ) ≤ α, the actual H/Hᶜ event partition gives unconditional union risk ≤ α+ε. For one global attempt sequence, Finset.sum_range_add gives S_(n+m)=S_n+suffix, so a total cap ε bounds the suffix by ε−S_n without resetting on retry grouping. The retained H=B witness has marginal 1/10 and conditional risk 1.",
-    "U09.2": "Finite closed-account sum and per-account sums.",
+    "U09.2": "Finite closed-account event-sum and per-account conservation for rational-valued cash vectors, under the frozen same-unit closed-account and per-event balance premises.",
     "U01.4": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation.",
     "U04.1": "Integer-shape density conjugacy, predictive mean, real Gamma weight ratio, and the exchangeable 5/6 versus Beta(1,1) 2/3 witness.",
     "U04.4": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, the r=-1 quadratic form, and the zero-denominator branch.",
@@ -360,6 +361,9 @@ UNWIRED: dict[str, list[str]] = {
 }
 
 SCOPE_REVIEW: dict[str, str] = {
+    "U09.2": (
+        "Independent U09.2 original-scope close: the two existing `Ledger` theorems establish that rational-valued event vectors with zero sum over a finite closed account type yield zero total event sum and zero summed per-account cash vector. This matches the frozen U09.2 finite-sum claim and original-question 09.8 cash paragraph, under its same-unit, closed-account, and per-event balance premises. The original residual is retained verbatim: actual event occurrence and completeness of boundary accounts remain external premises; fees and boundary flows must be included or named. The audit checks both theorem types/axioms and `cashVector`’s object type in run 41065859816, job 124096972537. It does not prove lawful discharge, refund-stage or debt-decomposition claims, or any actual call edge; other 09.8 obligations and U09.3 remain outside this close."
+    ),
     "U02.4": (
         "Independent U02.4 original-scope close: finite `finite_conditional_union_bound` / `finite_adaptive_union_bound` and the new finite theorem establish the finite conditional-risk consequence under the actual P_H=P(.|H); the old `countable_conditional_risk_budget`/`countable_summable_risk_budget`, `bernoulliPaths`, `bernoulli_coordinates_are_independent`, `bernoulli_cylinder_probability`, `bernoulli_one_attempt_risk`, `no_failure_is_the_false_cylinder`, `independent_constant_risk_accumulates`, `positive_constant_risk_has_no_fixed_subunit_horizon_limit`, and new `countable_prefix_external_condition_bound` cover countable summable bounds, actual Bernoulli products, and every finite T under the frozen model assumptions. The actual H/Hᶜ partition gives α+ε. For paragraph 129's one global attempt sequence, each ω has f(t)=budget(t,ω), and Mathlib `Finset.sum_range_add` gives S_(n+m)=S_n+suffix; the total cap bounds the suffix by ε−S_n without retry-grouping reset. The conditional δ premise must remain valid under each complete history and is not automatically preserved by arbitrary model updates. The retained H=B counterexample and old 17-target evidence remain in the progress record. Two new declarations, three reused repository declarations, and the Mathlib identity were independently audited at subject 814c10b0d404eaba8848636de8169b815460d70a, run 41062973614, job 124087082984. The original scope archive remains byte-for-byte unchanged; historical wording is preserved in original_residuals and interpreted against exact_scope rather than rewritten."
     ),
@@ -781,7 +785,6 @@ COMPANION_TAIL_IDS = (
     "U15.3",
 )
 CLOSED_NARROW_IDS = (
-    "U09.2",
     "U01.4",
     "U04.1",
     "U04.4",
@@ -831,6 +834,7 @@ CLOSED_WIRING_IDS = (
     "U12.1",
     "U10.1",
     "U02.4",
+    "U09.2",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1452,6 +1456,24 @@ U02_4_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
 )
 
+U09_2_CLOSED_IDS = ("U09.2",)
+U09_2_CLOSE_PACK = "docs/formal-release/evidence/u09-2-original-close-20261030"
+U09_2_RECEIPT = U09_2_CLOSE_PACK + "/verification.json"
+U09_2_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U09_2OriginalClosureAudit20261030.lean"
+U09_2_NAMES = {
+    "U09.2": [
+        "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+        "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account",
+    ]
+}
+U09_2_OBJECT_CHECKS = (
+    "JurisLean.Candidates.Final20261021.Ledger.cashVector",
+)
+U09_2_SOURCES = (
+    U09_2_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+)
+
 U11_1_CLOSED_IDS = ("U11.1",)
 U11_1_CLOSE_PACK = "docs/formal-release/evidence/u11-1-debt-close-20261030"
 U11_1_RECEIPT = U11_1_CLOSE_PACK + "/verification.json"
@@ -1642,12 +1664,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 41062973614, "expected_job_id": 124087082984,
      "expected_attempt": 1, "expected_artifact_id": 12980527206,
      "expected_artifact_sha256": "bbbb5f89a0d9d621b1322d4d3527106cfdb131d4e057b194da6359b6fff8eef4"},
+    {"closed_ids": U09_2_CLOSED_IDS, "pack": U09_2_CLOSE_PACK,
+     "receipt": U09_2_RECEIPT, "names": U09_2_NAMES,
+     "driver": U09_2_DRIVER, "sources": U09_2_SOURCES,
+     "object_checks": U09_2_OBJECT_CHECKS,
+     "open_before": 0, "open_after": 0,
+     "expected_subject": "22f281620cd861ec4308b8f0745064c332e1d7c2",
+     "expected_run_id": 41065859816, "expected_job_id": 124096972537,
+     "expected_attempt": 1, "expected_artifact_id": 12982083685,
+     "expected_artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS + U09_2_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES | U09_2_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -2216,7 +2247,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. Current "
-        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=43; the "
+        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=44; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -2243,6 +2274,7 @@ def remaining_after(clause: str) -> str:
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
     text = ("WIRED_TO_INDEPENDENT_U10_1_PROOFS" if clause in U10_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U09_2_PROOFS" if clause in U09_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U02_4_PROOFS" if clause in U02_4_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U12_1_PROOFS" if clause in U12_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U11_1_PROOFS" if clause in U11_1_CLOSED_IDS else

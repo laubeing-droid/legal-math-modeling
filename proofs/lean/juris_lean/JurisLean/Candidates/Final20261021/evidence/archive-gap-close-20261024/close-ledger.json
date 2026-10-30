@@ -66,9 +66,10 @@
       "U11.1",
       "U12.1",
       "U10.1",
-      "U02.4"
+      "U02.4",
+      "U09.2"
     ],
-    "independent_closed_total": 21,
+    "independent_closed_total": 22,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -87,14 +88,14 @@
       "docs/formal-release/evidence/u11-1-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u12-1-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
-      "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json"
+      "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json",
+      "docs/formal-release/evidence/u09-2-original-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u02-4-original-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u09-2-original-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u09-2-original-close-20261030",
     "candidate_rows": 0,
     "blocked_rows": 0,
     "narrow_not_reopened": [
-      "U09.2",
       "U01.4",
       "U04.1",
       "U04.4",
@@ -144,7 +145,8 @@
       "U13.4",
       "U11.1",
       "U12.1",
-      "U10.1"
+      "U10.1",
+      "U02.4"
     ],
     "companion_tail_ids": [
       "U08.3",
@@ -156,7 +158,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=43; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=44; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -189,12 +191,12 @@
     "local_lean_is_not_closure": true
   },
   "counts": {
-    "证": 43,
-    "缩": 7,
+    "证": 44,
+    "缩": 6,
     "放弃": 0,
     "未决": 0,
-    "CLOSED_BY_NARROW": 7,
-    "CLOSED_BY_WIRING": 43,
+    "CLOSED_BY_NARROW": 6,
+    "CLOSED_BY_WIRING": 44,
     "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
@@ -1797,12 +1799,12 @@
     },
     {
       "clause": "U09.2",
-      "suggested_close_path": "缩",
-      "archive_gap_status": "CLOSED_BY_NARROW",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises.",
-      "claimed_scope": "Finite closed-account sum and per-account sums.",
-      "companion_scope_notes": "",
+      "claimed_scope": "Finite closed-account event-sum and per-account conservation for rational-valued cash vectors, under the frozen same-unit closed-account and per-event balance premises.",
+      "companion_scope_notes": "The existing rational-valued finite cash theorems are audited under the archived per-event balance and closed-account premises; no actual occurrence, boundary-account completeness, lawful discharge, or 15-edge consumer call is claimed.",
       "wired_declarations": [
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
@@ -1830,13 +1832,13 @@
         "Ledger.lean:181"
       ],
       "non_goals": [
-        "Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum.",
-        "Completeness of boundary accounts is an external premise and an explicit non-goal.",
+        "Actual occurrence of the cash events is an explicit external premise of the frozen proposition, not a theorem of the finite closed-account sum.",
+        "Completeness of boundary accounts is an explicit external premise; fees and boundary flows must be included or named.",
         "A real transfer does not by itself establish lawful discharge. The China-law column stays separate."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "",
-      "remaining_after_close": "NON_GOAL_POINTER: Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum. | Completeness of boundary accounts is an external premise and an explicit non-goal. | A real transfer does not by itself establish lawful discharge. The China-law column stays separate.",
+      "scope_review": "Independent U09.2 original-scope close: the two existing `Ledger` theorems establish that rational-valued event vectors with zero sum over a finite closed account type yield zero total event sum and zero summed per-account cash vector. This matches the frozen U09.2 finite-sum claim and original-question 09.8 cash paragraph, under its same-unit, closed-account, and per-event balance premises. The original residual is retained verbatim: actual event occurrence and completeness of boundary accounts remain external premises; fees and boundary flows must be included or named. The audit checks both theorem types/axioms and `cashVector`’s object type in run 41065859816, job 124096972537. It does not prove lawful discharge, refund-stage or debt-decomposition claims, or any actual call edge; other 09.8 obligations and U09.3 remain outside this close.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U09_2_PROOFS || NON_GOAL_POINTER: Actual occurrence of the cash events is an explicit external premise of the frozen proposition, not a theorem of the finite closed-account sum. | Completeness of boundary accounts is an explicit external premise; fees and boundary flows must be included or named. | A real transfer does not by itself establish lawful discharge. The China-law column stays separate.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -1852,10 +1854,17 @@
       "formal_tail_prove": {
         "in_this_round": false,
         "not_reopened": true,
-        "archive_gap_status": "CLOSED_BY_NARROW",
-        "close_admitted": false,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u09-2-original-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+          "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account"
+        ]
       }
     },
     {

@@ -4,7 +4,7 @@
 
 本包最终独立审计绑定 subject `1959afb04058afbff8495baea92ef6ac1687a577`、run `41004233670`、job `123895367398`、attempt 1、artifact `changed-module-only-41004233670-1`（ID `12954856579`，9,300 bytes，SHA-256 `0fa985ccbd5247a8bc53d2638d84a0e01256ad64b92470722e510821e5f873be`）。driver 实际审计 20 个 proof targets 及 7 个公开对象/instance checks；17 个 proof 依赖 `[propext, Classical.choice, Quot.sound]`，`feedback_reads_actual_external_label` 与 `performance_magnitude_is_actual_allocation` 依赖 `[propext, Quot.sound]`，`u13_1_noninterference` 不依赖公理。原 17 个目标先前已在 subject `0592802552669d5059d9b1014f73c275f58e99b4`、run `41003069558`、job `123891696536` 通过；本次在新增三个原题推论后重审全部 20 个目标。`axiom-audit.raw.txt` 是从实际 `changed-module.log` 摘取的 20 个 proof 类型及公理输出；ZIP 两个成员的原始大小和 SHA-256 记于 verification.json。正文区分纸面数学推导、具名 Lean 结果及其条件。完整权威全链与合并仍待完成。
 
-Prior diagnostics are recorded only as history, not as acceptance evidence: run `41000829816` failed with ten proof-body elaboration errors in the earlier candidate; run `41002575698` compiled the source but its driver referenced `performance_magnitude_is_actual_allocation` under the wrong `MeasuredPolicy20261027` namespace instead of `BusinessMeasurement20261027`; run `41000801891` was a cancelled wrong-ref dispatch with zero jobs.
+Prior diagnostics are recorded only as history, not as acceptance evidence: run `41000829816` failed with ten proof-body elaboration errors in the earlier candidate; run `41002575698` compiled the source but its driver referenced `performance_magnitude_is_actual_allocation` under the wrong `MeasuredPolicy20261027` namespace instead of `BusinessMeasurement20261027`; run `41000801891` was a cancelled wrong-ref dispatch; never started; no jobs.
 
 ## 12.3（第117、119、124行）：从真实条件动作律到IPW
 

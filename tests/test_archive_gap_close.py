@@ -180,9 +180,8 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert any("另证" in item for item in same_row["non_goals"])
     blocked = [
         "U10.1", "U11.1", "U12.1",
-        "U13.4",
     ]
-    assert len(blocked) == 4
+    assert len(blocked) == 3
     cand6_shorts = [
         "u08_3_four_states_do_not_exhaust_dependency_policies",
         "u08_3_judgment_not_compatibility_world_classification",

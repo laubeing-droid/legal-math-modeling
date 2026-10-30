@@ -70,10 +70,7 @@ def load_binding():
 
 def theorem_lines(candidate: Path) -> dict[tuple[str, str], int]:
     found: dict[tuple[str, str], int] = {}
-    paths = list(candidate.glob("*.lean"))
-    for path in sorted(paths):
-        if not path.is_file():
-            continue
+    for path in sorted(candidate.glob("*.lean")):
         for lineno, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             stripped = raw.strip()
             if stripped.startswith("theorem "):

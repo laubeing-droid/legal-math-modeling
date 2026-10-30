@@ -236,6 +236,9 @@ import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
+import JurisLean.Candidates.BetaFutureSampling20261031
+import JurisLean.Candidates.BernoulliMeanInstance20261031
+import JurisLean.Candidates.BetaEnclosureInstance20261031
 
 /-! Axiom audit for formal core release v1. -/
 

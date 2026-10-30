@@ -38,7 +38,7 @@ private theorem bernoulli_bit_mean (p : ℝ) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     cases b <;> simp [bitValue]
   rw [indicator_eq, integral_indicator_one (show MeasurableSet ({true} : Set Bool) by trivial)]
   change ((bernoulliMeasure p hp0 hp1) {true}).toReal = p
-  have mass : (bernoulliMeasure p hp0 hp1) {true} = (p.toNNReal : ℝ≥0∞) := by
+  have mass : (bernoulliMeasure p hp0 hp1) {true} = ((p.toNNReal : NNReal) : ENNReal) := by
     unfold bernoulliMeasure
     rw [PMF.toMeasure_apply_singleton
       (PMF.bernoulli p.toNNReal (parameter_le_one p hp0 hp1)) true (by trivial)]

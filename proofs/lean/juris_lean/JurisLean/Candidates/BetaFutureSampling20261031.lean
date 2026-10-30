@@ -426,9 +426,8 @@ def observedFutureKernel (joint : Kernel ℝ (Bool × Bool)) : Kernel ℝ Bool :
     ProbabilityTheory.cond_apply
       (show MeasurableSet fixedDataEvent from .of_discrete)]
   exact Measurable.ite
-    (measurableSet_eq
-      (joint.measurable_coe (show MeasurableSet fixedDataEvent from .of_discrete))
-      measurable_const)
+    ((show MeasurableSet {q : ENNReal | q = 0} from measurableSet_eq).preimage
+      (joint.measurable_coe (show MeasurableSet fixedDataEvent from .of_discrete)))
     measurable_const
     ((joint.measurable_coe
       (show MeasurableSet fixedDataEvent from .of_discrete)).inv.mul

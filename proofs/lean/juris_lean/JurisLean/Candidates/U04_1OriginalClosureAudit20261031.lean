@@ -1,5 +1,6 @@
 import JurisLean.Candidates.BetaFutureSampling20261031
 import JurisLean.Candidates.BernoulliMeanInstance20261031
+import JurisLean.Candidates.BetaEnclosureInstance20261031
 
 /-!
 
@@ -43,3 +44,6 @@ likelihood and the concrete generation, joint-law, and observed-future objects.
 #check PMF.bernoulli
 #check JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean
 #check JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio
+#check JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+#print axioms JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+#check JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation

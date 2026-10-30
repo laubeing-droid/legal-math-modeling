@@ -1,0 +1,115 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "bf95766f1e68a82b2bda80db8712b39611233482",
+  "run_id": 41018909983,
+  "job_id": 123941482566,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41018909983",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41018909983/job/123941482566",
+  "artifact_name": "changed-module-only-41018909983-1",
+  "artifact_id": 12961061530,
+  "artifact_sha256": "542dd8f891c9628d0ac43dfe741b7ee4efe2c86aefe75b2c20def010e796e397",
+  "artifact_size_bytes": 7250,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 52357,
+      "sha256": "d22afb1d83060b65c424e7e680125c0efdda77693bb77ec5009596ad34a0fb7d"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 265,
+      "sha256": "b4180480adaf788a68295ab74c54b4bbe7e6b8280ca455777f68adc48151eb9d"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean",
+  "named_count": 8,
+  "names_by_clause": {
+    "U10.1": [
+      "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+      "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+      "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh",
+      "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+      "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+      "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+      "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+      "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.ProtocolRun",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkRenewal",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkedTail",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean",
+      "sha256": "9d4eece56e25f3b223c8bdc1694c624805bdd69c3f4463e02150fcf3dfa97276"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
+      "sha256": "a91d94e509a8b94eec5950232dfd62e53a578be412ef981bf80abaf7916aa01d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+      "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 8,
+    "axiom_vocabulary": {
+      "Classical.choice": 6,
+      "Quot.sound": 6,
+      "propext": 7
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U10.1": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 41017271251,
+      "job_id": 123936349618,
+      "head": "45a8554475cead62bfcf3c4a3bd7a2bcad0491d4",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 41018374250,
+      "job_id": 123939778296,
+      "head": "bf95766f1e68a82b2bda80db8712b39611233482",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    }
+  ],
+  "closed_ids": [
+    "U10.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 1,
+  "open_after": 0,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

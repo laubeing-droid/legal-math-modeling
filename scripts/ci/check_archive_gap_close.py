@@ -70,7 +70,10 @@ def load_binding():
 
 def theorem_lines(candidate: Path) -> dict[tuple[str, str], int]:
     found: dict[tuple[str, str], int] = {}
-    for path in sorted(candidate.glob("*.lean")):
+    paths = [*candidate.glob("*.lean"), candidate.parent / "U10_1RefreshRuleProtocol20261030.lean"]
+    for path in sorted(paths):
+        if not path.is_file():
+            continue
         for lineno, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             stripped = raw.strip()
             if stripped.startswith("theorem "):
@@ -80,6 +83,8 @@ def theorem_lines(candidate: Path) -> dict[tuple[str, str], int]:
 
 
 def qualified(file_name: str, short: str) -> str:
+    if Path(file_name).stem == "U10_1RefreshRuleProtocol20261030":
+        return f"JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.{short}"
     return f"{disp.PREFIX}{Path(file_name).stem}.{short}"
 
 
@@ -537,7 +542,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         for row in ledger.get("rows") or []
         if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
     ]
-    if len(disp.CLOSED_WIRING_IDS) != 41 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+    if len(disp.CLOSED_WIRING_IDS) != 42 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
         errors.append(
             f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
         )

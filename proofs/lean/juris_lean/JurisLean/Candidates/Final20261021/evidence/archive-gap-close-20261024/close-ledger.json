@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 1,
+    "open_formal_tail_remaining": 0,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -64,9 +64,10 @@
       "U12.3",
       "U13.4",
       "U11.1",
-      "U12.1"
+      "U12.1",
+      "U10.1"
     ],
-    "independent_closed_total": 19,
+    "independent_closed_total": 20,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -83,12 +84,13 @@
       "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u11-1-debt-close-20261030/verification.json",
-      "docs/formal-release/evidence/u12-1-debt-close-20261030/verification.json"
+      "docs/formal-release/evidence/u12-1-debt-close-20261030/verification.json",
+      "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u12-1-debt-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u12-1-debt-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u10-1-debt-close-20261030",
     "candidate_rows": 0,
-    "blocked_rows": 1,
+    "blocked_rows": 0,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -139,10 +141,10 @@
       "U06.2",
       "U12.3",
       "U13.4",
-      "U11.1"
+      "U11.1",
+      "U12.1"
     ],
     "companion_tail_ids": [
-      "U10.1",
       "U08.3",
       "U10.3",
       "U09.1",
@@ -152,7 +154,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. Current OPEN_FORMAL_TAIL=1; CLOSED_BY_WIRING=41; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=42; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -190,8 +192,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 41,
-    "OPEN_FORMAL_TAIL": 1
+    "CLOSED_BY_WIRING": 42,
+    "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -1268,10 +1270,10 @@
     {
       "clause": "U10.1",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority.",
-      "claimed_scope": "",
+      "claimed_scope": "Actual full-context authorized refresh-to-Step protocol connection: the checked actualPost.env is passed through selectedHorn/fullHorn, full Gamma/history/permission/process is rechecked after each nonempty internal refresh, and an empty tail terminates. Existing authorization, selection stability, and trace declarations are reused; actual legal authority remains an external boundary.",
       "companion_scope_notes": "companion_缩: external legal authority / 真实授权合法性",
       "wired_declarations": [
         {
@@ -1293,20 +1295,40 @@
           "tip_pin_run_id": 40274167574,
           "tip_pin_job_id": 121413235107,
           "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+          "file": "Temporal.lean",
+          "line": 52,
+          "role": "reused fixed-history selection stability",
+          "consumers": [],
+          "tip_pin_run_id": 40274167574,
+          "tip_pin_job_id": 121413235107,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+          "file": "Trace.lean",
+          "line": 150,
+          "role": "reused finite trace composition",
+          "consumers": [],
+          "tip_pin_run_id": 40274167574,
+          "tip_pin_job_id": 121413235107,
+          "not_gate_run": 39960871624
         }
       ],
       "evidence_pointers": [
         "Authorization.lean:53",
-        "Pipeline.lean:64"
+        "Pipeline.lean:64",
+        "Temporal.lean:52",
+        "Trace.lean:150"
       ],
       "non_goals": [
         "External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate."
       ],
-      "unwired_formal_obligations": [
-        "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it. || NON_GOAL_POINTER: External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U10.1 protocol close: the checked actualPost.env is used to select and evaluate the actual selectedHorn/fullHorn rule set. The initial state and every nonempty internal refresh recheck full Gamma, history, permission, and process before the remaining protocol continues; a successful refresh with an empty tail terminates directly. Existing authorization, fixed-history selection stability, and finite trace path/invariant results are reused. Pay, replay, and unknownCommit remain handled by the existing one-step executor. This connects the archived refresh-to-Step obligation without asserting that ActionMeaning proves legal authority or that checkNext is a complete checkBranch world/successor semantics. Exact named evidence: docs/formal-release/evidence/u10-1-debt-close-20261030; independent changed-module CI audits named declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U10_1_PROOFS || NON_GOAL_POINTER: External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -1320,35 +1342,25 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it."
-        ],
-        "non_goals_same_row": [
-          "External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate."
-        ],
-        "companion_scope_notes": "companion_缩: external legal authority / 真实授权合法性",
-        "companion_required": true,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+          "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+          "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh",
+          "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+          "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+          "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+          "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+          "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition"
+        ]
       }
     },
     {

@@ -113,8 +113,7 @@ def checkedTail {W : Type} (grants : List Authorization.Grant)
       match one.exit, one.current with
       | .success, some actualPost =>
           let tail := checkedTail grants actualPost rest renewals
-          {tail with outcomes := one.outcomes ++ tail.outcomes,
-            obligations := one.obligations ++ tail.obligations}
+          {tail with outcomes := one.outcomes ++ tail.outcomes, obligations := one.obligations ++ tail.obligations}
       | _, _ => one
   | .refresh change :: rest =>
       match Pipeline.refresh grants current change with
@@ -193,7 +192,10 @@ theorem evaluated_rules_use_actual_environment {W : Type} (current : Ledger.Hand
                   Result.known.inj (by
                     simpa only [evaluateCurrentRules, if_pos aligned, extracted, admitted, evaluated]
                       using accepted)
-                cases same
+                have sameBound : actualBound = bound := congrArg Prod.fst same
+                have sameOut : actualOut = out := congrArg Prod.snd same
+                subst bound
+                subst out
                 have material := (extracted_view_is_exact_selected_payload
                   input.anchor branch input.catalog view extracted).1
                 have source := (bound_data_keeps_exact_source_and_independent_policy
@@ -202,8 +204,11 @@ theorem evaluated_rules_use_actual_environment {W : Type} (current : Ledger.Hand
                   rw [source, material, aligned.1]
                 have flow := selected_horn_cannot_rewrite_original_context actualBound.source
                   current.state.env input.rules input.ruleGate (eligibleFacts actualBound) actualOut evaluated
-                exact ⟨aligned.1, aligned.2, ⟨view, extracted, admitted⟩, sameGamma,
-                  evaluated, flow.1, by simpa only [sameGamma] using flow.2.1, flow.2.2⟩
+                exact ⟨aligned.1, aligned.2,
+                  ⟨view, by simpa only [extracted] using extracted,
+                    by simpa only [admitted] using admitted⟩, sameGamma,
+                  by simpa only [evaluated] using evaluated, flow.1,
+                  by simpa only [sameGamma] using flow.2.1, flow.2.2⟩
   · simp [evaluateCurrentRules, aligned] at accepted
 
 private theorem checkNext_known (current : Ledger.Handle) (meaning : ActionMeaning)
@@ -226,7 +231,7 @@ private theorem checkNext_known (current : Ledger.Handle) (meaning : ActionMeani
         | known procedure =>
             by_cases blocked : meaning.requiresClosed = true ∧ procedure ≠ .closedLawfully
             · simp [checkNext, sameGamma, permissions, checked, blocked] at accepted
-            · refine ⟨sameGamma, ?_, procedure, checked, ?_⟩
+            · refine ⟨sameGamma, ?_, procedure, rfl, ?_⟩
               · simpa only [List.all_eq_true, decide_eq_true_eq] using permissions
               · intro required
                 by_contra notClosed
@@ -382,8 +387,7 @@ theorem continued_protocol_refines_actual_calls {W : Type} (grants : List Author
       have flow := evaluated_rules_use_actual_environment after input branch bound out evaluated
       obtain ⟨sameGamma, permissions, procedure, process, closed⟩ :=
         checkNext_known after meaning bound out checked
-      have frame : {after.state with normHistory := before.state.normHistory,
-          env := before.state.env} = before.state := by
+      have frame : {after.state with normHistory := before.state.normHistory, env := before.state.env} = before.state := by
         rw [refresh_success_post grants before after change refreshed]
       refine ⟨after, bound, out, procedure, refreshed, evaluated, flow.2.2.2.2.2.1,
         flow.2.2.2.2.2.2.1, flow.2.2.2.2.2.2.2, flow.1, flow.2.1,

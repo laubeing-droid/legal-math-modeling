@@ -1,0 +1,149 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "1959afb04058afbff8495baea92ef6ac1687a577",
+  "run_id": 41004233670,
+  "job_id": 123895367398,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41004233670",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41004233670/job/123895367398",
+  "artifact_name": "changed-module-only-41004233670-1",
+  "artifact_id": 12954856579,
+  "artifact_sha256": "0fa985ccbd5247a8bc53d2638d84a0e01256ad64b92470722e510821e5f873be",
+  "artifact_size_bytes": 9300,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 66363,
+      "sha256": "4bf0a5a760be169d56a01521b75496e7811bc8ed3a496d7e6a3512ef8c44aad5"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 265,
+      "sha256": "0f9e24959176d45d17bd4546dfa2c739c437c80cabbcd3f940dec0685507931a"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_1DebtClosureAudit20261030.lean",
+  "named_count": 20,
+  "names_by_clause": {
+    "U12.1": [
+      "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.finite_action_causal_ipw",
+      "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.actual_measured_policy_causal_value",
+      "JurisLean.Candidates.PolicyEvaluation20261027.original_policy_values_and_clipping",
+      "JurisLean.Candidates.PolicyEvaluation20261027.original_support_gap_sharp",
+      "JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible",
+      "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030.clipped_weighted_expectation_exact",
+      "JurisLean.Candidates.MeasuredPolicy20261027.selected_policy_reads_numeric_bounds_and_permission",
+      "JurisLean.Candidates.MeasuredPolicy20261027.actual_policy_advice_confidence",
+      "JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy",
+      "JurisLean.Candidates.MeasuredPolicy20261027.feedback_reads_actual_external_label",
+      "JurisLean.Candidates.MeasuredPolicy20261027.measured_feedback_prepares_from_actual_loaded_and_journal",
+      "JurisLean.Candidates.MeasuredPolicy20261027.measured_data_update_keeps_rules_loaded_and_budget",
+      "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints",
+      "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+      "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+      "JurisLean.Candidates.BusinessMeasurement20261027.performance_magnitude_is_actual_allocation",
+      "JurisLean.Candidates.U12_1OriginalInstances20261030.original12_3_real_support_range",
+      "JurisLean.Candidates.U12_1OriginalInstances20261030.original12_6_behavior_only_cannot_recover_both",
+      "JurisLean.Candidates.U12_1OriginalInstances20261030.original12_6_proxy_gain_true_loss"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.JointOutcome",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.jointObservation",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.actualConditional",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.loggingMass",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.causalPolicyValue",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.actualLoggingScore",
+    "JurisLean.Candidates.U12_1CausalPolicyBridge20261030.actualConditional_markov"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_1DebtClosureAudit20261030.lean",
+      "sha256": "4d82ded2320be77546842b490ff7c3aafde1b15e4d9df8c5d45e5e02fa047f7a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_1CausalPolicyBridge20261030.lean",
+      "sha256": "f19979e31638c102799a1ed667dc40318c4cb5542b75492bf0bae5c17b228588"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_1OriginalInstances20261030.lean",
+      "sha256": "225d53dac557874e935bf2a9020cb5683b2865a9f67ab3787514973c32cc792a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+      "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MeasuredPolicyBridge20261030.lean",
+      "sha256": "907e1be96f0f23d40d3c2936d2bc112d61e1c797bd7847f9e3ee7fb52728e395"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+      "sha256": "94433b7cbd50c9a4dfc84d56c91f3515b1d78da60f593ea64b4ec99845dfd0b6"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
+      "sha256": "2ae8bc09fddc174d4ff0469554f055dabd5d83eef2bf435f4937cb5fd5ffabde"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+      "sha256": "71763f8359209b1e393bd72bd6cfc17b92c7979ce42c3dbb9ff4dad8d878ed51"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 20,
+    "axiom_vocabulary": {
+      "Classical.choice": 17,
+      "Quot.sound": 19,
+      "propext": 19
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U12.1": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 41000829816,
+      "job_id": 123884579023,
+      "head": "3d1d8acc97d7945f7cde7d69571077f97f092582",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 41002575698,
+      "head": "9c3c3ab57cc58500305c26bf3bf35013eedb5744",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    },
+    {
+      "run_id": 41000801891,
+      "conclusion": "cancelled",
+      "role": "operational_wrong_ref_no_jobs",
+      "jobs": 0
+    }
+  ],
+  "closed_ids": [
+    "U12.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 2,
+  "open_after": 1,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

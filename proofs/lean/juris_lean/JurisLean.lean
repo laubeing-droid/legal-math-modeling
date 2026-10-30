@@ -15,6 +15,9 @@ import JurisLean.Candidates.U06_2EquilibriumTransfer20261030
 import JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030
 import JurisLean.Candidates.U12_3MARSequential20261030
 import JurisLean.Candidates.U12_3SequentialFinite20261030
+import JurisLean.Candidates.U12_1CausalPolicyBridge20261030
+import JurisLean.Candidates.U12_1OriginalInstances20261030
+import JurisLean.Candidates.U12_1DebtClosureAudit20261030
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027
@@ -105,7 +108,6 @@ import JurisLean.Candidates.ProcedureClosureAudit20261027
 import JurisLean.Candidates.TemporalInterpretationAudit20261027
 import JurisLean.Candidates.U11_1DebtClosureAudit20261030
 import JurisLean.Candidates.U11_1NamedCausalBridge20261030
-import JurisLean.Candidates.U11_1OriginalInstances20261030
 import JurisLean.Candidates.U12_3PolicyLearningAudit20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030
@@ -221,7 +223,6 @@ import JurisLean.Seams.UnifiedNeedlesS5
 import JurisLean.Seams.UnifiedNeedlesS6S7
 import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedNeedlesXT
-import JurisLean.Seams.UnifiedNeedlesXU
 import JurisLean.Seams.UnifiedNetTrajectory
 import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPayoffChain

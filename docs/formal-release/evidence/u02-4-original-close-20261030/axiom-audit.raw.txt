@@ -1,0 +1,64 @@
+JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound {Ω : Type}
+  [m₀ : MeasurableSpace Ω] (P : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] (H : Set Ω)
+  (measurableH : MeasurableSet H) (positive : 0 < P H) (T : ℕ) (past : Fin T → MeasurableSpace Ω)
+  (information : ∀ (t : Fin T), past t ≤ m₀) (bad : Fin T → Set Ω) (measurable : ∀ (t : Fin T), MeasurableSet (bad t))
+  (budget : Fin T → Ω → ℝ) (α ε : ℝ)
+  (conditional : ∀ (t : Fin T), ∀ᵐ (w : Ω) ∂P[|H], P[|H][(bad t).indicator fun x => 1 | past t] w ≤ budget t w)
+  (spent : ∀ᵐ (w : Ω) ∂P[|H], ∑ t, budget t w ≤ ε) (outside : P.real Hᶜ ≤ α) :
+  P[|H].real (⋃ t, bad t) ≤ ε ∧ P.real (⋃ t, bad t) ≤ α + ε
+
+'JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound {Ω : Type}
+  [m₀ : MeasurableSpace Ω] (P : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] (H : Set Ω)
+  (measurableH : MeasurableSet H) (positive : 0 < P H) (past : ℕ → MeasurableSpace Ω)
+  (information : ∀ (t : ℕ), past t ≤ m₀) (bad : ℕ → Set Ω) (measurable : ∀ (t : ℕ), MeasurableSet (bad t))
+  (budget : ℕ → Ω → ℝ) (α ε : ℝ)
+  (conditional : ∀ (t : ℕ), ∀ᵐ (w : Ω) ∂P[|H], P[|H][(bad t).indicator fun x => 1 | past t] w ≤ budget t w)
+  (spent : ∀ (n : ℕ), ∀ᵐ (w : Ω) ∂P[|H], ∑ t, budget (↑t) w ≤ ε) (outside : P.real Hᶜ ≤ α) :
+  P[|H].real (⋃ t, bad t) ≤ ε ∧ P.real (⋃ t, bad t) ≤ α + ε
+
+'JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound {Ω I : Type} [m₀ : MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (attempts : Finset I)
+  (past : I → MeasurableSpace Ω) (information : ∀ (t : I), past t ≤ m₀) (bad : I → Set Ω)
+  (measurable : ∀ (t : I), MeasurableSet (bad t)) (budget : I → Ω → ℝ)
+  (integrable : ∀ (t : I), MeasureTheory.Integrable (budget t) μ)
+  (conditional : ∀ t ∈ attempts, ∀ᵐ (w : Ω) ∂μ, μ[(bad t).indicator fun x => 1 | past t] w ≤ budget t w) :
+  μ.real (⋃ t ∈ attempts, bad t) ≤ ∫ (w : Ω), ∑ t ∈ attempts, budget t w ∂μ
+
+'JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget
+  (globalBad insideBad outsideBad conditionMass α ε : ℝ) (positive : 0 < conditionMass) (massLeOne : conditionMass ≤ 1)
+  (epsNonneg : 0 ≤ ε) (partition : globalBad = insideBad + outsideBad) (conditional : insideBad / conditionMass ≤ ε)
+  (outside : outsideBad ≤ α) : globalBad ≤ α + ε
+
+'JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound :
+  JurisLean.Candidates.Final20261021.Harness.u02_4_mass true = 1 / 10 ∧
+    JurisLean.Candidates.Final20261021.Harness.u02_4_mass true /
+          JurisLean.Candidates.Final20261021.Harness.u02_4_mass true =
+        1 ∧
+      ¬JurisLean.Candidates.Final20261021.Harness.u02_4_mass true /
+            JurisLean.Candidates.Final20261021.Harness.u02_4_mass true ≤
+          JurisLean.Candidates.Final20261021.Harness.u02_4_mass true
+
+'JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+Finset.sum_range_add.{u_4} {M : Type u_4} [AddCommMonoid M] (f : ℕ → M) (n m : ℕ) :
+  ∑ x ∈ Finset.range (n + m), f x = ∑ x ∈ Finset.range n, f x + ∑ x ∈ Finset.range m, f (n + x)
+
+'Finset.sum_range_add' depends on axioms: [propext, Classical.choice, Quot.sound]

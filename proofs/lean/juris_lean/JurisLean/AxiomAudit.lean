@@ -226,6 +226,7 @@ import JurisLean.Candidates.U11_1OriginalInstances20261030
 import JurisLean.Candidates.U12_1CausalPolicyBridge20261030
 import JurisLean.Candidates.U12_1OriginalInstances20261030
 import JurisLean.Candidates.U10_1RefreshRuleProtocol20261030
+import JurisLean.Candidates.U02_4ExternalConditionRisk20261030
 import JurisLean.Candidates.Final20261021.Decision
 import JurisLean.Candidates.U06_1FiniteBellman20261030
 import JurisLean.Candidates.U06_2EquilibriumTransfer20261030
@@ -873,6 +874,12 @@ open HornSystem
 #print axioms JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement
 #check JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy
 #print axioms JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy
+
+/-! U02.4 source audit additions. -/
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
 
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

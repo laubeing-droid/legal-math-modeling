@@ -1,0 +1,18 @@
+import JurisLean.Candidates.EquicorrelatedMean20261030
+
+#check JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance
+
+#check JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches
+
+#check JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness
+#print axioms JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness
+
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample
+#print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean
+#check JurisLean.Candidates.LearningDependence20261027.fairCoinMeasure
+#check JurisLean.Candidates.Final20261021.Probability.EffectiveCount
+#check JurisLean.Candidates.Final20261021.Probability.u04_4_variance_equivalent

@@ -1,0 +1,169 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+  "run_id": 40987962686,
+  "job_id": 123843315122,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40987962686",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40987962686/job/123843315122",
+  "artifact_name": "changed-module-only-40987962686-1",
+  "artifact_id": 12947703490,
+  "artifact_sha256": "2760b9b16a43f9e4f52b315b196f7164ac42256e68c64c55111fd14b3fac6b87",
+  "artifact_size_bytes": 9843,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 74481,
+      "sha256": "cb41d4e73b7e66fd1e7c0b678cea47905603346f8d56ae62d4bb8c97d3a308a0"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 265,
+      "sha256": "e8bc823b44117fb00edceec34f5ca10c4b0e821b167f93c820f8cd48a64d9aa6"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1DebtClosureAudit20261030.lean",
+  "named_count": 31,
+  "names_by_clause": {
+    "U11.1": [
+      "JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure",
+      "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential",
+      "JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_2_bernoulli_prediction_checks",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers",
+      "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton",
+      "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+      "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+      "JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused",
+      "JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement",
+      "JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies",
+      "JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds",
+      "JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate",
+      "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized",
+      "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative",
+      "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery",
+      "JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization",
+      "JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law",
+      "JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect",
+      "JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both",
+      "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability",
+      "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target",
+      "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect",
+      "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds",
+      "JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible",
+      "JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement",
+      "JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy",
+      "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+      "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.C_cons",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.I_nointerf",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownExposure",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownIntervention",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.E_exch",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.P_pos",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean",
+    "JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary",
+    "JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow",
+    "JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission",
+    "JurisLean.Candidates.MeasuredPolicy20261027.runMeasurementPolicy",
+    "JurisLean.Candidates.MeasuredPolicy20261027.adviseMeasured",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marReport",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1DebtClosureAudit20261030.lean",
+      "sha256": "a9c7860390696f94e2d2b8d01e9e4c28cf4ab7d1b3da462dc31ecec327243fbe"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1NamedCausalBridge20261030.lean",
+      "sha256": "2b07eca7ecf7264688cbfe530a290233ea3d83ffbc5ffee85e3459178dbf1ff0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
+      "sha256": "2ae8bc09fddc174d4ff0469554f055dabd5d83eef2bf435f4937cb5fd5ffabde"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+      "sha256": "71763f8359209b1e393bd72bd6cfc17b92c7979ce42c3dbb9ff4dad8d878ed51"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+      "sha256": "591c97532b00f53f68947c2544d534c9403a7eb711ca5420b121ddf086f9da84"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+      "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+      "sha256": "94433b7cbd50c9a4dfc84d56c91f3515b1d78da60f593ea64b4ec99845dfd0b6"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MARSequential20261030.lean",
+      "sha256": "e76c308e292d0cdfd01697f70f1b55bc49e5d24324a5840d81fbe14c3f1c2fad"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+      "sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "sha256": "7ad8f61204e15027797124014eadc9159a43767ed7afc54858b495be777fab8c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
+      "sha256": "bbe9a3824272a34b7fd3dd51f09cf5bdde360660f69145c36e76b3f65bf719e5"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 31,
+    "axiom_vocabulary": {
+      "Classical.choice": 30,
+      "Quot.sound": 31,
+      "propext": 31
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U11.1": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain."
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 40986088848,
+      "head": "e3070c3702e5734d527f1c562f100e5fca1d3cf1",
+      "conclusion": "failure",
+      "role": "diagnostic_only_not_receipt"
+    }
+  ],
+  "closed_ids": [
+    "U11.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 3,
+  "open_after": 2,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

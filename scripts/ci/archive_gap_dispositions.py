@@ -140,7 +140,6 @@ EXTRA_WIRED: dict[str, list[tuple[str, str, str]]] = {
 
 # Pack companion notes that must appear in the same row as the close.
 COMPANION_NOTES: dict[str, str] = {
-    "U04.1": "Positive-real posterior and future prediction remain conditional on the frozen likelihood/channel premises; no real-data mechanism or consumer call is claimed.",
     "U01.4": "The frozen finite label/truth, source/deployment, dependence, and grouping witnesses are mapped to exact existing declarations; the finite models do not assert real-data behavior or deployment acceptance.",
     "U02.2": "companion_缩: 真实DB精化/外部副作用/最终完成",
     "U04.1": "The frozen posterior and prediction claims keep their positive-real Beta, specified likelihood, and stated future-channel/conditional-independence premises; no actual consumer-edge call is claimed.",
@@ -273,7 +272,6 @@ NON_GOALS: dict[str, list[str]] = {
         "Run 39783481932 compiling these declarations does not discharge a real-data claim.",
     ],
     "U04.1": [
-        "An incomplete-Beta pointwise density identity beyond the real Gamma weight ratio and supplied integral enclosures is not claimed.",
         "No real-data sampling mechanism, actual old-consumer call, or legal correctness follows from the source/module proof; all stated conclusions retain their frozen model premises.",
     ],
     "U04.3": [
@@ -327,7 +325,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U02.4": "For finite T and countably many rounds, under the actual conditional measure P_H=P(·|H), conditional failure bounds and finite-prefix cumulative risk budgets imply conditional union risk ≤ ε; with P(Hᶜ) ≤ α, the actual H/Hᶜ event partition gives unconditional union risk ≤ α+ε. For one global attempt sequence, Finset.sum_range_add gives S_(n+m)=S_n+suffix, so a total cap ε bounds the suffix by ε−S_n without resetting on retry grouping. The retained H=B witness has marginal 1/10 and conditional risk 1.",
     "U09.2": "Finite closed-account event-sum and per-account conservation for rational-valued cash vectors, under the frozen same-unit closed-account and per-event balance premises.",
     "U01.4": "The frozen finite claims are checked by existing point-mass train/deployment risk and actual-fit witnesses; the independent 1/(4n), copied 1/4, common-cause n>1, and same-training two-world witnesses; plus the existing within-explanation-domain grouping theorem. No real-data claim is made.",
-    "U04.1": "Positive-real Beta likelihood density, posterior measure and predictive mean; sufficient posterior-a.e. next-channel and conditional-independence branches; the actual half-copy exchangeable 5/6 versus 2/3 witness; fixed-parameter IID Bernoulli two-tail bound; and actual incomplete/complete Beta-integral ratio and width enclosure under supplied rational bounds.",
+    "U04.1": "Archived obligation: positive-real posterior and future kernel with the half-copy exchangeable counterexample. Supplementary original-question 04.3 instances: fixed-p Bernoulli Hoeffding and the actual Beta-integral supplied-enclosure interface.",
     "U04.4": "Under the archived equal-variance/equal-correlation premises, the actual empirical-mean variance is v(1+(n-1)r)/n and the factor is nonnegative. For positive denominator the finite effective count n_eff=n/(1+(n-1)r) gives the same variance as v/n_eff; the zero-denominator branch proves the actual mean variance is zero and connects the forced rational boundary to the existing degenerate constructor. The B/(1-B) fair-coin witness and reused common-cause counterexample distinguish aggregate variance from coordinate independence.",
     "U05.1": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and the marginal-versus-group numeric split.",
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",

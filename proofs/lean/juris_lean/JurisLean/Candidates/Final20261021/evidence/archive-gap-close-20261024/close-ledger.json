@@ -2337,7 +2337,7 @@
       "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Integer-shape density conjugacy reuses UnifiedNeedlesS3a.beta_posterior_from_likelihood. Predictive mean reuses polyBeta_moments. Real Gamma weight ratio reuses FullMath.Probability.beta_ratio. The exchangeable finite law gives 5/6 against the Beta(1,1) one-success bridge 2/3. Non-integer pointwise density identity is not restated beyond that Gamma ratio. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a non-integer pointwise density identity.",
-      "claimed_scope": "Positive-real Beta likelihood density, posterior measure and predictive mean; sufficient posterior-a.e. next-channel and conditional-independence branches; the actual half-copy exchangeable 5/6 versus 2/3 witness; fixed-parameter IID Bernoulli two-tail bound; and actual incomplete/complete Beta-integral ratio and width enclosure under supplied rational bounds.",
+      "claimed_scope": "Archived obligation: positive-real posterior and future kernel with the half-copy exchangeable counterexample. Supplementary original-question 04.3 instances: fixed-p Bernoulli Hoeffding and the actual Beta-integral supplied-enclosure interface.",
       "companion_scope_notes": "The frozen posterior and prediction claims keep their positive-real Beta, specified likelihood, and stated future-channel/conditional-independence premises; no actual consumer-edge call is claimed.",
       "wired_declarations": [
         {
@@ -2388,12 +2388,11 @@
         "Probability.lean:169"
       ],
       "non_goals": [
-        "An incomplete-Beta pointwise density identity beyond the real Gamma weight ratio and supplied integral enclosures is not claimed.",
         "No real-data sampling mechanism, actual old-consumer call, or legal correctness follows from the source/module proof; all stated conclusions retain their frozen model premises."
       ],
       "unwired_formal_obligations": [],
       "scope_review": "Independent U04.1 source-bound close: the reused positive-real `positive_real_beta_posterior_density`, `positive_real_beta_posterior_measure`, and `positive_real_beta_predictive_mean`, together with `u04_1_real_gamma_weight_ratio`, establish the positive-parameter posterior density, measure and mean. New `beta_future_success_of_channel` and `beta_future_success_of_conditional_independence` state sufficient posterior-a.e. next-channel/conditional-independence premises; they do not derive those premises from data. `half_copy_kernel_realizes_generation` identifies the actual half-copy/half-independent kernel, while `half_copy_exchangeable_counterexample` gives exchangeable conditional success 5/6 rather than 2/3. `iid_bernoulli_mean_two_tail` applies the existing `row_mean_two_tail` under an actual fixed-p Bernoulli IID law. `actual_beta_integrals_enclosure` connects supplied rational bounds for actual incomplete/complete Beta integrals to the clipped ratio and width, reusing `u04_2_enclosed_propagation`; it does not compute integrals. Ten theorem targets and nine object checks were independently audited at subject af2000042f139e1cb504d2bedf0ce5bb7c894bff, run 41124014317, job 124297730406. This closes the exact archived U04.1 residual and maps original-question 04.3 L105/L107/L109 together with its already accepted U04.2 evidence. No real-data mechanism, calibration, actual old-consumer call, legal correctness, or expansion of original-question 04.1/04.2 is claimed.",
-      "remaining_after_close": "WIRED_TO_INDEPENDENT_U04_1_PROOFS || NON_GOAL_POINTER: An incomplete-Beta pointwise density identity beyond the real Gamma weight ratio and supplied integral enclosures is not claimed. | No real-data sampling mechanism, actual old-consumer call, or legal correctness follows from the source/module proof; all stated conclusions retain their frozen model premises.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U04_1_PROOFS || NON_GOAL_POINTER: No real-data sampling mechanism, actual old-consumer call, or legal correctness follows from the source/module proof; all stated conclusions retain their frozen model premises.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",

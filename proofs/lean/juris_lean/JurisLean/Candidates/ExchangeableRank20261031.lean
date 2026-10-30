@@ -487,6 +487,7 @@ private lemma rank_point_probability
     calc
       μ G = μ Set.univ := measure_congr (by
         filter_upwards [hz] with ω hω
+        apply propext
         change Function.Injective (Z ω) ↔ True
         exact ⟨fun _ => True.intro, fun _ => hω⟩)
       _ = 1 := measure_univ
@@ -494,6 +495,7 @@ private lemma rank_point_probability
       μ (E a) = μ {ω | keyRank (Z ω) a = j.val + 1} :=
     measure_congr (by
       filter_upwards [hz] with ω hω
+      apply propext
       change (Function.Injective (Z ω) ∧ keyRank (Z ω) a = j.val + 1) ↔
         keyRank (Z ω) a = j.val + 1
       exact ⟨fun h => h.2, fun h => ⟨hω, h⟩⟩)
@@ -508,8 +510,10 @@ private lemma rank_point_probability
       (keyLT_total (Z ω) hωa.1)
     apply hab
     apply hinj
-    have h1 := hωa.2
-    have h2 := hωb.2
+    have h1 : keyRank (Z ω) a = j.val + 1 :=
+      (show Function.Injective (Z ω) ∧ keyRank (Z ω) a = j.val + 1 from hωa).2
+    have h2 : keyRank (Z ω) b = j.val + 1 :=
+      (show Function.Injective (Z ω) ∧ keyRank (Z ω) b = j.val + 1 from hωb).2
     unfold keyRank at h1 h2
     omega
   have hunion : (⋃ a : Fin N, E a) = G := by
@@ -917,8 +921,8 @@ private lemma boundary_event_mass (deployed : Bool)
 
 private lemma boundary_source_independent_bernoulli :
     boundaryLaw false =
-      (PMF.bernoulli (1 / 4 : ℝ≥0) (by norm_num)).bind
-        (fun a => (PMF.bernoulli (1 / 4 : ℝ≥0) (by norm_num)).map
+      (PMF.bernoulli (1 / 4 : ℝ≥0) (by change (1 / 4 : ℝ) ≤ 1; norm_num)).bind
+        (fun a => (PMF.bernoulli (1 / 4 : ℝ≥0) (by change (1 / 4 : ℝ) ≤ 1; norm_num)).map
           (fun b => (a, b))) := by
   ext z
   rw [PMF.bind_apply]
@@ -980,8 +984,8 @@ theorem finite_group_and_deployment_boundaries :
       (∀ s : Fin 1 → ℝ,
         calibrationQuantile s 1 (by decide) (by decide) = s 0) ∧
       boundaryLaw false =
-        (PMF.bernoulli (1 / 4 : ℝ≥0) (by norm_num)).bind
-          (fun a => (PMF.bernoulli (1 / 4 : ℝ≥0) (by norm_num)).map
+        (PMF.bernoulli (1 / 4 : ℝ≥0) (by change (1 / 4 : ℝ) ≤ 1; norm_num)).bind
+          (fun a => (PMF.bernoulli (1 / 4 : ℝ≥0) (by change (1 / 4 : ℝ) ≤ 1; norm_num)).map
             (fun b => (a, b))) ∧
       (boundaryLaw false).map Prod.swap = boundaryLaw false ∧
       (boundaryMeasure false boundaryCoverage = (13 / 16 : ℝ≥0∞) ∧

@@ -435,6 +435,7 @@
     "JurisLean.BusinessRoot.Analytics",
     "JurisLean.Candidates.CausalSelection20261027",
     "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
@@ -928,6 +929,8 @@
     "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound",
+    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
@@ -4574,8 +4577,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "81f0275ff1ffdf5b7e691d5f297201996612319e0f21d71943ac760a7078f9a2",
-   "size_bytes": 296795,
+   "sha256": "0b125ed13e9c96590737e601d451390a5834288ce1618c8788bd466830d1bc54",
+   "size_bytes": 297324,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9311,8 +9314,7 @@
     "JurisLean.Candidates.Final20261021.Representation",
     "JurisLean.Candidates.Final20261021.Temporal",
     "JurisLean.Candidates.Final20261021.Trace",
-    "JurisLean.Candidates.Final20261021.Transactions",
-    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030"
+    "JurisLean.Candidates.Final20261021.Transactions"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -9572,12 +9574,10 @@
     "JurisLean.Candidates.Final20261021.Transactions.trace_count",
     "JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business",
     "JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone",
-    "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS",
-    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound",
-    "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound"
+    "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS"
    ],
-   "sha256": "ba0053188cd68bea592dfbe2f35ec829d24244cfb221a202ccc0adde598f2180",
-   "size_bytes": 44005,
+   "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+   "size_bytes": 43514,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -59775,12 +59775,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "df34073c7b5cbac517a7561090b5bb27472ef8c09fa5582e998a5de97844ec6d",
+ "source_inventory_digest": "12d41eec2d3c250f9dc609f7a9889a699bc844924a0473c34594a65c870ea2b7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "formal/close-u02-4-original-20261030",
-  "commit": "0297562098d9735015318ec717aa59716183d51e",
-  "tree": "6b1eea214818d8d682d952215e28a7d3040f61a7"
+  "commit": "9b24c2ae0783548928408fd841d301cdb6053ade",
+  "tree": "6955710432e2089f3ad149e3ed4fd5fb3728eb1f"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

@@ -40,7 +40,7 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 4,
+    "open_formal_tail_remaining": 3,
     "closed_this_round": 1,
     "historical_cand7_closed": 5,
     "historical_u03_closed": 2,
@@ -61,9 +61,10 @@
       "U04.2",
       "U06.1",
       "U06.2",
-      "U12.3"
+      "U12.3",
+      "U13.4"
     ],
-    "independent_closed_total": 16,
+    "independent_closed_total": 17,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -77,12 +78,13 @@
       "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json",
       "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json",
-      "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json"
+      "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
+      "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u13-4-debt-close-20261030",
     "candidate_rows": 0,
-    "blocked_rows": 4,
+    "blocked_rows": 3,
     "narrow_not_reopened": [
       "U02.4",
       "U09.2",
@@ -130,7 +132,8 @@
       "U02.1",
       "U04.2",
       "U06.1",
-      "U06.2"
+      "U06.2",
+      "U12.3"
     ],
     "companion_tail_ids": [
       "U10.1",
@@ -181,8 +184,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 38,
-    "OPEN_FORMAL_TAIL": 4
+    "CLOSED_BY_WIRING": 39,
+    "OPEN_FORMAL_TAIL": 3
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -3748,10 +3751,10 @@
     {
       "clause": "U13.4",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses.",
-      "claimed_scope": "",
+      "claimed_scope": "Audited population forecasts consume actual fitted calibration inputs under explicit sampling/law/iid/measurability/loss/radius premises; sampled fallback returns the equal-weight mean of checked mature observations under explicit iid conditions; declared priors remain separate model inputs; and absent/invalid sources return named UNKNOWN results.",
       "companion_scope_notes": "companion_缩: RSI全称改进定理",
       "wired_declarations": [
         {
@@ -3771,11 +3774,9 @@
       "non_goals": [
         "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
       ],
-      "unwired_formal_obligations": [
-        "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone. || NON_GOAL_POINTER: An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Independent U13.4 fallback close: the audited branch reads the actual fitted table, calibration result, applicability input and optional personal checkpoint under the existing sample/law/iid/measurability/loss/radius premises; it is a conditional population-risk bound, not a per-case win-rate guarantee. The sampled branch reads checked mature measurement rows and labels and returns their actual equal-weight sample mean, with its error bound under the stated same-law and iid conditions. Declared prior input remains a separate model condition; absent or invalid source attempts return named UNKNOWN, while the normative partial function remains separate. Source references and applicability inputs do not prove source authenticity, physical applicability or iid sampling. This closes only U13.4; it does not establish an RSI-wide improvement theorem, change original-question 13.4, close original-question 13.5, or connect the old Pipeline/consumer. Exact named evidence: docs/formal-release/evidence/u13-4-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS || NON_GOAL_POINTER: An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -3789,35 +3790,36 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-        "candidate_module": "",
-        "candidate_module_name": "",
-        "candidate_theorems": [],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "",
-        "unwired_formal_obligations": [
-          "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone."
-        ],
-        "non_goals_same_row": [
-          "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
-        ],
-        "companion_scope_notes": "companion_缩: RSI全称改进定理",
-        "companion_required": true,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 21862d9bdd94bfa15e5da39079538b5eb30ff235, run 40274167574, job 121413235107. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+          "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+          "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+          "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+          "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+          "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+          "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+          "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+          "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+        ]
       }
     },
     {

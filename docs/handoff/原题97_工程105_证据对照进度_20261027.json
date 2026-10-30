@@ -3672,7 +3672,7 @@
           109
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
@@ -3759,9 +3759,213 @@
           "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
           "audited_target": true,
           "audited_symbol": "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "audited_success_reads_actual_inputs",
+          "lines": [
+            214,
+            214
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "audited branch reads actual fitted table, calibration result and applicability input under the stated risk conditions.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "prior_success_is_declared",
+          "lines": [
+            256,
+            256
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "declared prior remains a separate supplied model condition.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "description_success_reads_measurements",
+          "lines": [
+            311,
+            311
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "descriptive service returns the actual equal-weight estimate from checked mature rows.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "sample_success_reads_actual_mean",
+          "lines": [
+            342,
+            342
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "sampled fallback is the measured-label mean with the stated verified radius.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "selected_prediction_has_executed_source",
+          "lines": [
+            398,
+            398
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "successful result must be one of the executed fallback attempts.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "missing_personal_preserves_fallbacks",
+          "lines": [
+            406,
+            406
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "missing personal checkpoint preserves population, prior and data fallback paths.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "no_valid_source_unknown",
+          "lines": [
+            422,
+            422
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "all unusable sources return named UNKNOWN.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "normative_query_uses_only_G",
+          "lines": [
+            430,
+            430
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "normative partial function remains separate from statistical forecasts.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "audited_prediction_risk_under_existing_conditions",
+          "lines": [
+            437,
+            437
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "audited population risk conclusion remains conditional on sample/law/iid/measurability/loss/radius inputs.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "sample_prediction_error_under_existing_conditions",
+          "lines": [
+            490,
+            490
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "mature data error conclusion remains conditional on the declared same-law and iid premises.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "original_fee_service_example",
+          "lines": [
+            551,
+            551
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "original synthetic fee example keeps its normative value separate from missing statistical evidence.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
+        },
+        {
+          "file": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+          "symbol": "original_unknown_win_rate_service_example",
+          "lines": [
+            562,
+            562
+          ],
+          "subject_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+          "layer": "FORMAL_MODULE",
+          "ci_status": "CHANGED_MODULE_SUCCESS",
+          "note": "no individual win-rate prediction is fabricated when no valid source exists.",
+          "run_id": 40976943681,
+          "job_id": 123807204758,
+          "artifact": "changed-module-only-40976943681-1",
+          "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+          "audited_target": true
         }
       ],
-      "remaining": "U13.4 fallback适用性、来源、错误处理及原题分支实例未由本次证据闭合；仍待核对既有实现及原题实例。"
+      "remaining": "在冻结原题条件下本行映射已覆盖；SourceRef与Applicable输入本身不证明来源真实性、现实适用性或采样/iid条件。"
     },
     {
       "id": "13.4",

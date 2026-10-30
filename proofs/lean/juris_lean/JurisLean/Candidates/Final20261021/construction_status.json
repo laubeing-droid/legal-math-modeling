@@ -766,7 +766,7 @@
         "TAIL40清单.json"
       ],
       "one_pipeline": "archive-gap close ledger; no second track",
-      "open_formal_tail_remaining": 4,
+      "open_formal_tail_remaining": 3,
       "closed_this_round": 1,
       "historical_cand7_closed": 5,
       "historical_u03_closed": 2,
@@ -787,9 +787,10 @@
         "U04.2",
         "U06.1",
         "U06.2",
-        "U12.3"
+        "U12.3",
+        "U13.4"
       ],
-      "independent_closed_total": 16,
+      "independent_closed_total": 17,
       "independent_receipts": [
         "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
         "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -803,12 +804,13 @@
         "docs/formal-release/evidence/u04-2-debt-close-20261029/verification.json",
         "docs/formal-release/evidence/u06-1-debt-close-20261030/verification.json",
         "docs/formal-release/evidence/u06-2-debt-close-20261030/verification.json",
-        "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json"
+        "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
+        "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json"
       ],
-      "independent_receipt": "docs/formal-release/evidence/u12-3-debt-close-20261030/verification.json",
-      "close_pack": "docs/formal-release/evidence/u12-3-debt-close-20261030",
+      "independent_receipt": "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
+      "close_pack": "docs/formal-release/evidence/u13-4-debt-close-20261030",
       "candidate_rows": 0,
-      "blocked_rows": 4,
+      "blocked_rows": 3,
       "narrow_not_reopened": [
         "U02.4",
         "U09.2",
@@ -856,7 +858,8 @@
         "U02.1",
         "U04.2",
         "U06.1",
-        "U06.2"
+        "U06.2",
+        "U12.3"
       ],
       "companion_tail_ids": [
         "U10.1",
@@ -907,8 +910,8 @@
       "放弃": 0,
       "未决": 0,
       "CLOSED_BY_NARROW": 8,
-      "CLOSED_BY_WIRING": 38,
-      "OPEN_FORMAL_TAIL": 4
+      "CLOSED_BY_WIRING": 39,
+      "OPEN_FORMAL_TAIL": 3
     }
   }
 }

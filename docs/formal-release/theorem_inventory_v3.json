@@ -437,6 +437,7 @@
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030",
     "JurisLean.Candidates.U11_1OriginalInstances20261030",
     "JurisLean.Candidates.U12_1CausalPolicyBridge20261030",
@@ -970,6 +971,11 @@
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.legalGame_positiveAffine_bestResponse",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.product_pmf_equilibrium_transfer",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.strictMono_expected_preference_reversal",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential",
@@ -4568,8 +4574,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "d514fcebb9368d8d79d49ad3f5e27c3cab55f7a5445ab7cb7849f47d02bbfb39",
-   "size_bytes": 295565,
+   "sha256": "81f0275ff1ffdf5b7e691d5f297201996612319e0f21d71943ac760a7078f9a2",
+   "size_bytes": 296795,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -17442,6 +17448,82 @@
    "size_bytes": 20285,
    "theorem_count": 6,
    "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+    "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh"
+   ],
+   "sha256": "9d4eece56e25f3b223c8bdc1694c624805bdd69c3f4463e02150fcf3dfa97276",
+   "size_bytes": 2105,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "evaluateCurrentRules"
+    },
+    {
+     "kind": "structure",
+     "name": "ProtocolRun"
+    },
+    {
+     "kind": "def",
+     "name": "checkRenewal"
+    },
+    {
+     "kind": "def",
+     "name": "checkedTail"
+    },
+    {
+     "kind": "def",
+     "name": "refreshEvaluateContinue"
+    },
+    {
+     "kind": "theorem",
+     "name": "evaluated_rules_use_actual_environment"
+    },
+    {
+     "kind": "theorem",
+     "name": "internal_refresh_rechecks_before_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "continued_protocol_refines_actual_calls"
+    },
+    {
+     "kind": "theorem",
+     "name": "stopped_protocol_keeps_committed_refresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "reported_protocol_post_has_actual_path"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LegalActionDomain20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
+   "print_axioms_targets": [],
+   "sha256": "a91d94e509a8b94eec5950232dfd62e53a578be412ef981bf80abaf7916aa01d",
+   "size_bytes": 32271,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
   },
   {
    "declarations": [],
@@ -58194,6 +58276,8 @@
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
+    "JurisLean.Candidates.U10_1DebtClosureAudit20261030",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
     "JurisLean.Candidates.U11_1DebtClosureAudit20261030",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030",
     "JurisLean.Candidates.U12_1CausalPolicyBridge20261030",
@@ -58387,8 +58471,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "cf3d67a118102f1ed3b894e29988e296568c855693fc4c47534273a6fd90043f",
-   "size_bytes": 11383,
+   "sha256": "304c650ab13a8641cdbbb7c5b63c4dfb431b85a44fb5b0adf4cceb099b28e405",
+   "size_bytes": 11502,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58552,22 +58636,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6228,
-   "file_count": 503,
+   "counted_declaration_count": 6233,
+   "file_count": 505,
    "lemma_count": 146,
-   "print_axioms_command_count": 5351,
-   "print_axioms_distinct_targets": 5015,
-   "theorem_count": 6082,
-   "theorem_count_bol_convention": 5982
+   "print_axioms_command_count": 5364,
+   "print_axioms_distinct_targets": 5020,
+   "theorem_count": 6087,
+   "theorem_count_bol_convention": 5987
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6209,
-   "file_count": 488,
+   "counted_declaration_count": 6214,
+   "file_count": 490,
    "lemma_count": 139,
-   "print_axioms_command_count": 5351,
-   "print_axioms_distinct_targets": 5015,
-   "theorem_count": 6070,
-   "theorem_count_bol_convention": 5970
+   "print_axioms_command_count": 5364,
+   "print_axioms_distinct_targets": 5020,
+   "theorem_count": 6075,
+   "theorem_count_bol_convention": 5975
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -58741,6 +58825,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1DebtClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1NamedCausalBridge20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
@@ -59242,6 +59328,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1DebtClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1NamedCausalBridge20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
@@ -59615,17 +59703,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5a96ad61916ebc9ec581c6fc56deffad3b0cddf1af50dff0045f06a01d2aafb2",
+ "source_inventory_digest": "1230b6614a28277b62f940b4b01e92c9e0f43b83c270b10407d06b53eaf4b99c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u12-1-debt-20261030",
-  "commit": "5aca19c42cc71b88d36ceb359230a220da2eb8d6",
-  "tree": "f8bb384af54b8dbc6e87603d4655b15627197a1f"
+  "branch": "formal/close-u10-1-debt-20261030",
+  "commit": "35e44471c7554cdc50ff3ebca49c793f324241fe",
+  "tree": "a0c47f4849266f768a61ac1ebf2c6cb742668c92"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 503,
+  "files_total": 505,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

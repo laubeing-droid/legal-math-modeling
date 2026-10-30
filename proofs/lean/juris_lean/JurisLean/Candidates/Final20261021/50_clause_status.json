@@ -2887,8 +2887,8 @@
       },
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
-        "suggested_close_path": "缩",
-        "archive_gap_status": "CLOSED_BY_NARROW",
+        "suggested_close_path": "证",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Probability.lean:146",
           "Probability.lean:155",
@@ -2896,10 +2896,25 @@
           "Probability.lean:169"
         ],
         "non_goals": [
-          "A non-integer pointwise density identity beyond the real Gamma weight ratio is an explicit non-goal.",
-          "Run 39783481932 compiling the integer-shape reuse and the 5/6-versus-2/3 witness does not discharge that identity."
+          "An incomplete-Beta pointwise density identity beyond the real Gamma weight ratio and supplied integral enclosures is not claimed.",
+          "No real-data sampling mechanism, actual old-consumer call, or legal correctness follows from the source/module proof; all stated conclusions retain their frozen model premises."
         ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u04-1-original-close-20261031/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation",
+            "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel",
+            "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample",
+            "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density",
+            "JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail",
+            "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+            "JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure"
+          ]
+        },
         "formal_tail_prove": {
           "round": "",
           "in_this_round": false,
@@ -2907,7 +2922,7 @@
           "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
           "criteria_pack": "",
           "non_goals_same_row": []

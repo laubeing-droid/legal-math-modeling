@@ -1,37 +1,37 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "c8af76a8f37f4d7b64d14a7892ad391f88fdff6e",
-    "source_checkpoint": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
-    "source_tree": "3c12367dac3fd20c4ed7287bf6bc91bf9753c5aa",
-    "ci_status": "U04.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
+    "baseline_main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
+    "source_checkpoint": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
+    "source_tree": "2e2d82987ac47a6ebab3e8145c381d074f51fada",
+    "ci_status": "U04.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "仅登记冻结U04.4方差等效量残余的实际有限等方差/等相关方差公式、正分母有效样本量分支、零分母退化边界及B/(1-B)与共同原因有限模型的source/module证据。原题04.2 L101仅增加“文件条数不能冒充有效样本量”这一子段：实际平均方差公式与正/零分母边界已映射，原题04.2仍PARTIAL；其它统计义务、实际数据生成前提与消费者数值调用未因此关闭。原题04.4、其余原题行、15条消费者边和六切口均不变。main已合入PR77、实际archive为45/5/0；本branch候选为46/4/0。独立changed-module只审具名source，不表示PR/full-release/merge。discharges、Step2、math_flip仍false。",
+    "scope": "仅U04.1冻结正实Beta后验/预测残余的独立source/module证据，并与既有U04.2区间代数证据共同映射原题04.3 L105/L107/L109：正实先验与指定似然下的后验密度/measure/均值；在明确posterior-a.e.未来channel或条件独立前提下的预测结论；半复制半独立交换反例；固定p Bernoulli IID两尾界；以及给定有理端点包围时的实际Beta积分ratio/width界。该证据不推出现实数据机制、真实采样或消费者调用；原题04.3本行按既有COVERED定义更新。原题04.1/04.2及其余原题、15条消费边、六切口不改。main仍PR78合后46/4/0；本branch候选47/3/0。独立changed-module仅source证据，不表示PR/full-release/merge。discharges、Step2、math_flip仍false。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41098286355,
-    "ci_job_id": 124209655817,
-    "ci_subject": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
-    "ci_subject_tree": "3c12367dac3fd20c4ed7287bf6bc91bf9753c5aa",
+    "ci_run_id": 41124014317,
+    "ci_job_id": 124297730406,
+    "ci_subject": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
+    "ci_subject_tree": "2e2d82987ac47a6ebab3e8145c381d074f51fada",
     "ci_attempt": 1,
-    "ci_artifact": "changed-module-only-41098286355-1",
-    "ci_artifact_id": 12998165175,
-    "ci_artifact_sha256": "c5c898f2f1a0b6a290781885cc98b40bf01b75335a90551b3014b969acd32199",
-    "archive_gap_ledger_status": "main@c8af76a8f37f4d7b64d14a7892ad391f88fdff6e / tree cbc1d05b56231e6a2cc7941dd2b3532a37608255 retains PR77 post-merge checks at 45 CLOSED_BY_WIRING / 5 CLOSED_BY_NARROW / 0 OPEN. Branch 7dcee7f has U04.4 source evidence and draft 46 / 4 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
+    "ci_artifact": "changed-module-only-41124014317-1",
+    "ci_artifact_id": 13009288326,
+    "ci_artifact_sha256": "ac31b7bdd3c9c7e6b2666c39f5c85ea27ccbd821059ead23c40b04c8d5b2ee0d",
+    "archive_gap_ledger_status": "main@23e4daa1db3949587c73d83e8258b4c851d8cbf3 / tree 6e50fbbb11022bcb1ea24885eda977dd149e8add retains PR78 post-merge checks at 46 CLOSED_BY_WIRING / 4 CLOSED_BY_NARROW / 0 OPEN. Branch af2000042f139e1cb504d2bedf0ce5bb7c894bff has U04.1 source evidence and draft 47 / 3 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "c8af76a8f37f4d7b64d14a7892ad391f88fdff6e",
+  "reference_main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 15,
-    "PARTIAL": 53,
+    "COVERED": 16,
+    "PARTIAL": 52,
     "NOT_RECONCILED": 29
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -1210,7 +1210,7 @@
           109
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
@@ -1227,9 +1227,31 @@
             "JurisLean.Candidates.U04_2SharpConditioning20261029.beta_two_three_half"
           ],
           "scope": "SOURCE_ONLY / FORMAL_MODULE: direct overlap only for the real interval width connection and Beta(2,3) half-point integral/rate. This does not verify the other 04.3 conjugacy, prediction, calibration, or Hoeffding requirements; the row remains PARTIAL."
+        },
+        {
+          "package": "docs/formal-release/evidence/u04-1-original-close-20261031",
+          "subject": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
+          "run_id": 41124014317,
+          "job_id": 124297730406,
+          "artifact_id": 13009288326,
+          "artifact_name": "changed-module-only-41124014317-1",
+          "artifact_sha256": "ac31b7bdd3c9c7e6b2666c39f5c85ea27ccbd821059ead23c40b04c8d5b2ee0d",
+          "named_targets": [
+            "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation",
+            "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel",
+            "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample",
+            "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean",
+            "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density",
+            "JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail",
+            "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+            "JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure"
+          ],
+          "scope": "SOURCE_ONLY / FORMAL_MODULE: ten theorem targets (six new and four reused) plus nine checked objects map frozen U04.1 and original-question 04.3 L105/L107/L109 together with the existing U04.2 interval-propagation evidence. Positive-real Beta likelihood/posterior/mean and future prediction retain the specified likelihood and channel or conditional-independence premises; the exchangeable 5/6-versus-2/3 model is a finite counterexample; the Hoeffding bound requires an actual fixed-p Bernoulli IID law; the integral ratio/width result requires supplied rational bounds for the actual incomplete and complete integrals. This does not derive real-data sampling or consumer execution."
         }
       ],
-      "remaining": "本轮只补入原题04.3中与U04.2直接重合的实区间宽度及Beta积分/比率证据。共轭、预测、校准、Hoeffding等其余段落仍待对照既有实现和原题实例；未核不等于仓内没有实现。"
+      "remaining": "原题04.3冻结L105/L107/L109三段已由本包与既有U04.2区间传播证据具名映射并经独立CI验证；条件保持为原文所列Beta先验/似然/future-channel或条件独立前提及有理积分端点界。该COVERED仅限本行冻结陈述，不覆盖现实数据、法律正确性、原题04.1/04.2或部署/消费者接线。"
     },
     {
       "id": "04.4",
@@ -6240,22 +6262,22 @@
     "main_final_job": 122263283920
   },
   "latest_archive_closure": {
-    "pr": 77,
-    "main": "c8af76a8f37f4d7b64d14a7892ad391f88fdff6e",
-    "tree": "cbc1d05b56231e6a2cc7941dd2b3532a37608255",
-    "pr_head": "3193b9192a5a37895615c64f36848a1fdf9c4ed0",
+    "pr": 78,
+    "main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
+    "tree": "6e50fbbb11022bcb1ea24885eda977dd149e8add",
+    "pr_head": "a999916b0b31ddd6b49cc0063dc153e0fd36fcde",
     "clauses": [
-      "U01.4"
+      "U04.4"
     ],
     "open_before": 0,
     "open_after": 0,
     "closed_this_round": 1,
     "closes_debt": true,
     "global_discharges": false,
-    "ulm_run": 41091365331,
-    "authority_run": 41091366415,
-    "final_job": 124199230278,
-    "certificate_artifact_id": 12996031549,
+    "ulm_run": 41112731456,
+    "authority_run": 41112732292,
+    "final_job": 124268892642,
+    "certificate_artifact_id": 13005627139,
     "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
     "postmerge_archive_checker_exit_code": 0,
     "postmerge_clause_binding_exit_code": 0
@@ -6346,6 +6368,27 @@
       "certificate_artifact_id": 12964572413,
       "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
       "postmerge_archive_checker_exit_code": 0
+    },
+    {
+      "pr": 77,
+      "main": "c8af76a8f37f4d7b64d14a7892ad391f88fdff6e",
+      "tree": "cbc1d05b56231e6a2cc7941dd2b3532a37608255",
+      "pr_head": "3193b9192a5a37895615c64f36848a1fdf9c4ed0",
+      "clauses": [
+        "U01.4"
+      ],
+      "open_before": 0,
+      "open_after": 0,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 41091365331,
+      "authority_run": 41091366415,
+      "final_job": 124199230278,
+      "certificate_artifact_id": 12996031549,
+      "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+      "postmerge_archive_checker_exit_code": 0,
+      "postmerge_clause_binding_exit_code": 0
     }
   ],
   "handoff_to_zcode": {
@@ -6353,8 +6396,8 @@
     "time": "2026-10-28T00:29:54+08:00",
     "complete_theory_goal": false,
     "codex_new_construction_stopped": false,
-    "latest_source_checkpoint": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
-    "latest_source_checkpoint_status": "U04.4 changed-module run41098286355/job124209655817 succeeded at 7dcee7f; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending"
+    "latest_source_checkpoint": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
+    "latest_source_checkpoint_status": "U04.1 changed-module run 41124014317/job124297730406 succeeded at af20000; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending"
   },
   "reconciliation_history": [
     {
@@ -6482,6 +6525,29 @@
       "ci_artifact_id": 12982083685,
       "ci_artifact_sha256": "6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514",
       "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 22f28162 carries U02.4 run2 and U09.2 changed-module evidence; the current draft ledger proposes 44 / 6 / 0, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false."
+    },
+    {
+      "baseline_main": "c8af76a8f37f4d7b64d14a7892ad391f88fdff6e",
+      "source_checkpoint": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
+      "source_tree": "3c12367dac3fd20c4ed7287bf6bc91bf9753c5aa",
+      "ci_status": "U04.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
+      "closes_debt": false,
+      "current_archive_open": 0,
+      "scope": "仅登记冻结U04.4方差等效量残余的实际有限等方差/等相关方差公式、正分母有效样本量分支、零分母退化边界及B/(1-B)与共同原因有限模型的source/module证据。原题04.2 L101仅增加“文件条数不能冒充有效样本量”这一子段：实际平均方差公式与正/零分母边界已映射，原题04.2仍PARTIAL；其它统计义务、实际数据生成前提与消费者数值调用未因此关闭。原题04.4、其余原题行、15条消费者边和六切口均不变。main已合入PR77、实际archive为45/5/0；本branch候选为46/4/0。独立changed-module只审具名source，不表示PR/full-release/merge。discharges、Step2、math_flip仍false。",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 41098286355,
+      "ci_job_id": 124209655817,
+      "ci_subject": "7dcee7f360758bebc15e7a2efc49ee76c7d97201",
+      "ci_subject_tree": "3c12367dac3fd20c4ed7287bf6bc91bf9753c5aa",
+      "ci_attempt": 1,
+      "ci_artifact": "changed-module-only-41098286355-1",
+      "ci_artifact_id": 12998165175,
+      "ci_artifact_sha256": "c5c898f2f1a0b6a290781885cc98b40bf01b75335a90551b3014b969acd32199",
+      "archive_gap_ledger_status": "main@c8af76a8f37f4d7b64d14a7892ad391f88fdff6e / tree cbc1d05b56231e6a2cc7941dd2b3532a37608255 retains PR77 post-merge checks at 45 CLOSED_BY_WIRING / 5 CLOSED_BY_NARROW / 0 OPEN. Branch 7dcee7f has U04.4 source evidence and draft 46 / 4 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
     }
   ]
 }

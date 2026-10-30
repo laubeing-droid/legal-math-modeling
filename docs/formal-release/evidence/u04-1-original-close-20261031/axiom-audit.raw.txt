@@ -1,0 +1,175 @@
+JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation (θ : ℝ) :
+  JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel θ =
+      (1 / 2) •
+          MeasureTheory.Measure.map (fun b => (b, b)) (JurisLean.Candidates.BetaFutureSampling20261031.coinMeasure✝ θ) +
+        (1 / 2) •
+          (JurisLean.Candidates.BetaFutureSampling20261031.coinMeasure✝ θ).prod
+            (JurisLean.Candidates.BetaFutureSampling20261031.coinMeasure✝ θ) ∧
+    ∀ (a b : Bool),
+      (JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel θ) {(a, b)} =
+        (1 / 2 * if a = b then JurisLean.Candidates.BetaFutureSampling20261031.coinMass✝ θ a else 0) +
+          1 / 2 * JurisLean.Candidates.BetaFutureSampling20261031.coinMass✝ θ a *
+            JurisLean.Candidates.BetaFutureSampling20261031.coinMass✝ θ b
+
+'JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel (α β : ℝ) (hα : 0 < α) (hβ : 0 < β)
+  (s f : ℕ) (next : ProbabilityTheory.Kernel ℝ Bool) [ProbabilityTheory.IsMarkovKernel next]
+  (channel :
+    ∀ᵐ (θ :
+      ℝ) ∂MeasureTheory.volume.withDensity
+        (JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β s f),
+      (next θ) {true} = ENNReal.ofReal θ) :
+  ((MeasureTheory.volume.withDensity
+            (JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β s f)).bind
+        ⇑next)
+      {true} =
+    ENNReal.ofReal ((α + ↑s) / (α + ↑s + (β + ↑f)))
+
+'JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample :
+  MeasureTheory.Measure.map Prod.swap JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw =
+      JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw ∧
+    JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw {z | z.1 ≠ z.2} = 1 / 6 ∧
+      0 < JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw {z | z.1 ≠ z.2} ∧
+        0 < JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw {z | z.1 = true} ∧
+          JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw[{z | z.2 = true} | {z | z.1 = true}] = 5 / 6 ∧
+            JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw[{z | z.2 = true} | {z | z.1 = true}] ≠ 2 / 3
+
+'JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence (α β : ℝ) (hα : 0 < α)
+  (hβ : 0 < β) (s f : ℕ) (joint : ProbabilityTheory.Kernel ℝ (Bool × Bool)) [ProbabilityTheory.IsMarkovKernel joint]
+  (dataLaw :
+    ∀ᵐ (θ : ℝ) ∂ProbabilityTheory.betaMeasure α β,
+      (joint θ) {z | z.1 = true} =
+        ENNReal.ofReal (JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood s f θ))
+  (independent :
+    ∀ᵐ (θ : ℝ) ∂ProbabilityTheory.betaMeasure α β,
+      ProbabilityTheory.IndepSet {z | z.1 = true} {z | z.2 = true} (joint θ))
+  (futureLaw : ∀ᵐ (θ : ℝ) ∂ProbabilityTheory.betaMeasure α β, (joint θ) {z | z.2 = true} = ENNReal.ofReal θ) :
+  ((MeasureTheory.volume.withDensity
+            (JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β s f)).bind
+        ⇑(JurisLean.Candidates.BetaFutureSampling20261031.observedFutureKernel joint))
+      {true} =
+    ENNReal.ofReal ((α + ↑s) / (α + ↑s + (β + ↑f)))
+
+'JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  MeasureTheory.volume.withDensity
+      (JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures) =
+    ProbabilityTheory.betaMeasure (α + ↑successes) (β + ↑failures)
+
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) :
+  ∫⁻ (x : ℝ),
+      ENNReal.ofReal x *
+        JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures x =
+    ENNReal.ofReal ((α + ↑successes) / (α + ↑successes + (β + ↑failures)))
+
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood (α β : ℝ) (successes failures : ℕ) (x : ℝ) :
+  ENNReal
+
+JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood (successes failures : ℕ) (x : ℝ) : ℝ
+
+JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel : ProbabilityTheory.Kernel ℝ (Bool × Bool)
+
+JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw : MeasureTheory.Measure (Bool × Bool)
+
+JurisLean.Candidates.BetaFutureSampling20261031.observedFutureKernel
+  (joint : ProbabilityTheory.Kernel ℝ (Bool × Bool)) : ProbabilityTheory.Kernel ℝ Bool
+
+JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density (α β : ℝ) (positiveAlpha : 0 < α)
+  (positiveBeta : 0 < β) (successes failures : ℕ) (x : ℝ) :
+  JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood α β successes failures x =
+    ProbabilityTheory.betaPDF (α + ↑successes) (β + ↑failures) x
+
+'JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n) (p : ℝ) (hp0 : 0 ≤ p)
+  (hp1 : p ≤ 1) (sample : Fin n → Ω → Bool) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law :
+    ∀ (i : Fin n),
+      ProbabilityTheory.IdentDistrib (sample i) id μ
+        (JurisLean.Candidates.BernoulliMeanInstance20261031.bernoulliMeasure p hp0 hp1))
+  (ε : ℝ) (hε : 0 < ε) :
+  μ.real
+      {w |
+        ε ≤
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean
+                (fun i w => JurisLean.Candidates.BernoulliMeanInstance20261031.bitValue (sample i w)) w -
+              p|} ≤
+    2 * Real.exp (-2 * ↑n * ε ^ 2)
+
+'JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n) (X : Fin n → Ω → ℝ)
+  (independent : ProbabilityTheory.iIndepFun X μ) (measurable : ∀ (i : Fin n), AEMeasurable (X i) μ)
+  (bounded : ∀ (i : Fin n), ∀ᵐ (w : Ω) ∂μ, X i w ∈ Set.Icc 0 1) (mean : ℝ)
+  (means : ∀ (i : Fin n), ∫ (w : Ω), X i w ∂μ = mean) (ε : ℝ) (hε : 0 < ε) :
+  μ.real {w | ε ≤ |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X w - mean|} ≤
+    2 * Real.exp (-2 * ↑n * ε ^ 2)
+
+'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+PMF.bernoulli (p : NNReal) (h : p ≤ 1) : PMF Bool
+
+JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean.{u_1} {Ω : Type u_1} {n : ℕ} (X : Fin n → Ω → ℝ)
+  (w : Ω) : ℝ
+
+JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β)
+  (w l : ℕ) :
+  Real.Gamma (α + ↑w) * Real.Gamma (β + ↑l) / Real.Gamma (α + β + ↑(w + l)) /
+      (Real.Gamma α * Real.Gamma β / Real.Gamma (α + β)) =
+    JurisLean.FullMath.Probability.rising α w * JurisLean.FullMath.Probability.rising β l /
+      JurisLean.FullMath.Probability.rising (α + β) (w + l)
+
+JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure (a b : ℚ) (_ha : 0 < a) (_hb : 0 < b)
+  (x : ℝ) (hx : x ∈ Set.Icc 0 1) (nL nU bL bU : ℚ)
+  (numeratorLower : ↑nL ≤ ∫ (t : ℝ) in 0..x, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t)
+  (numeratorUpper : ∫ (t : ℝ) in 0..x, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t ≤ ↑nU)
+  (denominatorPositive : 0 < bL)
+  (denominatorLower : ↑bL ≤ ∫ (t : ℝ) in 0..1, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t)
+  (denominatorUpper : ∫ (t : ℝ) in 0..1, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t ≤ ↑bU) :
+  have N := ∫ (t : ℝ) in 0..x, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t;
+  have B := ∫ (t : ℝ) in 0..1, JurisLean.Candidates.BetaEnclosureInstance20261031.betaKernel✝ a b t;
+  (max 0 (↑nL / ↑bU) ≤ N / B ∧ N / B ≤ min 1 (↑nU / ↑bL)) ∧
+    0 ≤ min 1 (↑nU / ↑bL) - max 0 (↑nL / ↑bU) ∧
+      min 1 (↑nU / ↑bL) - max 0 (↑nL / ↑bU) ≤ 1 ∧
+        min 1 (↑nU / ↑bL) - max 0 (↑nL / ↑bU) ≤ (↑nU - ↑nL) / ↑bU + ↑nU * (↑bU - ↑bL) / (↑bL * ↑bU)
+
+'JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation (N B nL nU bL bU : ℝ) (hN : 0 ≤ N)
+  (hNB : N ≤ B) (hnL : nL ≤ N) (hnU : N ≤ nU) (hbL : 0 < bL) (hLB : bL ≤ B) (hBU : B ≤ bU) :
+  max 0 (nL / bU) ≤ N / B ∧ N / B ≤ min 1 (nU / bL)
+Build completed successfully (8494 jobs).

@@ -911,6 +911,20 @@ open HornSystem
 #check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
 #print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
 
+/-! U04.1 positive-real Beta, future-channel, and finite probability targets. -/
+#check JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation
+#check JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel
+#check JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample
+#check JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence
+#check JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+#print axioms JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+#check JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+#print axioms JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write
     These declarations are elaborated by the all-module CI plan but were

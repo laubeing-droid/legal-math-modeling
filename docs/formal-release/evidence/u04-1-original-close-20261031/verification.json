@@ -1,0 +1,132 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
+  "subject_tree": "2e2d82987ac47a6ebab3e8145c381d074f51fada",
+  "run_id": 41124014317,
+  "job_id": 124297730406,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41124014317",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41124014317/job/124297730406",
+  "artifact_name": "changed-module-only-41124014317-1",
+  "artifact_id": 13009288326,
+  "artifact_sha256": "ac31b7bdd3c9c7e6b2666c39f5c85ea27ccbd821059ead23c40b04c8d5b2ee0d",
+  "artifact_size_bytes": 4485,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "8323f5c51e92d3787854c1f91f9b38e427a5b2e7d6eb7673e26dc317499ac8ef"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 27283,
+      "sha256": "0da01af6f16dfdc06f9cc0ab251dfd9ba6e9b8acbc2bd767f8dacac2b3978a78"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
+  "named_count": 10,
+  "names_by_clause": {
+    "U04.1": [
+      "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation",
+      "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel",
+      "JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample",
+      "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence",
+      "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure",
+      "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean",
+      "JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density",
+      "JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail",
+      "JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail",
+      "JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood",
+    "JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood",
+    "JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel",
+    "JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw",
+    "JurisLean.Candidates.BetaFutureSampling20261031.observedFutureKernel",
+    "PMF.bernoulli",
+    "JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean",
+    "JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio",
+    "JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation"
+  ],
+  "axiom_audit": {
+    "audited_targets": 10,
+    "axiom_vocabulary": {
+      "propext": 10,
+      "Classical.choice": 10,
+      "Quot.sound": 10
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
+      "sha256": "d9da1242441514db58df63f2fd85537daa7a955247d5b978df5d8d2792324fa2"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BetaFutureSampling20261031.lean",
+      "sha256": "acb510e950d7dfbc40d93970d6dfcd816113b3f6ef2a176844469da32cdde4ce"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
+      "sha256": "fd467e6186f7ac91a94f795dfb1f9d29e5802e0c5e808b7291235e2ea2f15f83"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BetaEnclosureInstance20261031.lean",
+      "sha256": "fdedbb5ef4615d0242384e22cf29e931419f62dbf80b1de297aba320753ca4aa"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "sha256": "7ad8f61204e15027797124014eadc9159a43767ed7afc54858b495be777fab8c"
+    }
+  ],
+  "original_residuals": {
+    "U04.1": "Integer-shape density conjugacy reuses UnifiedNeedlesS3a.beta_posterior_from_likelihood. Predictive mean reuses polyBeta_moments. Real Gamma weight ratio reuses FullMath.Probability.beta_ratio. The exchangeable finite law gives 5/6 against the Beta(1,1) one-success bridge 2/3. Non-integer pointwise density identity is not restated beyond that Gamma ratio. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a non-integer pointwise density identity."
+  },
+  "closed_ids": [
+    "U04.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 4,
+  "narrow_after": 3,
+  "wiring_before": 46,
+  "wiring_after": 47,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u04-1-original-close-20261031/axiom-audit.raw.txt",
+    "sha256": "6f845e631d5f2cb475d25933c25b0c7ea644be14d76ef25d57bf632afec52df6",
+    "blocks": 29
+  }
+}

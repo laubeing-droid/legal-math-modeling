@@ -433,6 +433,7 @@
     "JurisLean.AuthorityLattice",
     "JurisLean.BanachCertificate",
     "JurisLean.BusinessRoot.Analytics",
+    "JurisLean.Candidates.CausalSelection20261027",
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
@@ -4560,8 +4561,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "c7980ee4ca26f77d43ce254abe8c3050bfae062346ec6ec1994374c7583578b9",
-   "size_bytes": 294379,
+   "sha256": "e0300bd0aa58594cd02d51fd8cc0caeecb35841a72f6221d6d4ea57188ff8188",
+   "size_bytes": 294431,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -59504,19 +59505,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a8ed5c402858d9a77f757f0997c1ec7984531b07b53f75148855c1fb065fe41b",
+ "source_inventory_digest": "90b2b13edfb4a7448d6b4e1b2add0ffec027c11090fd71d108a5ceb49c062cd0",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "formal/close-u11-1-debt-20261030",
-  "commit": "7c9077bf4a044327cfab7819b77c46239c1364f3",
-  "tree": "ff4789f80beee56eafd1770efaa6d79cc861f37e"
+  "commit": "0f7625a0e30c1931b33c3f44c800db4009fdaa59",
+  "tree": "0ff6705c00eacd17adae7b20fb254242dbb06278"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 500,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

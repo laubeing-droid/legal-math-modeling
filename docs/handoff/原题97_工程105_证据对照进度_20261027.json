@@ -1,27 +1,27 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "5a8d517e634fefffc9050dc73ae7eaf66e4d84c6",
-    "source_checkpoint": "1bd8db47b728249fe240312fc5e570ce7290b62a",
-    "ci_status": "U02.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; full-release gates are not represented here",
+    "baseline_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
+    "source_checkpoint": "814c10b0d404eaba8848636de8169b815460d70a",
+    "ci_status": "U02.4_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; no PR/merge; full-release gates are not represented here",
     "closes_debt": false,
-    "current_archive_open": 8,
-    "scope": "仅原题02.1冻结条件命题和L99/L101/L103下，实际Pipeline有具体reported poststate时的gate精化及状态不变量连接；开账非负前提沿用总稿§14的d0≥0。独立changed-module run/job/source绑定12个规范目标。有限Bool世界及给定world0/world1动作列表不是从原材料导出的现实法律允许域；不声称现实输入真实性、部署或无已知post的unknownCommit结果。原题02.1本小问已COVERED；整体原题及全局discharges/Step 2不据此翻转。",
+    "current_archive_open": 0,
+    "scope": "本记录登记原题02.4数学行已按既有COVERED定义具名证明并经独立CI验证：125的generic有限conditional union经新P_H界连接，127的countable/summable与实际Bernoulli无限模型及无固定次单位horizon边界由旧17目标和新countable界覆盖，129的每次新尝试在同一global t继续编号、使用包含此前尝试的完整history并纳入同一累计sum；Finset.sum_range_add给出任一路径prefix+suffix=total，global cap ε即suffix≤ε−spentprefix；条件δ须对每一完整历史持续有效。新证据目前仅SOURCE_EVIDENCE_ONLY，尚未PR/合并；工程105、六切口、完整理论与部署不据此覆盖。main仍是U10.1 PR75实际合后tree；全局discharges/math_flip/Step2仍false。",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 40791067212,
-    "ci_job_id": 123176137083,
-    "ci_subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
-    "ci_artifact": "changed-module-only-40791067212-1",
-    "ci_artifact_id": 12861283251,
-    "ci_artifact_sha256": "20cbbe172c3bc787c6daf13f479612eb010bc006fb3148e87b2fdc9b603f2152",
-    "archive_gap_ledger_status": "U02.1_CLOSED_BY_WIRING; SOURCE_EVIDENCE_ONLY; row 02.1 COVERED under its frozen conditional scope; remaining archive OPEN=8; global discharges/math flip/step 2 remain false/open. This field is not full-release evidence."
+    "ci_run_id": 41062973614,
+    "ci_job_id": 124087082984,
+    "ci_subject": "814c10b0d404eaba8848636de8169b815460d70a",
+    "ci_artifact": "changed-module-only-41062973614-1",
+    "ci_artifact_id": 12980527206,
+    "ci_artifact_sha256": "bbbb5f89a0d9d621b1322d4d3527106cfdb131d4e057b194da6359b6fff8eef4",
+    "archive_gap_ledger_status": "main@d2ec16d18905209ceb265d41d5d282615e838a9b retains its actual post-PR75 archive-checker result 42 CLOSED_BY_WIRING / 8 CLOSED_BY_NARROW / 0 OPEN. Source branch 814c10b0 has run41062973614 six-target evidence and proposes 43 / 7 / 0 in its draft ledger, but is not PR/merged and has not changed main. Global discharges/math_flip/Step2 remain false; this field is not full-release evidence."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
+  "reference_main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
@@ -658,7 +658,7 @@
           129
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\harness-risk-20261027",
@@ -681,9 +681,26 @@
           "main_run_status": "SUCCESS",
           "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
           "main_final_job": 122163252919
+        },
+        {
+          "package": "docs/formal-release/evidence/u02-4-original-close-20261030",
+          "subject": "814c10b0d404eaba8848636de8169b815460d70a",
+          "tree": "d23a86901b8cd415973cc6a3a6d31a1b3ae9c1f3",
+          "run_id": 41062973614,
+          "job_id": 124087082984,
+          "attempt": 1,
+          "artifact_name": "changed-module-only-41062973614-1",
+          "artifact_id": 12980527206,
+          "artifact_sha256": "bbbb5f89a0d9d621b1322d4d3527106cfdb131d4e057b194da6359b6fff8eef4",
+          "named_targets": 6,
+          "new_targets": 2,
+          "reused_repository_targets": 3,
+          "reused_mathlib_targets": 1,
+          "status": "SOURCE_EVIDENCE_ONLY_NOT_PR_MERGED",
+          "scope": "125: old finite_conditional_union_bound/finite_adaptive_union_bound and new finite_prefix_external_condition_bound connect generic finite conditional union risk to actual P_H. 127: old `countable_conditional_risk_budget`/`countable_summable_risk_budget`, `bernoulliPaths`, `bernoulli_coordinates_are_independent`, `bernoulli_cylinder_probability`, `bernoulli_one_attempt_risk`, `no_failure_is_the_false_cylinder`, `independent_constant_risk_accumulates`, `positive_constant_risk_has_no_fixed_subunit_horizon_limit`, plus new `countable_prefix_external_condition_bound`. 129: each new attempt continues the same global t, uses the history containing prior attempts, and contributes to the same cumulative sum. Old two_attempts_are_not_one_budget is the reset counterexample; new Finset.sum_range_add gives, pathwise, prefix+suffix=total, so total cap ε implies suffix≤ε−spentprefix. The conditional δ premise must remain valid under each such complete history and is not automatically preserved by arbitrary learner updates. The old 17-target evidence and PR55 record remain unchanged. The row is COVERED for the frozen mathematical question; this newer changed-module source evidence still awaits the PR/full-release/same-tree merge chain."
         }
       ],
-      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+      "remaining": "本小问数学命题与原题125/127/129已按COVERED定义具名证明并经独立CI验证；本轮仅待此source branch完成PR全链、同树合并及合后验收。本状态不覆盖工程105、六切口、完整理论或部署。"
     },
     {
       "id": "02.5",
@@ -6088,8 +6105,8 @@
       "reconciliation": "NOT_RECONCILED"
     }
   ],
-  "open_formal_tail": 14,
-  "closes_debt": true,
+  "open_formal_tail": 0,
+  "closes_debt": false,
   "latest_consumer_integration": {
     "pr": 58,
     "main": "f647f6da163538840ecba0eefb55adee0e28a24e",
@@ -6105,25 +6122,24 @@
     "main_final_job": 122263283920
   },
   "latest_archive_closure": {
-    "pr": 61,
-    "main": "1b5f34f5898602876bd58b9f4c841e09897af3a3",
-    "tree": "4c279e5023caff55a68918bd921865ae8b98e781",
-    "pr_head": "3953c8de78de0592f9b81c71025ea95a06a0e829",
+    "pr": 75,
+    "main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
+    "tree": "acadb43a61dfa0782d246c70a5c422e8f7d103c9",
+    "pr_head": "5964b9a48cda705e6651c976ae0361be4745fc98",
     "clauses": [
-      "U04.5"
+      "U10.1"
     ],
-    "open_before": 15,
-    "open_after": 14,
+    "open_before": 1,
+    "open_after": 0,
     "closed_this_round": 1,
     "closes_debt": true,
     "global_discharges": false,
-    "ulm_run": 40537928164,
-    "authority_run": 40537929001,
-    "final_job": 122318736879,
-    "status": "FULL_PR_CI_SUCCESS_MERGED_AND_ACTUAL_MAIN_RECHECKED",
-    "main_fresh_run": 40541087589,
-    "main_fresh_run_status": "IN_PROGRESS",
-    "main_final_job": null
+    "ulm_run": 41025138708,
+    "authority_run": 41025139030,
+    "final_job": 123971145550,
+    "certificate_artifact_id": 12964572413,
+    "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+    "postmerge_archive_checker_exit_code": 0
   },
   "archive_closure_history": [
     {
@@ -6191,13 +6207,35 @@
       "main_fresh_run": 40541087589,
       "main_fresh_run_status": "IN_PROGRESS",
       "main_final_job": null
+    },
+    {
+      "pr": 75,
+      "main": "d2ec16d18905209ceb265d41d5d282615e838a9b",
+      "tree": "acadb43a61dfa0782d246c70a5c422e8f7d103c9",
+      "pr_head": "5964b9a48cda705e6651c976ae0361be4745fc98",
+      "clauses": [
+        "U10.1"
+      ],
+      "open_before": 1,
+      "open_after": 0,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 41025138708,
+      "authority_run": 41025139030,
+      "final_job": 123971145550,
+      "certificate_artifact_id": 12964572413,
+      "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+      "postmerge_archive_checker_exit_code": 0
     }
   ],
   "handoff_to_zcode": {
     "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\CODEX_TO_ZCODE_关债交接_20261028.md",
-    "time": "2026-10-28T00:29:54+08:00",
+    "time": "2026-10-30T21:21:15+08:00",
     "complete_theory_goal": false,
-    "codex_new_construction_stopped": true
+    "codex_new_construction_stopped": false,
+    "latest_source_checkpoint": "814c10b0d404eaba8848636de8169b815460d70a",
+    "latest_source_checkpoint_status": "U02.4 six-target changed-module success; SOURCE_EVIDENCE_ONLY, not PR/merged"
   },
   "reconciliation_history": [
     {
@@ -6285,6 +6323,26 @@
       "ci_artifact_id": 12853086110,
       "ci_artifact_sha256": "49f4af9fc0a0614dc4a1a05f4157eee3ac000342ff20006e213590b392a735cc",
       "archive_gap_ledger_status": "U07.3_CLOSED_BY_WIRING; SOURCE_EVIDENCE_ONLY; original question 07.3 remains PARTIAL; full-release status is not represented here."
+    },
+    {
+      "baseline_main": "5a8d517e634fefffc9050dc73ae7eaf66e4d84c6",
+      "source_checkpoint": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+      "ci_status": "U02.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; full-release gates are not represented here",
+      "closes_debt": false,
+      "current_archive_open": 8,
+      "scope": "仅原题02.1冻结条件命题和L99/L101/L103下，实际Pipeline有具体reported poststate时的gate精化及状态不变量连接；开账非负前提沿用总稿§14的d0≥0。独立changed-module run/job/source绑定12个规范目标。有限Bool世界及给定world0/world1动作列表不是从原材料导出的现实法律允许域；不声称现实输入真实性、部署或无已知post的unknownCommit结果。原题02.1本小问已COVERED；整体原题及全局discharges/Step 2不据此翻转。",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 40791067212,
+      "ci_job_id": 123176137083,
+      "ci_subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+      "ci_artifact": "changed-module-only-40791067212-1",
+      "ci_artifact_id": 12861283251,
+      "ci_artifact_sha256": "20cbbe172c3bc787c6daf13f479612eb010bc006fb3148e87b2fdc9b603f2152",
+      "archive_gap_ledger_status": "U02.1_CLOSED_BY_WIRING; SOURCE_EVIDENCE_ONLY; row 02.1 COVERED under its frozen conditional scope; remaining archive OPEN=8; global discharges/math flip/step 2 remain false/open. This field is not full-release evidence."
     }
   ]
 }

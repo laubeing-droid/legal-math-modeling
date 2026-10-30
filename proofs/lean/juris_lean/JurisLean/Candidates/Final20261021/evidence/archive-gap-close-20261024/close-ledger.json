@@ -65,9 +65,10 @@
       "U13.4",
       "U11.1",
       "U12.1",
-      "U10.1"
+      "U10.1",
+      "U02.4"
     ],
-    "independent_closed_total": 20,
+    "independent_closed_total": 21,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -85,14 +86,14 @@
       "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u11-1-debt-close-20261030/verification.json",
       "docs/formal-release/evidence/u12-1-debt-close-20261030/verification.json",
-      "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json"
+      "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
+      "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u10-1-debt-close-20261030/verification.json",
-    "close_pack": "docs/formal-release/evidence/u10-1-debt-close-20261030",
+    "independent_receipt": "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json",
+    "close_pack": "docs/formal-release/evidence/u02-4-original-close-20261030",
     "candidate_rows": 0,
     "blocked_rows": 0,
     "narrow_not_reopened": [
-      "U02.4",
       "U09.2",
       "U01.4",
       "U04.1",
@@ -142,7 +143,8 @@
       "U12.3",
       "U13.4",
       "U11.1",
-      "U12.1"
+      "U12.1",
+      "U10.1"
     ],
     "companion_tail_ids": [
       "U08.3",
@@ -154,7 +156,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=42; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=43; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -187,12 +189,12 @@
     "local_lean_is_not_closure": true
   },
   "counts": {
-    "证": 42,
-    "缩": 8,
+    "证": 43,
+    "缩": 7,
     "放弃": 0,
     "未决": 0,
-    "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 42,
+    "CLOSED_BY_NARROW": 7,
+    "CLOSED_BY_WIRING": 43,
     "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
@@ -1132,12 +1134,12 @@
     },
     {
       "clause": "U02.4",
-      "suggested_close_path": "缩",
-      "archive_gap_status": "CLOSED_BY_NARROW",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1). A general filtration/random-budget tower beyond this partition identity is not an additional theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the unproved general filtration/random-budget tower.",
-      "claimed_scope": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1).",
-      "companion_scope_notes": "claimed_scope: 分区预算α+ε与H=B反例；non_goal: general filtration/random-budget tower",
+      "claimed_scope": "For finite T and countably many rounds, under the actual conditional measure P_H=P(·|H), conditional failure bounds and finite-prefix cumulative risk budgets imply conditional union risk ≤ ε; with P(Hᶜ) ≤ α, the actual H/Hᶜ event partition gives unconditional union risk ≤ α+ε. For one global attempt sequence, Finset.sum_range_add gives S_(n+m)=S_n+suffix, so a total cap ε bounds the suffix by ε−S_n without resetting on retry grouping. The retained H=B witness has marginal 1/10 and conditional risk 1.",
+      "companion_scope_notes": "The finite/countable risk bounds and single global-attempt cumulative-budget contract are audited under the stated premises; Finset.sum_range_add identifies each prefix plus its suffix. No separate reserve/commit object or runtime execution is introduced.",
       "wired_declarations": [
         {
           "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget",
@@ -1176,12 +1178,12 @@
         "Harness.lean:94"
       ],
       "non_goals": [
-        "A general filtration/random-budget tower beyond the named partition identity is an explicit non-goal, not an additional theorem of this clause.",
-        "Run 39783481932 compiling the partition declarations does not discharge that tower. Tip-pin axiom-audit PASS does not discharge it either."
+        "No deployed/runtime execution or actual old-Harness consumer execution is claimed; the package audits the stated mathematical risk and global cumulative-budget premises.",
+        "Each new global attempt still requires its conditional-risk premise under the complete history; an arbitrary learner update does not itself preserve the per-attempt bound. U14.1's learning-evaluation round ledger is not used as evidence for the global attempt sequence."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "",
-      "remaining_after_close": "NON_GOAL_POINTER: A general filtration/random-budget tower beyond the named partition identity is an explicit non-goal, not an additional theorem of this clause. | Run 39783481932 compiling the partition declarations does not discharge that tower. Tip-pin axiom-audit PASS does not discharge it either.",
+      "scope_review": "Independent U02.4 original-scope close: finite `finite_conditional_union_bound` / `finite_adaptive_union_bound` and the new finite theorem establish the finite conditional-risk consequence under the actual P_H=P(.|H); the old `countable_conditional_risk_budget`/`countable_summable_risk_budget`, `bernoulliPaths`, `bernoulli_coordinates_are_independent`, `bernoulli_cylinder_probability`, `bernoulli_one_attempt_risk`, `no_failure_is_the_false_cylinder`, `independent_constant_risk_accumulates`, `positive_constant_risk_has_no_fixed_subunit_horizon_limit`, and new `countable_prefix_external_condition_bound` cover countable summable bounds, actual Bernoulli products, and every finite T under the frozen model assumptions. The actual H/Hᶜ partition gives α+ε. For paragraph 129's one global attempt sequence, each ω has f(t)=budget(t,ω), and Mathlib `Finset.sum_range_add` gives S_(n+m)=S_n+suffix; the total cap bounds the suffix by ε−S_n without retry-grouping reset. The conditional δ premise must remain valid under each complete history and is not automatically preserved by arbitrary model updates. The retained H=B counterexample and old 17-target evidence remain in the progress record. Two new declarations, three reused repository declarations, and the Mathlib identity were independently audited at subject 814c10b0d404eaba8848636de8169b815460d70a, run 41062973614, job 124087082984. The original scope archive remains byte-for-byte unchanged; historical wording is preserved in original_residuals and interpreted against exact_scope rather than rewritten.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U02_4_PROOFS || NON_GOAL_POINTER: No deployed/runtime execution or actual old-Harness consumer execution is claimed; the package audits the stated mathematical risk and global cumulative-budget premises. | Each new global attempt still requires its conditional-risk premise under the complete history; an arbitrary learner update does not itself preserve the per-attempt bound. U14.1's learning-evaluation round ledger is not used as evidence for the global attempt sequence.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -1197,10 +1199,21 @@
       "formal_tail_prove": {
         "in_this_round": false,
         "not_reopened": true,
-        "archive_gap_status": "CLOSED_BY_NARROW",
-        "close_admitted": false,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u02-4-original-close-20261030/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound",
+          "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound",
+          "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+          "JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget",
+          "JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound",
+          "Finset.sum_range_add"
+        ]
       }
     },
     {

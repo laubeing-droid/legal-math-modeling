@@ -1,0 +1,111 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "814c10b0d404eaba8848636de8169b815460d70a",
+  "subject_tree": "d23a86901b8cd415973cc6a3a6d31a1b3ae9c1f3",
+  "run_id": 41062973614,
+  "job_id": 124087082984,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41062973614",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41062973614/job/124087082984",
+  "artifact_name": "changed-module-only-41062973614-1",
+  "artifact_id": 12980527206,
+  "artifact_sha256": "bbbb5f89a0d9d621b1322d4d3527106cfdb131d4e057b194da6359b6fff8eef4",
+  "artifact_size_bytes": 3702,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "ccb2f03501db87b94de31f4d72f376c863505a478362508780d6655d07a3675d"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 20477,
+      "sha256": "214653c802299bbf6de907424aa84d5c80d42703f61afdf5f0fcac8757f467805"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "U02.4": [
+      "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound",
+      "JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound",
+      "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+      "JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget",
+      "JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound",
+      "Finset.sum_range_add"
+    ]
+  },
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "Classical.choice": 6,
+      "Quot.sound": 6,
+      "propext": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
+      "sha256": "4b202c3aae98f858f6ec37cd0fe1af0d008447652d963dbbc9546914143eda9b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U02_4ExternalConditionRisk20261030.lean",
+      "sha256": "330b4a757471571d7f10d63f50c3c750f8df3a068d0f68ffc215d48c4c6937b1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
+      "sha256": "b42842573e4d3edd29d611dc7505f46335d147d262ee7e35b10acc7762597b4d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+      "sha256": "c8168df7159fa9a8989cd287bfa6327da8016ddbf17e00705328c68be5b9bd17"
+    }
+  ],
+  "original_residuals": {
+    "U02.4": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1). A general filtration/random-budget tower beyond this partition identity is not an additional theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the unproved general filtration/random-budget tower."
+  },
+  "closed_ids": [
+    "U02.4"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 8,
+  "narrow_after": 7,
+  "wiring_before": 42,
+  "wiring_after": 43,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u02-4-original-close-20261030/axiom-audit.raw.txt",
+    "sha256": "b59ab8b5d07b8b816588db8e19decf6695d2319f42d50df41d4fd00bb812fbb1",
+    "blocks": 12
+  },
+  "mathlib_source": {
+    "repository_commit": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+    "path": "Mathlib/Algebra/BigOperators/Group/Finset/Basic.lean",
+    "lines": "548-553",
+    "declaration": "Finset.sum_range_add"
+  }
+}

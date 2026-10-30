@@ -20,6 +20,7 @@ import JurisLean.Candidates.Final20261021.Feedback
 import JurisLean.Candidates.Final20261021.Iteration
 import JurisLean.Candidates.Final20261021.Pipeline
 import JurisLean.Candidates.Final20261021.Acceptance
+import JurisLean.Candidates.U02_4ExternalConditionRisk20261030
 
 -- Fresh CI types/axioms, not baseline evidence.
 #check JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective
@@ -496,6 +497,10 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Harness.u02_4_union_in_declared_measure
 #check JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound
 #print axioms JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
 #check JurisLean.Candidates.Final20261021.Probability.u04_1_integer_shape_conjugacy
 #print axioms JurisLean.Candidates.Final20261021.Probability.u04_1_integer_shape_conjugacy
 #check JurisLean.Candidates.Final20261021.Probability.u04_1_predictive_mean_is_updated_beta

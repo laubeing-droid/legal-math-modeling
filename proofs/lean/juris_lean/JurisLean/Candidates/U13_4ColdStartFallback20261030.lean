@@ -234,11 +234,13 @@ theorem audited_success_reads_actual_inputs {m : Nat} (q : Query m)
             dsimp only at accepted
             cases personal with
             | none =>
+                dsimp only at accepted
                 split at accepted
                 · exact ⟨calibrated, score, ready, rfl, predicted,
                     (Result.known.inj accepted).symm⟩
                 · cases accepted
             | some checkpoint =>
+                dsimp only at accepted
                 split at accepted
                 · exact ⟨calibrated, score, ready, rfl, predicted,
                     (Result.known.inj accepted).symm⟩

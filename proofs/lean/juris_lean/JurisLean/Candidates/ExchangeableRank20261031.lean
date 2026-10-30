@@ -3,7 +3,7 @@ import Mathlib
 noncomputable section
 
 open MeasureTheory ProbabilityTheory
-open scoped ENNReal BigOperators
+open scoped ENNReal NNReal BigOperators
 
 namespace JurisLean.Candidates.ExchangeableRank20261031
 
@@ -100,7 +100,7 @@ def KeyLT {N : ℕ} (z : Fin N → ℝ × ℝ) (i j : Fin N) : Prop :=
     (z i).1 = (z j).1 ∧ (z i).2 < (z j).2
 
 private lemma keyLT_irrefl {N : ℕ} (z : Fin N → ℝ × ℝ) :
-    ∀ i, ¬ KeyLT z i := by
+    ∀ i, ¬ KeyLT z i i := by
   intro i
   simp [KeyLT]
 
@@ -223,7 +223,7 @@ theorem rank_order_statistic_core
     apply Fin.ext
     have hv := congrArg Fin.val hij
     have he : e.symm (incl i) = e.symm (incl j) := Fin.ext hv
-    exact congrArg Fin.val (e.symm.injective he)
+    exact congrArg (fun a : Fin n => a.val) (e.symm.injective he)
   have hc : k ≤ predecessorRank (KeyLT z) (Fin.last n) := by
     have hh := Finset.card_le_card_of_injOn f
       (s := Finset.univ)
@@ -245,21 +245,22 @@ private lemma measurable_keyRank {N : ℕ} (i : Fin N) :
       Measurable
         (fun z : Fin N → ℝ × ℝ =>
           if KeyLT z j i then (1 : ℕ) else 0) := by
+    have hfirst (a : Fin N) :
+        Measurable (fun z : Fin N → ℝ × ℝ => (z a).1) :=
+      measurable_fst.comp (measurable_pi_apply a)
+    have hsecond (a : Fin N) :
+        Measurable (fun z : Fin N → ℝ × ℝ => (z a).2) :=
+      measurable_snd.comp (measurable_pi_apply a)
     have hs : MeasurableSet {z : Fin N → ℝ × ℝ | KeyLT z j i} := by
-      exact
-        (measurableSet_lt
-          (measurable_fst.comp (measurable_pi_apply j))
-          (measurable_fst.comp (measurable_pi_apply i))).union
-        ((measurableSet_eq_fun
-          (measurable_fst.comp (measurable_pi_apply j))
-          (measurable_fst.comp (measurable_pi_apply i))).inter
-        (measurableSet_lt
-          (measurable_snd.comp (measurable_pi_apply j))
-          (measurable_snd.comp (measurable_pi_apply i))))
+      change MeasurableSet {z : Fin N → ℝ × ℝ |
+        (z j).1 < (z i).1 ∨ (z j).1 = (z i).1 ∧ (z j).2 < (z i).2}
+      exact (measurableSet_lt (hfirst j) (hfirst i)).union
+        ((measurableSet_eq_fun (hfirst j) (hfirst i)).inter
+          (measurableSet_lt (hsecond j) (hsecond i)))
     exact measurable_const.ite hs measurable_const
   have hsum :=
     (Finset.measurable_sum Finset.univ (fun j _ => hm j)).add_const 1
-  simpa [keyRank, predecessorRank,
+  simpa only [keyRank, predecessorRank,
     Finset.card_eq_sum_ones, Finset.sum_filter] using hsum
 
 /-- Fixed measurable scoring transports the entire vector permutation law. -/
@@ -419,7 +420,7 @@ private lemma augmented_injective_ae
     unfold Function.Injective
     have hZ := measurable_augmentedScore hS
     fun_prop
-  apply (ae_prod_iff_ae_ae hm).mpr
+  apply (Measure.ae_prod_iff_ae_ae hm).mpr
   exact Filter.Eventually.of_forall fun ω =>
     (iidAux_injective N).mono fun u hu i j hij =>
       hu (congrArg Prod.snd hij)
@@ -476,7 +477,7 @@ private lemma rank_point_probability
     fun a => G ∩ {ω | keyRank (Z ω) a = j.val + 1}
   have hmG : MeasurableSet G := by
     apply measurableSet_setOf.mpr
-    unfold G Function.Injective
+    unfold Function.Injective
     fun_prop
   have hm (a : Fin N) : MeasurableSet (E a) :=
     hmG.inter
@@ -486,13 +487,16 @@ private lemma rank_point_probability
     calc
       μ G = μ Set.univ := measure_congr (by
         filter_upwards [hz] with ω hω
-        simp [G, hω])
+        change Function.Injective (Z ω) ↔ True
+        exact ⟨fun _ => True.intro, fun _ => hω⟩)
       _ = 1 := measure_univ
   have hE (a : Fin N) :
       μ (E a) = μ {ω | keyRank (Z ω) a = j.val + 1} :=
     measure_congr (by
       filter_upwards [hz] with ω hω
-      simp [E, G, hω])
+      change (Function.Injective (Z ω) ∧ keyRank (Z ω) a = j.val + 1) ↔
+        keyRank (Z ω) a = j.val + 1
+      exact ⟨fun h => h.2, fun h => ⟨hω, h⟩⟩)
   have hdisj :
       Set.PairwiseDisjoint
         (↑(Finset.univ : Finset (Fin N))) E := by
@@ -519,7 +523,8 @@ private lemma rank_point_probability
       refine Set.mem_iUnion.mpr ⟨e.symm j, hω, ?_⟩
       have hv := congrArg Fin.val (e.apply_symm_apply j)
       change predecessorRank (KeyLT (Z ω)) (e.symm j) = j.val at hv
-      simp only [keyRank, hv]
+      change predecessorRank (KeyLT (Z ω)) (e.symm j) + 1 = j.val + 1
+      exact congrArg (fun r : ℕ => r + 1) hv
   have hsum :
       (∑ a : Fin N, μ {ω | keyRank (Z ω) a = j.val + 1}) = 1 := by
     calc

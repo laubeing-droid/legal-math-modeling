@@ -226,6 +226,7 @@ import JurisLean.Candidates.U11_1OriginalInstances20261030
 import JurisLean.Candidates.U12_1CausalPolicyBridge20261030
 import JurisLean.Candidates.U12_1OriginalInstances20261030
 import JurisLean.Candidates.U10_1RefreshRuleProtocol20261030
+import JurisLean.Candidates.U02_4ExternalConditionRisk20261030
 import JurisLean.Candidates.Final20261021.Decision
 import JurisLean.Candidates.U06_1FiniteBellman20261030
 import JurisLean.Candidates.U06_2EquilibriumTransfer20261030
@@ -4388,3 +4389,7 @@ open HornSystem
 #print axioms unit_cube_homeo_unit_ball
 #print axioms weaker_cubical_sperner
 #print axioms zero_ne_last
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound

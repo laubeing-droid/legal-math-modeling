@@ -1,0 +1,180 @@
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment {W : Type}
+  (current : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (bound : JurisLean.Candidates.FiniteLegalValidation20261027.BoundData)
+  (out : JurisLean.Candidates.FiniteLegalValidation20261027.HornReport)
+  (accepted :
+    JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules current input branch =
+      JurisLean.Candidates.Final20261021.Result.known (bound, out)) :
+  input.anchor.gamma = current.gamma ∧
+    input.history = current.state.normHistory ∧
+      (∃ view,
+          JurisLean.Candidates.SourceCompilation20261027.extractView input.anchor branch input.catalog =
+              JurisLean.Candidates.Final20261021.Result.known view ∧
+            JurisLean.Candidates.FiniteLegalValidation20261027.bindAdditional view input.supplements input.policies =
+              JurisLean.Candidates.Final20261021.Result.known bound) ∧
+        bound.source.material.gamma = current.gamma ∧
+          JurisLean.Candidates.FiniteLegalValidation20261027.selectedHorn bound.source current.state.env input.rules
+                input.ruleGate (JurisLean.Candidates.FiniteLegalValidation20261027.eligibleFacts bound) =
+              JurisLean.Candidates.Final20261021.Result.known out ∧
+            current.state.env = JurisLean.Candidates.Final20261021.Result.known out.selectedVersion ∧
+              out.selectedVersion = current.gamma.normVersion ∧
+                out =
+                  JurisLean.Candidates.FiniteLegalValidation20261027.fullHorn bound.source out.selectedVersion
+                    input.rules input.ruleGate (JurisLean.Candidates.FiniteLegalValidation20261027.eligibleFacts bound)
+'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls {W : Type}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (started :
+    (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue grants before change input branch
+          meaning renewals).continued =
+      true) :
+  ∃ after bound out procedure,
+    JurisLean.Candidates.Final20261021.Pipeline.refresh grants before change =
+        JurisLean.Candidates.Final20261021.Result.known after ∧
+      JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules after input branch =
+          JurisLean.Candidates.Final20261021.Result.known (bound, out) ∧
+        after.state.env = JurisLean.Candidates.Final20261021.Result.known out.selectedVersion ∧
+          out.selectedVersion = after.gamma.normVersion ∧
+            out =
+                JurisLean.Candidates.FiniteLegalValidation20261027.fullHorn bound.source out.selectedVersion input.rules
+                  input.ruleGate (JurisLean.Candidates.FiniteLegalValidation20261027.eligibleFacts bound) ∧
+              input.anchor.gamma = after.gamma ∧
+                input.history = after.state.normHistory ∧
+                  meaning.gamma = after.gamma ∧
+                    (∀ a ∈ meaning.permissionAtoms, a ∈ out.closure) ∧
+                      JurisLean.Candidates.ProcedureClosure20261027.checkProcess bound.policy.required
+                            (JurisLean.Candidates.FiniteLegalValidation20261027.processInput bound.supplement.process
+                              bound.policy) =
+                          JurisLean.Candidates.Final20261021.Result.known procedure ∧
+                        (meaning.requiresClosed = true →
+                            procedure = JurisLean.Candidates.Final20261021.Procedure.closedLawfully) ∧
+                          (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue grants before
+                                  change input branch meaning renewals).payment =
+                              JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkedTail grants after
+                                meaning.steps renewals ∧
+                            (have __src := after.state;
+                                { debt := __src.debt, formations := __src.formations, judgment := __src.judgment,
+                                  procedure := __src.procedure, claim := __src.claim,
+                                  executionEligible := __src.executionEligible, initialDebt := __src.initialDebt,
+                                  newDebt := __src.newDebt, accrual := __src.accrual, allocated := __src.allocated,
+                                  writtenOff := __src.writtenOff, paid := __src.paid, surplus := __src.surplus,
+                                  cash := __src.cash, used := __src.used, receipts := __src.receipts,
+                                  rest := __src.rest, refundCash := __src.refundCash,
+                                  normHistory := before.state.normHistory, env := before.state.env }) =
+                                before.state ∧
+                              JurisLean.Candidates.Final20261021.Trace.Step before after
+'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh {W : Type}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (refreshed :
+    JurisLean.Candidates.Final20261021.Pipeline.refresh grants before change =
+      JurisLean.Candidates.Final20261021.Result.known after)
+  (stopped :
+    (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue grants before change input branch
+          meaning renewals).continued =
+      false) :
+  (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue grants before change input branch
+          meaning renewals).payment.current =
+    some after
+'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path {W : Type}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before final : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (initial : JurisLean.Candidates.Final20261021.Trace.Invariant before)
+  (reported :
+    (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue grants before change input branch
+            meaning renewals).payment.current =
+      some final) :
+  JurisLean.Candidates.Final20261021.Trace.Path before final ∧
+    JurisLean.Candidates.Final20261021.Trace.Invariant final ∧ before.state.used ⊆ final.state.used
+'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation {W : Type}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before after : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (renewals remaining : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (nonempty : steps ≠ [])
+  (refreshed :
+    JurisLean.Candidates.Final20261021.Pipeline.refresh grants before change =
+      JurisLean.Candidates.Final20261021.Result.known after)
+  (renewed :
+    JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkRenewal after steps renewals =
+      JurisLean.Candidates.Final20261021.Result.known remaining) :
+  ∃ input branch meaning bound out procedure,
+    renewals = (input, branch, meaning) :: remaining ∧
+      meaning.steps = steps ∧
+        JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules after input branch =
+            JurisLean.Candidates.Final20261021.Result.known (bound, out) ∧
+          input.anchor.gamma = after.gamma ∧
+            input.history = after.state.normHistory ∧
+              after.state.env = JurisLean.Candidates.Final20261021.Result.known out.selectedVersion ∧
+                out.selectedVersion = after.gamma.normVersion ∧
+                  out =
+                      JurisLean.Candidates.FiniteLegalValidation20261027.fullHorn bound.source out.selectedVersion
+                        input.rules input.ruleGate
+                        (JurisLean.Candidates.FiniteLegalValidation20261027.eligibleFacts bound) ∧
+                    meaning.gamma = after.gamma ∧
+                      (∀ a ∈ meaning.permissionAtoms, a ∈ out.closure) ∧
+                        JurisLean.Candidates.ProcedureClosure20261027.checkProcess bound.policy.required
+                              (JurisLean.Candidates.FiniteLegalValidation20261027.processInput bound.supplement.process
+                                bound.policy) =
+                            JurisLean.Candidates.Final20261021.Result.known procedure ∧
+                          (meaning.requiresClosed = true →
+                              procedure = JurisLean.Candidates.Final20261021.Procedure.closedLawfully) ∧
+                            JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkedTail grants before
+                                (JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction.refresh change ::
+                                  steps)
+                                renewals =
+                              JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkedTail grants after steps
+                                remaining
+'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume {B : Type}
+  (s : JurisLean.Candidates.Final20261021.Authorization.Configured B) (g : JurisLean.Candidates.Final20261021.Gamma)
+  (event : JurisLean.Candidates.Final20261021.Temporal.VersionRecord) :
+  JurisLean.Candidates.Final20261021.Authorization.fresh
+      (JurisLean.Candidates.Final20261021.Authorization.append_and_refresh s g event) ∧
+    JurisLean.Candidates.Final20261021.Authorization.next_eval
+          (JurisLean.Candidates.Final20261021.Authorization.append_and_refresh s g event) =
+        JurisLean.Candidates.Final20261021.Temporal.proposed_applicability g (s.history ++ [event]) ∧
+      (JurisLean.Candidates.Final20261021.Authorization.append_and_refresh s g event).business = s.business
+'JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume' does not depend on any axioms
+JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable (g : JurisLean.Candidates.Final20261021.Gamma)
+  (h extra : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord)
+  (later : ∀ e ∈ extra, JurisLean.Candidates.Final20261021.Temporal.visible g e = false) :
+  JurisLean.Candidates.Final20261021.Temporal.proposed_applicability g (h ++ extra) =
+    JurisLean.Candidates.Final20261021.Temporal.proposed_applicability g h
+'JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable' depends on axioms: [propext]
+JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition
+  {s t : JurisLean.Candidates.Final20261021.Ledger.Handle} (path : JurisLean.Candidates.Final20261021.Trace.Path s t)
+  (initial : JurisLean.Candidates.Final20261021.Trace.Invariant s) :
+  JurisLean.Candidates.Final20261021.Trace.Invariant t
+'JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules {W : Type}

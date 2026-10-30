@@ -18,6 +18,8 @@ import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.U12_1CausalPolicyBridge20261030
 import JurisLean.Candidates.U12_1OriginalInstances20261030
 import JurisLean.Candidates.U12_1DebtClosureAudit20261030
+import JurisLean.Candidates.U10_1RefreshRuleProtocol20261030
+import JurisLean.Candidates.U10_1DebtClosureAudit20261030
 import JurisLean.Candidates.PendingCommit20261027
 import JurisLean.Candidates.CommitReadback20261027
 import JurisLean.Candidates.CommitRecovery20261027

@@ -25,6 +25,10 @@ from __future__ import annotations
 # the clause's listed declarations. Roles say what the witness is, not that it
 # discharges a stronger manuscript sentence.
 EXTRA_WIRED: dict[str, list[tuple[str, str, str]]] = {
+    "U10.1": [
+        ("Temporal.lean", "u08_1_selection_stable", "reused fixed-history selection stability"),
+        ("Trace.lean", "u10_2_finite_trace_composition", "reused finite trace composition"),
+    ],
     "U07.1": [
         (
             "Acceptance.lean",
@@ -322,6 +326,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
     "U11.1": "Finite-X binary-treatment real-valued causal bridge, original finite instances for 04.4/11.2/11.6, and reused measurement/selection/transport evidence for original 11.1–11.6; arbitrary measurable selection weights remain a conditional paper derivation.",
     "U13.4": "Audited population forecasts consume actual fitted calibration inputs under explicit sampling/law/iid/measurability/loss/radius premises; sampled fallback returns the equal-weight mean of checked mature observations under explicit iid conditions; declared priors remain separate model inputs; and absent/invalid sources return named UNKNOWN results.",
+    "U10.1": "Actual full-context authorized refresh-to-Step protocol connection: the checked actualPost.env is passed through selectedHorn/fullHorn, full Gamma/history/permission/process is rechecked after each nonempty internal refresh, and an empty tail terminates. Existing authorization, selection stability, and trace declarations are reused; actual legal authority remains an external boundary.",
     "U12.1": "General finite-action causal IPW bridge and actual measured-policy connection under explicit causal/measurement premises; reused clipping and selector proofs; affine real support-range characterization plus existing same-log endpoint evidence; and three finite original-question examples for 12.3 and 12.6. No real-world premise derivation or old Pipeline consumer wiring is claimed.",
     "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
 }
@@ -334,9 +339,7 @@ UNWIRED: dict[str, list[str]] = {
     "U03.1": [],  # Independently proved and audited by the later U03 closure package.
     "U03.2": [],  # Independently proved and audited by the later U03 closure package.
     "U02.1": [],  # Closed by the independent actual-pipeline refinement package.
-    "U10.1": [
-        "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it.",
-    ],
+    "U10.1": [],  # Independent protocol package closes the exact refresh-to-Step residual.
     "U01.1": [],  # Original residual proved in the independent U01 package.
     "U01.2": [],  # Original residual proved in the independent U01 package.
     "U01.3": [],  # Original residual proved in the independent U01 package.
@@ -391,6 +394,9 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U12.3": (
         "Independent U12.3 source-bound close: the generic finite-class 2ε winner bound is reused; the actual find? selector is connected on its Some branch to a 2ε plus computed empirical optimization-gap oracle inequality, while None is abstention. Under the explicitly constructed finite logging law, the actual score expectation is connected to finite policyValue. The MAR bridge keeps the recording indicator and visible Option projection explicit and proves the assignment/recording weighted correction under stated support. The finite-horizon sequential bridge generates trajectories from a shared full-history environment kernel, proves the product of per-history target/logging ratios, and transports expected returns under target-reachable-history coverage. These results are conditional on the stated law and causal identification premises; SourceRef does not prove them. The old Pipeline numeric consumer and RSI feedback path remain unwired, and this is not an infinite-horizon RL theorem or deployment claim. Exact named evidence: docs/formal-release/evidence/u12-3-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
+    ),
+    "U10.1": (
+        "Independent U10.1 protocol close: the checked actualPost.env is used to select and evaluate the actual selectedHorn/fullHorn rule set. The initial state and every nonempty internal refresh recheck full Gamma, history, permission, and process before the remaining protocol continues; a successful refresh with an empty tail terminates directly. Existing authorization, fixed-history selection stability, and finite trace path/invariant results are reused. Pay, replay, and unknownCommit remain handled by the existing one-step executor. This connects the archived refresh-to-Step obligation without asserting that ActionMeaning proves legal authority or that checkNext is a complete checkBranch world/successor semantics. Exact named evidence: docs/formal-release/evidence/u10-1-debt-close-20261030; independent changed-module CI audits named declarations and source binding only."
     ),
     "U12.1": (
         "Independent U12.1 close: the general finite-action causal IPW bridge is stated for an arbitrary probability space and measurable covariate space with integrable real outcomes, under explicit consistency, conditional exchangeability, and target support. The actual measured-policy corollary connects the checked measurement and policy score to that theorem under the frozen measurement and causal premises. Existing support-gap endpoints are reused; the new real interval result characterizes their affine range, while the endpoint worlds remain tied to the existing same-log construction. The three original finite instances directly address the 12.3 value range and the 12.6 behavior-only and proxy-score counterexamples. These proofs do not establish real identification, measurement validity, normative permission, or old Pipeline consumption; those remain external or unwired conditions. Exact named evidence: docs/formal-release/evidence/u12-1-debt-close-20261030; independent changed-module CI audits named declarations and source binding only."
@@ -762,7 +768,6 @@ CANDIDATE_MODULE = "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail202610
 CANDIDATE_MODULE_NAME = "JurisLean.Candidates.FormalTail20261024"
 # These eight stay on the prove path and must carry non-goals in the same row.
 COMPANION_TAIL_IDS = (
-    "U10.1",
     "U08.3",
     "U10.3",
     "U09.1",
@@ -821,6 +826,7 @@ CLOSED_WIRING_IDS = (
     "U13.4",
     "U11.1",
     "U12.1",
+    "U10.1",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1389,6 +1395,38 @@ U12_1_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
 )
 
+U10_1_CLOSED_IDS = ("U10.1",)
+U10_1_CLOSE_PACK = "docs/formal-release/evidence/u10-1-debt-close-20261030"
+U10_1_RECEIPT = U10_1_CLOSE_PACK + "/verification.json"
+U10_1_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U10_1DebtClosureAudit20261030.lean"
+U10_1_NAMES = {
+    "U10.1": [
+        "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+        "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+        "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh",
+        "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+        "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+        "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+        "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+        "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+    ]
+}
+U10_1_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.ProtocolRun",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkRenewal",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.checkedTail",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.refreshEvaluateContinue",
+)
+U10_1_SOURCES = (
+    U10_1_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+)
+
 U11_1_CLOSED_IDS = ("U11.1",)
 U11_1_CLOSE_PACK = "docs/formal-release/evidence/u11-1-debt-close-20261030"
 U11_1_RECEIPT = U11_1_CLOSE_PACK + "/verification.json"
@@ -1562,12 +1600,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 41004233670, "expected_job_id": 123895367398,
      "expected_attempt": 1, "expected_artifact_id": 12954856579,
      "expected_artifact_sha256": "0fa985ccbd5247a8bc53d2638d84a0e01256ad64b92470722e510821e5f873be"},
+    {"closed_ids": U10_1_CLOSED_IDS, "pack": U10_1_CLOSE_PACK,
+     "receipt": U10_1_RECEIPT, "names": U10_1_NAMES,
+     "driver": U10_1_DRIVER, "sources": U10_1_SOURCES,
+     "object_checks": U10_1_OBJECT_CHECKS,
+     "open_before": 1, "open_after": 0,
+     "expected_subject": "bf95766f1e68a82b2bda80db8712b39611233482",
+     "expected_run_id": 41018909983, "expected_job_id": 123941482566,
+     "expected_attempt": 1, "expected_artifact_id": 12961061530,
+     "expected_artifact_sha256": "542dd8f891c9628d0ac43dfe741b7ee4efe2c86aefe75b2c20def010e796e397"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -2135,8 +2182,8 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "interpretation inputs; source truth/O05 and old Pipeline consumption remain "
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
-            "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. Current "
-        "OPEN_FORMAL_TAIL=1; CLOSED_BY_WIRING=41; the "
+            "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. Current "
+        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=42; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -2162,7 +2209,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U12_1_PROOFS" if clause in U12_1_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U10_1_PROOFS" if clause in U10_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U12_1_PROOFS" if clause in U12_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U11_1_PROOFS" if clause in U11_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U06_2_PROOFS" if clause in U06_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U12_3_PROOFS" if clause in U12_3_CLOSED_IDS else

@@ -320,6 +320,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
     "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
     "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
+    "U11.1": "Finite-X binary-treatment real-valued causal bridge, original finite instances for 04.4/11.2/11.6, and reused measurement/selection/transport evidence for original 11.1–11.6; arbitrary measurable selection weights remain a conditional paper derivation.",
     "U13.4": "Audited population forecasts consume actual fitted calibration inputs under explicit sampling/law/iid/measurability/loss/radius premises; sampled fallback returns the equal-weight mean of checked mature observations under explicit iid conditions; declared priors remain separate model inputs; and absent/invalid sources return named UNKNOWN results.",
     "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
 }
@@ -343,9 +344,7 @@ UNWIRED: dict[str, list[str]] = {
     "U06.1": [
     ],  # The independent finite Bellman/trajectory package closes this archived residual.
     "U06.2": [],  # The independent mixed-payoff and fixed W4 strategy/tree package closes the archived residual.
-    "U11.1": [
-        "The g formula, K1/K2 selection, sharp support gaps, and measurement bridges remain unproved.",
-    ],
+    "U11.1": [],  # The independent U11.1 package audits the archived residual.
     "U12.1": [
         "Complete causal/measurement interpretation and the support-gap identified range remain unproved. Finite IPW cancellation does not state them.",
     ],
@@ -393,6 +392,21 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U12.3": (
         "Independent U12.3 source-bound close: the generic finite-class 2ε winner bound is reused; the actual find? selector is connected on its Some branch to a 2ε plus computed empirical optimization-gap oracle inequality, while None is abstention. Under the explicitly constructed finite logging law, the actual score expectation is connected to finite policyValue. The MAR bridge keeps the recording indicator and visible Option projection explicit and proves the assignment/recording weighted correction under stated support. The finite-horizon sequential bridge generates trajectories from a shared full-history environment kernel, proves the product of per-history target/logging ratios, and transports expected returns under target-reachable-history coverage. These results are conditional on the stated law and causal identification premises; SourceRef does not prove them. The old Pipeline numeric consumer and RSI feedback path remain unwired, and this is not an infinite-horizon RL theorem or deployment claim. Exact named evidence: docs/formal-release/evidence/u12-3-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
+    ),
+    "U11.1": (
+        "Independent U11.1 close: the named finite-X, binary-treatment bridge derives "
+        "consistency from version/exposure alignment, observed conditional means from "
+        "consistency, exchangeability and positivity, and the finite g formula for "
+        "integrable real-valued potential outcomes. The actual finite instances cover "
+        "the shared 04.4 missing-outcome endpoints and MCAR recovery, the 11.2 Bernoulli "
+        "countermodels, and the 11.6 same-behavior/different-constraint example. Reused "
+        "measurement and selection declarations cover the enumerated original 11.1–11.6 "
+        "claims. The general selection-weight formula in the README is a conditional "
+        "expectation derivation; the Lean MAR instance is finite and rational and is not "
+        "a theorem for arbitrary measurable selection laws. This does not wire the old "
+        "Pipeline's numeric consumers or establish real-world identification premises. "
+        "Exact named evidence: docs/formal-release/evidence/u11-1-debt-close-20261030; "
+        "independent changed-module CI audits named declarations and source binding only."
     ),
     "U13.4": (
         "Independent U13.4 fallback close: the audited branch reads the actual fitted table, calibration result, applicability input and optional personal checkpoint under the existing sample/law/iid/measurability/loss/radius premises; it is a conditional population-risk bound, not a per-case win-rate guarantee. The sampled branch reads checked mature measurement rows and labels and returns their actual equal-weight sample mean, with its error bound under the stated same-law and iid conditions. Declared prior input remains a separate model condition; absent or invalid source attempts return named UNKNOWN, while the normative partial function remains separate. Source references and applicability inputs do not prove source authenticity, physical applicability or iid sampling. This closes only U13.4; it does not establish an RSI-wide improvement theorem, change original-question 13.4, close original-question 13.5, or connect the old Pipeline/consumer. Exact named evidence: docs/formal-release/evidence/u13-4-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
@@ -803,6 +817,7 @@ CLOSED_WIRING_IDS = (
     "U06.2",
     "U12.3",
     "U13.4",
+    "U11.1",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1322,6 +1337,82 @@ U13_4_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
 )
 
+U11_1_CLOSED_IDS = ("U11.1",)
+U11_1_CLOSE_PACK = "docs/formal-release/evidence/u11-1-debt-close-20261030"
+U11_1_RECEIPT = U11_1_CLOSE_PACK + "/verification.json"
+U11_1_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U11_1DebtClosureAudit20261030.lean"
+U11_1_NAMES = {
+    "U11.1": [
+        "JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure",
+        "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential",
+        "JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions",
+        "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_2_bernoulli_prediction_checks",
+        "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints",
+        "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints",
+        "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers",
+        "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton",
+        "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+        "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+        "JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused",
+        "JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement",
+        "JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies",
+        "JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds",
+        "JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate",
+        "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized",
+        "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative",
+        "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery",
+        "JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization",
+        "JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law",
+        "JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect",
+        "JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both",
+        "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability",
+        "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target",
+        "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect",
+        "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds",
+        "JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible",
+        "JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement",
+        "JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy",
+        "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+        "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral",
+    ]
+}
+U11_1_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.C_cons",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.I_nointerf",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownExposure",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownIntervention",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.E_exch",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.P_pos",
+    "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean",
+    "JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary",
+    "JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow",
+    "JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt",
+    "JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission",
+    "JurisLean.Candidates.MeasuredPolicy20261027.runMeasurementPolicy",
+    "JurisLean.Candidates.MeasuredPolicy20261027.adviseMeasured",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marReport",
+    "JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore",
+)
+U11_1_SOURCES = (
+    U11_1_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1NamedCausalBridge20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/BusinessMeasurement20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3MARSequential20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
+)
+
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -1401,12 +1492,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 40976943681, "expected_job_id": 123807204758,
      "expected_attempt": 1, "expected_artifact_id": 12943003053,
      "expected_artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff"},
+    {"closed_ids": U11_1_CLOSED_IDS, "pack": U11_1_CLOSE_PACK,
+     "receipt": U11_1_RECEIPT, "names": U11_1_NAMES,
+     "driver": U11_1_DRIVER, "sources": U11_1_SOURCES,
+     "object_checks": U11_1_OBJECT_CHECKS,
+     "open_before": 3, "open_after": 2,
+     "expected_subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+     "expected_run_id": 40987962686, "expected_job_id": 123843315122,
+     "expected_attempt": 1, "expected_artifact_id": 12947703490,
+     "expected_artifact_sha256": "2760b9b16a43f9e4f52b315b196f7164ac42256e68c64c55111fd14b3fac6b87"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -1975,7 +2075,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. Current "
-        "OPEN_FORMAL_TAIL=4; CLOSED_BY_WIRING=38; the "
+        "OPEN_FORMAL_TAIL=2; CLOSED_BY_WIRING=40; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -2001,7 +2101,8 @@ def remaining_after(clause: str) -> str:
         return text
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
-    text = ("WIRED_TO_INDEPENDENT_U06_2_PROOFS" if clause in U06_2_CLOSED_IDS else
+    text = ("WIRED_TO_INDEPENDENT_U11_1_PROOFS" if clause in U11_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U06_2_PROOFS" if clause in U06_2_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U12_3_PROOFS" if clause in U12_3_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U06_1_PROOFS" if clause in U06_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_2_PROOFS" if clause in U04_2_CLOSED_IDS else

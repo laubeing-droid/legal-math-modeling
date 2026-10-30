@@ -1142,9 +1142,28 @@
           117
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            113,
+            115,
+            117
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints",
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers",
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton"
+          ],
+          "scope": "L113/L117: two finite normalized missing-outcome laws have the same full visible report distribution and means 1/4 and 3/4; L115: the separately supplied MCAR factorization recovers the visible success mean."
+        }
+      ],
+      "remaining": ""
     },
     {
       "id": "04.5",
@@ -1657,9 +1676,25 @@
           133
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            131
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions",
+            "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target"
+          ],
+          "scope": "L131 causal action-value interface is mapped by the finite-X g-formula bridge and reused transport theorem, under explicit identification/transport premises. L129 and L133 remain outstanding."
+        }
+      ],
+      "remaining": "L129 risk-constraint examples and exclusion of the original optimum, and L133 empty-feasible-set handling and minimum evaluation interface, remain. L131 is mapped to the U11.1 causal action-value evidence only; no old U00 consumer edge is thereby upgraded."
     },
     {
       "id": "06.7",
@@ -2946,7 +2981,7 @@
           99
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/business-measurement-20261027",
@@ -2954,9 +2989,29 @@
           "run_id": 40453954728,
           "job_id": 122022821909,
           "scope": "14目标18执行独立PASS；实际后态到三类测量、期限/完整窗口/事件身份、撤销非缺陷和原100案锐界；150相关PASS，完整PR待验"
+        },
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            93,
+            95,
+            97,
+            99
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows",
+            "JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window",
+            "JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused",
+            "JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement"
+          ],
+          "scope": "The added measured-policy evidence is tied to actual rows, complete-window negative labels, and duplicate-event handling; source references do not establish real-world truth or iid sampling."
         }
       ],
-      "remaining": "PR47全部PR及新main40458404590 PASS；MeasuredPolicy独立11目标16执行及154+12本地检查PASS，PR49最终65776fb4完整双链待验。全部原段落及U00继续。"
+      "remaining": ""
     },
     {
       "id": "11.2",
@@ -2992,9 +3047,34 @@
           115
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            103,
+            105,
+            106,
+            108,
+            110,
+            111,
+            112,
+            113,
+            115
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_2_bernoulli_prediction_checks",
+            "JurisLean.Candidates.Final20261021.Behavior.u11_1_obs_equiv_models_distinct_ATE",
+            "JurisLean.Candidates.Final20261021.Behavior.prediction_not_causal_identification"
+          ],
+          "scope": "The finite Bernoulli instance supplies common weights and zero prediction error while reusing the observation-equivalent models with different ATEs; it does not infer the causal effect from prediction accuracy."
+        }
+      ],
+      "remaining": ""
     },
     {
       "id": "11.3",
@@ -3022,7 +3102,7 @@
           126
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/causal-selection-20261027",
@@ -3030,9 +3110,31 @@
           "run_id": 40449209254,
           "job_id": 122007689620,
           "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            119,
+            121,
+            122,
+            123,
+            124,
+            126
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure",
+            "JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential",
+            "JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions",
+            "JurisLean.Candidates.CausalSelection20261027.support_gap_endpoints_observationally_compatible"
+          ],
+          "scope": "The named bridge derives the consistency, conditional-mean, and finite-X g-formula links for real integrable outcomes; the existing support-gap endpoints remain reused. It does not reduce the original condition to finite U or rational probabilities."
         }
       ],
-      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+      "remaining": ""
     },
     {
       "id": "11.4",
@@ -3065,7 +3167,7 @@
           140
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/causal-selection-20261027",
@@ -3073,9 +3175,34 @@
           "run_id": 40449209254,
           "job_id": 122007689620,
           "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            130,
+            132,
+            133,
+            135,
+            136,
+            137,
+            138,
+            140
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized",
+            "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery",
+            "JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization",
+            "JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization",
+            "JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral"
+          ],
+          "scope": "The general selection-weight formula is a conditional-expectation derivation under explicit consistency, treatment exchangeability, selection independence, support, and integrability conditions; the Lean MAR evidence is a finite rational instance, not an arbitrary measurable selection theorem."
         }
       ],
-      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+      "remaining": ""
     },
     {
       "id": "11.5",
@@ -3107,7 +3234,7 @@
           154
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/causal-selection-20261027",
@@ -3115,9 +3242,32 @@
           "run_id": 40449209254,
           "job_id": 122007689620,
           "scope": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743待验。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            144,
+            146,
+            147,
+            149,
+            150,
+            151,
+            152,
+            154
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability",
+            "JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target",
+            "JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect"
+          ],
+          "scope": "The reused transport theorem and counterexample separate overlap and conditional mean stability from source fit; the target effect remains conditional on the stated migration assumptions."
         }
       ],
-      "remaining": "CausalSelection12目标7执行，PR44最终542946b9双链40450390460/40450390836全部PASS，final122016006899；证书/独立验证及同树合并d9397d83、actual main archivegate均PASS。新main40451949743全链PASS，actual final122020882929。实际测量字典/业务消费、具名外部因果前提、全部原段落和U00继续。"
+      "remaining": ""
     },
     {
       "id": "11.6",
@@ -3146,9 +3296,28 @@
           162
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "manuscript_lines": [
+            158,
+            160,
+            162
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints",
+            "JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies",
+            "JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds"
+          ],
+          "scope": "The 13-field behavior-evidence table and same-behavior/different-constraint witness preserve the distinction between behavior evidence, legal permission, and normative adoption."
+        }
+      ],
+      "remaining": ""
     },
     {
       "id": "12.1",

@@ -1,0 +1,547 @@
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure.{u_1, u_2, u_3} {Ω : Type u_1}
+  [MeasurableSpace Ω] {V : Type u_2} {ι : Type u_3} (μ : MeasureTheory.Measure Ω) (response : V → Ω → (ι → Bool) → ℝ)
+  (fixedVersion : V) (actualVersion : Ω → V) (allocation : Ω → ι → Bool) (A : Ω → Bool) (Y : Ω → ℝ)
+  (exposure : (ι → Bool) → Bool) (intervention : Bool → ι → Bool)
+  (targetAligned : ∀ (a : Bool), exposure (intervention a) = a)
+  (observedAligned : ∀ᵐ (ω : Ω) ∂μ, exposure (allocation ω) = A ω)
+  (consistent :
+    JurisLean.Candidates.U11_1NamedCausalBridge20261030.C_cons μ response fixedVersion actualVersion allocation Y)
+  (noInterference : JurisLean.Candidates.U11_1NamedCausalBridge20261030.I_nointerf μ response fixedVersion exposure) :
+  Y =ᵐ[μ] fun ω =>
+    JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome response fixedVersion intervention (A ω) ω
+'JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential.{u_1, u_2} {Ω : Type u_1}
+  [MeasurableSpace Ω] {S : Type u_2} [Fintype S] [MeasurableSpace S] [MeasurableSingletonClass S]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → S) (measurableX : Measurable X)
+  (A : Ω → Bool) (measurableA : Measurable A) (potential : Bool → Ω → ℝ)
+  (potentialIntegrable : ∀ (a : Bool), MeasureTheory.Integrable (potential a) μ) (Y : Ω → ℝ)
+  (consistent : Y =ᵐ[μ] fun ω => potential (A ω) ω)
+  (exchangeable : JurisLean.Candidates.U11_1NamedCausalBridge20261030.E_exch μ X A potential)
+  (positive : JurisLean.Candidates.U11_1NamedCausalBridge20261030.P_pos μ X A) (x : S) (populated : μ {ω | X ω = x} ≠ 0)
+  (a : Bool) :
+  MeasureTheory.Integrable Y μ[|{ω | X ω = x} ∩ {ω | A ω = a}] ∧
+    JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean μ X A Y x a =
+      ∫ (ω : Ω), potential a ω ∂μ[|{ω | X ω = x}]
+'JurisLean.Candidates.U11_1NamedCausalBridge20261030.observed_cell_mean_eq_potential' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions.{u_1, u_2, u_3, u_4} {Ω : Type u_1}
+  [MeasurableSpace Ω] {S : Type u_2} {V : Type u_3} {ι : Type u_4} [Fintype S] [MeasurableSpace S]
+  [MeasurableSingletonClass S] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → S)
+  (measurableX : Measurable X) (A : Ω → Bool) (measurableA : Measurable A) (Y : Ω → ℝ)
+  (response : V → Ω → (ι → Bool) → ℝ) (fixedVersion : V) (actualVersion : Ω → V) (allocation : Ω → ι → Bool)
+  (exposure : (ι → Bool) → Bool) (intervention : Bool → ι → Bool)
+  (targetAligned : ∀ (a : Bool), exposure (intervention a) = a)
+  (observedAligned : ∀ᵐ (ω : Ω) ∂μ, exposure (allocation ω) = A ω)
+  (consistent :
+    JurisLean.Candidates.U11_1NamedCausalBridge20261030.C_cons μ response fixedVersion actualVersion allocation Y)
+  (noInterference : JurisLean.Candidates.U11_1NamedCausalBridge20261030.I_nointerf μ response fixedVersion exposure)
+  (potentialIntegrable :
+    ∀ (a : Bool),
+      MeasureTheory.Integrable
+        (JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome response fixedVersion intervention a) μ)
+  (exchangeable :
+    JurisLean.Candidates.U11_1NamedCausalBridge20261030.E_exch μ X A
+      (JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome response fixedVersion intervention))
+  (positive : JurisLean.Candidates.U11_1NamedCausalBridge20261030.P_pos μ X A) :
+  MeasureTheory.Integrable Y μ ∧
+    ∫ (ω : Ω),
+        JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome response fixedVersion intervention true ω -
+          JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome response fixedVersion intervention false
+            ω ∂μ =
+      ∑ x,
+        (JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean μ X A Y x true -
+            JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean μ X A Y x false) *
+          μ.real {ω | X ω = x}
+'JurisLean.Candidates.U11_1NamedCausalBridge20261030.finite_g_formula_from_conditions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1OriginalInstances20261030.original11_2_bernoulli_prediction_checks :
+  ∑ _u, 1 / 2 = 1 ∧
+    (∀ (z : Bool × Bool),
+        (∑ u,
+            1 / 2 *
+              if
+                  (JurisLean.Candidates.Final20261021.Behavior.m1.observedAction u,
+                      JurisLean.Candidates.Final20261021.Behavior.m1.observedOutcome u) =
+                    z then
+                1
+              else 0) =
+          ∑ u,
+            1 / 2 *
+              if
+                  (JurisLean.Candidates.Final20261021.Behavior.m2.observedAction u,
+                      JurisLean.Candidates.Final20261021.Behavior.m2.observedOutcome u) =
+                    z then
+                1
+              else 0) ∧
+      ((∑ u,
+              1 / 2 *
+                if
+                    JurisLean.Candidates.Final20261021.Behavior.m1.observedAction u =
+                      JurisLean.Candidates.Final20261021.Behavior.m1.observedOutcome u then
+                  0
+                else 1) =
+            0 ∧
+          (∑ u,
+              1 / 2 *
+                if
+                    JurisLean.Candidates.Final20261021.Behavior.m2.observedAction u =
+                      JurisLean.Candidates.Final20261021.Behavior.m2.observedOutcome u then
+                  0
+                else 1) =
+            0) ∧
+        JurisLean.Candidates.Final20261021.Behavior.ate JurisLean.Candidates.Final20261021.Behavior.m1 = 1 ∧
+          JurisLean.Candidates.Final20261021.Behavior.ate JurisLean.Candidates.Final20261021.Behavior.m2 = 0
+'JurisLean.Candidates.U11_1OriginalInstances20261030.original11_2_bernoulli_prediction_checks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints :
+  have model := fun x => JurisLean.Candidates.Final20261021.Behavior.m1;
+  have admissible := fun law action => law = true ∨ action = false;
+  model false = model true ∧
+    JurisLean.Candidates.Final20261021.Behavior.ate (model false) = 1 ∧ admissible true true ∧ ¬admissible false true
+'JurisLean.Candidates.U11_1OriginalInstances20261030.original11_6_same_behavior_different_constraints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints :
+  (∀ (m : Bool) (report : Option Bool),
+      JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport false m report =
+        JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport true m report) ∧
+    JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean false = 1 / 4 ∧
+      JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean true = 3 / 4 ∧
+        ∀ (hidden : Bool),
+          ∑ y, (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld hidden).mass (true, y) =
+              1 / 2 ∧
+            (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld hidden).mass (true, true) /
+                ∑ y, (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld hidden).mass (true, y) =
+              1 / 2
+'JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers
+  (P : JurisLean.Candidates.Final20261021.Probability.FiniteLaw (Bool × Bool))
+  (independent : ∀ (m y : Bool), P.mass (m, y) = (∑ y', P.mass (m, y')) * ∑ m', P.mass (m', y))
+  (recording : ∑ y, P.mass (true, y) = 1 / 2) (observed : P.mass (true, true) / ∑ y, P.mass (true, y) = 1 / 2) :
+  ∑ m, P.mass (m, true) = 1 / 2
+'JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton
+  (I : (Bool → Option Bool → ℚ) → ℚ × ℚ)
+  (reliable :
+    ∀ (hidden : Bool),
+      (I (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport hidden)).1 ≤
+          JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean hidden ∧
+        JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean hidden ≤
+          (I (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport hidden)).2) :
+  (I (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport false)).1 <
+    (I (JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport false)).2
+'JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out) :
+  out.actualPost = post ∧
+    out.dictionary = d ∧
+      out.rows = rows ∧
+        out.observedAt = now ∧
+          JurisLean.Candidates.BusinessMeasurement20261027.measuredTotal post d rows = some out.measuredTotal ∧
+            JurisLean.Candidates.BusinessMeasurement20261027.measurementInputsValid post d now catalog rows = true
+'JurisLean.Candidates.BusinessMeasurement20261027.measurement_reads_actual_state_and_rows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+  (accepted :
+    JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out)
+  (negative : out.label = false) :
+  JurisLean.Candidates.BusinessMeasurement20261027.windowComplete d now rows closures = true ∧
+    d.windowEnd.ticks ≤ now.ticks ∧
+      out.measuredTotal < JurisLean.Candidates.BusinessMeasurement20261027.measurementThreshold d
+'JurisLean.Candidates.BusinessMeasurement20261027.negative_requires_complete_closed_window' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (duplicate : ¬List.Pairwise (fun a b => a.event ≠ b.event) rows) :
+  JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness post d now catalog closures rows =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.unknown
+      JurisLean.Candidates.BusinessMeasurement20261027.MeasurementFailure.scopeMismatch
+'JurisLean.Candidates.BusinessMeasurement20261027.duplicate_events_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (row : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (construct : d.construct = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorConstruct.reviewedDefect)
+  (observed : row.body = JurisLean.Candidates.BusinessMeasurement20261027.BehaviorRecord.revocation) :
+  JurisLean.Candidates.BusinessMeasurement20261027.rowContribution post d row = none
+'JurisLean.Candidates.BusinessMeasurement20261027.revocation_does_not_supply_defect_measurement' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies :
+  JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 2 = 1 / 10 ∧ 8 / 20 = 2 / 5 ∧ 8 / 100 = 2 / 25
+'JurisLean.Candidates.BusinessMeasurement20261027.original_appeal_frequencies' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds (n : ℕ) (hn : n ≤ 80) :
+  2 / 25 ≤ JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate n ∧
+    JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate n ≤ 22 / 25 ∧
+      JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 0 = 2 / 25 ∧
+        JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 80 = 22 / 25
+'JurisLean.Candidates.BusinessMeasurement20261027.unknown_appeal_labels_have_sharp_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate
+  (estimator : ℕ × ℕ → ℚ) :
+  ¬(estimator (20, 8) = JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 0 ∧
+      estimator (20, 8) = JurisLean.Candidates.BusinessMeasurement20261027.appealCompletionRate 80)
+'JurisLean.Candidates.BusinessMeasurement20261027.appeal_observations_cannot_identify_population_rate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized.{u_1, u_2, u_3} {X : Type u_1}
+  {U : Type u_2} {A : Type u_3} [Fintype X] [Fintype U] [Fintype A] (mass : X → ℚ) (latent : X → U → ℚ)
+  (assignment recording : X → A → ℚ) (massTotal : ∑ x, mass x = 1) (latentTotal : ∀ (x : X), ∑ u, latent x u = 1)
+  (assignmentTotal : ∀ (x : X), ∑ a, assignment x a = 1) :
+  ∑ x,
+      ∑ u,
+        ∑ a, ∑ s, JurisLean.Candidates.CausalSelection20261027.selectionJoint mass latent assignment recording x u a s =
+    1
+'JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_normalized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative.{u_1, u_2, u_3} {X : Type u_1}
+  {U : Type u_2} {A : Type u_3} (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+  (hm : ∀ (x : X), 0 ≤ mass x) (hu : ∀ (x : X) (u : U), 0 ≤ latent x u) (ha : ∀ (x : X) (a : A), 0 ≤ assignment x a)
+  (hr : ∀ (x : X) (a : A), 0 ≤ recording x a ∧ recording x a ≤ 1) (x : X) (u : U) (a : A) (s : Bool) :
+  0 ≤ JurisLean.Candidates.CausalSelection20261027.selectionJoint mass latent assignment recording x u a s
+'JurisLean.Candidates.CausalSelection20261027.full_selection_kernel_nonnegative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery.{u_1, u_2, u_3} {X : Type u_1} {U : Type u_2}
+  {A : Type u_3} [Fintype X] [Fintype U] (mass : X → ℚ) (latent : X → U → ℚ) (assignment recording : X → A → ℚ)
+  (response : X → U → A → ℚ) (action : A)
+  (support : ∀ (x : X), mass x ≠ 0 → assignment x action ≠ 0 ∧ recording x action ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.selectionRecoveryValue mass latent assignment recording response action =
+    JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response action
+'JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization.{u_1, u_2, u_3}
+  {X : Type u_1} {U : Type u_2} {A : Type u_3} [Fintype X] [Fintype U] [Fintype A] (mass : X → ℚ) (latent : X → U → ℚ)
+  (assignment recording : X → A → ℚ) (response : X → U → A → ℚ) (action : A)
+  (support : ∀ (x : X), mass x ≠ 0 → assignment x action ≠ 0 ∧ recording x action ≠ 0)
+  (nonzero :
+    JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording ≠ 0) :
+  JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording *
+      (JurisLean.Candidates.CausalSelection20261027.selectionRecoveryValue mass latent assignment recording response
+          action /
+        JurisLean.Candidates.CausalSelection20261027.selectionPopulationMass mass latent assignment recording) =
+    JurisLean.Candidates.CausalSelection20261027.interventionValue mass latent response action
+'JurisLean.Candidates.CausalSelection20261027.selected_database_requires_population_normalization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law (a s : Bool)
+  (y : Option Bool) :
+  JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+      JurisLean.Candidates.CausalSelection20261027.colliderVisible (a, s, y) =
+    JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+      JurisLean.Candidates.CausalSelection20261027.directVisible (a, s, y)
+'JurisLean.Candidates.CausalSelection20261027.selection_countermodels_have_identical_visible_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect :
+  JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+          JurisLean.Candidates.CausalSelection20261027.colliderVisible true -
+        JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+          JurisLean.Candidates.CausalSelection20261027.colliderVisible false =
+      1 ∧
+    JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+            JurisLean.Candidates.CausalSelection20261027.directVisible true -
+          JurisLean.Candidates.CausalSelection20261027.selectedVisibleMean
+            JurisLean.Candidates.CausalSelection20261027.directVisible false =
+        1 ∧
+      JurisLean.Candidates.CausalSelection20261027.selectionEffect
+            JurisLean.Candidates.CausalSelection20261027.colliderPotential =
+          0 ∧
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+            JurisLean.Candidates.CausalSelection20261027.directPotential =
+          1
+'JurisLean.Candidates.CausalSelection20261027.selected_association_is_not_population_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both
+  (estimator : (JurisLean.Candidates.CausalSelection20261027.SelectionVisible → ℚ) → ℚ) :
+  ¬(estimator
+          (JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+            JurisLean.Candidates.CausalSelection20261027.colliderVisible) =
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+          JurisLean.Candidates.CausalSelection20261027.colliderPotential ∧
+      estimator
+          (JurisLean.Candidates.CausalSelection20261027.visibleSelectionMass
+            JurisLean.Candidates.CausalSelection20261027.directVisible) =
+        JurisLean.Candidates.CausalSelection20261027.selectionEffect
+          JurisLean.Candidates.CausalSelection20261027.directPotential)
+'JurisLean.Candidates.CausalSelection20261027.no_visible_law_estimator_identifies_both' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability.{u_1} {X : Type u_1}
+  [Fintype X] (source target sourceEffect targetEffect : X → ℚ) (overlap : ∀ (x : X), target x ≠ 0 → source x ≠ 0)
+  (stable : ∀ (x : X), target x ≠ 0 → sourceEffect x = targetEffect x) :
+  JurisLean.Candidates.CausalSelection20261027.transportedValue source target sourceEffect =
+    JurisLean.Candidates.CausalSelection20261027.populationEffect target targetEffect
+'JurisLean.Candidates.CausalSelection20261027.transport_requires_overlap_and_mean_stability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target :
+  JurisLean.Candidates.CausalSelection20261027.populationEffect JurisLean.Candidates.CausalSelection20261027.sourceMix
+        JurisLean.Candidates.CausalSelection20261027.stableGroupEffect =
+      9 / 50 ∧
+    JurisLean.Candidates.CausalSelection20261027.transportedValue JurisLean.Candidates.CausalSelection20261027.sourceMix
+          JurisLean.Candidates.CausalSelection20261027.targetMix
+          JurisLean.Candidates.CausalSelection20261027.stableGroupEffect =
+        -9 / 50 ∧
+      JurisLean.Candidates.CausalSelection20261027.targetMix false /
+            JurisLean.Candidates.CausalSelection20261027.sourceMix false =
+          1 / 4 ∧
+        JurisLean.Candidates.CausalSelection20261027.targetMix true /
+            JurisLean.Candidates.CausalSelection20261027.sourceMix true =
+          4
+'JurisLean.Candidates.CausalSelection20261027.actual_transport_reweights_the_target' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect :
+  JurisLean.Candidates.CausalSelection20261027.transportVisible
+        JurisLean.Candidates.CausalSelection20261027.stableScenario =
+      JurisLean.Candidates.CausalSelection20261027.transportVisible
+        JurisLean.Candidates.CausalSelection20261027.changedScenario ∧
+    (∀ (x action : Bool),
+        0 ≤ JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans x action ∧
+          JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans x action ≤ 1 ∧
+            0 ≤ JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans x action ∧
+              JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans x action ≤ 1) ∧
+      JurisLean.Candidates.CausalSelection20261027.populationEffect
+            JurisLean.Candidates.CausalSelection20261027.stableScenario.targetDistribution
+            (JurisLean.Candidates.CausalSelection20261027.effectOfMean
+              JurisLean.Candidates.CausalSelection20261027.stableScenario.targetMeans) =
+          -9 / 50 ∧
+        JurisLean.Candidates.CausalSelection20261027.populationEffect
+            JurisLean.Candidates.CausalSelection20261027.changedScenario.targetDistribution
+            (JurisLean.Candidates.CausalSelection20261027.effectOfMean
+              JurisLean.Candidates.CausalSelection20261027.changedScenario.targetMeans) =
+          1
+'JurisLean.Candidates.CausalSelection20261027.source_and_target_mix_do_not_identify_new_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds.{u_1, u_2} {X : Type u_1} {A : Type u_2}
+  [Fintype X] [Fintype A] (mass : X → ℚ) (logging target outcome : X → A → ℚ) (hm : ∀ (x : X), 0 ≤ mass x)
+  (ht : ∀ (x : X) (a : A), 0 ≤ target x a) (hy : ∀ (x : X) (a : A), 0 ≤ outcome x a ∧ outcome x a ≤ 1) :
+  JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target
+        (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome 0) ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target outcome ≤
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target
+        (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported logging outcome 1)
+'JurisLean.Candidates.PolicyEvaluation20261027.unsupported_value_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible :
+  (∀ (x a y : Bool),
+      JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw
+          JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 0)
+          x a y =
+        JurisLean.Candidates.PolicyEvaluation20261027.bernoulliVisibleLaw
+          JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 1)
+          x a y) ∧
+    JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 0) =
+        3 / 20 ∧
+      JurisLean.Candidates.PolicyEvaluation20261027.policyValue JurisLean.Candidates.PolicyEvaluation20261027.groupMass
+          JurisLean.Candidates.PolicyEvaluation20261027.chooseOne
+          (JurisLean.Candidates.PolicyEvaluation20261027.fillUnsupported
+            JurisLean.Candidates.PolicyEvaluation20261027.supportGapLogging
+            JurisLean.Candidates.PolicyEvaluation20261027.originalMean 1) =
+        13 / 20
+'JurisLean.Candidates.PolicyEvaluation20261027.support_gap_endpoints_observationally_compatible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement {m : ℕ}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (dictionary : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (sources : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (env : JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment)
+  (treatment : JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m)
+  (catalog : List (JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m))
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (accepted :
+    (JurisLean.Candidates.MeasuredPolicy20261027.runMeasurementPolicy grants initial steps dictionary now sources
+          closures rows env treatment catalog).observation =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  (JurisLean.Candidates.BusinessMeasurement20261027.measureTrajectory grants initial steps dictionary now sources
+        closures rows).measurement =
+    JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult.measured out.measured
+'JurisLean.Candidates.MeasuredPolicy20261027.measured_policy_pipeline_reads_actual_measurement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy {m : ℕ}
+  (context : JurisLean.Candidates.Final20261021.Gamma) (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (rows : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (design : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m)
+  (catalog : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m))
+  (permission : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission)
+  (permissions : List JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission)
+  (out : JurisLean.Candidates.MeasuredPolicy20261027.PolicyAdvice m)
+  (accepted :
+    JurisLean.Candidates.MeasuredPolicy20261027.adviseMeasured context plan rows design catalog permission permissions =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.plan = plan ∧
+    out.observations = rows ∧
+      out.chosen ∈ permission.policies ∧
+        out.oldEstimate =
+            JurisLean.Candidates.LearningERM20261027.empiricalScore
+              (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging)
+              (JurisLean.Candidates.MeasuredPolicy20261027.observedPolicyData rows) plan.parent ∧
+          out.newEstimate =
+              JurisLean.Candidates.LearningERM20261027.empiricalScore
+                (JurisLean.Candidates.MeasuredPolicy20261027.policyScore plan.logging)
+                (JurisLean.Candidates.MeasuredPolicy20261027.observedPolicyData rows) out.chosen ∧
+            permission ∈ permissions ∧ permission.context = context
+'JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization.{u_1} {Y : Type u_1} [Fintype Y]
+  (joint : Y → Bool → ℚ) (normalized : ∑ y, ∑ r, joint y r = 1)
+  (independent : JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow joint) (y : Y) (r : Bool) :
+  joint y r = (∑ r', joint y r') * JurisLean.Candidates.U12_3MARSequential20261030.recordingMass (∑ y', joint y' true) r
+'JurisLean.Candidates.U12_3MARSequential20261030.finiteMARRow_factorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral {X A Y : Type} [Fintype X] [Fintype A]
+  [Fintype Y] (mass : X → ℚ) (massNonnegative : ∀ (x : X), 0 ≤ mass x) (massNormalized : ∑ x, mass x = 1)
+  (logging : X → A → ℚ) (loggingNonnegative : ∀ (x : X) (a : A), 0 ≤ logging x a)
+  (loggingNormalized : ∀ (x : X), ∑ a, logging x a = 1) (response : X → A → Y → ℚ)
+  (responseNonnegative : ∀ (x : X) (a : A) (y : Y), 0 ≤ response x a y)
+  (responseNormalized : ∀ (x : X) (a : A), ∑ y, response x a y = 1) (recording : X → A → ℚ)
+  (recordingNonnegative : ∀ (x : X) (a : A), 0 ≤ recording x a)
+  (recordingBelowOne : ∀ (x : X) (a : A), recording x a ≤ 1)
+  [MeasurableSpace (JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y)]
+  [MeasurableSingletonClass (JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y)] (target : X → A → ℚ)
+  (reward : Y → ℚ) (support : ∀ (x : X) (a : A), target x a ≠ 0 → logging x a ≠ 0)
+  (recordingSupport : ∀ (x : X) (a : A), target x a ≠ 0 → recording x a ≠ 0) :
+  have visible :=
+    JurisLean.Candidates.U12_3MARSequential20261030.marVisibleLaw
+      (JurisLean.Candidates.U12_3MARSequential20261030.marWorldLaw mass massNonnegative massNormalized logging
+        loggingNonnegative loggingNormalized response responseNonnegative responseNormalized recording
+        recordingNonnegative recordingBelowOne);
+  MeasureTheory.Integrable
+      (fun z => ↑(JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward z))
+      visible.toMeasure ∧
+    ∫ (z : JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y),
+        ↑(JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore logging target recording reward
+            z) ∂visible.toMeasure =
+      ↑(JurisLean.Candidates.PolicyEvaluation20261027.policyValue mass target fun x a => ∑ y, response x a y * reward y)
+'JurisLean.Candidates.U12_3MARSequential20261030.mar_visible_score_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.C_cons.{u_1, u_2, u_3} {Ω : Type u_1} [MeasurableSpace Ω]
+  {V : Type u_2} {ι : Type u_3} (μ : MeasureTheory.Measure Ω) (response : V → Ω → (ι → Bool) → ℝ) (fixedVersion : V)
+  (actualVersion : Ω → V) (allocation : Ω → ι → Bool) (Y : Ω → ℝ) : Prop
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.I_nointerf.{u_1, u_2, u_3} {Ω : Type u_1} [MeasurableSpace Ω]
+  {V : Type u_2} {ι : Type u_3} (μ : MeasureTheory.Measure Ω) (response : V → Ω → (ι → Bool) → ℝ) (fixedVersion : V)
+  (exposure : (ι → Bool) → Bool) : Prop
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownExposure.{u_2} {ι : Type u_2} (i : ι) (g : ι → Bool) : Bool
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.ownIntervention.{u_2} {ι : Type u_2} (a : Bool) : ι → Bool
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.potentialOutcome.{u_1, u_2, u_3} {Ω : Type u_1} {V : Type u_2}
+  {ι : Type u_3} (response : V → Ω → (ι → Bool) → ℝ) (fixedVersion : V) (intervention : Bool → ι → Bool) (a : Bool)
+  (ω : Ω) : ℝ
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.E_exch.{u_1, u_2} {Ω : Type u_1} [MeasurableSpace Ω] {S : Type u_2}
+  (μ : MeasureTheory.Measure Ω) (X : Ω → S) (A : Ω → Bool) (potential : Bool → Ω → ℝ) : Prop
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.P_pos.{u_1, u_2} {Ω : Type u_1} [MeasurableSpace Ω] {S : Type u_2}
+  (μ : MeasureTheory.Measure Ω) (X : Ω → S) (A : Ω → Bool) : Prop
+JurisLean.Candidates.U11_1NamedCausalBridge20261030.observedCellMean.{u_1, u_2} {Ω : Type u_1} [MeasurableSpace Ω]
+  {S : Type u_2} (μ : MeasureTheory.Measure Ω) (X : Ω → S) (A : Ω → Bool) (Y : Ω → ℝ) (x : S) (a : Bool) : ℝ
+JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingWorld (hidden : Bool) :
+  JurisLean.Candidates.Final20261021.Probability.FiniteLaw (Bool × Bool)
+JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingReport (hidden m : Bool) (report : Option Bool) : ℚ
+JurisLean.Candidates.U11_1OriginalInstances20261030.originalMissingMean (hidden : Bool) : ℚ
+JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary : Type
+JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow : Type
+JurisLean.Candidates.BusinessMeasurement20261027.measureBusiness
+  (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (d : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (catalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow) :
+  JurisLean.Candidates.BusinessMeasurement20261027.MeasurementResult
+JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment : Type
+JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt (m : ℕ) : Type
+JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission : Type
+JurisLean.Candidates.MeasuredPolicy20261027.runMeasurementPolicy {m : ℕ}
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (steps : List JurisLean.Candidates.DecisionTrajectoryConsumer20261027.Instruction)
+  (dictionary : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementDictionary)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (sourceCatalog : List JurisLean.Candidates.BusinessMeasurement20261027.ObservationAttestation)
+  (closures : List JurisLean.Candidates.BusinessMeasurement20261027.WindowClosure)
+  (rows : List JurisLean.Candidates.BusinessMeasurement20261027.MeasurementRow)
+  (env : JurisLean.Candidates.MeasuredPolicy20261027.PolicyEnvironment)
+  (treatment : JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m)
+  (treatmentCatalog : List (JurisLean.Candidates.MeasuredPolicy20261027.TreatmentRecord m)) :
+  JurisLean.Candidates.MeasuredPolicy20261027.MeasuredPolicyRun m
+JurisLean.Candidates.MeasuredPolicy20261027.adviseMeasured {m : ℕ} (context : JurisLean.Candidates.Final20261021.Gamma)
+  (plan : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPlan)
+  (rows : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m))
+  (design : JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m)
+  (designCatalog : List (JurisLean.Candidates.MeasuredPolicy20261027.PolicyDesignReceipt m))
+  (permission : JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission)
+  (permissionCatalog : List JurisLean.Candidates.MeasuredPolicy20261027.PolicyPermission) :
+  JurisLean.Candidates.Final20261021.Result (JurisLean.Candidates.MeasuredPolicy20261027.PolicyAdvice m)
+JurisLean.Candidates.U12_3MARSequential20261030.marReport.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2} {Y : Type u_3}
+  (z : JurisLean.Candidates.U12_3MARSequential20261030.MARWorld X A Y) :
+  JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y
+JurisLean.Candidates.U12_3MARSequential20261030.marVisibleScore.{u_1, u_2, u_3} {X : Type u_1} {A : Type u_2}
+  {Y : Type u_3} (logging target recording : X → A → ℚ) (reward : Y → ℚ)
+  (z : JurisLean.Candidates.U12_3MARSequential20261030.MARVisible X A Y) : ℚ
+Build completed successfully (8538 jobs).

@@ -1,0 +1,416 @@
+JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (personal : Option JurisLean.Candidates.Final20261021.RSI.Checkpoint)
+  (a : JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m)
+  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)
+  (accepted :
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction q personal a =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ calibrated score,
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedReady q personal a ∧
+      JurisLean.Candidates.U13_4ColdStartFallback20261030.auditProduction q a =
+          JurisLean.Candidates.Final20261021.Result.known calibrated ∧
+        JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated q.protocol calibrated q.point
+              q.riskLimit (decide (a.basis.applicability = JurisLean.Candidates.Final20261021.Applicable.yes)) =
+            JurisLean.Candidates.Final20261021.Result.known score ∧
+          out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.audited personal a calibrated score
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (p : JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m)
+  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)
+  (accepted :
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.priorPrediction q p =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  (JurisLean.Candidates.U13_4ColdStartFallback20261030.basisMatches q p.basis = true ∧
+      JurisLean.Candidates.U13_4ColdStartFallback20261030.queryCompatible q = true ∧
+        0 ≤ p.probability ∧ p.probability ≤ 1) ∧
+    out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.declaredPrior p
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared' depends on axioms: [propext, Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)
+  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Description m)
+  (accepted :
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.descriptionService q d =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady q d = true ∧
+    out.input = d ∧
+      JurisLean.Candidates.Final20261021.RSI.conditionalEstimate
+          (List.map (fun x => 1) (JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues d))
+          (JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues d) =
+        JurisLean.Candidates.Final20261021.Result.known out.frequency
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)
+  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)
+  (accepted :
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction q d =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  ∃ value,
+    out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.sampled d value ∧
+      JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady q d = true ∧
+        JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified d.n 1 q.protocol.failureBudget d.radius
+              d.radiusExponent =
+            true ∧
+          value = (∑ i, JurisLean.Candidates.Final20261021.Behavior.indicator (d.labels i)) / ↑d.n
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (personal :
+    Option
+      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))
+  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m))
+  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)
+  (accepted :
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q personal population prior data =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.Final20261021.Result.known out ∈
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts q personal population prior data
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (laterPrior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))
+  (laterData : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)) :
+  (∀ (a : JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m)
+      (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+      JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction q none a =
+          JurisLean.Candidates.Final20261021.Result.known out →
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q none (some a) laterPrior laterData =
+          JurisLean.Candidates.Final20261021.Result.known out) ∧
+    (∀ (p : JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m)
+        (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.priorPrediction q p =
+            JurisLean.Candidates.Final20261021.Result.known out →
+          JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q none none (some p) laterData =
+            JurisLean.Candidates.Final20261021.Result.known out) ∧
+      ∀ (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)
+        (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction q d =
+            JurisLean.Candidates.Final20261021.Result.known out →
+          JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q none none none (some d) =
+            JurisLean.Candidates.Final20261021.Result.known out
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (personal :
+    Option
+      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))
+  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m))
+  (absent :
+    ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+      JurisLean.Candidates.Final20261021.Result.known out ∉
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts q personal population prior data) :
+  JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q personal population prior data =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G {X : Type} {m : ℕ} (G : X → Option ℚ)
+  (x : X) (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (personal :
+    Option
+      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×
+        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))
+  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))
+  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)) :
+  (JurisLean.Candidates.U13_4ColdStartFallback20261030.service G x q personal population prior data).normative =
+    JurisLean.Candidates.U13_4ColdStartFallback20261030.normativeService G x
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions.{u_1}
+  {Ω : Type u_1} [MeasurableSpace Ω] {m : ℕ} [MeasurableSpace (Fin m × Bool)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Bool))
+  [MeasureTheory.IsProbabilityMeasure P] (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (personal : Option JurisLean.Candidates.Final20261021.RSI.Checkpoint)
+  (a : JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m) (hn : 0 < a.n)
+  (sample : Fin a.n → Ω → Fin m × Bool) (events : Fin a.n → Ω → JurisLean.Candidates.Final20261021.EventId)
+  (sampleMeasurable : ∀ (i : Fin a.n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin a.n), ProbabilityTheory.IdentDistrib (sample i) id μ P)
+  (numeratorMeasurable :
+    ∀ h ∈ a.firstCutoff :: a.otherCutoffs,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+            (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss a.fitted.table z)
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance a.fitted) h z))
+  (coverageMeasurable :
+    ∀ h ∈ a.firstCutoff :: a.otherCutoffs,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance a.fitted) h z))
+  (lossRange :
+    ∀ (z : Fin m × Bool),
+      ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss a.fitted.table z) ∈ Set.Icc 0 1)
+  (hδ : 0 < ↑a.fitted.protocol.failureBudget) (hδ1 : ↑a.fitted.protocol.failureBudget < 1)
+  (conservative :
+    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius a.n
+        (2 * (a.firstCutoff :: a.otherCutoffs).toFinset.card) ↑a.fitted.protocol.failureBudget ≤
+      ↑a.radius) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑a.fitted.protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+            JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction q personal
+                  { basis := a.basis, samplingSource := a.samplingSource, measurementSource := a.measurementSource,
+                    sampleProtocol := a.sampleProtocol, fitted := a.fitted, n := a.n,
+                    rows := fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 },
+                    loss := a.loss, firstCutoff := a.firstCutoff, otherCutoffs := a.otherCutoffs, radius := a.radius,
+                    radiusExponent := a.radiusExponent, snapshot := a.snapshot,
+                    calibrationProtocol := a.calibrationProtocol } =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              ∃ calibrated score,
+                out =
+                    JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.audited personal
+                      { basis := a.basis, samplingSource := a.samplingSource, measurementSource := a.measurementSource,
+                        sampleProtocol := a.sampleProtocol, fitted := a.fitted, n := a.n,
+                        rows := fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 },
+                        loss := a.loss, firstCutoff := a.firstCutoff, otherCutoffs := a.otherCutoffs,
+                        radius := a.radius, radiusExponent := a.radiusExponent, snapshot := a.snapshot,
+                        calibrationProtocol := a.calibrationProtocol }
+                      calibrated score ∧
+                  0 <
+                      ∫ (z : Fin m × Bool),
+                        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)
+                            calibrated.cutoff z) ∂P ∧
+                    (∫ (z : Fin m × Bool),
+                          ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+                              (fun x z =>
+                                JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss calibrated.fitted.table
+                                  z)
+                              (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)
+                              calibrated.cutoff z) ∂P) /
+                        ∫ (z : Fin m × Bool),
+                          ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                              (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)
+                              calibrated.cutoff z) ∂P ≤
+                      ↑q.riskLimit
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions.{u_1}
+  {Ω : Type u_1} [MeasurableSpace Ω] {m : ℕ} [MeasurableSpace Bool] [MeasurableSingletonClass Bool]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Bool)
+  [MeasureTheory.IsProbabilityMeasure P] (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)
+  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m) (hn : 0 < d.n) (sample : Fin d.n → Ω → Bool)
+  (rows : Fin d.n → Ω → JurisLean.Candidates.Final20261021.Behavior.MeasurementLog)
+  (sampleMeasurable : ∀ (i : Fin d.n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin d.n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (hδ : 0 < ↑q.protocol.failureBudget)
+  (hδ1 : ↑q.protocol.failureBudget < 1) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑q.protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),
+            JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction q
+                  { basis := d.basis, samplingSource := d.samplingSource, measurementSource := d.measurementSource,
+                    n := d.n, rows := fun i => rows i w, labels := fun i => sample i w, radius := d.radius,
+                    radiusExponent := d.radiusExponent } =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              ∃ value,
+                out =
+                    JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.sampled
+                      { basis := d.basis, samplingSource := d.samplingSource, measurementSource := d.measurementSource,
+                        n := d.n, rows := fun i => rows i w, labels := fun i => sample i w, radius := d.radius,
+                        radiusExponent := d.radiusExponent }
+                      value ∧
+                  |↑value - ∫ (y : Bool), ↑(JurisLean.Candidates.Final20261021.Behavior.indicator y) ∂P| ≤ ↑d.radius
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m) :
+  (JurisLean.Candidates.U13_4ColdStartFallback20261030.service
+          (fun principal => if 0 ≤ principal then some (principal + 20) else none) 100 q none none none
+          none).normative =
+      JurisLean.Candidates.Final20261021.Result.known 120 ∧
+    (JurisLean.Candidates.U13_4ColdStartFallback20261030.service
+          (fun principal => if 0 ≤ principal then some (principal + 20) else none) 100 q none none none
+          none).prediction =
+      JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example {m : ℕ}
+  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m) :
+  (JurisLean.Candidates.U13_4ColdStartFallback20261030.service (fun x => none) () q none none none none).prediction =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+
+'JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference {X Y : Type} (eval : ℕ → ℕ → X → Y)
+  (s : JurisLean.Candidates.Final20261021.RSI.State) (x : X) (who : JurisLean.Candidates.Final20261021.PartyId)
+  (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :
+  JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval
+      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value) x =
+    JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval s x
+
+'JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference' does not depend on any axioms
+
+JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default
+  (r : JurisLean.Candidates.Final20261021.RSI.PredictionRequest) :
+  JurisLean.Candidates.Final20261021.RSI.proposed_checkpoint_service r none none none none =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence
+
+'JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default' depends on axioms: [propext, Quot.sound]
+
+JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table {m : ℕ}
+  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (calibrated : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration) (query : Fin m) (target : ℚ)
+  (supported : Bool) (out : JurisLean.Candidates.LearningConsumer20261027.TaskScore)
+  (accepted :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated expected calibrated query target
+        supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.protocol = calibrated.fitted.protocol ∧
+    out.value = calibrated.fitted.table.getD (↑query) 0 ∧
+      out.bounds = calibrated.certificate.bounds ∧ calibrated.cutoff ≤ out.value
+
+'JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound.{u_1}
+  {Ω : Type u_1} [MeasurableSpace Ω] {m n : ℕ} {Y : Type} [MeasurableSpace (Fin m × Y)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Y)) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (first : ℚ) (rest : List ℚ)
+  (sample : Fin n → Ω → Fin m × Y) (events : Fin n → Ω → JurisLean.Candidates.Final20261021.EventId)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : ℚ → Y → ℚ)
+  (numeratorMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+            (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss loss fitted.table z)
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance fitted) h z))
+  (coverageMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance fitted) h z))
+  (lossRange :
+    ∀ (z : Fin m × Y), ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss fitted.table z) ∈ Set.Icc 0 1)
+  (hδ : 0 < ↑fitted.protocol.failureBudget) (hδ1 : ↑fitted.protocol.failureBudget < 1) (radius target : ℚ)
+  (conservative :
+    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * (first :: rest).toFinset.card)
+        ↑fitted.protocol.failureBudget ≤
+      ↑radius)
+  (snapshot calibrationProtocol radiusExponent : ℕ) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑fitted.protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (out : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration),
+            JurisLean.Candidates.SampleCalibrationConsumer20261027.produceCalibration sampleProtocol fitted loss
+                  (first :: rest) (fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 })
+                  radius target snapshot calibrationProtocol radiusExponent =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              0 <
+                  ∫ (z : Fin m × Y),
+                    ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                        z) ∂P ∧
+                (∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+                          (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss loss out.fitted.table z)
+                          (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                          z) ∂P) /
+                    ∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                          (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                          z) ∂P ≤
+                  ↑target
+
+'JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound (n M : ℕ) (delta radius : ℚ)
+  (exponent : ℕ)
+  (verified : JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified n M delta radius exponent = true) :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * M) ↑delta ≤ ↑radius
+
+'JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform.{u_1, u_2, u_3} {Ω : Type u_1} {Z : Type u_2}
+  {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (policies : Finset H) (nonempty : policies.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (score : H → Z → ℝ)
+  (measurable : ∀ h ∈ policies, Measurable (score h)) (W : ℝ) (positive : 0 < W)
+  (bounded : ∀ h ∈ policies, ∀ (z : Z), score h z ∈ Set.Icc 0 W) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ policies,
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => score h (sample i w')) w -
+                ∫ (z : Z), score h z ∂P| ≤
+            W * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n policies.card δ}
+
+'JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment (n : ℕ)
+  (learner : (Fin n → Bool × Bool) → Bool → Bool) :
+  JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false =
+      JurisLean.Candidates.LearningBoundary20261027.visibleTraining n true ∧
+    JurisLean.Candidates.LearningBoundary20261027.worldTarget false ≠
+        JurisLean.Candidates.LearningBoundary20261027.worldTarget true ∧
+      ∃ hiddenLabel,
+        JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk true
+            (JurisLean.Candidates.LearningBoundary20261027.worldTarget hiddenLabel)
+            (learner (JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false)) =
+          1
+
+'JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

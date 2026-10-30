@@ -320,6 +320,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
     "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
     "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
+    "U13.4": "Audited population forecasts consume actual fitted calibration inputs under explicit sampling/law/iid/measurability/loss/radius premises; sampled fallback returns the equal-weight mean of checked mature observations under explicit iid conditions; declared priors remain separate model inputs; and absent/invalid sources return named UNKNOWN results.",
     "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
 }
 
@@ -352,9 +353,7 @@ UNWIRED: dict[str, list[str]] = {
     "U12.4": [],  # Independently audited against the full frozen model in the U12.4 close pack.
     "U13.3": [],  # The source-audited independent package closes this row only.
 
-    "U13.4": [
-        "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone.",
-    ],
+    "U13.4": [],  # Independent fallback selector and conditional risk bridges close this archived residual.
     "U14.1": [],  # Independently proved and audited by the U14.1 closure package.
 }
 
@@ -394,6 +393,9 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U12.3": (
         "Independent U12.3 source-bound close: the generic finite-class 2ε winner bound is reused; the actual find? selector is connected on its Some branch to a 2ε plus computed empirical optimization-gap oracle inequality, while None is abstention. Under the explicitly constructed finite logging law, the actual score expectation is connected to finite policyValue. The MAR bridge keeps the recording indicator and visible Option projection explicit and proves the assignment/recording weighted correction under stated support. The finite-horizon sequential bridge generates trajectories from a shared full-history environment kernel, proves the product of per-history target/logging ratios, and transports expected returns under target-reachable-history coverage. These results are conditional on the stated law and causal identification premises; SourceRef does not prove them. The old Pipeline numeric consumer and RSI feedback path remain unwired, and this is not an infinite-horizon RL theorem or deployment claim. Exact named evidence: docs/formal-release/evidence/u12-3-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
+    ),
+    "U13.4": (
+        "Independent U13.4 fallback close: the audited branch reads the actual fitted table, calibration result, applicability input and optional personal checkpoint under the existing sample/law/iid/measurability/loss/radius premises; it is a conditional population-risk bound, not a per-case win-rate guarantee. The sampled branch reads checked mature measurement rows and labels and returns their actual equal-weight sample mean, with its error bound under the stated same-law and iid conditions. Declared prior input remains a separate model condition; absent or invalid source attempts return named UNKNOWN, while the normative partial function remains separate. Source references and applicability inputs do not prove source authenticity, physical applicability or iid sampling. This closes only U13.4; it does not establish an RSI-wide improvement theorem, change original-question 13.4, close original-question 13.5, or connect the old Pipeline/consumer. Exact named evidence: docs/formal-release/evidence/u13-4-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
     ),
     "U06.1": (
         "Independent U06.1 finite-control close: in the finite, fully observed, single-branch timed Markov model with general terminal reward g, the manuscript requires the empty-action case to be explicitly terminal or BLOCKED with a specified value; this module chooses the terminal branch with value g(s). A history-based legal policy has a trajectory law built from the actual transition kernel. The package proves nonnegative trajectory weights of total mass one and equality of trajectory expected return with policy value, constructs a legal greedy policy attaining the Bellman optimum and dominating all legal history policies, and counts same-policy cost once. Its finite nonrectangular example separates a fixed model choice from statewise choices. The reused free-information theorem remains its existing finite-law/list-policy result. This does not prove a common feasible strategy or max-min value across legal branches, signal-acquisition/stopping costs, partial-observation belief updates, or actual numeric consumption by the old Pipeline; those remain outside this close. Exact named evidence: docs/formal-release/evidence/u06-1-debt-close-20261030; independent changed-module CI audits the named declarations and source binding only."
@@ -800,6 +802,7 @@ CLOSED_WIRING_IDS = (
     "U06.1",
     "U06.2",
     "U12.3",
+    "U13.4",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1257,6 +1260,68 @@ U12_3_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/MeasuredPolicy20261027.lean",
 )
 
+U13_4_CLOSED_IDS = ("U13.4",)
+U13_4_CLOSE_PACK = "docs/formal-release/evidence/u13-4-debt-close-20261030"
+U13_4_RECEIPT = U13_4_CLOSE_PACK + "/verification.json"
+U13_4_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean"
+U13_4_NAMES = {
+    "U13.4": [
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+        "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+        "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+        "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+        "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+        "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+        "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+        "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+        "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+    ]
+}
+U13_4_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Query",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.ScopeBasis",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.basisMatches",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.queryCompatible",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.predictionValue",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Description",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Output",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditProduction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedReady",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.priorPrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.descriptionService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.normativeService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.service",
+)
+U13_4_SOURCES = (
+    "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+    U13_4_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+)
+
 INDEPENDENT_CLOSE_PACKS = (
     {"closed_ids": POST_PIN_CLOSED_IDS, "pack": POST_PIN_CLOSE_PACK,
      "receipt": POST_PIN_RECEIPT, "names": POST_PIN_NAMES,
@@ -1327,12 +1392,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 40964036223, "expected_job_id": 123763838851,
      "expected_attempt": 1, "expected_artifact_id": 12937870526,
      "expected_artifact_sha256": "dd8a379bec390cfc92478ea5a652f57e4ffb42f049a41d94758fa16bab82a77e"},
+    {"closed_ids": U13_4_CLOSED_IDS, "pack": U13_4_CLOSE_PACK,
+     "receipt": U13_4_RECEIPT, "names": U13_4_NAMES,
+     "driver": U13_4_DRIVER, "sources": U13_4_SOURCES,
+     "object_checks": U13_4_OBJECT_CHECKS,
+     "open_before": 4, "open_after": 3,
+     "expected_subject": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+     "expected_run_id": 40976943681, "expected_job_id": 123807204758,
+     "expected_attempt": 1, "expected_artifact_id": 12943003053,
+     "expected_artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }

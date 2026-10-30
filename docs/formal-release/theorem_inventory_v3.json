@@ -439,6 +439,7 @@
     "JurisLean.Candidates.U12_3MARSequential20261030",
     "JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030",
     "JurisLean.Candidates.U12_3SequentialFinite20261030",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030",
     "JurisLean.DungFixedPoint",
     "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
     "JurisLean.External.FixedPointTheorems.brouwer",
@@ -882,6 +883,9 @@
     "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
     "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
     "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+    "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+    "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
     "JurisLean.Candidates.LearningERM20261027.empiricalScore_cast",
     "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
     "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
@@ -894,6 +898,9 @@
     "JurisLean.Candidates.PolicyEvaluation20261027.finite_clipping_bias_bound",
     "JurisLean.Candidates.PolicyEvaluation20261027.finite_policy_ipw",
     "JurisLean.Candidates.PolicyEvaluation20261027.rational_clipping_loss",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
     "JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once",
@@ -957,6 +964,18 @@
     "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_expectation_transport",
     "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_integral_transport",
     "JurisLean.Candidates.U12_3SequentialFinite20261030.sequential_mass_transport",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
     "JurisLean.FullMath.Probability.Gamma_add_nat",
     "JurisLean.FullMath.Probability.betaCDF_one",
     "JurisLean.FullMath.Probability.betaCDF_zero",
@@ -4510,8 +4529,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "ed7fc9aca41a92c503b4aacded77e7ab17857fbd7d14c1e1c41837917f4fde41",
-   "size_bytes": 284852,
+   "sha256": "82a39dbd0613c30d72ac47ca64738e2d1e4508e6a90ffc4be0a65190c40e10bf",
+   "size_bytes": 288436,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -17674,6 +17693,196 @@
    "size_bytes": 2988,
    "theorem_count": 1,
    "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Query"
+    },
+    {
+     "kind": "structure",
+     "name": "ScopeBasis"
+    },
+    {
+     "kind": "def",
+     "name": "basisMatches"
+    },
+    {
+     "kind": "def",
+     "name": "queryCompatible"
+    },
+    {
+     "kind": "structure",
+     "name": "ModelSource"
+    },
+    {
+     "kind": "structure",
+     "name": "PriorSource"
+    },
+    {
+     "kind": "structure",
+     "name": "DataSource"
+    },
+    {
+     "kind": "inductive",
+     "name": "Prediction"
+    },
+    {
+     "kind": "def",
+     "name": "predictionValue"
+    },
+    {
+     "kind": "structure",
+     "name": "Description"
+    },
+    {
+     "kind": "structure",
+     "name": "Output"
+    },
+    {
+     "kind": "def",
+     "name": "auditProduction"
+    },
+    {
+     "kind": "def",
+     "name": "auditedReady"
+    },
+    {
+     "kind": "def",
+     "name": "auditedPrediction"
+    },
+    {
+     "kind": "def",
+     "name": "priorPrediction"
+    },
+    {
+     "kind": "def",
+     "name": "dataReady"
+    },
+    {
+     "kind": "def",
+     "name": "dataValues"
+    },
+    {
+     "kind": "def",
+     "name": "descriptionService"
+    },
+    {
+     "kind": "def",
+     "name": "samplePrediction"
+    },
+    {
+     "kind": "def",
+     "name": "sourceAttempts"
+    },
+    {
+     "kind": "def",
+     "name": "forecastService"
+    },
+    {
+     "kind": "def",
+     "name": "normativeService"
+    },
+    {
+     "kind": "def",
+     "name": "service"
+    },
+    {
+     "kind": "theorem",
+     "name": "audited_success_reads_actual_inputs"
+    },
+    {
+     "kind": "theorem",
+     "name": "prior_success_is_declared"
+    },
+    {
+     "kind": "theorem",
+     "name": "description_success_reads_measurements"
+    },
+    {
+     "kind": "theorem",
+     "name": "sample_success_reads_actual_mean"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_prediction_has_executed_source"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_personal_preserves_fallbacks"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_valid_source_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "normative_query_uses_only_G"
+    },
+    {
+     "kind": "theorem",
+     "name": "audited_prediction_risk_under_existing_conditions"
+    },
+    {
+     "kind": "theorem",
+     "name": "sample_prediction_error_under_existing_conditions"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_fee_service_example"
+    },
+    {
+     "kind": "theorem",
+     "name": "original_unknown_win_rate_service_example"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.LearningBoundary20261027",
+    "JurisLean.Candidates.PolicyEvaluation20261027",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+   "print_axioms_targets": [],
+   "sha256": "68c40e6c4c02d9d6782bdb1b4e4e48b02271994b43e72166816e77b778011aaf",
+   "size_bytes": 26124,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+    "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+    "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source"
+   ],
+   "sha256": "c8cce2d77a88b0486c37965cf626a808301eb000da1bbbc8151a99a851fa1d8b",
+   "size_bytes": 5503,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [],
@@ -57700,6 +57909,8 @@
     "JurisLean.Candidates.U12_3SequentialFinite20261030",
     "JurisLean.Candidates.U12_4FrozenAuditModel20261029",
     "JurisLean.Candidates.U13_3DebtClosureAudit20261028",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030",
+    "JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030",
     "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
@@ -57881,8 +58092,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "a4bdc5551b13fe937197036ea8c6b88b82a92e0acbee0c51f940c8d01ed2d53c",
-   "size_bytes": 11006,
+   "sha256": "f908b1fa8f41acf48af6a151a78d243c2a163a4d8ed6d92aa3cc387ef6f5209d",
+   "size_bytes": 11129,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58046,22 +58257,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6203,
-   "file_count": 495,
+   "counted_declaration_count": 6215,
+   "file_count": 497,
    "lemma_count": 146,
-   "print_axioms_command_count": 5229,
-   "print_axioms_distinct_targets": 4990,
-   "theorem_count": 6057,
-   "theorem_count_bol_convention": 5957
+   "print_axioms_command_count": 5266,
+   "print_axioms_distinct_targets": 5002,
+   "theorem_count": 6069,
+   "theorem_count_bol_convention": 5969
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6184,
-   "file_count": 480,
+   "counted_declaration_count": 6196,
+   "file_count": 482,
    "lemma_count": 139,
-   "print_axioms_command_count": 5229,
-   "print_axioms_distinct_targets": 4990,
-   "theorem_count": 6045,
-   "theorem_count_bol_convention": 5945
+   "print_axioms_command_count": 5266,
+   "print_axioms_distinct_targets": 5002,
+   "theorem_count": 6057,
+   "theorem_count_bol_convention": 5957
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -58241,6 +58452,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3SequentialFinite20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
@@ -58734,6 +58947,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_3SequentialFinite20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
@@ -59093,17 +59308,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "42e6966392a981a6a29dcd20d7a896bfcef56ec6ca47ad7282a2e71d54da1413",
+ "source_inventory_digest": "6c3a8c0e21e8b5eca5a85331cdb434231211d9b69642c652b85a664572a270ed",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u12-3-debt-20261030",
-  "commit": "935b1bd8420c9433c9918d53d935b0948bf51089",
-  "tree": "771c33115a7db6a230d01b3476712b5c801485c4"
+  "branch": "formal/close-u13-4-debt-20261030",
+  "commit": "1f657ec9cb8d3f09ad8df4be8f9c909d7b6c4384",
+  "tree": "00a63b557e9b21a48aac1320cd1db922131172c0"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 495,
+  "files_total": 497,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": true
  },

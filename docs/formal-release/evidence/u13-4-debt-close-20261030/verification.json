@@ -1,0 +1,186 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+  "run_id": 40976943681,
+  "job_id": 123807204758,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40976943681",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40976943681/job/123807204758",
+  "artifact_name": "changed-module-only-40976943681-1",
+  "artifact_id": 12943003053,
+  "artifact_sha256": "c2fa2f1e56fa4ee308883e63862cda2af7307f5acaa0aa78fa209fe94c02b1ff",
+  "artifact_size_bytes": 6709,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 51946,
+      "sha256": "5a1e1da5a5205aae8d8968b829094e62309e125b2cd01eb044fe29639884ef9e"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 277,
+      "sha256": "ea77bbcf4385ca3cbee6f801fec0be85b56c2ff2bdec9adfb70084aa3cf92147"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
+  "named_count": 19,
+  "names_by_clause": {
+    "U13.4": [
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+      "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+      "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+      "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Query",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.ScopeBasis",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.basisMatches",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.queryCompatible",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.predictionValue",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Description",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.Output",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditProduction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedReady",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.priorPrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.descriptionService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.normativeService",
+    "JurisLean.Candidates.U13_4ColdStartFallback20261030.service"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+      "sha256": "68c40e6c4c02d9d6782bdb1b4e4e48b02271994b43e72166816e77b778011aaf"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
+      "sha256": "c8cce2d77a88b0486c37965cf626a808301eb000da1bbbc8151a99a851fa1d8b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+      "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+      "sha256": "62907d2b98bcee2f4297e0009321530821ab38eb61f67863a1924e8d8c5642c5"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+      "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+      "sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 19,
+    "axiom_vocabulary": {
+      "Classical.choice": 16,
+      "Quot.sound": 18,
+      "propext": 18
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {
+    "U13.4": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses."
+  },
+  "historical_reuse": {
+    "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+    "receipt": "docs/formal-release/evidence/u13-3-debt-close-20261028/verification.json",
+    "subject": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+    "run_id": 40714963358,
+    "job_id": 122910040136,
+    "example": "empty-sample instance of u01_3_two_worlds_same_training_uncontrolled_deployment",
+    "audited_target": false,
+    "note": "Anonymous source example reused as historical evidence; not a target in this run.",
+    "artifact_sha256": "d275f308eae99e88f6d6f5c2e60bd746981ebaede784e262e729422e293d827c",
+    "source_sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6",
+    "named_count": 6
+  },
+  "closed_ids": [
+    "U13.4"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 4,
+  "open_after": 3,
+  "discharges_archived_manuscript_gaps": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "diagnostic_runs": [
+    {
+      "run_id": 40972822214,
+      "job_id": 123793497999,
+      "subject": "a805941e0bbbb992ac20d6d81e6d2a49fe7bb0f3",
+      "status": "failure_diagnostic_only",
+      "summary": "Initial source compile errors in auditedPrediction reducibility, equal-weight estimator proof, description-service constructor reduction, and samplePrediction record-update syntax; not proof evidence."
+    },
+    {
+      "run_id": 40973982709,
+      "job_id": 123797377923,
+      "subject": "109f0fd3b461f97c87751890bee227af4fa38f8d",
+      "status": "failure_diagnostic_only",
+      "summary": "Four elaboration/parser errors: an unnecessary dsimp, induction helper context clearing, and sample record-update syntax; not proof evidence."
+    },
+    {
+      "run_id": 40974832379,
+      "job_id": 123800183232,
+      "subject": "af6db9a1154fc6f714cf32ba4489f4170041b455",
+      "status": "failure_diagnostic_only",
+      "summary": "Two errors in the audited-success proof while matching the actual score guard; not proof evidence."
+    },
+    {
+      "run_id": 40975516688,
+      "job_id": 123802454837,
+      "subject": "f7f72e8a76e693ec0c8bdc5b0488ef8979c64766",
+      "status": "failure_diagnostic_only",
+      "summary": "Two errors remained in the none/some local-decider branches of the audited-success proof; not proof evidence."
+    },
+    {
+      "run_id": 40976444425,
+      "job_id": 123805540148,
+      "subject": "b8df2418c9505844820367e0ce9bdbd1153b4298",
+      "status": "failure_diagnostic_only",
+      "summary": "Two constant-match reduction errors in the audited-success proof; not proof evidence."
+    }
+  ]
+}

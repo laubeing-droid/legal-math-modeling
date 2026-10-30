@@ -4527,7 +4527,7 @@
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
         "suggested_close_path": "证",
-        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "RSI.lean:103"
         ],
@@ -4535,19 +4535,41 @@
           "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
         ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u13-4-debt-close-20261030/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+            "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+            "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+            "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+            "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+            "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+            "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+            "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+          ]
+        },
         "formal_tail_prove": {
-          "round": "formal_tail_20261024",
-          "in_this_round": true,
-          "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+          "round": "",
+          "in_this_round": false,
+          "not_reopened": true,
+          "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
-          "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-          "non_goals_same_row": [
-            "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
-          ]
+          "criteria_pack": "",
+          "non_goals_same_row": []
         }
       }
     },

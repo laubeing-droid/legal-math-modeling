@@ -182,7 +182,8 @@ private theorem finite_stratified_integral
   have measurableStrata : ∀ x, MeasurableSet {ω | X ω = x} :=
     fun x => (measurableSet_singleton x).preimage measurableX
   have disjointStrata :
-      Pairwise (Disjoint on fun x : S => {ω | X ω = x}) := by
+      Pairwise (fun x y : S =>
+        Disjoint {ω | X ω = x} {ω | X ω = y}) := by
     intro x y different
     rw [Set.disjoint_left]
     intro ω hx hy
@@ -283,7 +284,8 @@ theorem observed_cell_mean_eq_potential
     apply setIntegral_congr_ae (measurableC.inter measurableD)
     filter_upwards [consistent] with ω hω
     intro belongs
-    simpa [D, belongs.2] using hω
+    have actionEq : A ω = a := belongs.2
+    simpa only [actionEq] using hω
   calc
     observedCellMean μ X A Y x a =
         ∫ ω, potential a ω ∂ProbabilityTheory.cond μ (C ∩ D) := by

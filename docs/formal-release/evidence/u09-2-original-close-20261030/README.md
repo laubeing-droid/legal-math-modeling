@@ -14,4 +14,6 @@ This package closes only the cash-conservation subparagraph of 09.8. Other 09.8 
 
 ## Independent audit
 
-The original two theorem targets and the `cashVector` object check were emitted by changed-module run `41065859816`, attempt 1, job `124096972537`, artifact `12982083685`. `verification.json` binds the audited source commit and tree, artifact bytes, source hashes, original residual, and raw five-block output. This is independent module evidence, not PR/full-release/merge evidence.
+The original two theorem targets and the `cashVector` object check were emitted by changed-module run `41065859816`, attempt 1, job `124096972537`. `verification.json` binds the audited source commit and tree, artifact bytes, source hashes, original residual, and raw five-block output. This is independent module evidence, not PR/full-release/merge evidence.
+
+Artifact `changed-module-only-41065859816-1`, ID `12982083685`; ZIP 985 bytes, SHA-256 `6b584289dac1cfbc781c57f3d6d4e6c8a6ef8b9b75f77719c3ae16c779e9c514`.

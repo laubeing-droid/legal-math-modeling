@@ -10,3 +10,5 @@ import JurisLean.Candidates.U02_4ExternalConditionRisk20261030
 #print axioms JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget
 #check JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound
 #print axioms JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound
+#check Finset.sum_range_add
+#print axioms Finset.sum_range_add

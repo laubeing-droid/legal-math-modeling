@@ -5,7 +5,7 @@ import Mathlib.Probability.ConditionalProbability
 noncomputable section
 
 open MeasureTheory ProbabilityTheory
-open scoped BigOperators
+open scoped NNReal ENNReal BigOperators
 
 namespace JurisLean.Candidates.U06_5OriginalModels20261031
 
@@ -46,6 +46,7 @@ def signalLaw : PMF (Bool × Bool) :=
 
 def signalMeasure : Measure (Bool × Bool) := signalLaw.toMeasure
 
+open scoped Classical in
 private lemma signal_event_mass (E : Set (Bool × Bool)) (hE : MeasurableSet E) :
     signalMeasure E =
       ∑ z : Bool × Bool, if z ∈ E then (signalWeight z : ℝ≥0∞) else 0 := by
@@ -246,8 +247,10 @@ theorem bargain_backward_induction :
       originalGame.eu
           (Function.update (bargainProfileEquiv originalBIProfile) i τ) i =
           originalPayoff i (bargainSourceUpdate originalBIProfile i τ) := by
-        rw [← bargainProfileEquiv_update]
-        exact originalGame_profile_eu _ _
+        exact
+          (congrArg (fun σ : BargainTargetProfile => originalGame.eu σ i)
+            (bargainProfileEquiv_update originalBIProfile i τ)).symm.trans
+              (originalGame_profile_eu (bargainSourceUpdate originalBIProfile i τ) i)
       _ ≤ originalPayoff i originalBIProfile := original_all_deviations i τ
       _ = originalGame.eu (bargainProfileEquiv originalBIProfile) i :=
         (originalGame_profile_eu _ _).symm

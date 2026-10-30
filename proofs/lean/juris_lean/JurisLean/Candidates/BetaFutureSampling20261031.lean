@@ -128,7 +128,8 @@ instance halfCopyKernel_markov : IsMarkovKernel halfCopyKernel where
       rw [Measure.map_apply
         (show Measurable (fun b : Bool => (b, b)) from by fun_prop)
         MeasurableSet.univ]
-      simp
+      change coinMeasure θ Set.univ = 1
+      exact measure_univ
     rw [half_copy_generation θ]
     simp only [Measure.add_apply, Measure.smul_apply, smul_eq_mul,
       hmap, measure_univ, mul_one]
@@ -410,6 +411,17 @@ def observedFutureKernel (joint : Kernel ℝ (Bool × Bool)) : Kernel ℝ Bool :
   change Measurable (fun θ =>
     (if joint θ fixedDataEvent = 0 then Measure.dirac false
       else (ProbabilityTheory.cond (joint θ) fixedDataEvent).map Prod.snd) s)
+  have happly :
+      (fun θ : ℝ =>
+        (if joint θ fixedDataEvent = 0 then Measure.dirac false
+          else (ProbabilityTheory.cond (joint θ) fixedDataEvent).map Prod.snd) s) =
+      (fun θ : ℝ => if joint θ fixedDataEvent = 0 then (Measure.dirac false) s
+        else ((ProbabilityTheory.cond (joint θ) fixedDataEvent).map Prod.snd) s) := by
+    funext θ
+    by_cases hz : joint θ fixedDataEvent = 0
+    · simp only [if_pos hz]
+    · simp only [if_neg hz]
+  rw [happly]
   simp_rw [Measure.map_apply measurable_snd hs,
     ProbabilityTheory.cond_apply
       (show MeasurableSet fixedDataEvent from .of_discrete)]

@@ -1,4 +1,5 @@
 import JurisLean.Candidates.BetaFutureSampling20261031
+import JurisLean.Candidates.BernoulliMeanInstance20261031
 
 /-!
 
@@ -30,3 +31,15 @@ likelihood and the concrete generation, joint-law, and observed-future objects.
 #check JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel
 #check JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw
 #check JurisLean.Candidates.BetaFutureSampling20261031.observedFutureKernel
+#check JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density
+#print axioms JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density
+
+#check JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+#print axioms JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+
+#check PMF.bernoulli
+#check JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean
+#check JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio

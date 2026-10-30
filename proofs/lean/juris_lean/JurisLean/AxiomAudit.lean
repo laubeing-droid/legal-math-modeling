@@ -220,6 +220,7 @@ import JurisLean.Seams.UnifiedQuantLedger
 
 import JurisLean.Seams.UnifiedMasterNeedle
 
+import JurisLean.Candidates.CausalSelection20261027
 import JurisLean.Candidates.U11_1NamedCausalBridge20261030
 import JurisLean.Candidates.U11_1OriginalInstances20261030
 import JurisLean.Candidates.Final20261021.Decision

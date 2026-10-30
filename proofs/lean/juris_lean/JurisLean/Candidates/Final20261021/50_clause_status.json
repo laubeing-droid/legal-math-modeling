@@ -2781,8 +2781,8 @@
       },
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
-        "suggested_close_path": "缩",
-        "archive_gap_status": "CLOSED_BY_NARROW",
+        "suggested_close_path": "证",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Learning.lean:161",
           "Learning.lean:167",
@@ -2794,6 +2794,21 @@
           "Run 39783481932 compiling these declarations does not discharge a real-data claim."
         ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u01-4-original-close-20261030/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+            "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
+            "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+            "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split"
+          ]
+        },
         "formal_tail_prove": {
           "round": "",
           "in_this_round": false,
@@ -2801,7 +2816,7 @@
           "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
           "criteria_pack": "",
           "non_goals_same_row": []

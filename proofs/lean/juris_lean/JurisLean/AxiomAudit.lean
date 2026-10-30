@@ -234,6 +234,7 @@ import JurisLean.Candidates.U12_3MeasuredPolicyBridge20261030
 import JurisLean.Candidates.U12_3MARSequential20261030
 import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
+import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -790,6 +791,26 @@ open HornSystem
 #print axioms JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound
 #check JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment
 #print axioms JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment
+
+/-! U01.4 original finite-witness source audit. The existing two-world pair above is not duplicated. -/
+#check JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability
+#print axioms JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability
+#check JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq
+#print axioms JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq
+#check JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value
+#print axioms JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value
+#check JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy
+#print axioms JurisLean.Candidates.LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy
+#check JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization
+#print axioms JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance
+#print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance
+#print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance
+#check JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample
+#print axioms JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample
+#check JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split
+#print axioms JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split
 
 /-! U11.1 source audit additions. Existing U12.3 proof pairs are already present above. -/
 #check JurisLean.Candidates.U11_1NamedCausalBridge20261030.consistency_from_version_and_exposure

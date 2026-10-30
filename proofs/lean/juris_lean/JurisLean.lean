@@ -108,7 +108,6 @@ import JurisLean.Candidates.ProcedureClosureAudit20261027
 import JurisLean.Candidates.TemporalInterpretationAudit20261027
 import JurisLean.Candidates.U11_1DebtClosureAudit20261030
 import JurisLean.Candidates.U11_1NamedCausalBridge20261030
-import JurisLean.Candidates.U11_1OriginalInstances20261030
 import JurisLean.Candidates.U12_3PolicyLearningAudit20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030
@@ -224,7 +223,6 @@ import JurisLean.Seams.UnifiedNeedlesS5
 import JurisLean.Seams.UnifiedNeedlesS6S7
 import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedNeedlesXT
-import JurisLean.Seams.UnifiedNeedlesXU
 import JurisLean.Seams.UnifiedNetTrajectory
 import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPayoffChain

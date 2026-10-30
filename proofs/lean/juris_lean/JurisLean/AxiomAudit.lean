@@ -875,6 +875,12 @@ open HornSystem
 #check JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy
 #print axioms JurisLean.Candidates.MeasuredPolicy20261027.advice_consumes_actual_measured_values_and_allowed_policy
 
+/-! U02.4 source audit additions. -/
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
+#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
+#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
+
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write
     These declarations are elaborated by the all-module CI plan but were
@@ -4389,7 +4395,3 @@ open HornSystem
 #print axioms unit_cube_homeo_unit_ball
 #print axioms weaker_cubical_sperner
 #print axioms zero_ne_last
-#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
-#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.finite_prefix_external_condition_bound
-#check JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound
-#print axioms JurisLean.Candidates.U02_4ExternalConditionRisk20261030.countable_prefix_external_condition_bound

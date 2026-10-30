@@ -163,10 +163,15 @@ theorem fair_coin_complement_witness :
   have hC :
       covariance (id : ℝ → ℝ) (fun ω : ℝ => 1 - ω) fairCoinMeasure =
         -(1 : ℝ) / 4 := by
-    rw [covariance_const_sub_right (μ := fairCoinMeasure) (X := id) (Y := id)
-        (hB.integrable (by norm_num)) 1,
-      covariance_self (μ := fairCoinMeasure) (X := id) hB.aemeasurable, hV]
-    ring
+    calc
+      covariance (id : ℝ → ℝ) (fun ω : ℝ => 1 - ω) fairCoinMeasure =
+          - covariance (id : ℝ → ℝ) id fairCoinMeasure := by
+        simpa only [id_eq] using
+          (covariance_const_sub_right (μ := fairCoinMeasure) (X := id) (Y := id)
+            (hB.integrable (by norm_num)) 1)
+      _ = -(1 : ℝ) / 4 := by
+        rw [covariance_self (μ := fairCoinMeasure) (X := id) hB.aemeasurable, hV]
+        ring
   have hmean :
       empiricalMean (fun (i : Fin 2) (w : ℝ) =>
         if i = 0 then w else 1 - w) = fun _ => (1 : ℝ) / 2 := by

@@ -101,6 +101,9 @@ import JurisLean.BanachContraction
 import JurisLean.BanachFixedPoint
 import JurisLean.BanachScratch
 import JurisLean.BanachWeightedNorm
+import JurisLean.Candidates.BernoulliMeanInstance20261031
+import JurisLean.Candidates.BetaEnclosureInstance20261031
+import JurisLean.Candidates.BetaFutureSampling20261031
 import JurisLean.Candidates.CalibrationSemantics20261027
 import JurisLean.Candidates.CausalSelection20261027
 import JurisLean.Candidates.CurrentContextRollback20261027
@@ -112,6 +115,7 @@ import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.ProcedureClosureAudit20261027
 import JurisLean.Candidates.TemporalInterpretationAudit20261027
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
+import JurisLean.Candidates.U04_1OriginalClosureAudit20261031
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
 import JurisLean.Candidates.U09_2OriginalClosureAudit20261030
 import JurisLean.Candidates.U11_1DebtClosureAudit20261030

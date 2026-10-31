@@ -26,50 +26,43 @@ structure Sit where
   pLedger : Nat
   deriving DecidableEq, Repr
 
-def initSit : Sit :=
-  { fF := (true : Bool), eRaw := (1 : Nat), eAdm := (0 : Nat), eExcl := (0 : Nat),
-    nVer := (1 : Nat), lCreated := (true : Bool), lConfirmed := (false : Bool),
-    clk := (1 : Nat), procOn := (true : Bool), aiVer := (0 : Nat), pLedger := (1 : Nat) }
+def initSit : Sit := Sit.mk true 0 0 0 0 false false 0 false 0 0
 
 /-- 无裁判正常对象。 -/
 theorem no_trial_normal :
     ∃ s : Sit,
-      s.procOn = true ∧ s.lCreated = true ∧ s.aiVer = 0 ∧ s.fF = true := by
-  have s : Sit :=
-    { fF := (true : Bool), eRaw := (1 : Nat), eAdm := (1 : Nat), eExcl := (0 : Nat),
-      nVer := (1 : Nat), lCreated := (true : Bool), lConfirmed := (false : Bool),
-      clk := (1 : Nat), procOn := (true : Bool), aiVer := (0 : Nat), pLedger := (1 : Nat) }
-  exact ⟨s, rfl, rfl, rfl, rfl⟩
+      s.procOn = true ∧ s.lCreated = true ∧ s.aiVer = 0 ∧ s.fF = true :=
+  ⟨Sit.mk true 1 1 0 1 true false 1 true 0 1, rfl, rfl, rfl, rfl⟩
 
 /-- 提议：aiVer+1，L/N/F 不变。 -/
-def propose (s : Sit) : Sit := { s with aiVer := s.aiVer + 1 }
+def propose (s : Sit) : Sit := Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) (procOn s) (aiVer s + 1) (pLedger s)
 
-theorem propose_frame_L (s : Sit) : (propose s).lCreated = s.lCreated := by
+theorem propose_frame_L (s : Sit) : (propose s).lCreated = lCreated s := by
   cases s; rfl
 
-theorem propose_frame_F (s : Sit) : (propose s).fF = s.fF := by
+theorem propose_frame_F (s : Sit) : (propose s).fF = fF s := by
   cases s; rfl
 
-theorem propose_frame_N (s : Sit) : (propose s).nVer = s.nVer := by
+theorem propose_frame_N (s : Sit) : (propose s).nVer = nVer s := by
   cases s; rfl
 
 /-- 学习：aiVer+1 且 eRaw+1。不改 N/F/L。 -/
-def learn (s : Sit) : Sit := { s with aiVer := s.aiVer + 1, eRaw := s.eRaw + 1 }
+def learn (s : Sit) : Sit := Sit.mk (fF s) (eRaw s + 1) (eAdm s) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) (procOn s) (aiVer s + 1) (pLedger s)
 
-theorem learn_frame_N (s : Sit) : (learn s).nVer = s.nVer := by cases s; rfl
-theorem learn_frame_F (s : Sit) : (learn s).fF = s.fF := by cases s; rfl
-theorem learn_frame_L (s : Sit) : (learn s).lCreated = s.lCreated := by cases s; rfl
+theorem learn_frame_N (s : Sit) : (learn s).nVer = nVer s := by cases s; rfl
+theorem learn_frame_F (s : Sit) : (learn s).fF = fF s := by cases s; rfl
+theorem learn_frame_L (s : Sit) : (learn s).lCreated = lCreated s := by cases s; rfl
 
 /-- Record：eRaw+1，F 不变。 -/
-def record (s : Sit) : Sit := { s with eRaw := s.eRaw + 1 }
+def record (s : Sit) : Sit := Sit.mk (fF s) (eRaw s + 1) (eAdm s) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) (procOn s) (aiVer s) (pLedger s)
 
-theorem record_frame_F (s : Sit) : (record s).fF = s.fF := by cases s; rfl
+theorem record_frame_F (s : Sit) : (record s).fF = fF s := by cases s; rfl
 
 /-- 准入。 -/
-def admit (s : Sit) : Sit := { s with eAdm := s.eAdm + 1 }
+def admit (s : Sit) : Sit := Sit.mk (fF s) (eRaw s) (eAdm s + 1) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) (procOn s) (aiVer s) (pLedger s)
 
 /-- 排除。 -/
-def exclude (s : Sit) : Sit := { s with eExcl := s.eExcl + 1 }
+def exclude (s : Sit) : Sit := Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s + 1) (nVer s) (lCreated s) (lConfirmed s) (clk s) (procOn s) (aiVer s) (pLedger s)
 
 /-- 合法形成步。 -/
 inductive Eff
@@ -81,22 +74,22 @@ inductive Eff
 
 def legalStep (s : Sit) (hasDoc : Bool) (e : Eff) : Sit :=
   match hasDoc, e with
-  | true, Eff.constitutive => { s with lCreated := true, procOn := true }
-  | true, Eff.confirmatory => { s with lConfirmed := true, procOn := true }
-  | true, Eff.performance => { s with procOn := true, pLedger := s.pLedger + 1 }
-  | true, Eff.proceduralBinding => { s with procOn := true }
+  | true, Eff.constitutive => Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s) (nVer s) true (lConfirmed s) (clk s) true (aiVer s) (pLedger s)
+  | true, Eff.confirmatory => Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s) (nVer s) (lCreated s) true (clk s) true (aiVer s) (pLedger s)
+  | true, Eff.performance => Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) true (aiVer s) (pLedger s + 1)
+  | true, Eff.proceduralBinding => Sit.mk (fF s) (eRaw s) (eAdm s) (eExcl s) (nVer s) (lCreated s) (lConfirmed s) (clk s) true (aiVer s) (pLedger s)
   | false, _ => s
 
 theorem confirm_no_create (s : Sit) :
-    (legalStep s true Eff.confirmatory).lCreated = s.lCreated := by
+    (legalStep s true Eff.confirmatory).lCreated = lCreated s := by
   cases s; rfl
 
 theorem nodoc_no_create (s : Sit) :
-    (legalStep s false Eff.constitutive).lCreated = s.lCreated := by
+    (legalStep s false Eff.constitutive).lCreated = lCreated s := by
   cases s; rfl
 
 theorem legalStep_frame_F (s : Sit) (hasDoc : Bool) (e : Eff) :
-    (legalStep s hasDoc e).fF = s.fF := by
+    (legalStep s hasDoc e).fF = fF s := by
   cases s
   cases hasDoc <;> cases e <;> rfl
 
@@ -131,20 +124,14 @@ structure ContractLife where
 
 theorem voidable_still_effective :
     ∃ c : ContractLife,
-      c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false := by
-  have c : ContractLife :=
-    { established := (true : Bool), effective := (true : Bool),
-      invalid := (false : Bool), voidablePower := (true : Bool) }
-  exact ⟨c, rfl, rfl, rfl⟩
+      c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false :=
+  ⟨ContractLife.mk true true false true, rfl, rfl, rfl⟩
 
 /-- 公定力不是事实真。 -/
 theorem gongding_still :
     ∃ a : AdminAct,
-      a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false := by
-  have a : AdminAct :=
-    { publicValidity := (true : Bool), substantiallyLegal := (false : Bool),
-      factTrue := (false : Bool) }
-  exact ⟨a, rfl, rfl, rfl⟩
+      a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false :=
+  ⟨AdminAct.mk true false false, rfl, rfl, rfl⟩
 
 /-- 刑事无罪民事可赔。 -/
 structure SameFact where
@@ -152,9 +139,7 @@ structure SameFact where
   civilLiable : Bool
 
 theorem criminal_not_cover_civil :
-    ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true := by
-  have s : SameFact :=
-    { criminalGuilty := (false : Bool), civilLiable := (true : Bool) }
-  exact ⟨s, rfl, rfl⟩
+    ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true :=
+  ⟨SameFact.mk false true, rfl, rfl⟩
 
 end JurisLean.CN.World

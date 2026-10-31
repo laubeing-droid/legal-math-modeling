@@ -6957,14 +6957,126 @@
         151,
         155
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L153：Brier风险差(p−q)^2与唯一最优；低均分仍可能伴随指定群体失准。L155：ProofStandard(N,q,E)独立、允许输入及UNKNOWN例。",
       "evidence": [
         "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean：brier_excess_identity、brier_excess_zero_iff。",
         "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean：ProofStandardName、standardGate、StandardNamedAt、lawful_named_standard_is_a_named_tier、trialDomain_attaches_the_108_standard、trialDomain_fails_the_109_standard。"
       ],
-      "remaining": "严格适当评分子命题已有证明；指定群体例及独立标准接口两个输入与原题的逐条对应尚未完整核实。不得因缺少单一API另造框架。",
-      "direct_acceptance": "复用评分恒等式与既有规范门，明确统计报告的证据角色及合法授权前提；依据缺失记UNKNOWN并fail-closed。p或Brier分值不得自动成为法律结论；政策权属不得写成法源。"
+      "remaining": "本指定切口L153/L155设计合同已交付并覆盖；既有数学source与审计范围仍限于原具名声明，有限Brier群体比较为既有定义的直接手算。此C不表示新接口已实现，不升级本主题其他数学行或法律裁判状态。",
+      "direct_acceptance": "复用评分恒等式与既有规范门，明确统计报告的证据角色及合法授权前提；依据缺失记UNKNOWN并fail-closed。p或Brier分值不得自动成为法律结论；政策权属不得写成法源。",
+      "contract_reconciliation": {
+        "scope": "本L153/L155指定设计合同已对齐；此C仅是design cut覆盖，不表示数学主题其他行、实现层、法律裁判、full-release或本候选分支的PR验收。",
+        "frozen_requirements": [
+          {
+            "line": 153,
+            "text": "二元Brier条件风险差(p−q)^2与唯一最优；有限样本高分不保证个体校准；给出平均Brier较好而指定群体失准的有限例，并区别校准、区分与决策阈值。",
+            "existing_results": [
+              "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition",
+              "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum",
+              "JurisLean.FullMath.Probability.brier_excess_identity",
+              "JurisLean.FullMath.Probability.brier_excess_zero_iff",
+              "JurisLean.Candidates.CalibrationSemantics20261027.q05_2_population_calibration_not_group_calibration"
+            ],
+            "instance_calculation": {
+              "law": "balancedAtoms assigns 1/2 to false and true; label is id; score is constant 1/2.",
+              "mean_brier_constant_half": "1/2*(1/2-0)^2 + 1/2*(1/2-1)^2 = 1/4.",
+              "mean_brier_constant_zero_or_one": "For either constant forecast 0 or 1, the two equally weighted outcomes give mean Brier 1/2.",
+              "constant_forecast_optimum": "u05_2_brier_decomposition at true rate 1/2 gives risk 1/4 + (r-1/2)^2; r=1/2 is minimal over constant forecasts.",
+              "group_rates": "The two groups have actual rates 1 and 0 respectively, while both receive score 1/2; each group differs by 1/2.",
+              "group_selection": "Take X constant and define groups by the prespecified Bool world; group membership is outside X and is fixed before the example, not selected post hoc. The 1/4 comparison is explicitly against constant forecasts 0 and 1."
+            },
+            "qualification": "The group fixture theorem states population calibration and groupRate 1/0, not a Brier-score comparison. The fractions above are direct calculations from the existing finite-law and score definitions, not a new named joint theorem.",
+            "notation_mapping": "Frozen L153 writes p for the forecast and q for the conditional true probability. The existing bernoulliBrier/u05_2 theorem instead uses its first argument p for the true rate and second argument q for the forecast; instantiate code p=1/2 and code q=r. This code-local notation does not change frozen q semantics.",
+            "concept_boundaries": {
+              "calibration": "Use existing calibrated definition: within each score bucket, expected label success equals score times bucket mass (CalibrationSemantics20261027.lean:95-104).",
+              "discrimination": "The constant 1/2 score in the finite example does not distinguish the two outcomes/groups; this is an explanatory boundary, not an existing named discrimination theorem.",
+              "decision_threshold": "An action threshold selects an action under a separately supplied loss/constraint; it is neither a calibration statement nor a legal proof-standard gate."
+            }
+          },
+          {
+            "line": 155,
+            "text": "ProofStandard(N,q,E) is an independent proposed input; p/Brier alone does not establish the proposition; if a norm allows probability information, state its evidentiary role and premises, and supply an allowed-reference and an UNKNOWN example.",
+            "q_semantics": "L153 explicitly defines q=P(Y=1|X=x), so q remains the numeric conditional probability. It is not renamed as E.query. If only estimate p or an interval is available, label it as such with the statistical premises and identification status; do not treat p as the true q.",
+            "design_status": "DELIVERED_PROPOSED_DESIGN_CONTRACT. This is a design contract only; existing declarations do not implement the complete ProofStandard(N,q,E) method or bind normative permission to a statistical report."
+          }
+        ],
+        "proposed_input_mapping": [
+          {
+            "input": "N_ref / standard metadata / version / domain / report-role permission",
+            "producer_or_authority": "An authorized external normative input must identify the applicable norm, scope/version, and whether this report may be used as reference; missing or conflicting permission is UNKNOWN.",
+            "existing_shape": "JurisLean.ULM.ProofStandard has standardId/domain/version at ULM12Procedure.lean:7-11; BurdenRule carries it at :33-38.",
+            "not_encoded": "The existing ProofStandard metadata contains no permission or report-role field; SourceRef presence alone does not establish permission. This permission is a premise in the proposal, not an implemented gate or a claim that real law permits it."
+          },
+          {
+            "input": "numeric q or estimated p/interval, statistical target/scope/source and premises",
+            "producer_or_authority": "Statistical producer supplies the report and its sampling/calibration/identification premises; distinguish a known conditional q from an estimate p or interval.",
+            "existing_shape": "The Brier decomposition and finite conditional-law results support scoring/calibration statements; the present EvidenceItem has no numeric q/p or confidence-interval field.",
+            "not_encoded": "A score, estimate, or Brier result does not itself establish q is identified, support a legal proposition, or establish report admissibility."
+          },
+          {
+            "input": "query_id",
+            "producer_or_authority": "Legal task supplies the proposition being assessed.",
+            "existing_shape": "EvidenceProcedure.EvidenceItem.query; usable q requires e.query=q.",
+            "not_encoded": "This is kept separate from numeric conditional-probability q."
+          },
+          {
+            "input": "E: source, query, admissibility, credibleUnderPolicy, supports",
+            "producer_or_authority": "Evidence/provenance producer supplies source and content; authorized admissibility and policy-credibility decisions are independent inputs.",
+            "existing_shape": "EvidenceProcedure.EvidenceItem fields at :5-11; usable requires query match, admissibility=yes, and credibleUnderPolicy=true at :13-14; judgment classifies usable support/opposition at :16-32.",
+            "not_encoded": "No current field binds the N report-role permission to the EvidenceItem or shows that a statistical report alone yields supports=true."
+          },
+          {
+            "input": "reference_status / statistical_status / procedure_classification / independent_legal_standard_status / provenance",
+            "producer_or_authority": "Proposed view keeps report-reference eligibility, statistical qualification, EvidenceProcedure classification, independent standard status, and source provenance separate.",
+            "existing_shape": "EvidenceProcedure supplies its four-way classification; ULM12Procedure supplies standard metadata and LegalStatus.proposition/request at :21-25; Seams.BurdenStatutes supplies a separate standardGate over σ/E/S.",
+            "not_encoded": "This combined output record is not an existing API. In particular, model standardGate fixtures do not implement an N/q/E probability-to-law conversion."
+          }
+        ],
+        "input_examples": [
+          {
+            "case": "A: synthetic permitted reference",
+            "premises": "合成N明确许可此报告仅作reference（不声明现实法源）；两点律给定真q=1/2；E恰为唯一报告项，query=0匹配，admissibility=yes、credibleUnderPolicy=true、supports=true均由N下独立审核给入。",
+            "existing_guard_result": "该项由EvidenceProcedure.usable判为true，judgment分类为supported。",
+            "limit": "supported只表示该报告项在给定程序合同下支持该query；本例仍不给独立法律标准达成见证，故法律标准状态UNKNOWN，不表示命题依法成立。N许可是合成输入，不由SourceRef或模型证明产生。"
+          },
+          {
+            "case": "B1: high score with empty evidence",
+            "premises": "即使p=99/100>9/10，E=[]。",
+            "existing_guard_result": "具名score_does_not_establish_judgment精确给出该不等式且EvidenceProcedure.judgment 0 [] = .insufficient。",
+            "limit": "按提出的接口对外保持UNKNOWN；这是现有具名例。"
+          },
+          {
+            "case": "B2: unknown N permission with pre-existing non-report evidence",
+            "premises": "N对报告角色的许可缺失/冲突，但E仍含已有非报告证据项。",
+            "existing_guard_result": "新增草案只将该报告的reference_status设为UNKNOWN；不移除已有E，也不声称旧EvidenceProcedure检测N许可。E中其余项仍按query/admissibility/credibleUnderPolicy独立评估；N的法律标准本身不明时独立标准状态仍UNKNOWN。",
+            "limit": "这是 proposed entry behavior，不是旧EvidenceProcedure既有结果；不能因报告许可未知而丢弃其他证据，也不能把程序层分类折为法律标准通过。"
+          }
+        ],
+        "independent_standard_boundary": "BurdenStatutes.standardGate σ E S and StandardNamedAt are separate model predicates. trialDomain_attaches_the_108_standard and trialDomain_fails_the_109_standard are structural model examples/choices, not source-of-law theorems, not a claim about current positive law, and not a conversion from probability into one of the three proof standards.",
+        "remaining": "本L153/L155设计合同已交付：复用既有数学证明、现有有限例的直接分数计算、明确的proposed control flow与两类输入例，满足本指定切口的设计覆盖。未声称旧代码完整编码N/q/E、未实现许可绑定或新proposed API，不升级实现层或本主题其他数学行。",
+        "proposed_control_flow": {
+          "status": "PROPOSED_DESIGN_FLOW; not an existing method or implementation.",
+          "steps": [
+            "独立接收有权外部给定的N标准/版本/域，以及N对本报告角色的许可；将许可绑定报告source、target、scope与法律query。许可缺失或冲突时令本报告reference_status=UNKNOWN；不能由SourceRef存在推得许可。N本身作为法律标准若不明或冲突，其独立法律标准状态仍UNKNOWN。",
+            "分别记录真条件概率q与估计p/interval及统计target、scope、source、识别/支持前提；可用精确有理数或带条件区间表达。未识别时不得把p填为已知真q。",
+            "只有核实N许可/报告角色及统计支持条件后，才把该报告作为reference输入E。E的admissibility、credibleUnderPolicy、supports由N下的独立授权判断给定，绝不由p/Brier数值阈值设置。许可未知只令报告的reference_status=UNKNOWN，不删除已有非报告E。旧EvidenceProcedure并未实现N许可检查。",
+            "对E运行程序证据classification；另行运行独立证明标准判断。报告reference、统计状态、procedure judgment与法律标准结果分层输出，任何一层都不被折成一个PASS；法律标准缺少达成见证时维持UNKNOWN。"
+          ]
+        }
+      },
+      "accepted_subject_evidence": {
+        "status": "ACCEPTED_EXISTING_SOURCE_EVIDENCE_ONLY; does not verify or implement this proposed N/q/E design mapping.",
+        "subject": "f4dbe0185490e5d54f5b378f73b8620c3f25e8bf",
+        "tree": "ac20ac7d91acf85f1361a3f1ce68442efdd78344",
+        "merged_main": "5f3195a3a8625c5e8a2e142d614ac307420ea9b2",
+        "authority_run_id": 41230327346,
+        "authority_attempt": 1,
+        "full_clean_artifact_id": 13053538345,
+        "full_clean_artifact_bytes": 684756,
+        "full_clean_artifact_sha256": "92caa1e52dd94fd06367fc57e4fa45d2c64a9666190ebd346cc50a62bfaac0d8",
+        "scope_note": "Acceptance is attached to the existing source subject/tree. It is not acceptance of a newly proposed legal/statistical interface or of this draft record branch."
+      }
     },
         {
       "topic": "06",
@@ -7074,14 +7186,233 @@
         123,
         131
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L125：最小service字段、职责/语义身份与执行记录；L127：规则/个人两调用和五拒绝；L129：非干扰/冷启动OOD边界与接口草案。",
       "evidence": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean：Checkpoint、PredictionRequest、checkpointMatches、u13_1_noninterference、u13_2_personal_frame、u13_4_missing_checkpoint_no_default。",
         "本轮U00包verification.json列明的现有目标：U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame、actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry、personal_continuation_observes_without_reexecuting。"
       ],
-      "remaining": "字段职责、两调用与原切口设计的逐项对照，以及无权重、错规则、跨律师、OOD、同名异义feature五拒绝边界，尚未在本切口完整验收；有字段不等于整题覆盖。",
-      "direct_acceptance": "复用现有结构和实际桥，逐字段映射两种调用顺序，并为五个拒绝边界记录实际拒绝/UNKNOWN点。原题允许接口草案，不要求训练程序；不新增通用框架。"
+      "remaining": "原题13指定L125/L127/L129设计合同已交付并覆盖；此C只核销design cut。旧API仍缺完整μ/Artifact解析、语义身份绑定和调用前完整metadata/scope过滤；新proposed interface未实现。原题13各数学行、工程105和生产覆盖状态不变；本分支独立PR验收仍待完成。",
+      "direct_acceptance": "本C仅表示设计义务的字段、共同对象构造/投影、两调用、五拒绝与冷启动/OOD有限例已按切口范围对齐。既有source/CI只验证旧声明；不声称新接口、训练程序、服务行为或生产覆盖已实现。",
+      "contract_reconciliation": {
+        "scope": "冻结原题13 L125/L127/L129的proposed设计合同已交付；本C仅为design cut覆盖，待本分支独立PR exact-subject验收，不表示旧API实现、新方法CI、主题13数学行完成、工程105或法律裁判。",
+        "design_status": "DESIGN_CONTRACT_DELIVERED; the proposed interface is not implemented in the old API, and this candidate branch still awaits independent exact-subject PR acceptance.",
+        "tagged_semantic_contract": {
+          "ModelRef": "Proposed ModelRef=(immutable catalog_epoch,index,artifact_ref). Existing Checkpoint.bytes is only a codec for the catalog index; it is not model content or proof of model/source. Resolve it to the same actual TrainingCandidate. Same modelVersion/index alone does not identify content across catalog epochs.",
+          "principal_and_scope": "principal/lawyer_scope means authenticated use principal and model applicability scope, not legal ownership/property title; use-scope comes from authenticated ingress, not a model self-claim.",
+          "rule_and_mechanism": "rule_pack_ref resolves to the actual parsed rule package plus version. mechanism_ref/version is independent and remains separately bound.",
+          "feature_and_target": "feature_schema_ref=(version,complete normalized/feature definition reference); target_definition_ref resolves the complete target definition. Display names, Nat equality, legacy codes, or equal Fin results do not establish semantic identity.",
+          "snapshots_and_evidence": "data_snapshot_ref distinguishes case_source/model_training/candidate_input by role. CP.evidence remains a separate evidence input; do not force case-source and model-training snapshots to be equal.",
+          "version_roles": "Gamma.schemaVersion and DataScope.featureVersion have separate duties; equality is not required or a substitute for complete definitions.",
+          "modes_and_endpoints": "Endpoints are normative or empirical. Normative use neither requires CP nor reads weights. conditional mode uses predictions as conditional references and does not update weights. persistent_candidate only creates/requests a candidate; unverified/unauthorized candidate is not accepted or loaded."
+        },
+        "common_object_construction": {
+          "status": "Construct proposed common frame from the actual fitted artifact; do not begin by assuming independent layers already have compatible witnesses.",
+          "steps": [
+            "Before actual fitting, fix one complete interpretation object μ=(feature definition/normalization,target definition,supported domain,version); retain that same μ object through fit arguments and outputs.",
+            "Construct the fit graph as rawConfirmed observations → encode through that μ to Dμ → existing fit/prepare chain. Only after a known fit, freeze the same μ, actual fit inputs/outputs, full training snapshot, actual model and authenticated use-scope into one immutable Artifact. This constructs common provenance rather than assuming separately supplied layers already have compatible witnesses.",
+            "The proposed makeFrame(context, Artifact A, catalog, index, actual_source_view) first verifies that catalog/index resolves exactly to A.actual_model and its authenticated use-scope. Only after that check, construct Checkpoint via existing checkpointFor for this same catalog/index, captured use-scope, derived query and A artifact evidence; do not relabel a model registered for another authenticated use-scope. Fitted snapshot is projected from that model.snapshot; candidate-input snapshot remains a separate journal projection.",
+            "The proposed constructor makes Frame O from context, A, catalog/index and actual_source_view; it is not an arbitrary tuple of independent layer witnesses. The context supplies fixed rule/mechanism/Γ, while all model/data/query/CP values below are assigned only by projections. If the catalog/model/use-scope check or any projection fails, return UNKNOWN.",
+            "μ is the externally fixed interpretation already declared by the model; its physical truth is not proved by version labels. The constructed internal views share this μ by construction, not by inferring semantics from equal Fin values. If an old artifact has only Nat version/index and cannot resolve complete μ or training-artifact binding, resolve_frame=UNKNOWN; labels cannot recreate compatibility after the fact."
+          ],
+          "not_required": "Do not require Gamma.schemaVersion=DataScope.featureVersion; retain both role-specific fields.",
+          "projection_equations": [
+            "πactual_model(O)=O.catalog[O.index]=A.actual_model, after makeFrame verifies this exact artifact binding and authenticated use-scope.",
+            "πμ(O)=A.μ; πcaptured_use_scope(O)=context.authenticated_use_scope=A.captured_use_scope, checked at construction.",
+            "πsnapshot(O)=O.actual_model.snapshot; candidate input snapshot is separately tagged from the actual journal.",
+            "πfeature(O)=A.μ.full_feature_definition.",
+            "πtarget(O)=A.μ.target_definition.",
+            "πquery(O)=A.μ.encode(actual_source_view), then existing commonQuery checks numeric equality on every retained branch after each branch’s complete semantic-definition refs have been validated.",
+            "πcheckpoint(O)=checkpointFor O.catalog O.index O.captured_use_scope O.query A.artifact_ref, using the same catalog item and its artifact evidence."
+          ],
+          "cross_schema_boundary": "Each selected artifact has its own μ and model; do not require all models to share μ or weights. A cross-schema use needs approved representation-conversion evidence; without it, UNKNOWN. Gamma.schemaVersion and DataScope.featureVersion keep their separate roles."
+        },
+        "field_producer_validator_and_identity": [
+          {
+            "field": "task/context",
+            "producer": "task owner and service context",
+            "validator": "service context checks the requested task/scope",
+            "role": "semantic task identity"
+          },
+          {
+            "field": "rule_pack_ref / mechanism_ref",
+            "producer": "authorized versioned rule and mechanism sources",
+            "validator": "normative/empirical loader resolves actual package and versions",
+            "role": "semantic identities, independently bound"
+          },
+          {
+            "field": "authenticated lawyer_scope",
+            "producer": "authenticated ingress/context",
+            "validator": "service authorization boundary; never model self-attested",
+            "role": "semantic use-scope, not property ownership"
+          },
+          {
+            "field": "ModelRef / checkpoint",
+            "producer": "actual model-artifact catalog/registry",
+            "validator": "resolve epoch+index+artifact to the same actual TrainingCandidate; checkpointFor reads that item; reject if registered for another authenticated use-scope",
+            "role": "semantic model identity; bytes alone are not identity"
+          },
+          {
+            "field": "feature and target complete definitions",
+            "producer": "fixed schema/target source bound into Artifact",
+            "validator": "loader compares Artifact, request and every retained branch definitions",
+            "role": "semantic identity; display names/version numbers are insufficient"
+          },
+          {
+            "field": "data_snapshot_ref / CP",
+            "producer": "actual model snapshot and current round journal; CP separately from source/training role",
+            "validator": "consumer verifies actual projected snapshot and statistical premises",
+            "role": "snapshot is data/statistical evidence identity, not model identity"
+          },
+          {
+            "field": "mode",
+            "producer": "caller selects conditional or persistent_candidate",
+            "validator": "service endpoint enforces mode authorization and route",
+            "role": "semantic operation identity"
+          },
+          {
+            "field": "call_id / timestamp / display name",
+            "producer": "execution runtime",
+            "validator": "execution log only",
+            "role": "execution records; cannot authorize or prove semantic identity"
+          }
+        ],
+        "invocation_contract": {
+          "normative_call": "Resolve authorized rule/mechanism/source Γ and case input; run actual current rule evaluation using the existing sourceThenProtocol/successful_joint_source_is_actual_current_rule_input bridge; return versioned conditional normative result/provenance without CP or shared weights. If branches conflict, preserve all branches and suspend for authorized adjudication; prediction does not select a legal branch.",
+          "empirical_call": "Authenticate use-scope; resolve Artifact/ModelRef/μ/actualSnapshot; encode query from Artifact μ; verify complete semantic references on every retained branch and commonQuery numeric identity; use existing selectIndex/actual_personal_round native entry; return conditional prediction only as reference. In persistent_candidate mode, route through the existing 13→14→15 generation/validation/authorization/load process; a candidate is not loaded merely because it was produced.",
+          "statistical_boundary": "Statistical evidence may be presented to proposed_calibration_support_gate/actual joint confidence only with their explicit sampling and provenance premises. A known p is not itself a statistical guarantee or legal conclusion. conditional path does not train and does not write personal updates to rule packages by default."
+        },
+        "noninterference_and_update_responsibility": {
+          "existing_results": [
+            "u13_1_noninterference",
+            "u13_2_personal_frame",
+            "u13_4_missing_checkpoint_no_default"
+          ],
+          "meaning": "u13_1_noninterference逐字结论是对任意eval(mechanism,rules,x)输出Y，updatePersonal不改变其结果。若拟议Y=(result,rule/case provenance)，且eval只读取固定rule/mechanism/x，则可作该多态声明的实例；这不是现有原生provenance字段定理。u13_2_personal_frame只给出四项合取：rules、mechanism、data不变，且所有j≠who的personal槽不变。conditional只读/不训练是接口责任草案，不是u13_2的额外结论。",
+          "updates": [
+            "data: externally confirmed observations, provenance, target, deduplication and conflict decisions;",
+            "condition: proposed conditional interface is read-only and does not train; this is a design responsibility, not an additional conclusion of u13_2_personal_frame.",
+            "personal: only the authenticated scope slot, through existing statistical validation/authorization path;",
+            "rule: separate authorized ingress, source/permission, semantic and refinement responsibilities; prediction endpoint does not open rule writes by default;",
+            "mechanism: separate authorized ingress, source/permission, semantic and refinement responsibilities; prediction endpoint does not open mechanism writes by default."
+          ],
+          "limits": "Existing prepareUpdate(rule, externalAuthority) ignores the reference; do not call it completed authorization checking. A SourceRef is not authorization. ADD_SUFFICIENCY_TEMPLATE is limited to judges/procuratorates; do not generalize this restriction to all receipt issuers. Model outputs are references; pure-AI decision is blocked to human review; standards are not converted; unsupported legal basis stays UNKNOWN."
+        },
+        "normal_and_rejection_examples": {
+          "status": "Proposed expected design cases only; no new tests have run and no new behavior is attributed to existing code.",
+          "normal_case": {
+            "input": "A proposed complete immutable Artifact with m=2/k=1; query=1; registered table [3/4,3/4]; catalog epoch E/index 0; captured use-scope=1; task=1; rule=7; mechanism=2; feature_schema_version=3; target=11. Its fixed μ defines Net=g−cost and the complete feature as the threshold-8 indicator; raw (10,0) encodes to feature 1. Target is a future externally confirmed outcome. Training snapshot and table are stipulated inputs to this artifact construction graph; CP is produced from the same catalog item, and Checkpoint.bytes is only the index codec.",
+            "expected": "After full metadata resolution/filtering, the existing matcher may return the same actual CP, conditional prediction p=3/4, and actual snapshot provenance. This is a stipulated normal design example, not a run of the fit or a new frontend fixture; p=3/4 is not asserted calibrated and does not decide a case.",
+            "unknown_boundary": "If the registered table/model content does not support this query and no explicit registered default semantics exists, return UNKNOWN. Do not interpret getD fallback 0 as a missing-weight prediction."
+          },
+          "five_rejections": [
+            {
+              "case": "no valid weights",
+              "input": "All four sources absent (None), with no legal alternate source.",
+              "expected": "missingEvidence; reuse n13_absent/u13_4_missing_checkpoint_no_default as existing boundary."
+            },
+            {
+              "case": "wrong rule",
+              "input": "Requested rule version 8 while only version 7 is available, with no other lawful source.",
+              "expected": "UNKNOWN at the version boundary; do not use another layer as an unlabelled fallback."
+            },
+            {
+              "case": "cross-principal model",
+              "input": "Model registered for use-scope 2 is requested by authenticated scope 1.",
+              "expected": "Reject before checkpointFor; never relabel principal/use-scope to make the checkpoint match."
+            },
+            {
+              "case": "out-of-domain input",
+              "input": "Actual input lies outside the resolved supported domain and no additional identification basis exists.",
+              "expected": "notIdentified/scopeUnknown; equal Nat scope labels do not identify OOD support."
+            },
+            {
+              "case": "same display/code but different feature meaning",
+              "input": "Names such as “amount”, same legacy code/schema number, or equal current Fin results mask Gross=g versus Net=g−cost. They agree at (10,0) but differ at (10,3): 10 versus 7. Artifact is Net; request is Gross.",
+              "expected": "UNKNOWN at complete-definition boundary; same-code/equal-current-result is not semantic identity."
+            }
+          ],
+          "fallback_qualification": "Each rejection example stipulates absent or incompatible fallback sources; if another valid matching source exists, do not claim the whole request must be rejected.",
+          "preselection": "Run the complete metadata/scope filter before the existing four-source selector; preserve the selected actual source label and provenance. Do not reject the whole request when another valid matching source remains."
+        },
+        "cold_start_and_ood_identification_examples": {
+          "cold_start": "For outcomes [0,1], let w0=[1,0] and w1=[0,1]. Both are nonnegative, length-matching, and sum to 1; they return 0 and 1 on the same outcomes while public rule/mechanism/data are identical. If h uses only those public inputs, it returns the same value for both but would have to equal both 0 and 1, a contradiction. Existing operational no-default behavior is covered by u13_4_missing_checkpoint_no_default.",
+          "ood": "Reuse the existing Behavior.m1/m2.intervenedOutcome definitions as finite tables f0(a,u)=a and f1(a,u)=u. They agree on D={(false,false)→false,(true,true)→true}; at x*=(true,false), f0=true and f1=false (indicators 1 and 0). Any h depending only on D has the same output for both models and cannot guarantee both out-of-domain values.",
+          "qualification": "These are finite projections/calculations from existing definitions plus observation equality, not a new named theorem. This is not an OOD theorem inferred from an ATE theorem and does not derive ordinary probability claims from causal results."
+        },
+        "existing_code_boundary": "Existing code provides CP integer matching, the identified actual source-personal bridges, noninterference and cold missing-checkpoint no-default behavior. It does not provide complete μ/Artifact resolution or the full proposed definition checks. The new interface is the original design obligation, not a claim that current service already covers it.",
+        "accepted_subject_evidence": {
+          "status": "ACCEPTED_EXISTING_SOURCE_EVIDENCE_ONLY; verifies only the existing source declarations in this subject, not the proposed design interface.",
+          "subject": "f4dbe0185490e5d54f5b378f73b8620c3f25e8bf",
+          "tree": "ac20ac7d91acf85f1361a3f1ce68442efdd78344",
+          "merged_main": "5f3195a3a8625c5e8a2e142d614ac307420ea9b2",
+          "authority_run_id": 41230327346,
+          "authority_attempt": 1,
+          "full_clean_artifact_id": 13053538345,
+          "full_clean_artifact_bytes": 684756,
+          "full_clean_artifact_sha256": "92caa1e52dd94fd06367fc57e4fa45d2c64a9666190ebd346cc50a62bfaac0d8",
+          "scope_note": "This accepted source scope does not verify the new tagged μ/Artifact contract, proposed reject cases, or the cold-start/OOD indistinguishability projections; no current-head or new-method CI is claimed."
+        },
+        "remaining": "L125/L127/L129设计合同已交付，且仅按本指定切口覆盖；旧API仍缺完整μ/Artifact解析、语义身份绑定及调用前完整metadata/scope过滤，新proposed接口未实现。原题13 math rows与105工程状态不变；当前分支独立PR验收待完成。",
+        "proposed_field_types": [
+          {
+            "field": "task_id",
+            "type": "Nat / TaskId",
+            "meaning": "Task identity; sourced from the task contract and checked against service context."
+          },
+          {
+            "field": "mechanism_version",
+            "type": "Nat",
+            "meaning": "Mechanism version, separate from rule and data/schema versions."
+          },
+          {
+            "field": "rule_pack_ref",
+            "type": "VersionedResolvedRulePackRef",
+            "meaning": "Reference resolving to the actual parsed, versioned rule package."
+          },
+          {
+            "field": "lawyer_scope",
+            "type": "(principal: PartyId, use_scope: ScopeRef)",
+            "meaning": "Authenticated ingress principal and authorized model-use/applicability scope; not property title and not model self-asserted."
+          },
+          {
+            "field": "checkpoint_ref",
+            "type": "Option ModelRef",
+            "meaning": "Model handle may be explicitly absent. Missing CP resolves only through an explicitly registered lawful alternative with its actual ModelRef recorded; if all four sources are absent, return UNKNOWN rather than defaulting to a probability."
+          },
+          {
+            "field": "feature_schema_version",
+            "type": "(version: Version, definition: CompleteFeatureDefinitionRef)",
+            "meaning": "Keep this exact field name. Existing CP.feature remains Nat; the proposed full definition ref supplements the semantic design and does not change that frozen type."
+          },
+          {
+            "field": "target_definition",
+            "type": "Complete TargetDefinitionRef",
+            "meaning": "Reference resolves the complete target definition."
+          },
+          {
+            "field": "data_snapshot_ref",
+            "type": "SnapshotRef(role = case_source | model_training | candidate_input)",
+            "meaning": "Role-tagged snapshot; candidate input/journal snapshot is separate from the fitted model snapshot."
+          },
+          {
+            "field": "scope",
+            "type": "ResolvedScope / SupportedDomain description",
+            "meaning": "Resolved applicability and supported domain, not a display label."
+          },
+          {
+            "field": "query_mode",
+            "type": "conditional | persistent_candidate",
+            "meaning": "Caller-selected operation, then checked against endpoint authorization."
+          },
+          {
+            "field": "result",
+            "type": "Result(normative_result | empirical_prediction | candidate_proposal) + UNKNOWN/REJECT/CONFLICT + provenance",
+            "meaning": "Proposed tagged result; a candidate proposal does not imply accepted or loaded."
+          }
+        ]
+      },
+      "scope_note": "本 cut 只覆盖冻结原题13 L125/L127/L129的proposed设计合同；不升级原题13任一数学行、主题13整体、工程105、生产服务实现或法律决定状态。本分支仍待独立PR exact-subject验收。"
     },
         {
       "topic": "14",

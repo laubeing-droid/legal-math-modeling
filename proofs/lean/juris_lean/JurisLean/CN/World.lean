@@ -37,9 +37,8 @@ def initSit : Sit :=
 theorem no_trial_normal :
     ∃ s : Sit,
       s.procOn = true ∧ s.lCreated = true ∧ s.aiVer = 0 ∧ s.fF = true := by
-  refine ⟨{ fF := true, eRaw := 1, eAdm := 1, eExcl := 0,
-     nVer := 1, lCreated := true, lConfirmed := false,
-     clk := 1, procOn := true, aiVer := 0, pLedger := 1 }, rfl, rfl, rfl, rfl⟩
+  have s : Sit := { fF := true, eRaw := 1, eAdm := 1, eExcl := 0, nVer := 1, lCreated := true, lConfirmed := false, clk := 1, procOn := true, aiVer := 0, pLedger := 1 }
+  exact ⟨s, rfl, rfl, rfl, rfl⟩
 
 /-- 提议：aiVer+1，L/N/F 不变。 -/
 def propose (s : Sit) : Sit := { s with aiVer := s.aiVer + 1 }
@@ -125,15 +124,15 @@ structure ContractLife where
 theorem voidable_still_effective :
     ∃ c : ContractLife,
       c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false := by
-  refine ⟨{ established := true, effective := true, invalid := false, voidablePower := true },
-    rfl, rfl, rfl⟩
+  have c : ContractLife := { established := true, effective := true, invalid := false, voidablePower := true }
+  exact ⟨c, rfl, rfl, rfl⟩
 
 /-- 公定力不是事实真。 -/
 theorem gongding_still :
     ∃ a : AdminAct,
       a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false := by
-  refine ⟨{ publicValidity := true, substantiallyLegal := false, factTrue := false },
-    rfl, rfl, rfl⟩
+  have a : AdminAct := { publicValidity := true, substantiallyLegal := false, factTrue := false }
+  exact ⟨a, rfl, rfl, rfl⟩
 
 /-- 刑事无罪民事可赔。 -/
 structure SameFact where
@@ -142,6 +141,7 @@ structure SameFact where
 
 theorem criminal_not_cover_civil :
     ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true := by
-  refine ⟨{ criminalGuilty := false, civilLiable := true }, rfl, rfl⟩
+  have s : SameFact := { criminalGuilty := false, civilLiable := true }
+  exact ⟨s, rfl, rfl⟩
 
 end JurisLean.CN.World

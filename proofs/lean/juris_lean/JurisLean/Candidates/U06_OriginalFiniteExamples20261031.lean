@@ -25,9 +25,9 @@ not add cash. This is about alias insertion, not another actual payment.
 theorem adding_resolved_alias_preserves_cash
     {R E : Type*} [DecidableEq R] [DecidableEq E]
     (references : Finset R) (resolve : R → E) (cash : E → ℚ)
-    (alias : R)
-    (alreadyRepresented : resolve alias ∈ references.image resolve) :
-    (∑ e ∈ (insert alias references).image resolve, cash e) =
+    (newReference : R)
+    (alreadyRepresented : resolve newReference ∈ references.image resolve) :
+    (∑ e ∈ (insert newReference references).image resolve, cash e) =
       ∑ e ∈ references.image resolve, cash e := by
   rw [Finset.image_insert, Finset.insert_eq_of_mem alreadyRepresented]
 
@@ -135,6 +135,6 @@ theorem unique_robust_policy_differs_from_both_branch_optima
     min (branchValue 0 false) (branchValue 0 true) = 0 ∧
     min (branchValue 1 false) (branchValue 1 true) = 0 ∧
     branchValue 2 false = 4 ∧ branchValue 2 true = 4 := by
-  fin_cases policy <;> norm_num [branchValue]
+  fin_cases policy <;> norm_num [branchValue, Fin.ext_iff]
 
 end JurisLean.Candidates.U06_OriginalFiniteExamples20261031

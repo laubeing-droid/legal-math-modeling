@@ -61,7 +61,12 @@ theorem identical_fingerprints_do_not_supply_source_truth :
          finiteFingerprint (literalWords first.2) =
            finiteFingerprint (literalWords second.2) ∧
          ¬ literalHolds false first.2 ∧ ¬ literalHolds false second.2) := by
-  decide
+  refine ⟨?_, ?_, ?_⟩
+  · intro a b
+    cases a <;> cases b <;> decide
+  · intro a
+    cases a <;> decide
+  · decide
 
 private def literalInterpretations (words : List String) : Result (List Bool) :=
   if words = ["paid"] then .known [true]

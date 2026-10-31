@@ -66,7 +66,7 @@ theorem identical_fingerprints_do_not_supply_source_truth :
     cases a <;> cases b <;> decide
   · intro a
     cases a <;> decide
-  · decide
+  · simp [literalHolds]
 
 private def literalInterpretations (words : List String) : Result (List Bool) :=
   if words = ["paid"] then .known [true]

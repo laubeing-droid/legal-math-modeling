@@ -33542,6 +33542,68 @@
       "status": "completed",
       "updated_at": "2026-10-30T20:34:44Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-31T03:14:59Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-u05-1-original-20261031",
+      "head_sha": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163534485",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/u05-1-original-close-20261031/README.md:33"
+      ],
+      "run_id": 41163534485,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-31T03:18:05Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

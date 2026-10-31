@@ -6932,7 +6932,7 @@
     }
   ],
   "designated_cuts": [
-    {
+        {
       "topic": "04",
       "heading": "## 指定实现切口：JC 逻辑回归与可回放的概率入口",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
@@ -6940,14 +6940,165 @@
         153,
         157
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L155：logistic pβ、交叉熵/可选L2、识别与分离时无有限unregularized解的条件及正则化唯一性条件；L157：proposed_win_model四段合同与四证据等级。",
       "evidence": [
         "既有实现：tools/unified_math_v2/unified/win_model.py 的 validate_splits、fit、calibrate、evaluate、train_evaluate；实际为Beta hyperprior + held-out isotonic，不是logistic。",
-        "既有占位：proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean 的 LogisticSpec 与 logistic_deterministic；仅结构及true/rfl，占位不构成目标命题证明。"
+        "既有占位：proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean 的 LogisticSpec 与 logistic_deterministic；仅结构及true/rfl，占位不构成目标命题证明。",
+        "本轮替代源：U04LogisticContract20261101.lean / U04LogisticContractAudit20261101.lean；run 41247502981仅支持source module及反向依赖通过，不是完整record PR验收。"
       ],
-      "remaining": "指定logistic数学子结论及proposed接口逐边合同尚无已核具名完整证据；不得以相邻Beta管线或占位替代。",
-      "direct_acceptance": "先复用确有的凸性/识别结果并实例化前提；核对原有限模型与分离反例。proposed接口按题目只交设计合同时，逐边明确目标、母体分母、版本、范围、失败与replay。未证部分保留NOT_RECONCILED；不启动新批次。"
+      "remaining": "L155数学合同与L157设计合同已交付，本cut待完整PR验收；不表示整主题或生产完成，现有JC/win_model未实现logistic，不升级主题04其他行、105工程实现或全理论状态。",
+      "direct_acceptance": "把冻结logistic数学合同、既有分离反例、L157四段设计与四独立证据层对齐；仅source-module changed-dependent CI已通过。本记录提交并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核；期间不宣称产品实现或整个原题04完成。",
+      "contract_reconciliation": {
+        "scope": "只覆盖冻结04 L155的logistic数学合同及L157 proposed_win_model设计合同。原题04.3现有C是旧L103–110 Beta共轭内容，本次不重开、不升级；不宣称win_model.py或LogisticSpec已实现logistic。",
+        "design_status": "MATHEMATICAL_SOURCE_CHECKED_AND_PROPOSED_INTERFACE_DELIVERED; as-of this record: full-record PR acceptance pending",
+        "mathematical_contract": {
+          "parameterization": "x : Fin d → ℚ，β : EuclideanSpace ℝ (Fin d)；scoreMap x β = Σᵢ (xᵢ : ℝ) * βᵢ，probability x β = Real.sigmoid(scoreMap x β)，并由 probability_strict_bounds 得 0 < pβ(x) < 1。y:Bool解释为0/1。",
+          "loss_and_objective": "loss_eq_cross_entropy 精确给出 −y log pβ(x) − (1−y) log(1−pβ(x))；empiricalLoss = (n_fit:ℝ)⁻¹ * Σᵢ∈S loss(Xᵢ,Yᵢ,β)，n_fit=|S|且正是实际送入拟合的X/Y行数；objective = empiricalLoss + reg/2 * ‖β‖²，其中 reg 对应原题可选 λ。",
+          "positive_l2": "fully_regularized_unique_minimum 的声明前提含 0<n 与 reg>0；整个 Fin d 参数向量（若截距作为常数1特征纳入亦同）受完整L2惩罚，不要求设计满秩，给出存在且唯一全局最优β。该声明不等于真实参数可识别。",
+          "proof_route": "源码证明 softplus 导数为 sigmoid、二阶导 sigmoid*(1−sigmoid)>0，推出 softplus 严格凸；有限样本均值loss连续、凸且非负。以 strongConvexOn_iff_convex 与 strictConvexOn 唯一性连接完整L2项，并在闭球紧集取最小值；源码半径 R=2*F(0)/reg+1，球外用非负loss与惩罚项证明目标不低于F(0)。凸性、存在性和最优解没有作为外部假设。",
+          "identification": "full_family_identifiable：若全部有理输入x上 probability x β = probability x γ，则由有理坐标基及 sigmoid injective 得 β=γ。sample_identifiability_iff：固定有限X时，样本概率映射injective 当且仅当线性score映射injective；声明没有计算任意给定设计矩阵的秩，不保证任意有限样本可识别。唯一正则化解不推出真实参数识别。",
+          "separation": "positive_intercept_is_existing_loss 将 n=d=1、x=1、y=true、reg=0 的实际 objective 化为旧 log(1+exp(−t))。unregularized_sample_has_no_minimum 的证明从假设 hmin 实际推出对任意 s 的标量下界 hle，再用已release-admitted的 Final20261021.Probability.u04_3_unpenalized_intercept_improves 在 t+1 直接矛盾；不依赖仍在PENDING_CI_MODULES隔离的 FormalTail20261024，也不推广到所有分离数据。",
+          "calibration_boundary": "给定训练例 n=d=1、X=0、Y=true、reg=1，主定理给唯一β*；zero_feature_probability_not_one 对任意β给 pβ(0)=1/2≠1。若单独声明部署点律 X=0、Y=1，则真实 q=1，所以此实例模型不校准。该结论是已证明声明的直接组合，不是新的通用 calibration 定理。"
+        },
+        "named_results": [
+          {
+            "name": "probability_strict_bounds",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "0 < sigmoid(score) < 1"
+          },
+          {
+            "name": "loss_eq_cross_entropy",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "实际Bernoulli二元交叉熵等式"
+          },
+          {
+            "name": "fully_regularized_unique_minimum",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "有限非空样本、reg>0、全坐标L2时存在唯一全局最小值"
+          },
+          {
+            "name": "full_family_identifiable",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "全有理输入上的概率函数相等蕴含参数相等"
+          },
+          {
+            "name": "sample_identifiability_iff",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "固定样本映射概率injective当且仅当score映射injective"
+          },
+          {
+            "name": "positive_intercept_is_existing_loss",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "实际unregularized objective等于旧正截距loss"
+          },
+          {
+            "name": "unregularized_sample_has_no_minimum",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "通过既有FormalTail正截距反例证明该有限样本无有限最小点"
+          },
+          {
+            "name": "zero_feature_probability_not_one",
+            "source": "U04LogisticContract20261101.lean",
+            "result": "所有β在零特征点给1/2，非1"
+          }
+        ],
+        "existing_probability_results": [
+          "Final20261021.Probability.u04_3_unpenalized_intercept_positive",
+          "Final20261021.Probability.u04_3_unpenalized_intercept_improves",
+          "Final20261021.Probability.u04_3_unpenalized_never_zero",
+          "Final20261021.Probability.u04_3_unpenalized_arbitrarily_small"
+        ],
+        "proposed_win_model": {
+          "status": "L157四段合同与四证据等级的proposed设计；不声称当前代码已实现。",
+          "typed_input": [
+            "ResolvedEvent 与 TargetDefinition + version；观察单位/时间；完整 feature definition/version；population_source/query/snapshot/scope。",
+            "实际 eligible population case-ID 集合I与 fit sample-ID 集合S（分别记录；本条具体拟合路径取S=I）、去重规则、检索完整性；prior为带出处的显式参数或absent；fit_kind/logistic reg及受罚坐标；model/parameter representation/version；算术类型/数值精度；query/supported domain。"
+          ],
+          "edge_contracts": [
+            {
+              "edge": "1 事件定义→检索",
+              "contract": "冻结同一目标谓词、单位、时间、feature μ，绑定source与范围；目标未解析或冲突则UNKNOWN，不允许由预测选择法律分支。"
+            },
+            {
+              "edge": "2 检索母体实算→prior/fit",
+              "contract": "从具名source/query/snapshot实例化预期有限population ID集合I，n_pop=|I|；本条具体拟合路径将同一I作为实际fit sample IDs，即S=I、n_fit=|S|=n_pop，分子按同一目标谓词对I实际计数，Dμ来自同一I和已确认标签/μ，并保留可追溯ID去重。若另一条明确路径只用S⊆I，则分别记录n_pop=|I|与n_fit=|S|，经验目标分母必须用n_fit，不能默认相等。若仅取得ID集合J_ret，保留n_ret=|J_ret|及其可核计数；预期I是否完整或母体分母n_pop不明时明确UNKNOWN，不把n_ret冒充n_pop、不自动把任务改成只研究已取子集。"
+            },
+            {
+              "edge": "3 带出处prior或模型拟合→预测",
+              "contract": "logistic路径使用上段实际X,Y、非空条件与已证明目标；记录reg与目标/feature/model/scope版本，输出 exact-minimizer witness、已提供优化误差证据或UNKNOWN之一。prior可显式absent并走fit，不填默认prior；posterior另需明确prior/likelihood/normalization合同，正则argmin不自动是posterior。"
+            },
+            {
+              "edge": "4 预测→conditional报告",
+              "contract": "输出 Bernoulli(pβ(x))，P(1)=p、P(0)=1−p；概率界与两质量和为1说明是模型概率律，不是识别出的真实q。附事件、ID/n及完整性状态、样本/snapshot、全部版本、参数表示、精度、配置、路径、失败原因与结果的provenance/replay。若既有ℚ消费者没有已声明转换/误差证据，不自动接收Real/float。"
+            }
+          ],
+          "independent_evidence_levels": [
+            "有限集合计数正确：目标母体I的ID集合、分子分母及检索完整性。",
+            "目标优化/误差状态：实数目标的最优性规格、可提供的有限数值系数与优化误差/witness；数值退出码0本身不证明argmin。",
+            "识别前提/来源范围：目标、特征、来源、作用域、支持域及可识别性条件。",
+            "真实预测适用：抽样/部署/验证前提与实际预测证据。"
+          ],
+          "level_boundary": "四级分别输出；前一级不推出后一级。模型概率律可计算不代表真实预测可用。统计报告只有通过cut05独立许可/支持闸门后才可接规范证据；法律标准独立，无法源依据保持UNKNOWN，政策权属不是法源定理。"
+        },
+        "existing_implementation_boundary": "tools/unified_math_v2/unified/win_model.py当前仍为Beta hyperprior + held-out isotonic，不是本logistic模型；Genealogy/TSpectrum/Batch3.lean的LogisticSpec/logistic_deterministic仍为结构占位，不作证明证据。15条消费边不改；本次不声称logistic已接生产消费者或已编写训练程序/精确实数优化器。",
+        "accepted_subject_evidence": {
+          "status": "SOURCE_MODULE_CHANGED_DEPENDENTS_PASS_ONLY; full-record PR acceptance pending.",
+          "subject": "b9a3a125f70a5e0084562b21f1ead72db7af6755",
+          "tree": "732325cbaecb2ddb412b579f07cf4d316dc49ee5",
+          "branch": "formal/prove-cut04-logistic-20261101",
+          "source_commit_parent": "459f6fa39e70c35e20b1c5ce597b181b1138e86b",
+          "record_base_main": "c6c9daa3346ffd62bc192fd51a61c21763601099",
+          "source_blob": "0ab38716d0ae3daebb5a9e1abb2966f602480871",
+          "audit_blob": "f29300d13f0dde6c1c2ad32df9f1f7137ccc0f6e",
+          "run_id": 41247502981,
+          "attempt": 1,
+          "job_id": 124673887087,
+          "module": "JurisLean.Candidates.U04LogisticContractAudit20261101",
+          "conclusion": "success",
+          "artifact_id": 13060450630,
+          "artifact_bytes": 2395,
+          "artifact_sha256": "60530c0d85e33f540606c12fc917a889337c916fd91e51b353875239409de87f",
+          "log": "D:/tmp/u04-logistic-changed-41247502981/unpacked/changed-module.log",
+          "log_bytes": 12664,
+          "log_sha256": "4750c7f29904b6ff434f2af60b7eec08e121d009f85e8d47d7bfbcd564dfccb4",
+          "plan": "D:/tmp/u04-logistic-changed-41247502981/unpacked/module-plan.json",
+          "plan_bytes": 271,
+          "plan_sha256": "7063c934e2752ee9defea32675b7a1de5ca1f95a4f7155361b43fcb819047102",
+          "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+          "check_lines": "8 #check outputs at log lines 128-160; 8 #print axioms at 161-184.",
+          "axioms": "[propext, Classical.choice, Quot.sound]; no sorryAx.",
+          "full_release_jobs": "SKIPPED; not PASS."
+        },
+        "historical_failed_runs": [
+          {
+            "run_id": 41242892335,
+            "diagnosis": "第一轮新源码以λ作binder触发Lean保留token解析错误；后续已统一换为reg。"
+          },
+          {
+            "run_id": 41243327700,
+            "diagnosis": "改名后剩余错误在hineq仍为集合成员命题；末尾simpa未展开Set.mem_setOf_eq，后续已显式展开。"
+          }
+        ],
+        "remaining": "L155数学合同与L157设计合同已交付，本cut待完整PR验收；不表示整主题或生产完成，现有JC/win_model未实现logistic，不升级主题04其他行、105工程实现或全理论状态。",
+        "direct_acceptance": "把冻结logistic数学合同、既有分离反例、L157四段设计与四独立证据层对齐；仅source-module changed-dependent CI已通过。本记录提交并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核；期间不宣称产品实现或整个原题04完成。",
+        "historical_source_only_evidence": {
+          "run_id": 41243910184,
+          "subject": "459f6fa39e70c35e20b1c5ce597b181b1138e86b",
+          "tree": "e70d62bc4f8a353c9b7d4a9a2d9fa4158b5ab461",
+          "source_blob": "4641f58f5e3ee44a6e6078b60c64edf5a55ae302",
+          "status": "Historical source-only changed-module pass; not release-root-admitted and not full-record acceptance. That source imported quarantined FormalTail20261024; current proof no longer imports it."
+        },
+        "historical_full_record_run": {
+          "run_id": 41245768819,
+          "attempt": 1,
+          "api_head": "f150466b4e6c6f63f88df2ef3a465aa21bd46835",
+          "subject": "ea5f4016d25204e2138938ef1ecdb5e5d0f6be3e",
+          "tree": "4487525d044d6e133c46f93420fe9bba821dc715",
+          "status": "FAIL; release-certificate SKIPPED; not acceptance for the new source or record.",
+          "root_causes": "Python-gates failed on generated reachability (new source/Audit and transitive quarantined FormalTail20261024), stale census/shape/structure/paper derived artifacts, and the changed MD citation line; seven-axis/final-gate failed and certificate was skipped."
+        }
+      }
     },
     {
       "topic": "05",

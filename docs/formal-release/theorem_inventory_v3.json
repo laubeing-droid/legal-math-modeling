@@ -17995,6 +17995,112 @@
    "theorem_count_bol_convention": 0
   },
   {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "scoreMap"
+    },
+    {
+     "kind": "def",
+     "name": "probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "probability_strict_bounds"
+    },
+    {
+     "kind": "def",
+     "name": "softplus"
+    },
+    {
+     "kind": "theorem",
+     "name": "softplus_eq_log_one_add_exp"
+    },
+    {
+     "kind": "def",
+     "name": "signedScore"
+    },
+    {
+     "kind": "def",
+     "name": "loss"
+    },
+    {
+     "kind": "theorem",
+     "name": "loss_eq_cross_entropy"
+    },
+    {
+     "kind": "def",
+     "name": "empiricalLoss"
+    },
+    {
+     "kind": "def",
+     "name": "objective"
+    },
+    {
+     "kind": "theorem",
+     "name": "fully_regularized_unique_minimum"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_family_identifiable"
+    },
+    {
+     "kind": "theorem",
+     "name": "sample_identifiability_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_intercept_is_existing_loss"
+    },
+    {
+     "kind": "theorem",
+     "name": "unregularized_sample_has_no_minimum"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_feature_probability_not_one"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Probability",
+    "Mathlib.Analysis.Convex.Deriv",
+    "Mathlib.Analysis.Convex.Strong",
+    "Mathlib.Analysis.InnerProductSpace.PiL2",
+    "Mathlib.Analysis.Normed.Module.FiniteDimension",
+    "Mathlib.Analysis.SpecialFunctions.Sigmoid",
+    "Mathlib.Topology.Order.Compact"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "a96285d27c2156957c9878b6a29c095c98045e7a0b8b1279c973fee12afcbf20",
+   "size_bytes": 11314,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U04LogisticContract20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContractAudit20261101.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.U04LogisticContract20261101.full_family_identifiable",
+    "JurisLean.Candidates.U04LogisticContract20261101.fully_regularized_unique_minimum",
+    "JurisLean.Candidates.U04LogisticContract20261101.loss_eq_cross_entropy",
+    "JurisLean.Candidates.U04LogisticContract20261101.positive_intercept_is_existing_loss",
+    "JurisLean.Candidates.U04LogisticContract20261101.probability_strict_bounds",
+    "JurisLean.Candidates.U04LogisticContract20261101.sample_identifiability_iff",
+    "JurisLean.Candidates.U04LogisticContract20261101.unregularized_sample_has_no_minimum",
+    "JurisLean.Candidates.U04LogisticContract20261101.zero_feature_probability_not_one"
+   ],
+   "sha256": "d6d5e1fbf72afb173b0ad74129b7a4e3747dc05bf8733abc103d27cf92bd408a",
+   "size_bytes": 1485,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
    "declarations": [],
    "imports": [
     "JurisLean.Candidates.ExchangeableRank20261031",
@@ -59546,6 +59652,8 @@
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
     "JurisLean.Candidates.U02_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
+    "JurisLean.Candidates.U04LogisticContract20261101",
+    "JurisLean.Candidates.U04LogisticContractAudit20261101",
     "JurisLean.Candidates.U04_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
@@ -59756,8 +59864,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "bfb0a9b259ebee1ce76fab09e45a6e1346271702810a29ea5a34ed7dc01fade3",
-   "size_bytes": 13786,
+   "sha256": "f9d72a42c17a129a54400e760427227ec757b3af9efa08305ae09136c7cc85b8",
+   "size_bytes": 13903,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -59921,22 +60029,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6285,
-   "file_count": 542,
+   "counted_declaration_count": 6294,
+   "file_count": 544,
    "lemma_count": 146,
-   "print_axioms_command_count": 5521,
-   "print_axioms_distinct_targets": 5075,
-   "theorem_count": 6139,
-   "theorem_count_bol_convention": 6039
+   "print_axioms_command_count": 5529,
+   "print_axioms_distinct_targets": 5083,
+   "theorem_count": 6148,
+   "theorem_count_bol_convention": 6048
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6266,
-   "file_count": 527,
+   "counted_declaration_count": 6275,
+   "file_count": 529,
    "lemma_count": 139,
-   "print_axioms_command_count": 5521,
-   "print_axioms_distinct_targets": 5075,
-   "theorem_count": 6127,
-   "theorem_count_bol_convention": 6027
+   "print_axioms_command_count": 5529,
+   "print_axioms_distinct_targets": 5083,
+   "theorem_count": 6136,
+   "theorem_count_bol_convention": 6036
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60132,6 +60240,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4ExternalConditionRisk20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContractAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
@@ -60672,6 +60782,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4ExternalConditionRisk20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U02_4OriginalClosureAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContractAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
@@ -61062,17 +61174,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b55dc90bb5a2b110681dab57618ed69fd225a3f1fee0729b80b7e699443ac38b",
+ "source_inventory_digest": "19019329677542ce4cfc230f3918566826dc8cd8cf939f472aa37ee6886d6556",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u00-final-20261031",
-  "commit": "189feee0f956e6f6e9ff6b6c3423e9c1f9b30fcf",
-  "tree": "1dafb5b9bf1f7efac0dae065aca693d44d5c379e"
+  "branch": "formal/close-cut04-logistic-20261101",
+  "commit": "1197a943f64cab80ec001ad72b714cbc5327ecd6",
+  "tree": "655c69995dd074fa01930ca0b8c293d354d5063b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 542,
+  "files_total": 544,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

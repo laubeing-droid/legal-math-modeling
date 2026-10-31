@@ -1,37 +1,37 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "b58e50c34d06352063b7a48122f25c837a9973fe",
-    "source_checkpoint": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
-    "source_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
-    "ci_status": "U05.1_MARGINAL_AND_ORIGINAL_05.4_GROUP_INSTANCE_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
+    "baseline_main": "d1af41bb2057af73b45bc029931323ea0331d823",
+    "source_checkpoint": "6561e3564006dbe39659510fb7b7235f77fd63ae",
+    "source_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
+    "ci_status": "U06.4_CHANGED_MODULE_SUCCESS; U06.5_AND_ORIGINAL02_SOURCE_AUDITS_SUCCESS_SEPARATELY; integrated candidate core pending review and combined release gates",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "U05.1 archived finite marginal conformal coverage remains audited; the same successful source run also audits the supplementary original-question 05.4 L115 sufficient group-conditional instance under its actual positive-mass conditional law, within-group calibration, conditional exchangeability, and nonempty calibration-count premises. Original-question 05.4 L111/L113/L115 is COVERED within those stated assumptions. Original-question 05.5 receives only L123 negative support and remains NOT_RECONCILED. Original-question 01.1–01.6 are COVERED within their finite task/model-card contracts and explicit quantifier boundaries. No arbitrary subgroup/shift guarantees, legal correctness, real-data validity, engineering105, 15 consumer edges, six cuts, or whole-theory completion is claimed. Main b58e50 is 47/3/0; this branch archive ledger is 48/2/0. Global discharges, Step 2 and math_flip remain false.",
+    "scope": "Latest separate changed-module source run is original-question U06.4 at 6561e356/tree555a9; U06.5 source audit run41136762457 and original02 supplemental audit run41163607765 also pass on their pinned sources. This branch integrates the three evidence scopes but has not yet received a combined audit, PR or release gate. Accepted main d1af41/tree4b1d is 48 wiring / 2 narrow / 0 OPEN; current branch candidate is 49 / 1 / 0. Original-question draft is 29 COVERED / 40 PARTIAL / 28 NOT_RECONCILED. No consumer-edge or designated-cut change, no whole-theory completion; discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41163534485,
-    "ci_job_id": 124426094626,
-    "ci_subject": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
-    "ci_subject_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
+    "ci_run_id": 41172965084,
+    "ci_job_id": 124454630715,
+    "ci_subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
+    "ci_subject_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
     "ci_attempt": 1,
-    "ci_artifact": "changed-module-only-41163534485-1",
-    "ci_artifact_id": 13027479267,
-    "ci_artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb",
-    "archive_gap_ledger_status": "main@b58e50c34d06352063b7a48122f25c837a9973fe / tree e4132cc0ec050ec27059ce69ccd74bd0e7b1a38d retains PR79 checks at 47 CLOSED_BY_WIRING / 3 CLOSED_BY_NARROW / 0 OPEN. This branch retains U05.1 at 48 / 2 / 0 and binds the supplementary original-question 05.4 L115 source audit to 72135485cb4cbba15ec3e2bdd0183d99d05e9947; source evidence is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
+    "ci_artifact": "changed-module-only-41172965084-1",
+    "ci_artifact_id": 13031932067,
+    "ci_artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+    "archive_gap_ledger_status": "Accepted main@d1af41bb2057af73b45bc029931323ea0331d823 / tree 4b1d32dcc2f699c6ffb9d26ad687764294b282bc retains PR80 at 48 CLOSED_BY_WIRING / 2 CLOSED_BY_NARROW / 0 OPEN. This branch candidate is 49 / 1 / 0 after U06.5. The three relevant source audits are separate and the integrated candidate remains unreleased. Global discharges, math_flip and Step 2 remain false/open."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "b58e50c34d06352063b7a48122f25c837a9973fe",
+  "reference_main": "d1af41bb2057af73b45bc029931323ea0331d823",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 23,
-    "PARTIAL": 46,
+    "COVERED": 29,
+    "PARTIAL": 40,
     "NOT_RECONCILED": 28
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -835,16 +835,22 @@
           111
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
           "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
           "run_id": 40489909383,
           "job_id": 122140948062,
-          "named_targets": 22,
+          "named_targets": [
+            "JurisLean.Candidates.LegalActionDomain20261027.acceptance_binds_proposal_and_every_branch",
+            "JurisLean.Candidates.LegalActionDomain20261027.accepted_actual_branch_step_preserves_declared_invariant",
+            "JurisLean.Candidates.LegalActionDomain20261027.chosen_execution_uses_the_entire_approved_instruction_list",
+            "JurisLean.Candidates.LegalActionDomain20261027.execution_choice_preserves_reported_state_invariant",
+            "JurisLean.Candidates.LegalActionDomain20261027.Audit.two_standalone_steps_need_the_actual_intermediate_state"
+          ],
           "guarded_executions": 29,
-          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+          "scope": "旧一般合同：逐分支绑定完整指令与实际world/successor、实际执行保留声明状态不变量，且第二步必须读实际中间状态；与本轮有限旧gate反例分开。"
         },
         {
           "pr": 55,
@@ -858,9 +864,73 @@
           "main_run_status": "SUCCESS",
           "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
           "main_final_job": 122163252919
+        },
+        {
+          "package": "docs/formal-release/evidence/original02-instances-20261031",
+          "subject": "86f8f643437a35ee0bedc149ecd04a55f0f9aa2e",
+          "tree": "7b455551f900f503246a8d7b9d35dc35ebc3af54",
+          "run_id": 41163607765,
+          "job_id": 124426303750,
+          "attempt": 1,
+          "artifact_id": 13027184875,
+          "artifact_name": "changed-module-only-41163607765-1",
+          "artifact_size_bytes": 6231,
+          "artifact_sha256": "26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate"
+          ],
+          "axiom_counts": {
+            "propext": 5,
+            "Classical.choice": 2,
+            "Quot.sound": 5
+          },
+          "scope": "L107/L109/L111：stale_resource_checks_do_not_compose展示旧gate通过不推出后续状态不变量；preparation_failure_frame_and_unknown_commit区分准备失败时的无副作用帧与unknownCommit不可读后态。既有U02.1 Pipeline/Trace与U10.1实际refresh证据承接旧步骤和状态不变量合同；本实例不声称外部副作用精化。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u02-1-debt-close-20261029",
+          "subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+          "run_id": 40791067212,
+          "job_id": 123176137083,
+          "scope": "实际Pipeline/Trace一般路径：Init⇒I、每一真实step保持I、报告的payment poststate来自真实执行及gate；finite_failure...处理replay/reject/unknownCommit帧。其余任务特定反例由本轮两个新目标补齐。",
+          "named_targets": [
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_closed_pipeline_refines_gate",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_pipeline_refines_gate",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries",
+            "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+            "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+            "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+            "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+            "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step"
+          ],
+          "supporting_declarations": [
+            "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once"
+          ],
+          "supporting_declaration_note": "这是Trace中的既有同key路径安全声明；本条receipt的named_targets仍只计本对象列出的U02.1包内目标。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u10-1-debt-close-20261030",
+          "subject": "bf95766f1e68a82b2bda80db8712b39611233482",
+          "run_id": 41018909983,
+          "job_id": 123941482566,
+          "scope": "refresh/continuation使用更新后的实际environment、Gamma/history并重新核对完整后续instruction；有限调用路径同样实际refines。",
+          "named_targets": [
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path"
+          ]
         }
       ],
-      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+      "remaining": "COVERED仅限本行列明的有限失败封闭、状态/语义边界与既有Pipeline/Trace/HarnessRisk条件合同；不证明现实输入和规则全部为真、外部副作用精化、生产部署或工程105整体完成。U00全路线仍另行开放。"
     },
     {
       "id": "02.3",
@@ -892,25 +962,39 @@
           121
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
           "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
           "run_id": 40489909383,
           "job_id": 122140948062,
-          "named_targets": 22,
+          "named_targets": [
+            "JurisLean.Candidates.LegalActionDomain20261027.legal_domain_is_exact_filter_not_a_generator",
+            "JurisLean.Candidates.LegalActionDomain20261027.pure_filter_cannot_offer_an_unproposed_action",
+            "JurisLean.Candidates.LegalActionDomain20261027.undefined_denominators_remain_unknown",
+            "JurisLean.Candidates.LegalActionDomain20261027.indistinguishable_permission_prevents_sound_and_complete"
+          ],
           "guarded_executions": 29,
-          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+          "scope": "一般有限域合同：legal domain是候选列表上的exact filter而不是生成器；纯过滤不能提供未提议动作；两世界同观察且允许集不交时不能同时sound/complete；空分母保持UNKNOWN。"
         },
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\harness-risk-20261027",
           "subject": "b806ad4d5f042d125bc30cff7984df0ede569516",
           "run_id": 40490426903,
           "job_id": 122142702614,
-          "named_targets": 17,
+          "named_targets": [
+            "JurisLean.Candidates.HarnessRisk20261027.reported_population_rate_is_a_probability",
+            "JurisLean.Candidates.HarnessRisk20261027.zero_population_is_not_zero_risk",
+            "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_expected_marginal",
+            "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal"
+          ],
           "guarded_executions": 7,
-          "scope": "条件期望到边际、有限/可数风险界、实际Bernoulli乘积测度与无限风险极限、违规/误阻断的不同条件分母；独立模块证据"
+          "scope": "一般风险边界：条件违规概率界推出边际期望/常数风险界；零人口返回UNKNOWN。不同分母通过实际definition violationAndBlockingRates分别为accepted population与admissible population，rateReport分别取conditionalRisk(badAccepted,accepted)与conditionalRisk(blockedAllowed,allowed)。上述definition不是receipt named theorem target；本包17个named targets和4个相关目标如列。",
+          "supporting_definitions": [
+            "JurisLean.Candidates.HarnessRisk20261027.violationAndBlockingRates",
+            "JurisLean.Candidates.LegalActionDomain20261027.rateReport"
+          ]
         },
         {
           "pr": 55,
@@ -924,9 +1008,36 @@
           "main_run_status": "SUCCESS",
           "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
           "main_final_job": 122163252919
+        },
+        {
+          "package": "docs/formal-release/evidence/original02-instances-20261031",
+          "subject": "86f8f643437a35ee0bedc149ecd04a55f0f9aa2e",
+          "tree": "7b455551f900f503246a8d7b9d35dc35ebc3af54",
+          "run_id": 41163607765,
+          "job_id": 124426303750,
+          "attempt": 1,
+          "artifact_id": 13027184875,
+          "artifact_name": "changed-module-only-41163607765-1",
+          "artifact_size_bytes": 6231,
+          "artifact_sha256": "26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.finite_gate_has_nonempty_safe_instance"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate"
+          ],
+          "axiom_counts": {
+            "propext": 5,
+            "Classical.choice": 2,
+            "Quot.sound": 5
+          },
+          "scope": "L115/L117/L119/L121：finite_gate_has_nonempty_safe_instance给出有限非空安全动作实例；hidden_permissions_force_refusal给出相同观察下相反许可状态无法同时放行的边界。覆盖/误阻断/条件风险分母继续由既有legal-action-domain与HarnessRisk包支撑，不由新有限例子单独概括。"
         }
       ],
-      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+      "remaining": "COVERED仅限本行列明的有限失败封闭、状态/语义边界与既有Pipeline/Trace/HarnessRisk条件合同；不证明现实输入和规则全部为真、外部副作用精化、生产部署或工程105整体完成。U00全路线仍另行开放。"
     },
     {
       "id": "02.4",
@@ -1025,16 +1136,19 @@
           137
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
           "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
           "run_id": 40489909383,
           "job_id": 122140948062,
-          "named_targets": 22,
+          "named_targets": [
+            "JurisLean.Candidates.LegalActionDomain20261027.indistinguishable_permission_prevents_sound_and_complete",
+            "JurisLean.Candidates.LegalActionDomain20261027.Audit.syntax_and_proof_do_not_establish_external_fact_fidelity"
+          ],
           "guarded_executions": 29,
-          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+          "scope": "一般不可区分观察lemma：相同可见观察（可解释为相同字符串/序列化/签名输入）无法推出隐藏许可或现实truth；不声称仓库有任意regex实现或签名真实性定理。"
         },
         {
           "pr": 55,
@@ -1048,9 +1162,63 @@
           "main_run_status": "SUCCESS",
           "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
           "main_final_job": 122163252919
+        },
+        {
+          "package": "docs/formal-release/evidence/original02-instances-20261031",
+          "subject": "86f8f643437a35ee0bedc149ecd04a55f0f9aa2e",
+          "tree": "7b455551f900f503246a8d7b9d35dc35ebc3af54",
+          "run_id": 41163607765,
+          "job_id": 124426303750,
+          "attempt": 1,
+          "artifact_id": 13027184875,
+          "artifact_name": "changed-module-only-41163607765-1",
+          "artifact_size_bytes": 6231,
+          "artifact_sha256": "26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate"
+          ],
+          "axiom_counts": {
+            "propext": 5,
+            "Classical.choice": 2,
+            "Quot.sound": 5
+          },
+          "scope": "有限见证补足L133的观察不可区分和L137的checked trace不等primitive truth，并以Fin3 stale/current resource gate说明有限状态合同只覆盖建模状态/转移；不替代一般相对soundness目标。"
+        },
+        {
+          "package": "docs/formal-release/evidence/finite-legal-validation-20261027",
+          "subject": "14e4937923ed3dea042317845568636108537f9b",
+          "run_id": 40482741482,
+          "job_id": 122116867789,
+          "named_targets": [
+            "JurisLean.Candidates.FiniteLegalValidation20261027.checked_trace_certifies_relative_derivation",
+            "JurisLean.Candidates.FiniteLegalValidation20261027.valid_trace_replay_is_sound",
+            "JurisLean.Candidates.FiniteLegalValidation20261027.inspected_query_truth_requires_primitive_model",
+            "JurisLean.Candidates.FiniteLegalValidation20261027.Audit.derivation_trace_does_not_prove_actual_source_truth"
+          ],
+          "scope": "证明检查器只给相对于已给facts/rules的派生soundness；要推出实际query truth必须另给primitive model和其解释桥。"
+        },
+        {
+          "package": "docs/formal-release/evidence/source-compilation-20261027",
+          "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+          "run_id": 40462004036,
+          "job_id": 122048554976,
+          "named_targets": [
+            "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+            "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+            "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query"
+          ],
+          "guarded_executions": 16,
+          "scope": "有限结构/载荷见证：通过抽取/编译检查的view仍须与primitive payment meaning作独立比较；相同裸record及citation不使payload语义自动相同。"
         }
       ],
-      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+      "remaining": "L133：一般indistinguishable_permission_prevents_sound_and_complete适用于相同o(s0)=o(s1)的词法可见字符串/JSON/签名字节，只限制可见谓词，不能推出隐藏许可或现实truth。L135逐层实例：词法规则只核声明的字符串/模式；结构/类型层以SourceCompilationAudit的精确抽取/编译目标和同裸record/citation、改payload使primitivePaymentMeaning失败的guarded见证，说明绑定的结构正确不蕴含语义正确；有限状态层由Trace.step_preserves与u10_2_finite_trace_composition、LegalActionDomain.accepted_actual_branch_step_preserves_declared_invariant在合同前提下归纳保持已建模I，Fin3 stale/current gate见证说明状态错位会破坏合同，未观察事实不在监控保证内；证明检查器层由FiniteLegalValidation.valid_trace_replay_is_sound/checked_trace_certifies_relative_derivation仅对给定facts/rules sound，inspected_query_truth_requires_primitive_model和Audit.derivation_trace_does_not_prove_actual_source_truth表明需独立primitive model。L137的finite witness来自SourceCompilation guarded evaluations和LegalActionDomain.Audit.syntax_and_proof_do_not_establish_external_fact_fidelity。这里是按四层解释各自检查对象与信任前提，不主张严格能力包含/通用程序验证。"
     },
     {
       "id": "02.6",
@@ -1082,16 +1250,22 @@
           147
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\legal-action-domain-20261027",
           "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
           "run_id": 40489909383,
           "job_id": 122140948062,
-          "named_targets": 22,
+          "named_targets": [
+            "JurisLean.Candidates.LegalActionDomain20261027.selected_plan_was_approved_and_reproduces_the_decision",
+            "JurisLean.Candidates.LegalActionDomain20261027.no_selected_plan_preserves_all_business_state",
+            "JurisLean.Candidates.LegalActionDomain20261027.chosen_execution_uses_the_entire_approved_instruction_list",
+            "JurisLean.Candidates.LegalActionDomain20261027.execution_choice_preserves_reported_state_invariant",
+            "JurisLean.Candidates.LegalActionDomain20261027.Audit.inaction_does_not_remove_deadline_loss"
+          ],
           "guarded_executions": 29,
-          "scope": "实际法律分支/可能世界/完整指令许可与非空后继检查、消费验证器到实际选择执行、框架性质及有限反例；独立模块证据"
+          "scope": "general finite consumer gate binds the full approved instruction list, preserves business state if no plan is selected, and separates safety refusal from deadline/liveness loss; no guarantee of zero real-world losses."
         },
         {
           "pr": 55,
@@ -1105,9 +1279,68 @@
           "main_run_status": "SUCCESS",
           "scope": "动作域与条件/累计风险模块最终PR验收、同树合并、合后main新全链PASS；原题全段/U00继续",
           "main_final_job": 122163252919
+        },
+        {
+          "package": "docs/formal-release/evidence/original02-instances-20261031",
+          "subject": "86f8f643437a35ee0bedc149ecd04a55f0f9aa2e",
+          "tree": "7b455551f900f503246a8d7b9d35dc35ebc3af54",
+          "run_id": 41163607765,
+          "job_id": 124426303750,
+          "attempt": 1,
+          "artifact_id": 13027184875,
+          "artifact_name": "changed-module-only-41163607765-1",
+          "artifact_size_bytes": 6231,
+          "artifact_sha256": "26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule",
+            "JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate"
+          ],
+          "axiom_counts": {
+            "propext": 5,
+            "Classical.choice": 2,
+            "Quot.sound": 5
+          },
+          "scope": "L141/L143/L145/L147：preparation_failure_frame_and_unknown_commit区分准备失败保持帧与后态未知commit；stale_resource_checks_do_not_compose说明旧状态gate不保证连续状态。拒绝/失败保持/真实消费路径仍由既有legal-action-domain、U02.1 Pipeline和U10.1协议证据承接。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u02-1-debt-close-20261029",
+          "subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+          "run_id": 40791067212,
+          "job_id": 123176137083,
+          "scope": "Actual payment path: replay/reject/conflict/pending retain the old current handle; unknownCommit has no reported poststate; acknowledged commits are Trace steps and preserve invariant.",
+          "named_targets": [
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.actual_payment_pipeline_preserves_invariant",
+            "JurisLean.Candidates.U02_1ActualPipeline20261029.finite_failure_and_completion_boundaries",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+            "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves"
+          ],
+          "supporting_declarations": [
+            "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once"
+          ],
+          "supporting_declaration_note": "既有同key路径安全声明，不计入本receipt的named target数。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u10-1-debt-close-20261030",
+          "subject": "bf95766f1e68a82b2bda80db8712b39611233482",
+          "run_id": 41018909983,
+          "job_id": 123941482566,
+          "scope": "Renewal requests are revalidated against the refreshed actual Gamma/history and current rules; continuation consumes checkedTail, while stopping preserves the committed refresh. The actual allowed action scope is not bypassed.",
+          "named_targets": [
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.stopped_protocol_keeps_committed_refresh",
+            "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+            "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume"
+          ]
         }
       ],
-      "remaining": "PR55最终双链/证书/同树合并/main新全链已通过；继续原02逐段与七项工程答卷、实际尝试风险账/U00连续消费。已加载模型独立9/20旧证据保留，模型可用时间/训练历史截止增强12/27等待新CI；尚未接根。"
+      "remaining": "COVERED仅限本行列明的有限失败封闭、状态/语义边界与既有Pipeline/Trace/HarnessRisk条件合同；不证明现实输入和规则全部为真、外部副作用精化、生产部署或工程105整体完成。U00全路线仍另行开放。"
     },
     {
       "id": "03.1",
@@ -1136,17 +1369,63 @@
           115
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
           "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
           "run_id": 40462004036,
           "job_id": 122048554976,
-          "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+          "scope": "原题03.1 lines 111/113/115：该module CI审计9个SourceCompilation目标，并执行16个#guard_msgs评估；目标覆盖精确抽取载荷、实际编译输入、Interpret查询及全分支/unknown保留。有限见证显示同裸record与完整citation但payload改为payer2/amount9时，claimedAmount与registered保持而primitivePaymentMeaning变false。",
+          "named_targets": [
+            "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+            "JurisLean.Candidates.SourceCompilation20261027.actual_record_observations",
+            "JurisLean.Candidates.SourceCompilation20261027.extracted_observed_reference_resolves",
+            "JurisLean.Candidates.SourceCompilation20261027.accepted_leaf_has_actual_source",
+            "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+            "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+            "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+            "JurisLean.Candidates.SourceCompilation20261027.robust_compilation_retains_every_branch",
+            "JurisLean.Candidates.SourceCompilation20261027.successful_family_does_not_drop_unknown"
+          ],
+          "guarded_executions": 16
+        },
+        {
+          "package": "docs/formal-release/evidence/u03-debt-close-20261027",
+          "subject": "ce5c5d85f0940c8a841d3865f59866a578d9e405",
+          "run_id": 40518100988,
+          "job_id": 122237036992,
+          "named_count": 15,
+          "named_targets": [
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+            "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+            "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+            "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+            "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+            "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query"
+          ],
+          "scope": "复用既有U03.1/U03.2包总15个named targets；本行选择其中9个U03.1 names（见named_targets），不是把9误作包总数。有限DAG/closure与相对语义组合只在sourceSound/rulesSound显式前提下推出truth query。",
+          "selected_target_count": 9
+        },
+        {
+          "package": "docs/formal-release/evidence/learning-provenance-20261027",
+          "subject": "7ddb79313adb77e372a323db7913ddfe7c064d78",
+          "run_id": 40376634346,
+          "job_id": 121761360006,
+          "named_count": 14,
+          "named_targets": [
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+            "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic"
+          ],
+          "scope": "复用独立来源/解释合同与拒绝不支持叶的审计记录；只支持明示的sourceSound/rulesSound条件语义，不表示现实来源自动真实。"
         }
       ],
-      "remaining": "SourceCompilation PR50合后main40465704078全PASS；SourceStages最新28目标22执行独立PASS，接根中。原03/07全部段落、规范/证据消费者和U00继续。"
+      "remaining": "COVERED仅限原题03.1 lines 111/113/115关于类型正确、载荷/来源保真与语义解释支持必须分开的冻结命题。有限见证：基础记录原文“debt 10; A pays 7; relation 9”、payment(payer,amount)=[(1,7)]时primitivePaymentMeaning为真；改变payload为payer2/amount9而保留同裸record、完整citation、claimedAmount与registered时，extractionKnown仍真而primitivePaymentMeaning为假。正常绑定/相对闭包的.known不等于解释真：catalogFaithful、primitiveMeaning（支持蕴含primitive truth）与rulesSound是分离的显式外部语义合同；真实来源真实性与个案事实不能由类型、引用、分数或CompiledView证明。坏citation/source-position拒绝是SourceCompilation审计中的guarded evaluation案例，不是独立named theorem targets。U07.3其它义务、U00整体消费者连接和原题其它03行不由此关闭。"
     },
     {
       "id": "03.2",
@@ -2037,7 +2316,7 @@
           117
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
@@ -2048,10 +2327,55 @@
           "artifact_name": "changed-module-only-40919387762-1",
           "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
           "artifact_size_bytes": 3136,
-          "scope": "Partial formal evidence for 06.4: the reused `JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information` is audited in this independent run in its existing finite-law/list-policy scope. It does not cover signal acquisition cost or the full noisy-signal purchase decision. This row remains PARTIAL."
+          "scope": "原U06.1免费信息目标提供有限law/list-policy层面的支持；本行一般有限PMF/实值效用、实际信号律与条件过滤、以及同分支max-min版本由本次original-question 06.4 source补齐，不再把较窄旧目标单独当作完整映射。"
+        },
+        {
+          "package": "docs/formal-release/evidence/original06-4-information-20261031",
+          "subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
+          "tree": "555a9adcc143563ad8267f676b24e445e68a0444",
+          "run_id": 41172965084,
+          "job_id": 124454630715,
+          "attempt": 1,
+          "artifact_id": 13031932067,
+          "artifact_name": "changed-module-only-41172965084-1",
+          "artifact_size_bytes": 1495,
+          "artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+          "named_targets": [
+            "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information",
+            "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone"
+          ],
+          "object_checks": [],
+          "axiom_counts": {
+            "propext": 2,
+            "Classical.choice": 2,
+            "Quot.sound": 2
+          },
+          "scope": "原题L113/L117：任意有限Ω/Y、PMF与实效用、非空有限行动集；真实PMF.map信号律、正质量纤维上的PMF.filter条件律，给出V0≤VY≤完美信息值；稳健结论对每个实际分支PMF求max-min，要求相同分支模型、非空旧行动集且所有旧常量策略在信号后策略集中，不设未经授权分支先验，也不适用于强制成本或可行集/风险约束变化。"
+        },
+        {
+          "package": "docs/formal-release/evidence/u06-5-original-close-20261031",
+          "subject": "9945f1710a7d8067ebeb264ed35d28b4394a1c33",
+          "tree": "d236456ca367d8145f3e1c59cb0cb4049a8c341c",
+          "run_id": 41136762457,
+          "job_id": 124341022636,
+          "attempt": 1,
+          "artifact_id": 13016933102,
+          "artifact_name": "changed-module-only-41136762457-1",
+          "artifact_size_bytes": 6115,
+          "artifact_sha256": "c8056bfd68b444fe64ffea029b89f1d514d1ff6128b1d1ff2d36b4b3d21eefdb",
+          "named_targets": [
+            "JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law",
+            "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values"
+          ],
+          "axiom_counts": {
+            "propext": 3,
+            "Classical.choice": 3,
+            "Quot.sound": 3
+          },
+          "scope": "原题L115的有限噪声二状态实例：等先验、正确率4/5，无信号值1/2、有信号值4/5，净值3/10−k且仅k<3/10时为正。k按原题为包含采集成本和等待损失的合计输入；source证明阈值，不从运行时自动测量这两项。"
         }
       ],
-      "remaining": "Still requires checking the original conditional value expression V_Y=E[max_a E[u|Y]] against the existing finite policyScore/selector declarations and their actual signal connection; the original noisy two-state net-value and purchase-threshold example including acquisition and waiting costs; and multi-branch robust signal monotonicity under same-model/old-policy inclusion. This is an evidence-mapping remainder, not a claim that no such implementation exists."
+      "remaining": "COVERED限于本行冻结的有限信息决策范围：条件值比较及完美信息上界、有限同分支稳健单调性、含噪二状态阈值例。分支效用与合计成本k仍是明确输入；不声称真实系统已测得采集/等待成本或已将数值接入实际消费者，也不改全局discharges、Step 2或math_flip。"
     },
     {
       "id": "06.5",
@@ -2192,9 +2516,27 @@
           "run_id": 40939134896,
           "job_id": 123677528713,
           "scope": "Original-question 06.7 paragraph L141 seven-question overall deliverable remains open beyond this fixed tree/module evidence; no claim that q-to-recommendation is realized in the old numeric consumer."
+        },
+        {
+          "package": "docs/formal-release/evidence/u06-5-original-close-20261031",
+          "subject": "9945f1710a7d8067ebeb264ed35d28b4394a1c33",
+          "tree": "d236456ca367d8145f3e1c59cb0cb4049a8c341c",
+          "run_id": 41136762457,
+          "job_id": 124341022636,
+          "attempt": 1,
+          "artifact_id": 13016933102,
+          "artifact_name": "changed-module-only-41136762457-1",
+          "artifact_size_bytes": 6115,
+          "artifact_sha256": "c8056bfd68b444fe64ffea029b89f1d514d1ff6128b1d1ff2d36b4b3d21eefdb",
+          "named_targets": [
+            "JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law",
+            "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values",
+            "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction"
+          ],
+          "scope": "仅补原题06.7 L139的匹配硬币无纯均衡既有目标引用及一个具体有限完全信息两轮树的逆推实例；混合Nash/Brouwer的一般存在依据仍是PR80已接受的GameTheory目标，且不由本包raw冒充；不完成一般条件对齐或L141七问。"
         }
       ],
-      "remaining": "原题L139关于混合NE存在条件、matching pennies及一般逆向归纳条件仍需逐项对齐；L141整体七问交付义务未由本包完成。当前固定两轮W4实例已获source与模块证据，但不等于旧Pipeline数值消费者接线，也不声称现实q到推荐。"
+      "remaining": "L139：matching pennies无纯均衡、混合Nash/Brouwer有限存在条件与本包具体两轮完全信息树逆推实例已有具名证据，各自仍按其前提理解。L141的数学剩余是七问有限定义/算例/证明或反例、最多八项须外部提供输入的清单及明确缺口；冻结原句明确不需要代码、组件或其他会话成果。旧Pipeline q→recommendation是否接线只属于现有工程/consumer_edge_audit记录，不作为本数学行的剩余义务；本行仍PARTIAL，直到L141数学交付映射完整。"
     },
     {
       "id": "07.1",
@@ -6571,24 +6913,24 @@
     "main_final_job": 122263283920
   },
   "latest_archive_closure": {
-    "pr": 79,
-    "main": "b58e50c34d06352063b7a48122f25c837a9973fe",
-    "tree": "e4132cc0ec050ec27059ce69ccd74bd0e7b1a38d",
-    "pr_head": "83fd2e7c82e16f224771fe27875bf832118924ad",
-    "synthetic_subject": "f5cb49717a3cb66020378ebdb254e46e2a22b359",
+    "pr": 80,
+    "main": "d1af41bb2057af73b45bc029931323ea0331d823",
+    "tree": "4b1d32dcc2f699c6ffb9d26ad687764294b282bc",
+    "pr_head": "4af148347a848e75317821ae0c9dc6fd58b4fac5",
+    "synthetic_subject": "1c1db1ce83c524622bf16f49297090906146d3ea",
     "clauses": [
-      "U04.1"
+      "U05.1"
     ],
     "open_before": 0,
     "open_after": 0,
     "closed_this_round": 1,
     "closes_debt": true,
     "global_discharges": false,
-    "ulm_run": 41136574188,
-    "authority_run": 41136574534,
-    "final_job": 124348475193,
-    "certificate_artifact_id": 13018330727,
-    "certificate_sha256": "876f0a8af4950a0b5904ec19d20c74ca8639492ece8feb67a839b88177b02ab9",
+    "ulm_run": 41167738680,
+    "authority_run": 41167738968,
+    "final_job": 124444344066,
+    "certificate_artifact_id": 13030493255,
+    "certificate_sha256": "db4e0d26c27f4b3a017efdc75e40e1192fbc8762e2eb48a9f7277a1aa3d6c0a3",
     "certificate_verifier_exit_code": 0,
     "claim_scan_exit_code": 0,
     "identity_files": 16,
@@ -6746,6 +7088,34 @@
       "final_job": 124348475193,
       "certificate_artifact_id": 13018330727,
       "certificate_sha256": "876f0a8af4950a0b5904ec19d20c74ca8639492ece8feb67a839b88177b02ab9",
+      "certificate_verifier_exit_code": 0,
+      "claim_scan_exit_code": 0,
+      "identity_files": 16,
+      "ci_files": 8,
+      "runtime_files": 3,
+      "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_CERTIFICATE_VERIFIED_POSTMERGE_CHECKS_PASS",
+      "postmerge_archive_checker_exit_code": 0,
+      "postmerge_clause_binding_exit_code": 0
+    },
+    {
+      "pr": 80,
+      "main": "d1af41bb2057af73b45bc029931323ea0331d823",
+      "tree": "4b1d32dcc2f699c6ffb9d26ad687764294b282bc",
+      "pr_head": "4af148347a848e75317821ae0c9dc6fd58b4fac5",
+      "synthetic_subject": "1c1db1ce83c524622bf16f49297090906146d3ea",
+      "clauses": [
+        "U05.1"
+      ],
+      "open_before": 0,
+      "open_after": 0,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 41167738680,
+      "authority_run": 41167738968,
+      "final_job": 124444344066,
+      "certificate_artifact_id": 13030493255,
+      "certificate_sha256": "db4e0d26c27f4b3a017efdc75e40e1192fbc8762e2eb48a9f7277a1aa3d6c0a3",
       "certificate_verifier_exit_code": 0,
       "claim_scan_exit_code": 0,
       "identity_files": 16,
@@ -6913,6 +7283,29 @@
       "ci_artifact_id": 12998165175,
       "ci_artifact_sha256": "c5c898f2f1a0b6a290781885cc98b40bf01b75335a90551b3014b969acd32199",
       "archive_gap_ledger_status": "main@c8af76a8f37f4d7b64d14a7892ad391f88fdff6e / tree cbc1d05b56231e6a2cc7941dd2b3532a37608255 retains PR77 post-merge checks at 45 CLOSED_BY_WIRING / 5 CLOSED_BY_NARROW / 0 OPEN. Branch 7dcee7f has U04.4 source evidence and draft 46 / 4 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
+    },
+    {
+      "baseline_main": "d1af41bb2057af73b45bc029931323ea0331d823",
+      "source_checkpoint": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+      "source_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
+      "ci_status": "U05.1_MARGINAL_AND_ORIGINAL_05.4_GROUP_INSTANCE_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
+      "closes_debt": false,
+      "current_archive_open": 0,
+      "scope": "U05.1 archived finite marginal conformal coverage remains audited; the same successful source run also audits the supplementary original-question 05.4 L115 sufficient group-conditional instance under its actual positive-mass conditional law, within-group calibration, conditional exchangeability, and nonempty calibration-count premises. Original-question 05.4 L111/L113/L115 is COVERED within those stated assumptions. Original-question 05.5 receives only L123 negative support and remains NOT_RECONCILED. Original-question 01.1–01.6 are COVERED within their finite task/model-card contracts and explicit quantifier boundaries. No arbitrary subgroup/shift guarantees, legal correctness, real-data validity, engineering105, 15 consumer edges, six cuts, or whole-theory completion is claimed. Accepted main d1af41 is 48/2/0 after PR80; this in-progress branch candidate is 49/1/0. Its integrated U06.5/original-02/original-06.4 source core has not yet received a combined audit or release gate. Global discharges, Step 2 and math_flip remain false.",
+      "legacy_source": {
+        "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
+        "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
+        "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
+      },
+      "ci_run_id": 41163534485,
+      "ci_job_id": 124426094626,
+      "ci_subject": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+      "ci_subject_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
+      "ci_attempt": 1,
+      "ci_artifact": "changed-module-only-41163534485-1",
+      "ci_artifact_id": 13027479267,
+      "ci_artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb",
+      "archive_gap_ledger_status": "Accepted main@d1af41bb2057af73b45bc029931323ea0331d823 / tree 4b1d32dcc2f699c6ffb9d26ad687764294b282bc retains PR80 checks at 48 CLOSED_BY_WIRING / 2 CLOSED_BY_NARROW / 0 OPEN. The current branch candidate is 49 / 1 / 0 after U06.5; its combined package/source integration remains unreleased and lacks a combined audit. Global discharges, math_flip and Step 2 remain false/open."
     }
   ]
 }

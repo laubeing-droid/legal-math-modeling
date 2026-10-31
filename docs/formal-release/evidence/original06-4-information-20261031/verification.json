@@ -1,0 +1,68 @@
+{
+  "schema": "original-question-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
+  "subject_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
+  "run_id": 41172965084,
+  "job_id": 124454630715,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41172965084",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41172965084/job/124454630715",
+  "artifact_name": "changed-module-only-41172965084-1",
+  "artifact_id": 13031932067,
+  "artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+  "artifact_size_bytes": 1495,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 287,
+      "sha256": "f10523585053140c07c573bfeadb9db724192e9a957084d2e7b71c43fc6f57b6"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 5495,
+      "sha256": "4770bf2c968fab55408ad23a93950c75267e6ae66befecadf80ffe64ce820445"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
+  "named_count": 2,
+  "names_by_paragraph": {
+    "06.4": [
+      "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information",
+      "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone"
+    ]
+  },
+  "object_checks": [],
+  "object_check_count": 0,
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
+      "sha256": "1d58669707e8d3a0dc9f887ca85f6f56cb922d42ccd83f9a906ef5350d0305f4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
+      "sha256": "1130f2f2da61bd55353e8c2a0843712d6ee4ab21ee6d46f5c0ee80e419598362"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 2,
+    "axiom_vocabulary": {
+      "propext": 2,
+      "Classical.choice": 2,
+      "Quot.sound": 2
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "raw_evidence": {
+    "path": "axiom-audit.raw.txt",
+    "size_bytes": 1883,
+    "sha256": "6ed1942a4e532f32877d5ad9e33490bd288a133db8cc26e59b8502a5af228d4d"
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "step_2_closed": false,
+  "math_flip_authorized": false
+}

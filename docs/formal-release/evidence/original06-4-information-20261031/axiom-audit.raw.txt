@@ -1,0 +1,28 @@
+JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information {Ω A Y : Type}
+  [Fintype Ω] [Fintype Y] [DecidableEq Y] (P : PMF Ω) (obs : Ω → Y) (utility : A → Ω → ℝ) (C : Finset A)
+  (hC : C.Nonempty) :
+  ((C.sup' hC fun a => Math.Probability.expect P (utility a)) ≤
+      Math.Probability.expect (JurisLean.Candidates.U06_4ConditionalInformation20261031.signalLaw P obs) fun y =>
+        C.sup' hC fun a =>
+          JurisLean.Candidates.U06_4ConditionalInformation20261031.conditionalScore P obs utility a y) ∧
+    (Math.Probability.expect (JurisLean.Candidates.U06_4ConditionalInformation20261031.signalLaw P obs) fun y =>
+        C.sup' hC fun a =>
+          JurisLean.Candidates.U06_4ConditionalInformation20261031.conditionalScore P obs utility a y) ≤
+      Math.Probability.expect P fun w => C.sup' hC fun a => utility a w
+
+JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone {Ω A Y : Type} [Fintype Ω]
+  [Fintype Y] [DecidableEq Y] {J : Type} (branches : Finset J) (hJ : branches.Nonempty) (P : J → PMF Ω)
+  (obs : J → Ω → Y) (utility : J → A → Ω → ℝ) (C : Finset A) (hC : C.Nonempty) (policies : Finset (Y → A))
+  (ignore : ∀ a ∈ C, (fun x => a) ∈ policies) :
+  (C.sup' hC fun a => branches.inf' hJ fun j => Math.Probability.expect (P j) (utility j a)) ≤
+    policies.sup' ⋯ fun policy =>
+      branches.inf' hJ fun j =>
+        JurisLean.Candidates.U06_4ConditionalInformation20261031.policyScore (P j) (obs j) (utility j) policy
+
+'JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+'JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

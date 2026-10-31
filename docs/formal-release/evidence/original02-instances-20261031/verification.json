@@ -1,0 +1,141 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "86f8f643437a35ee0bedc149ecd04a55f0f9aa2e",
+  "subject_tree": "7b455551f900f503246a8d7b9d35dc35ebc3af54",
+  "run_id": 41163607765,
+  "job_id": 124426303750,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163607765",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163607765/job/124426303750",
+  "artifact_name": "changed-module-only-41163607765-1",
+  "artifact_id": 13027184875,
+  "artifact_sha256": "26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb",
+  "artifact_size_bytes": 6231,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 281,
+      "sha256": "1b972121275710dc8bb07346566931b6437363f8f0cda4bfb2f447aec4385bfe"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 43435,
+      "sha256": "b8278bdd125665cd31560969b67d6c5e543526521f5c3415c9224954093e89c5"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessOriginalInstancesAudit20261031.lean",
+  "named_count": 5,
+  "names_by_paragraph": {
+    "02.2": [
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose",
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit"
+    ],
+    "02.3": [
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal",
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.finite_gate_has_nonempty_safe_instance"
+    ],
+    "02.5": [
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal",
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth"
+    ],
+    "02.6": [
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose",
+      "JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate",
+    "JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule",
+    "JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate"
+  ],
+  "object_check_count": 6,
+  "object_unique_count": 3,
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessOriginalInstancesAudit20261031.lean",
+      "sha256": "6e5aaf9e625c86ddecae8ea3c9148f29fbb8f2f4e02af285b51e282af941f560"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessOriginalInstances20261031.lean",
+      "sha256": "67213d2335d043c952b81a4c749690cd6aefb55227207c911d5795af8d6c8756"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean",
+      "sha256": "72a239572366bbf5ae0f67b41419e06a54dad2e804f309f20c0157751b00ee2f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+      "sha256": "c8168df7159fa9a8989cd287bfa6327da8016ddbf17e00705328c68be5b9bd17"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidation20261027.lean",
+      "sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/DecisionTrajectoryConsumer20261027.lean",
+      "sha256": "c8eaa46329882ba638446915dad574a69e7dbc462599229782a3339b0475e503"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
+      "sha256": "e4d9472653683b069c5986ae7fd37c21725e7347e172075bb8005c5f3dd2fb6b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e"
+    }
+  ],
+  "reused_evidence": [
+    {
+      "package": "docs/formal-release/evidence/legal-action-domain-20261027",
+      "subject": "1c5c561da454b13f47357dac007c3b11328485ec",
+      "run_id": 40489909383,
+      "job_id": 122140948062,
+      "named_count": 22,
+      "scope": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY"
+    },
+    {
+      "package": "docs/formal-release/evidence/harness-risk-20261027",
+      "subject": "b806ad4d5f042d125bc30cff7984df0ede569516",
+      "run_id": 40490426903,
+      "job_id": 122142702614,
+      "named_count": 17,
+      "scope": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY"
+    },
+    {
+      "package": "docs/formal-release/evidence/u02-1-debt-close-20261029",
+      "subject": "1bd8db47b728249fe240312fc5e570ce7290b62a",
+      "run_id": 40791067212,
+      "job_id": 123176137083,
+      "named_count": 12,
+      "scope": null
+    },
+    {
+      "package": "docs/formal-release/evidence/u10-1-debt-close-20261030",
+      "subject": "bf95766f1e68a82b2bda80db8712b39611233482",
+      "run_id": 41018909983,
+      "job_id": 123941482566,
+      "named_count": 8,
+      "scope": null
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 5,
+    "axiom_vocabulary": {
+      "propext": 5,
+      "Classical.choice": 2,
+      "Quot.sound": 5
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "raw_evidence": {
+    "path": "axiom-audit.raw.txt",
+    "size_bytes": 7504,
+    "sha256": "5cd7406230cc8ee0d90ddcd9ac761f355698d29110269caa2381f96a7d53f4d0"
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false
+}

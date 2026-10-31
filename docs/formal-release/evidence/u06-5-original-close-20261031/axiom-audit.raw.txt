@@ -1,0 +1,81 @@
+JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law :
+  (∀ (ω : Bool), JurisLean.Candidates.U06_5OriginalModels20261031.signalMeasure {z | z.1 = ω} = 1 / 2) ∧
+    (∀ (ω : Bool),
+        JurisLean.Candidates.U06_5OriginalModels20261031.signalMeasure[{z | z.2 = ω} | {z | z.1 = ω}] = 4 / 5) ∧
+      JurisLean.Candidates.U06_5OriginalModels20261031.signalMeasure {z | z.2 = z.1} = 4 / 5
+
+'JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values :
+  (∀ (a : Unit → Bool), JurisLean.Candidates.U06_5OriginalModels20261031.guessValue (fun x => ()) a = 1 / 2) ∧
+    JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.snd id = 4 / 5 ∧
+      (∀ (h : Bool → Bool), JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.snd h ≤ 4 / 5) ∧
+        JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.fst id = 1 ∧
+          (∀ (h : Bool → Bool), JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.fst h ≤ 1) ∧
+            ∀ (k : ℝ),
+              (JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.snd id - k -
+                    JurisLean.Candidates.U06_5OriginalModels20261031.guessValue (fun x => ()) fun x => false) =
+                  3 / 10 - k ∧
+                ((JurisLean.Candidates.U06_5OriginalModels20261031.guessValue (fun x => ()) fun x => false) <
+                    JurisLean.Candidates.U06_5OriginalModels20261031.guessValue Prod.snd id - k ↔
+                  k < 3 / 10)
+
+'JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction :
+  (∀ (q r : Bool),
+      JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+          (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.failure q r) false <
+        JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+          (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 q r) false) ∧
+    (∀ (q : Bool),
+        JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+            (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 q true) true <
+          JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+            (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 q false) true) ∧
+      JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+            (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 false) true <
+          JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+            (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 false false) true ∧
+        JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+              (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept1 true false) true <
+            JurisLean.Candidates.U06_5OriginalModels20261031.originalUtility
+              (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 true) true ∧
+          JurisLean.Candidates.U06_5OriginalModels20261031.originalPayoff false
+                (JurisLean.Candidates.U06_5OriginalModels20261031.originalProfile false) <
+              JurisLean.Candidates.U06_5OriginalModels20261031.originalPayoff false
+                (JurisLean.Candidates.U06_5OriginalModels20261031.originalProfile true) ∧
+            JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainRun
+                  JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile =
+                JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainTerminal.accept0 true ∧
+              (JurisLean.Candidates.U06_5OriginalModels20261031.originalPayoff false
+                      JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile,
+                    JurisLean.Candidates.U06_5OriginalModels20261031.originalPayoff true
+                      JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile) =
+                  (4, 6) ∧
+                ∀ (i : Bool) (τ : JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainStrategy i),
+                  JurisLean.Candidates.U06_5OriginalModels20261031.originalGame.eu
+                      (Function.update
+                        (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv
+                          JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile)
+                        i τ)
+                      i ≤
+                    JurisLean.Candidates.U06_5OriginalModels20261031.originalGame.eu
+                      (JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargainProfileEquiv
+                        JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile)
+                      i
+
+'JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw : PMF (Bool × Bool)
+
+JurisLean.Candidates.U06_5OriginalModels20261031.originalGame : GameTheory.KernelGame Bool
+
+JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile :
+  JurisLean.Candidates.U06_2EquilibriumTransfer20261030.BargainSourceProfile

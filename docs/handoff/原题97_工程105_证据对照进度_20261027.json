@@ -2,9 +2,9 @@
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
     "baseline_main": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
-    "source_checkpoint": "6561e3564006dbe39659510fb7b7235f77fd63ae",
-    "source_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
-    "ci_status": "PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This branch now contains the non-derived U00 + original03 + original06.5 source core and D3/D4 Python guards; pinned source-module CI for U00/03/06.5 succeeded and local targeted Python checks passed. Current-head full-chain CI, authority/ULM PR acceptance, and post-merge checks remain pending; no merged debt closure is claimed here.",
+    "source_checkpoint": "189feee0f956e6f6e9ff6b6c3423e9c1f9b30fcf",
+    "source_tree": "1dafb5b9bf1f7efac0dae065aca693d44d5c379e",
+    "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements and original 06.5 finite observation supplement; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
@@ -13,14 +13,14 @@
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41172965084,
-    "ci_job_id": 124454630715,
-    "ci_subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
-    "ci_subject_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
-    "ci_attempt": 1,
-    "ci_artifact": "changed-module-only-41172965084-1",
-    "ci_artifact_id": 13031932067,
-    "ci_artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+    "ci_run_id": null,
+    "ci_job_id": null,
+    "ci_subject": null,
+    "ci_subject_tree": null,
+    "ci_attempt": null,
+    "ci_artifact": null,
+    "ci_artifact_id": null,
+    "ci_artifact_sha256": null,
     "archive_gap_ledger_status": "Accepted main@3e8d2e5f4683006977d77f7b3316e0eb63295508 after PR81; PR81 post-merge saved archive and clause-binding logs both exit 0, confirming 50 rows / 49 wiring / 1 narrow / 0 open and 124 declarations. Current integration candidate moves U00 to 50 wiring / 0 narrow / 0 open; no combined full-chain/PR acceptance is claimed yet. Original-question counts reflect five original03 rows and supplemental 06.5 evidence: 35 COVERED / 38 PARTIAL / 24 NOT_RECONCILED. Whole 105 engineering requirements, six designated cuts, and whole frozen theory remain outside this update; discharges, Step 2, math_flip stay false.",
     "accepted_main_postmerge_evidence": {
       "archive_check_log": "D:\\tmp\\u06-5-pr81-41179053391\\postmerge\\archive-check.log",
@@ -36,7 +36,11 @@
       "run_id": 41172965084,
       "job_id": 124454630715,
       "artifact_id": 13031932067,
-      "status": "historical source reconciliation, not current main"
+      "status": "historical source reconciliation snapshot; not current-head CI",
+      "attempt": 1,
+      "artifact": "changed-module-only-41172965084-1",
+      "artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41172965084"
     }
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",

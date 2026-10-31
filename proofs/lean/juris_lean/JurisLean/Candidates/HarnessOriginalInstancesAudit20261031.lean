@@ -13,3 +13,6 @@ import JurisLean.Candidates.HarnessOriginalInstances20261031
 #check JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate
 #check JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule
 #check JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.resourceGate
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.premiseRule
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.finiteGate

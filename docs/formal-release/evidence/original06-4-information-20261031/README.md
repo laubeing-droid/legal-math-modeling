@@ -14,6 +14,6 @@
 
 ## CI 身份
 
-本包绑定 source `6561e3564006dbe39659510fb7b7235f77fd63ae` / tree `555a9adcc143563ad8267f676b24e445e68a0444`，run `41172965084`、attempt 1、job `124454630715`。实际 artifact `13031932067`（`changed-module-only-41172965084-1`）ZIP 为 1495 bytes，SHA-256 `74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3`。从实际 ZIP 解出的两个成员及 SHA、driver 的 4 个真实 `#check`/`#print axioms` 输出块见 `verification.json` 与 `axiom-audit.raw.txt`。两个 theorem 均只依赖 `propext`、`Classical.choice`、`Quot.sound`。
+本包绑定 source `6561e3564006dbe39659510fb7b7235f77fd63ae` / tree `555a9adcc143563ad8267f676b24e445e68a0444`，run `41172965084`、attempt 1、job `124454630715`。实际 Artifact ID `13031932067`（`changed-module-only-41172965084-1`）ZIP 为 1495 bytes，SHA-256 `74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3`。从实际 ZIP 解出的两个成员及 SHA、driver 的 4 个真实 `#check`/`#print axioms` 输出块见 `verification.json` 与 `axiom-audit.raw.txt`。两个 theorem 均只依赖 `propext`、`Classical.choice`、`Quot.sound`。
 
 该包补足原题 06.4 的有限条件数学映射，不声称现实成本已测量、信号已接入实际消费者，也不更改 50 条归档状态、Step 2、discharges 或 `math_flip`。

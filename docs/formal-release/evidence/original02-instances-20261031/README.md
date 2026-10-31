@@ -1,6 +1,6 @@
 # 原题 02.2 / 02.3 / 02.5 / 02.6：已审有限实例补充证据
 
-本包是原题进度对照使用的非 debt 模块证据，`closes_debt` 保持 false；它不是第二个归档关项，也不改变 U02.2/U02.3 的归档文本。source `86f8f643437a35ee0bedc149ecd04a55f0f9aa2e`、run `41163607765` / attempt 1 / job `124426303750` 通过实际 changed-module CI。Artifact `13027184875`（`changed-module-only-41163607765-1`）为 6231 bytes，SHA-256 `26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb`；原 ZIP 两成员和从实际 driver 输出逐块提取的16块指纹见 `verification.json`。5个目标的 `#print axioms` 词汇计数为 propext 5、Classical.choice 2、Quot.sound 5；对象 `#check` 有6行、3个不同对象名。
+本包是原题进度对照使用的非 debt 模块证据，`closes_debt` 保持 false；它不是第二个归档关项，也不改变 U02.2/U02.3 的归档文本。source `86f8f643437a35ee0bedc149ecd04a55f0f9aa2e`、run `41163607765` / attempt 1 / job `124426303750` 通过实际 changed-module CI。Artifact ID `13027184875`（`changed-module-only-41163607765-1`）为 6231 bytes，SHA-256 `26205b64130b95078ff659e1718d9be1a7778568d2e16bbb0fdaeb3254ff1aeb`；原 ZIP 两成员和从实际 driver 输出逐块提取的16块指纹见 `verification.json`。5个目标的 `#print axioms` 词汇计数为 propext 5、Classical.choice 2、Quot.sound 5；对象 `#check` 有6行、3个不同对象名。
 
 ## 本次实例与原题行
 

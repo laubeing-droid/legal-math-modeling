@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 4992,
-  "theorem_declarations_in_package": 6246
+  "carriers_in_package": 5017,
+  "theorem_declarations_in_package": 6256
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -127,7 +127,7 @@
   "JurisLean.Candidates.Final20261021.Decision": 9,
   "JurisLean.Candidates.Final20261021.EvidenceProcedure": 8,
   "JurisLean.Candidates.Final20261021.Feedback": 6,
-  "JurisLean.Candidates.Final20261021.Harness": 6,
+  "JurisLean.Candidates.Final20261021.Harness": 7,
   "JurisLean.Candidates.Final20261021.Interfaces": 23,
   "JurisLean.Candidates.Final20261021.Learning": 11,
   "JurisLean.Candidates.Final20261021.Ledger": 8,
@@ -140,11 +140,12 @@
   "JurisLean.Candidates.Final20261021.Trace": 5,
   "JurisLean.Candidates.LearningERM20261027": 5,
   "JurisLean.Candidates.LearningFiniteClass20261027": 7,
+  "JurisLean.Candidates.LearningRisk20261027": 5,
   "JurisLean.Candidates.MeasuredPolicy20261027": 5,
   "JurisLean.Candidates.PolicyEvaluation20261027": 5,
   "JurisLean.External.GameTheory.Concepts.SolutionConcepts": 7,
   "JurisLean.External.GameTheory.Math.PMFProduct": 7,
-  "JurisLean.External.GameTheory.Math.Probability": 16,
+  "JurisLean.External.GameTheory.Math.Probability": 17,
   "JurisLean.External.GameTheory.Math.ProbabilityMassFunction": 8,
   "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel": 5,
   "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial": 5,
@@ -180,16 +181,16 @@
   "JurisLean.WeightedSupNorm": 6,
   "Lean.Elab.Command": 5,
   "Lean.Util.CollectAxioms": 5,
-  "Mathlib": 44,
+  "Mathlib": 45,
   "Mathlib.Data.Fin.Basic": 5,
   "Mathlib.Data.Finset.Basic": 23,
   "Mathlib.Data.Fintype.Basic": 7,
   "Mathlib.Data.Real.Basic": 14,
   "Mathlib.MeasureTheory.Integral.Bochner.Set": 5,
-  "Mathlib.Probability.ConditionalProbability": 5,
+  "Mathlib.Probability.ConditionalProbability": 6,
   "Mathlib.Probability.ProbabilityMassFunction.Constructions": 10,
   "Mathlib.Tactic": 75
  },
- "package_files": 503,
+ "package_files": 509,
  "schema_version": "kernel-reuse-v1"
 }

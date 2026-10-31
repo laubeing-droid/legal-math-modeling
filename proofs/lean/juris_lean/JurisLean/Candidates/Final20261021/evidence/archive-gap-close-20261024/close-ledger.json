@@ -70,9 +70,10 @@
       "U09.2",
       "U01.4",
       "U04.4",
-      "U04.1"
+      "U04.1",
+      "U05.1"
     ],
-    "independent_closed_total": 25,
+    "independent_closed_total": 26,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -95,14 +96,14 @@
       "docs/formal-release/evidence/u09-2-original-close-20261030/verification.json",
       "docs/formal-release/evidence/u01-4-original-close-20261030/verification.json",
       "docs/formal-release/evidence/u04-4-original-close-20261031/verification.json",
-      "docs/formal-release/evidence/u04-1-original-close-20261031/verification.json"
+      "docs/formal-release/evidence/u04-1-original-close-20261031/verification.json",
+      "docs/formal-release/evidence/u05-1-original-close-20261031/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u04-1-original-close-20261031/verification.json",
-    "close_pack": "docs/formal-release/evidence/u04-1-original-close-20261031",
+    "independent_receipt": "docs/formal-release/evidence/u05-1-original-close-20261031/verification.json",
+    "close_pack": "docs/formal-release/evidence/u05-1-original-close-20261031",
     "candidate_rows": 0,
     "blocked_rows": 0,
     "narrow_not_reopened": [
-      "U05.1",
       "U06.5",
       "U00"
     ],
@@ -152,7 +153,8 @@
       "U02.4",
       "U09.2",
       "U01.4",
-      "U04.4"
+      "U04.4",
+      "U04.1"
     ],
     "companion_tail_ids": [
       "U08.3",
@@ -164,7 +166,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=47; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=48; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -197,12 +199,12 @@
     "local_lean_is_not_closure": true
   },
   "counts": {
-    "证": 47,
-    "缩": 3,
+    "证": 48,
+    "缩": 2,
     "放弃": 0,
     "未决": 0,
-    "CLOSED_BY_NARROW": 3,
-    "CLOSED_BY_WIRING": 47,
+    "CLOSED_BY_NARROW": 2,
+    "CLOSED_BY_WIRING": 48,
     "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
@@ -2752,12 +2754,12 @@
     },
     {
       "clause": "U05.1",
-      "suggested_close_path": "缩",
-      "archive_gap_status": "CLOSED_BY_NARROW",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem.",
-      "claimed_scope": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and the marginal-versus-group numeric split.",
-      "companion_scope_notes": "",
+      "claimed_scope": "For an exchangeable finite score vector, an independently constructed IID continuous auxiliary produces uniform actual rank prefixes; the multiplicity-preserving calibration order statistic gives the finite threshold k=ceil((n+1)(1−α)) and the k>n infinite branch. The guarantee is marginal for fixed training and the specified test law. Named finite group/deployment models witness marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4 with exchangeability failure.",
+      "companion_scope_notes": "The constructed continuous auxiliary proves the finite marginal-rank premise; group and deployment examples are boundaries, not a group-conditional calibration method.",
       "wired_declarations": [
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_rank_prefix_mass",
@@ -2807,13 +2809,12 @@
         "Calibration.lean:90"
       ],
       "non_goals": [
-        "The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal.",
-        "Deployment-shift failure is the marginal-versus-group split, not a separate process theorem.",
-        "Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem."
+        "The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee.",
+        "The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "",
-      "remaining_after_close": "NON_GOAL_POINTER: The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal. | Deployment-shift failure is the marginal-versus-group split, not a separate process theorem. | Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem.",
+      "scope_review": "Independent U05.1 source-bound close: five audited declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, the finite and infinite threshold branches, and fixed-measurable-score marginal coverage. The finite source and deployment models give marginal 13/16 versus rare-group conditional 1/4, and changed-test-law coverage 1/4 with exchangeability failure. This is not a group-conditional calibration procedure or an arbitrary shift guarantee; other original-question 05.5 claims remain open.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U05_1_PROOFS || NON_GOAL_POINTER: The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee. | The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2829,10 +2830,20 @@
       "formal_tail_prove": {
         "in_this_round": false,
         "not_reopened": true,
-        "archive_gap_status": "CLOSED_BY_NARROW",
-        "close_admitted": false,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u05-1-original-close-20261031/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+          "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+          "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+          "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
+          "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+        ]
       }
     },
     {

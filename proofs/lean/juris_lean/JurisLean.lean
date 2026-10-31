@@ -109,6 +109,7 @@ import JurisLean.Candidates.CausalSelection20261027
 import JurisLean.Candidates.CurrentContextRollback20261027
 import JurisLean.Candidates.EquicorrelatedMean20261030
 import JurisLean.Candidates.EvidenceWorldsAudit20261027
+import JurisLean.Candidates.ExchangeableRank20261031
 import JurisLean.Candidates.FeedbackLabelSemantics20261027
 import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningEventSplit20261027
@@ -117,6 +118,7 @@ import JurisLean.Candidates.TemporalInterpretationAudit20261027
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 import JurisLean.Candidates.U04_1OriginalClosureAudit20261031
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
+import JurisLean.Candidates.U05_1OriginalClosureAudit20261031
 import JurisLean.Candidates.U09_2OriginalClosureAudit20261030
 import JurisLean.Candidates.U11_1DebtClosureAudit20261030
 import JurisLean.Candidates.U11_1NamedCausalBridge20261030

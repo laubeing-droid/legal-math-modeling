@@ -1,0 +1,101 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
+  "subject_tree": "deb761a55294eb6d695a05916cfce68241d96980",
+  "run_id": 41134518610,
+  "job_id": 124333547346,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41134518610",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41134518610/job/124333547346",
+  "artifact_name": "changed-module-only-41134518610-1",
+  "artifact_id": 13016125638,
+  "artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
+  "artifact_size_bytes": 2451,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "f8f90bff35a84e5a1cad1b77bed0115daceec38ede94bbb2dceed9c90ec672cc"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 11328,
+      "sha256": "7a5573e918fe7e1748d3c4d1be44ca36a5f3190d863d3d102217790e28139c84"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+  "named_count": 5,
+  "names_by_clause": {
+    "U05.1": [
+      "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+      "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+      "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+      "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
+      "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.ExchangeableRank20261031.calibrationOrder",
+    "JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile",
+    "JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold"
+  ],
+  "axiom_audit": {
+    "audited_targets": 5,
+    "axiom_vocabulary": {
+      "propext": 5,
+      "Classical.choice": 5,
+      "Quot.sound": 5
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+      "sha256": "1b0f38f8390cb24b4fa281b2cea3260c262939f5980b592541aad220267b61d3"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
+      "sha256": "8c017caea1a60e1a6d3285f72c701e08780787d5b16e978045f885c10ddf3f7c"
+    }
+  ],
+  "original_residuals": {
+    "U05.1": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem."
+  },
+  "closed_ids": [
+    "U05.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 3,
+  "narrow_after": 2,
+  "wiring_before": 47,
+  "wiring_after": 48,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u05-1-original-close-20261031/axiom-audit.raw.txt",
+    "sha256": "ab50b995c3f95baa8775fe3e8dac1ed51aa5f2d41dafd0f95af22a018840a98d",
+    "blocks": 13
+  }
+}

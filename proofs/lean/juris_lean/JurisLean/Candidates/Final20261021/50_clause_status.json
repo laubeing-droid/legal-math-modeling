@@ -3355,8 +3355,8 @@
       },
       "archive_gap_close": {
         "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
-        "suggested_close_path": "缩",
-        "archive_gap_status": "CLOSED_BY_NARROW",
+        "suggested_close_path": "证",
+        "archive_gap_status": "CLOSED_BY_WIRING",
         "evidence_pointers": [
           "Calibration.lean:68",
           "Calibration.lean:73",
@@ -3364,11 +3364,20 @@
           "Calibration.lean:90"
         ],
         "non_goals": [
-          "The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal.",
-          "Deployment-shift failure is the marginal-versus-group split, not a separate process theorem.",
-          "Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem."
+          "The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee.",
+          "The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem."
         ],
         "discharges_archived_manuscript_gaps": false,
+        "independent_closure": {
+          "receipt": "docs/formal-release/evidence/u05-1-original-close-20261031/verification.json",
+          "named_theorems_full": [
+            "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+            "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+            "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+            "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
+            "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+          ]
+        },
         "formal_tail_prove": {
           "round": "",
           "in_this_round": false,
@@ -3376,7 +3385,7 @@
           "disposition": "",
           "candidate_in_tip_pin_audit": false,
           "tip_pin_expand_audit": null,
-          "close_admitted": false,
+          "close_admitted": true,
           "step_2_closed": false,
           "criteria_pack": "",
           "non_goals_same_row": []

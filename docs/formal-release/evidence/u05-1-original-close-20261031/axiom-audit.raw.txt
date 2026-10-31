@@ -1,0 +1,108 @@
+JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core {n : ℕ} (z : Fin (n + 1) → ℝ × ℝ) (k : ℕ)
+  (hk0 : 0 < k) (hkn : k ≤ n) :
+  (Monotone fun j =>
+      (z
+          ((Equiv.symm (JurisLean.Candidates.ExchangeableRank20261031.calibrationOrder fun i => (z i.castSucc).1))
+              j).castSucc).1) ∧
+    (JurisLean.Candidates.ExchangeableRank20261031.keyRank z (Fin.last n) ≤ k →
+      (z (Fin.last n)).1 ≤
+        JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile (fun i => (z i.castSucc).1) k hk0 hkn)
+'JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] {N : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hN : 0 < N) (S : Ω → Fin N → ℝ)
+  (hS : Measurable S) (hex : ∀ (σ : Equiv.Perm (Fin N)), ProbabilityTheory.IdentDistrib (fun ω i => S ω (σ i)) S μ μ)
+  (i : Fin N) (k : ℕ) (hk : k ≤ N) :
+  (μ.prod (JurisLean.Candidates.ExchangeableRank20261031.iidAuxLaw N))
+      {p |
+        JurisLean.Candidates.ExchangeableRank20261031.keyRank
+            (JurisLean.Candidates.ExchangeableRank20261031.augmentedScore S p) i ≤
+          k} =
+    ↑k / ↑N
+'JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (S : Ω → Fin (n + 1) → ℝ) (hS : Measurable S)
+  (hex : ∀ (σ : Equiv.Perm (Fin (n + 1))), ProbabilityTheory.IdentDistrib (fun ω i => S ω (σ i)) S μ μ) (hn : 1 ≤ n)
+  (α : ℝ) (hα0 : 0 < α) (hα1 : α < 1) :
+  have k := JurisLean.Candidates.ExchangeableRank20261031.conformalIndex n α;
+  have Q := μ.prod (JurisLean.Candidates.ExchangeableRank20261031.iidAuxLaw (n + 1));
+  have C :=
+    {p |
+      ↑(S p.1 (Fin.last n)) ≤
+        JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold (fun i => S p.1 i.castSucc) α hα1};
+  1 - α ≤ ↑k / ↑(n + 1) ∧
+    MeasurableSet C ∧ ENNReal.ofReal (1 - α) ≤ Q C ∧ (k ≤ n → ↑k / ↑(n + 1) ≤ Q C) ∧ (n < k → Q C = 1)
+'JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage.{u_1, u_2} {Ω : Type u_1}
+  {E : Type u_2} [MeasurableSpace Ω] [MeasurableSpace E] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → Fin (n + 1) → E) (hX : Measurable X) (score : E → ℝ)
+  (hscore : Measurable score)
+  (hex : ∀ (σ : Equiv.Perm (Fin (n + 1))), ProbabilityTheory.IdentDistrib (fun ω i => X ω (σ i)) X μ μ) (hn : 1 ≤ n)
+  (α : ℝ) (hα0 : 0 < α) (hα1 : α < 1) :
+  ENNReal.ofReal (1 - α) ≤
+    μ
+      {ω |
+        ↑(score (X ω (Fin.last n))) ≤
+          JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold (fun i => score (X ω i.castSucc)) α hα1}
+'JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries :
+  JurisLean.Candidates.ExchangeableRank20261031.conformalIndex 1 (1 / 2) = 1 ∧
+    (∀ (s : Fin 1 → ℝ), JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile s 1 ⋯ ⋯ = s 0) ∧
+      (JurisLean.Candidates.ExchangeableRank20261031.boundaryLaw✝ false =
+          (PMF.bernoulli (1 / 4) ⋯).bind fun a => PMF.map (fun b => (a, b)) (PMF.bernoulli (1 / 4) ⋯)) ∧
+        PMF.map Prod.swap (JurisLean.Candidates.ExchangeableRank20261031.boundaryLaw✝ false) =
+            JurisLean.Candidates.ExchangeableRank20261031.boundaryLaw✝ false ∧
+          ((JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                  JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝ =
+                13 / 16 ∧
+              1 / 2 ≤
+                (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                  JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝) ∧
+            ((JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                    JurisLean.Candidates.ExchangeableRank20261031.boundaryGroup✝ =
+                  1 / 4 ∧
+                0 <
+                    (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                      JurisLean.Candidates.ExchangeableRank20261031.boundaryGroup✝ ∧
+                  (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝
+                          false)[JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝ |
+                        JurisLean.Candidates.ExchangeableRank20261031.boundaryGroup✝] =
+                      1 / 4 ∧
+                    (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝
+                          false)[JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝ |
+                        JurisLean.Candidates.ExchangeableRank20261031.boundaryGroup✝] <
+                      1 / 2) ∧
+              ((JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ true)
+                      JurisLean.Candidates.ExchangeableRank20261031.boundaryCalGroup✝ =
+                    (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                      JurisLean.Candidates.ExchangeableRank20261031.boundaryCalGroup✝ ∧
+                  (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ false)
+                        JurisLean.Candidates.ExchangeableRank20261031.boundaryCalGroup✝ =
+                      1 / 4 ∧
+                    (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ true)
+                          JurisLean.Candidates.ExchangeableRank20261031.boundaryGroup✝ =
+                        1 ∧
+                      (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ true)
+                            JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝ =
+                          1 / 4 ∧
+                        (JurisLean.Candidates.ExchangeableRank20261031.boundaryMeasure✝ true)
+                            JurisLean.Candidates.ExchangeableRank20261031.boundaryCoverage✝ <
+                          1 / 2) ∧
+                PMF.map Prod.swap (JurisLean.Candidates.ExchangeableRank20261031.boundaryLaw✝ true) ≠
+                  JurisLean.Candidates.ExchangeableRank20261031.boundaryLaw✝ true
+'JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ExchangeableRank20261031.calibrationOrder {n : ℕ} (s : Fin n → ℝ) : Equiv.Perm (Fin n)
+JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile {n : ℕ} (s : Fin n → ℝ) (k : ℕ) (hk0 : 0 < k)
+  (hkn : k ≤ n) : ℝ
+JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold {n : ℕ} (s : Fin n → ℝ) (α : ℝ) (hα : α < 1) :
+  WithTop ℝ

@@ -1,38 +1,38 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
-    "source_checkpoint": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
-    "source_tree": "2e2d82987ac47a6ebab3e8145c381d074f51fada",
-    "ci_status": "U04.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
+    "baseline_main": "b58e50c34d06352063b7a48122f25c837a9973fe",
+    "source_checkpoint": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
+    "source_tree": "deb761a55294eb6d695a05916cfce68241d96980",
+    "ci_status": "U05.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; package/ledger/core review pending; PR/full-release/merge pending",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "仅U04.1冻结正实Beta后验/预测残余的独立source/module证据，并与既有U04.2区间代数证据共同映射原题04.3 L105/L107/L109：正实先验与指定似然下的后验密度/measure/均值；在明确posterior-a.e.未来channel或条件独立前提下的预测结论；半复制半独立交换反例；固定p Bernoulli IID两尾界；以及给定有理端点包围时的实际Beta积分ratio/width界。该证据不推出现实数据机制、真实采样或消费者调用；原题04.3本行按既有COVERED定义更新。原题04.1/04.2及其余原题、15条消费边、六切口不改。main仍PR78合后46/4/0；本branch候选47/3/0。独立changed-module仅source证据，不表示PR/full-release/merge。discharges、Step2、math_flip仍false。",
+    "scope": "U05.1 source/module audit proves finite marginal conformal coverage for exchangeable score vectors using a constructed independent continuous auxiliary; original-question 05.4 L111/L113/L115 is COVERED under its written premises. U05.5 receives only L123 negative support and remains NOT_RECONCILED. Original-question 01.1–01.6 are COVERED within their finite task/model-card contracts and explicit quantifier boundaries. No arbitrary subgroup/shift guarantees, legal correctness, real-data validity, engineering105, 15 consumer edges, six cuts, or whole-theory completion is claimed. Main b58e50 is 47/3/0; this branch candidate after registration is 48/2/0. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41124014317,
-    "ci_job_id": 124297730406,
-    "ci_subject": "af2000042f139e1cb504d2bedf0ce5bb7c894bff",
-    "ci_subject_tree": "2e2d82987ac47a6ebab3e8145c381d074f51fada",
+    "ci_run_id": 41134518610,
+    "ci_job_id": 124333547346,
+    "ci_subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
+    "ci_subject_tree": "deb761a55294eb6d695a05916cfce68241d96980",
     "ci_attempt": 1,
-    "ci_artifact": "changed-module-only-41124014317-1",
-    "ci_artifact_id": 13009288326,
-    "ci_artifact_sha256": "ac31b7bdd3c9c7e6b2666c39f5c85ea27ccbd821059ead23c40b04c8d5b2ee0d",
-    "archive_gap_ledger_status": "main@23e4daa1db3949587c73d83e8258b4c851d8cbf3 / tree 6e50fbbb11022bcb1ea24885eda977dd149e8add retains PR78 post-merge checks at 46 CLOSED_BY_WIRING / 4 CLOSED_BY_NARROW / 0 OPEN. Branch af2000042f139e1cb504d2bedf0ce5bb7c894bff has U04.1 source evidence and draft 47 / 3 / 0 disposition; it is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
+    "ci_artifact": "changed-module-only-41134518610-1",
+    "ci_artifact_id": 13016125638,
+    "ci_artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
+    "archive_gap_ledger_status": "main@b58e50c34d06352063b7a48122f25c837a9973fe / tree e4132cc0ec050ec27059ce69ccd74bd0e7b1a38d retains PR79 checks at 47 CLOSED_BY_WIRING / 3 CLOSED_BY_NARROW / 0 OPEN. This branch registers U05.1 at source subject 89a5ec8a3e1180ee072c20fc91a3026f498893e5 with candidate 48 / 2 / 0; source evidence is not PR/full-release/merged. Global discharges, math_flip and Step 2 remain false/open."
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
+  "reference_main": "b58e50c34d06352063b7a48122f25c837a9973fe",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 16,
-    "PARTIAL": 52,
-    "NOT_RECONCILED": 29
+    "COVERED": 23,
+    "PARTIAL": 46,
+    "NOT_RECONCILED": 28
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -72,7 +72,7 @@
           105
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-boundary-20261027",
@@ -103,14 +103,72 @@
             "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
             "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value"
           ]
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
+          "subject": "c265e254ecc45565642dd087ad8a095fc47ede5a",
+          "run_id": 40369446453,
+          "job_id": 121735932469,
+          "scope": "The label-to-target bridge is an explicit premise for the declared finite loss, not the legal conclusion.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge",
+            "JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge"
+          ]
         }
       ],
-      "remaining": "已定位实际拟合的标签/真值反例、训练零部署一及风险桥。标签争议输入、原文全部子句及U00同源解释仍需逐项收口。",
+      "remaining": "COVERED only for the finite task and bridge contract stated in this row. Label Y, world fact T, legal relation R, and norm N remain distinct; no legal correctness or real-world grounding is inferred.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            99,
+            99
+          ],
+          "claim": "Finite Bool/event task identifies X, Y, output, loss and event sampling unit; disputed labels remain explicit task inputs.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+            "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq"
+          ]
+        },
+        {
+          "lines": [
+            101,
+            101
+          ],
+          "claim": "Same-point witness: Y=false, T=true, actualConstantFit false gives label risk 0 and truth risk 1. The separate source/deployment witness has target id and is not that same-point witness.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_1_actual_fit_label_risk_not_truth_risk",
+            "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
+            "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value"
+          ]
+        },
+        {
+          "lines": [
+            103,
+            103
+          ],
+          "claim": "Any legal conclusion needs a separately stated label-to-target bridge under the declared loss; the desired conclusion is not assumed.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge",
+            "JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge"
+          ]
+        },
+        {
+          "lines": [
+            105,
+            105
+          ],
+          "claim": "Y, T, R and N remain distinct; finite risk evidence does not establish legal correctness.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_1_actual_fit_label_risk_not_truth_risk",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization"
+          ]
+        }
       ]
     },
     {
@@ -148,7 +206,7 @@
           118
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
@@ -165,10 +223,43 @@
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
         }
       ],
-      "remaining": "已定位固定有限类联合界、实际样本ERM及其总体风险组合。不得把固定族界扩成任意自适应搜索；全部原文段落与独立评价的调用义务仍需逐项核对。",
+      "remaining": "COVERED for finite predeclared H, [0,1] loss, iid same-law samples, the uniform deviation event and approximate-ERM consequence. This does not extend to unrestricted adaptive or infinite search; independent final evaluation must retain the same fixed law.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningFiniteClass20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningERM20261027.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            109,
+            112
+          ],
+          "claim": "For fixed finite H and iid samples the uniform deviation bound quantifies over every h∈H and uses its full cardinality M.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform"
+          ]
+        },
+        {
+          "lines": [
+            114,
+            114
+          ],
+          "claim": "On the uniform event, empirical ε_opt-ERM has population excess at most 2ε+ε_opt.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm",
+            "JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes"
+          ]
+        },
+        {
+          "lines": [
+            116,
+            118
+          ],
+          "claim": "Actual fit consumes the iid oracle; expanding H requires counting the expanded finite class. A final test is independent only under the stated same-P iid law after training is fixed; splitting alone is not a premise.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle"
+          ]
+        }
       ]
     },
     {
@@ -203,7 +294,7 @@
           128
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-provenance-20261027",
@@ -237,12 +328,50 @@
           ]
         }
       ],
-      "remaining": "已定位独立/复制/共同原因模型，以及按真实EventId分区的执行合同。分组不证明iid；跨事件偏差、未来与标签泄漏仍按原文逐项核验。",
+      "remaining": "COVERED for the finite independence/copy/common-cause examples and same-event partition contract. Event grouping prevents direct identity leakage but does not create iid or exclude shared bias, future information, or label leakage.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningDependence20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningEventSplit20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            122,
+            122
+          ],
+          "claim": "Finite models distinguish independent events, copies of one event, and shared latent cause; n rows do not imply n independent units.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+          ]
+        },
+        {
+          "lines": [
+            124,
+            124
+          ],
+          "claim": "Same-μ partition prevents direct event identity from crossing train/test; the finite leak witness shows grouping does not certify information independence or remove future/label leakage.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningEventSplit20261027.u01_3_same_event_cannot_cross",
+            "JurisLean.Candidates.LearningEventSplit20261027.u01_3_duplicate_records_do_not_add_events",
+            "JurisLean.Candidates.LearningEventSplit20261027.u01_3_non_event_ids_do_not_choose_partition",
+            "JurisLean.Candidates.LearningEventSplit20261027.u01_3_event_split_does_not_certify_information"
+          ]
+        },
+        {
+          "lines": [
+            126,
+            128
+          ],
+          "claim": "Independence or another dependence premise comes from the data-generating process; partitioning preserves the unit and does not prove that premise.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+            "JurisLean.Candidates.LearningEventSplit20261027.u01_3_event_split_does_not_certify_information"
+          ]
+        }
       ]
     },
     {
@@ -280,7 +409,7 @@
           140
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
@@ -290,10 +419,47 @@
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
         }
       ],
-      "remaining": "已定位风险分解、表示类包含、任务充分表示和二点信息丢失反例。共同选择表示与预测器时须维持整个预定类的量词，不能借模块名判全部完成。",
+      "remaining": "COVERED for the finite 0-1 risk decomposition, nonnegative representation term, finite-class optimization/generalization control, collapsed-representation witness and sufficient-representation condition. Jointly selected φ,g require quantification over the full predeclared pair class.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningRisk20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningFiniteClass20261027.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            132,
+            134
+          ],
+          "claim": "Three-part identity separates representation gap and restricted-class fit/generalization excess; combining the latter yields the two-part formula.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition"
+          ]
+        },
+        {
+          "lines": [
+            136,
+            136
+          ],
+          "claim": "Class inclusion makes the representation gap nonnegative; remaining excess uses the fixed finite class. Learning φ too requires the guarantee cover the full pair class.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningRisk20261027.riskInf_mono",
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle",
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound",
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm"
+          ]
+        },
+        {
+          "lines": [
+            138,
+            140
+          ],
+          "claim": "The collapsed two-point representation has risk at least 1/2; the conditional-label sufficiency condition gives a fiber Bayes minimizer.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap",
+            "JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap",
+            "JurisLean.Candidates.LearningRisk20261027.fiberBayes_minimizes"
+          ]
+        }
       ]
     },
     {
@@ -327,7 +493,7 @@
           150
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-theory-20261027",
@@ -359,11 +525,45 @@
           ]
         }
       ],
-      "remaining": "已定位有限联合空间风险转移界和任意确定学习器的不可见两世界反例。真实部署距离与目标语义桥仍是具名外部前提。",
+      "remaining": "COVERED for the finite same-training two-world impossibility and joint finite-space TV transfer for the same fixed [0,1] loss, conditional on a known TV bound. No OOD-label identification or changed-task transfer is claimed.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBridge20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            144,
+            144
+          ],
+          "claim": "Two worlds agree on all source-visible training inputs and disagree on a deployment-only input; every deterministic learner is fully wrong in one world.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+          ]
+        },
+        {
+          "lines": [
+            146,
+            146
+          ],
+          "claim": "On the finite joint input-label space, known TV(P,Q) bounds risk difference for the same fixed [0,1] loss.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv",
+            "JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv"
+          ]
+        },
+        {
+          "lines": [
+            148,
+            150
+          ],
+          "claim": "Input marginal, label mechanism and task semantics stay distinct; no arbitrary-new-case or OOD-identification algorithm is inferred.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+          ]
+        }
       ]
     },
     {
@@ -393,7 +593,7 @@
           158
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\learning-consumer-20261027",
@@ -431,13 +631,48 @@
           "scope": "精确模块目标及原始输出；不自动代表本原题全部子结论完成"
         }
       ],
-      "remaining": "实际拟合表及样本已被后续分数、概率区间与决策调用。旧U00未因此接通；法律授权非蕴含、原题全部定义/非空见证和总入口义务仍分开验收。",
+      "remaining": "COVERED for the finite model-card contract, actual sample-fit consumption, and witness that perfect fit does not supply legal authorization. A score is not automatically calibrated probability; authorization, truth and whole-system acceptance remain separate.",
       "modules": [
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningConsumer20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\SampleCalibrationConsumer20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProbabilityIntervalConsumer20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\IntervalDecisionConsumer20261027.lean",
         "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\LearningBoundary20261027.lean"
+      ],
+      "paragraph_evidence": [
+        {
+          "lines": [
+            154,
+            154
+          ],
+          "claim": "Finite contract states task, visible input, label semantics, predictor, loss, DGP/split, bound, distribution and non-guarantees; a numeric score is not automatically a calibrated probability.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed",
+            "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample"
+          ]
+        },
+        {
+          "lines": [
+            156,
+            156
+          ],
+          "claim": "The actual finite pipeline consumes the fitted sample minimizer; a perfect fit still does not imply legal authorization.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer",
+            "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization"
+          ]
+        },
+        {
+          "lines": [
+            158,
+            158
+          ],
+          "claim": "The row asks for finite definitions, six question proofs/counterexamples, explicit assumptions and nonempty witnesses; it does not require other engineering layers or experiments first.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_6_perfect_fit_does_not_supply_authorization",
+            "JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed"
+          ]
+        }
       ]
     },
     {
@@ -1530,9 +1765,55 @@
           115
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u05-1-original-close-20261031",
+          "subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
+          "tree": "deb761a55294eb6d695a05916cfce68241d96980",
+          "run_id": 41134518610,
+          "job_id": 124333547346,
+          "attempt": 1,
+          "artifact_id": 13016125638,
+          "artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
+          "scope": "Independent source audit of the five U05.1 rank/coverage declarations and three calibration objects; paragraph mapping below."
+        }
+      ],
+      "remaining": "COVERED for original-question 05.4 L111/L113/L115 under its stated fixed-training, exchangeable-score, independent-continuous-auxiliary and specified test-law premises. No group-conditional calibration procedure is claimed.",
+      "paragraph_evidence": [
+        {
+          "lines": [
+            111,
+            111
+          ],
+          "claim": "Fixed training and exchangeable score vector; an independent IID continuous auxiliary constructs uniform actual rank prefixes.",
+          "named_targets": [
+            "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix"
+          ]
+        },
+        {
+          "lines": [
+            113,
+            113
+          ],
+          "claim": "Multiplicity-preserving calibration order statistic yields non-strict coverage, k=ceil((n+1)(1−α)), finite branch and k>n infinite threshold; the guarantee is marginal.",
+          "named_targets": [
+            "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+            "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+            "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage"
+          ]
+        },
+        {
+          "lines": [
+            115,
+            115
+          ],
+          "claim": "Finite examples give marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4; no general group-conditional procedure or shift guarantee.",
+          "named_targets": [
+            "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+          ]
+        }
+      ]
     },
     {
       "id": "05.5",
@@ -1563,8 +1844,32 @@
         ]
       ],
       "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/u05-1-original-close-20261031",
+          "subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
+          "tree": "deb761a55294eb6d695a05916cfce68241d96980",
+          "run_id": 41134518610,
+          "job_id": 124333547346,
+          "attempt": 1,
+          "artifact_id": 13016125638,
+          "artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
+          "scope": "Negative support only for L123: changing the test law can leave coverage at 1/4 and break exchangeability; the audit does not prove the covariate-shift identity, density-ratio error analysis, or unseen-input identification claims."
+        }
+      ],
+      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。",
+      "paragraph_evidence": [
+        {
+          "lines": [
+            123,
+            123
+          ],
+          "claim": "Finite deployment boundary shows that a changed test law can break the coverage premise; it is not a theorem about detecting X-only drift or general concept shift.",
+          "named_targets": [
+            "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+          ]
+        }
+      ]
     },
     {
       "id": "05.6",
@@ -6262,23 +6567,30 @@
     "main_final_job": 122263283920
   },
   "latest_archive_closure": {
-    "pr": 78,
-    "main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
-    "tree": "6e50fbbb11022bcb1ea24885eda977dd149e8add",
-    "pr_head": "a999916b0b31ddd6b49cc0063dc153e0fd36fcde",
+    "pr": 79,
+    "main": "b58e50c34d06352063b7a48122f25c837a9973fe",
+    "tree": "e4132cc0ec050ec27059ce69ccd74bd0e7b1a38d",
+    "pr_head": "83fd2e7c82e16f224771fe27875bf832118924ad",
+    "synthetic_subject": "f5cb49717a3cb66020378ebdb254e46e2a22b359",
     "clauses": [
-      "U04.4"
+      "U04.1"
     ],
     "open_before": 0,
     "open_after": 0,
     "closed_this_round": 1,
     "closes_debt": true,
     "global_discharges": false,
-    "ulm_run": 41112731456,
-    "authority_run": 41112732292,
-    "final_job": 124268892642,
-    "certificate_artifact_id": 13005627139,
-    "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+    "ulm_run": 41136574188,
+    "authority_run": 41136574534,
+    "final_job": 124348475193,
+    "certificate_artifact_id": 13018330727,
+    "certificate_sha256": "876f0a8af4950a0b5904ec19d20c74ca8639492ece8feb67a839b88177b02ab9",
+    "certificate_verifier_exit_code": 0,
+    "claim_scan_exit_code": 0,
+    "identity_files": 16,
+    "ci_files": 8,
+    "runtime_files": 3,
+    "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_CERTIFICATE_VERIFIED_POSTMERGE_CHECKS_PASS",
     "postmerge_archive_checker_exit_code": 0,
     "postmerge_clause_binding_exit_code": 0
   },
@@ -6387,6 +6699,55 @@
       "final_job": 124199230278,
       "certificate_artifact_id": 12996031549,
       "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+      "postmerge_archive_checker_exit_code": 0,
+      "postmerge_clause_binding_exit_code": 0
+    },
+    {
+      "pr": 78,
+      "main": "23e4daa1db3949587c73d83e8258b4c851d8cbf3",
+      "tree": "6e50fbbb11022bcb1ea24885eda977dd149e8add",
+      "pr_head": "a999916b0b31ddd6b49cc0063dc153e0fd36fcde",
+      "clauses": [
+        "U04.4"
+      ],
+      "open_before": 0,
+      "open_after": 0,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 41112731456,
+      "authority_run": 41112732292,
+      "final_job": 124268892642,
+      "certificate_artifact_id": 13005627139,
+      "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_ARCHIVE_CHECK_PASS",
+      "postmerge_archive_checker_exit_code": 0,
+      "postmerge_clause_binding_exit_code": 0
+    },
+    {
+      "pr": 79,
+      "main": "b58e50c34d06352063b7a48122f25c837a9973fe",
+      "tree": "e4132cc0ec050ec27059ce69ccd74bd0e7b1a38d",
+      "pr_head": "83fd2e7c82e16f224771fe27875bf832118924ad",
+      "synthetic_subject": "f5cb49717a3cb66020378ebdb254e46e2a22b359",
+      "clauses": [
+        "U04.1"
+      ],
+      "open_before": 0,
+      "open_after": 0,
+      "closed_this_round": 1,
+      "closes_debt": true,
+      "global_discharges": false,
+      "ulm_run": 41136574188,
+      "authority_run": 41136574534,
+      "final_job": 124348475193,
+      "certificate_artifact_id": 13018330727,
+      "certificate_sha256": "876f0a8af4950a0b5904ec19d20c74ca8639492ece8feb67a839b88177b02ab9",
+      "certificate_verifier_exit_code": 0,
+      "claim_scan_exit_code": 0,
+      "identity_files": 16,
+      "ci_files": 8,
+      "runtime_files": 3,
+      "status": "PR_CI_SUCCESS_SQUASH_MERGED_ACTUAL_MAIN_SAME_TREE_CERTIFICATE_VERIFIED_POSTMERGE_CHECKS_PASS",
       "postmerge_archive_checker_exit_code": 0,
       "postmerge_clause_binding_exit_code": 0
     }

@@ -247,7 +247,7 @@ theorem unregularized_sample_has_no_minimum :
     fin_cases i <;> rfl
   have hineq := hmin (mem_univ (WithLp.toLp 2 (fun _ : Fin 1 => s)))
   rw [hrep] at hineq
-  simpa only [positive_intercept_is_existing_loss] using hineq
+  simpa only [Set.mem_setOf_eq, positive_intercept_is_existing_loss] using hineq
 
 /-- On zero features every parameter predicts one half. A deployment with true
 rate one is therefore not calibrated by any optimizer of this model. -/

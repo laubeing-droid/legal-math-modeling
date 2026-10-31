@@ -10,7 +10,8 @@ open JurisLean.Hohfeld
 
 /-!
 中文说明：修正版点。审计 F01–F14 接了。
-无 sorry。除关债外。上次 changed-module 红的 39/92/107/151 修。
+无 sorry。除关债外。用 decide 不用 rfl 证否定。
+四墙定理在 Walls 里，不重证。
 -/
 
 structure Sit where
@@ -113,26 +114,6 @@ theorem noNorm_not_established : evalNoNorm ≠ CnOut.established := by
   intro h
   cases h
 
-/-- 政策不入 N。 -/
-theorem policy_not_in : inN SourceKind.policy = NMember.no := rfl
-
-/-- 数据/AIGC undetermined。 -/
-theorem data_undet : ∀ o : DataOwnership, o = DataOwnership.undetermined := by
-  intro o; cases o; rfl
-
-theorem aigc_undet : ∀ a : AIGCWork, a = AIGCWork.undetermined := by
-  intro a; cases a; rfl
-
-/-- 时效。 -/
-theorem lim_not_claimGone : limitationEffect ≠ TimeOut.claimGone := by decide
-
-/-- 挂起。 -/
-theorem local_not_chosen : localVsDept ≠ ResolveOut.chosen 0 := by decide
-
-/-- 三尺离散。 -/
-theorem std_distinct :
-    StdCN.beyondReasonableDoubt ≠ StdCN.highPossibility := by decide
-
 /-- 生命周期：可撤销仍有效，不是互斥枚举。 -/
 structure ContractLife where
   established : Bool
@@ -146,11 +127,6 @@ theorem voidable_still_effective :
       c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false := by
   refine ⟨{ established := true, effective := true, invalid := false, voidablePower := true },
     rfl, rfl, rfl⟩
-
-/-- Hohfeld 真挂。 -/
-theorem req_is_claim : reqHof = [Concept.claimRight] := rfl
-theorem form_is_power : formHof = [Concept.power] := rfl
-theorem defend_not_noRight : defendHof ≠ [Concept.noRight] := by decide
 
 /-- 公定力不是事实真。 -/
 theorem gongding_still :

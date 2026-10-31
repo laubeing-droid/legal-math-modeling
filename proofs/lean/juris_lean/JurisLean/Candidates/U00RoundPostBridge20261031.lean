@@ -36,7 +36,8 @@ theorem fresh_round_post_service_is_actual_activation {m : Nat}
   calc
     (finishAdaptiveRound s r samples permits).post.service =
         (appendRoundRecord s (assessAdaptiveRound s d r samples permits)).service := by
-      simp [finishAdaptiveRound, fresh, round, Nat.not_le_of_lt room, pending]
+      simp only [finishAdaptiveRound, fresh]
+      simp [round, Nat.not_le_of_lt room, pending]
     _ = loaded.post :=
       recorded_load_is_actual_next_service s
         (assessAdaptiveRound s d r samples permits) loaded actualLoad
@@ -61,11 +62,10 @@ private theorem known_probability_with_less_exposure {m : Nat}
   have readyOld : calibrationReady older request packet catalog = true := by
     simp only [calibrationReady, decide_eq_true_eq] at readyNew ⊢
     simp only [sameService]
-    have rowsNew : ∀ row ∈ packet.rows,
-        row.event ∉ trainingEvents newer.service.journal ∧
-        row.event ∉ trainingEvents (readLoaded newer.service).snapshot ∧
-        row.event ∉ exposedRoundEvents newer := by
-      tauto
+    rcases readyNew with
+      ⟨member, loadedBinding, packetContext, requestContext, protocolBinding,
+        snapshotBinding, scopeBinding, protocolValid, lossVersion, ruleVersion,
+        mechanismVersion, declaredBefore, timeReady, modelLengths, distinctRows, rowsNew⟩
     have rowsOld : ∀ row ∈ packet.rows,
         row.event ∉ trainingEvents newer.service.journal ∧
         row.event ∉ trainingEvents (readLoaded newer.service).snapshot ∧
@@ -73,7 +73,9 @@ private theorem known_probability_with_less_exposure {m : Nat}
       intro row member
       have h := rowsNew row member
       exact ⟨h.1, h.2.1, fun exposed => h.2.2 (lessExposure row.event exposed)⟩
-    tauto
+    exact ⟨member, loadedBinding, packetContext, requestContext, protocolBinding,
+      snapshotBinding, scopeBinding, protocolValid, lossVersion, ruleVersion,
+      mechanismVersion, declaredBefore, timeReady, modelLengths, distinctRows, rowsOld⟩
   simpa [loadedProbability, readyOld, sameService] using bound.2.1
 
 /- U00 edges 14--15: transport only a known decision, not arbitrary calls.
@@ -147,7 +149,8 @@ theorem actual_round_choice_transports_to_activation_projection {W : Type} {m : 
   have finished :
       (finishAdaptiveRound s r samples permits).post =
         appendRoundRecord s (assessAdaptiveRound s d r samples permits) := by
-    simp [finishAdaptiveRound, fresh, round, Nat.not_le_of_lt room, pending]
+    simp only [finishAdaptiveRound, fresh]
+    simp [round, Nat.not_le_of_lt room, pending]
   have serviceSame :=
     fresh_round_post_service_is_actual_activation s d r samples permits evaluation loaded
       fresh round room pending actualEvaluation actualLoad

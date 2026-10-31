@@ -1,0 +1,74 @@
+{
+  "schema": "original-question-supplemental-module-v1",
+  "repository": "laubeing-droid/legal-math-modeling",
+  "subject": "9c6e5603a226aba53861f9d151cf97b5350387a7",
+  "subject_tree": "cf07752ad13dbd6e22b78b0458dc60025ad973af",
+  "run_id": 41182937172,
+  "job_id": 124483896794,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41182937172",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41182937172/job/124483896794",
+  "artifact_name": "changed-module-only-41182937172-1",
+  "artifact_id": 13035807675,
+  "artifact_size_bytes": 8402,
+  "artifact_sha256": "a3deeadbd3d60a662ed07566c8be8d2d70e72300cc0dfafe898f9aaa7813178c",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstanceAudit20261031.lean",
+  "named_count": 3,
+  "names_by_clause": {
+    "06.5": [
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options",
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost",
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum"
+    ]
+  },
+  "targets": [
+    "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options",
+    "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost",
+    "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum"
+  ],
+  "object_checks": [],
+  "object_check_count": 0,
+  "object_unique_count": 0,
+  "driver_output_blocks": 6,
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
+      "bytes": 13257,
+      "lines": 327,
+      "line_ending": "LF",
+      "git_blob": "bc4efe80213dcb8eb53bfdc3c10600c7ab2a3d0b",
+      "sha256": "87ef9339a589c7468830c57b68d246092ca888099779ffe40c69e5368081509a",
+      "encoding": "UTF-8"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstanceAudit20261031.lean",
+      "bytes": 736,
+      "lines": 7,
+      "line_ending": "LF",
+      "git_blob": "0afc525904493ca7229636f2247c5e290c8323a9",
+      "sha256": "f2dc13a5355a062d8f8a04fd20a60c63bbabc349a323b4bc61afccd91fccfcb0",
+      "encoding": "UTF-8"
+    }
+  ],
+  "raw_evidence": {
+    "path": "axiom-audit.raw.txt",
+    "size_bytes": 9041,
+    "sha256": "30b033043bb34df478954bc3ff2ed5190527e4e66187be2c23ebc1993d373fe5"
+  },
+  "axiom_audit": {
+    "audited_targets": 3,
+    "axiom_vocabulary": {
+      "propext": 3,
+      "Classical.choice": 3,
+      "Quot.sound": 3
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "original_residuals": {},
+  "scope_note": "Supplemental finite original-question 06.5 evidence only; closes_debt is false because the global U06.5 row was already accepted by PR81. This package supports the finite visible-state observation and nonanticipation instances under their stated model; it does not claim L141 seven-question delivery.",
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false
+}

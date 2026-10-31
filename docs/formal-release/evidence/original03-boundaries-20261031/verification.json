@@ -1,0 +1,67 @@
+{
+  "schema": "original-question-supplemental-module-v1",
+  "repository": "laubeing-droid/legal-math-modeling",
+  "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+  "subject_tree": "3d1e9d1ee73eb8b28dc3c7eff93527c910a79fd9",
+  "run_id": 41180037686,
+  "job_id": 124475397635,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "artifact_name": "changed-module-only-41180037686-1",
+  "artifact_id": 13034870944,
+  "artifact_size_bytes": 2457,
+  "artifact_sha256": "e03d267ef4a2ecdb0985c05762ea0ad21a9b8f0976bf8f0140d31219bd8f6b9a",
+  "named_count": 3,
+  "targets": [
+    "JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact",
+    "JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth",
+    "JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerOriginalBoundaries20261031.lean",
+      "bytes": 4358,
+      "sha256": "269913f87b1d07a23672b4b795e03b811cba2fb258d2f8ed8ea130a262b6b8a3",
+      "git_blob": "d103813adb826581ead659dedfcc4fce00c69003"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerOriginalBoundariesAudit20261031.lean",
+      "bytes": 786,
+      "sha256": "f247d77fb6cffe584ebede0a9044bbeb3773b4b07ff4338898ebd6e7d90a72a0",
+      "git_blob": "f5317adb77b862d430b583150cac19d5330e8a98"
+    }
+  ],
+  "raw_evidence": {
+    "path": "axiom-audit.raw.txt",
+    "size_bytes": 5232,
+    "sha256": "756baf7faf060494e31b98b53662400551ff46f48090744b935efe7b0c62ec94"
+  },
+  "axiom_audit": {
+    "audited_targets": 3,
+    "axiom_vocabulary": {
+      "propext": 2,
+      "Classical.choice": 1,
+      "Quot.sound": 1
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "scope": "Finite boundary instances supplement the prior general results; no arbitrary language parsing, fingerprint collision resistance, or source truth follows.",
+  "closes_debt": false,
+  "global_discharge": false,
+  "object_checks": [],
+  "object_check_count": 0,
+  "object_unique_count": 0,
+  "driver_output_blocks": 6,
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerOriginalBoundariesAudit20261031.lean",
+  "names_by_clause": {
+    "03.2/03.5/03.6": [
+      "JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact",
+      "JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth",
+      "JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity"
+    ]
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "scope_note": "Three audited finite boundary instances supplement the prior named general results for 03.2, 03.5, and 03.6. No arbitrary language parsing, collision resistance, or source truth is claimed."
+}

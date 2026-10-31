@@ -14,7 +14,7 @@ U12.3 independently binds its finite policy-learning, MAR, and sequential residu
 U11.1 independently binds the named causal bridge, original instances, and reused measurement/selection evidence.
 U12.1 independently binds the causal-policy bridge and original question instances.
 U10.1 independently binds the refresh-to-Step protocol residual.
-closed_this_round=1, OPEN_FORMAL_TAIL=0, CLOSED_BY_WIRING=49, CLOSED_BY_NARROW=1, blocked_rows=0.
+PR81 accepted baseline is 49 wiring / 1 narrow; current candidate adds U00 wiring: 50 wiring / 0 narrow / 0 open.
 discharges stays false; math_flip stays false; step 2 stays open.
 The expand receipt ci-tip-21862d9b stays named_count=61, closes_debt=false,
 and closed increment 0. Historical ci-tip-1c72e444 stays named_count=49.
@@ -23,6 +23,7 @@ and closed increment 0. Historical ci-tip-1c72e444 stays named_count=49.
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import subprocess
 import sys
 from pathlib import Path
@@ -46,8 +47,8 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
         encoding="utf-8",
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
-    assert "narrow 1" in proc.stdout
-    assert "wiring 49" in proc.stdout
+    assert "narrow 0" in proc.stdout
+    assert "wiring 50" in proc.stdout
     assert "open_formal_tail 0" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "40274167574" in proc.stdout
@@ -66,6 +67,57 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert receipt["named_count"] == receipt["axiom_audit"]["audited_targets"] == 6
     assert len(receipt["object_checks"]) == 3
     assert len(receipt["sources"]) == 3
+
+
+def test_u00_close_binds_the_conditional_scope_and_real_objects() -> None:
+    pack = ROOT / "docs/formal-release/evidence/u00-original-close-20261031"
+    receipt = checker.load_json(pack / "verification.json")
+    raw = (pack / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+    u00_pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U00_CLOSE_PACK)
+    assert checker.independent_close_errors(receipt, raw, u00_pack) == []
+    assert receipt["named_count"] == 19
+    assert receipt["object_checks"] == [
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.runRefreshedPersonalSource",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest",
+    ]
+    assert receipt["discharges_archived_manuscript_gaps"] is False
+
+
+def test_original03_and_065_supplements_are_six_block_three_target_receipts() -> None:
+    cases = (
+        ("original03-boundaries-20261031", "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b", 41180037686, 3),
+        ("original06-5-observation-20261031", "9c6e5603a226aba53861f9d151cf97b5350387a7", 41182937172, 3),
+    )
+    for folder, subject, run_id, target_count in cases:
+        pack = ROOT / "docs/formal-release/evidence" / folder
+        receipt = checker.load_json(pack / "verification.json")
+        assert receipt["subject"] == subject
+        assert receipt["run_id"] == run_id
+        assert receipt["named_count"] == target_count
+        assert receipt["driver_output_blocks"] == 6
+        assert receipt["object_checks"] == []
+        assert receipt["object_check_count"] == receipt["object_unique_count"] == 0
+        assert receipt["closes_debt"] is False
+        assert receipt["axiom_audit"]["targets_with_sorryAx"] == {}
+        assert receipt["axiom_audit"]["targets_outside_standard_axioms"] == {}
+        assert len(receipt["sources"]) == 2
+        for source in receipt["sources"]:
+            result = subprocess.run(
+                ["git", "show", f"{subject}:{source['path']}"],
+                cwd=ROOT,
+                capture_output=True,
+                check=True,
+            )
+            current = (ROOT / source["path"]).read_bytes().replace(b"\r\n", b"\n")
+            assert current == result.stdout
+            assert hashlib.sha256(current).hexdigest() == source["sha256"]
+        raw = (pack / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+        prefix = "JurisLean.Candidates.U06_5FiniteObservationInstance20261031."
+        for target in receipt["targets"]:
+            target = target if target.startswith("JurisLean.") else prefix + target
+            assert target in raw
+            assert f"'{target}' depends on axioms:" in raw or f"'{target}' does not depend on any axioms" in raw
 
 
 def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> None:
@@ -130,13 +182,11 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["formal_tail_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND7_20261026"
     assert ledger["tip_pin_not_retargeted"] is False
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
     assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
     assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False
-    assert summary["narrow_not_reopened"] == [
-        "U00",
-    ]
+    assert summary["narrow_not_reopened"] == []
     assert summary["wiring_not_reopened"] == [
         "U13.3",
         "U12.4",
@@ -446,7 +496,7 @@ def test_u01_close_uses_general_theorems_and_keeps_u03_evidence():
             "named_theorems_full": checker.disp.U01_NAMES[clause],
         }
     summary = ledger["formal_tail_round"]
-    assert summary["independent_closed_total"] == 27
+    assert summary["independent_closed_total"] == 28
     assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT, checker.disp.U13_3_RECEIPT, checker.disp.U12_4_RECEIPT, checker.disp.U07_2_RECEIPT, checker.disp.U07_3_RECEIPT, checker.disp.U02_1_RECEIPT, checker.disp.U04_2_RECEIPT, checker.disp.U06_1_RECEIPT, checker.disp.U06_2_RECEIPT, checker.disp.U12_3_RECEIPT, checker.disp.U13_4_RECEIPT, checker.disp.U11_1_RECEIPT, checker.disp.U12_1_RECEIPT, checker.disp.U10_1_RECEIPT, checker.disp.U02_4_RECEIPT, checker.disp.U09_2_RECEIPT, checker.disp.U01_4_RECEIPT, checker.disp.U04_4_RECEIPT, checker.disp.U04_1_RECEIPT, checker.disp.U05_1_RECEIPT, checker.disp.U06_5_RECEIPT]
     import copy
     pack = checker.disp.INDEPENDENT_CLOSE_PACKS[1]
@@ -618,7 +668,7 @@ def test_u07_2_positive_joint_object_close_is_separate_from_cand8_negatives():
         name for names in checker.disp.PROVE_CANDIDATES.values() for name in names
     }
     assert checker.disp.FORMAL_TAIL_CAND8_PACK
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
@@ -674,7 +724,7 @@ def test_u07_3_selected_row_semantics_close_keeps_o05_and_pipeline_open():
         "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
     )
     assert len(receipt["sources"]) == 5
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
@@ -713,7 +763,7 @@ def test_u02_1_close_binds_actual_pipeline_refinement_and_preserves_scope():
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
 
     pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U02_1_CLOSE_PACK)
@@ -789,11 +839,11 @@ def test_u04_2_close_binds_frozen_probability_residual_and_keeps_adjacent_scope(
     assert "U11.1" in row["scope_review"]
     assert "edge 6" in row["scope_review"]
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
 
     pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U04_2_CLOSE_PACK)
@@ -848,13 +898,13 @@ def test_u06_1_close_binds_finite_bellman_and_actual_trajectory_evidence():
     assert "common feasible" in row["scope_review"]
     assert "old Pipeline" in row["scope_review"]
     assert "terminal branch with value g(s)" in row["scope_review"]
-    assert ledger["counts"]["CLOSED_BY_NARROW"] == 1
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_NARROW"] == 0
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
     assert ledger["formal_tail_round"]["tip_pin"] == checker.disp.TIP_PIN
 
@@ -905,13 +955,13 @@ def test_u06_2_close_binds_mixed_transfer_and_fixed_tree_bridge():
     assert row["remaining_after_close"].startswith("WIRED_TO_INDEPENDENT_U06_2_PROOFS")
     assert "general mixed-equilibrium existence" in row["scope_review"]
     assert "06.7" in row["scope_review"]
-    assert ledger["counts"]["CLOSED_BY_NARROW"] == 1
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_NARROW"] == 0
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
 
     pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U06_2_CLOSE_PACK)
@@ -962,13 +1012,13 @@ def test_u12_3_close_binds_policy_learning_mar_and_finite_sequential_transport()
     assert "None is abstention" in row["scope_review"]
     assert "old Pipeline numeric consumer" in row["scope_review"]
     assert "not an infinite-horizon RL theorem" in row["scope_review"]
-    assert ledger["counts"]["CLOSED_BY_NARROW"] == 1
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_NARROW"] == 0
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
     assert ledger["discharges_archived_manuscript_gaps"] is False
     assert ledger["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["open_formal_tail_remaining"] == 0
     assert ledger["formal_tail_round"]["tip_pin"] == checker.disp.TIP_PIN
 
@@ -1018,9 +1068,9 @@ def test_u13_4_close_binds_fallback_selection_and_conditional_risk():
     assert "conditional population-risk bound" in row["scope_review"]
     assert "not a per-case win-rate guarantee" in row["scope_review"]
     assert "do not prove source authenticity" in row["scope_review"]
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert "U13.4" in ledger["formal_tail_round"]["wiring_not_reopened"]
 
     pack = next(
@@ -1066,9 +1116,9 @@ def test_u11_1_close_binds_causal_bridge_and_original_instances():
         "receipt": checker.disp.U11_1_RECEIPT,
         "named_theorems_full": checker.disp.U11_1_NAMES["U11.1"],
     }
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U11_1_CLOSE_PACK)
     receipt = checker.load_json(ROOT / pack["receipt"])
     raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
@@ -1094,9 +1144,9 @@ def test_u12_1_close_binds_causal_policy_bridge_and_original_instances():
         "receipt": checker.disp.U12_1_RECEIPT,
         "named_theorems_full": checker.disp.U12_1_NAMES["U12.1"],
     }
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U12_1_CLOSE_PACK)
     receipt = checker.load_json(ROOT / pack["receipt"])
     raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
@@ -1128,10 +1178,10 @@ def test_u01_4_close_binds_exact_finite_witnesses():
     }
     assert "pointWeight_is_probability" in row["scope_review"]
     assert "does not claim real data follow the bad mechanism" in row["scope_review"]
-    assert ledger["counts"]["CLOSED_BY_WIRING"] == 49
-    assert ledger["counts"]["CLOSED_BY_NARROW"] == 1
+    assert ledger["counts"]["CLOSED_BY_WIRING"] == 50
+    assert ledger["counts"]["CLOSED_BY_NARROW"] == 0
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 0
-    assert ledger["formal_tail_round"]["independent_closed_total"] == 27
+    assert ledger["formal_tail_round"]["independent_closed_total"] == 28
     assert ledger["formal_tail_round"]["discharges_archived_manuscript_gaps"] is False
     assert ledger["formal_tail_round"]["math_flip_authorized"] is False
     assert ledger["formal_tail_round"]["step_2_closed"] is False

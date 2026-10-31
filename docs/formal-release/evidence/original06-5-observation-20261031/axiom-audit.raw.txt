@@ -1,0 +1,130 @@
+JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options :
+  (∀ (y : Bool),
+      JurisLean.Candidates.U06_4ConditionalInformation20261031.conditionalLaw
+          JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw Prod.snd y =
+        some (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.posterior✝ y)) ∧
+    (∀ (answer : Bool),
+        Math.Probability.expect
+            (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.nextLaw✝
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior
+              (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice.guess answer))
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ =
+          1 / 2) ∧
+      (∀ (y answer : Bool),
+          Math.Probability.expect
+              (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.nextLaw✝
+                (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.seen y)
+                (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice.guess answer))
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ =
+            if answer = y then 4 / 5 else 1 / 5) ∧
+        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.nextLaw✝
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice.buy =
+            PMF.map (fun z => JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.seen z.2)
+              JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw ∧
+          (∀ (a : JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice),
+              a ∈
+                JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝.legal 2
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior) ∧
+            (∀ (y : Bool),
+                JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice.buy ∉
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝.legal 1
+                    (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.seen y)) ∧
+              (∀ (s : JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible),
+                  Math.Probability.expect
+                      (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.nextLaw✝ s
+                        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Choice.stop)
+                      JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ =
+                    0) ∧
+                ∀ (s : JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible),
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ s ∈ Set.Icc 0 1
+
+JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost (k : ℝ) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation
+        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+        (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.acquisition✝ k) (fun x => 0)
+        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.observeThenAct✝ 2 []
+        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior =
+      k ∧
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation
+          JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+          (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+          JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝
+          JurisLean.Candidates.U06_5FiniteObservationInstance20261031.observeThenAct✝ 2 []
+          JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior =
+        4 / 5 - k ∧
+      (1 / 2 <
+          JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+            (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.observeThenAct✝ 2 []
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior ↔
+        k < 3 / 10)
+
+JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum (k : ℝ) :
+  ∃ optimal,
+    (∀
+        (x :
+          JurisLean.Candidates.U06_1FiniteBellman20261030.Trace
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible 2),
+        0 ≤
+          JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝ optimal 2 []
+            JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior x) ∧
+      ∑ x,
+            JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝ optimal 2 []
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior x =
+          1 ∧
+        ∑ x,
+              ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw
+                      JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝ optimal 2 []
+                      JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior)
+                    x).toReal *
+                JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+                  (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ optimal 2 []
+                  JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior x =
+            JurisLean.Candidates.U06_1FiniteBellman20261030.bellman
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+              (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ 2
+              JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior ∧
+          ∀
+            (policy :
+              JurisLean.Candidates.U06_1FiniteBellman20261030.Policy
+                JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝),
+            ∑ x,
+                ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw
+                        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝ policy 2 []
+                        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior)
+                      x).toReal *
+                  JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+                    (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ policy 2 []
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior x ≤
+              ∑ x,
+                ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw
+                        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝ optimal 2 []
+                        JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior)
+                      x).toReal *
+                  JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.control✝
+                    (JurisLean.Candidates.U06_5FiniteObservationInstance20261031.netReward✝ k)
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.terminal✝ optimal 2 []
+                    JurisLean.Candidates.U06_5FiniteObservationInstance20261031.Visible.prior x
+
+'JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+'JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+
+'JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

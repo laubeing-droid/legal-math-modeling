@@ -25971,9 +25971,13 @@
         }
       ],
       "jobs_total": 8,
+      "metadata_availability": "UNAVAILABLE",
+      "metadata_checked_at": "2026-10-31T15:26:29Z",
+      "metadata_provenance": "historical snapshot preserved from prior CI index; current GitHub Actions API returned HTTP 404",
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:64"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:64",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:66"
       ],
       "run_id": 39700447562,
       "started": true,
@@ -26036,7 +26040,7 @@
       "name": "fix(ci): sync derived ledgers after stage2 pytest fail on 799b42c",
       "quoted_by": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:66"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:68"
       ],
       "run_id": 39714740194,
       "started": true,
@@ -26161,7 +26165,7 @@
       "jobs_total": 8,
       "name": "Merge pull request #7 from laubeing-droid/cursor/tip-axiom-scope-clos…",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:76"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:78"
       ],
       "run_id": 39933015422,
       "started": true,
@@ -26223,7 +26227,7 @@
       "jobs_total": 8,
       "name": "Record OPEN_FORMAL_TAIL×40 prove progress without closing the debt (#10)",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:80"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:82"
       ],
       "run_id": 40079130550,
       "started": true,
@@ -26286,9 +26290,9 @@
       "name": "真证首批 CAND5 ≠ 翻 discharges ≠ 关第2步 (#12)",
       "quoted_by": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:66",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:76",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:80"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:68",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:78",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:82"
       ],
       "run_id": 40115638107,
       "started": true,
@@ -33852,6 +33856,194 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-31T05:34:17Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-31T06:59:35Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/connect-u00-final-source-20261031",
+      "head_sha": "eba3880d57f9da974508123e7cc6fc689db5ebe5",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41178784116",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/u00-original-close-20261031/README.md:7",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:245"
+      ],
+      "run_id": 41178784116,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-31T07:02:16Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-31T07:17:52Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/original03-boundaries-20261031",
+      "head_sha": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41180037686",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original03-boundaries-20261031/README.md:3"
+      ],
+      "run_id": 41180037686,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-31T07:21:15Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-31T08:02:09Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/original06-5-observation-20261031",
+      "head_sha": "9c6e5603a226aba53861f9d151cf97b5350387a7",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41182937172",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original06-5-observation-20261031/README.md:10",
+        "docs/formal-release/evidence/original06-5-observation-20261031/README.md:9"
+      ],
+      "run_id": 41182937172,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-31T08:06:20Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

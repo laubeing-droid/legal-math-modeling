@@ -90,7 +90,7 @@ inductive Role
   deriving DecidableEq, Repr
 
 inductive Act
-  | decide | constitute | perform | choose | addTemplate | admitEvidence | otherBind
+  | decide | constitute | perform | choose | addTemplate | admitEvidence | otherBind | learnModel
   deriving DecidableEq, Repr
 
 structure Request where
@@ -272,18 +272,33 @@ inductive Evaluation
   | conflict (route : ReviewRoute)
   | final (answer : EvalResult Disposition)
 
+def EngineValue : UEng → Type
+  | .fit => Quantity .scalar × Quantity .scalar
+  | .prob => List (Ref .event × Quantity .scalar)
+  | .causal => Quantity .scalar × Quantity .scalar
+  | .bargain => List (Ref .actor × Quantity .money)
+  | .cash => List (Ref .relation × Quantity .money)
+  | .exact => (u : UnitKind) × Quantity u
+  | .behave => List (Ref .actor × Ref .query)
+  | .rsi => Ref .model × Ref .model
+
 structure EngineOutput where
   engine : UEng
   scope : Scope
+  target : Ref .query
   sourceHistory : List (Ref .event)
   theoremRef : String
-  payload : String
+  assumptions : List (Ref .query)
+  payload : EngineValue engine
 
 structure Candidate where
   scope : Scope
   parentModel : Ref .model
   basis : List EngineOutput
   proposed : Formula
+
+def candidateFromEngine (parent : Ref .model) (out : EngineOutput) : Candidate :=
+  ⟨out.scope, parent, [out], .atom ⟨out.scope, out.target⟩⟩
 
 /- A law may license examination of a named statistic; this does not prove causation. -/
 structure CausalPermit where
@@ -294,7 +309,9 @@ structure CausalPermit where
 def bridgeCandidate (permit : Option CausalPermit) (output : EngineOutput) : Check EngineOutput :=
   match permit with
   | none => .unknown .inputUnchecked
-  | some p => if p.scope == output.scope then .known output else .unknown .inputUnchecked
+  | some p =>
+    if p.scope == output.scope && p.statistic == output.target && output.engine == .causal
+    then .known output else .unknown .inputUnchecked
 
 theorem no_causal_permit_no_bridge (out : EngineOutput) :
     bridgeCandidate none out = .unknown .inputUnchecked := rfl

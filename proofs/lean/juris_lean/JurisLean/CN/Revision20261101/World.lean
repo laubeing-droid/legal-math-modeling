@@ -75,6 +75,14 @@ def burden (policy : List AdmittedItem → EvalResult Disposition)
     (e : Evidence) (ids : List (Ref .material)) : EvalResult Disposition :=
   policy (admittedView e ids)
 
+/- A separate policy contract consumes only admitted inputs. Authenticating its
+   source and refining a real proof standard are external, unproved obligations.
+   `support` below is used only as a synthetic two-polarity policy. -/
+structure ProofPolicy where
+  source : NormRef
+  scope : Scope
+  evaluate : List AdmittedItem → Atom → Judgment
+
 theorem buckets_disjoint {i : Ref .material} (c : EvidenceCell i) :
     ¬ (isAdmitted c = true ∧ isExcluded c = true) := by
   cases c <;> decide
@@ -234,6 +242,9 @@ def automationAllowed (s : Sit) (scope : Scope) : Mode → Bool
 structure RuleTicket (s : Sit) where
   law : Rule
   member : law ∈ s.N.rules
+  policy : ProofPolicy
+  policyScope : policy.scope = law.scope
+  policyVersion : policy.source.version = law.source.version
   /- A conservative unique-rule fragment: unresolved alternatives cannot be chosen. -/
   unique : ∀ other ∈ s.N.rules,
     other.scope = law.scope → other.source.version = law.source.version → other = law
@@ -251,9 +262,12 @@ def legalStep (s : Sit) (req : Request) (ticket : RuleTicket s) (mode : Mode) : 
   else if authorized s.N req = false then ⟨s, .unauthorized⟩
   else if req.act != effectAction ticket.law.effect then ⟨s, .unauthorized⟩
   else if (s.N.version == req.version && ruleMatches req ticket.law.effect
-      (support (admittedView s.E ticket.law.materials)) ticket.law) = false then
+      (ticket.policy.evaluate (admittedView s.E ticket.law.materials)) ticket.law) = false then
     ⟨s, .awaiting .inputUnchecked⟩
-  else if ticket.law.effect == .constitutive && ticket.law.formed.isNone then
+  else if ticket.law.effect == .constitutive &&
+      (match ticket.law.formed with
+       | none => true
+       | some r => r.scope != req.scope) then
     ⟨s, .awaiting .inputUnchecked⟩
   else ⟨applyEffect s (effectEvent s ticket.law .established), .applied⟩
 
@@ -292,6 +306,9 @@ inductive Event (s : Sit)
   | propose (c : Candidate) (parent : c.parentModel = s.A.model)
   | learn (theta : List Rat) (i : Ref .material) (raw : Raw i)
       (fresh : s.E i = .absent)
+      (request : Request) (auth : authorized s.N request = true)
+      (kind : request.act = .learnModel) (scoped : request.scope = raw.atom.scope)
+      (assessment : Ref .document)
   | record (i : Ref .material) (raw : Raw i) (fresh : s.E i = .absent)
   | admitEvidence (i : Ref .material) (raw : Raw i) (rc : Receipt raw)
       (present : s.E i = .pending raw)
@@ -310,7 +327,7 @@ inductive Event (s : Sit)
 
 def step (s : Sit) : Event s → Sit
   | .propose c _ => propose s c
-  | .learn theta i raw _ => learn s theta i raw
+  | .learn theta i raw _ _ _ _ _ _ => learn s theta i raw
   | .record i raw _ => {s with E := setEvidence s.E i (.pending raw)}
   | .admitEvidence i raw rc _ => admitEvidence s i raw rc
   | .withdraw i raw why _ => withdraw s i raw why
@@ -357,6 +374,9 @@ def prepared : Sit := admitEvidence recorded ⟨9⟩ toyRaw toyReceipt
 def toyTicket : RuleTicket prepared :=
   { law := toyRule
     member := by simp [prepared, admitEvidence, recorded, initial]
+    policy := ⟨toyNorm, toyScope, support⟩
+    policyScope := rfl
+    policyVersion := rfl
     unique := by
       intro other h _ _
       simpa [prepared, admitEvidence, recorded, initial] using h }

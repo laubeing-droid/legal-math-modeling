@@ -52,7 +52,8 @@ theorem revocable_and_effective :
     revocableLife.effective = true ∧ revocableLife.revocationPower = true := by decide
 
 def revokeLife (c : CivilActLife) : CivilActLife :=
-  ⟨c.established, false, true, false, by decide, by decide⟩
+  ⟨c.established, false, true, false,
+    fun h => Bool.noConfusion h, fun h => Bool.noConfusion h⟩
 
 theorem revocation_keeps_establishment (c : CivilActLife) :
     (revokeLife c).established = c.established := rfl

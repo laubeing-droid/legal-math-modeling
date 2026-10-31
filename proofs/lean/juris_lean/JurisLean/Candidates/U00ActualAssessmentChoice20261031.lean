@@ -12,6 +12,8 @@ namespace JurisLean.Candidates.U00ActualAssessmentChoice20261031
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.LearningERM20261027
 open JurisLean.Candidates.LearningConsumer20261027
+open JurisLean.Candidates.SampleCalibrationConsumer20261027
+open JurisLean.Candidates.ProbabilityIntervalConsumer20261027
 open JurisLean.Candidates.EventFeedbackConsumer20261027
 open JurisLean.Candidates.ProtectedFeedback20261027
 open JurisLean.Candidates.ValidatedFeedbackLoad20261027
@@ -67,7 +69,7 @@ private theorem native_assessment_reads_actual_loaded_parent {m : Nat}
   have sameParent : declaration.prepared.parent = readLoaded native.service :=
     parent.trans keepsLoaded.symm
   unfold assessAdaptiveRound at actual
-  split_ifs at actual <;> try simp_all [emptyRoundRecord]
+  split_ifs at actual <;> try simp only [emptyRoundRecord] at actual
   cases candidateKnown : declaration.prepared.candidate with
   | unknown e => simp [candidateKnown, emptyRoundRecord] at actual
   | rejected e => simp [candidateKnown, emptyRoundRecord] at actual
@@ -171,10 +173,8 @@ theorem actual_assessment_and_next_action_joint_confidence
   refine ⟨good, measurable, mass, ?_⟩
   intro w hw state declaration base exchange personalRequest nativeNow meanings nativePlan
     domain snapshot radius tolerance exponent events evaluation loaded samples permits
-  dsimp only
   intro started receiptPlan fresh round room pending actualEvaluation actualLoad loadedStatus
     template calEvents W input protocolSame
-  dsimp only
   intro actual selected called chosen
   let request := sampledRequest base plan nv domain snapshot delta radius exponent tolerance
     events (fun g i => valSample g i w)

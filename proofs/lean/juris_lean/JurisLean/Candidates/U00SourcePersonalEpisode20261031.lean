@@ -1,5 +1,6 @@
 import JurisLean.Candidates.SourceAction20261027
 import JurisLean.Candidates.U00MeasuredRSIEntry20261031
+import JurisLean.Candidates.U00ActualSourceProtocol20261031
 
 noncomputable section
 
@@ -191,5 +192,173 @@ theorem selected_personal_source_plan_reuses_actual_source_validation
     (selected_source_plan_has_actual_spec_and_legal_validation legal learning
       (querySettings settings out.query) (queryMeasurement measurement out.query)
       policy feedback reference actual proposal completed referenceCalled chosen)
+
+open JurisLean.Seams
+open JurisLean.Candidates.SourceStages20261027
+open JurisLean.Candidates.U10_1RefreshRuleProtocol20261030
+
+/-!
+U00 section 13, paid business -> authorized refresh -> measurement.
+This is a parallel entry, not a call of the old full personal episode.
+Success of the outer constructor does not assert that refresh or continuation
+succeeded. Complete protocol payment results are retained even when stopped.
+-/
+
+structure ReportedRefresh (V : Type) (m : Nat) where
+  call : Option (Except (Result Unit)
+    ((SourceFrame × UnifiedModel V RelationId) × ProtocolRun))
+  post : State m
+
+def refreshReportedState {V R W : Type} {m : Nat} [DecidableEq R]
+    (state : State m) (background : UnifiedModel V R)
+    (grants : List Authorization.Grant) (change : Pipeline.RefreshInput)
+    (legal : LegalInput W) (branch : Nat) (meaning : ActionMeaning)
+    (renewals : List (RenewalRequest W)) : ReportedRefresh V m :=
+  match state.business.current with
+  | none => ⟨none, state⟩
+  | some paidPost =>
+      match U00ActualSourceProtocol20261031.sourceThenProtocol background grants paidPost
+          change legal branch meaning renewals with
+      | .error failure => ⟨some (.error failure), state⟩
+      | .ok (sourceOut, protocol) =>
+          ⟨some (.ok (sourceOut, protocol)), { state with business := protocol.payment }⟩
+
+/-- A reads the actual reported post. A source failure precedes all refresh
+effects. Once A returns a ProtocolRun, its whole payment result becomes the
+business result, including stopped-after-refresh and unknown-commit branches. -/
+theorem reported_refresh_retains_actual_business_result
+    {V R W : Type} {m : Nat} [DecidableEq R]
+    (state : State m) (background : UnifiedModel V R)
+    (grants : List Authorization.Grant) (change : Pipeline.RefreshInput)
+    (legal : LegalInput W) (branch : Nat) (meaning : ActionMeaning)
+    (renewals : List (RenewalRequest W)) :
+    let actual := refreshReportedState state background grants change legal branch meaning renewals
+    (state.business.current = none → actual.call = none ∧ actual.post = state) ∧
+      (∀ failure : Result Unit, actual.call = some (.error failure) → actual.post = state) ∧
+      ∀ (sourceOut : SourceFrame × UnifiedModel V RelationId) (protocol : ProtocolRun),
+        actual.call = some (.ok (sourceOut, protocol)) →
+        ∃ paidPost : Ledger.Handle,
+          state.business.current = some paidPost ∧
+          U00ActualSourceProtocol20261031.sourceThenProtocol background grants paidPost
+            change legal branch meaning renewals = .ok (sourceOut, protocol) ∧
+          actual.post = { state with business := protocol.payment } := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro unknown
+    simp [refreshReportedState, unknown]
+  · intro failure failed
+    cases current : state.business.current with
+    | none => simp [refreshReportedState, current] at failed
+    | some paidPost =>
+        cases called : U00ActualSourceProtocol20261031.sourceThenProtocol background grants
+            paidPost change legal branch meaning renewals with
+        | error original => simp [refreshReportedState, current, called]
+        | ok value =>
+            rcases value with ⟨sourceOut, protocol⟩
+            simp [refreshReportedState, current, called] at failed
+  · intro sourceOut protocol accepted
+    cases current : state.business.current with
+    | none => simp [refreshReportedState, current] at accepted
+    | some paidPost =>
+        cases called : U00ActualSourceProtocol20261031.sourceThenProtocol background grants
+            paidPost change legal branch meaning renewals with
+        | error failure => simp [refreshReportedState, current, called] at accepted
+        | ok value =>
+            rcases value with ⟨producedSource, producedProtocol⟩
+            have same : producedSource = sourceOut ∧ producedProtocol = protocol := by
+              simpa [refreshReportedState, current, called] using accepted
+            rcases same with ⟨rfl, rfl⟩
+            refine ⟨paidPost, rfl, called, ?_⟩
+            simp [refreshReportedState, current, called]
+
+structure RefreshedPersonalSourceEpisode (V W : Type) (m : Nat) where
+  opening : SharedOpening W
+  query : Fin m
+  initial : State m
+  action : ActionOutput W m
+  refreshed : ReportedRefresh V m
+  continuation : PersonalContinuation m
+
+/-- First payments occur only in this act. Meaning/renewals are separate
+successor inputs, not a copy of those first payment instructions. Their original
+guards determine whether the successor can continue. Catalogs stay unchanged. -/
+def runRefreshedPersonalSource {V R W : Type} {m : Nat} [DecidableEq R]
+    (legal : LegalInput W) (learning : RoundState m)
+    (version : Nat) (encode : ConsumedView → Fin m) (settings : ActionSettings W m)
+    (background : UnifiedModel V R) (refreshGrants : List Authorization.Grant)
+    (change : Pipeline.RefreshInput) (nextLegal : LegalInput W) (branch : Nat)
+    (nextMeaning : ActionMeaning) (nextRenewals : List (RenewalRequest W))
+    (measurement : MeasurementInput m) (policy : PolicyInput m) (before : RSI.State)
+    (evidence : SourceRef) (request : RSI.PredictionRequest) (now : Instant)
+    (meanings : List (LogMeaning m)) (plan : ValidationPlan) :
+    Result (RefreshedPersonalSourceEpisode V W m) :=
+  match openingFor legal with
+  | .known opening =>
+      match commonQuery version encode opening settings.request.protocol with
+      | .known query =>
+          let rows := planResults opening settings.plans
+          match initialState opening learning with
+          | .known initial =>
+              let action := act initial (actionInput legal (querySettings settings query) rows)
+              let refreshed := refreshReportedState action.post background refreshGrants change
+                nextLegal branch nextMeaning nextRenewals
+              .known ⟨opening, query, initial, action, refreshed,
+                continuePersonalBusiness refreshed.post before query evidence
+                  (queryMeasurement measurement query) policy request now meanings plan⟩
+          | .unknown e => .unknown e
+          | .rejected e => .rejected e
+          | .conflict a b => .conflict a b
+      | .unknown e => .unknown e
+      | .rejected e => .rejected e
+      | .conflict a b => .conflict a b
+  | .unknown e => .unknown e
+  | .rejected e => .rejected e
+  | .conflict a b => .conflict a b
+
+/-- The actual order is source head -> one act -> A on its reported business
+post -> E on A's complete business result. Neither old complete episode nor
+the old complete personal entry is executed as an intermediate stage. -/
+theorem actual_source_action_refresh_then_personal_continuation
+    {V R W : Type} {m : Nat} [DecidableEq R]
+    (legal : LegalInput W) (learning : RoundState m)
+    (version : Nat) (encode : ConsumedView → Fin m) (settings : ActionSettings W m)
+    (background : UnifiedModel V R) (refreshGrants : List Authorization.Grant)
+    (change : Pipeline.RefreshInput) (nextLegal : LegalInput W) (branch : Nat)
+    (nextMeaning : ActionMeaning) (nextRenewals : List (RenewalRequest W))
+    (measurement : MeasurementInput m) (policy : PolicyInput m) (before : RSI.State)
+    (evidence : SourceRef) (request : RSI.PredictionRequest) (now : Instant)
+    (meanings : List (LogMeaning m)) (plan : ValidationPlan)
+    (out : RefreshedPersonalSourceEpisode V W m)
+    (known : runRefreshedPersonalSource legal learning version encode settings background
+      refreshGrants change nextLegal branch nextMeaning nextRenewals measurement policy before
+      evidence request now meanings plan = .known out) :
+    openingFor legal = .known out.opening ∧
+      commonQuery version encode out.opening settings.request.protocol = .known out.query ∧
+      initialState out.opening learning = .known out.initial ∧
+      out.action = act out.initial
+        (actionInput legal (querySettings settings out.query)
+          (planResults out.opening settings.plans)) ∧
+      out.refreshed = refreshReportedState out.action.post background refreshGrants change
+        nextLegal branch nextMeaning nextRenewals ∧
+      out.continuation = continuePersonalBusiness out.refreshed.post before out.query evidence
+        (queryMeasurement measurement out.query) policy request now meanings plan := by
+  cases opened : openingFor legal with
+  | unknown e => simp [runRefreshedPersonalSource, opened] at known
+  | rejected e => simp [runRefreshedPersonalSource, opened] at known
+  | conflict a b => simp [runRefreshedPersonalSource, opened] at known
+  | known opening =>
+      cases queried : commonQuery version encode opening settings.request.protocol with
+      | unknown e => simp [runRefreshedPersonalSource, opened, queried] at known
+      | rejected e => simp [runRefreshedPersonalSource, opened, queried] at known
+      | conflict a b => simp [runRefreshedPersonalSource, opened, queried] at known
+      | known query =>
+          cases initialized : initialState opening learning with
+          | unknown e => simp [runRefreshedPersonalSource, opened, queried, initialized] at known
+          | rejected e => simp [runRefreshedPersonalSource, opened, queried, initialized] at known
+          | conflict a b => simp [runRefreshedPersonalSource, opened, queried, initialized] at known
+          | known initial =>
+              simp only [runRefreshedPersonalSource, opened, queried, initialized,
+                Result.known.injEq] at known
+              subst out
+              exact ⟨rfl, queried, initialized, rfl, rfl, rfl⟩
 
 end JurisLean.Candidates.U00SourcePersonalEpisode20261031

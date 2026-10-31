@@ -1,4 +1,4 @@
-import JurisLean.Candidates.FormalTail20261024
+import JurisLean.Candidates.Final20261021.Probability
 import Mathlib.Analysis.Convex.Deriv
 import Mathlib.Analysis.Convex.Strong
 import Mathlib.Analysis.InnerProductSpace.PiL2
@@ -239,15 +239,18 @@ theorem unregularized_sample_has_no_minimum :
         (objective (fun _ : Fin 1 => fun _ : Fin 1 => (1 : ℚ))
           (fun _ : Fin 1 => true) 0) univ β := by
   rintro ⟨β, hmin⟩
-  apply FormalTail20261024.u04_3_unpenalized_positive_not_penalized_minimizer_existence.2
-  refine ⟨β 0, ?_⟩
-  intro s
-  have hrep : β = WithLp.toLp 2 (fun _ : Fin 1 => β 0) := by
-    ext i
-    fin_cases i <;> rfl
-  have hineq := hmin (mem_univ (WithLp.toLp 2 (fun _ : Fin 1 => s)))
-  rw [hrep] at hineq
-  simpa only [Set.mem_setOf_eq, positive_intercept_is_existing_loss] using hineq
+  have hle (s : ℝ) :
+      Real.log (1 + Real.exp (-(β 0))) ≤ Real.log (1 + Real.exp (-s)) := by
+    have hrep : β = WithLp.toLp 2 (fun _ : Fin 1 => β 0) := by
+      ext i
+      fin_cases i <;> rfl
+    have hineq := hmin (mem_univ (WithLp.toLp 2 (fun _ : Fin 1 => s)))
+    rw [hrep] at hineq
+    simpa only [Set.mem_setOf_eq, positive_intercept_is_existing_loss] using hineq
+  have himprove :=
+    Final20261021.Probability.u04_3_unpenalized_intercept_improves
+      (β 0) (β 0 + 1) (lt_add_one (β 0))
+  exact (not_lt_of_ge (hle (β 0 + 1))) himprove
 
 /-- On zero features every parameter predicts one half. A deployment with true
 rate one is therefore not calibrated by any optimizer of this model. -/

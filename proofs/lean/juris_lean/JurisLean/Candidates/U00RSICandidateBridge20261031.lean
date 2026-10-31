@@ -94,17 +94,24 @@ private theorem selected_checkpoint_reads_actual_catalog {m k : Nat}
   | conflict a b => simp [selectIndex, source] at selected
   | known actual =>
       cases decoded : decodeIndex actual.bytes with
-      | none => simp [selectIndex, source, decoded] at selected
+      | none =>
+          simp only [selectIndex, source] at selected
+          rw [decoded] at selected
+          cases selected
       | some j =>
           by_cases valid : validSelection catalog state request query actual j
           · have same : (actual, j) = (checkpoint, i) := by
-              simpa [selectIndex, source, decoded, valid] using selected
+              simp only [selectIndex, source] at selected
+              rw [decoded, if_pos valid] at selected
+              exact Result.known.inj selected
             have checkpoints : actual = checkpoint := congrArg Prod.fst same
             have indices : j = i := congrArg Prod.snd same
             subst checkpoint
             subst i
-            exact ⟨source, decoded, valid⟩
-          · simp [selectIndex, source, decoded, valid] at selected
+            exact ⟨rfl, decoded, valid⟩
+          · simp only [selectIndex, source] at selected
+            rw [decoded, if_neg valid] at selected
+            cases selected
 
 structure LogMeaning (m : Nat) where
   log : Behavior.MeasurementLog
@@ -300,7 +307,7 @@ private theorem prepared_input_reads_actual_data {m : Nat}
                     simpa [prepareNativeInput, principal, selected, interpreted, reversed, ingested]
                       using known.symm
                   subst input
-                  exact ⟨principal, selected, interpreted, reversed, ingested⟩
+                  exact ⟨principal, rfl, rfl, reversed, ingested⟩
 
 private theorem started_round_reads_input {m : Nat}
     (exchange : PersonalExchange m) (request : RSI.PredictionRequest)
@@ -318,7 +325,7 @@ private theorem started_round_reads_input {m : Nat}
       | rejected e => simp [startPersonalRound, free, room, prepared] at known
       | conflict a b => simp [startPersonalRound, free, room, prepared] at known
       | known input =>
-          refine ⟨input, free, room, prepared, ?_⟩
+          refine ⟨input, free, room, rfl, ?_⟩
           simpa [startPersonalRound, free, room, prepared] using known.symm
     · simp [startPersonalRound, free, room] at known
   · simp [startPersonalRound, free] at known
@@ -361,11 +368,11 @@ theorem actual_personal_round_uses_native_entry {m : Nat}
     simpa only [data.1] using frame.2.2.1
   have source := selected.1
   have sameCheckpoint : input.checkpoint = producedCheckpoint exchange := by
-    cases matches : RSI.checkpointMatches request (producedCheckpoint exchange) with
+    cases matchedCP : RSI.checkpointMatches request (producedCheckpoint exchange) with
     | false =>
-        simp [RSI.proposed_checkpoint_service, personal, matches] at source
+        simp [RSI.proposed_checkpoint_service, personal, matchedCP] at source
     | true =>
-        simpa [RSI.proposed_checkpoint_service, personal, matches] using source.symm
+        simpa [RSI.proposed_checkpoint_service, personal, matchedCP] using source.symm
   have dataSame : (producedState exchange).data = exchange.before.data :=
     frame.2.2.2.2.2.1
   refine ⟨input, free, room, prepared, actual, sameCheckpoint, ?_,
@@ -399,10 +406,8 @@ private theorem known_prepared_candidate_reads_current_journal {m : Nat}
       (applyChange now [] service.journal (.observed last)).disposition = .replay ∨
       (applyChange now [] service.journal (.observed last)).disposition = .corrected ∨
       (applyChange now [] service.journal (.observed last)).disposition = .withdrawn := by
-    unfold processAndFit at actual
-    split at actual
-    · assumption
-    · cases actual
+    by_contra declined
+    simp [processAndFit, declined] at actual
   rw [next_fit_consumes_actual_post now [] service.journal (.observed last)
     protocol binaryLoss ((readLoaded service).fitted.table :: proposals) accepted] at actual
   have fit := successful_fit_reads_current_valid_sample
@@ -432,20 +437,20 @@ theorem native_pending_binds_actual_parent_and_sample {m : Nat}
         candidate.fitted.sampleSize = (trainingRows native.service.journal).length := by
   obtain ⟨input, free, room, prepared, actual⟩ :=
     started_round_reads_input exchange request now meanings plan native known
-  let prefix := prefixRound exchange input
+  let prefixState := prefixRound exchange input
   let protocol := (exchangeCatalog exchange input.index).fitted.protocol
-  let p := prepareNext prefix.service now [] (.observed input.last)
-    protocol prefix.learner.proposals
+  let p := prepareNext prefixState.service now [] (.observed input.last)
+    protocol prefixState.learner.proposals
   let declaration : AdaptiveRoundLedger20261027.RoundDeclaration m :=
-    ⟨prefix.learner, now, prefix.records.length, p,
-      { plan with models := (readLoaded prefix.service).fitted.table :: prefix.learner.proposals }⟩
-  have freePrefix : prefix.pending = none := free
-  have roomPrefix : prefix.records.length < prefix.horizon := room
+    ⟨prefixState.learner, now, prefixState.records.length, p,
+      { plan with models := (readLoaded prefixState.service).fitted.table :: prefixState.learner.proposals }⟩
+  have freePrefix : prefixState.pending = none := free
+  have roomPrefix : prefixState.records.length < prefixState.horizon := room
   have actualBegin :
-      native = AdaptiveRoundLedger20261027.beginAdaptiveRound prefix now []
+      native = AdaptiveRoundLedger20261027.beginAdaptiveRound prefixState now []
         (.observed input.last) protocol plan := actual
   have generated := AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner
-    prefix now [] (.observed input.last) protocol plan freePrefix roomPrefix
+    prefixState now [] (.observed input.last) protocol plan freePrefix roomPrefix
   have pending : native.pending = some declaration := by
     rw [actualBegin]
     exact generated.1
@@ -456,7 +461,7 @@ theorem native_pending_binds_actual_parent_and_sample {m : Nat}
   refine ⟨declaration, pending, rfl, rfl, rfl, post, ?_⟩
   intro candidate candidateKnown
   have properties := known_prepared_candidate_reads_current_journal
-    prefix.service now input.last protocol prefix.learner.proposals candidate candidateKnown
+    prefixState.service now input.last protocol prefixState.learner.proposals candidate candidateKnown
   simpa only [post] using properties
 
 end JurisLean.Candidates.U00RSICandidateBridge20261031

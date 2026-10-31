@@ -144,6 +144,7 @@ COMPANION_NOTES: dict[str, str] = {
     "U02.2": "companion_缩: 真实DB精化/外部副作用/最终完成",
     "U04.1": "The frozen posterior and prediction claims keep their positive-real Beta, specified likelihood, and stated future-channel/conditional-independence premises; no actual consumer-edge call is claimed.",
     "U05.1": "The archived U05.1 residual remains the marginal-rank premise. The separately mapped original-question 05.4 L115 sufficient version is conditional on a measurable positive-mass group, within-group calibration and full-vector exchangeability under the actual group-conditional law.",
+    "U06.5": "The finite noisy-signal law, specified two-round bargaining tree, and no-pure-equilibrium witness are checked in this independent source audit. Mixed-Nash existence is reused from the already accepted GameTheory audit, not re-proved by the three-target driver; hidden-information sequential equilibrium and old numeric-consumer execution remain outside this instance.",
     "U04.4": "The variance-derived effective count is conditional on the archived equal-variance/equal-correlation model; it does not imply independence or validate a software consumer.",
     "U02.4": "The finite/countable risk bounds and single global-attempt cumulative-budget contract are audited under the stated premises; Finset.sum_range_add identifies each prefix plus its suffix. No separate reserve/commit object or runtime execution is introduced.",
     "U09.2": "The existing rational-valued finite cash theorems are audited under the archived per-event balance and closed-account premises; no actual occurrence, boundary-account completeness, lawful discharge, or 15-edge consumer call is claimed.",
@@ -194,7 +195,7 @@ PATHS: dict[str, str] = {
     "U06.2": "证",
     "U06.3": "证",
     "U06.4": "证",
-    "U06.5": "缩",
+    "U06.5": "证",
     "U11.1": "证",
     "U12.1": "证",
     "U12.2": "证",
@@ -287,10 +288,9 @@ NON_GOALS: dict[str, list[str]] = {
         "The supplementary original-question 05.4 L115 group-conditional theorem applies only to a measurable positive-mass group with within-group calibration, n_g≥1, and actual full-vector exchangeability under the test-group conditional law; it gives no automatic guarantee for finer groups or changed test laws.",
     ],
     "U06.5": [
-        "Brouwer/mixed equilibrium is not claimed and is an explicit non-goal.",
-        "Hidden-information sequential equilibrium is not bi_one_step_no_gain and is an explicit non-goal.",
-        "The T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the hidden-information statement.",
-        "Run 39783481932 compiling the signal-value, (4,6) tree, and matching-pennies declarations does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium.",
+        "The finite signal model and specified two-round game do not establish arbitrary information structures or hidden-information sequential equilibrium.",
+        "Mixed-Nash existence is reused from the prior accepted GameTheory audit and is not a new target in this source-only package; this package does not assert an old Pipeline numeric-consumer call.",
+        "The T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as a hidden-information statement.",
     ],
     "U12.4": [
         "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities.",
@@ -328,7 +328,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U04.1": "Archived obligation: positive-real posterior and future kernel with the half-copy exchangeable counterexample. Supplementary original-question 04.3 instances: fixed-p Bernoulli Hoeffding and the actual Beta-integral supplied-enclosure interface.",
     "U04.4": "Under the archived equal-variance/equal-correlation premises, the actual empirical-mean variance is v(1+(n-1)r)/n and the factor is nonnegative. For positive denominator the finite effective count n_eff=n/(1+(n-1)r) gives the same variance as v/n_eff; the zero-denominator branch proves the actual mean variance is zero and connects the forced rational boundary to the existing degenerate constructor. The B/(1-B) fair-coin witness and reused common-cause counterexample distinguish aggregate variance from coordinate independence.",
     "U05.1": "The archived residual is finite marginal conformal coverage for exchangeable scores using a constructed IID continuous auxiliary, preserving multiplicity and both finite/infinite threshold branches. Supplementary original-question 05.4 L115 evidence supplies a conditional version for each specified measurable positive-mass test group, under within-group calibration, n_g≥1 and full-vector exchangeability under the actual conditional law; the finite marginal/group and deployment examples remain counter-boundaries. Neither layer gives pointwise, arbitrary subgroup, or universal shift coverage.",
-    "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
+    "U06.5": "The normalized four-atom noisy-signal model gives no-signal value 1/2, observed-signal value 4/5, net value 3/10-k and positive net value exactly when k<3/10. The specified two-round fully observed tree uses delay loss 1 and failure payoff -1, proves node-by-node backward induction and all complete unilateral deviations, and yields (4,6). The existing matching-pennies no-pure result is retained; mixed Nash existence reuses the already accepted GameTheory.KernelGame.nash_fp_is_nash, mixed_nash_exists, and brouwer_mixedSimplex audit (PR80 Authority 41167738968, Lean job 124438858543), outside this three-target source receipt.",
     "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
     "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
     "U11.1": "Finite-X binary-treatment real-valued causal bridge, original finite instances for 04.4/11.2/11.6, and reused measurement/selection/transport evidence for original 11.1–11.6; arbitrary measurable selection weights remain a conditional paper derivation.",
@@ -354,6 +354,7 @@ UNWIRED: dict[str, list[str]] = {
     "U01.4": [],  # Frozen finite witnesses are independently audited against the exact archived residual.
     "U04.1": [],  # Positive-real posterior, prediction, and finite probability statements are source-audited.
     "U05.1": [],  # The archived finite marginal-coverage residual is independently audited.
+    "U06.5": [],  # Exact finite signal/tree scope is independently audited; mixed-Nash existence is reused from the accepted root audit.
     "U04.2": [],  # Independently audited against the full frozen probability residual in the U04.2 close pack.
     "U04.4": [],  # The archived equicorrelated variance residual is independently audited in its exact scope.
     "U04.5": [],  # General event likelihood and copy-information proofs independently accepted.
@@ -376,6 +377,9 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U05.1": (
         "Independent U05.1 source-bound close: five archived-marginal declarations and the supplementary original-question 05.4 L115 group-conditional instance are audited. The archived declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, both threshold branches, and marginal coverage. The added group theorem instantiates the existing scored-sample theorem under a measurable positive-mass test group, within-group calibration, n_g≥1, and full-vector permutation exchangeability under the actual conditional law; group membership alone does not imply that premise. The finite source and deployment models retain marginal 13/16 versus rare-group conditional 1/4 and changed-test-law coverage 1/4 with exchangeability failure. No pointwise, arbitrary finer-subgroup, or universal shift guarantee is claimed; other original-question 05.5 claims remain open."
+    ),
+    "U06.5": (
+        "Independent U06.5 original-scope close: the actual normalized four-atom signal law gives state marginal 1/2, conditional signal accuracy 4/5 and joint accuracy 4/5; the same law proves no-signal value 1/2, signal value 4/5, net value 3/10-k and the exact positive-cost cutoff. The new fully observed two-round tree fixes delay loss 1 and failure payoff -1, proves node-by-node backward induction, realized payoff (4,6), and every complete unilateral deviation. The existing matching-pennies no-pure witness remains cited. Mixed-Nash existence reuses the already accepted `GameTheory.KernelGame.nash_fp_is_nash`, `mixed_nash_exists`, and `GameTheory.brouwer_mixedSimplex` audit from PR80 Authority 41167738968 / Lean job 124438858543; those are not counted among this run's three source targets. The old T113 perfect-information carrier is not relabeled as hidden-information sequential equilibrium. This closes the frozen U06.5 scope only; no old Pipeline numeric-consumer call or 06.7 seven-question completion is claimed."
     ),
     "U04.1": (
         "Independent U04.1 source-bound close: the reused positive-real `positive_real_beta_posterior_density`, `positive_real_beta_posterior_measure`, and `positive_real_beta_predictive_mean`, together with `u04_1_real_gamma_weight_ratio`, establish the positive-parameter posterior density, measure and mean. New `beta_future_success_of_channel` and `beta_future_success_of_conditional_independence` state sufficient posterior-a.e. next-channel/conditional-independence premises; they do not derive those premises from data. `half_copy_kernel_realizes_generation` identifies the actual half-copy/half-independent kernel, while `half_copy_exchangeable_counterexample` gives exchangeable conditional success 5/6 rather than 2/3. `iid_bernoulli_mean_two_tail` applies the existing `row_mean_two_tail` under an actual fixed-p Bernoulli IID law. `actual_beta_integrals_enclosure` connects supplied rational bounds for actual incomplete/complete Beta integrals to the clipped ratio and width, reusing `u04_2_enclosed_propagation`; it does not compute integrals. Ten theorem targets and nine object checks were independently audited at subject af2000042f139e1cb504d2bedf0ce5bb7c894bff, run 41124014317, job 124297730406. This closes the exact archived U04.1 residual and maps original-question 04.3 L105/L107/L109 together with its already accepted U04.2 evidence. No real-data mechanism, calibration, actual old-consumer call, legal correctness, or expansion of original-question 04.1/04.2 is claimed."
@@ -807,7 +811,6 @@ COMPANION_TAIL_IDS = (
     "U15.3",
 )
 CLOSED_NARROW_IDS = (
-    "U06.5",
     "U00",
 )
 CLOSED_WIRING_IDS = (
@@ -846,6 +849,7 @@ CLOSED_WIRING_IDS = (
     "U04.2",
     "U06.1",
     "U06.2",
+    "U06.5",
     "U12.3",
     "U13.4",
     "U11.1",
@@ -1556,6 +1560,32 @@ U05_1_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
 )
 
+U06_5_CLOSED_IDS = ("U06.5",)
+U06_5_CLOSE_PACK = "docs/formal-release/evidence/u06-5-original-close-20261031"
+U06_5_RECEIPT = U06_5_CLOSE_PACK + "/verification.json"
+U06_5_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalClosureAudit20261031.lean"
+U06_5_NAMES = {
+    "U06.5": [
+        "JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law",
+        "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values",
+        "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction",
+    ]
+}
+U06_5_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw",
+    "JurisLean.Candidates.U06_5OriginalModels20261031.originalGame",
+    "JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile",
+)
+U06_5_SOURCES = (
+    U06_5_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+)
+
 U04_4_CLOSED_IDS = ("U04.4",)
 U04_4_CLOSE_PACK = "docs/formal-release/evidence/u04-4-original-close-20261031"
 U04_4_RECEIPT = U04_4_CLOSE_PACK + "/verification.json"
@@ -1856,12 +1886,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 41163534485, "expected_job_id": 124426094626,
      "expected_attempt": 1, "expected_artifact_id": 13027479267,
      "expected_artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb"},
+    {"closed_ids": U06_5_CLOSED_IDS, "pack": U06_5_CLOSE_PACK,
+     "receipt": U06_5_RECEIPT, "names": U06_5_NAMES,
+     "driver": U06_5_DRIVER, "sources": U06_5_SOURCES,
+     "object_checks": U06_5_OBJECT_CHECKS,
+     "open_before": 0, "open_after": 0,
+     "expected_subject": "9945f1710a7d8067ebeb264ed35d28b4394a1c33",
+     "expected_run_id": 41136762457, "expected_job_id": 124341022636,
+     "expected_attempt": 1, "expected_artifact_id": 13016933102,
+     "expected_artifact_sha256": "c8056bfd68b444fe64ffea029b89f1d514d1ff6128b1d1ff2d36b4b3d21eefdb"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS + U09_2_CLOSED_IDS + U01_4_CLOSED_IDS + U04_4_CLOSED_IDS + U04_1_CLOSED_IDS + U05_1_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES | U09_2_NAMES | U01_4_NAMES | U04_4_NAMES | U04_1_NAMES | U05_1_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS + U09_2_CLOSED_IDS + U01_4_CLOSED_IDS + U04_4_CLOSED_IDS + U04_1_CLOSED_IDS + U05_1_CLOSED_IDS + U06_5_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES | U09_2_NAMES | U01_4_NAMES | U04_4_NAMES | U04_1_NAMES | U05_1_NAMES | U06_5_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -2430,7 +2469,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
             "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. Current "
-        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=48; the "
+        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=49; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -2457,6 +2496,7 @@ def remaining_after(clause: str) -> str:
     if status == "CLOSED_BY_NARROW":
         return "NON_GOAL_POINTER: " + " | ".join(goals)
     text = ("WIRED_TO_INDEPENDENT_U10_1_PROOFS" if clause in U10_1_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U06_5_PROOFS" if clause in U06_5_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U05_1_PROOFS" if clause in U05_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_1_PROOFS" if clause in U04_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_4_PROOFS" if clause in U04_4_CLOSED_IDS else

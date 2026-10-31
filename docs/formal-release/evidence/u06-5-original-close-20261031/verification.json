@@ -1,0 +1,106 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "9945f1710a7d8067ebeb264ed35d28b4394a1c33",
+  "subject_tree": "d236456ca367d8145f3e1c59cb0cb4049a8c341c",
+  "run_id": 41136762457,
+  "job_id": 124341022636,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41136762457",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41136762457/job/124341022636",
+  "artifact_name": "changed-module-only-41136762457-1",
+  "artifact_id": 13016933102,
+  "artifact_sha256": "c8056bfd68b444fe64ffea029b89f1d514d1ff6128b1d1ff2d36b4b3d21eefdb",
+  "artifact_size_bytes": 6115,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "70dc2303429558ebc2641fa1762b907140a76c97cf5375c53cf84c7e9903e4ee"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 49701,
+      "sha256": "e685b4cfe7af1b5f156f3d66b72a9ec47a813f0dea9b0eb9501a11dfb315f647"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalClosureAudit20261031.lean",
+  "named_count": 3,
+  "names_by_clause": {
+    "U06.5": [
+      "JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law",
+      "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values",
+      "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw",
+    "JurisLean.Candidates.U06_5OriginalModels20261031.originalGame",
+    "JurisLean.Candidates.U06_5OriginalModels20261031.originalBIProfile"
+  ],
+  "object_check_count": 3,
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalClosureAudit20261031.lean",
+      "sha256": "388c640c7da6e129c654082b1d81d76fbc005dd3bc85488b0c522e3667cc7565"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+      "sha256": "808c893e2514c57c42ebbe556897ab0e918abc6f4834fc749ff1cca42454edd9"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
+      "sha256": "3ce4768676de75a5f2d32173bb2500c8d0763bed9027c979cfb78c796efe945e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "sha256": "bbc3f3c3a3084d0087030060499fcf59298c5ea6acfa88f1f90580ed45729829"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+      "sha256": "65065e301b35efba8de2f38ede9f57fabcfd8a66893d05ed0b5d08f750c84549"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+      "sha256": "f2e8db01e8ff4b04e00ae1c523716bf11ca57615165e603cd89642fe4be864f9"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 3,
+    "axiom_vocabulary": {
+      "propext": 3,
+      "Classical.choice": 3,
+      "Quot.sound": 3
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "raw_evidence": {
+    "path": "axiom-audit.raw.txt",
+    "size_bytes": 5603,
+    "sha256": "8e9bbe34e663d2be1c79f896fade8fc511b7eca390857d9c2d7bda4fca102ee7"
+  },
+  "original_residuals": {
+    "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, given two-round tree (4,6), and matching-pennies no pure equilibrium are named. Brouwer/mixed equilibrium is not claimed. Hidden-information sequential equilibrium is not bi_one_step_no_gain. T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the original hidden-information statement. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium."
+  },
+  "closed_ids": [
+    "U06.5"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "discharges_archived_manuscript_gaps": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  }
+}

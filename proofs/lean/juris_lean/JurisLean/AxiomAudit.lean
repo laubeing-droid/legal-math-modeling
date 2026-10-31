@@ -237,6 +237,9 @@ import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
 import JurisLean.Candidates.U05_1OriginalClosureAudit20261031
+import JurisLean.Candidates.HarnessOriginalInstancesAudit20261031
+import JurisLean.Candidates.U06_4ConditionalInformationAudit20261031
+import JurisLean.Candidates.U06_5OriginalClosureAudit20261031
 import JurisLean.Candidates.BetaFutureSampling20261031
 import JurisLean.Candidates.BernoulliMeanInstance20261031
 import JurisLean.Candidates.BetaEnclosureInstance20261031
@@ -942,6 +945,32 @@ open HornSystem
 #print axioms JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries
 #check JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
 #print axioms JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
+
+/-! Original-question 02 finite harness and proof-checker instances. -/
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose
+#print axioms JurisLean.Candidates.HarnessOriginalInstances20261031.stale_resource_checks_do_not_compose
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit
+#print axioms JurisLean.Candidates.HarnessOriginalInstances20261031.preparation_failure_frame_and_unknown_commit
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal
+#print axioms JurisLean.Candidates.HarnessOriginalInstances20261031.hidden_permissions_force_refusal
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.finite_gate_has_nonempty_safe_instance
+#print axioms JurisLean.Candidates.HarnessOriginalInstances20261031.finite_gate_has_nonempty_safe_instance
+#check JurisLean.Candidates.HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth
+#print axioms JurisLean.Candidates.HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth
+
+/-! Original-question 06.4 finite conditional information value. -/
+#check JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information
+#print axioms JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information
+#check JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone
+#print axioms JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone
+
+/-! Archived U06.5 noisy-signal and bargaining instances. -/
+#check JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law
+#check JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values
+#check JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
+#print axioms JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
 
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

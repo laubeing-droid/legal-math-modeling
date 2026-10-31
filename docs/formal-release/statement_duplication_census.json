@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 6268,
-  "duplicated_statement_types": 60,
+  "distinct_statement_types": 6303,
+  "duplicated_statement_types": 62,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -364,6 +364,30 @@
         "carrier": "External/runDist_eq_of_stepIndependence",
         "line": 746,
         "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+      }
+    ],
+    ": (Finset.univ : Finset (Bool × Bool)) = {(false, false), (false, true), (true, false), (true, true)}": [
+      {
+        "carrier": "root/other/boundary_pair_univ",
+        "line": 845,
+        "path": "Candidates/ExchangeableRank20261031.lean"
+      },
+      {
+        "carrier": "root/other/pair_univ",
+        "line": 29,
+        "path": "Candidates/U06_5OriginalModels20261031.lean"
+      }
+    ],
+    ": (Finset.univ : Finset Bool) = {false, true}": [
+      {
+        "carrier": "root/other/bool_univ",
+        "line": 26,
+        "path": "Candidates/U06_5OriginalModels20261031.lean"
+      },
+      {
+        "carrier": "root/other/boundary_bool_univ",
+        "line": 842,
+        "path": "Candidates/ExchangeableRank20261031.lean"
       }
     ],
     ": adminFinalDisposition ∉ closureAt familyHorn": [
@@ -763,12 +787,12 @@
       }
     ]
   },
-  "files_scanned": 503,
+  "files_scanned": 509,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 121,
-  "inventory_package_theorems": 6231,
-  "private_protected_headers_read": 218,
+  "inventory_package_theorems": 6241,
+  "private_protected_headers_read": 245,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 6328
+  "statements_read": 6365
 }

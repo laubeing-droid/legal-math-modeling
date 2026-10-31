@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 503
-- theorem/lemma headers read: 6328
-- distinct statement types: 6268
-- statement types declared more than once: 60
+- files scanned: 509
+- theorem/lemma headers read: 6365
+- distinct statement types: 6303
+- statement types declared more than once: 62
 - of those spanning module families: 3
 
 ## Across module families (3)
@@ -16,7 +16,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 
-## Within the package (60)
+## Within the package (62)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -45,6 +45,8 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 - `(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)` — `External/GameTheory/Math/ProbabilityMassFunction.lean:44` (External/pushforward_comp), `External/GameTheory/Math/ProbabilityMassFunction.lean:49` (External/pushforward_pushforward)
 - `(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => s` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
+- `: (Finset.univ : Finset (Bool × Bool)) = {(false, false), (false, true), (true, false), (true, true)}` — `Candidates/ExchangeableRank20261031.lean:845` (root/other/boundary_pair_univ), `Candidates/U06_5OriginalModels20261031.lean:29` (root/other/pair_univ)
+- `: (Finset.univ : Finset Bool) = {false, true}` — `Candidates/U06_5OriginalModels20261031.lean:26` (root/other/bool_univ), `Candidates/ExchangeableRank20261031.lean:842` (root/other/boundary_bool_univ)
 - `: adminFinalDisposition ∉ closureAt familyHorn` — `Seams/UnifiedFourteenFamilies.lean:1378` (root/other/adminFinalDisposition_not_closure), `Seams/UnifiedFourteenFamilies.lean:1706` (root/other/witness_admin_branch_open)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
@@ -56,6 +58,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{Rel : Type} [DecidableEq Rel] (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) : effective (next L (.formative eventId rel)) r ↔ effective L r` — `Seams/UnifiedNeedlesS5.lean:104` (root/other/formative_preserves_common_constraints), `Seams/UnifiedNeedlesS5.lean:52` (root/other/judgment_step_frozen_side)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
 - `{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧` — `Seams/UnifiedNeedlesTotal.lean:49` (root/other/total_legacy_five_contracts), `Seams/Unified.lean:259` (root/other/unified_legal_derivation_on_declared_fragment)
-- `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)
-- `{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af` — `ULM16TheoryComposition.lean:234` (root/other/CORE_20_preferred_complete), `ULM10DungProfiles.lean:250` (root/other/preferredExtensions_complete)
-- …20 more in the JSON
+- …22 more in the JSON

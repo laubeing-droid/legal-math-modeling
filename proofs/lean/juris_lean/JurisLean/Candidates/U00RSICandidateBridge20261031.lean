@@ -102,7 +102,9 @@ private theorem selected_checkpoint_reads_actual_catalog {m k : Nat}
           by_cases valid : validSelection catalog state request query actual j
           · have same : (actual, j) = (checkpoint, i) := by
               simp only [selectIndex, source] at selected
-              rw [decoded, if_pos valid] at selected
+              rw [decoded] at selected
+              dsimp only at selected
+              rw [if_pos valid] at selected
               exact Result.known.inj selected
             have checkpoints : actual = checkpoint := congrArg Prod.fst same
             have indices : j = i := congrArg Prod.snd same
@@ -110,7 +112,9 @@ private theorem selected_checkpoint_reads_actual_catalog {m k : Nat}
             subst i
             exact ⟨rfl, decoded, valid⟩
           · simp only [selectIndex, source] at selected
-            rw [decoded, if_neg valid] at selected
+            rw [decoded] at selected
+            dsimp only at selected
+            rw [if_neg valid] at selected
             cases selected
 
 structure LogMeaning (m : Nat) where

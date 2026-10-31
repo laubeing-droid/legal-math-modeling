@@ -2758,8 +2758,8 @@
       "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem.",
-      "claimed_scope": "For an exchangeable finite score vector, an independently constructed IID continuous auxiliary produces uniform actual rank prefixes; the multiplicity-preserving calibration order statistic gives the finite threshold k=ceil((n+1)(1−α)) and the k>n infinite branch. The guarantee is marginal for fixed training and the specified test law. Named finite group/deployment models witness marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4 with exchangeability failure.",
-      "companion_scope_notes": "The constructed continuous auxiliary proves the finite marginal-rank premise; group and deployment examples are boundaries, not a group-conditional calibration method.",
+      "claimed_scope": "The archived residual is finite marginal conformal coverage for exchangeable scores using a constructed IID continuous auxiliary, preserving multiplicity and both finite/infinite threshold branches. Supplementary original-question 05.4 L115 evidence supplies a conditional version for each specified measurable positive-mass test group, under within-group calibration, n_g≥1 and full-vector exchangeability under the actual conditional law; the finite marginal/group and deployment examples remain counter-boundaries. Neither layer gives pointwise, arbitrary subgroup, or universal shift coverage.",
+      "companion_scope_notes": "The archived U05.1 residual remains the marginal-rank premise. The separately mapped original-question 05.4 L115 sufficient version is conditional on a measurable positive-mass group, within-group calibration and full-vector exchangeability under the actual group-conditional law.",
       "wired_declarations": [
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_rank_prefix_mass",
@@ -2809,12 +2809,12 @@
         "Calibration.lean:90"
       ],
       "non_goals": [
-        "The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee.",
-        "The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem."
+        "The archived U05.1 theorem is marginal under its stated exchangeable score-vector law and constructed independent continuous auxiliary; it is not pointwise or a deployment-shift guarantee.",
+        "The supplementary original-question 05.4 L115 group-conditional theorem applies only to a measurable positive-mass group with within-group calibration, n_g≥1, and actual full-vector exchangeability under the test-group conditional law; it gives no automatic guarantee for finer groups or changed test laws."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "Independent U05.1 source-bound close: five audited declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, the finite and infinite threshold branches, and fixed-measurable-score marginal coverage. The finite source and deployment models give marginal 13/16 versus rare-group conditional 1/4, and changed-test-law coverage 1/4 with exchangeability failure. This is not a group-conditional calibration procedure or an arbitrary shift guarantee; other original-question 05.5 claims remain open.",
-      "remaining_after_close": "WIRED_TO_INDEPENDENT_U05_1_PROOFS || NON_GOAL_POINTER: The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee. | The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem.",
+      "scope_review": "Independent U05.1 source-bound close: five archived-marginal declarations and the supplementary original-question 05.4 L115 group-conditional instance are audited. The archived declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, both threshold branches, and marginal coverage. The added group theorem instantiates the existing scored-sample theorem under a measurable positive-mass test group, within-group calibration, n_g≥1, and full-vector permutation exchangeability under the actual conditional law; group membership alone does not imply that premise. The finite source and deployment models retain marginal 13/16 versus rare-group conditional 1/4 and changed-test-law coverage 1/4 with exchangeability failure. No pointwise, arbitrary finer-subgroup, or universal shift guarantee is claimed; other original-question 05.5 claims remain open.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U05_1_PROOFS || NON_GOAL_POINTER: The archived U05.1 theorem is marginal under its stated exchangeable score-vector law and constructed independent continuous auxiliary; it is not pointwise or a deployment-shift guarantee. | The supplementary original-question 05.4 L115 group-conditional theorem applies only to a measurable positive-mass group with within-group calibration, n_g≥1, and actual full-vector exchangeability under the test-group conditional law; it gives no automatic guarantee for finer groups or changed test laws.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -2842,7 +2842,8 @@
           "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
           "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
           "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
-          "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+          "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+          "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage"
         ]
       }
     },

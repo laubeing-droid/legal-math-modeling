@@ -940,6 +940,8 @@ open HornSystem
 #print axioms JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage
 #check JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries
 #print axioms JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries
+#check JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
+#print axioms JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
 
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

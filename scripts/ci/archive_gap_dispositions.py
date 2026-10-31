@@ -143,7 +143,7 @@ COMPANION_NOTES: dict[str, str] = {
     "U01.4": "The frozen finite label/truth, source/deployment, dependence, and grouping witnesses are mapped to exact existing declarations; the finite models do not assert real-data behavior or deployment acceptance.",
     "U02.2": "companion_缩: 真实DB精化/外部副作用/最终完成",
     "U04.1": "The frozen posterior and prediction claims keep their positive-real Beta, specified likelihood, and stated future-channel/conditional-independence premises; no actual consumer-edge call is claimed.",
-    "U05.1": "The constructed continuous auxiliary proves the finite marginal-rank premise; group and deployment examples are boundaries, not a group-conditional calibration method.",
+    "U05.1": "The archived U05.1 residual remains the marginal-rank premise. The separately mapped original-question 05.4 L115 sufficient version is conditional on a measurable positive-mass group, within-group calibration and full-vector exchangeability under the actual group-conditional law.",
     "U04.4": "The variance-derived effective count is conditional on the archived equal-variance/equal-correlation model; it does not imply independence or validate a software consumer.",
     "U02.4": "The finite/countable risk bounds and single global-attempt cumulative-budget contract are audited under the stated premises; Finset.sum_range_add identifies each prefix plus its suffix. No separate reserve/commit object or runtime execution is introduced.",
     "U09.2": "The existing rational-valued finite cash theorems are audited under the archived per-event balance and closed-account premises; no actual occurrence, boundary-account completeness, lawful discharge, or 15-edge consumer call is claimed.",
@@ -283,8 +283,8 @@ NON_GOALS: dict[str, list[str]] = {
         "No full covariance-matrix classification or original-coordinate independence theorem is claimed.",
     ],
     "U05.1": [
-        "The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee.",
-        "The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem.",
+        "The archived U05.1 theorem is marginal under its stated exchangeable score-vector law and constructed independent continuous auxiliary; it is not pointwise or a deployment-shift guarantee.",
+        "The supplementary original-question 05.4 L115 group-conditional theorem applies only to a measurable positive-mass group with within-group calibration, n_g≥1, and actual full-vector exchangeability under the test-group conditional law; it gives no automatic guarantee for finer groups or changed test laws.",
     ],
     "U06.5": [
         "Brouwer/mixed equilibrium is not claimed and is an explicit non-goal.",
@@ -327,7 +327,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U01.4": "The frozen finite claims are checked by existing point-mass train/deployment risk and actual-fit witnesses; the independent 1/(4n), copied 1/4, common-cause n>1, and same-training two-world witnesses; plus the existing within-explanation-domain grouping theorem. No real-data claim is made.",
     "U04.1": "Archived obligation: positive-real posterior and future kernel with the half-copy exchangeable counterexample. Supplementary original-question 04.3 instances: fixed-p Bernoulli Hoeffding and the actual Beta-integral supplied-enclosure interface.",
     "U04.4": "Under the archived equal-variance/equal-correlation premises, the actual empirical-mean variance is v(1+(n-1)r)/n and the factor is nonnegative. For positive denominator the finite effective count n_eff=n/(1+(n-1)r) gives the same variance as v/n_eff; the zero-denominator branch proves the actual mean variance is zero and connects the forced rational boundary to the existing degenerate constructor. The B/(1-B) fair-coin witness and reused common-cause counterexample distinguish aggregate variance from coordinate independence.",
-    "U05.1": "For an exchangeable finite score vector, an independently constructed IID continuous auxiliary produces uniform actual rank prefixes; the multiplicity-preserving calibration order statistic gives the finite threshold k=ceil((n+1)(1−α)) and the k>n infinite branch. The guarantee is marginal for fixed training and the specified test law. Named finite group/deployment models witness marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4 with exchangeability failure.",
+    "U05.1": "The archived residual is finite marginal conformal coverage for exchangeable scores using a constructed IID continuous auxiliary, preserving multiplicity and both finite/infinite threshold branches. Supplementary original-question 05.4 L115 evidence supplies a conditional version for each specified measurable positive-mass test group, under within-group calibration, n_g≥1 and full-vector exchangeability under the actual conditional law; the finite marginal/group and deployment examples remain counter-boundaries. Neither layer gives pointwise, arbitrary subgroup, or universal shift coverage.",
     "U06.5": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
     "U06.2": "Finite mixed expected-payoff ε+2η transfer and the fixed two-round W4 bargaining strategy/tree/terminal-ledger payoff bridge; no general mixed-equilibrium existence claim or old Pipeline numeric-consumer claim.",
     "U12.3": "Generic finite-class 2ε winner bound plus the actual find? Some-branch oracle bound with computed empirical optimization gap and None abstention; finite logging-law expectation equals policyValue; explicit finite MAR/visible-recording correction; and finite-horizon full-history shared-kernel likelihood-ratio transport under per-history support.",
@@ -375,7 +375,7 @@ SCOPE_REVIEW: dict[str, str] = {
         "Independent U01.4 finite-scope close: `pointWeight_is_probability`, `pointPopulationRisk_eq`, and `actualConstantFit_value` witness the frozen literal Y=false/T=true/actualConstantFit false construction with train risk 0 and deployment risk 1. For `allowed(action) := action = true`, the same finite set has the witness `action = true`, while the actual fit output `false` is not allowed. The existing `LearningERM20261027.u01_1_actual_empirical_fit_minimizes` theorem supplies the nonempty finite empirical-fit minimization contract as context; no duplicate minimization theorem or production Fit/provenance claim is added. `u01_6_perfect_fit_does_not_supply_authorization` retains its opposite-label authorization boundary. For source/deployment, point masses P(false)/Q(true), target `id`, and fitted `actualConstantFit false` give source 0/deployment 1; the same-training two-world theorem is for finite samples generated from P and every deterministic learner. The dependence audit checks independent fair Bernoulli variance 1/(4n), copied variance 1/4, and the distinct-ID common-cause counterexample for n>1. `grouped_unit_not_split` only states within-domain single-valued grouping and does not imply iid or exclude future/source bias. These 10 declarations and five object checks were independently audited at subject f80e790e6d6ecbd8449f2181433673945540e5af, run 41081311144, job 124150886815. This closes only the archived finite U01.4 witnesses; it does not claim real data follow the bad mechanism, universal empirical truth, source authenticity, deployment acceptance, the separate U01.4 representation-error question, or completion of original-question rows 01.1/01.3/01.5/04.2."
     ),
     "U05.1": (
-        "Independent U05.1 source-bound close: five audited declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, the finite and infinite threshold branches, and fixed-measurable-score marginal coverage. The finite source and deployment models give marginal 13/16 versus rare-group conditional 1/4, and changed-test-law coverage 1/4 with exchangeability failure. This is not a group-conditional calibration procedure or an arbitrary shift guarantee; other original-question 05.5 claims remain open."
+        "Independent U05.1 source-bound close: five archived-marginal declarations and the supplementary original-question 05.4 L115 group-conditional instance are audited. The archived declarations establish finite deterministic ranking, a constructed independent IID continuous auxiliary rank law under an exchangeable score-vector premise, multiplicity-preserving calibration order statistics, both threshold branches, and marginal coverage. The added group theorem instantiates the existing scored-sample theorem under a measurable positive-mass test group, within-group calibration, n_g≥1, and full-vector permutation exchangeability under the actual conditional law; group membership alone does not imply that premise. The finite source and deployment models retain marginal 13/16 versus rare-group conditional 1/4 and changed-test-law coverage 1/4 with exchangeability failure. No pointwise, arbitrary finer-subgroup, or universal shift guarantee is claimed; other original-question 05.5 claims remain open."
     ),
     "U04.1": (
         "Independent U04.1 source-bound close: the reused positive-real `positive_real_beta_posterior_density`, `positive_real_beta_posterior_measure`, and `positive_real_beta_predictive_mean`, together with `u04_1_real_gamma_weight_ratio`, establish the positive-parameter posterior density, measure and mean. New `beta_future_success_of_channel` and `beta_future_success_of_conditional_independence` state sufficient posterior-a.e. next-channel/conditional-independence premises; they do not derive those premises from data. `half_copy_kernel_realizes_generation` identifies the actual half-copy/half-independent kernel, while `half_copy_exchangeable_counterexample` gives exchangeable conditional success 5/6 rather than 2/3. `iid_bernoulli_mean_two_tail` applies the existing `row_mean_two_tail` under an actual fixed-p Bernoulli IID law. `actual_beta_integrals_enclosure` connects supplied rational bounds for actual incomplete/complete Beta integrals to the clipped ratio and width, reusing `u04_2_enclosed_propagation`; it does not compute integrals. Ten theorem targets and nine object checks were independently audited at subject af2000042f139e1cb504d2bedf0ce5bb7c894bff, run 41124014317, job 124297730406. This closes the exact archived U04.1 residual and maps original-question 04.3 L105/L107/L109 together with its already accepted U04.2 evidence. No real-data mechanism, calibration, actual old-consumer call, legal correctness, or expansion of original-question 04.1/04.2 is claimed."
@@ -1542,6 +1542,7 @@ U05_1_NAMES = {
         "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
         "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
         "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+        "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage",
     ]
 }
 U05_1_OBJECT_CHECKS = (
@@ -1552,6 +1553,7 @@ U05_1_OBJECT_CHECKS = (
 U05_1_SOURCES = (
     U05_1_DRIVER,
     "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
 )
 
 U04_4_CLOSED_IDS = ("U04.4",)
@@ -1850,10 +1852,10 @@ INDEPENDENT_CLOSE_PACKS = (
      "driver": U05_1_DRIVER, "sources": U05_1_SOURCES,
      "object_checks": U05_1_OBJECT_CHECKS,
      "open_before": 0, "open_after": 0,
-     "expected_subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
-     "expected_run_id": 41134518610, "expected_job_id": 124333547346,
-     "expected_attempt": 1, "expected_artifact_id": 13016125638,
-     "expected_artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202"},
+     "expected_subject": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+     "expected_run_id": 41163534485, "expected_job_id": 124426094626,
+     "expected_attempt": 1, "expected_artifact_id": 13027479267,
+     "expected_artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]

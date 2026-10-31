@@ -53,6 +53,19 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "40274167574" in proc.stdout
     assert "formal_tail_closed_this_round 1" in proc.stdout
     assert "step_2_closed false" in proc.stdout
+    pack = next(p for p in checker.disp.INDEPENDENT_CLOSE_PACKS if p["pack"] == checker.disp.U05_1_CLOSE_PACK)
+    receipt = checker.load_json(ROOT / pack["receipt"])
+    raw = (ROOT / pack["pack"] / "axiom-audit.raw.txt").read_text(encoding="utf-8")
+    assert checker.independent_close_errors(receipt, raw, pack) == []
+    assert receipt["subject"] == "72135485cb4cbba15ec3e2bdd0183d99d05e9947"
+    assert receipt["subject_tree"] == "ff6132ec279f6f9d020e455d4b0f11a44f054578"
+    assert receipt["run_id"] == 41163534485
+    assert receipt["job_id"] == 124426094626
+    assert receipt["artifact_id"] == 13027479267
+    assert receipt["artifact_sha256"] == "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb"
+    assert receipt["named_count"] == receipt["axiom_audit"]["audited_targets"] == 6
+    assert len(receipt["object_checks"]) == 3
+    assert len(receipt["sources"]) == 3
 
 
 def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> None:

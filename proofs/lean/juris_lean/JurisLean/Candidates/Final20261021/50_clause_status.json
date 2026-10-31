@@ -3364,8 +3364,8 @@
           "Calibration.lean:90"
         ],
         "non_goals": [
-          "The guarantee is marginal under the stated exchangeable score-vector law and independent continuous auxiliary; it is not group-conditional or pointwise and supplies no deployment-shift guarantee.",
-          "The finite counterexamples state coverage failure under the specified group/deployment laws; they do not provide a group-conditional calibration procedure or a general shift theorem."
+          "The archived U05.1 theorem is marginal under its stated exchangeable score-vector law and constructed independent continuous auxiliary; it is not pointwise or a deployment-shift guarantee.",
+          "The supplementary original-question 05.4 L115 group-conditional theorem applies only to a measurable positive-mass group with within-group calibration, n_g≥1, and actual full-vector exchangeability under the test-group conditional law; it gives no automatic guarantee for finer groups or changed test laws."
         ],
         "discharges_archived_manuscript_gaps": false,
         "independent_closure": {
@@ -3375,7 +3375,8 @@
             "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
             "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
             "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
-            "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+            "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+            "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage"
           ]
         },
         "formal_tail_prove": {

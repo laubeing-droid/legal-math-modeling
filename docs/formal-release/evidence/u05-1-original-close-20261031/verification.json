@@ -1,17 +1,17 @@
 {
   "schema": "independent-original-residual-close-v1",
-  "subject": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
-  "subject_tree": "deb761a55294eb6d695a05916cfce68241d96980",
-  "run_id": 41134518610,
-  "job_id": 124333547346,
+  "subject": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+  "subject_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
+  "run_id": 41163534485,
+  "job_id": 124426094626,
   "attempt": 1,
   "job_conclusion": "success",
-  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41134518610",
-  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41134518610/job/124333547346",
-  "artifact_name": "changed-module-only-41134518610-1",
-  "artifact_id": 13016125638,
-  "artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
-  "artifact_size_bytes": 2451,
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163534485",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163534485/job/124426094626",
+  "artifact_name": "changed-module-only-41163534485-1",
+  "artifact_id": 13027479267,
+  "artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb",
+  "artifact_size_bytes": 2685,
   "artifact_files": [
     {
       "path": "module-plan.json",
@@ -20,19 +20,20 @@
     },
     {
       "path": "changed-module.log",
-      "size_bytes": 11328,
-      "sha256": "7a5573e918fe7e1748d3c4d1be44ca36a5f3190d863d3d102217790e28139c84"
+      "size_bytes": 13248,
+      "sha256": "6aff5885091ef5fb1d85ef2b823e5303f4dc46d96cc71b54169dec5728b4cdd7"
     }
   ],
   "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
-  "named_count": 5,
+  "named_count": 6,
   "names_by_clause": {
     "U05.1": [
       "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
       "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
       "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
       "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
-      "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+      "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+      "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage"
     ]
   },
   "object_checks": [
@@ -41,11 +42,11 @@
     "JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold"
   ],
   "axiom_audit": {
-    "audited_targets": 5,
+    "audited_targets": 6,
     "axiom_vocabulary": {
-      "propext": 5,
-      "Classical.choice": 5,
-      "Quot.sound": 5
+      "propext": 6,
+      "Classical.choice": 6,
+      "Quot.sound": 6
     },
     "targets_with_sorryAx": {},
     "targets_outside_standard_axioms": {},
@@ -54,11 +55,15 @@
   "sources": [
     {
       "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
-      "sha256": "1b0f38f8390cb24b4fa281b2cea3260c262939f5980b592541aad220267b61d3"
+      "sha256": "39fa312b32d87c9b34445b9a8144cefd103c26ad08fe0b8ef0493c38545ee38a"
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
       "sha256": "8c017caea1a60e1a6d3285f72c701e08780787d5b16e978045f885c10ddf3f7c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
+      "sha256": "b9728b06fb57606e718d9b0ebd60fd5ac6cd032afc142bc43b888c64a073e4f5"
     }
   ],
   "original_residuals": {
@@ -95,7 +100,7 @@
   },
   "audit_raw": {
     "path": "docs/formal-release/evidence/u05-1-original-close-20261031/axiom-audit.raw.txt",
-    "sha256": "ab50b995c3f95baa8775fe3e8dac1ed51aa5f2d41dafd0f95af22a018840a98d",
-    "blocks": 13
+    "sha256": "0cf04ba42feb7456d4624f953f2953477aec9b0d69332894d8b5b5dd3fa52550",
+    "blocks": 15
   }
 }

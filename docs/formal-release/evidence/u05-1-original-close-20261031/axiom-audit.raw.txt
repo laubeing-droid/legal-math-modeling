@@ -106,3 +106,23 @@ JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile {n : ℕ} (s :
   (hkn : k ≤ n) : ℝ
 JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold {n : ℕ} (s : Fin n → ℝ) (α : ℝ) (hα : α < 1) :
   WithTop ℝ
+JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage.{u_1, u_2, u_3}
+  {Ω : Type u_1} {E : Type u_2} {G : Type u_3} [MeasurableSpace Ω] [MeasurableSpace E] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (X : Ω → Fin (n + 1) → E) (hX : Measurable X)
+  (group : E → G) (g : G) (hgroup : MeasurableSet {ω | group (X ω (Fin.last n)) = g})
+  (hpos : 0 < μ {ω | group (X ω (Fin.last n)) = g})
+  (hcal : ∀ᵐ (ω : Ω) ∂μ[|{ω | group (X ω (Fin.last n)) = g}], ∀ (i : Fin n), group (X ω i.castSucc) = g) (score : E → ℝ)
+  (hscore : Measurable score)
+  (hex :
+    ∀ (σ : Equiv.Perm (Fin (n + 1))),
+      ProbabilityTheory.IdentDistrib (fun ω i => X ω (σ i)) X μ[|{ω | group (X ω (Fin.last n)) = g}]
+        μ[|{ω | group (X ω (Fin.last n)) = g}])
+  (hn : 1 ≤ n) (α : ℝ) (hα0 : 0 < α) (hα1 : α < 1) :
+  ENNReal.ofReal (1 - α) ≤
+    μ[{ω |
+        ↑(score (X ω (Fin.last n))) ≤
+          JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold (fun i => score (X ω i.castSucc)) α hα1} |
+      {ω | group (X ω (Fin.last n)) = g}]
+'JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

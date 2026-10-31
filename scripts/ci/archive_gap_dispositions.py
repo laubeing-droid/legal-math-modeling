@@ -210,7 +210,7 @@ PATHS: dict[str, str] = {
     "U14.2": "证",
     "U15.2": "证",
     "U15.3": "证",
-    "U00": "缩",
+    "U00": "证",
 }
 
 # Explicit non-goals. Narrow rows must have some. Prove rows carry the pack
@@ -314,11 +314,6 @@ NON_GOALS: dict[str, list[str]] = {
     "U15.3": [
         "The external load readback path is an explicit non-goal. An external link does not prove the two-round construction.",
     ],
-    "U00": [
-        "All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths.",
-        "A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed.",
-        "This narrow is not an abandonment of the other forty-nine clauses.",
-    ],
 }
 
 CLAIMED_SCOPE: dict[str, str] = {
@@ -335,7 +330,7 @@ CLAIMED_SCOPE: dict[str, str] = {
     "U13.4": "Audited population forecasts consume actual fitted calibration inputs under explicit sampling/law/iid/measurability/loss/radius premises; sampled fallback returns the equal-weight mean of checked mature observations under explicit iid conditions; declared priors remain separate model inputs; and absent/invalid sources return named UNKNOWN results.",
     "U10.1": "Actual full-context authorized refresh-to-Step protocol connection: the checked actualPost.env is passed through selectedHorn/fullHorn, full Gamma/history/permission/process is rechecked after each nonempty internal refresh, and an empty tail terminates. Existing authorization, selection stability, and trace declarations are reused; actual legal authority remains an external boundary.",
     "U12.1": "General finite-action causal IPW bridge and actual measured-policy connection under explicit causal/measurement premises; reused clipping and selector proofs; affine real support-range characterization plus existing same-log endpoint evidence; and three finite original-question examples for 12.3 and 12.6. No real-world premise derivation or old Pipeline consumer wiring is claimed.",
-    "U00": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
+    "U00": "Frozen §13 conditional composition: compatible same-case Γ/S, nonempty shared interface, named layer premises, and actual outputs consumed by the next stage. Reuse accepted U10.2 finite induction and U07/U03 representation/source results; keep probability inside declared Q_Γ with marginal guarantees retained and do not assign probability to legal branches λ. New 19-target source/protocol/measurement/decision/post/feedback path supplies actual finite composition under the stated history-conditioned sampling and finite/countable budget premises. The old remaining_obligations string is preserved as an archive snapshot and interpreted against exact_scope plus this new named proof; the 49 previously accepted clauses remain the accepted main baseline.",
 }
 
 # Formal sentences the wired declarations do not state. Empty means the
@@ -366,6 +361,7 @@ UNWIRED: dict[str, list[str]] = {
     "U12.3": [],  # Independent selector, MAR, and finite-horizon history-kernel proofs close this archived residual.
     "U12.4": [],  # Independently audited against the full frozen model in the U12.4 close pack.
     "U13.3": [],  # The source-audited independent package closes this row only.
+    "U00": [],  # Frozen conditional composition is covered by the U00 original-scope package and the already accepted prior clauses.
 
     "U13.4": [],  # Independent fallback selector and conditional risk bridges close this archived residual.
     "U14.1": [],  # Independently proved and audited by the U14.1 closure package.
@@ -380,6 +376,9 @@ SCOPE_REVIEW: dict[str, str] = {
     ),
     "U06.5": (
         "Independent U06.5 original-scope close: the actual normalized four-atom signal law gives state marginal 1/2, conditional signal accuracy 4/5 and joint accuracy 4/5; the same law proves no-signal value 1/2, signal value 4/5, net value 3/10-k and the exact positive-cost cutoff. The new fully observed two-round tree fixes delay loss 1 and failure payoff -1, proves node-by-node backward induction, realized payoff (4,6), and every complete unilateral deviation. The existing matching-pennies no-pure witness remains cited. Mixed-Nash existence reuses the already accepted `GameTheory.KernelGame.nash_fp_is_nash`, `mixed_nash_exists`, and `GameTheory.brouwer_mixedSimplex` audit from PR80 Authority 41167738968 / Lean job 124438858543; those are not counted among this run's three source targets. The old T113 perfect-information carrier is not relabeled as hidden-information sequential equilibrium. This closes the frozen U06.5 scope only; no old Pipeline numeric-consumer call or 06.7 seven-question completion is claimed."
+    ),
+    "U00": (
+        "Independent U00 conditional composition: source failure is retained and successful joint source output becomes the actual current rule input; actual sample packet/blocks, actual round activation/post, personal continuation, full measured observation, and assessment/next action are tied through named targets. Reuse accepted U10.2 finite deterministic composition, U07/U03 source and representation results, and the existing U14/U15 conditional sampling/budget declarations. Under fixed visible past h and current Γ, the stated measurability, iIndepFun, IdentDistrib, bounded-loss, positive-sample and predeclared-family premises apply under Q_Γ conditioned on a measurable positive-mass history cell. For finite predeclared T covering every claimed experiment, externally allocate protocol.failureBudget_t and plan.failureBudget_t with Σ(protocol.failureBudget_t + plan.failureBudget_t)≤Δ_joint; c_t/v_t are only shorthand for those two inputs. Native roundCost is only Σ actual validation block.delta and its limit constrains validation charges only, not Δ_joint. The existing nonnegative summable-δ result supplies the countable form. No independence across streams or rounds, real-source truth, unique legal interpretation, domain transfer, or production deployment is claimed. This closes frozen §13's conditional finite composition alongside the 49 prior accepted clauses; it does not rewrite the legacy Pipeline snapshot or claim every one of the 15 consumer edges has been migrated."
     ),
     "U04.1": (
         "Independent U04.1 source-bound close: the reused positive-real `positive_real_beta_posterior_density`, `positive_real_beta_posterior_measure`, and `positive_real_beta_predictive_mean`, together with `u04_1_real_gamma_weight_ratio`, establish the positive-parameter posterior density, measure and mean. New `beta_future_success_of_channel` and `beta_future_success_of_conditional_independence` state sufficient posterior-a.e. next-channel/conditional-independence premises; they do not derive those premises from data. `half_copy_kernel_realizes_generation` identifies the actual half-copy/half-independent kernel, while `half_copy_exchangeable_counterexample` gives exchangeable conditional success 5/6 rather than 2/3. `iid_bernoulli_mean_two_tail` applies the existing `row_mean_two_tail` under an actual fixed-p Bernoulli IID law. `actual_beta_integrals_enclosure` connects supplied rational bounds for actual incomplete/complete Beta integrals to the clipped ratio and width, reusing `u04_2_enclosed_propagation`; it does not compute integrals. Ten theorem targets and nine object checks were independently audited at subject af2000042f139e1cb504d2bedf0ce5bb7c894bff, run 41124014317, job 124297730406. This closes the exact archived U04.1 residual and maps original-question 04.3 L105/L107/L109 together with its already accepted U04.2 evidence. No real-data mechanism, calibration, actual old-consumer call, legal correctness, or expansion of original-question 04.1/04.2 is claimed."
@@ -810,9 +809,7 @@ COMPANION_TAIL_IDS = (
     "U13.4",
     "U15.3",
 )
-CLOSED_NARROW_IDS = (
-    "U00",
-)
+CLOSED_NARROW_IDS = ()
 CLOSED_WIRING_IDS = (
     "U13.3",
     "U12.4",
@@ -861,6 +858,7 @@ CLOSED_WIRING_IDS = (
     "U04.4",
     "U04.1",
     "U05.1",
+    "U00",
 )
 # Historical CAND5 wiring closes (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -1586,6 +1584,55 @@ U06_5_SOURCES = (
     "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
 )
 
+U00_CLOSED_IDS = ("U00",)
+U00_CLOSE_PACK = "docs/formal-release/evidence/u00-original-close-20261031"
+U00_RECEIPT = U00_CLOSE_PACK + "/verification.json"
+U00_DRIVER = "proofs/lean/juris_lean/JurisLean/Candidates/U00SourcePersonalEpisodeAudit20261031.lean"
+U00_NAMES = {
+    "U00": [
+        "JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained",
+        "JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence",
+        "JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation",
+        "JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection",
+        "JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame",
+        "JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry",
+        "JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample",
+        "JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation",
+        "JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry",
+        "JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting",
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch",
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation",
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation",
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result",
+        "JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation",
+        "JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence",
+    ]
+}
+U00_OBJECT_CHECKS = (
+    "JurisLean.Candidates.U00SourcePersonalEpisode20261031.runRefreshedPersonalSource",
+    "JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket",
+    "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest",
+)
+U00_SOURCES = (
+    U00_DRIVER,
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualAssessmentChoice20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualAssessmentChoiceAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualSourceProtocol20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualSourceProtocolAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualStatisticalJoin20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00MeasuredRSIEntry20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00MeasuredRSIEntryAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00RoundPostBridge20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00RoundPostBridgeAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00RSICandidateBridge20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00RSICandidateBridgeAudit20261031.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/U00SourcePersonalEpisode20261031.lean",
+)
+
 U04_4_CLOSED_IDS = ("U04.4",)
 U04_4_CLOSE_PACK = "docs/formal-release/evidence/u04-4-original-close-20261031"
 U04_4_RECEIPT = U04_4_CLOSE_PACK + "/verification.json"
@@ -1895,12 +1942,21 @@ INDEPENDENT_CLOSE_PACKS = (
      "expected_run_id": 41136762457, "expected_job_id": 124341022636,
      "expected_attempt": 1, "expected_artifact_id": 13016933102,
      "expected_artifact_sha256": "c8056bfd68b444fe64ffea029b89f1d514d1ff6128b1d1ff2d36b4b3d21eefdb"},
+    {"closed_ids": U00_CLOSED_IDS, "pack": U00_CLOSE_PACK,
+     "receipt": U00_RECEIPT, "names": U00_NAMES,
+     "driver": U00_DRIVER, "sources": U00_SOURCES,
+     "object_checks": U00_OBJECT_CHECKS,
+     "open_before": 0, "open_after": 0,
+     "expected_subject": "eba3880d57f9da974508123e7cc6fc689db5ebe5",
+     "expected_run_id": 41178784116, "expected_job_id": 124471736816,
+     "expected_attempt": 1, "expected_artifact_id": 13034126936,
+     "expected_artifact_sha256": "fc88ae769f2ea1d2519a0a6a407e99527c9532d451a29c96decccdd1b3dd8241"},
 )
 CURRENT_CLOSE_IDS = INDEPENDENT_CLOSE_PACKS[-1]["closed_ids"]
 CURRENT_CLOSE_PACK = INDEPENDENT_CLOSE_PACKS[-1]["pack"]
 CURRENT_CLOSE_RECEIPT = INDEPENDENT_CLOSE_PACKS[-1]["receipt"]
-INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS + U09_2_CLOSED_IDS + U01_4_CLOSED_IDS + U04_4_CLOSED_IDS + U04_1_CLOSED_IDS + U05_1_CLOSED_IDS + U06_5_CLOSED_IDS
-INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES | U09_2_NAMES | U01_4_NAMES | U04_4_NAMES | U04_1_NAMES | U05_1_NAMES | U06_5_NAMES
+INDEPENDENT_CLOSED_IDS = POST_PIN_CLOSED_IDS + U01_CLOSED_IDS + U04_5_CLOSED_IDS + U14_1_CLOSED_IDS + U13_3_CLOSED_IDS + U12_4_CLOSED_IDS + U07_2_CLOSED_IDS + U07_3_CLOSED_IDS + U02_1_CLOSED_IDS + U04_2_CLOSED_IDS + U06_1_CLOSED_IDS + U06_2_CLOSED_IDS + U12_3_CLOSED_IDS + U13_4_CLOSED_IDS + U11_1_CLOSED_IDS + U12_1_CLOSED_IDS + U10_1_CLOSED_IDS + U02_4_CLOSED_IDS + U09_2_CLOSED_IDS + U01_4_CLOSED_IDS + U04_4_CLOSED_IDS + U04_1_CLOSED_IDS + U05_1_CLOSED_IDS + U06_5_CLOSED_IDS + U00_CLOSED_IDS
+INDEPENDENT_NAMES = POST_PIN_NAMES | U01_NAMES | U04_5_NAMES | U14_1_NAMES | U13_3_NAMES | U12_4_NAMES | U07_2_NAMES | U07_3_NAMES | U02_1_NAMES | U04_2_NAMES | U06_1_NAMES | U06_2_NAMES | U12_3_NAMES | U13_4_NAMES | U11_1_NAMES | U12_1_NAMES | U10_1_NAMES | U02_4_NAMES | U09_2_NAMES | U01_4_NAMES | U04_4_NAMES | U04_1_NAMES | U05_1_NAMES | U06_5_NAMES | U00_NAMES
 INDEPENDENT_RECEIPTS = {
     clause: pack["receipt"] for pack in INDEPENDENT_CLOSE_PACKS for clause in pack["closed_ids"]
 }
@@ -2468,8 +2524,8 @@ def formal_tail_summary(rows: list[dict]) -> dict:
             "interpretation inputs; source truth/O05 and old Pipeline consumption remain "
             "outside that proof. The later independent U04.2 package closes only its frozen "
             "probability residual and leaves original-question 04.4 identification "
-            "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. Current "
-        "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=49; the "
+            "obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected in the legacy Pipeline snapshot. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. The U00 package audits the frozen §13 conditional composition with actual source/protocol/measurement/assessment/feedback evidence while retaining explicit sampling-law and external semantic premises. Current "
+            "OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=50; the "
             "historical CAND8 and tip-pin receipts are unchanged."
         ),
         "discharges_archived_manuscript_gaps": False,
@@ -2516,6 +2572,7 @@ def remaining_after(clause: str) -> str:
             "WIRED_TO_INDEPENDENT_U12_4_PROOFS" if clause in U12_4_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U14_1_PROOFS" if clause in U14_1_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U04_5_PROOFS" if clause in U04_5_CLOSED_IDS else
+            "WIRED_TO_INDEPENDENT_U00_PROOFS" if clause in U00_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U01_PROOFS" if clause in U01_CLOSED_IDS else
             "WIRED_TO_INDEPENDENT_U03_PROOFS" if clause in POST_PIN_CLOSED_IDS else
             "WIRED_TO_TIP_PIN_DECLARATIONS")

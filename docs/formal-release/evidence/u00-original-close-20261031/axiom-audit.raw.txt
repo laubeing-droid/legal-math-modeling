@@ -1,0 +1,856 @@
+JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained {V R W : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (failure : JurisLean.Candidates.Final20261021.Result Unit)
+  (failed :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background input.anchor branch input.catalog =
+      Except.error failure) :
+  JurisLean.Candidates.U00ActualSourceProtocol20261031.sourceThenProtocol background grants before change input branch
+      meaning renewals =
+    Except.error failure
+JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input {V R W : Type}
+  [DecidableEq R] (background : JurisLean.Seams.UnifiedModel V R)
+  (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (before : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (sourceOut :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (run : JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.ProtocolRun)
+  (called :
+    JurisLean.Candidates.U00ActualSourceProtocol20261031.sourceThenProtocol background grants before change input branch
+        meaning renewals =
+      Except.ok (sourceOut, run))
+  (continued : run.continued = true) :
+  ∃ x after bound horn,
+    JurisLean.Candidates.U07_2JointObject20261029.suppliedLayers sourceOut =
+        JurisLean.Candidates.U07_2JointObject20261029.jointLayers background x ∧
+      JurisLean.Candidates.U07_2JointObject20261029.JointContract background input.anchor branch input.catalog x ∧
+        bound.source = sourceOut.1.source ∧
+          JurisLean.Candidates.Final20261021.Pipeline.refresh grants before change =
+              JurisLean.Candidates.Final20261021.Result.known after ∧
+            JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules after input branch =
+                JurisLean.Candidates.Final20261021.Result.known (bound, horn) ∧
+              after.state.env = JurisLean.Candidates.Final20261021.Result.known horn.selectedVersion ∧
+                horn.selectedVersion = after.gamma.normVersion ∧
+                  input.anchor.gamma = after.gamma ∧
+                    input.history = after.state.normHistory ∧
+                      horn =
+                          JurisLean.Candidates.FiniteLegalValidation20261027.fullHorn sourceOut.1.source
+                            horn.selectedVersion input.rules input.ruleGate
+                            (JurisLean.Candidates.FiniteLegalValidation20261027.eligibleFacts bound) ∧
+                        JurisLean.Candidates.Final20261021.Trace.Step before after ∧
+                          ∀ (final : JurisLean.Candidates.Final20261021.Ledger.Handle),
+                            JurisLean.Candidates.Final20261021.Trace.Invariant before →
+                              run.payment.current = some final →
+                                JurisLean.Candidates.Final20261021.Trace.Path before final ∧
+                                  JurisLean.Candidates.Final20261021.Trace.Invariant final ∧
+                                    before.state.used ⊆ final.state.used
+JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column {m n : ℕ}
+  (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m) (models : List (List ℚ))
+  (events : Fin n → JurisLean.Candidates.Final20261021.EventId) (data : Fin n → Fin m × Bool) :
+  ∃ (size :
+    (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template models events data).rows.length = n),
+    ∀ (i : Fin n),
+      JurisLean.Candidates.LoadedLegalConsumer20261027.calibrationData
+          (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template models events data)
+          (Fin.cast ⋯ i) =
+        data i
+JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks {m G : ℕ}
+  (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (n domain snapshot : Fin G → ℕ)
+  (delta radius : Fin G → ℚ) (exponent : Fin G → ℕ) (tolerance : Fin G → ℚ)
+  (events : (g : Fin G) → Fin (n g) → JurisLean.Candidates.Final20261021.EventId)
+  (data : (g : Fin G) → Fin (n g) → Fin m × Bool) :
+  ((JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius
+          exponent tolerance events data).blocks =
+      List.ofFn fun g =>
+        JurisLean.Candidates.ProtectedFeedback20261027.sampledBlock plan (domain g) (snapshot g) (delta g) (radius g)
+          (exponent g) (tolerance g) (events g) (data g)) ∧
+    (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius
+            exponent tolerance events data).sampling =
+        base.sampling ∧
+      (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius
+            exponent tolerance events data).permit =
+        base.permit
+JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence.{u_1} {Ω : Type u_1}
+  {m nc G : ℕ} [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]
+  (QΓ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure QΓ] (Pc : MeasureTheory.Measure (Fin m × Bool))
+  [MeasureTheory.IsProbabilityMeasure Pc] (Pv : Fin G → MeasureTheory.Measure (Fin m × Bool))
+  [∀ (g : Fin G), MeasureTheory.IsProbabilityMeasure (Pv g)] (hm : 0 < m) (hnc : 0 < nc)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (first : List ℚ) (rest : List (List ℚ))
+  (calSample : Fin nc → Ω → Fin m × Bool) (calMeasurable : ∀ (i : Fin nc), Measurable (calSample i))
+  (calIndependent : ProbabilityTheory.iIndepFun calSample QΓ)
+  (calLaw : ∀ (i : Fin nc), ProbabilityTheory.IdentDistrib (calSample i) id QΓ Pc)
+  (calDeltaPositive : 0 < protocol.failureBudget) (calDeltaBelowOne : protocol.failureBudget < 1)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (planNonempty : plan.models.toFinset.Nonempty)
+  (nv : Fin G → ℕ) (nvPositive : ∀ (g : Fin G), 0 < nv g) (valSample : (g : Fin G) → Fin (nv g) → Ω → Fin m × Bool)
+  (valMeasurable : ∀ (g : Fin G) (i : Fin (nv g)), Measurable (valSample g i))
+  (valIndependent : ∀ (g : Fin G), ProbabilityTheory.iIndepFun (valSample g) QΓ)
+  (valLaw : ∀ (g : Fin G) (i : Fin (nv g)), ProbabilityTheory.IdentDistrib (valSample g i) id QΓ (Pv g))
+  (bounded :
+    ∀ table ∈ plan.models,
+      ∀ (z : Fin m × Bool),
+        ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+              JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss table z) ∈
+          Set.Icc 0 1)
+  (delta : Fin G → ℚ) (deltaPositive : ∀ (g : Fin G), 0 < delta g) (deltaBelowOne : ∀ (g : Fin G), delta g < 1)
+  (budget : ∑ g, delta g ≤ plan.failureBudget) :
+  ∃ good,
+    MeasurableSet good ∧
+      1 - (↑protocol.failureBudget + ↑plan.failureBudget) ≤ QΓ.real good ∧
+        ∀ w ∈ good,
+          ∀ (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+            (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+            (candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)
+            (domain snapshot : Fin G → ℕ) (radius tolerance : Fin G → ℚ) (exponent : Fin G → ℕ)
+            (events : (g : Fin G) → Fin (nv g) → JurisLean.Candidates.Final20261021.EventId)
+            (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+            (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+            (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)),
+            JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan
+                  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service) candidate
+                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+                  (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan nv domain snapshot
+                      delta radius exponent tolerance events fun g i => valSample g i w).blocks =
+                JurisLean.Candidates.Final20261021.Result.known evaluation →
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate state.service evaluation samples
+                      base.sampling permits base.permit).status =
+                  JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded →
+                ∀ (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+                  (calEvents : Fin nc → JurisLean.Candidates.Final20261021.EventId)
+                  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m),
+                  request.protocol = protocol →
+                    ∀ (W : Type) (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+                      (model :
+                        JurisLean.Candidates.LegalActionDomain20261027.ActionModel W
+                          JurisLean.Candidates.Final20261021.Ledger.Handle)
+                      (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+                      (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m))
+                      (calRadius : ℚ) (calExponent : ℕ) (utility : ℚ → ℚ)
+                      (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+                      (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+                      (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m),
+                      (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded legal model proposals
+                              (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state evaluation
+                                samples base.sampling permits base.permit)
+                              request
+                              (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template
+                                (first :: rest) calEvents fun i => calSample i w)
+                              catalog calRadius calExponent utility grants initial).decision =
+                          JurisLean.Candidates.Final20261021.Result.known selected →
+                        selected.probability.fitted =
+                            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state evaluation
+                                    samples base.sampling permits base.permit).service).fitted ∧
+                          (0 <
+                                Pc.real
+                                  {z |
+                                    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                        (selected.probability.fitted.table, selected.probability.query) z =
+                                      true} ∧
+                              ↑selected.probability.lower ≤
+                                  Pc.real
+                                      {z |
+                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                              (selected.probability.fitted.table, selected.probability.query) z =
+                                            true ∧
+                                          z.2 = true} /
+                                    Pc.real
+                                      {z |
+                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                            (selected.probability.fitted.table, selected.probability.query) z =
+                                          true} ∧
+                                Pc.real
+                                      {z |
+                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                              (selected.probability.fitted.table, selected.probability.query) z =
+                                            true ∧
+                                          z.2 = true} /
+                                    Pc.real
+                                      {z |
+                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                            (selected.probability.fitted.table, selected.probability.query) z =
+                                          true} ≤
+                                  ↑selected.probability.upper) ∧
+                            ∀ (g : Fin G),
+                              ∫ (z : Fin m × Bool),
+                                  ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+                                      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+                                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                            (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state
+                                                evaluation samples base.sampling permits
+                                                base.permit).service).fitted.table
+                                      z) ∂Pv g ≤
+                                ∫ (z : Fin m × Bool),
+                                    ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+                                        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+                                        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                              state.service).fitted.table
+                                        z) ∂Pv g +
+                                  ↑(tolerance g)
+JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (fresh : List.find? (fun entry => entry.request.round == r.round) s.records = none)
+  (round : r.round = s.records.length) (room : s.records.length < s.horizon) (pending : s.pending = some d)
+  (actualEvaluation :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =
+      some (JurisLean.Candidates.Final20261021.Result.known evaluation))
+  (actualLoad :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits).post.service =
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits
+        r.permit).post
+JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection {W : Type}
+  {m : ℕ} (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (fresh : List.find? (fun entry => entry.request.round == r.round) s.records = none)
+  (round : r.round = s.records.length) (room : s.records.length < s.horizon) (pending : s.pending = some d)
+  (actualEvaluation :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =
+      some (JurisLean.Candidates.Final20261021.Result.known evaluation))
+  (actualLoad :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded)
+  (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (model :
+    JurisLean.Candidates.LegalActionDomain20261027.ActionModel W JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m)
+  (packet : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+  (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)) (radius : ℚ) (exponent : ℕ)
+  (utility : ℚ → ℚ) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m)
+  (chosen :
+    (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input model proposals
+          (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits).post request packet
+          catalog radius exponent utility grants initial).decision =
+      JurisLean.Candidates.Final20261021.Result.known selected) :
+  (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded input model proposals
+        {
+          service :=
+            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits
+                r.permit).post,
+          learner := s.learner, checker := s.checker, horizon := s.horizon, limit := s.limit,
+          protectedDomains := s.protectedDomains, records := s.records, pending := s.pending,
+          learnerChanges := s.learnerChanges }
+        request packet catalog radius exponent utility grants initial).decision =
+    JurisLean.Candidates.Final20261021.Result.known selected
+JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame {m : ℕ}
+  (exchange : JurisLean.Candidates.U00RSICandidateBridge20261031.PersonalExchange m) :
+  JurisLean.Candidates.U00RSICandidateBridge20261031.exchangeCatalog exchange 0 =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded exchange.round.service ∧
+    JurisLean.Candidates.U00RSICandidateBridge20261031.decodeIndex
+          (JurisLean.Candidates.U00RSICandidateBridge20261031.producedCheckpoint exchange).bytes =
+        some 0 ∧
+      (JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).personal
+            exchange.round.service.principal =
+          some (JurisLean.Candidates.U00RSICandidateBridge20261031.producedCheckpoint exchange) ∧
+        (JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).rules = exchange.before.rules ∧
+          (JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).mechanism =
+              exchange.before.mechanism ∧
+            (JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).data = exchange.before.data ∧
+              ∀ (other : JurisLean.Candidates.Final20261021.PartyId),
+                other ≠ exchange.round.service.principal →
+                  (JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).personal other =
+                    exchange.before.personal other
+JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry {m : ℕ}
+  (exchange : JurisLean.Candidates.U00RSICandidateBridge20261031.PersonalExchange m)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (native : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (known :
+    JurisLean.Candidates.U00RSICandidateBridge20261031.startPersonalRound exchange request now meanings plan =
+      JurisLean.Candidates.Final20261021.Result.known native) :
+  ∃ input,
+    exchange.round.pending = none ∧
+      exchange.round.records.length < exchange.round.horizon ∧
+        JurisLean.Candidates.U00RSICandidateBridge20261031.prepareNativeInput exchange request now meanings =
+            JurisLean.Candidates.Final20261021.Result.known input ∧
+          native = JurisLean.Candidates.U00RSICandidateBridge20261031.nativeBegin exchange input now plan ∧
+            input.checkpoint = JurisLean.Candidates.U00RSICandidateBridge20261031.producedCheckpoint exchange ∧
+              JurisLean.Candidates.Final20261021.RSI.proposed_checkpoint_service request
+                    ((JurisLean.Candidates.U00RSICandidateBridge20261031.producedState exchange).personal
+                      request.principal)
+                    none none none =
+                  JurisLean.Candidates.Final20261021.Result.known
+                    (JurisLean.Candidates.U00RSICandidateBridge20261031.producedCheckpoint exchange) ∧
+                JurisLean.Candidates.U00RSICandidateBridge20261031.decodeIndex input.checkpoint.bytes =
+                    some input.index ∧
+                  JurisLean.Candidates.U00RSICandidateBridge20261031.exchangeCatalog exchange input.index =
+                      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded exchange.round.service ∧
+                    JurisLean.Candidates.U00RSICandidateBridge20261031.interpretLogs
+                          exchange.round.service.journal.scope meanings exchange.before.data =
+                        JurisLean.Candidates.Final20261021.Result.known input.rows ∧
+                      input.rows.reverse = input.last :: input.reversePrefix ∧
+                        JurisLean.Candidates.U00RSICandidateBridge20261031.ingestRows now exchange.round.service.journal
+                              input.reversePrefix.reverse =
+                            JurisLean.Candidates.Final20261021.Result.known input.journal ∧
+                          JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                              (JurisLean.Candidates.U00RSICandidateBridge20261031.prefixRound exchange input).service =
+                            JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded exchange.round.service
+JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample {m : ℕ}
+  (exchange : JurisLean.Candidates.U00RSICandidateBridge20261031.PersonalExchange m)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (native : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (known :
+    JurisLean.Candidates.U00RSICandidateBridge20261031.startPersonalRound exchange request now meanings plan =
+      JurisLean.Candidates.Final20261021.Result.known native) :
+  ∃ declaration,
+    native.pending = some declaration ∧
+      declaration.prepared.parent =
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded exchange.round.service ∧
+        declaration.prepared.models =
+            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded exchange.round.service).fitted.table ::
+              exchange.round.learner.proposals ∧
+          declaration.plan.models = declaration.prepared.models ∧
+            native.service = declaration.prepared.post ∧
+              ∀ (candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m),
+                declaration.prepared.candidate = JurisLean.Candidates.Final20261021.Result.known candidate →
+                  candidate.snapshot = native.service.journal ∧
+                    candidate.fitted.protocol =
+                        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                              exchange.round.service).fitted.protocol ∧
+                      candidate.fitted.sampleSize =
+                        (JurisLean.Candidates.EventFeedbackConsumer20261027.trainingRows native.service.journal).length
+JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation {m : ℕ}
+  (business : JurisLean.Candidates.Final20261021.Pipeline.PaymentRun)
+  (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m)
+  (accepted :
+    JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement input.environment
+        (JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported business input) input.treatment
+        input.treatments =
+      JurisLean.Candidates.Final20261021.Result.known row) :
+  JurisLean.Candidates.Final20261021.Behavior.proposed_measurement row.treatment.environment.dataScope.target
+        (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row) =
+      JurisLean.Candidates.Final20261021.Result.known row.measured.label ∧
+    JurisLean.Candidates.U00RSICandidateBridge20261031.interpretLog row.treatment.environment.dataScope
+          [JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyMeaning row]
+          (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row) =
+        JurisLean.Candidates.Final20261021.Result.known
+          (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row) ∧
+      ∀ (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+        (out : JurisLean.Candidates.EventFeedbackConsumer20261027.Observation m),
+        JurisLean.Candidates.U00RSICandidateBridge20261031.interpretLog row.treatment.environment.dataScope
+              (meanings ++ [JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyMeaning row])
+              (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row) =
+            JurisLean.Candidates.Final20261021.Result.known out →
+          out = JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row
+JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (query : Fin m)
+  (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (native : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (known :
+    (JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness state before query evidence measurement
+          policy request now meanings plan).preparation =
+      JurisLean.Candidates.Final20261021.Result.known native) :
+  ∃ row,
+    JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement measurement.environment
+          (JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported state.business measurement)
+          measurement.treatment measurement.treatments =
+        JurisLean.Candidates.Final20261021.Result.known row ∧
+      (JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness state before query evidence measurement
+              policy request now meanings plan).observation =
+          JurisLean.Candidates.Final20261021.Result.known row ∧
+        (state.observationHistory.any fun old =>
+              JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row) =
+            false ∧
+          (JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness state before query evidence
+                  measurement policy request now meanings plan).rsi =
+              JurisLean.Candidates.Final20261021.RSI.appendData before
+                (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row) ∧
+            JurisLean.Candidates.U00RSICandidateBridge20261031.startPersonalRound
+                  { round := state.learning,
+                    before :=
+                      JurisLean.Candidates.Final20261021.RSI.appendData before
+                        (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row),
+                    query := query, evidence := evidence }
+                  request now (meanings ++ [JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyMeaning row]) plan =
+                JurisLean.Candidates.Final20261021.Result.known native ∧
+              JurisLean.Candidates.U00RSICandidateBridge20261031.interpretLog state.learning.service.journal.scope
+                    (meanings ++ [JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyMeaning row])
+                    (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row) =
+                  JurisLean.Candidates.Final20261021.Result.known
+                    (JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row) ∧
+                (∃ input,
+                    JurisLean.Candidates.U00RSICandidateBridge20261031.prepareNativeInput
+                          { round := state.learning,
+                            before :=
+                              JurisLean.Candidates.Final20261021.RSI.appendData before
+                                (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row),
+                            query := query, evidence := evidence }
+                          request now
+                          (meanings ++ [JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyMeaning row]) =
+                        JurisLean.Candidates.Final20261021.Result.known input ∧
+                      input.last = JurisLean.Candidates.MeasuredPolicy20261027.measuredFeedback row ∧
+                        native =
+                          JurisLean.Candidates.U00RSICandidateBridge20261031.nativeBegin
+                            { round := state.learning,
+                              before :=
+                                JurisLean.Candidates.Final20261021.RSI.appendData before
+                                  (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row),
+                              query := query, evidence := evidence }
+                            input now plan) ∧
+                  (JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness state before query evidence
+                          measurement policy request now meanings plan).post.feedbackQueue =
+                    state.feedbackQueue ++
+                      JurisLean.Candidates.U00MeasuredRSIEntry20261031.remainingCurrent✝ row
+                        (JurisLean.Candidates.Final20261021.Result.known native)
+JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting {m : ℕ}
+  (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (query : Fin m)
+  (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m) :
+  have actual :=
+    JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness state before query evidence measurement
+      policy request now meanings plan;
+  actual.observation =
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness state measurement policy
+          feedback).observation ∧
+    actual.post.business = state.business ∧
+      (∀ (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m),
+          JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement measurement.environment
+                (JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported state.business measurement)
+                measurement.treatment measurement.treatments =
+              JurisLean.Candidates.Final20261021.Result.known row →
+            (state.observationHistory.any fun old =>
+                  JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row) =
+                false →
+              actual.rsi =
+                JurisLean.Candidates.Final20261021.RSI.appendData before
+                  (JurisLean.Candidates.U00MeasuredRSIEntry20261031.policyLog row)) ∧
+        (∀ (row : JurisLean.Candidates.MeasuredPolicy20261027.PolicyObservation m),
+            JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement measurement.environment
+                  (JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported state.business measurement)
+                  measurement.treatment measurement.treatments =
+                JurisLean.Candidates.Final20261021.Result.known row →
+              (state.observationHistory.any fun old =>
+                    JurisLean.Candidates.BusinessFeedbackLoop20261027.sameObservation old row) =
+                  true →
+                actual.rsi = before ∧
+                  actual.preparation =
+                      JurisLean.Candidates.Final20261021.Result.unknown
+                        JurisLean.Candidates.Final20261021.Error.missingEvidence ∧
+                    actual.post.feedbackQueue = state.feedbackQueue) ∧
+          (state.business.current = none →
+            actual.observation =
+                JurisLean.Candidates.Final20261021.Result.unknown
+                  JurisLean.Candidates.Final20261021.Error.missingEvidence ∧
+              actual.preparation =
+                  JurisLean.Candidates.Final20261021.Result.unknown
+                    JurisLean.Candidates.Final20261021.Error.missingEvidence ∧
+                actual.rsi = before ∧
+                  actual.post.learning = state.learning ∧
+                    actual.post.observationHistory = state.observationHistory ∧
+                      actual.post.feedbackQueue = state.feedbackQueue)
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch {W : Type} {m : ℕ}
+  (version : ℕ) (encode : JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Fin m)
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (query : Fin m)
+  (known :
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.commonQuery version encode opening protocol =
+      JurisLean.Candidates.Final20261021.Result.known query) :
+  version = protocol.fit.featureVersion ∧
+    query = encode opening.anchor.frame.source.decoded ∧
+      ∀ branch ∈ opening.branches, encode branch.frame.source.decoded = query
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation {W : Type} {m : ℕ}
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (version : ℕ)
+  (encode : JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Fin m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (out : JurisLean.Candidates.U00SourcePersonalEpisode20261031.PersonalSourceEpisode W m)
+  (known :
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.runPersonalSource legal learning version encode settings
+        measurement policy before evidence request now meanings plan =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SourceOpening20261027.openingFor legal =
+      JurisLean.Candidates.Final20261021.Result.known out.opening ∧
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.commonQuery version encode out.opening
+          settings.request.protocol =
+        JurisLean.Candidates.Final20261021.Result.known out.query ∧
+      JurisLean.Candidates.SourceOpening20261027.initialState out.opening learning =
+          JurisLean.Candidates.Final20261021.Result.known out.initial ∧
+        out.action =
+            JurisLean.Candidates.BusinessFeedbackLoop20261027.act out.initial
+              (JurisLean.Candidates.SourceAction20261027.actionInput legal
+                (JurisLean.Candidates.U00SourcePersonalEpisode20261031.querySettings settings out.query)
+                (JurisLean.Candidates.SourceAction20261027.planResults out.opening settings.plans)) ∧
+          out.continuation =
+              JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness out.action.post before out.query
+                evidence (JurisLean.Candidates.U00SourcePersonalEpisode20261031.queryMeasurement measurement out.query)
+                policy request now meanings plan ∧
+            (JurisLean.Candidates.U00SourcePersonalEpisode20261031.queryMeasurement measurement
+                      out.query).treatment.feature =
+                out.query ∧
+              (JurisLean.Candidates.U00SourcePersonalEpisode20261031.queryMeasurement measurement
+                      out.query).treatments =
+                  measurement.treatments ∧
+                (JurisLean.Candidates.U00SourcePersonalEpisode20261031.queryMeasurement measurement out.query).sources =
+                  measurement.sources
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation
+  {W : Type} {m : ℕ} (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (version : ℕ)
+  (encode : JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Fin m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (out : JurisLean.Candidates.U00SourcePersonalEpisode20261031.PersonalSourceEpisode W m)
+  (actual : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+  (proposal : JurisLean.Candidates.LegalActionDomain20261027.Proposal)
+  (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  (known :
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.runPersonalSource legal learning version encode settings
+        measurement policy before evidence request now meanings plan =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (called : out.action.run = some actual) (chosen : actual.execution.proposal = some proposal) :
+  ∃ spec ∈ settings.plans,
+    JurisLean.Candidates.SourceAction20261027.bindPlan out.opening spec =
+        JurisLean.Candidates.Final20261021.Result.known proposal ∧
+      ∃ branches,
+        legal.inspect = JurisLean.Candidates.Final20261021.Result.known branches ∧
+          JurisLean.Candidates.LegalActionDomain20261027.accepts settings.model legal.truth out.opening.handle
+              legal.anchor.gamma branches proposal =
+            true
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result {V R W : Type}
+  {m : ℕ} [DecidableEq R] (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+  (background : JurisLean.Seams.UnifiedModel V R) (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (meaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (renewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W)) :
+  have actual :=
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.refreshReportedState state background grants change legal
+      branch meaning renewals;
+  (state.business.current = none → actual.call = none ∧ actual.post = state) ∧
+    (∀ (failure : JurisLean.Candidates.Final20261021.Result Unit),
+        actual.call = some (Except.error failure) → actual.post = state) ∧
+      ∀
+        (sourceOut :
+          JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+            JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+        (protocol : JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.ProtocolRun),
+        actual.call = some (Except.ok (sourceOut, protocol)) →
+          ∃ paidPost,
+            state.business.current = some paidPost ∧
+              JurisLean.Candidates.U00ActualSourceProtocol20261031.sourceThenProtocol background grants paidPost change
+                    legal branch meaning renewals =
+                  Except.ok (sourceOut, protocol) ∧
+                actual.post =
+                  { business := protocol.payment, learning := state.learning, policyRows := state.policyRows,
+                    lastObservation := state.lastObservation, observationHistory := state.observationHistory,
+                    feedbackQueue := state.feedbackQueue }
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation
+  {V R W : Type} {m : ℕ} [DecidableEq R] (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (version : ℕ)
+  (encode : JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Fin m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (refreshGrants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (nextLegal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (nextMeaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (nextRenewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (out : JurisLean.Candidates.U00SourcePersonalEpisode20261031.RefreshedPersonalSourceEpisode V W m)
+  (known :
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.runRefreshedPersonalSource legal learning version encode
+        settings background refreshGrants change nextLegal branch nextMeaning nextRenewals measurement policy before
+        evidence request now meanings plan =
+      Except.ok out) :
+  JurisLean.Candidates.SourceOpening20261027.openingFor legal =
+      JurisLean.Candidates.Final20261021.Result.known out.opening ∧
+    JurisLean.Candidates.U00SourcePersonalEpisode20261031.commonQuery version encode out.opening
+          settings.request.protocol =
+        JurisLean.Candidates.Final20261021.Result.known out.query ∧
+      JurisLean.Candidates.SourceOpening20261027.initialState out.opening learning =
+          JurisLean.Candidates.Final20261021.Result.known out.initial ∧
+        out.action =
+            JurisLean.Candidates.BusinessFeedbackLoop20261027.act out.initial
+              (JurisLean.Candidates.SourceAction20261027.actionInput legal
+                (JurisLean.Candidates.U00SourcePersonalEpisode20261031.querySettings settings out.query)
+                (JurisLean.Candidates.SourceAction20261027.planResults out.opening settings.plans)) ∧
+          out.refreshed =
+              JurisLean.Candidates.U00SourcePersonalEpisode20261031.refreshReportedState out.action.post background
+                refreshGrants change nextLegal branch nextMeaning nextRenewals ∧
+            out.continuation =
+              JurisLean.Candidates.U00MeasuredRSIEntry20261031.continuePersonalBusiness out.refreshed.post before
+                out.query evidence
+                (JurisLean.Candidates.U00SourcePersonalEpisode20261031.queryMeasurement measurement out.query) policy
+                request now meanings plan
+JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence.{u_1}
+  {Ω : Type u_1} {m nc G : ℕ} [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)]
+  [MeasurableSingletonClass (Fin m × Bool)] (QΓ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure QΓ]
+  (Pc : MeasureTheory.Measure (Fin m × Bool)) [MeasureTheory.IsProbabilityMeasure Pc]
+  (Pv : Fin G → MeasureTheory.Measure (Fin m × Bool)) [∀ (g : Fin G), MeasureTheory.IsProbabilityMeasure (Pv g)]
+  (hm : 0 < m) (hnc : 0 < nc) (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (first : List ℚ) (rest : List (List ℚ)) (calSample : Fin nc → Ω → Fin m × Bool)
+  (calMeasurable : ∀ (i : Fin nc), Measurable (calSample i)) (calIndependent : ProbabilityTheory.iIndepFun calSample QΓ)
+  (calLaw : ∀ (i : Fin nc), ProbabilityTheory.IdentDistrib (calSample i) id QΓ Pc)
+  (calDeltaPositive : 0 < protocol.failureBudget) (calDeltaBelowOne : protocol.failureBudget < 1)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (planNonempty : plan.models.toFinset.Nonempty)
+  (nv : Fin G → ℕ) (nvPositive : ∀ (g : Fin G), 0 < nv g) (valSample : (g : Fin G) → Fin (nv g) → Ω → Fin m × Bool)
+  (valMeasurable : ∀ (g : Fin G) (i : Fin (nv g)), Measurable (valSample g i))
+  (valIndependent : ∀ (g : Fin G), ProbabilityTheory.iIndepFun (valSample g) QΓ)
+  (valLaw : ∀ (g : Fin G) (i : Fin (nv g)), ProbabilityTheory.IdentDistrib (valSample g i) id QΓ (Pv g))
+  (bounded :
+    ∀ table ∈ plan.models,
+      ∀ (z : Fin m × Bool),
+        ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+              JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss table z) ∈
+          Set.Icc 0 1)
+  (delta : Fin G → ℚ) (deltaPositive : ∀ (g : Fin G), 0 < delta g) (deltaBelowOne : ∀ (g : Fin G), delta g < 1)
+  (budget : ∑ g, delta g ≤ plan.failureBudget) :
+  ∃ good,
+    MeasurableSet good ∧
+      1 - (↑protocol.failureBudget + ↑plan.failureBudget) ≤ QΓ.real good ∧
+        ∀ w ∈ good,
+          ∀ (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+            (declaration : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+            (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+            (exchange : JurisLean.Candidates.U00RSICandidateBridge20261031.PersonalExchange m)
+            (personalRequest : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+            (nativeNow : JurisLean.Candidates.Final20261021.Instant)
+            (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+            (nativePlan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (domain snapshot : Fin G → ℕ)
+            (radius tolerance : Fin G → ℚ) (exponent : Fin G → ℕ)
+            (events : (g : Fin G) → Fin (nv g) → JurisLean.Candidates.Final20261021.EventId)
+            (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+            (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+            (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+            (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)),
+            have request :=
+              JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan nv domain snapshot delta
+                radius exponent tolerance events fun g i => valSample g i w;
+            JurisLean.Candidates.U00RSICandidateBridge20261031.startPersonalRound exchange personalRequest nativeNow
+                  meanings nativePlan =
+                JurisLean.Candidates.Final20261021.Result.known state.learning →
+              base.sampling.plan = plan →
+                List.find? (fun entry => entry.request.round == request.round) state.learning.records = none →
+                  request.round = state.learning.records.length →
+                    state.learning.records.length < state.learning.horizon →
+                      state.learning.pending = some declaration →
+                        (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound state.learning declaration
+                                request samples permits).evaluation =
+                            some (JurisLean.Candidates.Final20261021.Result.known evaluation) →
+                          (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound state.learning
+                                  declaration request samples permits).load =
+                              some loaded →
+                            loaded.status = JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded →
+                              ∀ (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)
+                                (calEvents : Fin nc → JurisLean.Candidates.Final20261021.EventId) (W : Type)
+                                (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m),
+                                input.request.protocol = protocol →
+                                  have actualInput :=
+                                    { legal := input.legal, model := input.model, proposals := input.proposals,
+                                      request := input.request,
+                                      calibration :=
+                                        JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template
+                                          (first :: rest) calEvents fun i => calSample i w,
+                                      calibrationCatalog := input.calibrationCatalog, radius := input.radius,
+                                      exponent := input.exponent, utility := input.utility, grants := input.grants };
+                                  ∀ (actual : JurisLean.Candidates.LoadedLegalConsumer20261027.LoadedRun W m)
+                                    (selected :
+                                      JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m),
+                                    (JurisLean.Candidates.BusinessFeedbackLoop20261027.act
+                                            (JurisLean.Candidates.BusinessFeedbackLoop20261027.assess state request
+                                              samples permits)
+                                            actualInput).run =
+                                        some actual →
+                                      actual.decision = JurisLean.Candidates.Final20261021.Result.known selected →
+                                        selected.probability.fitted =
+                                            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                                (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound
+                                                      state.learning request samples permits).post.service).fitted ∧
+                                          (0 <
+                                                Pc.real
+                                                  {z |
+                                                    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                                        (selected.probability.fitted.table, selected.probability.query)
+                                                        z =
+                                                      true} ∧
+                                              ↑selected.probability.lower ≤
+                                                  Pc.real
+                                                      {z |
+                                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                                              (selected.probability.fitted.table,
+                                                                selected.probability.query)
+                                                              z =
+                                                            true ∧
+                                                          z.2 = true} /
+                                                    Pc.real
+                                                      {z |
+                                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                                            (selected.probability.fitted.table,
+                                                              selected.probability.query)
+                                                            z =
+                                                          true} ∧
+                                                Pc.real
+                                                      {z |
+                                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                                              (selected.probability.fitted.table,
+                                                                selected.probability.query)
+                                                              z =
+                                                            true ∧
+                                                          z.2 = true} /
+                                                    Pc.real
+                                                      {z |
+                                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin
+                                                            (selected.probability.fitted.table,
+                                                              selected.probability.query)
+                                                            z =
+                                                          true} ≤
+                                                  ↑selected.probability.upper) ∧
+                                            ∀ (g : Fin G),
+                                              ∫ (z : Fin m × Bool),
+                                                  ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+                                                      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+                                                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                                            (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound
+                                                                  state.learning request samples
+                                                                  permits).post.service).fitted.table
+                                                      z) ∂Pv g ≤
+                                                ∫ (z : Fin m × Bool),
+                                                    ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss
+                                                        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+                                                        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                                                              state.learning.service).fitted.table
+                                                        z) ∂Pv g +
+                                                  ↑(tolerance g)
+'JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column' depends on axioms: [propext]
+'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks' does not depend on any axioms
+'JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.U00SourcePersonalEpisode20261031.runRefreshedPersonalSource {V R W : Type} {m : ℕ} [DecidableEq R]
+  (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)
+  (learning : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (version : ℕ)
+  (encode : JurisLean.Candidates.SourceCompilation20261027.ConsumedView → Fin m)
+  (settings : JurisLean.Candidates.SourceAction20261027.ActionSettings W m)
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (refreshGrants : List JurisLean.Candidates.Final20261021.Authorization.Grant)
+  (change : JurisLean.Candidates.Final20261021.Pipeline.RefreshInput)
+  (nextLegal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (nextMeaning : JurisLean.Candidates.LegalActionDomain20261027.ActionMeaning)
+  (nextRenewals : List (JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.RenewalRequest W))
+  (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+  (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+  (before : JurisLean.Candidates.Final20261021.RSI.State) (evidence : JurisLean.Candidates.Final20261021.SourceRef)
+  (request : JurisLean.Candidates.Final20261021.RSI.PredictionRequest)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (meanings : List (JurisLean.Candidates.U00RSICandidateBridge20261031.LogMeaning m))
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) :
+  Except (JurisLean.Candidates.Final20261021.Result Unit)
+    (JurisLean.Candidates.U00SourcePersonalEpisode20261031.RefreshedPersonalSourceEpisode V W m)
+JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket {m n : ℕ}
+  (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m) (models : List (List ℚ))
+  (events : Fin n → JurisLean.Candidates.Final20261021.EventId) (data : Fin n → Fin m × Bool) :
+  JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m
+JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest {m G : ℕ}
+  (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (n domain snapshot : Fin G → ℕ)
+  (delta radius : Fin G → ℚ) (exponent : Fin G → ℕ) (tolerance : Fin G → ℚ)
+  (events : (g : Fin G) → Fin (n g) → JurisLean.Candidates.Final20261021.EventId)
+  (data : (g : Fin G) → Fin (n g) → Fin m × Bool) : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m

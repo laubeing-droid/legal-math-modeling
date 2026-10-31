@@ -1,38 +1,58 @@
 {
   "scope": "本任务逐项证据导航和未完成对照进度；既定理论已存在。不是债务账，不翻discharges，不以映射数或CI绿色宣告原题完成。",
   "current_source_reconciliation": {
-    "baseline_main": "d1af41bb2057af73b45bc029931323ea0331d823",
-    "source_checkpoint": "6561e3564006dbe39659510fb7b7235f77fd63ae",
-    "source_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
-    "ci_status": "U06.4_CHANGED_MODULE_SUCCESS; U06.5_AND_ORIGINAL02_SOURCE_AUDITS_SUCCESS_SEPARATELY; integrated candidate core pending review and combined release gates",
+    "baseline_main": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
+    "source_checkpoint": "189feee0f956e6f6e9ff6b6c3423e9c1f9b30fcf",
+    "source_tree": "1dafb5b9bf1f7efac0dae065aca693d44d5c379e",
+    "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "Latest separate changed-module source run is original-question U06.4 at 6561e356/tree555a9; U06.5 source audit run41136762457 and original02 supplemental audit run41163607765 also pass on their pinned sources. This branch integrates the three evidence scopes but has not yet received a combined audit, PR or release gate. Accepted main d1af41/tree4b1d is 48 wiring / 2 narrow / 0 OPEN; current branch candidate is 49 / 1 / 0. Original-question draft is 29 COVERED / 40 PARTIAL / 28 NOT_RECONCILED. No consumer-edge or designated-cut change, no whole-theory completion; discharges, Step 2 and math_flip remain false.",
+    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements and original 06.5 finite observation supplement; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
       "role": "以上为只读历史原件；本施工树同名副本为后续维护位置，旧原件未修改。"
     },
-    "ci_run_id": 41172965084,
-    "ci_job_id": 124454630715,
-    "ci_subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
-    "ci_subject_tree": "555a9adcc143563ad8267f676b24e445e68a0444",
-    "ci_attempt": 1,
-    "ci_artifact": "changed-module-only-41172965084-1",
-    "ci_artifact_id": 13031932067,
-    "ci_artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
-    "archive_gap_ledger_status": "Accepted main@d1af41bb2057af73b45bc029931323ea0331d823 / tree 4b1d32dcc2f699c6ffb9d26ad687764294b282bc retains PR80 at 48 CLOSED_BY_WIRING / 2 CLOSED_BY_NARROW / 0 OPEN. This branch candidate is 49 / 1 / 0 after U06.5. The three relevant source audits are separate and the integrated candidate remains unreleased. Global discharges, math_flip and Step 2 remain false/open."
+    "ci_run_id": null,
+    "ci_job_id": null,
+    "ci_subject": null,
+    "ci_subject_tree": null,
+    "ci_attempt": null,
+    "ci_artifact": null,
+    "ci_artifact_id": null,
+    "ci_artifact_sha256": null,
+    "archive_gap_ledger_status": "Accepted main@3e8d2e5f4683006977d77f7b3316e0eb63295508 after PR81; PR81 post-merge saved archive and clause-binding logs both exit 0, confirming 50 rows / 49 wiring / 1 narrow / 0 open and 124 declarations. Current integration candidate moves U00 to 50 wiring / 0 narrow / 0 open; no combined full-chain/PR acceptance is claimed yet. Original-question counts reflect five original03 rows and supplemental 06.5 evidence: 35 COVERED / 38 PARTIAL / 24 NOT_RECONCILED. Whole 105 engineering requirements, six designated cuts, and whole frozen theory remain outside this update; discharges, Step 2, math_flip stay false.",
+    "accepted_main_postmerge_evidence": {
+      "archive_check_log": "D:\\tmp\\u06-5-pr81-41179053391\\postmerge\\archive-check.log",
+      "archive_check_exit": 0,
+      "clause_binding_log": "D:\\tmp\\u06-5-pr81-41179053391\\postmerge\\clause-binding-check.log",
+      "clause_binding_exit": 0,
+      "accepted_head": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
+      "archive_counts": "50 rows; 49 wiring; 1 narrow; 0 open"
+    },
+    "historical_source_checkpoint": {
+      "subject": "6561e3564006dbe39659510fb7b7235f77fd63ae",
+      "tree": "555a9adcc143563ad8267f676b24e445e68a0444",
+      "run_id": 41172965084,
+      "job_id": 124454630715,
+      "artifact_id": 13031932067,
+      "status": "historical source reconciliation snapshot; not current-head CI",
+      "attempt": 1,
+      "artifact": "changed-module-only-41172965084-1",
+      "artifact_sha256": "74774071fe6e5c9aaabb1959001541710ac49798230cc32058f59d222c6e0db3",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41172965084"
+    }
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
-  "reference_main": "d1af41bb2057af73b45bc029931323ea0331d823",
+  "reference_main": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
   "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 29,
-    "PARTIAL": 40,
-    "NOT_RECONCILED": 28
+    "COVERED": 35,
+    "PARTIAL": 38,
+    "NOT_RECONCILED": 24
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -1454,9 +1474,17 @@
           123
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original03-boundaries-20261031",
+          "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+          "run_id": 41180037686,
+          "job_id": 124475397635,
+          "scope": "3 audited finite boundary instances supplement the identified prior general results; bounded only Prior accepted general coverage: CompilerClosure20261026.u03_2_bounded_executable_closure_complete; u03_2_computed_at_carrier_iff; u03_2_robust_queries_exact; SourceCompilation20261027.successful_family_does_not_drop_unknown; CompilerProvenance20261027 provenance/semantics results; new finite highest_score_selection_can_create_nonrobust_fact."
+        }
+      ],
+      "remaining": "03.2 原句 L119/L121/L123：一般歧义与遗漏依赖 CompilerProvenance / EvidenceWorlds / SourceCompilation 的既有一般覆盖；本轮 finite `highest_score_selection_can_create_nonrobust_fact` 具体反例说明最高分选择会删去相容解释并制造伪稳健。例子只补边界，不替代一般结论。"
     },
     {
       "id": "03.3",
@@ -1484,9 +1512,31 @@
           131
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original03-boundaries-20261031",
+          "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+          "run_id": 41180037686,
+          "job_id": 124475397635,
+          "scope": "Prior general coverage plus bounded supplement: CompilerProvenance/SourceCompilation relative-soundness; EvidenceWorlds.world_insufficient_iff_both_possibilities and its CI-checked [false,true] query fixture; HarnessOriginalInstances.checked_trace_does_not_supply_primitive_truth; new 03.2/03.5/03.6 finite boundaries are not substitutes for these general claims.",
+          "prior_ci": {
+            "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorlds20261027.lean",
+            "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
+            "subject": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
+            "run_id": 40474394071,
+            "job_id": 122088971259,
+            "declaration": "JurisLean.Candidates.EvidenceWorlds20261027.world_insufficient_iff_both_possibilities",
+            "fixture_lines": [
+              40,
+              43,
+              75,
+              78
+            ]
+          }
+        }
+      ],
+      "remaining": "03.3 原句 L127/L129/L131：一般相对健全性由 CompilerProvenance20261027.u03_1_checked_provenance_sound / u03_1_provenance_semantic_composition、EvidenceWorlds20261027.source_to_world_truth_is_conditional 与 SourceCompilation20261027 的实际抽取/编译目标共同覆盖，前提是 sourceSound/rulesSound 与 faithful evidence。默认否定/缺正证不推出反命题：EvidenceWorlds20261027.world_insufficient_iff_both_possibilities 断言 supported/opposed 之外的 insufficient 恰有真假两种可行世界；EvidenceWorldsAudit20261027 的实际 fixture 使用 valuation(q)=if q=0 then world else !world、modelWorlds=[false,true]、query=0，CI guard 实得 evidenceJudgment=insufficient、possibleWorlds=modelWorlds、possibleWorldJudgment=insufficient、pending=[]。新 HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth 是独立反例：规则有效但前提事实为假，故不推出实际事实。任何一项都不构成无条件法律事实。"
     },
     {
       "id": "03.4",
@@ -1514,9 +1564,17 @@
           139
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original03-boundaries-20261031",
+          "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+          "run_id": 41180037686,
+          "job_id": 124475397635,
+          "scope": "3 audited finite boundary instances supplement the identified prior general results; bounded only Prior accepted general coverage: CompilerClosure20261026.u03_2_bounded_executable_closure_complete and u03_2_robust_queries_exact relative to supplied finite facts/rules; u03_1_robust_query_strictly_beyond_common_facts shows commonFacts can be a strict subset of the sound robust closure. Completeness is relative; material/world completeness is not inferred."
+        }
+      ],
+      "remaining": "03.4 原句 L135/L137/L139：CompilerClosure 的有限 Horn 饱和/查询完备性相对于给定 facts/rules；commonFacts 严格子集反例表明查询闭包完整不意味着材料或现实完整。仅对声明有限接口和前提成立。"
     },
     {
       "id": "03.5",
@@ -1550,7 +1608,7 @@
           149
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
@@ -1558,9 +1616,16 @@
           "run_id": 40462004036,
           "job_id": 122048554976,
           "scope": "9准确目标及16执行：完整消费载荷固定模板提取、实际来源叶/DAG/有限闭包、非空全分支保留；不是原题所有子结论或U00完成"
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original03-boundaries-20261031",
+          "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+          "run_id": 41180037686,
+          "job_id": 124475397635,
+          "scope": "3 audited finite boundary instances supplement the identified prior general results; bounded only Prior accepted general coverage: SourceRepresentation20261027 resolved_identity_equivalence_on_defined_domain, copies_and_distinct_payments_are_separate, observation-preservation/separation results; SourceStages20261027 accepted_view_binds_both_actual_payments, sourceModel/public_model_consumes_the_actual_stage_frame; SourceCompilation20261027 actual receipt/source/DAG targets; new identical_fingerprints_do_not_supply_source_truth."
         }
       ],
-      "remaining": "SourceCompilation PR50合后main40465704078全PASS；SourceStages最新28目标22执行独立PASS，接根中。原03/07全部段落、规范/证据消费者和U00继续。"
+      "remaining": "03.5 原句 L143/L145/L147/L149：SourceRepresentation/SourceStages 的真实 receipt/DAG/有限闭包证据补一般来源接口；本轮 `identical_fingerprints_do_not_supply_source_truth` 另证相同有限内容指纹不能推出来源真实性或断言为真。既有证据保留其精确前提；不声称密码学抗碰撞。"
     },
     {
       "id": "03.6",
@@ -1593,9 +1658,17 @@
           159
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original03-boundaries-20261031",
+          "subject": "8b90bc43d1132b3d7e2f2853481a2c4508ce3a5b",
+          "run_id": 41180037686,
+          "job_id": 124475397635,
+          "scope": "3 audited finite boundary instances supplement the identified prior general results; bounded only Prior accepted general coverage: SourceRepresentation20261027 conditional identity/isomorphism and exact tagged quantity interface; CompilerClosure20261026 robust exact interface, empty-interpretaions UNKNOWN; SourceCompilation20261027 successful_family_does_not_drop_unknown; new negation_changes_meaning_and_finite_interface_keeps_ambiguity. Bounded instance supplements, not general natural-language parsing."
+        }
+      ],
+      "remaining": "03.6 原句 L153/L155/L157/L159：既有条件同构、保守 exact interface 与拒绝/未知语义构成一般接口覆盖；本轮 `negation_changes_meaning_and_finite_interface_keeps_ambiguity` 提供 not/含歧义输入/unsupported 拒绝有限实例。有限实例不代替一般契约，不声称任意自然语言理解。"
     },
     {
       "id": "04.1",
@@ -2403,7 +2476,7 @@
           125
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
@@ -2415,9 +2488,32 @@
           "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
           "artifact_size_bytes": 3136,
           "scope": "Partial formal evidence for 06.5: `terminal_and_empty_action`, `bellman_full_policy_optimum`, the trajectory mass/expectation declarations, `cost_counted_once`, and `nonrectangular_bellman_counterexample` cover the finite fully observed single-branch timed Markov model with history-based legal policies, general terminal reward g, and the manuscript-authorized empty-action treatment: this module explicitly chooses termination with terminal value g(s), rather than BLOCKED. The actual transition kernel constructs the path law. This is not partial-observation or information-acquisition execution. This row remains PARTIAL."
+        },
+        {
+          "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original06-5-observation-20261031",
+          "subject": "9c6e5603a226aba53861f9d151cf97b5350387a7",
+          "run_id": 41182937172,
+          "job_id": 124483896794,
+          "scope": "Supplement only; L121 reuses U06_5OriginalModels20261031.signal_information_values (all Unit→Bool no-signal policies 1/2; hidden-truth Prod.fst value 1); L123 adds actual_information_states_and_options plus actual_purchase_trajectory_and_single_cost (0.8−k vs 0.5, cost once, cutoff 0.3); L125 reuses U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation and nonrectangular_bellman_counterexample and adds actual_nonanticipating_trajectory_optimum. Three added targets audited on exact source; no hidden-state policy input.",
+          "prior_ci": {
+            "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+            "declaration": "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values",
+            "subject": "9945f1710a7d8067ebeb264ed35d28b4394a1c33",
+            "run_id": 41136762457,
+            "job_id": 124341022636,
+            "reuse_scope": "finite signal value and cost cutoff; not the new observation process target"
+          },
+          "reused_bellman": {
+            "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+            "declarations": [
+              "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+              "JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample"
+            ],
+            "scope": "generic finite Bellman optimum and nonrectangular counterexample"
+          }
         }
       ],
-      "remaining": "Still requires the original finite sequential observe/act/stop model and its cost stages, the two-world indistinguishability/nonanticipation example against hidden-truth peeking, and connection of numeric values to the actual consumer. The frozen U06.1 branch is fully observed; observation-kernel and belief/history updates are conditional only if a partially observed version is adopted (original 06.5 line 123; master lines 531–536)."
+      "remaining": "L121: `U06_5OriginalModels20261031.signal_information_values` proves every no-signal policy Unit→Bool has value 1/2, while Prod.fst peeks at hidden truth and attains 1; the new `actual_information_states_and_options` preserves only visible posteriors/options. L123: `actual_purchase_trajectory_and_single_cost` gives the actual buy/stop finite path, charges k once, compares 0.8−k to 0.5, and yields cutoff 0.3. L125: reuse `U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation` and `nonrectangular_bellman_counterexample`; the new `actual_nonanticipating_trajectory_optimum` connects the concrete policy to visible-history trajectories. No hidden-state policy input is introduced. Partial observation requires a supplied observation kernel/belief update; real transition/law and external preferences remain external. This covers the finite L121/L123/L125 scope only; it does not claim the L141 seven-question delivery or reopen the already accepted global U06.5 debt."
     },
     {
       "id": "06.6",
@@ -6843,7 +6939,14 @@
         153,
         157
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L155：logistic pβ、交叉熵/可选L2、识别与分离时无有限unregularized解的条件及正则化唯一性条件；L157：proposed_win_model四段合同与四证据等级。",
+      "evidence": [
+        "既有实现：tools/unified_math_v2/unified/win_model.py 的 validate_splits、fit、calibrate、evaluate、train_evaluate；实际为Beta hyperprior + held-out isotonic，不是logistic。",
+        "既有占位：proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean 的 LogisticSpec 与 logistic_deterministic；仅结构及true/rfl，占位不构成目标命题证明。"
+      ],
+      "remaining": "指定logistic数学子结论及proposed接口逐边合同尚无已核具名完整证据；不得以相邻Beta管线或占位替代。",
+      "direct_acceptance": "先复用确有的凸性/识别结果并实例化前提；核对原有限模型与分离反例。proposed接口按题目只交设计合同时，逐边明确目标、母体分母、版本、范围、失败与replay。未证部分保留NOT_RECONCILED；不启动新批次。"
     },
     {
       "topic": "05",
@@ -6853,7 +6956,14 @@
         151,
         155
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L153：Brier风险差(p−q)^2与唯一最优；低均分仍可能伴随指定群体失准。L155：ProofStandard(N,q,E)独立、允许输入及UNKNOWN例。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean：brier_excess_identity、brier_excess_zero_iff。",
+        "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean：ProofStandardName、standardGate、StandardNamedAt、lawful_named_standard_is_a_named_tier、trialDomain_attaches_the_108_standard、trialDomain_fails_the_109_standard。"
+      ],
+      "remaining": "严格适当评分子命题已有证明；指定群体例及独立标准接口两个输入与原题的逐条对应尚未完整核实。不得因缺少单一API另造框架。",
+      "direct_acceptance": "复用评分恒等式与既有规范门，明确统计报告的证据角色及合法授权前提；依据缺失记UNKNOWN并fail-closed。p或Brier分值不得自动成为法律结论；政策权属不得写成法源。"
     },
     {
       "topic": "06",
@@ -6863,7 +6973,15 @@
         161,
         165
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L163：ExactExpr/币种单位规则版本、期望与区间、混币种、重复cash及后验均值非获赔；L165：合法且获授权的行动先过滤，二行动二结果与回执完整绑定。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean：u06_3_eval_exists、u06_3_eval_unique、evaluate。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean：binary_evaluation_uses_exact_amount_and_one_cost、computed_decision_encloses_cash_utility_and_risk、explicit_maximin_preserves_permission_and_risk。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean：acceptance_binds_proposal_and_every_branch、selected_plan_was_approved_and_reproduces_the_decision。"
+      ],
+      "remaining": "typed运算与合法/风险过滤已有结果；后验均值误作金额反例、指定排序说明及model/expr/IR/branch回执字段的原题对照未全验收。",
+      "direct_acceptance": "直接复用现有二结果Audit实例并逐项核验输入输出字段。sourceRef只是句柄，不自行证明因果识别；金额合法性不由q推出。不要求新总定理。"
     },
     {
       "topic": "13",
@@ -6873,7 +6991,14 @@
         123,
         131
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L125：最小service字段、职责/语义身份与执行记录；L127：规则/个人两调用和五拒绝；L129：非干扰/冷启动OOD边界与接口草案。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean：Checkpoint、PredictionRequest、checkpointMatches、u13_1_noninterference、u13_2_personal_frame、u13_4_missing_checkpoint_no_default。",
+        "本轮U00包verification.json列明的现有目标：U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame、actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry、personal_continuation_observes_without_reexecuting。"
+      ],
+      "remaining": "字段职责、两调用与原切口设计的逐项对照，以及无权重、错规则、跨律师、OOD、同名异义feature五拒绝边界，尚未在本切口完整验收；有字段不等于整题覆盖。",
+      "direct_acceptance": "复用现有结构和实际桥，逐字段映射两种调用顺序，并为五个拒绝边界记录实际拒绝/UNKNOWN点。原题允许接口草案，不要求训练程序；不新增通用框架。"
     },
     {
       "topic": "14",
@@ -6883,7 +7008,15 @@
         117,
         125
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L119：候选最小字段及观察确认→去重/冲突→候选→独立验证→接纳→load；L121：六拒绝；L123：条件风险/元更新/版本状态。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean：evaluation_is_actual_input_and_computation、evaluated_models_are_in_predeclared_class、bounds_gate_checks_every_actual_domain、observed_improvement_is_not_certified_improvement、average_improvement_can_harm_protected_point。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean：activation_keeps_rules_mechanism_and_training、replaced_candidate_does_not_reuse_old_permit、actual_loaded_risk_follows_computed_domain_bounds、newly_loaded_model_is_next_actual_parent。",
+        "本轮U00包verification.json列明的实际桥目标：U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence。"
+      ],
+      "remaining": "六拒绝设计的逐边界对应尚未在本切口完整验收；不得因缺少单一总state-machine定理而重开已有实际链。",
+      "direct_acceptance": "直接组合现有实际producer与guard；逐项核验预测冒充标签、重复、同ID冲突、窥验证后选模、跨域退化、验证后换包的拒绝或UNKNOWN。采样独立性和来源语义不由版本相同或来源字符串推出。"
     },
     {
       "topic": "15",
@@ -6893,7 +7026,14 @@
         123,
         129
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L125：逐轮versions/visiblepast/data/blocks/protocol/δ/protected/auth/result与两轮replay；L127：五状态和四反例（不是四状态）。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean：generation_uses_actual_loaded_and_learner、evaluated_round_spends_its_actual_block_budget、exact_round_replay_retains_current_state、evaluated_round_has_fresh_events_and_current_checker、recorded_load_is_actual_next_service、arbitrary_finite_round_actions_keep_budget。",
+        "本轮U00包verification.json列明：U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation、actual_round_choice_transports_to_activation_projection；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample。"
+      ],
+      "remaining": "逐字段两轮及重复验证试探、伪δ、部署错版、换验证器四例，尚未逐条在本切口验收。runtime roundCost只统计validation charges，不能代表校准+验证joint总cap。",
+      "direct_acceptance": "复用实际round结构、现有回放与错误输入Audit，分清指标已算、统计证据合格、约束已证、部署授权、实际load五层。保留外部Σ(protocol.failureBudget+plan.failureBudget)联合预算分配与采样前提。设计题无需生产部署，不新增计数型总定理。"
     }
   ],
   "open_formal_tail": 0,

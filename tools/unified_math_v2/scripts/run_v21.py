@@ -51,7 +51,7 @@ def run_case_main(args) -> int:
         FactRecord(
             fact_id=row['id'],
             proposition=_atom(row['predicate'], row.get('polar', 'POS')),
-            standing=getattr(FactStanding, row.get('standing', 'ADMITTED_POSITIVE')),
+            standing=FactStanding[row['standing']],
             produced_at=row.get('produced_at', 0),
             known_at=row.get('known_at', 0),
         )

@@ -4,9 +4,9 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 509
-- theorem/lemma headers read: 6365
-- distinct statement types: 6303
+- files scanned: 527
+- theorem/lemma headers read: 6414
+- distinct statement types: 6351
 - statement types declared more than once: 62
 - of those spanning module families: 3
 
@@ -45,7 +45,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 - `(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)` — `External/GameTheory/Math/ProbabilityMassFunction.lean:44` (External/pushforward_comp), `External/GameTheory/Math/ProbabilityMassFunction.lean:49` (External/pushforward_pushforward)
 - `(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => s` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
-- `: (Finset.univ : Finset (Bool × Bool)) = {(false, false), (false, true), (true, false), (true, true)}` — `Candidates/ExchangeableRank20261031.lean:845` (root/other/boundary_pair_univ), `Candidates/U06_5OriginalModels20261031.lean:29` (root/other/pair_univ)
+- `: (Finset.univ : Finset (Bool × Bool)) = {(false, false), (false, true), (true, false), (true, true)}` — `Candidates/ExchangeableRank20261031.lean:845` (root/other/boundary_pair_univ), `Candidates/U06_5FiniteObservationInstance20261031.lean:34` (root/other/pair_univ), `Candidates/U06_5OriginalModels20261031.lean:29` (root/other/pair_univ)
 - `: (Finset.univ : Finset Bool) = {false, true}` — `Candidates/U06_5OriginalModels20261031.lean:26` (root/other/bool_univ), `Candidates/ExchangeableRank20261031.lean:842` (root/other/boundary_bool_univ)
 - `: adminFinalDisposition ∉ closureAt familyHorn` — `Seams/UnifiedFourteenFamilies.lean:1378` (root/other/adminFinalDisposition_not_closure), `Seams/UnifiedFourteenFamilies.lean:1706` (root/other/witness_admin_branch_open)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)

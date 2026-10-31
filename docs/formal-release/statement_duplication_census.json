@@ -39,7 +39,7 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 6303,
+  "distinct_statement_types": 6351,
   "duplicated_statement_types": 62,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
@@ -371,6 +371,11 @@
         "carrier": "root/other/boundary_pair_univ",
         "line": 845,
         "path": "Candidates/ExchangeableRank20261031.lean"
+      },
+      {
+        "carrier": "root/other/pair_univ",
+        "line": 34,
+        "path": "Candidates/U06_5FiniteObservationInstance20261031.lean"
       },
       {
         "carrier": "root/other/pair_univ",
@@ -787,12 +792,12 @@
       }
     ]
   },
-  "files_scanned": 509,
+  "files_scanned": 527,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 121,
-  "inventory_package_theorems": 6241,
-  "private_protected_headers_read": 245,
+  "headers_missed_by_scanner": 124,
+  "inventory_package_theorems": 6266,
+  "private_protected_headers_read": 272,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 6365
+  "statements_read": 6414
 }

@@ -6939,7 +6939,14 @@
         153,
         157
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L155：logistic pβ、交叉熵/可选L2、识别与分离时无有限unregularized解的条件及正则化唯一性条件；L157：proposed_win_model四段合同与四证据等级。",
+      "evidence": [
+        "既有实现：tools/unified_math_v2/unified/win_model.py 的 validate_splits、fit、calibrate、evaluate、train_evaluate；实际为Beta hyperprior + held-out isotonic，不是logistic。",
+        "既有占位：proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean 的 LogisticSpec 与 logistic_deterministic；仅结构及true/rfl，占位不构成目标命题证明。"
+      ],
+      "remaining": "指定logistic数学子结论及proposed接口逐边合同尚无已核具名完整证据；不得以相邻Beta管线或占位替代。",
+      "direct_acceptance": "先复用确有的凸性/识别结果并实例化前提；核对原有限模型与分离反例。proposed接口按题目只交设计合同时，逐边明确目标、母体分母、版本、范围、失败与replay。未证部分保留NOT_RECONCILED；不启动新批次。"
     },
     {
       "topic": "05",
@@ -6949,7 +6956,14 @@
         151,
         155
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L153：Brier风险差(p−q)^2与唯一最优；低均分仍可能伴随指定群体失准。L155：ProofStandard(N,q,E)独立、允许输入及UNKNOWN例。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean：brier_excess_identity、brier_excess_zero_iff。",
+        "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean：ProofStandardName、standardGate、StandardNamedAt、lawful_named_standard_is_a_named_tier、trialDomain_attaches_the_108_standard、trialDomain_fails_the_109_standard。"
+      ],
+      "remaining": "严格适当评分子命题已有证明；指定群体例及独立标准接口两个输入与原题的逐条对应尚未完整核实。不得因缺少单一API另造框架。",
+      "direct_acceptance": "复用评分恒等式与既有规范门，明确统计报告的证据角色及合法授权前提；依据缺失记UNKNOWN并fail-closed。p或Brier分值不得自动成为法律结论；政策权属不得写成法源。"
     },
     {
       "topic": "06",
@@ -6959,7 +6973,15 @@
         161,
         165
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L163：ExactExpr/币种单位规则版本、期望与区间、混币种、重复cash及后验均值非获赔；L165：合法且获授权的行动先过滤，二行动二结果与回执完整绑定。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean：u06_3_eval_exists、u06_3_eval_unique、evaluate。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean：binary_evaluation_uses_exact_amount_and_one_cost、computed_decision_encloses_cash_utility_and_risk、explicit_maximin_preserves_permission_and_risk。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean：acceptance_binds_proposal_and_every_branch、selected_plan_was_approved_and_reproduces_the_decision。"
+      ],
+      "remaining": "typed运算与合法/风险过滤已有结果；后验均值误作金额反例、指定排序说明及model/expr/IR/branch回执字段的原题对照未全验收。",
+      "direct_acceptance": "直接复用现有二结果Audit实例并逐项核验输入输出字段。sourceRef只是句柄，不自行证明因果识别；金额合法性不由q推出。不要求新总定理。"
     },
     {
       "topic": "13",
@@ -6969,7 +6991,14 @@
         123,
         131
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L125：最小service字段、职责/语义身份与执行记录；L127：规则/个人两调用和五拒绝；L129：非干扰/冷启动OOD边界与接口草案。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean：Checkpoint、PredictionRequest、checkpointMatches、u13_1_noninterference、u13_2_personal_frame、u13_4_missing_checkpoint_no_default。",
+        "本轮U00包verification.json列明的现有目标：U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame、actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry、personal_continuation_observes_without_reexecuting。"
+      ],
+      "remaining": "字段职责、两调用与原切口设计的逐项对照，以及无权重、错规则、跨律师、OOD、同名异义feature五拒绝边界，尚未在本切口完整验收；有字段不等于整题覆盖。",
+      "direct_acceptance": "复用现有结构和实际桥，逐字段映射两种调用顺序，并为五个拒绝边界记录实际拒绝/UNKNOWN点。原题允许接口草案，不要求训练程序；不新增通用框架。"
     },
     {
       "topic": "14",
@@ -6979,7 +7008,15 @@
         117,
         125
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L119：候选最小字段及观察确认→去重/冲突→候选→独立验证→接纳→load；L121：六拒绝；L123：条件风险/元更新/版本状态。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean：evaluation_is_actual_input_and_computation、evaluated_models_are_in_predeclared_class、bounds_gate_checks_every_actual_domain、observed_improvement_is_not_certified_improvement、average_improvement_can_harm_protected_point。",
+        "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean：activation_keeps_rules_mechanism_and_training、replaced_candidate_does_not_reuse_old_permit、actual_loaded_risk_follows_computed_domain_bounds、newly_loaded_model_is_next_actual_parent。",
+        "本轮U00包verification.json列明的实际桥目标：U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence。"
+      ],
+      "remaining": "六拒绝设计的逐边界对应尚未在本切口完整验收；不得因缺少单一总state-machine定理而重开已有实际链。",
+      "direct_acceptance": "直接组合现有实际producer与guard；逐项核验预测冒充标签、重复、同ID冲突、窥验证后选模、跨域退化、验证后换包的拒绝或UNKNOWN。采样独立性和来源语义不由版本相同或来源字符串推出。"
     },
     {
       "topic": "15",
@@ -6989,7 +7026,14 @@
         123,
         129
       ],
-      "reconciliation": "NOT_RECONCILED"
+      "reconciliation": "NOT_RECONCILED",
+      "frozen_commitment": "L125：逐轮versions/visiblepast/data/blocks/protocol/δ/protected/auth/result与两轮replay；L127：五状态和四反例（不是四状态）。",
+      "evidence": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean：generation_uses_actual_loaded_and_learner、evaluated_round_spends_its_actual_block_budget、exact_round_replay_retains_current_state、evaluated_round_has_fresh_events_and_current_checker、recorded_load_is_actual_next_service、arbitrary_finite_round_actions_keep_budget。",
+        "本轮U00包verification.json列明：U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation、actual_round_choice_transports_to_activation_projection；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample。"
+      ],
+      "remaining": "逐字段两轮及重复验证试探、伪δ、部署错版、换验证器四例，尚未逐条在本切口验收。runtime roundCost只统计validation charges，不能代表校准+验证joint总cap。",
+      "direct_acceptance": "复用实际round结构、现有回放与错误输入Audit，分清指标已算、统计证据合格、约束已证、部署授权、实际load五层。保留外部Σ(protocol.failureBudget+plan.failureBudget)联合预算分配与采样前提。设计题无需生产部署，不新增计数型总定理。"
     }
   ],
   "open_formal_tail": 0,

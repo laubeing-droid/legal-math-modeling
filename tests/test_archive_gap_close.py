@@ -204,6 +204,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U04.2",
         "U06.1",
         "U06.2",
+        "U06.5",
         "U12.3",
         "U13.4",
         "U11.1",
@@ -435,7 +436,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "集成" in u13["companion_scope_notes"] and "另证" in u13["companion_scope_notes"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
-    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U06.5", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1", "U05.1"}
+    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U06.5", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1", "U05.1", "U00"}
     assert all(
         row["formal_tail_prove"]["close_admitted"] is (row["clause"] in admitted)
         for row in ledger["rows"]
@@ -457,7 +458,7 @@ def test_u03_closure_covers_only_original_residuals_with_independent_proofs():
         assert row["independent_closure"]["named_theorems_full"] == checker.disp.POST_PIN_NAMES[clause]
         assert row["independent_closure"]["receipt"] == checker.disp.POST_PIN_RECEIPT
     assert ledger["formal_tail_round"]["historical_cand7_closed"] == 5
-    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1", "U05.1", "U06.5"]
+    assert ledger["formal_tail_round"]["independent_closed_ids"] == ["U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1", "U05.1", "U06.5", "U00"]
     assert ledger["formal_tail_round"]["historical_u03_closed"] == 2
 
 
@@ -497,7 +498,7 @@ def test_u01_close_uses_general_theorems_and_keeps_u03_evidence():
         }
     summary = ledger["formal_tail_round"]
     assert summary["independent_closed_total"] == 28
-    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT, checker.disp.U13_3_RECEIPT, checker.disp.U12_4_RECEIPT, checker.disp.U07_2_RECEIPT, checker.disp.U07_3_RECEIPT, checker.disp.U02_1_RECEIPT, checker.disp.U04_2_RECEIPT, checker.disp.U06_1_RECEIPT, checker.disp.U06_2_RECEIPT, checker.disp.U12_3_RECEIPT, checker.disp.U13_4_RECEIPT, checker.disp.U11_1_RECEIPT, checker.disp.U12_1_RECEIPT, checker.disp.U10_1_RECEIPT, checker.disp.U02_4_RECEIPT, checker.disp.U09_2_RECEIPT, checker.disp.U01_4_RECEIPT, checker.disp.U04_4_RECEIPT, checker.disp.U04_1_RECEIPT, checker.disp.U05_1_RECEIPT, checker.disp.U06_5_RECEIPT]
+    assert summary["independent_receipts"] == [checker.disp.POST_PIN_RECEIPT, checker.disp.U01_RECEIPT, checker.disp.U04_5_RECEIPT, checker.disp.U14_1_RECEIPT, checker.disp.U13_3_RECEIPT, checker.disp.U12_4_RECEIPT, checker.disp.U07_2_RECEIPT, checker.disp.U07_3_RECEIPT, checker.disp.U02_1_RECEIPT, checker.disp.U04_2_RECEIPT, checker.disp.U06_1_RECEIPT, checker.disp.U06_2_RECEIPT, checker.disp.U12_3_RECEIPT, checker.disp.U13_4_RECEIPT, checker.disp.U11_1_RECEIPT, checker.disp.U12_1_RECEIPT, checker.disp.U10_1_RECEIPT, checker.disp.U02_4_RECEIPT, checker.disp.U09_2_RECEIPT, checker.disp.U01_4_RECEIPT, checker.disp.U04_4_RECEIPT, checker.disp.U04_1_RECEIPT, checker.disp.U05_1_RECEIPT, checker.disp.U06_5_RECEIPT, checker.disp.U00_RECEIPT]
     import copy
     pack = checker.disp.INDEPENDENT_CLOSE_PACKS[1]
     receipt = checker.load_json(ROOT / pack["receipt"])

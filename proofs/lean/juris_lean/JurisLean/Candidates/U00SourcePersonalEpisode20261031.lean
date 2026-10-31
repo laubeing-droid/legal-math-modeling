@@ -51,6 +51,7 @@ theorem accepted_query_checks_every_retained_branch {W : Type} {m : Nat}
   split at known
   · cases known
   · rename_i matchingVersion
+    dsimp only at known
     split at known
     · rename_i common
       cases known

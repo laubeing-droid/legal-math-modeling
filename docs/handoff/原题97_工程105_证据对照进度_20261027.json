@@ -7,6 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements and original 06.5 finite observation supplement; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -7026,14 +7027,128 @@
         123,
         129
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L125：逐轮versions/visiblepast/data/blocks/protocol/δ/protected/auth/result与两轮replay；L127：五状态和四反例（不是四状态）。",
       "evidence": [
         "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean：generation_uses_actual_loaded_and_learner、evaluated_round_spends_its_actual_block_budget、exact_round_replay_retains_current_state、evaluated_round_has_fresh_events_and_current_checker、recorded_load_is_actual_next_service、arbitrary_finite_round_actions_keep_budget。",
-        "本轮U00包verification.json列明：U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation、actual_round_choice_transports_to_activation_projection；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample。"
+        "本轮U00包verification.json列明：U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation、actual_round_choice_transports_to_activation_projection；U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence。"
       ],
-      "remaining": "逐字段两轮及重复验证试探、伪δ、部署错版、换验证器四例，尚未逐条在本切口验收。runtime roundCost只统计validation charges，不能代表校准+验证joint总cap。",
-      "direct_acceptance": "复用实际round结构、现有回放与错误输入Audit，分清指标已算、统计证据合格、约束已证、部署授权、实际load五层。保留外部Σ(protocol.failureBudget+plan.failureBudget)联合预算分配与采样前提。设计题无需生产部署，不新增计数型总定理。"
+      "remaining": "本指定切口L125/L127设计合同已由现有有限Round对象、guard_msgs反例和PR82接受subject证据对齐；无新增证明余项。仅覆盖designated cut 15，不覆盖原题15.1–15.6全部、主题15整体、全97题或生产部署。runtime roundCost只统计validation实际charges；外部Σ(protocol.failureBudget+plan.failureBudget)联合cap及采样/law/IID等前提继续保留。",
+      "direct_acceptance": "只按本对象中contract_reconciliation列出的既有字段、分层证据、两轮/replay边界、四类反例与同subject CI记录接受本设计切口；不把generationUnresolved改称两轮成功，不把状态标签或passesBounds单独当统计/授权/加载证明。",
+      "contract_reconciliation": {
+        "scope": "仅对齐本designated cut的L125/L127设计合同；不升级原题15.1–15.6，不声称主题15、全97题或生产部署完成。",
+        "field_mapping": [
+          {
+            "contract": "逐轮records/round identity",
+            "existing_fields": "RoundState.records: List RoundRecord；RoundRecord.request.round 对应该轮 request.round。RoundDeclaration 同时记录 generatedAt 与 visiblePrefix。",
+            "source": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean: RoundRequest/RoundDeclaration/RoundRecord/RoundState"
+          },
+          {
+            "contract": "parent/candidate 与版本/上下文",
+            "existing_fields": "RoundDeclaration.prepared.parent/candidate；TrainingCandidate 完整对象包含 snapshot、fitted.table、fitted.protocol.fit.modelVersion；plan.scope 与 Service.gamma 保留规则/机制/特征/目标作用域上下文。版本指具名有限表对象和上下文，不承诺任意神经权重文件。",
+            "source": "AdaptiveRoundLedger20261027 RoundDeclaration；ValidatedFeedbackLoad20261027 Prepared/Service；EventFeedbackConsumer20261027 TrainingCandidate/DataScope；LearningConsumer20261027 FittedTable/LearningProtocol；Final20261021/Learning.lean FitContract.modelVersion"
+          },
+          {
+            "contract": "data 与可见历史",
+            "existing_fields": "TrainingCandidate.snapshot；DomainBlock.snapshot/rows；RoundDeclaration.generatedAt/visiblePrefix 与 RoundState.records。",
+            "source": "AdaptiveRoundLedger20261027 RoundDeclaration/RoundState；EventFeedbackConsumer20261027 TrainingCandidate；ProtectedFeedback20261027 DomainBlock"
+          },
+          {
+            "contract": "blocks/protocol/delta",
+            "existing_fields": "RoundDeclaration.plan、RoundRequest.blocks、RoundRequest.sampling.plan/blocks 与 DomainBlock.delta共同保留计划、区块、采样回执和实际计费输入；ValidationPlan/DomainBlock的定义来自ProtectedFeedback20261027。",
+            "source": "AdaptiveRoundLedger20261027 RoundDeclaration/RoundRequest/roundCost；ProtectedFeedback20261027 ValidationPlan/DomainBlock"
+          },
+          {
+            "contract": "protected domains",
+            "existing_fields": "plan.domains 与 RoundState.protectedDomains 对齐，表示本有限合同实际登记的保护域ID清单；不外推至未登记任务，后续调用不能静默删掉原保护域。",
+            "source": "AdaptiveRoundLedger20261027 / AdaptiveRoundLedgerAudit20261027 protectedScopeMismatch guard"
+          },
+          {
+            "contract": "authorization binding",
+            "existing_fields": "RoundRequest.permit.grant 由 Authorization.checkGrant 对具体 Evaluation 检查；别的 candidate/evaluation 的 permit 不授权本次对象。",
+            "source": "ValidatedFeedbackLoad20261027 loadAllowed；ValidatedFeedbackLoadAudit20261027 guards"
+          },
+          {
+            "contract": "result/receipt",
+            "existing_fields": "RoundRecord.status/evaluation/load/charge 记录状态、统计评估、加载结果和validation实际费用。",
+            "source": "AdaptiveRoundLedger20261027 RoundRecord/roundCost"
+          }
+        ],
+        "acceptance_layers": [
+          {
+            "layer": "指标已算",
+            "existing_evidence": "DomainStatistics/assembled/evaluate 返回 known；只表示有限对象上已计算。"
+          },
+          {
+            "layer": "统计证据合格",
+            "existing_evidence": "valid blocks/receipt 加显式 sampling/law 前提下的条件置信结论；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence 是本轮具名入口；passesBounds 单独不足以成立。"
+          },
+          {
+            "layer": "约束已证",
+            "existing_evidence": "ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training、actual_loaded_risk_follows_computed_domain_bounds 与本有限合同保护域条件风险结果；不消除其采样与域前提。"
+          },
+          {
+            "layer": "部署授权",
+            "existing_evidence": "loadAllowed 与 Authorization.checkGrant 对同一 evaluation/permit 的授权绑定。"
+          },
+          {
+            "layer": "实际加载",
+            "existing_evidence": "writeAndRead/readback、AdaptiveRoundLedger.recorded_load_is_actual_next_service 与 U00RoundPostBridge.fresh_round_post_service_is_actual_activation。"
+          },
+          {
+            "boundary": "以上是分层字段和已有声明的对应关系，不要求或声称存在一个统一五态枚举。"
+          }
+        ],
+        "two_rounds_and_replay": {
+          "source": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:83-120",
+          "scope": "两个有限轮次，visiblePrefix=[0,1]；第一轮可成功，第二轮 generationUnresolved 是验收夹具的预期结果，不声称两轮都成功。重放旧轮保留后来 state。"
+        },
+        "existing_negative_guards": [
+          {
+            "case": "同验证集反复试探及不合格暴露仍留在历史",
+            "source": "AdaptiveRoundLedgerAudit20261027.lean:197-206"
+          },
+          {
+            "case": "仅改 snapshot 仍因复用已暴露 validation events 被拒绝，状态为 adaptiveCertificateInvalid",
+            "source": "AdaptiveRoundLedgerAudit20261027.lean:131-139"
+          },
+          {
+            "case": "伪 delta/缺风险证书拒绝并 charge=0",
+            "source": "AdaptiveRoundLedgerAudit20261027.lean:263-270; status=riskCertificateMissing"
+          },
+          {
+            "case": "部署替换候选或使用别 evaluation 的 permit",
+            "source": "ValidatedFeedbackLoadAudit20261027.lean:128-144; invalidEvaluation 或 authorityUnresolved，旧 loaded 保持"
+          },
+          {
+            "case": "更换验证器/信任根",
+            "source": "AdaptiveRoundLedgerAudit20261027.lean:159-166; status=trustRootMismatch，state不变"
+          }
+        ],
+        "accepted_subject_evidence": {
+          "pr": 82,
+          "pr_head": "338383ac515091c8f5c014efd8d57740bc5d1ef4",
+          "subject": "13c6e5b82646710973d266a7d20bef9405ee7dc5",
+          "tree": "51ce922061bdc6e9bd376246868024954b99ce38",
+          "merged_main": "7dcfc8fab35912575b972087428cfbbe2fcaffe2",
+          "authority_run_attempt": "41219000268:1",
+          "lean_full_clean_job": "124589441856",
+          "lean_artifact_id": 13049184024,
+          "lean_artifact_bytes": 682621,
+          "lean_build_log_path": "D:/tmp/u00-pr82-41219000268/13049184024/lake-clean-build.log",
+          "axiom_audit_raw_path": "D:/tmp/u00-pr82-41219000268/13049184024/axiom-audit.raw.txt",
+          "lean_artifact_sha256": "81df32303196c7fa4fe5c37f47a404f75d72a0832ea7b2c63ae47c80e278a991",
+          "actual_audit_build_log_lines": {
+            "AdaptiveRoundLedgerAudit20261027": 13452,
+            "ProtectedFeedbackAudit20261027": 10511,
+            "ValidatedFeedbackLoadAudit20261027": 12046,
+            "FeedbackLabelSemanticsAudit20261027": 10308
+          },
+          "guard_msgs": "上述现有 guard_msgs 在接受的 full-clean build 中编译；该证据是PR82合并subject，不代表当前记录分支通过CI。",
+          "record_creation_ci_status": "CI_NOT_RUN",
+          "acceptance_note": "CI_NOT_RUN是本记录创建时快照；该记录PR最终验收以PR exact-subject证据为准。"
+        }
+      }
     }
   ],
   "open_formal_tail": 0,

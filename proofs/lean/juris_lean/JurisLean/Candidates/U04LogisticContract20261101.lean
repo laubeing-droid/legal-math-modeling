@@ -137,34 +137,34 @@ private theorem convexOn_empiricalLoss (X : Fin n → Fin d → ℚ)
       ring
 
 def objective (X : Fin n → Fin d → ℚ) (Y : Fin n → Bool)
-    (λ : ℝ) (β : Parameter d) : ℝ :=
-  empiricalLoss X Y β + λ / 2 * ‖β‖ ^ 2
+    (reg : ℝ) (β : Parameter d) : ℝ :=
+  empiricalLoss X Y β + reg / 2 * ‖β‖ ^ 2
 
 private theorem continuous_objective (X : Fin n → Fin d → ℚ)
-    (Y : Fin n → Bool) (λ : ℝ) : Continuous (objective X Y λ) :=
+    (Y : Fin n → Bool) (reg : ℝ) : Continuous (objective X Y reg) :=
   (continuous_empiricalLoss X Y).add (continuous_const.mul (continuous_norm.pow 2))
 
 private theorem strictConvexOn_objective (X : Fin n → Fin d → ℚ)
-    (Y : Fin n → Bool) (λ : ℝ) (hλ : 0 < λ) :
-    StrictConvexOn ℝ univ (objective X Y λ) := by
-  have hs : StrongConvexOn univ λ (objective X Y λ) := by
+    (Y : Fin n → Bool) (reg : ℝ) (hreg : 0 < reg) :
+    StrictConvexOn ℝ univ (objective X Y reg) := by
+  have hs : StrongConvexOn univ reg (objective X Y reg) := by
     rw [strongConvexOn_iff_convex]
     simpa [objective] using convexOn_empiricalLoss X Y
-  exact hs.strictConvexOn hλ
+  exact hs.strictConvexOn hreg
 
 /-- The statement covers a nonempty finite sample and penalizes every free coordinate.
 No design-rank assumption is needed for this positive full L2 penalty. -/
 theorem fully_regularized_unique_minimum (X : Fin n → Fin d → ℚ)
-    (Y : Fin n → Bool) (hn : 0 < n) (λ : ℝ) (hλ : 0 < λ) :
-    ∃! β : Parameter d, IsMinOn (objective X Y λ) univ β := by
-  let f := objective X Y λ
-  have hf : Continuous f := continuous_objective X Y λ
+    (Y : Fin n → Bool) (hn : 0 < n) (reg : ℝ) (hreg : 0 < reg) :
+    ∃! β : Parameter d, IsMinOn (objective X Y reg) univ β := by
+  let f := objective X Y reg
+  have hf : Continuous f := continuous_objective X Y reg
   have hf0 : 0 ≤ f 0 := by
     simpa [f, objective] using empiricalLoss_nonneg X Y (0 : Parameter d)
-  let R : ℝ := 2 * f 0 / λ + 1
+  let R : ℝ := 2 * f 0 / reg + 1
   have hR : 1 ≤ R := by
-    have hdiv : 0 ≤ 2 * f 0 / λ :=
-      div_nonneg (mul_nonneg (by norm_num) hf0) (le_of_lt hλ)
+    have hdiv : 0 ≤ 2 * f 0 / reg :=
+      div_nonneg (mul_nonneg (by norm_num) hf0) (le_of_lt hreg)
     dsimp [R]
     linarith
   have h0 : (0 : Parameter d) ∈ Metric.closedBall 0 R := by
@@ -172,9 +172,9 @@ theorem fully_regularized_unique_minimum (X : Fin n → Fin d → ℚ)
     simpa using le_trans (by norm_num : (0 : ℝ) ≤ 1) hR
   obtain ⟨β, hβ, hmin⟩ :=
     (isCompact_closedBall (0 : Parameter d) R).exists_isMinOn ⟨0, h0⟩ hf.continuousOn
-  have hλR : λ / 2 * R = f 0 + λ / 2 := by
+  have hregR : reg / 2 * R = f 0 + reg / 2 := by
     dsimp [R]
-    field_simp [ne_of_gt hλ] <;> ring
+    field_simp [ne_of_gt hreg] <;> ring
   have hglobal : IsMinOn f univ β := by
     intro γ hγ
     by_cases hball : γ ∈ Metric.closedBall 0 R
@@ -185,21 +185,21 @@ theorem fully_regularized_unique_minimum (X : Fin n → Fin d → ℚ)
       have hone : 1 ≤ ‖γ‖ := le_trans hR (le_of_lt hnorm)
       have hsq : ‖γ‖ ≤ ‖γ‖ ^ 2 := by
         nlinarith [mul_nonneg (norm_nonneg γ) (sub_nonneg.mpr hone)]
-      have hzero_le : f 0 ≤ λ / 2 * ‖γ‖ ^ 2 := by
+      have hzero_le : f 0 ≤ reg / 2 * ‖γ‖ ^ 2 := by
         calc
-          f 0 ≤ λ / 2 * R := by rw [hλR]; linarith
-          _ ≤ λ / 2 * ‖γ‖ :=
-            mul_le_mul_of_nonneg_left (le_of_lt hnorm) (le_of_lt (half_pos hλ))
-          _ ≤ λ / 2 * ‖γ‖ ^ 2 :=
-            mul_le_mul_of_nonneg_left hsq (le_of_lt (half_pos hλ))
-      have hpenalty : λ / 2 * ‖γ‖ ^ 2 ≤ f γ := by
+          f 0 ≤ reg / 2 * R := by rw [hregR]; linarith
+          _ ≤ reg / 2 * ‖γ‖ :=
+            mul_le_mul_of_nonneg_left (le_of_lt hnorm) (le_of_lt (half_pos hreg))
+          _ ≤ reg / 2 * ‖γ‖ ^ 2 :=
+            mul_le_mul_of_nonneg_left hsq (le_of_lt (half_pos hreg))
+      have hpenalty : reg / 2 * ‖γ‖ ^ 2 ≤ f γ := by
         have hfit := empiricalLoss_nonneg X Y γ
         dsimp [f, objective]
         linarith
       exact (hmin h0).trans (hzero_le.trans hpenalty)
   refine ⟨β, hglobal, ?_⟩
   intro γ hγ
-  exact (strictConvexOn_objective X Y λ hλ).eq_of_isMinOn
+  exact (strictConvexOn_objective X Y reg hreg).eq_of_isMinOn
     hγ hglobal (mem_univ γ) (mem_univ β)
 
 /-- Identification of the full family uses rational coordinate vectors. -/

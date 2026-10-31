@@ -112,7 +112,8 @@ theorem actual_policy_log_recovers_full_observation {m : Nat}
       List.filter_append, single] at known
     cases found : meanings.filter (fun entry => decide (entry.log = policyLog row)) with
     | nil =>
-        simpa [found, policyMeaning, measuredFeedback, policyLog] using known.symm
+        simp only [found, List.nil_append] at known
+        simpa only [Result.known.injEq, policyMeaning, measuredFeedback, policyLog] using known.symm
     | cons entry rest =>
         cases rest <;> simp [found] at known
 
@@ -317,7 +318,7 @@ theorem actual_continuation_binds_accepted_row_and_native_entry {m : Nat}
         cases seen : state.observationHistory.any (fun old => sameObservation old row) with
         | true => simp [continuePersonalBusiness, observed, seen, failedPreparation] at known
         | false =>
-            exact ⟨row, rfl, rfl, by
+            exact ⟨row, rfl, seen, by
               simpa [continuePersonalBusiness, observed, seen] using known⟩
   obtain ⟨row, observed, fresh, prepared⟩ := selected
   have entry := prepared_current_reads_actual_entry state.learning before query evidence

@@ -32,15 +32,27 @@ def signalLaw (P : PMF Ω) (obs : Ω → Y) : PMF Y := PMF.map obs P
 
 private theorem signal_law_mass (P : PMF Ω) (obs : Ω → Y) (y : Y) :
     (signalLaw P obs y).toReal = signalMass P obs y := by
+  classical
   rw [signalLaw, PMF.map_apply, tsum_fintype]
-  rw [ENNReal.toReal_sum (s := Finset.univ)
-    (f := fun w => if y = obs w then P w else 0) (by
+  calc
+    _ = (∑ w : Ω, if y = obs w then P w else 0).toReal := by
+      apply congrArg (fun value : ENNReal => value.toReal)
+      apply Finset.sum_congr rfl
       intro w _
-      by_cases same : y = obs w <;> simp [same, PMF.apply_ne_top])]
-  unfold signalMass
-  apply Finset.sum_congr rfl
-  intro w _
-  by_cases same : obs w = y <;> simp [fiberWeight, same, eq_comm]
+      by_cases same : y = obs w <;> simp [same]
+    _ = ∑ w : Ω, (if y = obs w then P w else 0).toReal :=
+      ENNReal.toReal_sum (s := Finset.univ)
+        (f := fun w => if y = obs w then P w else 0) (by
+          intro w _
+          by_cases same : y = obs w <;> simp [same, PMF.apply_ne_top])
+    _ = signalMass P obs y := by
+      unfold signalMass
+      apply Finset.sum_congr rfl
+      intro w _
+      by_cases same : obs w = y
+      · simp [fiberWeight, same, same.symm]
+      · have reverse : ¬ (y = obs w) := fun h => same h.symm
+        simp [fiberWeight, same, reverse]
 
 private theorem signal_expect_eq_sum (P : PMF Ω) (obs : Ω → Y) (f : Y → ℝ) :
     expect (signalLaw P obs) f = ∑ y, signalMass P obs y * f y := by
@@ -105,14 +117,22 @@ private theorem conditional_score_fraction (P : PMF Ω) (obs : Ω → Y)
       ((P.filter {z | obs z = y} reachable) w).toReal =
         fiberWeight P obs y w / signalMass P obs y := by
     intro w
-    rw [PMF.filter_apply reachable w, ENNReal.toReal_mul,
-      ENNReal.toReal_inv, tsum_fintype, fiber_sum_toReal]
-    by_cases same : obs w = y <;>
-      simp [Set.indicator, fiberWeight, same, div_eq_mul_inv]
+    calc
+      ((P.filter {z | obs z = y} reachable) w).toReal =
+          (({z | obs z = y}.indicator (fun z => P z)) w *
+            (∑' z, ({v | obs v = y}.indicator (fun v => P v)) z)⁻¹).toReal := by
+        exact congrArg (fun value : ENNReal => value.toReal)
+          (PMF.filter_apply (p := P) (s := {z | obs z = y}) reachable w)
+      _ = (({z | obs z = y}.indicator (fun z => P z)) w).toReal *
+          (signalMass P obs y)⁻¹ := by
+        rw [ENNReal.toReal_mul, ENNReal.toReal_inv, tsum_fintype, fiber_sum_toReal]
+      _ = fiberWeight P obs y w / signalMass P obs y := by
+        by_cases same : obs w = y <;>
+          simp [Set.indicator, fiberWeight, same, div_eq_mul_inv]
   calc
     conditionalScore P obs utility a y =
         expect (P.filter {w | obs w = y} reachable) (utility a) := by
-      simp [conditionalScore, conditionalLaw, reachable]
+      simp only [conditionalScore, conditionalLaw, dif_pos reachable]
     _ = ∑ w, (fiberWeight P obs y w * utility a w) / signalMass P obs y := by
       rw [expect_eq_sum]
       apply Finset.sum_congr rfl

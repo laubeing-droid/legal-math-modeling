@@ -9,8 +9,8 @@ open JurisLean.KernelV3
 open JurisLean.Hohfeld
 
 /-!
-中文说明：修正版点。接受审计 F01–F14。
-无 sorry。除关债外。CI_NOT_RUN until land。
+中文说明：修正版点。审计 F01–F14 接了。
+无 sorry。除关债外。上次 changed-module 红的 39/92/107/151 修。
 -/
 
 structure Sit where
@@ -35,11 +35,10 @@ def initSit : Sit :=
 /-- 无裁判正常对象：程序开、关系形成、AI 关、事实在。 -/
 theorem no_trial_normal :
     ∃ s : Sit,
-      s.procOn = true ∧ s.lCreated = true ∧ s.aiVer = 0 ∧ s.fF = true :=
-  ⟨{ fF := true, eRaw := 1, eAdm := 1, eExcl := 0,
+      s.procOn = true ∧ s.lCreated = true ∧ s.aiVer = 0 ∧ s.fF = true := by
+  refine ⟨{ fF := true, eRaw := 1, eAdm := 1, eExcl := 0,
      nVer := 1, lCreated := true, lConfirmed := false,
-     clk := 1, procOn := true, aiVer := 0, pLedger := 1 },
-    rfl, rfl, rfl, rfl, rfl⟩
+     clk := 1, procOn := true, aiVer := 0, pLedger := 1 }, rfl, rfl, rfl, rfl⟩
 
 /-- 提议：aiVer+1，L/N/F 不变。 -/
 def propose (s : Sit) : Sit := { s with aiVer := s.aiVer + 1 }
@@ -91,28 +90,28 @@ theorem nodoc_no_create (s : Sit) :
 theorem legalStep_frame_F (s : Sit) (hasDoc : Bool) (e : EffectType) :
     (legalStep s hasDoc e).fF = s.fF := by
   cases s
-  cases hasDoc
-  cases e
-  rfl
+  cases hasDoc <;> cases e <;> rfl
 
 /-- AI 分数不是 established。 -/
-inductive Out
+inductive CnOut
   | established
   | notEstablished
   | undetermined
   | aiScore (n : Nat)
   deriving DecidableEq, Repr
 
-theorem ai_ne_established :
-    ∀ n : Nat, Out.ai n ≠ Out.established := by
-  intro n h
-  injection h
+theorem ai_ne_established (n : Nat) :
+    CnOut.ai n ≠ CnOut.established := by
+  intro h
+  cases h
 
 /-- 法无明文 → undetermined，不是 established，也不是程序驳回。 -/
-def evalNoNorm : Out := Out.undetermined
+def evalNoNorm : CnOut := CnOut.undetermined
 
-theorem noNorm_undetermined : evalNoNorm = Out.undetermined := rfl
-theorem noNorm_not_established : evalNoNorm ≠ Out.established := by decide
+theorem noNorm_undetermined : evalNoNorm = CnOut.undetermined := rfl
+theorem noNorm_not_established : evalNoNorm ≠ CnOut.established := by
+  intro h
+  cases h
 
 /-- 政策不入 N。 -/
 theorem policy_not_in : inN SourceKind.policy = NMember.no := rfl
@@ -144,8 +143,8 @@ structure ContractLife where
 
 theorem voidable_still_effective :
     ∃ c : ContractLife,
-      c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false :=
-  ⟨{ established := true, effective := true, invalid := false, voidablePower := true },
+      c.effective = true ∧ c.voidablePower = true ∧ c.invalid = false := by
+  refine ⟨{ established := true, effective := true, invalid := false, voidablePower := true },
     rfl, rfl, rfl⟩
 
 /-- Hohfeld 真挂。 -/
@@ -156,8 +155,9 @@ theorem defend_not_noRight : defendHof ≠ [Concept.noRight] := by decide
 /-- 公定力不是事实真。 -/
 theorem gongding_still :
     ∃ a : AdminAct,
-      a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false :=
-  ⟨{ publicValidity := true, substantiallyLegal := false, factTrue := false }, rfl, rfl, rfl⟩
+      a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false := by
+  refine ⟨{ publicValidity := true, substantiallyLegal := false, factTrue := false },
+    rfl, rfl, rfl⟩
 
 /-- 刑事无罪民事可赔。 -/
 structure SameFact where
@@ -165,7 +165,7 @@ structure SameFact where
   civilLiable : Bool
 
 theorem criminal_not_cover_civil :
-    ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true :=
-  ⟨{ criminalGuilty := false, civilLiable := true }, rfl, rfl⟩
+    ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true := by
+  refine ⟨{ criminalGuilty := false, civilLiable := true }, rfl, rfl⟩
 
 end JurisLean.CN.World

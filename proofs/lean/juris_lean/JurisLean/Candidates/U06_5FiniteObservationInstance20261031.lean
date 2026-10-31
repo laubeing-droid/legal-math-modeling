@@ -143,6 +143,10 @@ private def terminal : Visible → ℝ
   | .settled true => 1
   | _ => 0
 
+private lemma terminal_guess (answer : Bool) (z : Bool × Bool) :
+    terminal (.settled (decide (answer = z.1))) = win answer z := by
+  by_cases same : answer = z.1 <;> simp [terminal, win, same]
+
 private def acquisition (k : ℝ) (_ : ℕ) (s : Visible) (a : Choice) : ℝ :=
   if s = .prior ∧ a = .buy then k else 0
 
@@ -156,7 +160,8 @@ private lemma prior_guess (answer : Bool) :
       (fun z : Bool × Bool => Visible.settled (decide (answer = z.1)))
       JurisLean.Candidates.U06_5OriginalModels20261031.signalLaw) terminal = _
   rw [expect_map_fintype_target]
-  simpa [JurisLean.Candidates.U06_5OriginalModels20261031.guessValue, terminal, win] using
+  simp_rw [terminal_guess]
+  simpa only [JurisLean.Candidates.U06_5OriginalModels20261031.guessValue, win] using
     (JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values.1 (fun _ : Unit => answer))
 
 private lemma seen_guess (y answer : Bool) :
@@ -167,7 +172,8 @@ private lemma seen_guess (y answer : Bool) :
       (fun z : Bool × Bool => Visible.settled (decide (answer = z.1)))
       (posterior y)) terminal = _
   rw [expect_map_fintype_target]
-  simpa [terminal, win] using posterior_reward y answer
+  simp_rw [terminal_guess]
+  exact posterior_reward y answer
 
 /-- Actual posterior and option semantics of this one finite observation model.
 Acquisition is available only before observation with two decisions remaining;

@@ -6966,7 +6966,7 @@
       "remaining": "严格适当评分子命题已有证明；指定群体例及独立标准接口两个输入与原题的逐条对应尚未完整核实。不得因缺少单一API另造框架。",
       "direct_acceptance": "复用评分恒等式与既有规范门，明确统计报告的证据角色及合法授权前提；依据缺失记UNKNOWN并fail-closed。p或Brier分值不得自动成为法律结论；政策权属不得写成法源。"
     },
-    {
+        {
       "topic": "06",
       "heading": "## 指定金额接口：概率 × ExactExpr × IR 及合法和解",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
@@ -6974,15 +6974,97 @@
         161,
         165
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L163：ExactExpr/币种单位规则版本、期望与区间、混币种、重复cash及后验均值非获赔；L165：合法且获授权的行动先过滤，二行动二结果与回执完整绑定。",
       "evidence": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean：u06_3_eval_exists、u06_3_eval_unique、evaluate。",
         "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean：binary_evaluation_uses_exact_amount_and_one_cost、computed_decision_encloses_cash_utility_and_risk、explicit_maximin_preserves_permission_and_risk。",
         "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomain20261027.lean：acceptance_binds_proposal_and_every_branch、selected_plan_was_approved_and_reproduces_the_decision。"
       ],
-      "remaining": "typed运算与合法/风险过滤已有结果；后验均值误作金额反例、指定排序说明及model/expr/IR/branch回执字段的原题对照未全验收。",
-      "direct_acceptance": "直接复用现有二结果Audit实例并逐项核验输入输出字段。sourceRef只是句柄，不自行证明因果识别；金额合法性不由q推出。不要求新总定理。"
+      "remaining": "本指定 cut L163/L165 的实际金额/概率/IR 条件绑定及合法行动过滤、所有法律分支的执行绑定已由现有具名对象和接受 subject 证据逐边对齐；不新增本切口证明余项。仅覆盖 designated cut 06，不升级原题06.1–06.7行状态，不声称完整产品 IR、真实偏好识别或模型替代法律判断。",
+      "direct_acceptance": "只按 contract_reconciliation 中的精确表达式、实际样本概率与 quote 消费、合法行动全分支授权/回执和同 subject Audit 构建记录接受本设计切口。给定点例仅作算术对照；三类证明标准不换算，q/utility/model 不直接成为法律结论。",
+      "contract_reconciliation": {
+        "scope": "仅对齐本 designated cut 的 L163/L165；不升级原题06.1–06.7，不声称完整产品 IR、真实偏好识别或法律裁判完成。",
+        "field_mapping": [
+          {
+            "contract": "ExactExpr、typed amounts、币种/单位与规则版本",
+            "existing_fields": "Final20261021.Decision.ExactExpr 与 TypedValue 保留精确金额表达及类型；Decision.evaluate/IntervalDecisionConsumer 提供有限行动的表达式评估；binary_evaluation_uses_exact_amount_and_one_cost 是本切口二行动例的具名实例，不把通用 evaluate 限定成二行动。",
+            "binding": "binary_evaluation_uses_exact_amount_and_one_cost；computed_decision_encloses_cash_utility_and_risk。输入偏好函数和版本是调用上下文，不由标签证明其真实偏好语义。",
+            "source": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean: ExactExpr/TypedValue/evaluate；IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost/computed_decision_encloses_cash_utility_and_risk"
+          },
+          {
+            "contract": "actual probability、quote 与 selected action",
+            "existing_fields": "ProbabilityIntervalConsumer 的 actual sample 产生概率/区间；DecisionTrajectoryConsumer 的 selection 读取实际 sample 与 quote，并以完整 quote.atProbability 进入 evaluatedQuotes/决策。",
+            "binding": "actual_samples_determine_probability 连接协议允许的实际样本与概率；selection_reads_actual_sample_and_quote 连接 consumer 的 selected.probability、quote 和被选择的动作。",
+            "source": "ProbabilityIntervalConsumer20261027.actual_samples_determine_probability；DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote/evaluatedQuotes"
+          },
+          {
+            "contract": "IR condition、proposal、法律 branches 与实际执行",
+            "existing_fields": "LegalActionDomain 的 Acceptance 绑定 proposal 和每个法律分支；selected plan 必须获批并重现所选 decision；execution 使用完整 approved instruction list。",
+            "binding": "acceptance_binds_proposal_and_every_branch、selected_plan_was_approved_and_reproduces_the_decision、chosen_execution_uses_the_entire_approved_instruction_list 与 complete_consumer_choice_has_actual_legal_validation 构成逐边连接。",
+            "source": "LegalActionDomain20261027: acceptance_binds_proposal_and_every_branch/selected_plan_was_approved_and_reproduces_the_decision/chosen_execution_uses_the_entire_approved_instruction_list/complete_consumer_choice_has_actual_legal_validation"
+          }
+        ],
+        "given_point_example": {
+          "inputs": "R=(11,-1)、S=(4,4)、p=1/2、cost=0；给定 u_L(x)=x 与 u_C(x)=min(x,4)。",
+          "arithmetic": "现金期望 E_R=5 > E_S=4；给定 u_L 分数为 R=5、S=4，给定 u_C 分数为 R=3/2、S=4。R 的实际 cash 只可能为11或-1，不等于 p=1/2 或均值5；给定点分布下 loss_R=1/2、loss_S=0。",
+          "scope": "这是题目给定点分布/偏好下的手算，不识别现实概率或职业应然偏好；合法集合若给定为{S}则先过滤掉R，风险限1/10也排除该点例中的R；不把现有riskLimit标签错配说成重新计算了另一个阈值。"
+        },
+        "boundaries": [
+          "sourceRef/causalBridge 是来源或连接句柄，不自行证明因果识别。",
+          "utilityVersion 标签不证明真实偏好或函数身份；上述接口只证明给定有限表达式的条件结果。",
+          "三种证明标准不作概率换算；模型不是判决。",
+          "此处只对齐题目所需最小 IR/branches，不声称完整产品 IR。"
+        ],
+        "accepted_subject_evidence": {
+          "pr": 83,
+          "pr_head": "e260fec942615300176dd253974927a4a735931a",
+          "subject": "648dbdf2afc6cea9a8ab57cec9f82acc9b7c524f",
+          "tree": "898008527b07f72ccd1b19f5fa9f11cf563d4b4f",
+          "merged_main": "ea2c48b6cdd1b86e792ad58c60fbeff05b48102e",
+          "authority_run_attempt": "41225413701:1",
+          "lean_full_clean_job": "124608422288",
+          "lean_artifact_id": 13050954259,
+          "lean_artifact_bytes": 685687,
+          "lean_build_log_path": "D:/tmp/u00-cut15-pr83-41225413701/13050954259/lake-clean-build.log",
+          "lean_artifact_sha256": "e4852feabbb7bcec5ecbc948ca21c9ee2ccff9cec9661bc42e50acd3af7b537e",
+          "actual_audit_build_log_lines": {
+            "ProbabilityIntervalConsumerAudit20261027": 7326,
+            "IntervalDecisionConsumerAudit20261027": 12046,
+            "DecisionTrajectoryConsumerAudit20261027": 12813,
+            "LegalActionDomainAudit20261027": 14381
+          },
+          "guard_msgs": "上述既有 Audit 模块在接受的 Authority full-clean 日志中实际 Built；这是 PR83 接受 subject 的构建证据，不是本记录分支的 CI 结果。",
+          "record_creation_ci_status": "CI_NOT_RUN",
+          "acceptance_note": "CI_NOT_RUN 是本记录创建时快照；该记录 PR 的最终验收以其 exact-subject 证据为准。",
+          "actual_named_target_log_lines": {
+            "ProbabilityIntervalConsumer20261027.actual_samples_determine_probability": {
+              "check": 7350,
+              "print_axioms": 7385
+            },
+            "IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost": {
+              "check": 12053,
+              "print_axioms": 12065
+            },
+            "IntervalDecisionConsumer20261027.computed_decision_encloses_cash_utility_and_risk": {
+              "check": 12105,
+              "print_axioms": 12136
+            },
+            "DecisionTrajectoryConsumer20261027.selection_reads_actual_sample_and_quote": {
+              "check": 12915,
+              "print_axioms": 12939
+            },
+            "LegalActionDomain20261027.selected_plan_was_approved_and_reproduces_the_decision": {
+              "check": 14511,
+              "print_axioms": 14522
+            },
+            "LegalActionDomain20261027.complete_consumer_choice_has_actual_legal_validation": {
+              "check": 14589,
+              "print_axioms": 14613
+            }
+          }
+        }
+      }
     },
     {
       "topic": "13",
@@ -7001,7 +7083,7 @@
       "remaining": "字段职责、两调用与原切口设计的逐项对照，以及无权重、错规则、跨律师、OOD、同名异义feature五拒绝边界，尚未在本切口完整验收；有字段不等于整题覆盖。",
       "direct_acceptance": "复用现有结构和实际桥，逐字段映射两种调用顺序，并为五个拒绝边界记录实际拒绝/UNKNOWN点。原题允许接口草案，不要求训练程序；不新增通用框架。"
     },
-    {
+        {
       "topic": "14",
       "heading": "## 工程接口问题（不是执行授权）",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",
@@ -7009,15 +7091,128 @@
         117,
         125
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "frozen_commitment": "L119：候选最小字段及观察确认→去重/冲突→候选→独立验证→接纳→load；L121：六拒绝；L123：条件风险/元更新/版本状态。",
       "evidence": [
         "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean：evaluation_is_actual_input_and_computation、evaluated_models_are_in_predeclared_class、bounds_gate_checks_every_actual_domain、observed_improvement_is_not_certified_improvement、average_improvement_can_harm_protected_point。",
         "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean：activation_keeps_rules_mechanism_and_training、replaced_candidate_does_not_reuse_old_permit、actual_loaded_risk_follows_computed_domain_bounds、newly_loaded_model_is_next_actual_parent。",
         "本轮U00包verification.json列明的实际桥目标：U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation、actual_continuation_binds_accepted_row_and_native_entry；U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry、native_pending_binds_actual_parent_and_sample；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence。"
       ],
-      "remaining": "六拒绝设计的逐边界对应尚未在本切口完整验收；不得因缺少单一总state-machine定理而重开已有实际链。",
-      "direct_acceptance": "直接组合现有实际producer与guard；逐项核验预测冒充标签、重复、同ID冲突、窥验证后选模、跨域退化、验证后换包的拒绝或UNKNOWN。采样独立性和来源语义不由版本相同或来源字符串推出。"
+      "remaining": "本指定切口 L119/L121/L123 的字段、分层决定/拒绝和条件预算边界已与现有 RoundRecord、personal fitted-table producer、guards 及接受 subject 逐项对齐；无新增证明余项。仅覆盖 designated cut 14，不覆盖原题14.1–14.5全部或主题14整体；这些原题行状态保持原值。抽样独立性、来源语义、固定模型类及保护域前提继续显式条件化。",
+      "direct_acceptance": "仅按 contract_reconciliation 中的现有字段组合、具名 guards、元更新预算定理和 PR83 同 subject 构建记录接受本设计切口；不把任意 RSI Update 分支说成候选学习器入口，不把指标计算、passesBounds 或版本标签单独当成统计证明、授权或加载。",
+      "contract_reconciliation": {
+        "scope": "仅对齐本 designated cut 的 L119/L121/L123；不升级原题14.1–14.5、不声称主题14或全97题完成。",
+        "field_mapping": [
+          {
+            "contract": "parent/candidate 与 update_kind",
+            "existing_fields": "以 AdaptiveRoundLedger.RoundRecord 的 declaration.prepared、request、evaluation、load、status、charge 作为现有嵌套记录载体。Prepared.parent 来自实际 readLoaded；在 candidate 为 known 时，U00 native pending 的候选 snapshot 是本轮实际 fitted journal。update_kind 限定为本实际入口产生的 personal fitted-table candidate。",
+            "binding": "prepareNext 以 readLoaded table 加 learner proposals 为模型族并拟合实际更新后的 journal；native_pending_binds_actual_parent_and_sample 连接到实际 native invocation。RSI.Update 的五种写入 variant 仍是独立接口，不声称都由此候选学习通道处理。",
+            "source": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean: RoundRecord/RoundRequest/RoundDeclaration；ValidatedFeedbackLoad20261027.lean: Prepared/prepareNext；U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample；Final20261021/RSI.lean: Update"
+          },
+          {
+            "contract": "mechanism/rule/feature/target/model versions 与 scope",
+            "existing_fields": "DataScope + LearningProtocol/FittedTable + checkpoint reconstruction + activation context 多边保留 task/target/featureVersion/labelVersion、population/sampling/grouping/domain、rule/mechanism/loss 及有限表 modelVersion。",
+            "binding": "protocolMatches 比较拟合 protocol 与 scope 中 task/target/feature/label/population/sampling/grouping/domain；scopeValid 要求 parent/candidate snapshot.scope 与 plan.scope 相等并核协议；activate 再核 service 的 rule/mechanism/lossVersion；U00 checkpoint 全对象重建相等并连回实际 candidate。",
+            "source": "EventFeedbackConsumer20261027.DataScope/protocolMatches；LearningConsumer20261027.LearningProtocol/FittedTable；U00RSICandidateBridge20261031.checkpointFor/validSelection；ValidatedFeedbackLoad20261027.activate/loadAllowed"
+          },
+          {
+            "contract": "training snapshot、validation data 与 visible history",
+            "existing_fields": "TrainingCandidate.snapshot 是训练 Store；DomainBlock.snapshot/rows 是验证块的独立字段；RoundDeclaration.generatedAt/visiblePrefix 与 RoundState.records 保留可见历史。",
+            "binding": "validation block rows 与 parent/candidate trainingEvents 不相交；新轮 visiblePrefix 必须等于 records.length，requestedEvents 不可与已暴露历史重用。训练 Store snapshot 与验证 block snapshot 分属不同职责，无等值合同。",
+            "source": "EventFeedbackConsumer20261027.TrainingCandidate；ProtectedFeedback20261027.DomainBlock/blockValid；AdaptiveRoundLedger20261027.RoundDeclaration/assessAdaptiveRound/exposedRoundEvents"
+          },
+          {
+            "contract": "validation_protocol、blocks、scope 与 receipts",
+            "existing_fields": "RoundDeclaration.plan、RoundRequest.blocks/sampling；SamplingReceipt 保存精确 plan/parent/blocks 与采样时间/证据；DomainBlock 带自己的 protocol、domain、delta。",
+            "binding": "blockValid 要求每个 block.scope/protocol 对应 plan，receipt 再要求自身 plan/parent/blocks 与本次 Evaluation 一致且 declaredAt < acquiredAt。Learning selectionProtocol 与 validation plan.protocol 是不同协议字段，不强制同标签。",
+            "source": "ProtectedFeedback20261027.ValidationPlan/DomainBlock/blockValid；ValidatedFeedbackLoad20261027.SamplingReceipt/samplingMatches；AdaptiveRoundLedger20261027.RoundRequest"
+          },
+          {
+            "contract": "protected_capabilities",
+            "existing_fields": "plan.domains 是本有限合同登记的保护域 ID 清单；RoundState.protectedDomains 代表本轮状态保护域。",
+            "binding": "layoutValid 要求 domains 非空无重复且逐块对齐；assessAdaptiveRound 要求 d.plan.domains = s.protectedDomains。范围不扩展到未登记任务或域。",
+            "source": "ProtectedFeedback20261027.layoutValid；AdaptiveRoundLedger20261027.assessAdaptiveRound/protectedScopeMismatch"
+          },
+          {
+            "contract": "metrics_with_intervals 与 statistical result",
+            "existing_fields": "DomainStatistics 由实际 parent/candidate 表和 DomainBlock 计算，含 sampleSize、两侧 empirical risk、radius、tolerance、delta；Evaluation 保存 plan/parent/candidate/blocks/statistics。",
+            "binding": "evaluate 对 scope/layout/blocks 各自 fail-closed 后才返回 assembled known；passesBounds 汇总逐域 interval inequality。U00ActualAssessmentChoice.actual_assessment_and_next_action_joint_confidence 将实际 assess/load 路径置于显式独立抽样与 law 前提下的条件置信结论中。",
+            "source": "ProtectedFeedback20261027.domainStatistics/DomainStatistics.acceptable/Evaluation/evaluate；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence"
+          },
+          {
+            "contract": "risk_budget 与元更新界限",
+            "existing_fields": "LearningProtocol.failureBudget、ValidationPlan.failureBudget、每 block delta 与 RoundRecord.charge 分层保存。",
+            "binding": "逐域 delta 之和不超过 plan.failureBudget；U00 joint bound 使用 protocol.failureBudget + plan.failureBudget 并显式要求各流在同 QΓ 下的 iIndepFun/IdentDistrib 等前提。AdaptiveValidation 的 predictable_failure_budget/history_budget_is_expected_spend/fresh_iid_history_budget 与 HarnessRisk 的有限并集及可和风险预算复用既有元更新界。runtime roundCost 只计本轮 validation 实际 block.delta charges，不是 joint cap。",
+            "source": "LearningConsumer20261027.LearningProtocol；ProtectedFeedback20261027.layoutValid/actual_protected_evaluation_confidence；AdaptiveValidation20261027.predictable_failure_budget/history_budget_is_expected_spend/fresh_iid_history_budget；HarnessRisk20261027.finite_conditional_union_bound/finite_adaptive_union_bound/countable_summable_risk_budget；AdaptiveRoundLedger20261027.roundCost；U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence"
+          },
+          {
+            "contract": "decision/reason、authorization 与实际 load",
+            "existing_fields": "Result known/unknown/rejected/conflict、LoadStatus、RoundStatus，以及 RoundRecord.evaluation/load/status/charge 分层表示状态；LoadLog 记录 evaluation、拒绝/loaded 状态、sampling/authority evidence 与 readback。",
+            "binding": "permit.grant 精确绑定 catalog 中的 Evaluation 并经 Authorization.checkGrant 核验；activate 重算相同 Evaluation、核样本 receipt、bounds 与 context；成功 writeAndRead 后 readback 来自写后 service，appendRoundRecord 承接实际 post。未知或拒绝不称 accepted/loaded。",
+            "source": "Final20261021/Interfaces.lean.Result；ValidatedFeedbackLoad20261027.LoadStatus/LoadLog/loadAllowed/activate/writeAndRead；AdaptiveRoundLedger20261027.RoundStatus/RoundRecord/appendRoundRecord"
+          }
+        ],
+        "existing_refusal_guards": [
+          {
+            "case": "prediction 或 suggestion 冒充可训练 label",
+            "evidence": "Observation.origin 必须为 external、scope/时点匹配且 sourceConfirmed 精确成立；invalid observation 返回 invalidObservation 并保留原 Store。suggestion 与未确认标签均不进入训练；来源真实性仍是外部前提。",
+            "source": "EventFeedbackConsumer20261027.observationValid/sourceConfirmed/observe/suggestions_do_not_enter_training/unconfirmed_labels_do_not_enter_training；FeedbackLabelSemantics20261027 实际 Audit"
+          },
+          {
+            "case": "语义重复 observation",
+            "evidence": "actual observationHistory 命中 sameObservation 时准备失败为 missingEvidence，不继续训练/排队；具名 U00 bridge 只把fresh accepted row接到native entry。",
+            "source": "U00MeasuredRSIEntry20261031.continuePersonalBusiness/actual_continuation_binds_accepted_row_and_native_entry"
+          },
+          {
+            "case": "同 EventId 下内容冲突",
+            "evidence": "observe 先要求 observationValid；同一 EventId 的完整 seenObservation 返回 replay，已有 cell 的 caseId 与 active feature/label 一致也返回 replay；否则有效同 EventId 冲突会标记 conflicted，Cell.toSample/trainingRows 不把 conflicted cell 送入训练。无效来源返回 invalidObservation 且 Store 不变。",
+            "source": "EventFeedbackConsumer20261027.observe/Cell.toSample/trainingRows；EventFeedbackConsumerAudit20261027"
+          },
+          {
+            "case": "窥探验证后再选模型/训练验证污染",
+            "evidence": "候选/模型类与实际准备顺序均有约束：beginAdaptiveRound 由当前 service/learner 实际生成 prepared，并把 plan.models 设为 fitted parent 加 proposals；U00 pending theorem 绑定实际 parent/sample。assess 消费该 declaration 与 request，不从 RoundRequest 接收新 candidate；核对 visiblePrefix、当前 learner、prepared.post、fresh events、receipt 时间/plan/parent/blocks，再对 declaration 候选重算 evaluate。uniform finite class 和抽样 law 仍是显式前提；时间、ID 不证明独立。",
+            "source": "AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner/assessAdaptiveRound；U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample；ProtectedFeedback20261027.evaluated_models_are_in_predeclared_class/blockValid/scopeValid/layoutValid/evaluate"
+          },
+          {
+            "case": "跨登记保护域退化",
+            "evidence": "plan.domains 与 blocks 不符、域布局无效或验证块污染时 evaluate 返回 unknown scopeMismatch/missingEvidence；若重算得到的有效 Evaluation 未满足逐域 bounds，activate 实际 refuse 为 protectedScopeFailed。该拒绝只覆盖已登记有限保护域及条件风险前提。",
+            "source": "ProtectedFeedback20261027.layoutValid/blockValid/evaluate/bounds_gate_checks_every_actual_domain；ValidatedFeedbackLoad20261027.activate/.protectedScopeFailed/actual_loaded_risk_follows_computed_domain_bounds"
+          },
+          {
+            "case": "验证后换包或复用其他 evaluation 的授权",
+            "evidence": "SamplingReceipt 精确绑定本 evaluation 的 plan/parent/blocks；LoadPermit exact-equal 同一 Evaluation 且授权。activate 重算 Evaluation，并核 parent/candidate snapshot/context；换 candidate 导致重算不等则 invalidEvaluation，错 permit 为 authorityUnresolved，旧 loaded 不变。",
+            "source": "ValidatedFeedbackLoad20261027.samplingMatches/loadAllowed/activate/replaced_candidate_does_not_reuse_old_permit"
+          }
+        ],
+        "conditionality": "legal interpretation、actual world、source fidelity、applicability、fixed φ、scope 合同及相应同 QΓ 抽样 law/IID 条件均外部给定；来源字符串、时间、ID、版本或 receipt 本身不推出真实性、独立性或因果识别。",
+        "accepted_subject_evidence": {
+          "pr": 83,
+          "pr_head": "e260fec942615300176dd253974927a4a735931a",
+          "subject": "648dbdf2afc6cea9a8ab57cec9f82acc9b7c524f",
+          "tree": "898008527b07f72ccd1b19f5fa9f11cf563d4b4f",
+          "merged_main": "ea2c48b6cdd1b86e792ad58c60fbeff05b48102e",
+          "authority_run_attempt": "41225413701:1",
+          "lean_full_clean_job": "124608422288",
+          "lean_artifact_id": 13050954259,
+          "lean_artifact_bytes": 685687,
+          "lean_build_log_path": "D:/tmp/u00-cut15-pr83-41225413701/13050954259/lake-clean-build.log",
+          "lean_artifact_sha256": "e4852feabbb7bcec5ecbc948ca21c9ee2ccff9cec9661bc42e50acd3af7b537e",
+          "actual_audit_build_log_lines": {
+            "EventFeedbackConsumerAudit20261027": 7148,
+            "FeedbackLabelSemanticsAudit20261027": 10303,
+            "ProtectedFeedbackAudit20261027": 10482,
+            "AdaptiveRoundLedgerAudit20261027": 13453,
+            "ValidatedFeedbackLoadAudit20261027": 12273,
+            "BusinessFeedbackLoopAudit20261027": 17335,
+            "U00RSICandidateBridgeAudit20261031": 14228,
+            "U00MeasuredRSIEntryAudit20261031": 17013,
+            "U00ActualAssessmentChoiceAudit20261031": 18609
+          },
+          "guard_msgs": "上述既有 Audit 模块在接受的 Authority full-clean 日志中实际 Built；这是 PR83 接受 subject 的构建证据，不是本记录分支的 CI 结果。",
+          "record_creation_ci_status": "CI_NOT_RUN",
+          "acceptance_note": "CI_NOT_RUN 是本记录创建时快照；该记录 PR 的最终验收以其 exact-subject 证据为准。"
+        }
+      }
     },
     {
       "topic": "15",

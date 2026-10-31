@@ -18062,7 +18062,7 @@
     }
    ],
    "imports": [
-    "JurisLean.Candidates.FormalTail20261024",
+    "JurisLean.Candidates.Final20261021.Probability",
     "Mathlib.Analysis.Convex.Deriv",
     "Mathlib.Analysis.Convex.Strong",
     "Mathlib.Analysis.InnerProductSpace.PiL2",
@@ -18073,8 +18073,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
    "print_axioms_targets": [],
-   "sha256": "b21f88ce77496390402ec0fad3ff9dfa4d6604ea73062abba9ffca1979b85359",
-   "size_bytes": 11138,
+   "sha256": "a96285d27c2156957c9878b6a29c095c98045e7a0b8b1279c973fee12afcbf20",
+   "size_bytes": 11314,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -59652,6 +59652,8 @@
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
     "JurisLean.Candidates.U02_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
+    "JurisLean.Candidates.U04LogisticContract20261101",
+    "JurisLean.Candidates.U04LogisticContractAudit20261101",
     "JurisLean.Candidates.U04_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
@@ -59862,8 +59864,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "bfb0a9b259ebee1ce76fab09e45a6e1346271702810a29ea5a34ed7dc01fade3",
-   "size_bytes": 13786,
+   "sha256": "f9d72a42c17a129a54400e760427227ec757b3af9efa08305ae09136c7cc85b8",
+   "size_bytes": 13903,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -61172,12 +61174,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "64b48e2d0d299aa6cfecde43b1c9a5a472a68952c05ae3f226f429ca3072062c",
+ "source_inventory_digest": "19019329677542ce4cfc230f3918566826dc8cd8cf939f472aa37ee6886d6556",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "formal/close-cut04-logistic-20261101",
-  "commit": "0de490d5b765c43f4b42b495204bd2e1ba4572e2",
-  "tree": "653f1cb1734998c6f2c7f8db1045c87132ce833d"
+  "commit": "1197a943f64cab80ec001ad72b714cbc5327ecd6",
+  "tree": "655c69995dd074fa01930ca0b8c293d354d5063b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

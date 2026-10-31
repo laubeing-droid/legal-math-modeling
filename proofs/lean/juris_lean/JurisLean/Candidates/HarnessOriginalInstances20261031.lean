@@ -51,12 +51,12 @@ theorem hidden_permissions_force_refusal :
         ((∀ state action, hiddenAllowed state action →
           gate (hiddenObservation state) action = true) → False) ∧
         gate () false = false ∧ gate () true = false := by
-  refine ⟨rfl, ⟨rfl, rfl⟩, by decide, ?_⟩
+  refine ⟨rfl, ⟨rfl, rfl⟩, by simp [hiddenAllowed], ?_⟩
   intro gate sound
   refine ⟨?_, ?_, ?_⟩
   · intro complete
     exact indistinguishable_permission_prevents_sound_and_complete
-      hiddenObservation hiddenAllowed gate false true false rfl rfl (by decide)
+      hiddenObservation hiddenAllowed gate false true false rfl rfl (by simp [hiddenAllowed])
       sound complete
   · cases h : gate () false with
     | false => rfl

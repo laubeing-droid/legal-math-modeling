@@ -208,9 +208,10 @@ theorem actual_assessment_and_next_action_joint_confidence
     input.radius input.exponent input.utility input.grants initial selected transported
   have serviceSame :
       (finishAdaptiveRound state.learning request samples permits).post.service =
-        (activatedRound state.learning evaluation samples request.sampling permits request.permit).service :=
-    fresh_round_post_service_is_actual_activation state.learning declaration request samples permits
-      evaluation loaded fresh round room pending actualEvaluation actualLoad
+        (activatedRound state.learning evaluation samples base.sampling permits base.permit).service := by
+    simpa only [request, sampledRequest] using
+      (fresh_round_post_service_is_actual_activation state.learning declaration request samples permits
+        evaluation loaded fresh round room pending actualEvaluation actualLoad)
   rw [← serviceSame] at result
   exact result
 

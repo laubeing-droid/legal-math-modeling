@@ -50,9 +50,9 @@ private theorem signal_law_mass (P : PMF Ω) (obs : Ω → Y) (y : Y) :
       apply Finset.sum_congr rfl
       intro w _
       by_cases same : obs w = y
-      · simp [fiberWeight, same, same.symm]
+      · simp only [fiberWeight, if_pos same, if_pos same.symm]
       · have reverse : ¬ (y = obs w) := fun h => same h.symm
-        simp [fiberWeight, same, reverse]
+        simp only [fiberWeight, if_neg same, if_neg reverse, ENNReal.toReal_zero]
 
 private theorem signal_expect_eq_sum (P : PMF Ω) (obs : Ω → Y) (f : Y → ℝ) :
     expect (signalLaw P obs) f = ∑ y, signalMass P obs y * f y := by

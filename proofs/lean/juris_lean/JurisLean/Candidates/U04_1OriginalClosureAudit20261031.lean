@@ -1,0 +1,49 @@
+import JurisLean.Candidates.BetaFutureSampling20261031
+import JurisLean.Candidates.BernoulliMeanInstance20261031
+import JurisLean.Candidates.BetaEnclosureInstance20261031
+
+/-!
+
+Original U04.1 independent audit: four new declarations and two reused
+positive-real posterior identities. Object checks bind the actual posterior
+likelihood and the concrete generation, joint-law, and observed-future objects.
+-/
+
+#check JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.half_copy_kernel_realizes_generation
+
+#check JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel
+
+#check JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.half_copy_exchangeable_counterexample
+
+#check JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence
+#print axioms JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence
+
+#check JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure
+#print axioms JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_measure
+
+#check JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean
+#print axioms JurisLean.Candidates.ExactProbability20261027.positive_real_beta_predictive_mean
+
+#check JurisLean.Candidates.ExactProbability20261027.normalizedBetaLikelihood
+#check JurisLean.Candidates.ExactProbability20261027.bernoulliLikelihood
+#check JurisLean.Candidates.BetaFutureSampling20261031.halfCopyKernel
+#check JurisLean.Candidates.BetaFutureSampling20261031.halfCopyLaw
+#check JurisLean.Candidates.BetaFutureSampling20261031.observedFutureKernel
+#check JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density
+#print axioms JurisLean.Candidates.ExactProbability20261027.positive_real_beta_posterior_density
+
+#check JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+#print axioms JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
+
+#check JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+#print axioms JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail
+
+#check PMF.bernoulli
+#check JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean
+#check JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio
+#check JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+#print axioms JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+#check JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation

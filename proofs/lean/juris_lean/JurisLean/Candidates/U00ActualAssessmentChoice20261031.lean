@@ -69,7 +69,7 @@ private theorem native_assessment_reads_actual_loaded_parent {m : Nat}
   have sameParent : declaration.prepared.parent = readLoaded native.service :=
     parent.trans keepsLoaded.symm
   unfold assessAdaptiveRound at actual
-  split_ifs at actual <;> try simp only [emptyRoundRecord] at actual
+  split_ifs at actual <;> try simp [emptyRoundRecord] at actual
   cases candidateKnown : declaration.prepared.candidate with
   | unknown e => simp [candidateKnown, emptyRoundRecord] at actual
   | rejected e => simp [candidateKnown, emptyRoundRecord] at actual
@@ -173,6 +173,7 @@ theorem actual_assessment_and_next_action_joint_confidence
   refine ⟨good, measurable, mass, ?_⟩
   intro w hw state declaration base exchange personalRequest nativeNow meanings nativePlan
     domain snapshot radius tolerance exponent events evaluation loaded samples permits
+  dsimp only
   intro started receiptPlan fresh round room pending actualEvaluation actualLoad loadedStatus
     template calEvents W input protocolSame
   intro actual selected called chosen

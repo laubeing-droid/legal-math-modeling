@@ -290,7 +290,7 @@ def runRefreshedPersonalSource {V R W : Type} {m : Nat} [DecidableEq R]
     (measurement : MeasurementInput m) (policy : PolicyInput m) (before : RSI.State)
     (evidence : SourceRef) (request : RSI.PredictionRequest) (now : Instant)
     (meanings : List (LogMeaning m)) (plan : ValidationPlan) :
-    Result (RefreshedPersonalSourceEpisode V W m) :=
+    Except (Result Unit) (RefreshedPersonalSourceEpisode V W m) :=
   match openingFor legal with
   | .known opening =>
       match commonQuery version encode opening settings.request.protocol with
@@ -301,18 +301,18 @@ def runRefreshedPersonalSource {V R W : Type} {m : Nat} [DecidableEq R]
               let action := act initial (actionInput legal (querySettings settings query) rows)
               let refreshed := refreshReportedState action.post background refreshGrants change
                 nextLegal branch nextMeaning nextRenewals
-              .known ⟨opening, query, initial, action, refreshed,
+              .ok ⟨opening, query, initial, action, refreshed,
                 continuePersonalBusiness refreshed.post before query evidence
                   (queryMeasurement measurement query) policy request now meanings plan⟩
-          | .unknown e => .unknown e
-          | .rejected e => .rejected e
-          | .conflict a b => .conflict a b
-      | .unknown e => .unknown e
-      | .rejected e => .rejected e
-      | .conflict a b => .conflict a b
-  | .unknown e => .unknown e
-  | .rejected e => .rejected e
-  | .conflict a b => .conflict a b
+          | .unknown e => .error (.unknown e)
+          | .rejected e => .error (.rejected e)
+          | .conflict a b => .error (.conflict a b)
+      | .unknown e => .error (.unknown e)
+      | .rejected e => .error (.rejected e)
+      | .conflict a b => .error (.conflict a b)
+  | .unknown e => .error (.unknown e)
+  | .rejected e => .error (.rejected e)
+  | .conflict a b => .error (.conflict a b)
 
 /-- The actual order is source head -> one act -> A on its reported business
 post -> E on A's complete business result. Neither old complete episode nor
@@ -330,7 +330,7 @@ theorem actual_source_action_refresh_then_personal_continuation
     (out : RefreshedPersonalSourceEpisode V W m)
     (known : runRefreshedPersonalSource legal learning version encode settings background
       refreshGrants change nextLegal branch nextMeaning nextRenewals measurement policy before
-      evidence request now meanings plan = .known out) :
+      evidence request now meanings plan = .ok out) :
     openingFor legal = .known out.opening ∧
       commonQuery version encode out.opening settings.request.protocol = .known out.query ∧
       initialState out.opening learning = .known out.initial ∧
@@ -357,7 +357,7 @@ theorem actual_source_action_refresh_then_personal_continuation
           | conflict a b => simp [runRefreshedPersonalSource, opened, queried, initialized] at known
           | known initial =>
               simp only [runRefreshedPersonalSource, opened, queried, initialized,
-                Result.known.injEq] at known
+                Except.ok.injEq] at known
               subst out
               exact ⟨rfl, queried, initialized, rfl, rfl, rfl⟩
 

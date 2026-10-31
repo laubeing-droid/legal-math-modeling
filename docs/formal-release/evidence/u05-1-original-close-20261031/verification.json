@@ -1,0 +1,106 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "72135485cb4cbba15ec3e2bdd0183d99d05e9947",
+  "subject_tree": "ff6132ec279f6f9d020e455d4b0f11a44f054578",
+  "run_id": 41163534485,
+  "job_id": 124426094626,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163534485",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41163534485/job/124426094626",
+  "artifact_name": "changed-module-only-41163534485-1",
+  "artifact_id": 13027479267,
+  "artifact_sha256": "18735b40445d38b68c36d226731daca9550bc44d2c88da877e85cbc6ace03dfb",
+  "artifact_size_bytes": 2685,
+  "artifact_files": [
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "f8f90bff35a84e5a1cad1b77bed0115daceec38ede94bbb2dceed9c90ec672cc"
+    },
+    {
+      "path": "changed-module.log",
+      "size_bytes": 13248,
+      "sha256": "6aff5885091ef5fb1d85ef2b823e5303f4dc46d96cc71b54169dec5728b4cdd7"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "U05.1": [
+      "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+      "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+      "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+      "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
+      "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+      "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage"
+    ]
+  },
+  "object_checks": [
+    "JurisLean.Candidates.ExchangeableRank20261031.calibrationOrder",
+    "JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile",
+    "JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold"
+  ],
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "propext": 6,
+      "Classical.choice": 6,
+      "Quot.sound": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+      "sha256": "39fa312b32d87c9b34445b9a8144cefd103c26ad08fe0b8ef0493c38545ee38a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
+      "sha256": "8c017caea1a60e1a6d3285f72c701e08780787d5b16e978045f885c10ddf3f7c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
+      "sha256": "b9728b06fb57606e718d9b0ebd60fd5ac6cd032afc142bc43b888c64a073e4f5"
+    }
+  ],
+  "original_residuals": {
+    "U05.1": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem."
+  },
+  "closed_ids": [
+    "U05.1"
+  ],
+  "closed_this_round": 1,
+  "closes_debt": true,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 3,
+  "narrow_after": 2,
+  "wiring_before": 47,
+  "wiring_after": 48,
+  "prior_disposition": {
+    "path": "缩",
+    "archive_gap_status": "CLOSED_BY_NARROW"
+  },
+  "proposed_disposition": {
+    "path": "证",
+    "archive_gap_status": "CLOSED_BY_WIRING"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": {
+    "subject": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+    "run_id": 40274167574,
+    "job_id": 121413235107,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-21862d9b/verification.json"
+  },
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/u05-1-original-close-20261031/axiom-audit.raw.txt",
+    "sha256": "0cf04ba42feb7456d4624f953f2953477aec9b0d69332894d8b5b5dd3fa52550",
+    "blocks": 15
+  }
+}

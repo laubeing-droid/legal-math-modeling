@@ -441,6 +441,7 @@
     "JurisLean.Candidates.U01_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
@@ -917,6 +918,11 @@
     "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
     "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
     "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
+    "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+    "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+    "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+    "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+    "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
     "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
     "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
     "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split",
@@ -924,6 +930,7 @@
     "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
     "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
     "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage",
     "JurisLean.Candidates.LearningBoundary20261027.actualConstantFit_value",
     "JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk_eq",
     "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
@@ -4600,8 +4607,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "893a330dbd03390d0b94f1bd5b62a46be33a2583983ec380e187a07de9047e13",
-   "size_bytes": 301234,
+   "sha256": "7656e97f0c184c8abae45284a5561bab3e52d626810ab3c3eb8e93fc7543f97e",
+   "size_bytes": 302483,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -8864,6 +8871,76 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "KeyLT"
+    },
+    {
+     "kind": "def",
+     "name": "keyRank"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationOrder"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationQuantile"
+    },
+    {
+     "kind": "theorem",
+     "name": "rank_order_statistic_core"
+    },
+    {
+     "kind": "def",
+     "name": "auxiliaryBase"
+    },
+    {
+     "kind": "def",
+     "name": "iidAuxLaw"
+    },
+    {
+     "kind": "def",
+     "name": "augmentedScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "iid_auxiliary_rank_prefix"
+    },
+    {
+     "kind": "def",
+     "name": "conformalIndex"
+    },
+    {
+     "kind": "def",
+     "name": "conformalThreshold"
+    },
+    {
+     "kind": "theorem",
+     "name": "exchangeable_split_conformal_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "scored_sample_split_conformal_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_group_and_deployment_boundaries"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
+   "print_axioms_targets": [],
+   "sha256": "8c017caea1a60e1a6d3285f72c701e08780787d5b16e978045f885c10ddf3f7c",
+   "size_bytes": 41352,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "Reliable"
     },
     {
@@ -12733,6 +12810,24 @@
    "size_bytes": 14131,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "group_conditional_split_conformal_coverage"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ExchangeableRank20261031"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
+   "print_axioms_targets": [],
+   "sha256": "b9728b06fb57606e718d9b0ebd60fd5ac6cd032afc142bc43b888c64a073e4f5",
+   "size_bytes": 2230,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
   },
   {
    "declarations": [
@@ -17248,6 +17343,27 @@
    ],
    "sha256": "6c91454ef85b5c6f766e2e1029972d4807a0bed08e5dede5e0401437ac3a382e",
    "size_bytes": 1078,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.ExchangeableRank20261031",
+    "JurisLean.Candidates.GroupedConformalInstance20261031"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage",
+    "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+    "JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix",
+    "JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core",
+    "JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage",
+    "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage"
+   ],
+   "sha256": "39fa312b32d87c9b34445b9a8144cefd103c26ad08fe0b8ef0493c38545ee38a",
+   "size_bytes": 1451,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58545,8 +58661,10 @@
     "JurisLean.Candidates.EvidenceWorldsAudit20261027",
     "JurisLean.Candidates.ExactProbability20261027",
     "JurisLean.Candidates.ExactProbabilityAudit20261027",
+    "JurisLean.Candidates.ExchangeableRank20261031",
     "JurisLean.Candidates.FeedbackLabelSemantics20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
+    "JurisLean.Candidates.GroupedConformalInstance20261031",
     "JurisLean.Candidates.LearningDependence20261027",
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LearningTheoryAudit20261027",
@@ -58568,6 +58686,7 @@
     "JurisLean.Candidates.U04_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U07_2JointObject20261029",
@@ -58768,8 +58887,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "d51e8598607d538a769828b82ffbaedb1ac79b6a11d7978ec4060fa6e2ce35dd",
-   "size_bytes": 12101,
+   "sha256": "f451264a4a2e815145b685ea449e9e53797e92aab3faa7b34631f1cd7ae252cb",
+   "size_bytes": 12277,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -58933,22 +59052,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6244,
-   "file_count": 515,
+   "counted_declaration_count": 6250,
+   "file_count": 518,
    "lemma_count": 146,
-   "print_axioms_command_count": 5418,
-   "print_axioms_distinct_targets": 5034,
-   "theorem_count": 6098,
-   "theorem_count_bol_convention": 5998
+   "print_axioms_command_count": 5430,
+   "print_axioms_distinct_targets": 5040,
+   "theorem_count": 6104,
+   "theorem_count_bol_convention": 6004
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6225,
-   "file_count": 500,
+   "counted_declaration_count": 6231,
+   "file_count": 503,
    "lemma_count": 139,
-   "print_axioms_command_count": 5418,
-   "print_axioms_distinct_targets": 5034,
-   "theorem_count": 6086,
-   "theorem_count_bol_convention": 5986
+   "print_axioms_command_count": 5430,
+   "print_axioms_distinct_targets": 5040,
+   "theorem_count": 6092,
+   "theorem_count_bol_convention": 5992
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -59036,6 +59155,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -59066,6 +59186,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRiskAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
@@ -59127,6 +59248,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
@@ -59549,6 +59671,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/EvidenceWorldsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbabilityAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -59579,6 +59702,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/GroupedConformalInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRiskAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
@@ -59640,6 +59764,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
@@ -60020,17 +60145,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "bb820f2e1ee3147e15a772c669cdd4bdbb61aec44228e8539d3e680462d90028",
+ "source_inventory_digest": "1b385b5111fd7c3b44ed2185e03fad0860c92c5ca8ff4e61f70cb5ef14da6039",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-u04-1-original-20261031",
-  "commit": "d557d2760622d1a5563ee22f06ed2cd02cd61511",
-  "tree": "447993cda218401cb418fc97518d00bf708fcf4a"
+  "branch": "formal/close-u05-1-original-20261031",
+  "commit": "ad3f43976c70466eb243482863ed8f97ffb7f63a",
+  "tree": "267db49204a145c74ea4b81f4df3706b0e44a027"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 515,
+  "files_total": 518,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

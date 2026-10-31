@@ -236,6 +236,7 @@ import JurisLean.Candidates.U12_3SequentialFinite20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
+import JurisLean.Candidates.U05_1OriginalClosureAudit20261031
 import JurisLean.Candidates.BetaFutureSampling20261031
 import JurisLean.Candidates.BernoulliMeanInstance20261031
 import JurisLean.Candidates.BetaEnclosureInstance20261031
@@ -927,6 +928,20 @@ open HornSystem
 #print axioms JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail
 #check JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
 #print axioms JurisLean.Candidates.BetaEnclosureInstance20261031.actual_beta_integrals_enclosure
+
+/-! U05.1 exchangeable finite marginal conformal coverage targets. -/
+#check JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core
+#check JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.iid_auxiliary_rank_prefix
+#check JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.exchangeable_split_conformal_coverage
+#check JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.scored_sample_split_conformal_coverage
+#check JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries
+#check JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
+#print axioms JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
 
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

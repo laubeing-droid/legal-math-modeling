@@ -4,15 +4,6 @@ namespace JurisLean.CN.Revision20261101
 
 open JurisLean.KernelV3 JurisLean.Hohfeld
 
-structure LegalRelation where
-  id : Ref .relation
-  holder : Ref .actor
-  counterparty : Ref .actor
-  scope : Scope
-  objectKind : JurisLean.CN.Walls.ObjKind
-  right : JurisLean.CN.Walls.RightKind
-  deriving DecidableEq, Repr
-
 structure HohfeldPosition where
   holder : Ref .actor
   counterparty : Ref .actor

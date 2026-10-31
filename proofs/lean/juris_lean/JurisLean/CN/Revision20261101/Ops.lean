@@ -98,7 +98,7 @@ structure Request where
   scope : Scope
   rule : Ref .rule
   version : Nat
-  at : Nat
+  time : Nat
   act : Act
   deriving DecidableEq, Repr
 
@@ -122,13 +122,24 @@ def roleAllows (r : Role) : Act → Bool
 def grantMatches (g : Grant) (r : Request) : Bool :=
   g.actor == r.actor && g.scope == r.scope && g.rule == r.rule &&
   g.version == r.version && g.act == r.act &&
-  decide (g.start ≤ r.at ∧ r.at ≤ g.stop) && roleAllows g.role r.act
+  decide (g.start ≤ r.time ∧ r.time ≤ g.stop) && roleAllows g.role r.act
+
+structure LegalRelation where
+  id : Ref .relation
+  holder : Ref .actor
+  counterparty : Ref .actor
+  scope : Scope
+  objectKind : JurisLean.CN.Walls.ObjKind
+  right : JurisLean.CN.Walls.RightKind
+  deriving DecidableEq, Repr
 
 structure Rule where
   source : NormRef
   scope : Scope
   guard : Formula
+  materials : List (Ref .material)
   effect : EffectType
+  formed : Option LegalRelation
 
 structure Param where
   version : Nat

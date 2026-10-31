@@ -4,10 +4,10 @@
     "baseline_main": "b58e50c34d06352063b7a48122f25c837a9973fe",
     "source_checkpoint": "89a5ec8a3e1180ee072c20fc91a3026f498893e5",
     "source_tree": "deb761a55294eb6d695a05916cfce68241d96980",
-    "ci_status": "U05.1_CHANGED_MODULE_SUCCESS; SOURCE_EVIDENCE_ONLY; package/ledger/core review pending; PR/full-release/merge pending",
+    "ci_status": "U05.1_MARGINAL_CHANGED_MODULE_SUCCESS; GROUP_INSTANCE_CI_NOT_RUN; SOURCE_EVIDENCE_ONLY; PR/full-release/merge pending",
     "closes_debt": false,
     "current_archive_open": 0,
-    "scope": "U05.1 source/module audit proves finite marginal conformal coverage for exchangeable score vectors using a constructed independent continuous auxiliary; original-question 05.4 L111/L113/L115 is COVERED under its written premises. U05.5 receives only L123 negative support and remains NOT_RECONCILED. Original-question 01.1–01.6 are COVERED within their finite task/model-card contracts and explicit quantifier boundaries. No arbitrary subgroup/shift guarantees, legal correctness, real-data validity, engineering105, 15 consumer edges, six cuts, or whole-theory completion is claimed. Main b58e50 is 47/3/0; this branch candidate after registration is 48/2/0. Global discharges, Step 2 and math_flip remain false.",
+    "scope": "U05.1 source/module audit proves finite marginal conformal coverage for exchangeable score vectors using a constructed independent continuous auxiliary. For original-question 05.4, L111/L113 are evidenced and L115 has marginal/group and deployment counterexamples; the requested sufficient group-conditional version is pending independent source CI under its stated conditional-law premises. U05.5 receives only L123 negative support and remains NOT_RECONCILED. Original-question 01.1–01.6 are COVERED within their finite task/model-card contracts and explicit quantifier boundaries. No arbitrary subgroup/shift guarantees, legal correctness, real-data validity, engineering105, 15 consumer edges, six cuts, or whole-theory completion is claimed. Main b58e50 is 47/3/0; this branch archive candidate is 48/2/0. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
@@ -30,8 +30,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 23,
-    "PARTIAL": 46,
+    "COVERED": 22,
+    "PARTIAL": 47,
     "NOT_RECONCILED": 28
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -1765,7 +1765,7 @@
           115
         ]
       ],
-      "reconciliation": "COVERED",
+      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u05-1-original-close-20261031",
@@ -1779,7 +1779,7 @@
           "scope": "Independent source audit of the five U05.1 rank/coverage declarations and three calibration objects; paragraph mapping below."
         }
       ],
-      "remaining": "COVERED for original-question 05.4 L111/L113/L115 under its stated fixed-training, exchangeable-score, independent-continuous-auxiliary and specified test-law premises. No group-conditional calibration procedure is claimed.",
+      "remaining": "L111/L113 have independent source evidence and the L115 counterexamples are recorded; the original sufficient group-conditional version is awaiting the new conditional-law instance source audit. Its stated requirements are positive mass of the test group, within-group calibration almost surely under the actual conditional law, exchangeability under that conditional law, and a nonempty group calibration count.",
       "paragraph_evidence": [
         {
           "lines": [
@@ -1808,7 +1808,7 @@
             115,
             115
           ],
-          "claim": "Finite examples give marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4; no general group-conditional procedure or shift guarantee.",
+          "claim": "Finite examples give marginal 13/16 versus rare-group 1/4 and changed-test-law coverage 1/4; they do not prove the requested sufficient group-conditional version or a general shift guarantee.",
           "named_targets": [
             "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
           ]

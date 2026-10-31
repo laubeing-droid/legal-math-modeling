@@ -1,4 +1,5 @@
 import JurisLean.Candidates.ExchangeableRank20261031
+import JurisLean.Candidates.GroupedConformalInstance20261031
 
 #check JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core
 #print axioms JurisLean.Candidates.ExchangeableRank20261031.rank_order_statistic_core
@@ -18,3 +19,5 @@ import JurisLean.Candidates.ExchangeableRank20261031
 #check JurisLean.Candidates.ExchangeableRank20261031.calibrationOrder
 #check JurisLean.Candidates.ExchangeableRank20261031.calibrationQuantile
 #check JurisLean.Candidates.ExchangeableRank20261031.conformalThreshold
+#check JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage
+#print axioms JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage

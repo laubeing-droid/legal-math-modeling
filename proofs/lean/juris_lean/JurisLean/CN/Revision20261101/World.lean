@@ -77,7 +77,7 @@ def burden (policy : List AdmittedItem → EvalResult Disposition)
 
 /- A separate policy contract consumes only admitted inputs. Authenticating its
    source and refining a real proof standard are external, unproved obligations.
-   `support` below is used only as a synthetic two-polarity policy. -/
+   `support` is used only as a synthetic two-polarity policy. -/
 structure ProofPolicy where
   source : NormRef
   scope : Scope
@@ -85,7 +85,7 @@ structure ProofPolicy where
 
 theorem buckets_disjoint {i : Ref .material} (c : EvidenceCell i) :
     ¬ (isAdmitted c = true ∧ isExcluded c = true) := by
-  cases c <;> decide
+  cases c <;> simp [isAdmitted, isExcluded]
 
 theorem admitted_implies_raw {i : Ref .material} (c : EvidenceCell i)
     (h : isAdmitted c = true) : (rawOf c).isSome = true := by
@@ -135,13 +135,13 @@ structure DecideBinding where
   kind : DecideKind
   index : BindingIndex
   effective : decision.valid = true
-  scoped : index.subject = decision.request.scope
+  scopeMatch : index.subject = decision.request.scope
 
 structure OtherBinding where
   source : OtherSource
   index : BindingIndex
   request : Request
-  scoped : index.subject = request.scope
+  scopeMatch : index.subject = request.scope
 
 inductive Binding
   | decide (b : DecideBinding)
@@ -242,6 +242,8 @@ def automationAllowed (s : Sit) (scope : Scope) : Mode → Bool
 structure RuleTicket (s : Sit) where
   law : Rule
   member : law ∈ s.N.rules
+  compatibleWorld : PossibleWorld
+  compatibleProof : compatible s compatibleWorld
   policy : ProofPolicy
   policyScope : policy.scope = law.scope
   policyVersion : policy.source.version = law.source.version
@@ -273,7 +275,7 @@ def legalStep (s : Sit) (req : Request) (ticket : RuleTicket s) (mode : Mode) : 
 
 theorem no_authority_no_creation (s : Sit) (r : Request) (t : RuleTicket s) (m : Mode)
     (h : authorized s.N r = false) : (legalStep s r t m).after.L = s.L := by
-  simp [legalStep, h]
+  by_cases hm : automationAllowed s r.scope m = false <;> simp [legalStep, hm, h]
 
 theorem confirmatory_preserves_relations (s : Sit) (j : Judgment) :
     (applyEffect s (.confirmatory j)).L = s.L := by
@@ -283,7 +285,9 @@ theorem confirmatory_preserves_relations (s : Sit) (j : Judgment) :
 theorem refused_automated_step (s : Sit) (r : Request) (t : RuleTicket s)
     (h : s.refusals.contains r.scope = true) :
     (legalStep s r t .automated).status = .blockedHuman := by
-  simp [legalStep, automationAllowed, h]
+  have hb : automationAllowed s r.scope .automated = false := by
+    simp only [automationAllowed, h, Bool.not_true]
+  simp [legalStep, hb]
 
 theorem propose_frame (s : Sit) (c : Candidate) :
     (propose s c).F = s.F ∧ (propose s c).N = s.N ∧
@@ -307,7 +311,7 @@ inductive Event (s : Sit)
   | learn (theta : List Rat) (i : Ref .material) (raw : Raw i)
       (fresh : s.E i = .absent)
       (request : Request) (auth : authorized s.N request = true)
-      (kind : request.act = .learnModel) (scoped : request.scope = raw.atom.scope)
+      (kind : request.act = .learnModel) (scopeMatch : request.scope = raw.atom.scope)
       (assessment : Ref .document)
   | record (i : Ref .material) (raw : Raw i) (fresh : s.E i = .absent)
   | admitEvidence (i : Ref .material) (raw : Raw i) (rc : Receipt raw)
@@ -371,9 +375,28 @@ def initial : Sit :=
 def recorded : Sit := {initial with E := setEvidence initial.E ⟨9⟩ (.pending toyRaw)}
 def prepared : Sit := admitEvidence recorded ⟨9⟩ toyRaw toyReceipt
 
+def toyWorld : PossibleWorld :=
+  ⟨fun _ => true, fun _ => false, fun _ => ⟨0⟩, fun _ => ⟨0⟩⟩
+
+theorem prepared_has_compatible_world : compatible prepared toyWorld := by
+  constructor
+  · intro i raw rc h
+    by_cases hi : i = ⟨9⟩
+    · subst i
+      have heq : (EvidenceCell.accepted toyRaw toyReceipt : EvidenceCell ⟨9⟩) =
+          .accepted raw rc := by
+        simpa [prepared, admitEvidence, setEvidence] using h
+      cases heq
+      rfl
+    · simp [prepared, admitEvidence, recorded, initial, setEvidence, hi] at h
+  · intro c hc
+    simp [prepared, admitEvidence, recorded, initial] at hc
+
 def toyTicket : RuleTicket prepared :=
   { law := toyRule
     member := by simp [prepared, admitEvidence, recorded, initial]
+    compatibleWorld := toyWorld
+    compatibleProof := prepared_has_compatible_world
     policy := ⟨toyNorm, toyScope, support⟩
     policyScope := rfl
     policyVersion := rfl
@@ -413,13 +436,48 @@ def toyCandidate : Candidate := ⟨toyScope, ⟨14⟩, [], .atom toyAtom⟩
 theorem proposal_is_not_learning :
     (propose initial toyCandidate).A.theta ≠ (learn initial [1] ⟨9⟩ toyRaw).A.theta := by decide
 
-/- Audit the actual transitive dependencies of representative new theorems. -/
+/- Audit all new theorem declarations, including their transitive dependencies. -/
+#print axioms no_grants_no_authority
+#print axioms lawyer_cannot_add_template
+#print axioms court_name_alone_insufficient
+#print axioms false_conjunct_decisive
+#print axioms unknown_not_false
+#print axioms unresolved_ne_selected
+#print axioms article105_routes_differ
+#print axioms no_causal_permit_no_bridge
+#print axioms request_maps_to_claim
+#print axioms formation_maps_to_power
+#print axioms defense_not_noRight
+#print axioms domination_contains_privilege
+#print axioms counterpart_preserves_scope
+#print axioms counterpart_twice
+#print axioms revocable_and_effective
+#print axioms revocation_keeps_establishment
+#print axioms delegation_keeps_principal_capacity
+#print axioms proven_bad_faith_fails
+#print axioms unchecked_good_faith_stays_unknown
+#print axioms ordinary_needs_no_agreement
+#print axioms appearance_cannot_override_exclusive
+#print axioms limitation_preserves_claim
+#print axioms limitation_does_not_raise
 #print axioms buckets_disjoint
 #print axioms admitted_implies_raw
+#print axioms absent_not_admitted
+#print axioms excluded_keeps_raw
 #print axioms no_authority_no_creation
 #print axioms confirmatory_preserves_relations
 #print axioms refused_automated_step
+#print axioms propose_frame
+#print axioms learn_frame
+#print axioms admission_frame
+#print axioms withdrawal_preserves_reality
+#print axioms append_keeps_history_length
+#print axioms prepared_has_compatible_world
 #print axioms nonjudicial_formation_exists
+#print axioms no_receipt_no_guard_support
+#print axioms admitted_guard_has_support
 #print axioms withdrawal_removes_support
+#print axioms withdrawal_keeps_excluded_and_raw
+#print axioms proposal_is_not_learning
 
 end JurisLean.CN.Revision20261101

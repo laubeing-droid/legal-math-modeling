@@ -10,6 +10,7 @@ open JurisLean.Hohfeld
 
 /-!
 中文说明：算子代数。法律是参数。除关债外。无 sorry。
+四墙定理在 Walls 里，不重证。
 -/
 
 /-- 九算子。 -/
@@ -58,14 +59,17 @@ def wPerform : Writes :=
 
 /-- 提议写集不含 F/N/L。 -/
 theorem wPropose_frame :
-    wPropose.wF = false ∧ wPropose.wN = false ∧ wPropose.wL = false := rfl
+    wPropose.wF = false ∧ wPropose.wN = false ∧ wPropose.wL = false := by
+  decide
 
 /-- 学习写集不含 F/N/L。 -/
 theorem wLearn_frame :
-    wLearn.wF = false ∧ wLearn.wN = false ∧ wLearn.wL = false := rfl
+    wLearn.wF = false ∧ wLearn.wN = false ∧ wLearn.wL = false := by
+  decide
 
 /-- Bind 写集含 L 不含 F。 -/
-theorem wBind_is_L : wBind.wL = true ∧ wBind.wF = false := rfl
+theorem wBind_is_L : wBind.wL = true ∧ wBind.wF = false := by
+  decide
 
 /-- 提议不是学习。 -/
 theorem wPropose_ne_wLearn : wPropose ≠ wLearn := by decide
@@ -136,28 +140,5 @@ theorem data_undet : ∀ o : DataOwn, o = DataOwn.undetermined := by
 
 theorem aigc_undet : ∀ a : AIGCWork, a = AIGCWork.undetermined := by
   intro a; cases a; rfl
-
-/-- 政策不入 N。 -/
-theorem policy_not_in : inN SourceKind.policy = NMember.no := rfl
-
-/-- 时效=抗辩。 -/
-theorem lim_not_claimGone : limitationEffect ≠ TimeOut.claimGone := by decide
-
-/-- Hohfeld 挂载。 -/
-theorem req_is_claim : reqHof = [Concept.claimRight] := rfl
-theorem form_is_power : formHof = [Concept.power] := rfl
-theorem defend_not_noRight : defendHof ≠ [Concept.noRight] := by decide
-
-/-- 九算子两两不同。 -/
-theorem nine_distinct :
-    Op.anchor ≠ Op.measure
-    ∧ Op.measure ≠ Op.exclude
-    ∧ Op.exclude ≠ Op.adjust
-    ∧ Op.adjust ≠ Op.expire
-    ∧ Op.expire ≠ Op.witness
-    ∧ Op.witness ≠ Op.count
-    ∧ Op.count ≠ Op.project
-    ∧ Op.project ≠ Op.commute := by
-  decide
 
 end JurisLean.CN.Ops

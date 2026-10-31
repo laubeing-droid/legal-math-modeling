@@ -184,8 +184,9 @@ theorem actual_chosen_and_loaded_joint_confidence
   have bad : QΓ.real (C ∩ V)ᶜ ≤
       (protocol.failureBudget : ℝ) + (plan.failureBudget : ℝ) := by
     have complement : (C ∩ V)ᶜ = Cᶜ ∪ Vᶜ := by
+      classical
       ext w
-      simp
+      by_cases hw : w ∈ C <;> simp [hw]
     rw [complement]
     exact (measureReal_union_le _ _).trans (add_le_add badC badV)
   have mass : 1 - ((protocol.failureBudget : ℝ) + (plan.failureBudget : ℝ)) ≤
@@ -247,6 +248,8 @@ theorem actual_chosen_and_loaded_joint_confidence
   · rw [sameProbability]
     exact calibrationInterval
   · intro g
-    simpa only [actualCandidate] using validationRisk g
+    have risk := validationRisk g
+    rw [← actualCandidate] at risk
+    simpa only [next] using risk
 
 end JurisLean.Candidates.U00ActualStatisticalJoin20261031

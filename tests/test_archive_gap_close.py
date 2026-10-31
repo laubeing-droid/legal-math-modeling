@@ -163,6 +163,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U09.2",
         "U01.4",
         "U04.4",
+        "U04.1",
     ]
     # CAND5 remain CLOSED_BY_WIRING (historical).
     cand5 = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
@@ -383,7 +384,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "集成" in u13["companion_scope_notes"] and "另证" in u13["companion_scope_notes"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
-    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1"}
+    admitted = set(cand5) | set(cand5bis) | set(cand6) | set(cand7) | {"U03.1", "U03.2", "U01.1", "U01.2", "U01.3", "U04.5", "U14.1", "U13.3", "U12.4", "U07.2", "U07.3", "U02.1", "U04.2", "U06.1", "U06.2", "U12.3", "U13.4", "U11.1", "U12.1", "U10.1", "U02.4", "U09.2", "U01.4", "U04.4", "U04.1", "U05.1"}
     assert all(
         row["formal_tail_prove"]["close_admitted"] is (row["clause"] in admitted)
         for row in ledger["rows"]

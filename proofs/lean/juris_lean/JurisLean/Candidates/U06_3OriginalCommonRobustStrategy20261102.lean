@@ -123,7 +123,7 @@ theorem finite_max_min_attained {J P : Type} [DecidableEq J] [DecidableEq P]
   refine ⟨p, hp, ?_⟩
   intro q hq
   have hqle : score q ≤ policies.sup' hpolicies score :=
-    (Finset.sup'_le_iff hpolicies).mp le_rfl q hq
+    (Finset.sup'_le_iff hpolicies score).mp le_rfl q hq
   simpa [score, hscore] using hqle
 
 noncomputable def pickMaxMin {J P : Type} [DecidableEq J] [DecidableEq P]
@@ -155,7 +155,12 @@ theorem pickMaxMin_none_iff {J P : Type} [DecidableEq J] [DecidableEq P]
     pickMaxMin branches hbranches policies values = none ↔ policies = ∅ := by
   classical
   by_cases hpolicies : policies.Nonempty
-  · simp [pickMaxMin, hpolicies]
+  · have hne : policies ≠ ∅ := by
+      obtain ⟨p, hp⟩ := hpolicies
+      intro he
+      rw [he] at hp
+      exact Finset.not_mem_empty p hp
+    simp [pickMaxMin, hpolicies, hne]
   · have hempty : policies = ∅ := by
       by_contra hne
       exact hpolicies (Finset.nonempty_of_ne_empty hne)
@@ -184,7 +189,7 @@ noncomputable def expectedUtilityMatrix {J P Ω : Type}
     (outcome : P → Ω → ℝ) : P → J → ℝ :=
   fun p j => branchExpectedUtility law utility outcome p j
 
-def conditionalAdvice {J S : Type u} {A : Type v} {P : Type w} {Ω : Type}
+def conditionalAdvice {J S A P Ω : Type}
     [MeasurableSpace Ω]
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
@@ -212,13 +217,13 @@ def conditionalAdvice {J S : Type u} {A : Type v} {P : Type w} {Ω : Type}
   | .rejected e => (values, .rejected e, .rejected e)
   | .conflict l r => (values, .conflict l r, .conflict l r)
 
-theorem conditional_advice_preserves_legal_unknown {J S : Type u} {A : Type v} {P : Type w}
+theorem conditional_advice_preserves_legal_unknown {J S A P Ω : Type}
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
     (initial : J → S) (next : J → ℕ → History S A → S → A → S → Prop)
     (implementable : ℕ → History S A → S → Finset A)
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
-    {Ω : Type} [MeasurableSpace Ω]
+    [MeasurableSpace Ω]
     (law : J → Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
     (hWellFormed : expectedUtilityInputsWellFormed branches candidates law utility outcome)
     (reason : Error) (preference : Result Unit) :
@@ -227,13 +232,13 @@ theorem conditional_advice_preserves_legal_unknown {J S : Type u} {A : Type v} {
     result.2.1 = .unknown reason ∧ result.2.2 = .unknown reason := by
   cases preference <;> constructor <;> rfl
 
-theorem conditional_advice_preserves_preference_unknown {J S : Type u} {A : Type v} {P : Type w}
+theorem conditional_advice_preserves_preference_unknown {J S A P Ω : Type}
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
     (initial : J → S) (next : J → ℕ → History S A → S → A → S → Prop)
     (implementable : ℕ → History S A → S → Finset A)
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
-    {Ω : Type} [MeasurableSpace Ω]
+    [MeasurableSpace Ω]
     (law : J → Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
     (hWellFormed : expectedUtilityInputsWellFormed branches candidates law utility outcome)
     (legal : J → ℕ → History S A → S → Finset A)
@@ -245,13 +250,13 @@ theorem conditional_advice_preserves_preference_unknown {J S : Type u} {A : Type
       result.2.2 = .unknown reason := by
   constructor <;> rfl
 
-theorem conditional_advice_known_empty_returns_none {J S : Type u} {A : Type v} {P : Type w}
+theorem conditional_advice_known_empty_returns_none {J S A P Ω : Type}
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
     (initial : J → S) (next : J → ℕ → History S A → S → A → S → Prop)
     (implementable : ℕ → History S A → S → Finset A)
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
-    {Ω : Type} [MeasurableSpace Ω]
+    [MeasurableSpace Ω]
     (law : J → Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
     (hWellFormed : expectedUtilityInputsWellFormed branches candidates law utility outcome)
     (legal : J → ℕ → History S A → S → Finset A)
@@ -261,13 +266,13 @@ theorem conditional_advice_known_empty_returns_none {J S : Type u} {A : Type v} 
   simp [conditionalAdvice, hempty, pickMaxMin_none_iff branches hbranches]
 
 theorem conditional_advice_known_choice_is_feasible_max_min
-    {J S : Type u} {A : Type v} {P : Type w}
+    {J S A P Ω : Type}
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
     (initial : J → S) (next : J → ℕ → History S A → S → A → S → Prop)
     (implementable : ℕ → History S A → S → Finset A)
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
-    {Ω : Type} [MeasurableSpace Ω]
+    [MeasurableSpace Ω]
     (law : J → Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
     (hWellFormed : expectedUtilityInputsWellFormed branches candidates law utility outcome)
     (legal : J → ℕ → History S A → S → Finset A)
@@ -294,13 +299,13 @@ theorem conditional_advice_known_choice_is_feasible_max_min
   exact hspec.2 q (Finset.mem_filter.mpr ⟨hq, hqFeasible⟩)
 
 theorem conditional_advice_known_none_iff_no_feasible_candidate
-    {J S : Type u} {A : Type v} {P : Type w}
+    {J S A P Ω : Type}
     [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (horizon : ℕ) (branches : Finset J) (hbranches : branches.Nonempty)
     (initial : J → S) (next : J → ℕ → History S A → S → A → S → Prop)
     (implementable : ℕ → History S A → S → Finset A)
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
-    {Ω : Type} [MeasurableSpace Ω]
+    [MeasurableSpace Ω]
     (law : J → Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
     (hWellFormed : expectedUtilityInputsWellFormed branches candidates law utility outcome)
     (legal : J → ℕ → History S A → S → Finset A) :
@@ -342,10 +347,10 @@ local instance : MeasurableSpace DemoTrace := ⊤
 local instance : MeasurableSpace DemoWorld := ⊤
 
 def demoPayoff (j : DemoBranch) (a : DemoAction) : ℝ :=
-  if j = 0 then
-    if a = 0 then 10 else if a = 1 then 0 else 4
+  if j.val = 0 then
+    if a.val = 0 then 10 else if a.val = 1 then 0 else 4
   else
-    if a = 0 then 0 else if a = 1 then 10 else 4
+    if a.val = 0 then 0 else if a.val = 1 then 10 else 4
 
 def demoControl : U06_1FiniteBellman20261030.Control Unit DemoAction where
   legal := fun _ _ => Finset.univ
@@ -429,6 +434,10 @@ def fixedBranchLaw (j : DemoBranch) : PMF DemoWorld :=
 def demoBranchMeasure (j : DemoBranch) : Measure DemoWorld :=
   (fixedBranchLaw j).toMeasure
 
+local instance (j : DemoBranch) : IsProbabilityMeasure (demoBranchMeasure j) := by
+  change IsProbabilityMeasure ((fixedBranchLaw j).toMeasure)
+  infer_instance
+
 def inducedWorldLaw (p : DemoAction) (j : DemoBranch) : PMF DemoWorld :=
   (U06_1FiniteBellman20261030.trajectoryLaw demoControl (demoPolicy p) 1 [] ()).map
     (fun tr => (j, tr))
@@ -436,16 +445,19 @@ def inducedWorldLaw (p : DemoAction) (j : DemoBranch) : PMF DemoWorld :=
 theorem every_policy_induces_fixed_branch_law (p : DemoAction) (j : DemoBranch) :
     inducedWorldLaw p j = fixedBranchLaw j ∧
       fixedBranchLaw j = PMF.pure (j, U06_1FiniteBellman20261030.terminalTrace () 1) := by
-  have hmap (tr : DemoTrace) : tr = U06_1FiniteBellman20261030.terminalTrace () 1 :=
-    demo_trace_eq_terminal tr
-  have hembed (j' : DemoBranch) :
-      (fun tr : DemoTrace => (j', tr)) =
-        Function.const DemoTrace (j', U06_1FiniteBellman20261030.terminalTrace () 1) := by
+  have hembed : (fun tr : DemoTrace => (j, tr)) =
+      Function.const DemoTrace (j, U06_1FiniteBellman20261030.terminalTrace () 1) := by
     funext tr
-    rw [hmap]
-  constructor
-  · simp [inducedWorldLaw, fixedBranchLaw, demo_trajectory_law_is_pure p, hembed]
-  · simp [fixedBranchLaw, demoTrajectoryLaw, demo_trajectory_law_is_pure 0, hembed]
+    exact congrArg (fun q : DemoTrace => (j, q)) (demo_trace_eq_terminal tr)
+  have hi : inducedWorldLaw p j = PMF.pure
+      (j, U06_1FiniteBellman20261030.terminalTrace () 1) := by
+    unfold inducedWorldLaw
+    rw [hembed, PMF.map_const]
+  have hf : fixedBranchLaw j = PMF.pure
+      (j, U06_1FiniteBellman20261030.terminalTrace () 1) := by
+    unfold fixedBranchLaw
+    rw [hembed, PMF.map_const]
+  exact ⟨hi.trans hf.symm, hf⟩
 
 def demoOutcome (a : DemoAction) (ω : DemoWorld) : ℝ :=
   U06_1FiniteBellman20261030.realizedReturn demoControl
@@ -466,7 +478,7 @@ theorem demo_expected_utility_inputs_well_formed :
 
 theorem demo_expected_utility_is_actual_trajectory_payoff
     (a : DemoAction) (j : DemoBranch) : demoUtilities a j = demoPayoff j a := by
-  unfold demoUtilities expectedUtilityMatrix branchExpectedUtility
+  unfold demoUtilities expectedUtilityMatrix branchExpectedUtility demoBranchMeasure
   have hLaw := (every_policy_induces_fixed_branch_law a j).2
   rw [hLaw]
   rw [PMF.integral_eq_sum]
@@ -478,7 +490,8 @@ theorem demo_max_min_scores :
     worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 0 = 0 ∧
     worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 1 = 0 ∧
     worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 2 = 4 := by
-  norm_num [worstBranchValue, demoBranchSet, demo_branches_nonempty,
+  have hbranches : demoBranchSet = ({0, 1} : Finset DemoBranch) := by decide
+  norm_num [worstBranchValue, hbranches,
     demo_expected_utility_is_actual_trajectory_payoff, demoPayoff]
 
 theorem demo_common_strategy_maximizes_minimum :
@@ -488,9 +501,17 @@ theorem demo_common_strategy_maximizes_minimum :
   intro a ha
   rcases demo_max_min_scores with ⟨h₀, h₁, h₂⟩
   fin_cases a
-  · rw [h₀, h₂]
-  · rw [h₁, h₂]
-  · exact le_rfl
+  · change worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities (0 : DemoAction) ≤
+      worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 2
+    rw [h₀, h₂]
+    norm_num
+  · change worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities (1 : DemoAction) ≤
+      worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 2
+    rw [h₁, h₂]
+    norm_num
+  · change worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities (2 : DemoAction) ≤
+      worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 2
+    exact le_rfl
 
 theorem demo_branchwise_optima_differ :
     (∀ a : DemoAction, demoUtilities a 0 ≤ demoUtilities 0 0) ∧
@@ -499,10 +520,13 @@ theorem demo_branchwise_optima_differ :
     demoUtilities 2 1 = 4 ∧ demoUtilities 2 0 < demoUtilities 0 0 ∧
     demoUtilities 2 1 < demoUtilities 1 1 := by
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · intro a; rw [demo_expected_utility_is_actual_trajectory_payoff,
-      demo_expected_utility_is_actual_trajectory_payoff]; fin_cases a <;> norm_num [demoPayoff]
-  · intro a; rw [demo_expected_utility_is_actual_trajectory_payoff,
-      demo_expected_utility_is_actual_trajectory_payoff]; fin_cases a <;> norm_num [demoPayoff]
-  all_goals rw [demo_expected_utility_is_actual_trajectory_payoff] <;> norm_num [demoPayoff]
+  · intro a
+    simp only [demo_expected_utility_is_actual_trajectory_payoff]
+    fin_cases a <;> norm_num [demoPayoff]
+  · intro a
+    simp only [demo_expected_utility_is_actual_trajectory_payoff]
+    fin_cases a <;> norm_num [demoPayoff]
+  all_goals simp only [demo_expected_utility_is_actual_trajectory_payoff] <;>
+    norm_num [demoPayoff]
 
 end JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102

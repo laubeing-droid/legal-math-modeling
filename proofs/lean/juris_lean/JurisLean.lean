@@ -1,5 +1,6 @@
 ﻿-- JurisLean root module
 import JurisLean.Basic
+import JurisLean.CN.Twelve
 import JurisLean.CN.Walls
 import JurisLean.CN.World
 import JurisLean.CN.Ops

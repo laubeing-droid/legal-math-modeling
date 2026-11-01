@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.3补齐后，当前math_rows分布为41 COVERED/37 PARTIAL/19 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；本轮原题05.6模块级结果登记后，当前math_rows分布为43 COVERED/37 PARTIAL/17 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 42,
+    "COVERED": 43,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 18
+    "NOT_RECONCILED": 17
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2795,7 +2795,7 @@
           "scope": "Four new named declarations plus two reused declarations for frozen L119/L121/L123; successful changed-module target only, other seven workflow jobs skipped. Full-record PR acceptance remains pending. No actual consumer caller, deployment, empirical law validation, or positive shifted conformal theorem is claimed."
         }
       ],
-      "remaining": "原题05.5 L119/L121/L123的具名数学连接已由本轮source module及独立changed-module CI核验；本记录完整PR验收仍待跑。未声称实际consumer调用、部署、经验分布满足前提或正向shifted conformal保证；其他原题行、105工程状态与15条消费边状态不升级。",
+      "remaining": "原题05.5 L119/L121/L123数学连接已由source module与独立changed-module CI核验，并随PR92合入main且通过合后短核。未声称实际consumer调用、部署、经验分布满足前提或正向shifted conformal保证；相关工程/consumer事项仍按各自台账验收。",
       "paragraph_evidence": [
         {
           "lines": [
@@ -2831,8 +2831,8 @@
           ]
         }
       ],
-      "formal_evidence_boundary": "本行四个新增声明与两个复用声明由changed-module run 41294062528 / job 124811103137独立核验；其余七个workflow jobs为SKIPPED，full-record PR验收仍待。源码证明条件命题与有限反例，不代表实际consumer接线、部署、现实分布前提已核验或正向加权保形定理。",
-      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前仅changed-module目标成功，不以它代替完整record验收。",
+      "formal_evidence_boundary": "本行四个新增声明与两个复用声明由changed-module run 41294062528 / job 124811103137独立核验；该记录经PR92合并并完成合后短核。源码证明条件命题与有限反例，不代表实际consumer接线、部署、现实分布前提已核验或正向加权保形定理。",
+      "shortest_acceptance": "原题数学连接的既定验收链已由PR92 exact-subject全链、实际证书/引用比对、独立verifier、授权合并和合后短核完成；实际consumer接线或部署如需验收，按对应工程行和消费边另行核验。",
       "scope_correction": "仅本原题数学行05.5 L119/L121/L123更新；不改其他96条数学行、105工程行、6个designated cuts或15条消费边评级。L119不新增估计率或无界权浓度，L121不声称普遍OOD，L123不新增正向weighted conformal保证。U50计数与97数学行分母不同。"
     },
     {
@@ -2862,9 +2862,58 @@
           131
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original05-6-monitoring-close-20261101",
+          "subject": "9bc3d64c4930567e67439a752b2902a28e2e89cf",
+          "subject_tree": "fd063c0235e810339e579dc2483129ba4ae0039f",
+          "run_id": 41299753560,
+          "job_id": 124828226437,
+          "attempt": 1,
+          "artifact_id": 13080763029,
+          "artifact_sha256": "8b40c44e7c65dec90b90d55682b2efdc5c7fb10f647a34381ee4fef7544b05e1",
+          "scope": "Anonymous actual-history countable conditional-risk-budget instance plus six existing finite/marginal theorem outputs; changed-module target succeeded, other seven jobs skipped; complete record acceptance is separate."
+        }
+      ],
+      "remaining": "数学覆盖限于冻结L127/L129/L131及所列条件；不声称生产监测、现实数据前提、实际消费者接线或法律义务已验证。完整原题记录验收见对应PR与后续独立复核状态。",
+      "paragraph_evidence": [
+        {
+          "lines": [
+            127,
+            127
+          ],
+          "claim": "匿名实例以实际history sigma-fields、可测false-alarm events及固定可和alpha schedule给出逐轮a.e.条件风险前提，并直接实例化countable_conditional_risk_budget，推出可数联合风险不超过总预算。",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget"
+          ]
+        },
+        {
+          "lines": [
+            129,
+            129
+          ],
+          "claim": "固定有限期的条件联合界及有限自适应界复用既有声明；边际单轮alpha不替代给定history下的条件有效性。",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound",
+            "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound"
+          ]
+        },
+        {
+          "lines": [
+            131,
+            131
+          ],
+          "claim": "既有反例区分重复边际风险累积与固定次单位风险的无限期界限。",
+          "named_targets": [
+            "JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates",
+            "JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit"
+          ]
+        }
+      ],
+      "formal_evidence_boundary": "changed-module run 41299753560 / job 124828226437 编译匿名原题实例，并对六个既有定理输出公理依赖；目标模块成功，其余七个workflow jobs为SKIPPED。该模块证据不表示完整记录PR验收、生产监控、现实数据条件或法源义务已通过。",
+      "shortest_acceptance": "按该原题记录PR的exact-subject全链、实际证书与引用比对、独立verifier及授权合并后短核完成验收；当前只记录source-module结果，不以模块结果替代全链。",
+      "scope_correction": "仅原题数学行05.6 L127/L129/L131更新；匿名实例直接复用已有countable条件风险预算，未新增具名定理；其他96数学行、105工程行、6个designated cuts、15条消费边、U50与global flags不变。"
     },
     {
       "id": "06.1",

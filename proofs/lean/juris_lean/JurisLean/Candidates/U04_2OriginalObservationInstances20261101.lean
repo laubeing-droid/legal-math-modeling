@@ -159,13 +159,15 @@ theorem ten_distinct_labels_shared_cause :
     ¬ iIndepFun (fun _ : Fin 10 => (id : Bool → Bool))
       (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num)) := by
   refine ⟨fun _ _ h => h, ?_⟩
-  letI := fixed_bernoulli_probability (1 / 2) (by norm_num) (by norm_num)
+  have h0 : 0 ≤ (1 / 2 : ℝ) := by norm_num
+  have h1 : (1 / 2 : ℝ) ≤ 1 := by norm_num
+  letI := fixed_bernoulli_probability (1 / 2) h0 h1
   intro hi
-  have hp := ten_independent_of_declared_marginals (1 / 2) (by norm_num) (by norm_num)
-    (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num))
+  have hp := ten_independent_of_declared_marginals (1 / 2) h0 h1
+    (bernoulliMeasure (1 / 2) h0 h1)
     (fun _ : Fin 10 => (id : Bool → Bool)) (fun _ => measurable_id) hi
-    (fun _ => by simpa using fixed_bernoulli_true_mass (1 / 2) (by norm_num) (by norm_num))
-  change (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num)).real
+    (fun _ => by simpa using fixed_bernoulli_true_mass (1 / 2) h0 h1)
+  change (bernoulliMeasure (1 / 2) h0 h1).real
     {w : Bool | ∀ _ : Fin 10, w = true} = (1 / 2 : ℝ) ^ 10 at hp
   rw [ten_copies_all_success_likelihood] at hp
   norm_num at hp

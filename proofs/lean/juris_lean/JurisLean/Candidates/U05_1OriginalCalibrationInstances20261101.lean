@@ -20,23 +20,23 @@ open JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101
 
 namespace JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101
 
-/-- L87: actual binary outcome, bounded score, and the actual score sigma-field. -/
+/-- L87: binary outcome, the original actual-score range, and its sigma-field. -/
 theorem conditional_correct_score_is_calibrated
     {Ω Input : Type*} [mΩ : MeasurableSpace Ω] [mInput : MeasurableSpace Input]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
-    (X : Ω → Input) (hX : Measurable X) (score : Input → Set.Icc (0 : ℝ) 1)
-    (hscore : Measurable (fun x => (score x : ℝ))) (Y : Ω → Bool)
+    (X : Ω → Input) (hX : Measurable X) (score : Input → ℝ)
+    (hscore : Measurable score) (Y : Ω → Bool)
+    (_scoreRange : ∀ᵐ w ∂μ, 0 ≤ score (X w) ∧ score (X w) ≤ 1)
     (correct : μ[(fun w => if Y w then (1 : ℝ) else 0) |
-      MeasurableSpace.comap X mInput] =ᵐ[μ] fun w => (score (X w) : ℝ)) :
+      MeasurableSpace.comap X mInput] =ᵐ[μ] score ∘ X) :
     μ[(fun w => if Y w then (1 : ℝ) else 0) |
-      MeasurableSpace.comap (fun w => (score (X w) : ℝ))
-        (inferInstance : MeasurableSpace ℝ)] =ᵐ[μ] fun w => (score (X w) : ℝ) := by
-  have observedScore : Measurable[MeasurableSpace.comap X mInput]
-      (fun w => (score (X w) : ℝ)) := hscore.comp (comap_measurable X)
+      MeasurableSpace.comap (score ∘ X) (inferInstance : MeasurableSpace ℝ)]
+      =ᵐ[μ] score ∘ X := by
+  have observedScore : Measurable[MeasurableSpace.comap X mInput] (score ∘ X) :=
+    hscore.comp (comap_measurable X)
   exact q05_1_conditional_correct_implies_calibration μ _ _
     observedScore.comap_le hX.comap_le (fun w => if Y w then (1 : ℝ) else 0)
-    (fun w => (score (X w) : ℝ))
-    (comap_measurable (fun w => (score (X w) : ℝ))).aestronglyMeasurable correct
+    (score ∘ X) (comap_measurable (score ∘ X)).aestronglyMeasurable correct
 
 /-- L91: discharge the original binary/bounded L2 premises, then reuse the
 conditional decomposition and minimum; integral_condExp gives the population objective. -/

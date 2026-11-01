@@ -452,9 +452,9 @@ theorem two_real_six_payment_account_cash :
   constructor
   · rw [hPayee]
     norm_num [Ledger.cashVector, qCashFlow, afterTwoSixPayments, afterFirstSixPayment,
-      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt]
+      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt, sourceFacts.1]
   · rw [hPayer]
     norm_num [Ledger.cashVector, qCashFlow, afterTwoSixPayments, afterFirstSixPayment,
-      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt]
+      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt, sourceFacts.1]
 
 end JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101

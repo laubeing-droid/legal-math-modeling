@@ -1,0 +1,11 @@
+import JurisLean.Candidates.U05_5OriginalShiftInstances20261101
+import JurisLean.Candidates.ExchangeableRank20261031
+
+/-! Original 05.5: actual common-kernel transport, retained estimator error,
+randomized unseen-input lower bound, and same-X concept-shift boundary. -/
+#print axioms JurisLean.Candidates.U05_5OriginalShiftInstances20261101.common_label_covariate_transport
+#print axioms JurisLean.Candidates.U05_5OriginalShiftInstances20261101.estimated_weight_error_identity
+#print axioms JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment
+#print axioms JurisLean.Candidates.U05_5OriginalShiftInstances20261101.randomized_unseen_input_lower_bound
+#print axioms JurisLean.Candidates.U05_5OriginalShiftInstances20261101.same_input_marginal_different_label_mechanism
+#print axioms JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries

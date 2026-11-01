@@ -456,6 +456,7 @@
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
     "JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031",
     "JurisLean.Candidates.U06_5OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluationAudit20261102",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
     "JurisLean.Candidates.U11_1NamedCausalBridge20261030",
     "JurisLean.Candidates.U11_1OriginalInstances20261030",
@@ -1051,6 +1052,21 @@
     "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction",
     "JurisLean.Candidates.U06_5OriginalModels20261031.signal_information_values",
     "JurisLean.Candidates.U06_5OriginalModels20261031.signal_joint_law",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.conditionalModelRiskEvaluation",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies_eq_univ",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_loss_values",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_utility_values",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_two_is_singleton",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_zero_is_empty",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_loss_nonnegative",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_risk_picker_selects_one",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_unconstrained_original_optimum",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_zero_limit_picker_returns_none",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_some_spec",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_each_expected_loss_le",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_iff",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
     "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
@@ -4654,8 +4670,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "0ba94f0643f144a38e6e25f6dca829ec08b362e76de1fdb33b2a20600fa677ab",
-   "size_bytes": 311421,
+   "sha256": "9cce9267e5a671d871db45830ebf2c42e46ff44e32df5f495315780d72497617",
+   "size_bytes": 313043,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -4791,6 +4807,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "weightedMetricSpace"
+    },
     {
      "kind": "theorem",
      "name": "weightedMetricSpace_dist"
@@ -8888,6 +8908,10 @@
      "name": "bernoulliLikelihood"
     },
     {
+     "kind": "def",
+     "name": "betaEvidence"
+    },
+    {
      "kind": "theorem",
      "name": "beta_evidence_is_positive"
     },
@@ -8902,6 +8926,10 @@
     {
      "kind": "theorem",
      "name": "beta_likelihood_normalization_integral"
+    },
+    {
+     "kind": "def",
+     "name": "normalizedBetaLikelihood"
     },
     {
      "kind": "theorem",
@@ -14978,12 +15006,24 @@
      "name": "score_only_cannot_distinguish_preparation"
     },
     {
+     "kind": "def",
+     "name": "logitPreparation"
+    },
+    {
      "kind": "theorem",
      "name": "logit_is_original_softmax"
     },
     {
      "kind": "theorem",
      "name": "logit_is_probability"
+    },
+    {
+     "kind": "def",
+     "name": "logitQuality"
+    },
+    {
+     "kind": "def",
+     "name": "logitScore"
     },
     {
      "kind": "theorem",
@@ -15032,6 +15072,10 @@
     {
      "kind": "theorem",
      "name": "damping_converges_for_all_iff"
+    },
+    {
+     "kind": "def",
+     "name": "localResponse"
     },
     {
      "kind": "theorem",
@@ -16455,6 +16499,10 @@
      "name": "resolved_identity_is_equivalence"
     },
     {
+     "kind": "def",
+     "name": "semanticKey"
+    },
+    {
      "kind": "theorem",
      "name": "semantic_key_exact"
     },
@@ -16599,6 +16647,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "canonicalLegalKey"
+    },
     {
      "kind": "theorem",
      "name": "canonical_typed_identity_is_exact"
@@ -17730,6 +17782,10 @@
      "name": "pipelineGate"
     },
     {
+     "kind": "def",
+     "name": "stateProjection"
+    },
+    {
      "kind": "theorem",
      "name": "actual_closed_pipeline_refines_gate"
     },
@@ -18621,12 +18677,24 @@
      "name": "Control"
     },
     {
+     "kind": "def",
+     "name": "policyValue"
+    },
+    {
+     "kind": "def",
+     "name": "bellman"
+    },
+    {
      "kind": "theorem",
      "name": "terminal_and_empty_action"
     },
     {
      "kind": "theorem",
      "name": "policy_value_le_bellman"
+    },
+    {
+     "kind": "def",
+     "name": "greedy"
     },
     {
      "kind": "theorem",
@@ -18649,6 +18717,14 @@
      "name": "terminalTrace"
     },
     {
+     "kind": "def",
+     "name": "trajectoryWeight"
+    },
+    {
+     "kind": "def",
+     "name": "realizedReturn"
+    },
+    {
      "kind": "theorem",
      "name": "trajectory_weight_nonneg"
     },
@@ -18657,8 +18733,16 @@
      "name": "trajectory_weight_one"
     },
     {
+     "kind": "def",
+     "name": "trajectoryLaw"
+    },
+    {
      "kind": "theorem",
      "name": "trajectory_law_mass"
+    },
+    {
+     "kind": "def",
+     "name": "trajectoryExpectation"
     },
     {
      "kind": "theorem",
@@ -19042,6 +19126,14 @@
      "name": "bargain_publicInfo_preserved"
     },
     {
+     "kind": "def",
+     "name": "bargainTreeKernel"
+    },
+    {
+     "kind": "def",
+     "name": "bargainTargetKernel"
+    },
+    {
      "kind": "theorem",
      "name": "bargain_deterministic_kernel_preserved"
     },
@@ -19092,6 +19184,14 @@
     {
      "kind": "theorem",
      "name": "bargain_profile_payoff_eq"
+    },
+    {
+     "kind": "def",
+     "name": "bargain_treeGame"
+    },
+    {
+     "kind": "def",
+     "name": "bargain_abstractGame"
     },
     {
      "kind": "theorem",
@@ -19294,6 +19394,10 @@
      "name": "finite_max_min_attained"
     },
     {
+     "kind": "def",
+     "name": "pickMaxMin"
+    },
+    {
      "kind": "theorem",
      "name": "pickMaxMin_spec"
     },
@@ -19303,7 +19407,15 @@
     },
     {
      "kind": "def",
+     "name": "branchExpectedUtility"
+    },
+    {
+     "kind": "def",
      "name": "expectedUtilityInputsWellFormed"
+    },
+    {
+     "kind": "def",
+     "name": "expectedUtilityMatrix"
     },
     {
      "kind": "def",
@@ -19685,6 +19797,10 @@
      "name": "originalPayoff"
     },
     {
+     "kind": "def",
+     "name": "originalGame"
+    },
+    {
      "kind": "theorem",
      "name": "bargain_backward_induction"
     }
@@ -19705,6 +19821,198 @@
    "size_bytes": 12472,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "lossMean"
+    },
+    {
+     "kind": "def",
+     "name": "worstExpectedLoss"
+    },
+    {
+     "kind": "def",
+     "name": "riskModelInputsWellFormed"
+    },
+    {
+     "kind": "def",
+     "name": "RiskFeasible"
+    },
+    {
+     "kind": "def",
+     "name": "riskPolicies"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_mem_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_subset_candidates"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_commonPolicies_subset"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_common_member_is_feasible"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_mem_model_inputs_well_formed"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPolicies_mem_each_expected_loss_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPickMaxMin_some_spec"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskPickMaxMin_none_iff_empty"
+    },
+    {
+     "kind": "structure",
+     "name": "ConditionalModelRiskReport"
+    },
+    {
+     "kind": "def",
+     "name": "conditionalModelRiskEvaluation"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoCoreAction"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoRealize"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_realization_matches_existing_policy"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_induced_law_is_fixed"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoCommonPolicies"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemoCommonPolicies_eq_univ"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoLaw"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "riskDemoLoss"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_expected_utility_values"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_expected_loss_values"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_loss_nonnegative"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_unconstrained_original_optimum"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_filter_at_two_is_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_risk_picker_selects_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_filter_at_zero_is_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "riskDemo_zero_limit_picker_returns_none"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102",
+    "Mathlib.Probability.ProbabilityMassFunction.Integrals"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+   "print_axioms_targets": [],
+   "sha256": "ba60a8084e534c3873a2cafabce50095ad89fa61e23963de429acd39b92aa25e",
+   "size_bytes": 20065,
+   "theorem_count": 19,
+   "theorem_count_bol_convention": 19
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluationAudit20261102.lean",
+   "print_axioms_targets": [
+    "ConditionalModelRiskReport",
+    "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff",
+    "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec",
+    "RiskDemoPolicy",
+    "RiskFeasible",
+    "conditionalModelRiskEvaluation",
+    "lossMean",
+    "riskDemoCommonPolicies",
+    "riskDemoCommonPolicies_eq_univ",
+    "riskDemoCoreAction",
+    "riskDemoLaw",
+    "riskDemoLoss",
+    "riskDemoOutcome",
+    "riskDemoRealize",
+    "riskDemo_expected_loss_values",
+    "riskDemo_expected_utility_values",
+    "riskDemo_filter_at_two_is_singleton",
+    "riskDemo_filter_at_zero_is_empty",
+    "riskDemo_induced_law_is_fixed",
+    "riskDemo_loss_nonnegative",
+    "riskDemo_realization_matches_existing_policy",
+    "riskDemo_risk_picker_selects_one",
+    "riskDemo_unconstrained_original_optimum",
+    "riskDemo_zero_limit_picker_returns_none",
+    "riskModelInputsWellFormed",
+    "riskPickMaxMin_none_iff_empty",
+    "riskPickMaxMin_some_spec",
+    "riskPolicies",
+    "riskPolicies_commonPolicies_subset",
+    "riskPolicies_common_member_is_feasible",
+    "riskPolicies_mem_each_expected_loss_le",
+    "riskPolicies_mem_iff",
+    "riskPolicies_mem_model_inputs_well_formed",
+    "riskPolicies_subset_candidates",
+    "worstExpectedLoss"
+   ],
+   "sha256": "1f6056b96667c091394db16a2644422b7590f68338e6b86ff7b38271f9492552",
+   "size_bytes": 3013,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -19982,6 +20290,10 @@
      "name": "P_pos"
     },
     {
+     "kind": "def",
+     "name": "observedCellMean"
+    },
+    {
      "kind": "theorem",
      "name": "observed_cell_mean_eq_potential"
     },
@@ -20057,6 +20369,22 @@
     {
      "kind": "def",
      "name": "jointObservation"
+    },
+    {
+     "kind": "def",
+     "name": "actualConditional"
+    },
+    {
+     "kind": "def",
+     "name": "loggingMass"
+    },
+    {
+     "kind": "def",
+     "name": "causalPolicyValue"
+    },
+    {
+     "kind": "def",
+     "name": "actualLoggingScore"
     },
     {
      "kind": "theorem",
@@ -20168,11 +20496,19 @@
     },
     {
      "kind": "def",
+     "name": "marVisibleLaw"
+    },
+    {
+     "kind": "def",
      "name": "marVisibleScore"
     },
     {
      "kind": "theorem",
      "name": "recording_weight_elimination"
+    },
+    {
+     "kind": "def",
+     "name": "marWorldLaw"
     },
     {
      "kind": "theorem",
@@ -20217,6 +20553,10 @@
     {
      "kind": "theorem",
      "name": "frozenPolicyAtom_probability"
+    },
+    {
+     "kind": "def",
+     "name": "frozenPolicyJointPMF"
     },
     {
      "kind": "theorem",
@@ -20339,8 +20679,16 @@
      "name": "SequentialKernel"
     },
     {
+     "kind": "def",
+     "name": "sequentialLaw"
+    },
+    {
      "kind": "theorem",
      "name": "sequentialLaw_step_mass"
+    },
+    {
+     "kind": "def",
+     "name": "sequentialRatio"
     },
     {
      "kind": "def",
@@ -21620,6 +21968,10 @@
      "name": "unit_cube"
     },
     {
+     "kind": "def",
+     "name": "rl_point"
+    },
+    {
      "kind": "lemma",
      "name": "reduced_label_props_1"
     },
@@ -21630,6 +21982,14 @@
     {
      "kind": "lemma",
      "name": "reduced_label_props_3"
+    },
+    {
+     "kind": "def",
+     "name": "discrete_map"
+    },
+    {
+     "kind": "def",
+     "name": "sperner_cube_of_function"
     },
     {
      "kind": "lemma",
@@ -22178,6 +22538,30 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "unilateralDeviation"
+    },
+    {
+     "kind": "def",
+     "name": "constantDeviation"
+    },
+    {
+     "kind": "def",
+     "name": "euAfterDeviation"
+    },
+    {
+     "kind": "def",
+     "name": "deviationDistribution"
+    },
+    {
+     "kind": "def",
+     "name": "unilateralDeviationDistribution"
+    },
+    {
+     "kind": "def",
+     "name": "constantDeviationDistribution"
+    },
+    {
      "kind": "theorem",
      "name": "deviationDistribution_apply"
     },
@@ -22369,6 +22753,14 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "worstCaseEUInf"
+    },
+    {
+     "kind": "def",
+     "name": "securityLevelSup"
+    },
+    {
      "kind": "theorem",
      "name": "worstCaseEUInf_le"
     },
@@ -22389,12 +22781,20 @@
      "name": "le_securityLevelSup_of_forall_eu_ge"
     },
     {
+     "kind": "def",
+     "name": "worstCaseEU"
+    },
+    {
      "kind": "theorem",
      "name": "worstCaseEU_le"
     },
     {
      "kind": "theorem",
      "name": "worstCaseEU_guarantees"
+    },
+    {
+     "kind": "def",
+     "name": "securityLevel"
     },
     {
      "kind": "theorem",
@@ -22427,6 +22827,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "KernelGame.ofEU"
+    },
     {
      "kind": "theorem",
      "name": "KernelGame.eu_ofEU"
@@ -22534,6 +22938,10 @@
     {
      "kind": "theorem",
      "name": "StrictlyDominates_iff_StrictlyDominatesFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "correlatedEu"
     },
     {
      "kind": "def",
@@ -22659,8 +23067,32 @@
      "name": "GameForm"
     },
     {
+     "kind": "def",
+     "name": "outcomeDist"
+    },
+    {
+     "kind": "def",
+     "name": "correlatedOutcome"
+    },
+    {
      "kind": "theorem",
      "name": "correlatedOutcome_pure"
+    },
+    {
+     "kind": "def",
+     "name": "deviateProfile"
+    },
+    {
+     "kind": "def",
+     "name": "deviateOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "deviateDistribution"
+    },
+    {
+     "kind": "def",
+     "name": "constDeviateDistribution"
     },
     {
      "kind": "theorem",
@@ -22669,6 +23101,18 @@
     {
      "kind": "theorem",
      "name": "deviateOutcome_same"
+    },
+    {
+     "kind": "def",
+     "name": "deviateProfileFn"
+    },
+    {
+     "kind": "def",
+     "name": "deviateDistributionFn"
+    },
+    {
+     "kind": "def",
+     "name": "constDeviateDistributionFn"
     },
     {
      "kind": "theorem",
@@ -22719,6 +23163,10 @@
      "name": "withUtility_toGameForm"
     },
     {
+     "kind": "def",
+     "name": "map"
+    },
+    {
      "kind": "theorem",
      "name": "map_Strategy"
     },
@@ -22737,6 +23185,10 @@
     {
      "kind": "theorem",
      "name": "map_comp"
+    },
+    {
+     "kind": "def",
+     "name": "product"
     },
     {
      "kind": "theorem",
@@ -22815,8 +23267,16 @@
      "name": "IsDeviationEqFamilyFor"
     },
     {
+     "kind": "def",
+     "name": "recommendationDeviationFamily"
+    },
+    {
      "kind": "theorem",
      "name": "recommendationDeviationFamily_deviate"
+    },
+    {
+     "kind": "def",
+     "name": "constantDeviationProfileFamily"
     },
     {
      "kind": "theorem",
@@ -22987,6 +23447,10 @@
     },
     {
      "kind": "def",
+     "name": "socialWelfare"
+    },
+    {
+     "kind": "def",
      "name": "IsConstantSum"
     },
     {
@@ -23018,8 +23482,28 @@
      "name": "KernelGame"
     },
     {
+     "kind": "def",
+     "name": "reindex"
+    },
+    {
+     "kind": "def",
+     "name": "eu"
+    },
+    {
+     "kind": "def",
+     "name": "correlatedOutcome"
+    },
+    {
      "kind": "theorem",
      "name": "correlatedOutcome_pure"
+    },
+    {
+     "kind": "def",
+     "name": "udist"
+    },
+    {
+     "kind": "def",
+     "name": "udistPlayer"
     },
     {
      "kind": "theorem",
@@ -23032,6 +23516,10 @@
     {
      "kind": "theorem",
      "name": "udistPlayer_pure"
+    },
+    {
+     "kind": "def",
+     "name": "mixedExtension"
     },
     {
      "kind": "theorem",
@@ -23188,6 +23676,14 @@
      "name": "BehavioralStrategy"
     },
     {
+     "kind": "def",
+     "name": "pureToBehavioral"
+    },
+    {
+     "kind": "def",
+     "name": "GameTree.evalDist"
+    },
+    {
      "kind": "theorem",
      "name": "evalDist_terminal"
     },
@@ -23220,6 +23716,10 @@
      "name": "evalDist_pureToBehavioral_eq_pure"
     },
     {
+     "kind": "def",
+     "name": "GameTree.toKernel"
+    },
+    {
      "kind": "inductive",
      "name": "DecisionNodeIn"
     },
@@ -23246,6 +23746,14 @@
     {
      "kind": "theorem",
      "name": "swap_chances"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.toKernelGame"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.toStrategicKernelGame"
     },
     {
      "kind": "theorem",
@@ -23368,7 +23876,23 @@
     },
     {
      "kind": "def",
+     "name": "pure"
+    },
+    {
+     "kind": "def",
      "name": "mono"
+    },
+    {
+     "kind": "def",
+     "name": "map"
+    },
+    {
+     "kind": "def",
+     "name": "bind"
+    },
+    {
+     "kind": "def",
+     "name": "HasCoupling.ofProj"
     },
     {
      "kind": "theorem",
@@ -23469,6 +23993,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "pureRun"
+    },
+    {
      "kind": "theorem",
      "name": "append_singleton_inj"
     },
@@ -23491,6 +24019,14 @@
     {
      "kind": "theorem",
      "name": "pureRun_take_nonzero"
+    },
+    {
+     "kind": "def",
+     "name": "seqRun"
+    },
+    {
+     "kind": "def",
+     "name": "reweightPMF"
     },
     {
      "kind": "theorem",
@@ -23527,6 +24063,10 @@
     {
      "kind": "theorem",
      "name": "reweightPMF_pmfPi_push_coord_of_ignores'"
+    },
+    {
+     "kind": "def",
+     "name": "condStep"
     },
     {
      "kind": "theorem",
@@ -23595,6 +24135,10 @@
     {
      "kind": "lemma",
      "name": "tsum_eq_tsum_of_involutive"
+    },
+    {
+     "kind": "def",
+     "name": "pmfPi"
     },
     {
      "kind": "lemma",
@@ -23825,6 +24369,10 @@
      "name": "pmfPi_cond_coord_other_marginal"
     },
     {
+     "kind": "def",
+     "name": "pmfPiMass"
+    },
+    {
      "kind": "lemma",
      "name": "pmfPiMass_le_one"
     },
@@ -23847,6 +24395,10 @@
     {
      "kind": "theorem",
      "name": "pmfPi_cond_prob_invariant_of_ignores"
+    },
+    {
+     "kind": "def",
+     "name": "replaceOn"
     },
     {
      "kind": "lemma",
@@ -23913,6 +24465,22 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "id"
+    },
+    {
+     "kind": "def",
+     "name": "comp"
+    },
+    {
+     "kind": "def",
+     "name": "pushforward"
+    },
+    {
+     "kind": "def",
+     "name": "ofFun"
+    },
+    {
      "kind": "theorem",
      "name": "comp_apply"
     },
@@ -23939,6 +24507,10 @@
     {
      "kind": "theorem",
      "name": "pushforward_comp"
+    },
+    {
+     "kind": "def",
+     "name": "expect"
     },
     {
      "kind": "theorem",
@@ -24010,6 +24582,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "pushforward"
+    },
+    {
      "kind": "theorem",
      "name": "pushforward_comp"
     },
@@ -24038,6 +24614,14 @@
      "name": "pushforward_bind"
     },
     {
+     "kind": "def",
+     "name": "pmfMask"
+    },
+    {
+     "kind": "def",
+     "name": "pmfMass"
+    },
+    {
      "kind": "theorem",
      "name": "pmfMass_ne_top"
     },
@@ -24052,6 +24636,10 @@
     {
      "kind": "theorem",
      "name": "pushforward_apply_eq_pmfMass"
+    },
+    {
+     "kind": "def",
+     "name": "pmfCond"
     },
     {
      "kind": "theorem",
@@ -24092,6 +24680,14 @@
     {
      "kind": "theorem",
      "name": "allEvents_append_singleton"
+    },
+    {
+     "kind": "def",
+     "name": "condEventFactor"
+    },
+    {
+     "kind": "def",
+     "name": "condEventChainProduct"
     },
     {
      "kind": "theorem",
@@ -24148,6 +24744,10 @@
     {
      "kind": "theorem",
      "name": "pushforward_support_fibre"
+    },
+    {
+     "kind": "def",
+     "name": "condOn"
     },
     {
      "kind": "theorem",
@@ -24209,6 +24809,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "traceRun"
+    },
+    {
      "kind": "theorem",
      "name": "traceRun_zero"
     },
@@ -24222,7 +24826,15 @@
     },
     {
      "kind": "def",
+     "name": "traceRun_HasCoupling_of_bisim"
+    },
+    {
+     "kind": "def",
      "name": "IsTraceKernelHom"
+    },
+    {
+     "kind": "def",
+     "name": "TraceKernelBisim.ofTraceKernelHom"
     },
     {
      "kind": "theorem",
@@ -24385,6 +24997,14 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "behavioralToMixed"
+    },
+    {
+     "kind": "def",
+     "name": "behavioralToMixedJoint"
+    },
+    {
+     "kind": "def",
      "name": "ReachableInfoStateWithin"
     },
     {
@@ -24426,6 +25046,10 @@
     {
      "kind": "theorem",
      "name": "marginal_stepDist"
+    },
+    {
+     "kind": "def",
+     "name": "swapProfileBy"
     },
     {
      "kind": "theorem",
@@ -24771,11 +25395,39 @@
     },
     {
      "kind": "def",
+     "name": "pureToBehavioral"
+    },
+    {
+     "kind": "def",
      "name": "castProfileAction"
     },
     {
      "kind": "def",
+     "name": "jointActionDist"
+    },
+    {
+     "kind": "def",
      "name": "castJointAction"
+    },
+    {
+     "kind": "def",
+     "name": "behavioralToCorr"
+    },
+    {
+     "kind": "def",
+     "name": "stepDist"
+    },
+    {
+     "kind": "def",
+     "name": "runDist"
+    },
+    {
+     "kind": "def",
+     "name": "runDistPure"
+    },
+    {
+     "kind": "def",
+     "name": "pureStep"
     },
     {
      "kind": "theorem",
@@ -24795,7 +25447,15 @@
     },
     {
      "kind": "def",
+     "name": "stepDistCorr"
+    },
+    {
+     "kind": "def",
      "name": "PerStepActionRecall"
+    },
+    {
+     "kind": "def",
+     "name": "mixedToMediator"
     },
     {
      "kind": "def",
@@ -24954,6 +25614,14 @@
      "name": "mixedToMediator_eq_pmfPi_factor"
     },
     {
+     "kind": "def",
+     "name": "mixedToBehavioralFactorAt"
+    },
+    {
+     "kind": "def",
+     "name": "mixedToBehavioralProfileWithFallback"
+    },
+    {
      "kind": "theorem",
      "name": "mixedToBehavioralProfileWithFallback_eq_factorAt"
     },
@@ -25051,6 +25719,10 @@
     {
      "kind": "def",
      "name": "castProfileAction"
+    },
+    {
+     "kind": "def",
+     "name": "behavioralToCorr"
     },
     {
      "kind": "theorem",
@@ -25155,6 +25827,10 @@
     {
      "kind": "theorem",
      "name": "PlayerStepRecall.toTrace"
+    },
+    {
+     "kind": "def",
+     "name": "mixedToMediator"
     }
    ],
    "imports": [
@@ -25326,6 +26002,22 @@
     {
      "kind": "theorem",
      "name": "nashMap_fp_identity"
+    },
+    {
+     "kind": "def",
+     "name": "profileFromMixedSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "mixedGainOnMixedSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "gainSumOnMixedSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "nashMapOnMixedSimplex"
     },
     {
      "kind": "theorem",
@@ -25647,6 +26339,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "antideriv"
+    },
+    {
      "kind": "theorem",
      "name": "exists_iteratedDeriv_eq_of_moments_zero"
     }
@@ -25665,6 +26361,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "riemannSum"
+    },
     {
      "kind": "theorem",
      "name": "tendstoUniformly_riemannSum_continuous"
@@ -25723,6 +26423,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "cvec"
+    },
+    {
      "kind": "theorem",
      "name": "continuous_cvec"
     },
@@ -25731,8 +26435,16 @@
      "name": "cvec_apply"
     },
     {
+     "kind": "def",
+     "name": "restrictLM"
+    },
+    {
      "kind": "theorem",
      "name": "restrictLM_apply"
+    },
+    {
+     "kind": "def",
+     "name": "Pd"
     },
     {
      "kind": "theorem",
@@ -25753,6 +26465,10 @@
     {
      "kind": "theorem",
      "name": "aeEq_poly_of_affine"
+    },
+    {
+     "kind": "def",
+     "name": "Kset"
     },
     {
      "kind": "theorem",
@@ -25913,6 +26629,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "mollify"
+    },
     {
      "kind": "theorem",
      "name": "mollify_eq_convolution"
@@ -26210,6 +26930,10 @@
     {
      "kind": "structure",
      "name": "ResiduatedMap"
+    },
+    {
+     "kind": "def",
+     "name": "legalResidual"
     },
     {
      "kind": "lemma",
@@ -28887,6 +29611,10 @@
      "name": "ind"
     },
     {
+     "kind": "def",
+     "name": "maxInd"
+    },
+    {
      "kind": "theorem",
      "name": "scenario_bridge"
     },
@@ -31441,6 +32169,10 @@
      "name": "UpdateOp"
     },
     {
+     "kind": "def",
+     "name": "incrementalUpdate"
+    },
+    {
      "kind": "theorem",
      "name": "addOnly_matches_full_recompute"
     },
@@ -31824,12 +32556,24 @@
      "name": "Preferred"
     },
     {
+     "kind": "def",
+     "name": "defendedB"
+    },
+    {
      "kind": "theorem",
      "name": "defendedB_iff"
     },
     {
+     "kind": "def",
+     "name": "charF"
+    },
+    {
      "kind": "theorem",
      "name": "charF_mono"
+    },
+    {
+     "kind": "def",
+     "name": "gIter"
     },
     {
      "kind": "theorem",
@@ -31854,6 +32598,10 @@
     {
      "kind": "theorem",
      "name": "gIter_stabilizes"
+    },
+    {
+     "kind": "def",
+     "name": "grounded"
     },
     {
      "kind": "theorem",
@@ -31958,6 +32706,10 @@
      "name": "cl_least_iterate"
     },
     {
+     "kind": "def",
+     "name": "closure"
+    },
+    {
      "kind": "theorem",
      "name": "closure_stable"
     },
@@ -32050,12 +32802,20 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "clip"
+    },
+    {
      "kind": "theorem",
      "name": "clip_mem"
     },
     {
      "kind": "theorem",
      "name": "clip_nonexpansive"
+    },
+    {
+     "kind": "def",
+     "name": "T"
     },
     {
      "kind": "theorem",
@@ -32100,12 +32860,20 @@
      "name": "qval"
     },
     {
+     "kind": "def",
+     "name": "bellmanOf"
+    },
+    {
      "kind": "theorem",
      "name": "bellman_onesided"
     },
     {
      "kind": "theorem",
      "name": "bellman_contraction"
+    },
+    {
+     "kind": "def",
+     "name": "vf"
     },
     {
      "kind": "theorem",
@@ -46937,6 +47705,18 @@
      "name": "halfCdf11"
     },
     {
+     "kind": "def",
+     "name": "halfCdf12"
+    },
+    {
+     "kind": "def",
+     "name": "halfCdf21"
+    },
+    {
+     "kind": "def",
+     "name": "halfCdf22"
+    },
+    {
      "kind": "theorem",
      "name": "halfCdf11_deriv"
     },
@@ -46993,6 +47773,10 @@
      "name": "halfConst21"
     },
     {
+     "kind": "def",
+     "name": "halfDens22"
+    },
+    {
      "kind": "theorem",
      "name": "halfDens22_integrable"
     },
@@ -47043,6 +47827,18 @@
     {
      "kind": "theorem",
      "name": "halfCdf22_enclosure_from_half"
+    },
+    {
+     "kind": "def",
+     "name": "betaDens"
+    },
+    {
+     "kind": "def",
+     "name": "Mbound"
+    },
+    {
+     "kind": "def",
+     "name": "mbound"
     },
     {
      "kind": "theorem",
@@ -47352,6 +48148,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "qToR"
+    },
     {
      "kind": "theorem",
      "name": "qToR_injective"
@@ -48641,12 +49441,24 @@
      "name": "applyBurdenInput"
     },
     {
+     "kind": "def",
+     "name": "classify"
+    },
+    {
+     "kind": "def",
+     "name": "finalJudgment"
+    },
+    {
      "kind": "theorem",
      "name": "finalJudgment_eq"
     },
     {
      "kind": "structure",
      "name": "GenInput"
+    },
+    {
+     "kind": "def",
+     "name": "genTruthJudgment"
     },
     {
      "kind": "theorem",
@@ -52078,6 +52890,10 @@
      "name": "s3aPowDeriv"
     },
     {
+     "kind": "def",
+     "name": "betaInt"
+    },
+    {
      "kind": "theorem",
      "name": "betaInt_zero_left"
     },
@@ -54166,8 +54982,20 @@
      "name": "narrow_quantile_mem"
     },
     {
+     "kind": "def",
+     "name": "mid1"
+    },
+    {
+     "kind": "def",
+     "name": "mid2"
+    },
+    {
      "kind": "inductive",
      "name": "Dir"
+    },
+    {
+     "kind": "def",
+     "name": "dirUpdate"
     },
     {
      "kind": "theorem",
@@ -54266,6 +55094,10 @@
      "name": "dirUpdate_width"
     },
     {
+     "kind": "def",
+     "name": "runState"
+    },
+    {
      "kind": "theorem",
      "name": "runState_zero"
     },
@@ -54324,6 +55156,10 @@
     {
      "kind": "theorem",
      "name": "mixture_full_chain"
+    },
+    {
+     "kind": "def",
+     "name": "plateauCdf"
     },
     {
      "kind": "theorem",
@@ -55193,6 +56029,10 @@
     {
      "kind": "theorem",
      "name": "abc_A_alone_unstable"
+    },
+    {
+     "kind": "def",
+     "name": "enumerateStable"
     },
     {
      "kind": "theorem",
@@ -57058,6 +57898,10 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "uniform01"
+    },
+    {
      "kind": "theorem",
      "name": "volume_unit_interval"
     },
@@ -58092,6 +58936,10 @@
      "name": "obligationsForClaim"
     },
     {
+     "kind": "def",
+     "name": "requiredObligations"
+    },
+    {
      "kind": "theorem",
      "name": "typeSafety_mem_required"
     },
@@ -58325,6 +59173,10 @@
     {
      "kind": "def",
      "name": "CandidateWF"
+    },
+    {
+     "kind": "def",
+     "name": "generateCandidates"
     },
     {
      "kind": "theorem",
@@ -58606,6 +59458,22 @@
      "name": "grounded_unique"
     },
     {
+     "kind": "def",
+     "name": "admissibleFamily"
+    },
+    {
+     "kind": "def",
+     "name": "completeExtensions"
+    },
+    {
+     "kind": "def",
+     "name": "preferredExtensions"
+    },
+    {
+     "kind": "def",
+     "name": "stableExtensions"
+    },
+    {
      "kind": "theorem",
      "name": "empty_admissible"
     },
@@ -58662,6 +59530,10 @@
      "name": "ExtensionFamily"
     },
     {
+     "kind": "def",
+     "name": "extensionsForProfile"
+    },
+    {
      "kind": "structure",
      "name": "IncompleteEvaluation"
     },
@@ -58672,6 +59544,18 @@
     {
      "kind": "def",
      "name": "profile"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateProfile"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateGrounded"
+    },
+    {
+     "kind": "def",
+     "name": "evaluatePreferred"
     },
     {
      "kind": "theorem",
@@ -60564,6 +61448,14 @@
      "name": "PositiveWeights"
     },
     {
+     "kind": "def",
+     "name": "weightedSupDist"
+    },
+    {
+     "kind": "def",
+     "name": "weightedSupNorm"
+    },
+    {
      "kind": "theorem",
      "name": "weightedSupDist_nonneg"
     },
@@ -60703,6 +61595,8 @@
     "JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031",
     "JurisLean.Candidates.U06_5OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_5OriginalModels20261031",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102",
+    "JurisLean.Candidates.U06_6OriginalRiskEvaluationAudit20261102",
     "JurisLean.Candidates.U07_2JointObject20261029",
     "JurisLean.Candidates.U07_3FixedBindingAudit20261029",
     "JurisLean.Candidates.U09_2OriginalClosureAudit20261030",
@@ -60901,8 +61795,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "b8db604d14c9ee8fe6595222b97a4bbbbfe02b27f7ec346ead581bffce917618",
-   "size_bytes": 15295,
+   "sha256": "6417e4cf91404712f2d8f8d8d904d840ed26bc1c8256859e93df8a7d030f5652",
+   "size_bytes": 15428,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60921,6 +61815,10 @@
   },
   {
    "declarations": [
+    {
+     "kind": "def",
+     "name": "pricingFunction"
+    },
     {
      "kind": "lemma",
      "name": "abs_one_minus_beta_lt_one"
@@ -61002,6 +61900,10 @@
      "name": "TotalFunctor"
     },
     {
+     "kind": "def",
+     "name": "allFunctors"
+    },
+    {
      "kind": "lemma",
      "name": "check_no_functor_instance"
     }
@@ -61066,22 +61968,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6380,
-   "file_count": 564,
+   "counted_declaration_count": 6399,
+   "file_count": 566,
    "lemma_count": 146,
-   "print_axioms_command_count": 5648,
-   "print_axioms_distinct_targets": 5179,
-   "theorem_count": 6234,
-   "theorem_count_bol_convention": 6134
+   "print_axioms_command_count": 5698,
+   "print_axioms_distinct_targets": 5227,
+   "theorem_count": 6253,
+   "theorem_count_bol_convention": 6153
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6361,
-   "file_count": 549,
+   "counted_declaration_count": 6380,
+   "file_count": 551,
    "lemma_count": 139,
-   "print_axioms_command_count": 5648,
-   "print_axioms_distinct_targets": 5179,
-   "theorem_count": 6222,
-   "theorem_count_bol_convention": 6122
+   "print_axioms_command_count": 5698,
+   "print_axioms_distinct_targets": 5227,
+   "theorem_count": 6241,
+   "theorem_count_bol_convention": 6141
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -61311,6 +62213,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstanceAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluationAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U09_2OriginalClosureAudit20261030.lean",
@@ -61873,6 +62777,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstanceAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluationAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U09_2OriginalClosureAudit20261030.lean",
@@ -62251,17 +63157,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c34785895f05fafeae9b28c1cd69f5c33b1400f6089fe384d28799557f8856b0",
+ "source_inventory_digest": "8bf36d3b2ffa969731288f2ad60e56d6e58339c7cff1b5e24acd1e0b5d34a26f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original06-3-20261102",
-  "commit": "5d3b76b79778006fa8dc3547b9df3eedd4d55d95",
-  "tree": "a5c87b4518999a12f299b76b8aeebc1620de04a3"
+  "branch": "formal/close-original06-6-risk-20261102",
+  "commit": "3e707e428287a82a8c5b93bea87bbdcb4d499c83",
+  "tree": "4494eadaf2be33054ff6e35fe87047761a116318"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 564,
+  "files_total": 566,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

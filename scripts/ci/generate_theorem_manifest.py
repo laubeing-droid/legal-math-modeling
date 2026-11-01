@@ -25,7 +25,7 @@ HASH_CONTRACT = "sha256-raw-committed-bytes-v1"
 # `^theorem ` alone (the AGENTS.md convention) misses declarations that carry a
 # same-line attribute, e.g. `@[simp] theorem map_failure`. Both are recorded.
 DECL_RE = re.compile(
-    r"^(?:@\[[^\]]*\][ \t]*)*(theorem|lemma|def|structure|inductive)\s+([^\s(:{]+)",
+    r"^(?:@\[[^\]]*\][ \t]*)*(?:noncomputable\s+)?(theorem|lemma|def|structure|inductive)\s+([^\s(:{]+)",
     re.MULTILINE,
 )
 BOL_DECL_RE = re.compile(

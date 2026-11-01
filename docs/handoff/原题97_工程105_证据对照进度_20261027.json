@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.2补齐后，当前math_rows分布为40 COVERED/37 PARTIAL/20 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.3补齐后，当前math_rows分布为41 COVERED/37 PARTIAL/19 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 40,
+    "COVERED": 41,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 20
+    "NOT_RECONCILED": 19
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2614,9 +2614,56 @@
           107
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original05-3-selective-risk-close-20261101",
+          "subject": "70139671e4fb0b90abddee17162282c20cbf3443",
+          "subject_tree": "aa2f6c3a2a566cce09b45811559e9557141f0bd5",
+          "run_id": 41285660208,
+          "job_id": 124786318123,
+          "attempt": 1,
+          "scope": "Eight audited targets for frozen original 05.3 L103/L105/L107; changed-module target succeeded on the bound source subject only. Seven other workflow jobs were skipped; full-record PR acceptance remains pending."
+        }
+      ],
+      "remaining": "原题05.3 L103/L105/L107已由五个本模块声明与三个既有声明逐段映射，并经本source subject的changed-module审计；本记录完整PR验收仍待完成。L105风险不升结论仅在实际条件错误率关于score单调不增、且所比高阈值覆盖为正的明示前提下成立；不把self-confidence当实际条件风险。L107的经验均值界针对固定有限阈值族、共同IID验证分布和loss∈[0,1]，以Q区间包围样本均值并映射到真实总体积分，Q比较未决时不推荐；不声称任意实数精确比较可终止。",
+      "clause_evidence": [
+        {
+          "clause": "L103",
+          "new_declarations": [
+            "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.threshold_population_quantities",
+            "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff",
+            "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_no_valid_coverage"
+          ],
+          "existing_declarations": [
+            "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate"
+          ],
+          "result": "threshold_population_quantities精确给出P(A)为覆盖质量、∫_A loss为风险分子；真实选择风险仅在覆盖质量正时定义。无通过证书表示所有候选都未通过有理阈值门，不表示其真实风险均超标。zero lower coverage仅在输入区间是正确包围时不能通过，未声称该裸函数验证了运行时输入。"
+        },
+        {
+          "clause": "L105",
+          "new_declaration": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.true_conditional_error_ordering",
+          "existing_declarations": [
+            "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk"
+          ],
+          "result": "在loss∈[0,1]、关于score的实际条件期望等于antitone曲线、low≤high且高阈值覆盖为正时，证明低阈值覆盖也为正，并由条件期望分解和积分次序得到高阈值真实条件错误率不高于低阈值。缺少该实际条件风险次序时，既有反例显示提高阈值可提高风险；模型自信分或阈值顺序本身不提供此前提。"
+        },
+        {
+          "clause": "L107",
+          "new_declarations": [
+            "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.finite_threshold_interval_certificate",
+            "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff"
+          ],
+          "existing_declarations": [
+            "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound",
+            "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate",
+            "JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform",
+            "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selectPassing_spec",
+            "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_no_result_iff_no_threshold_passes"
+          ],
+          "result": "对n≥1、共同P下的n个IID验证样本、loss与仅依X的score及loss∈[0,1]、固定有限阈值ID族T，联合覆盖每阈值的接受指示与loss接受分子，共2T个统计量；有限类规模为2T，半径sqrt(log(4T/δ)/(2n))保守包入有理radius。正确的有理区间lo/hi包围实际经验均值，再与统一事件合成真实总体积分区间。仅当lower coverage>0时，clipped rational gate和min(1,ratio)通过可推出真实选择风险≤Q target≤requestedRealTarget；只执行有理比较，任意实数比较的可终止性未承诺。无通过项不是风险超标证明。既有Q-loss selector与证明保留为原有分支；本声明另将任意实值有界loss的总体量和实际IID统一界接到Q证书。"
+        }
+      ]
     },
     {
       "id": "05.4",

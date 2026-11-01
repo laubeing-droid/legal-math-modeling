@@ -445,6 +445,7 @@
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskAudit20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
@@ -4648,8 +4649,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "93c980bf97a603787f9ebba82f30e306daf789bf2a7b61509ac54d2610ebd5d1",
-   "size_bytes": 311028,
+   "sha256": "ea01809c0a944bb2e776925b342dc38d6228a4eaadb90948b18e2bb497fd3f45",
+   "size_bytes": 311096,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -18448,6 +18449,82 @@
    "size_bytes": 9892,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.CalibrationSemantics20261027",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate",
+    "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_no_valid_coverage",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.finite_threshold_interval_certificate",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.threshold_population_quantities",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.true_conditional_error_ordering"
+   ],
+   "sha256": "d2c30b8d261b336648cda543261f5b446627f00959e2b16c3fdbc11621f63765",
+   "size_bytes": 1170,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "thresholdStatistic"
+    },
+    {
+     "kind": "theorem",
+     "name": "threshold_population_quantities"
+    },
+    {
+     "kind": "theorem",
+     "name": "true_conditional_error_ordering"
+    },
+    {
+     "kind": "def",
+     "name": "clippedLower"
+    },
+    {
+     "kind": "def",
+     "name": "clippedUpper"
+    },
+    {
+     "kind": "def",
+     "name": "certificateChoice"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificateChoice_none_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificateChoice_no_valid_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_threshold_interval_certificate"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SelectiveCalibration20261027",
+    "Mathlib.MeasureTheory.Function.ConditionalExpectation.Basic",
+    "Mathlib.MeasureTheory.Integral.Bochner.Set",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "24ebb9947d6f8f87fd1ac3d9c2a39944401eda07111d40511026bf0a6d04b03f",
+   "size_bytes": 19317,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
   },
   {
    "declarations": [
@@ -59995,6 +60072,8 @@
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U05_2OriginalGroupCalibrationAudit20261101",
     "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskAudit20261101",
+    "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformation20261031",
@@ -60201,8 +60280,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "027e278822b196356beeb1551397cca55b7703d042836ff5fc6e2edc5ffe4a2a",
-   "size_bytes": 14551,
+   "sha256": "61e3a98c6d8a8d56ad30afef8ad6315f0ad4721ec6285f473704ab38b66891ef",
+   "size_bytes": 14691,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60366,22 +60445,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6322,
-   "file_count": 553,
+   "counted_declaration_count": 6327,
+   "file_count": 555,
    "lemma_count": 146,
-   "print_axioms_command_count": 5568,
-   "print_axioms_distinct_targets": 5117,
-   "theorem_count": 6176,
-   "theorem_count_bol_convention": 6076
+   "print_axioms_command_count": 5576,
+   "print_axioms_distinct_targets": 5122,
+   "theorem_count": 6181,
+   "theorem_count_bol_convention": 6081
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6303,
-   "file_count": 538,
+   "counted_declaration_count": 6308,
+   "file_count": 540,
    "lemma_count": 139,
-   "print_axioms_command_count": 5568,
-   "print_axioms_distinct_targets": 5117,
-   "theorem_count": 6164,
-   "theorem_count_bol_convention": 6064
+   "print_axioms_command_count": 5576,
+   "print_axioms_distinct_targets": 5122,
+   "theorem_count": 6169,
+   "theorem_count_bol_convention": 6069
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60592,6 +60671,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61143,6 +61224,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61529,17 +61612,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cb4ab5564596edfd06eb97a7919f60fc76632af717d76ad404bc40ace92467f1",
+ "source_inventory_digest": "a85c49c65a6cf61a9a3e09eaaf2e86c3b8b2a34bacbaa26043f413ff4a150b31",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original05-2-20261101",
-  "commit": "606dde980bf30dfb17f786e410013274661d9be0",
-  "tree": "a764de42611420de60c9d6dd76abc451e5184556"
+  "branch": "formal/close-original05-3-20261101",
+  "commit": "70139671e4fb0b90abddee17162282c20cbf3443",
+  "tree": "aa2f6c3a2a566cce09b45811559e9557141f0bd5"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 553,
+  "files_total": 555,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

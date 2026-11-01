@@ -61,18 +61,19 @@ theorem true_conditional_error_ordering {Z : Type*} [mZ : MeasurableSpace Z]
       (∫ z in {z | high ≤ score z}, loss z ∂P) / P.real {z | high ≤ score z} ≤
       (∫ z in {z | low ≤ score z}, loss z ∂P) / P.real {z | low ≤ score z} := by
   let mS := MeasurableSpace.comap score (inferInstance : MeasurableSpace ℝ)
+  letI : MeasurableSpace Z := mZ
   have hm : mS ≤ mZ := hs.comap_le
   have hsS : Measurable[mS] score := comap_measurable score
   have hlInt : Integrable loss P := unit_integrable P loss hl lossRange
   have hEta : Integrable (fun z => curve (score z)) P :=
-    (integrable_condExp (μ := P) (f := loss) (m := mS)).congr actual
+    (integrable_condExp (μ := P) (f := loss) (m := mS) (m₀ := mZ)).congr actual
   let A : Set Z := {z | low ≤ score z}
   let B : Set Z := {z | high ≤ score z}
   let D : Set Z := A \ B
   have hAm : MeasurableSet[mS] A := measurableSet_le measurable_const hsS
   have hBm : MeasurableSet[mS] B := measurableSet_le measurable_const hsS
-  have hA : MeasurableSet A := hAm.mono hm
-  have hB : MeasurableSet B := hBm.mono hm
+  have hA : MeasurableSet A := hm A hAm
+  have hB : MeasurableSet B := hm B hBm
   have hD : MeasurableSet D := hA.diff hB
   have hBA : B ⊆ A := fun z hz => le_trans lh hz
   have disj : Disjoint B D := Set.disjoint_left.2 (by
@@ -93,9 +94,9 @@ theorem true_conditional_error_ordering {Z : Type*} [mZ : MeasurableSpace Z]
       (∫ z in s, loss z ∂P) = ∫ z in s, curve (score z) ∂P := by
     calc
       (∫ z in s, loss z ∂P) = ∫ z in s, P[loss | mS] z ∂P :=
-        (setIntegral_condExp hm hlInt hsm).symm
+        (setIntegral_condExp (m₀ := mZ) hm hlInt hsm).symm
       _ = ∫ z in s, curve (score z) ∂P := by
-        apply setIntegral_congr_ae (hsm.mono hm)
+        apply setIntegral_congr_ae (hm s hsm)
         filter_upwards [actual] with z hz
         exact fun _ => hz
   have split : (∫ z in A, curve (score z) ∂P) =
@@ -253,9 +254,9 @@ theorem finite_threshold_interval_certificate {Ω X Y H : Type*}
   have statMeasurable (p : H × Bool) : Measurable (stat p) := by
     rcases p with ⟨t, b⟩
     cases b
-    · change Measurable (fun z => if cutoff t ≤ score z.1 then (1 : ℝ) else 0)
+    · change Measurable (fun (z : X × Y) => if cutoff t ≤ score z.1 then (1 : ℝ) else 0)
       exact Measurable.ite (measurableSet_le measurable_const (hs.comp measurable_fst)) measurable_const measurable_const
-    · change Measurable (fun z => if cutoff t ≤ score z.1 then loss z else 0)
+    · change Measurable (fun (z : X × Y) => if cutoff t ≤ score z.1 then loss z else 0)
       exact Measurable.ite (measurableSet_le measurable_const (hs.comp measurable_fst)) hl measurable_const
   have statRange (p : H × Bool) (z : X × Y) : stat p z ∈ Set.Icc (0 : ℝ) 1 := by
     rcases p with ⟨t, b⟩

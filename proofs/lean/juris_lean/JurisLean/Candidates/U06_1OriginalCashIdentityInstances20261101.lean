@@ -47,7 +47,7 @@ theorem fromQPayload_preserves_fields (p : PaymentPayload) :
     (fromQPayload p).amount = (p.amount.value : ℝ) ∧
     (fromQPayload p).tag = p.amount.tag ∧
     (fromQPayload p).factDate = p.factDate := by
-  rfl
+  exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 theorem performance_appends_payload_cash (s : Ledger.State) (p : PaymentPayload) :
     (Ledger.performance s p).cash = s.cash ++ [payloadCash p] := rfl
@@ -293,7 +293,7 @@ def realCashAccounts (events : Finset RealCashEvent) : Finset PartyId :=
 All events share the declared amount tag; the valuation context is an external
 fixed input and is not inferred from payment fact dates. -/
 theorem actual_cash_accounts_conserve (events : Finset RealCashEvent) (unitTag : AmountTag)
-    (sameUnit : ∀ e ∈ events, e.amount.tag = unitTag) :
+    (sameUnit : ∀ e ∈ events, e.tag = unitTag) :
     ∑ party : {p // p ∈ realCashAccounts events}, netCash events party.val = 0 := by
   classical
   let Account := {p // p ∈ realCashAccounts events}
@@ -364,15 +364,15 @@ theorem q_ledger_cash_vector_matches_real_cash (events : List CashEvent)
     intro e he f hf h
     have hId := congrArg RealCashEvent.id h
     apply List.inj_on_of_nodup_map (f := CashEvent.id) idsNodup
-      (List.mem_of_mem_toFinset he) (List.mem_of_mem_toFinset hf)
+      (List.mem_toFinset.mp he) (List.mem_toFinset.mp hf)
     exact hId
   have flowCast (e : CashEvent) : cashFlow (lift e) party = (qCashFlow e party : ℝ) := by
-    by_cases hp : party = e.payee <;> by_cases hq : party = e.payer <;>
-      simp [lift, fromQCash, cashFlow, qCashFlow, hp, hq]
+    dsimp [lift, fromQCash, cashFlow, qCashFlow]
+    split_ifs <;> push_cast <;> rfl
   unfold netCash
   rw [Finset.sum_image liftInjective]
   simp only [flowCast]
-  rw [Ledger.cashVector]
+  simp only [Ledger.cashVector, List.map_map, Function.comp_def]
   exact_mod_cast (List.sum_toFinset (fun e => qCashFlow e party)
     (List.Nodup.of_map CashEvent.id idsNodup))
 
@@ -452,9 +452,9 @@ theorem two_real_six_payment_account_cash :
   constructor
   · rw [hPayee]
     norm_num [Ledger.cashVector, qCashFlow, afterTwoSixPayments, afterFirstSixPayment,
-      Ledger.performance, sixPaymentPayload, cashGamma, cashTag]
+      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt]
   · rw [hPayer]
     norm_num [Ledger.cashVector, qCashFlow, afterTwoSixPayments, afterFirstSixPayment,
-      Ledger.performance, sixPaymentPayload, cashGamma, cashTag]
+      Ledger.performance, sixPaymentPayload, cashGamma, cashTag, sixDebt]
 
 end JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101

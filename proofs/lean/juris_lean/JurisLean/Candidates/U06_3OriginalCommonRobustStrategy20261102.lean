@@ -159,7 +159,7 @@ theorem pickMaxMin_none_iff {J P : Type} [DecidableEq J] [DecidableEq P]
       obtain ⟨p, hp⟩ := hpolicies
       intro he
       rw [he] at hp
-      exact Finset.not_mem_empty p hp
+      simpa using hp
     simp [pickMaxMin, hpolicies, hne]
   · have hempty : policies = ∅ := by
       by_contra hne
@@ -285,6 +285,7 @@ theorem conditional_advice_known_choice_is_feasible_max_min
         Feasible horizon branches initial next legal implementable (realize q) →
           worstBranchValue branches hbranches (expectedUtilityMatrix law utility outcome) q ≤
             worstBranchValue branches hbranches (expectedUtilityMatrix law utility outcome) p := by
+  classical
   let values := expectedUtilityMatrix law utility outcome
   have hpick : pickMaxMin branches hbranches
       (commonPolicies candidates realize horizon branches initial next legal implementable) values =
@@ -313,6 +314,7 @@ theorem conditional_advice_known_none_iff_no_feasible_candidate
       candidates realize law utility outcome hWellFormed (.known legal) (.known ())).2.2 = .known none ↔
     ∀ p ∈ candidates,
       ¬ Feasible horizon branches initial next legal implementable (realize p) := by
+  classical
   let common := commonPolicies candidates realize horizon branches initial next legal implementable
   let values := expectedUtilityMatrix law utility outcome
   constructor
@@ -322,7 +324,7 @@ theorem conditional_advice_known_none_iff_no_feasible_candidate
     have hempty : common = ∅ := (pickMaxMin_none_iff branches hbranches common values).mp hpick
     have hmem : p ∈ common := Finset.mem_filter.mpr ⟨hp, hfeasible⟩
     rw [hempty] at hmem
-    exact Finset.not_mem_empty p hmem
+    simpa using hmem
   · intro hnone
     have hempty : common = ∅ := by
       ext p
@@ -478,13 +480,19 @@ theorem demo_expected_utility_inputs_well_formed :
 
 theorem demo_expected_utility_is_actual_trajectory_payoff
     (a : DemoAction) (j : DemoBranch) : demoUtilities a j = demoPayoff j a := by
+  classical
   unfold demoUtilities expectedUtilityMatrix branchExpectedUtility demoBranchMeasure
   have hLaw := (every_policy_induces_fixed_branch_law a j).2
-  rw [hLaw]
-  rw [PMF.integral_eq_sum]
-  simp [demoOutcome, U06_1FiniteBellman20261030.realizedReturn,
-    demoPolicy, demoControl, U06_1FiniteBellman20261030.terminalTrace,
-    demoPayoff]
+  rw [hLaw, PMF.integral_eq_sum]
+  rw [Finset.sum_eq_single
+    (j, U06_1FiniteBellman20261030.terminalTrace () 1)]
+  · simp [PMF.pure_apply, demoOutcome,
+      U06_1FiniteBellman20261030.realizedReturn,
+      demoPolicy, demoControl, U06_1FiniteBellman20261030.terminalTrace]
+  · intro w hw hne
+    simp [PMF.pure_apply, hne]
+  · intro hnot
+    exact (hnot (Finset.mem_univ _)).elim
 
 theorem demo_max_min_scores :
     worstBranchValue demoBranchSet demo_branches_nonempty demoUtilities 0 = 0 ∧

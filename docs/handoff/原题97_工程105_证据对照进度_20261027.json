@@ -46,14 +46,14 @@
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
-  "counts":   {
+  "counts": {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 41,
+    "COVERED": 42,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 19
+    "NOT_RECONCILED": 18
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2449,7 +2449,7 @@
       "scope_correction": "本行C仅指冻结L129/L131/L133范围内的原题实例/定义连接有具名源码结果和本轮独立changed-module CI。没有新增对Q3/4/5的一般证明；只沿用原已C结论及前提。实际全链PR验收待跑，现实机制/法律结论与consumer实现未由此关闭。",
       "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
     },
-        {
+    {
       "id": "05.1",
       "heading": "## 问题一：评分映射为概率还缺什么",
       "original_manifest_row": "05.1",
@@ -2770,7 +2770,7 @@
           123
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u05-1-original-close-20261031",
@@ -2782,21 +2782,58 @@
           "artifact_id": 13016125638,
           "artifact_sha256": "b4910b73b852f0227e415043218b2c636fa007e96fde7e4f99ae0f645ff6c202",
           "scope": "Negative support only for L123: changing the test law can leave coverage at 1/4 and break exchangeability; the audit does not prove the covariate-shift identity, density-ratio error analysis, or unseen-input identification claims."
+        },
+        {
+          "package": "docs/formal-release/evidence/original05-5-distribution-shift-close-20261101",
+          "subject": "78b4be27ca98cf4013468cb75e6f3c80304d3e35",
+          "subject_tree": "4cfd33cc78f62eeb584dc482631c7b05e632d406",
+          "run_id": 41294062528,
+          "job_id": 124811103137,
+          "attempt": 1,
+          "artifact_id": 13078901681,
+          "artifact_sha256": "f104abf2ba37e4adabb79a6d1b0f4a79e75f8894e475bebd54a99ebb748230bd",
+          "scope": "Four new named declarations plus two reused declarations for frozen L119/L121/L123; successful changed-module target only, other seven workflow jobs skipped. Full-record PR acceptance remains pending. No actual consumer caller, deployment, empirical law validation, or positive shifted conformal theorem is claimed."
         }
       ],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。",
+      "remaining": "原题05.5 L119/L121/L123的具名数学连接已由本轮source module及独立changed-module CI核验；本记录完整PR验收仍待跑。未声称实际consumer调用、部署、经验分布满足前提或正向shifted conformal保证；其他原题行、105工程状态与15条消费边状态不升级。",
       "paragraph_evidence": [
+        {
+          "lines": [
+            119,
+            119
+          ],
+          "claim": "The same Markov label kernel defines source and target joint laws; under target-input absolute continuity the proof identifies their first marginals, joint RN derivative and weighted risk integral, while retaining the estimated-weight error integral under its explicit integrability premise.",
+          "named_targets": [
+            "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.common_label_covariate_transport",
+            "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.estimated_weight_error_identity"
+          ]
+        },
+        {
+          "lines": [
+            121,
+            121
+          ],
+          "claim": "The existing deterministic two-world boundary is complemented by a randomized binary learner: same visible training data, normalized randomization weights, and one hidden-label world with expected point risk at least one half.",
+          "named_targets": [
+            "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+            "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.randomized_unseen_input_lower_bound"
+          ]
+        },
         {
           "lines": [
             123,
             123
           ],
-          "claim": "Finite deployment boundary shows that a changed test law can break the coverage premise; it is not a theorem about detecting X-only drift or general concept shift.",
+          "claim": "A separate pair of joint Dirac laws has identical actual X marginals and X-only detector output laws but opposite conditional label rates on the same positive-probability input atom; the reused deployment boundary remains only negative support.",
           "named_targets": [
+            "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.same_input_marginal_different_label_mechanism",
             "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
           ]
         }
-      ]
+      ],
+      "formal_evidence_boundary": "本行四个新增声明与两个复用声明由changed-module run 41294062528 / job 124811103137独立核验；其余七个workflow jobs为SKIPPED，full-record PR验收仍待。源码证明条件命题与有限反例，不代表实际consumer接线、部署、现实分布前提已核验或正向加权保形定理。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前仅changed-module目标成功，不以它代替完整record验收。",
+      "scope_correction": "仅本原题数学行05.5 L119/L121/L123更新；不改其他96条数学行、105工程行、6个designated cuts或15条消费边评级。L119不新增估计率或无界权浓度，L121不声称普遍OOD，L123不新增正向weighted conformal保证。U50计数与97数学行分母不同。"
     },
     {
       "id": "05.6",

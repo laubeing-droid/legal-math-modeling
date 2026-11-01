@@ -446,6 +446,7 @@
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U05_3OriginalSelectiveRiskAudit20261101",
+    "JurisLean.Candidates.U05_5OriginalShiftAudit20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
@@ -4649,8 +4650,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "ea01809c0a944bb2e776925b342dc38d6228a4eaadb90948b18e2bb497fd3f45",
-   "size_bytes": 311096,
+   "sha256": "8be24b72278935f78959a5477d877725185b19bc3c623a5064417714b8e3debb",
+   "size_bytes": 311156,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -18525,6 +18526,69 @@
    "size_bytes": 19317,
    "theorem_count": 5,
    "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.ExchangeableRank20261031",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftAudit20261101.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+    "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.common_label_covariate_transport",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.estimated_weight_error_identity",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.randomized_unseen_input_lower_bound",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.same_input_marginal_different_label_mechanism"
+   ],
+   "sha256": "c708c51603277bb25c9eaf9fdec4d6aa49b646024cfc051af07a1e45cd226137",
+   "size_bytes": 914,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "common_label_covariate_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "estimated_weight_error_identity"
+    },
+    {
+     "kind": "def",
+     "name": "randomizedPointRisk"
+    },
+    {
+     "kind": "theorem",
+     "name": "randomized_unseen_input_lower_bound"
+    },
+    {
+     "kind": "def",
+     "name": "conceptLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_input_marginal_different_label_mechanism"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningBoundary20261027",
+    "Mathlib.MeasureTheory.Measure.Decomposition.RadonNikodym",
+    "Mathlib.MeasureTheory.Measure.Dirac",
+    "Mathlib.Probability.Kernel.Composition.RadonNikodym",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "f5f130d81e260cd78b4cb0a4d4c508787f898b0f1b7efcec80ba192a8945038a",
+   "size_bytes": 9583,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
   },
   {
    "declarations": [
@@ -60074,6 +60138,8 @@
     "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101",
     "JurisLean.Candidates.U05_3OriginalSelectiveRiskAudit20261101",
     "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101",
+    "JurisLean.Candidates.U05_5OriginalShiftAudit20261101",
+    "JurisLean.Candidates.U05_5OriginalShiftInstances20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformation20261031",
@@ -60280,8 +60346,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "61e3a98c6d8a8d56ad30afef8ad6315f0ad4721ec6285f473704ab38b66891ef",
-   "size_bytes": 14691,
+   "sha256": "c64e5aee59aa87410e36fb14cbe3a2d9b0d5fbd53897e564450b3aee6270322e",
+   "size_bytes": 14815,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60445,22 +60511,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6327,
-   "file_count": 555,
+   "counted_declaration_count": 6331,
+   "file_count": 557,
    "lemma_count": 146,
-   "print_axioms_command_count": 5576,
-   "print_axioms_distinct_targets": 5122,
-   "theorem_count": 6181,
-   "theorem_count_bol_convention": 6081
+   "print_axioms_command_count": 5582,
+   "print_axioms_distinct_targets": 5126,
+   "theorem_count": 6185,
+   "theorem_count_bol_convention": 6085
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6308,
-   "file_count": 540,
+   "counted_declaration_count": 6312,
+   "file_count": 542,
    "lemma_count": 139,
-   "print_axioms_command_count": 5576,
-   "print_axioms_distinct_targets": 5122,
-   "theorem_count": 6169,
-   "theorem_count_bol_convention": 6069
+   "print_axioms_command_count": 5582,
+   "print_axioms_distinct_targets": 5126,
+   "theorem_count": 6173,
+   "theorem_count_bol_convention": 6073
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60673,6 +60739,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61226,6 +61294,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61612,17 +61682,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a85c49c65a6cf61a9a3e09eaaf2e86c3b8b2a34bacbaa26043f413ff4a150b31",
+ "source_inventory_digest": "e5e5fc27585a736234b155c282c3e5b42bd001a9aab8d2640ed7b32794067432",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original05-3-20261101",
-  "commit": "70139671e4fb0b90abddee17162282c20cbf3443",
-  "tree": "aa2f6c3a2a566cce09b45811559e9557141f0bd5"
+  "branch": "formal/close-original05-5-20261101",
+  "commit": "78b4be27ca98cf4013468cb75e6f3c80304d3e35",
+  "tree": "4cfd33cc78f62eeb584dc482631c7b05e632d406"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 555,
+  "files_total": 557,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

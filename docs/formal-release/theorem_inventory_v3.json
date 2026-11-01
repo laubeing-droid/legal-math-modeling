@@ -690,7 +690,6 @@
     "EFG.isSubgame_terminal",
     "EFG.nash_of_noOSD",
     "EFG.nash_of_noOSD_of_bounded",
-    "EFG.oneShotDeviation_iff_spe",
     "EFG.oneShotDeviation_iff_spe_of_bounded",
     "EFG.perfectInfo_implies_perfectRecall",
     "EFG.perfectInfo_isSubgame_decision",
@@ -825,7 +824,6 @@
     "GameTheory.KernelGame.mixedExtension_eu_update",
     "GameTheory.KernelGame.mixedExtension_eu_update_of_bounded",
     "GameTheory.KernelGame.mixedExtension_isZeroSum",
-    "GameTheory.KernelGame.mixed_nash_exists",
     "GameTheory.KernelGame.mixed_nash_exists_of_bounded",
     "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx",
     "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly",
@@ -842,7 +840,6 @@
     "GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly",
     "GameTheory.KernelGame.nash_eu_ge_securityLevel",
     "GameTheory.KernelGame.nash_eu_ge_securityLevelSup",
-    "GameTheory.KernelGame.nash_fp_is_nash",
     "GameTheory.KernelGame.nash_fp_is_nash_of_bounded",
     "GameTheory.KernelGame.nash_p0_cap",
     "GameTheory.KernelGame.ofEU_Strategy",
@@ -866,7 +863,6 @@
     "GameTheory.KernelGame.worstCaseEUInf_le",
     "GameTheory.KernelGame.worstCaseEU_guarantees",
     "GameTheory.KernelGame.worstCaseEU_le",
-    "GameTheory.brouwer_mixedSimplex",
     "GameTheory.continuous_fromMixedSet",
     "GameTheory.continuous_toMixedSet",
     "GameTheory.convex_mixedSimplexAsSet",
@@ -2978,7 +2974,6 @@
     "JurisLean.Seams.UnifiedEquilExist.exists_rowOf_eq",
     "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists",
     "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_of_menu",
-    "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream",
     "JurisLean.Seams.UnifiedEquilExist.fixed_point_brCorr_iff_nash",
     "JurisLean.Seams.UnifiedEquilExist.gapmid_nash_iff_real",
     "JurisLean.Seams.UnifiedEquilExist.legalGame_Strategy_eq",
@@ -4673,8 +4668,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "958f8fd1eac8e6eaffb0c9dea8f45ea34e6138a995c9f0acba0f57df648a8a4c",
-   "size_bytes": 313315,
+   "sha256": "918169098350653e386dc6b7a4884718ee184b45313ede7251517ef645364acf",
+   "size_bytes": 313025,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62106,7 +62101,7 @@
    "counted_declaration_count": 6402,
    "file_count": 568,
    "lemma_count": 146,
-   "print_axioms_command_count": 5732,
+   "print_axioms_command_count": 5727,
    "print_axioms_distinct_targets": 5233,
    "theorem_count": 6256,
    "theorem_count_bol_convention": 6156
@@ -62115,7 +62110,7 @@
    "counted_declaration_count": 6383,
    "file_count": 553,
    "lemma_count": 139,
-   "print_axioms_command_count": 5732,
+   "print_axioms_command_count": 5727,
    "print_axioms_distinct_targets": 5233,
    "theorem_count": 6244,
    "theorem_count_bol_convention": 6144
@@ -63296,12 +63291,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "0b334abd60e69f4a0f75c87dfd16bc9b8d1c507f9b85ccaf55cb6e846bc31451",
+ "source_inventory_digest": "a60751748ab4876242bed5dcdd0ab80b57aa975402aecfd4f294c0e926cfef8d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "formal/close-original06-7-chapter-20261102",
-  "commit": "9e62edd834bae22dbd8fc85d3c2fd0f34f0e8ed7",
-  "tree": "19ea36929958d4e7914b2103c52ebe95a3cdc1cd"
+  "commit": "6c60313292ceec3059d467ce6c7915bc395c48e2",
+  "tree": "9f5f1f6515428519179b3eb29d5d7c97f8cb2044"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

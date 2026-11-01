@@ -2636,7 +2636,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedEquilExist.exists_rowOf_eq
 #print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists
 #print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_of_menu
-#print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream
 #print axioms JurisLean.Seams.UnifiedEquilExist.fixed_point_brCorr_iff_nash
 #print axioms JurisLean.Seams.UnifiedEquilExist.gapmid_nash_iff_real
 #print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_Strategy_eq
@@ -3922,7 +3921,6 @@ open HornSystem
 #print axioms EFG.isSubgame_terminal
 #print axioms EFG.nash_of_noOSD
 #print axioms EFG.nash_of_noOSD_of_bounded
-#print axioms EFG.oneShotDeviation_iff_spe
 #print axioms EFG.oneShotDeviation_iff_spe_of_bounded
 #print axioms EFG.perfectInfo_implies_perfectRecall
 #print axioms EFG.perfectInfo_isSubgame_decision
@@ -4057,7 +4055,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.mixedExtension_eu_update
 #print axioms GameTheory.KernelGame.mixedExtension_eu_update_of_bounded
 #print axioms GameTheory.KernelGame.mixedExtension_isZeroSum
-#print axioms GameTheory.KernelGame.mixed_nash_exists
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_bounded
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly
@@ -4074,7 +4071,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly
 #print axioms GameTheory.KernelGame.nash_eu_ge_securityLevel
 #print axioms GameTheory.KernelGame.nash_eu_ge_securityLevelSup
-#print axioms GameTheory.KernelGame.nash_fp_is_nash
 #print axioms GameTheory.KernelGame.nash_fp_is_nash_of_bounded
 #print axioms GameTheory.KernelGame.nash_p0_cap
 #print axioms GameTheory.KernelGame.ofEU_Strategy
@@ -4098,7 +4094,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.worstCaseEUInf_le
 #print axioms GameTheory.KernelGame.worstCaseEU_guarantees
 #print axioms GameTheory.KernelGame.worstCaseEU_le
-#print axioms GameTheory.brouwer_mixedSimplex
 #print axioms GameTheory.continuous_fromMixedSet
 #print axioms GameTheory.continuous_toMixedSet
 #print axioms GameTheory.convex_mixedSimplexAsSet

@@ -1,0 +1,696 @@
+⚠ [8476/8491] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8479/8491] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8481/8491] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8482/8491] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8483/8491] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8485/8491] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8486/8491] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ℹ [8489/8491] Built JurisLean.Candidates.U06_1FiniteBellman20261030 (5.8s)
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:327:0: JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) (hempty : ¬(m.legal (n + 1) s).Nonempty) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g 0 s = g s ∧
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π 0 h s = g s ∧
+      JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g (n + 1) s = g s ∧
+        JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π (n + 1) h s = g s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:328:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.terminal_and_empty_action' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:329:0: JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s ≤
+    JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:330:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_le_bellman' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:331:0: JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step.{u, v} {S : Type u} {A : Type v} [Fintype S] [DecidableEq A]
+  (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) (hn : (m.legal (n + 1) s).Nonempty) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g (n + 1) s =
+    r (n + 1) s ↑(JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g n h s hn) +
+      ∑ s',
+        m.kernel (n + 1) s (↑(JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g n h s hn)) s' *
+          JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s'
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:332:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:333:0: JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ)
+  (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g
+      (JurisLean.Candidates.U06_1FiniteBellman20261030.greedy m r g) n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:334:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.greedy_value_eq_bellman' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:335:0: JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ) (g : S → ℝ) :
+  ∃ πstar,
+    ∀ (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S),
+      JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g πstar n h s =
+          JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s ∧
+        ∀ (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m),
+          JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s ≤
+            JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g πstar n h s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:336:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_full_policy_optimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:337:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:338:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:339:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x = 1
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:340:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:341:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:342:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:343:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value.{u, v} {S : Type u} {A : Type v}
+  [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ)
+  (g : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m r g π n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:344:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:345:0: JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation.{u, v} {S : Type u}
+  {A : Type v} [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (r : ℕ → S → A → ℝ) (g : S → ℝ) :
+  ∃ πstar,
+    ∀ (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S),
+      (∀ (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n),
+          0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x) ∧
+        ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x = 1 ∧
+          ∑ x,
+                ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                  JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x =
+              JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s ∧
+            ∀ (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m),
+              ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g π n h s x ≤
+                ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:346:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:347:0: JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r₁ r₂ : ℕ → S → A → ℝ)
+  (g₁ g₂ : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m (fun t s a => r₁ t s a - r₂ t s a)
+      (fun s => g₁ s - g₂ s) π n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r₁ g₁ π n h s -
+      JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r₂ g₂ π n h s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:348:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.policy_value_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:349:0: JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (reward cost : ℕ → S → A → ℝ)
+  (g : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m (fun t s a => reward t s a - cost t s a) g π n
+      h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m reward g π n h s -
+      JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m cost (fun x => 0) π n h s
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:350:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.cost_counted_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:351:0: JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample :
+  (∀ (model : Bool),
+      (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model false +
+            JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model true) /
+          2 =
+        1 / 2) ∧
+    (min (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff false false)
+              (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff true false) +
+            min (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff false true)
+              (JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff true true)) /
+          2 =
+        0 ∧
+      0 < 1 / 2 ∧
+        ¬∃ model, ∀ (state : Bool), JurisLean.Candidates.U06_1FiniteBellman20261030.coupledPayoff model state = 0
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:352:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.nonrectangular_bellman_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:353:0: JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information {Ω A Y : Type} [Fintype Ω]
+  (P : JurisLean.Candidates.Final20261021.Probability.FiniteLaw Ω) (observation : Ω → Y) (utility : A → Ω → ℚ)
+  (actions : List A) (policies : List (Y → A)) (old : A) (chosen : Y → A) (oracle : Ω → A)
+  (ignore : (fun x => old) ∈ policies) (feasible : ∀ pi ∈ policies, ∀ (y : Y), pi y ∈ actions)
+  (signalChoice :
+    JurisLean.Candidates.Final20261021.Decision.best
+        (JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility) policies =
+      some chosen)
+  (perfectChoice :
+    ∀ (w : Ω), JurisLean.Candidates.Final20261021.Decision.best (fun a => utility a w) actions = some (oracle w)) :
+  JurisLean.Candidates.Final20261021.Probability.expectation P (utility old) ≤
+      JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility chosen ∧
+    JurisLean.Candidates.Final20261021.Decision.policyScore P observation utility chosen ≤
+      JurisLean.Candidates.Final20261021.Probability.expectation P fun w => utility (oracle w) w
+info: JurisLean/Candidates/U06_1FiniteBellman20261030.lean:354:0: 'JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8490/8491] Built JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102 (5.0s)
+warning: JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean:162:6: Try `simp at hp` instead of `simpa using hp`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean:167:22: This simp argument is unused:
+  hpolicies
+
+Hint: Omit it from the simp argument list.
+  simp [pickMaxMin, h̵p̵o̵l̵i̵c̵i̵e̵s̵,̵ ̵hempty]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean:327:4: Try `simp at hmem` instead of `simpa using hmem`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean:409:71: This simp argument is unused:
+  demoVisiblePolicy
+
+Hint: Omit it from the simp argument list.
+  simp [commonPolicies, demoCandidatePolicies, demo_policies_feasible,̵ ̵d̵e̵m̵o̵V̵i̵s̵i̵b̵l̵e̵P̵o̵l̵i̵c̵y̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean:537:74: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [8491/8491] Built JurisLean.Candidates.U06_3OriginalStrategyAudit20261102 (3.9s)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:6:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.common_policy_is_branch_blind.{u, v} {S : Type u}
+  {A : Type v} (π : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) (t₁ t₂ : ℕ)
+  (h₁ h₂ : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s₁ s₂ : S) (ht : t₁ = t₂) (hh : h₁ = h₂)
+  (hs : s₁ = s₂) : π t₁ h₁ s₁ = π t₂ h₂ s₂
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:7:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.common_policy_is_branch_blind' does not depend on any axioms
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:8:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policy_matches_visible_policy
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction) (n : ℕ)
+  (h :
+    JurisLean.Candidates.U06_1FiniteBellman20261030.History Unit
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction)
+  (s : Unit)
+  (hn : (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoControl.legal (n + 1) s).Nonempty) :
+  ↑(JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoPolicy a n h s hn) =
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoVisiblePolicy a n h s
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:9:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policy_matches_visible_policy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:10:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_visible_actions_equal_across_worlds
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction)
+  (w₁ w₂ : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoWorld) (n : ℕ)
+  (h :
+    JurisLean.Candidates.U06_1FiniteBellman20261030.History Unit
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction)
+  (hobs :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoObserve w₁ =
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoObserve w₂) :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoVisiblePolicy a n h
+      (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoObserve w₁) =
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoVisiblePolicy a n h
+      (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoObserve w₂)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:11:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_visible_actions_equal_across_worlds' does not depend on any axioms
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:12:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.empty_joint_actions_block_common_policy.{u, v}
+  {J S : Type u} {A : Type v} [DecidableEq A] (horizon : ℕ) (branches : Finset J) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (π : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) (j₁ j₂ : J) (t : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) (hj₁ : j₁ ∈ branches) (hj₂ : j₂ ∈ branches)
+  (hr₁ : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Reachable horizon initial next π j₁ t h s)
+  (hr₂ : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Reachable horizon initial next π j₂ t h s)
+  (ht : t < horizon) (hempty : legal j₁ t h s ∩ legal j₂ t h s ∩ implementable t h s = ∅) :
+  ¬JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Feasible horizon branches initial next legal
+      implementable π
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:13:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.empty_joint_actions_block_common_policy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:14:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worst_branch_attained {J P : Type} [DecidableEq J]
+  (branches : Finset J) (hbranches : branches.Nonempty) (values : P → J → ℝ) (p : P) :
+  ∃ j ∈ branches,
+    values p j =
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches values p
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:15:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worst_branch_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:16:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained {J P : Type} [DecidableEq J]
+  [DecidableEq P] (branches : Finset J) (hbranches : branches.Nonempty) (policies : Finset P)
+  (hpolicies : policies.Nonempty) (values : P → J → ℝ) :
+  ∃ p ∈ policies,
+    ∀ q ∈ policies,
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches values q ≤
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches values p
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:17:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:18:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec {J P : Type} [DecidableEq J]
+  [DecidableEq P] (branches : Finset J) (hbranches : branches.Nonempty) (policies : Finset P) (values : P → J → ℝ)
+  (p : P)
+  (hpick :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin branches hbranches policies values =
+      some p) :
+  p ∈ policies ∧
+    ∀ q ∈ policies,
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches values q ≤
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches values p
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:19:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:20:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff {J P : Type} [DecidableEq J]
+  [DecidableEq P] (branches : Finset J) (hbranches : branches.Nonempty) (policies : Finset P) (values : P → J → ℝ) :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin branches hbranches policies values = none ↔
+    policies = ∅
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:21:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:22:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_legal_unknown
+  {J S A P Ω : Type} [DecidableEq J] [DecidableEq A] [DecidableEq P] (horizon : ℕ) (branches : Finset J)
+  (hbranches : branches.Nonempty) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (candidates : Finset P)
+  (realize : P → JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
+  (hWellFormed :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed branches candidates
+      law utility outcome)
+  (reason : JurisLean.Candidates.Final20261021.Error) (preference : JurisLean.Candidates.Final20261021.Result Unit) :
+  have result :=
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditionalAdvice horizon branches hbranches initial
+      next implementable candidates realize law utility outcome hWellFormed
+      (JurisLean.Candidates.Final20261021.Result.unknown reason) preference;
+  result.2.1 = JurisLean.Candidates.Final20261021.Result.unknown reason ∧
+    result.2.2 = JurisLean.Candidates.Final20261021.Result.unknown reason
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:23:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_legal_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:24:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_preference_unknown
+  {J S A P Ω : Type} [DecidableEq J] [DecidableEq A] [DecidableEq P] (horizon : ℕ) (branches : Finset J)
+  (hbranches : branches.Nonempty) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (candidates : Finset P)
+  (realize : P → JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
+  (hWellFormed :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed branches candidates
+      law utility outcome)
+  (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (reason : JurisLean.Candidates.Final20261021.Error) :
+  have result :=
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditionalAdvice horizon branches hbranches initial
+      next implementable candidates realize law utility outcome hWellFormed
+      (JurisLean.Candidates.Final20261021.Result.known legal)
+      (JurisLean.Candidates.Final20261021.Result.unknown reason);
+  result.2.1 =
+      JurisLean.Candidates.Final20261021.Result.known
+        (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.commonPolicies candidates realize horizon
+          branches initial next legal implementable) ∧
+    result.2.2 = JurisLean.Candidates.Final20261021.Result.unknown reason
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:25:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_preference_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:26:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_empty_returns_none
+  {J S A P Ω : Type} [DecidableEq J] [DecidableEq A] [DecidableEq P] (horizon : ℕ) (branches : Finset J)
+  (hbranches : branches.Nonempty) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (candidates : Finset P)
+  (realize : P → JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
+  (hWellFormed :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed branches candidates
+      law utility outcome)
+  (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (hempty :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.commonPolicies candidates realize horizon branches
+        initial next legal implementable =
+      ∅) :
+  (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditionalAdvice horizon branches hbranches initial
+          next implementable candidates realize law utility outcome hWellFormed
+          (JurisLean.Candidates.Final20261021.Result.known legal)
+          (JurisLean.Candidates.Final20261021.Result.known ())).2.2 =
+    JurisLean.Candidates.Final20261021.Result.known none
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:27:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_empty_returns_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:28:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min
+  {J S A P Ω : Type} [DecidableEq J] [DecidableEq A] [DecidableEq P] (horizon : ℕ) (branches : Finset J)
+  (hbranches : branches.Nonempty) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (candidates : Finset P)
+  (realize : P → JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
+  (hWellFormed :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed branches candidates
+      law utility outcome)
+  (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A) (p : P)
+  (hchoice :
+    (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditionalAdvice horizon branches hbranches initial
+            next implementable candidates realize law utility outcome hWellFormed
+            (JurisLean.Candidates.Final20261021.Result.known legal)
+            (JurisLean.Candidates.Final20261021.Result.known ())).2.2 =
+      JurisLean.Candidates.Final20261021.Result.known (some p)) :
+  p ∈ candidates ∧
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Feasible horizon branches initial next legal
+        implementable (realize p) ∧
+      ∀ q ∈ candidates,
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Feasible horizon branches initial next legal
+            implementable (realize q) →
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches
+              (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix law utility outcome)
+              q ≤
+            JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue branches hbranches
+              (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix law utility outcome)
+              p
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:29:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:30:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_none_iff_no_feasible_candidate
+  {J S A P Ω : Type} [DecidableEq J] [DecidableEq A] [DecidableEq P] (horizon : ℕ) (branches : Finset J)
+  (hbranches : branches.Nonempty) (initial : J → S)
+  (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+  (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+  (candidates : Finset P)
+  (realize : P → JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.VisiblePolicy S A) [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ)
+  (hWellFormed :
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed branches candidates
+      law utility outcome)
+  (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A) :
+  (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditionalAdvice horizon branches hbranches initial
+            next implementable candidates realize law utility outcome hWellFormed
+            (JurisLean.Candidates.Final20261021.Result.known legal)
+            (JurisLean.Candidates.Final20261021.Result.known ())).2.2 =
+      JurisLean.Candidates.Final20261021.Result.known none ↔
+    ∀ p ∈ candidates,
+      ¬JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Feasible horizon branches initial next legal
+          implementable (realize p)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:31:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_none_iff_no_feasible_candidate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:32:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix {J P Ω : Type} [MeasurableSpace Ω]
+  (law : J → MeasureTheory.Measure Ω) (utility : J → ℝ → ℝ) (outcome : P → Ω → ℝ) : P → J → ℝ
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:33:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:34:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policies_feasible
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction) :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.Feasible 1 Finset.univ
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoInitial
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoNext
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoLegal
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoImplementable
+    (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoVisiblePolicy a)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:35:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policies_feasible' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:36:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_policy_set_eq_univ :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.commonPolicies
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoCandidatePolicies
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoVisiblePolicy 1 Finset.univ
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoInitial
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoNext
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoLegal
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoImplementable =
+    Finset.univ
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:37:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_policy_set_eq_univ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:38:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet.Nonempty
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:39:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:40:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trace_eq_terminal
+  (x : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoTrace) :
+  x = JurisLean.Candidates.U06_1FiniteBellman20261030.terminalTrace () 1
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:41:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trace_eq_terminal' does not depend on any axioms
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:42:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trajectory_law_is_pure
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoControl
+      (JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoPolicy a) 1 [] () =
+    PMF.pure (JurisLean.Candidates.U06_1FiniteBellman20261030.terminalTrace () 1)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:43:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trajectory_law_is_pure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:44:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.every_policy_induces_fixed_branch_law
+  (p : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction)
+  (j : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoBranch) :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.inducedWorldLaw p j =
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.fixedBranchLaw j ∧
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.fixedBranchLaw j =
+      PMF.pure (j, JurisLean.Candidates.U06_1FiniteBellman20261030.terminalTrace () 1)
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:45:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.every_policy_induces_fixed_branch_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:46:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_is_actual_trajectory_payoff
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction)
+  (j : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoBranch) :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities a j =
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoPayoff j a
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:47:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_is_actual_trajectory_payoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:48:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_inputs_well_formed :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityInputsWellFormed
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoCandidatePolicies
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchMeasure (fun x x_1 => x_1)
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoOutcome
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:49:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_inputs_well_formed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:50:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_max_min_scores :
+  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 0 =
+      0 ∧
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 1 =
+        0 ∧
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2 =
+        4
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:51:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_max_min_scores' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:52:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_strategy_maximizes_minimum
+  (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction) :
+  a ∈ JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoCandidatePolicies →
+    JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities a ≤
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worstBranchValue
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoBranchSet
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:53:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_strategy_maximizes_minimum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:54:0: JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branchwise_optima_differ :
+  (∀ (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction),
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities a 0 ≤
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 0 0) ∧
+    (∀ (a : JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.DemoAction),
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities a 1 ≤
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 1 1) ∧
+      JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 0 0 = 10 ∧
+        JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 1 1 = 10 ∧
+          JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2 0 = 4 ∧
+            JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2 1 = 4 ∧
+              JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2 0 <
+                  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 0 0 ∧
+                JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 2 1 <
+                  JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demoUtilities 1 1
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:55:0: 'JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branchwise_optima_differ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:57:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:58:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:59:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x = 1
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:60:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:61:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass.{u, v} {S : Type u} {A : Type v} [Fintype S]
+  [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S)
+  (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n) :
+  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m π n h s x
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:62:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:63:0: JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value.{u, v} {S : Type u} {A : Type v}
+  [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A) (r : ℕ → S → A → ℝ)
+  (g : S → ℝ) (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m) (n : ℕ)
+  (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S) :
+  JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryExpectation m r g π n h s =
+    JurisLean.Candidates.U06_1FiniteBellman20261030.policyValue m r g π n h s
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:64:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:65:0: JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation.{u, v} {S : Type u}
+  {A : Type v} [Fintype S] [DecidableEq A] (m : JurisLean.Candidates.U06_1FiniteBellman20261030.Control S A)
+  (r : ℕ → S → A → ℝ) (g : S → ℝ) :
+  ∃ πstar,
+    ∀ (n : ℕ) (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History S A) (s : S),
+      (∀ (x : JurisLean.Candidates.U06_1FiniteBellman20261030.Trace S n),
+          0 ≤ JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x) ∧
+        ∑ x, JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryWeight m πstar n h s x = 1 ∧
+          ∑ x,
+                ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                  JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x =
+              JurisLean.Candidates.U06_1FiniteBellman20261030.bellman m r g n s ∧
+            ∀ (π : JurisLean.Candidates.U06_1FiniteBellman20261030.Policy m),
+              ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m π n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g π n h s x ≤
+                ∑ x,
+                  ((JurisLean.Candidates.U06_1FiniteBellman20261030.trajectoryLaw m πstar n h s) x).toReal *
+                    JurisLean.Candidates.U06_1FiniteBellman20261030.realizedReturn m r g πstar n h s x
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:66:0: 'JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:67:0: JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed (allowed : List ℕ)
+  (values : List JurisLean.Candidates.Final20261021.Decision.DecisionIR)
+  (selected : JurisLean.Candidates.Final20261021.Decision.DecisionIR)
+  (h : JurisLean.Candidates.Final20261021.Decision.proposed_decision allowed values = some selected) :
+  selected.action.id ∈ allowed ∧ selected.probabilityOfLoss ≤ selected.riskLimit
+info: JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean:68:0: 'JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed' depends on axioms: [propext, Quot.sound]
+Build completed successfully (8491 jobs).

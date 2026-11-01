@@ -7,8 +7,8 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
-    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge.",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. Current math_rows after original 06.3 source-module candidate evidence: 46 COVERED/36 PARTIAL/15 NOT_RECONCILED; full-record acceptance remains tied to the exact PR subject and later acceptance evidence.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 45,
-    "PARTIAL": 37,
+    "COVERED": 46,
+    "PARTIAL": 36,
     "NOT_RECONCILED": 15
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -3129,7 +3129,7 @@
           109
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u06-1-debt-close-20261030",
@@ -3140,10 +3140,86 @@
           "artifact_name": "changed-module-only-40919387762-1",
           "artifact_sha256": "aaf0f038397ded7d503a055245d4921d686af680d9bf7751418ad18af0b553b8",
           "artifact_size_bytes": 3136,
-          "scope": "Partial formal evidence for 06.3: `policy_value_le_bellman`, `greedy_step`, `greedy_value_eq_bellman`, `bellman_full_policy_optimum`, and `nonrectangular_bellman_counterexample` establish finite single-branch legal-policy Bellman facts and a finite nonrectangular boundary. They do not establish a common feasible strategy across legal branches, branchwise max-min existence/value, or an actual old-Pipeline consumer. This row remains PARTIAL."
+          "scope": "Partial formal evidence for 06.3: `policy_value_le_bellman`, `greedy_step`, `greedy_value_eq_bellman`, `bellman_full_policy_optimum`, and `nonrectangular_bellman_counterexample` establish finite single-branch legal-policy Bellman facts and a finite nonrectangular boundary. They do not establish a common feasible strategy across legal branches, branchwise max-min existence/value, or an actual old-Pipeline consumer. At the time of that earlier snapshot, this row remained PARTIAL."
+        },
+        {
+          "package": "docs/formal-release/evidence/original06-3-common-robust-strategy-close-20261102",
+          "subject": "5d3b76b79778006fa8dc3547b9df3eedd4d55d95",
+          "subject_tree": "a5c87b4518999a12f299b76b8aeebc1620de04a3",
+          "run_id": 41332534302,
+          "job_id": 124925470701,
+          "attempt": 1,
+          "artifact_id": 13094136964,
+          "artifact_name": "changed-module-only-41332534302-1",
+          "artifact_sha256": "878cadd51adb9805c49c80c8bf5b1b98b12235df922b6cb10c1635d03f05916f",
+          "artifact_size_bytes": 6261,
+          "scope": "Changed-module source evidence for original 06.3 L105/L107/L109: branch-blind visible policy and reachable-history joint feasibility; finite nonempty branch/candidate max-min with values computed from actual fixed-branch utility integrals; Result-gated legal input and explicit preference. The successful module job is source-module evidence only; seven other workflow jobs were skipped."
         }
       ],
-      "remaining": "Still requires the reachable-history L_j/F and information-feasibility constraints, an empty common-strategy treatment, attainment for finite nonempty Π in the max-min formulation, and the requested two-branch numeric example. The manuscript treats legal-permission determinations and risk preferences as external inputs (original 06.3 line 109); deriving real-case permissions or preferences is not added as a mathematical premise by this package."
+      "remaining": "No whole-record acceptance is claimed here. The proof does not derive legal permissions, preferences, or policy ownership; it does not prove minimax interchange or mixed-strategy results, and the finite example is limited to its stated supplied candidate class and fixed branch laws. Full-record PR acceptance, exact-subject certificate/reference reconciliation, independent verification, authorized merge, and post-merge checks remain separately evidenced.",
+      "paragraph_evidence": [
+        {
+          "lines": [
+            105,
+            105
+          ],
+          "claim": "VisiblePolicy omits the legal branch argument. Feasibility checks branch-specific legal and implementability sets on branch-reachable histories; the supplied finite candidate class is filtered by that condition. An empty joint-action set blocks a policy only when the same time/history/state is reachable under both named branches.",
+          "named_targets": [
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.common_policy_is_branch_blind",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policy_matches_visible_policy",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_visible_actions_equal_across_worlds",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.empty_joint_actions_block_common_policy",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policies_feasible",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_policy_set_eq_univ"
+          ]
+        },
+        {
+          "lines": [
+            107,
+            107
+          ],
+          "claim": "For finite nonempty legal-branch and candidate sets, the worst branch and max-min candidate are attained. The value matrix is computed from actual utility integrals under fixed branch laws; the example verifies candidate utilities (10,0), (0,10), and (4,4), so the common max-min value is 4 while each branch-specific optimum is 10. No minimax interchange or mixed-strategy theorem is asserted.",
+          "named_targets": [
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worst_branch_attained",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trace_eq_terminal",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trajectory_law_is_pure",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.every_policy_induces_fixed_branch_law",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_is_actual_trajectory_payoff",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_inputs_well_formed",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_max_min_scores",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_strategy_maximizes_minimum",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branchwise_optima_differ",
+            "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+            "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+            "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+            "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+            "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation"
+          ]
+        },
+        {
+          "lines": [
+            109,
+            109
+          ],
+          "claim": "Legal and preference inputs use the existing Result type. Unknown, rejected, and conflict values are preserved; known legal input exposes the supplied class’s common feasible set even if preference is unknown. Only an explicitly known max-min preference selects that criterion; a known none applies only to the supplied candidate class.",
+          "named_targets": [
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_legal_unknown",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_preference_unknown",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_empty_returns_none",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min",
+            "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_none_iff_no_feasible_candidate",
+            "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed"
+          ]
+        }
+      ],
+      "formal_evidence_boundary": "Source-core 5d3b76b79778006fa8dc3547b9df3eedd4d55d95 / tree a5c87b4518999a12f299b76b8aeebc1620de04a3; changed-module run 41332534302 / job 124925470701 succeeded. The audit contains 31 actual #print axioms results: 25 local declarations (24 theorems and expectedUtilityMatrix) plus six reused declarations; axiom sets are standard-axiom subsets, with no sorryAx. The other seven workflow jobs were skipped. This is source-module evidence only, not full-record acceptance, runtime consumer wiring, or legal determination.",
+      "shortest_acceptance": "Use the exact PR subject for Authority/ULM full-chain evidence, actual certificate and referenced-byte reconciliation, independent verification, authorized merge, and post-merge checks; do not treat changed-module success as those later gates.",
+      "scope_correction": "Only original math row 06.3 is updated, retaining its existing U06.1 mapping and adding this package evidence. Other 96 math rows, 105 engineering rows, six designated cuts, and all 15 consumer-edge ratings remain unchanged. The old Pipeline has no new runtime caller. U50 remains 50 wiring / 0 narrow / 0 open / 124 bindings; global discharges, Step 2, and math_flip remain false."
     },
     {
       "id": "06.4",

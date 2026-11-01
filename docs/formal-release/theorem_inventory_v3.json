@@ -449,6 +449,7 @@
     "JurisLean.Candidates.U05_5OriginalShiftAudit20261101",
     "JurisLean.Candidates.U05_6OriginalMonitoringAudit20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
+    "JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
     "JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031",
@@ -4651,8 +4652,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "250717a523b15443d092c385bc0df09effb8413b2e073bc4078731328007325c",
-   "size_bytes": 311221,
+   "sha256": "1e1b6a173f0bf34553768852cc736713ca1c190028a1838597884fb9e4ab0309",
+   "size_bytes": 311288,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -18708,6 +18709,193 @@
    "size_bytes": 17710,
    "theorem_count": 13,
    "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
+   "print_axioms_targets": [
+    "Ledger.u09_2_cash_by_account",
+    "Ledger.u09_2_cash_conservation",
+    "actual_cash_accounts_conserve",
+    "alias_preserves_cash",
+    "cash_sum_reindexed_by_id",
+    "commit_payment_appends_payload_cash",
+    "disjoint_id_cash_additive",
+    "event_id_renaming_preserves_cash",
+    "fromQPayload_preserves_fields",
+    "performance_appends_payload_cash",
+    "q_ledger_cash_accounts_conserve",
+    "q_ledger_cash_vector_matches_real_cash",
+    "rename_preserves_cash",
+    "three_labels_one_six",
+    "two_real_six_payment_account_cash",
+    "two_real_six_payments_keep_debt",
+    "validated_commit_preserves_cash_ids"
+   ],
+   "sha256": "2a6ad4263569b3475f00f01c0f747c911a1321568161b1dfbcb77b52726ad789",
+   "size_bytes": 1805,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "RealCashEvent"
+    },
+    {
+     "kind": "def",
+     "name": "payloadCash"
+    },
+    {
+     "kind": "def",
+     "name": "fromQCash"
+    },
+    {
+     "kind": "def",
+     "name": "fromQPayload"
+    },
+    {
+     "kind": "theorem",
+     "name": "fromQPayload_preserves_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_appends_payload_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "commit_payment_appends_payload_cash"
+    },
+    {
+     "kind": "def",
+     "name": "cashFlow"
+    },
+    {
+     "kind": "def",
+     "name": "netCash"
+    },
+    {
+     "kind": "def",
+     "name": "labelCash"
+    },
+    {
+     "kind": "def",
+     "name": "qCashFlow"
+    },
+    {
+     "kind": "theorem",
+     "name": "validated_commit_preserves_cash_ids"
+    },
+    {
+     "kind": "theorem",
+     "name": "cash_sum_reindexed_by_id"
+    },
+    {
+     "kind": "theorem",
+     "name": "rename_preserves_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "event_id_renaming_preserves_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "alias_preserves_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjoint_id_cash_additive"
+    },
+    {
+     "kind": "def",
+     "name": "qCashAccounts"
+    },
+    {
+     "kind": "theorem",
+     "name": "q_ledger_cash_accounts_conserve"
+    },
+    {
+     "kind": "def",
+     "name": "realCashAccounts"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_cash_accounts_conserve"
+    },
+    {
+     "kind": "theorem",
+     "name": "q_ledger_cash_vector_matches_real_cash"
+    },
+    {
+     "kind": "def",
+     "name": "sixUnitEvent"
+    },
+    {
+     "kind": "def",
+     "name": "threeLabels"
+    },
+    {
+     "kind": "def",
+     "name": "resolveThreeLabels"
+    },
+    {
+     "kind": "theorem",
+     "name": "three_labels_one_six"
+    },
+    {
+     "kind": "def",
+     "name": "cashTag"
+    },
+    {
+     "kind": "def",
+     "name": "cashGamma"
+    },
+    {
+     "kind": "def",
+     "name": "sixDebt"
+    },
+    {
+     "kind": "def",
+     "name": "cashOpening"
+    },
+    {
+     "kind": "def",
+     "name": "sixPaymentPayload"
+    },
+    {
+     "kind": "def",
+     "name": "afterFirstSixPayment"
+    },
+    {
+     "kind": "def",
+     "name": "afterTwoSixPayments"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_real_six_payments_keep_debt"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_real_six_payment_account_cash"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Trace",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "124d06faf08b1d1be41aedd1fcd47c77363f5cc35eac682ccd1a1727358efa7d",
+   "size_bytes": 21255,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
   },
   {
    "declarations": [
@@ -60163,6 +60351,8 @@
     "JurisLean.Candidates.U05_5OriginalShiftInstances20261101",
     "JurisLean.Candidates.U05_6OriginalMonitoringAudit20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
+    "JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101",
+    "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformation20261031",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
@@ -60368,8 +60558,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0d7efd4639f72ec342d19317c4e6f72484295d910fb01cbbea31ffb98047a50a",
-   "size_bytes": 14880,
+   "sha256": "47e11c41c9ce5110b85e284f107ff066e17d815b56c109a5c8fdc3c121557c93",
+   "size_bytes": 15018,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60533,22 +60723,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6331,
-   "file_count": 558,
+   "counted_declaration_count": 6346,
+   "file_count": 560,
    "lemma_count": 146,
-   "print_axioms_command_count": 5588,
-   "print_axioms_distinct_targets": 5126,
-   "theorem_count": 6185,
-   "theorem_count_bol_convention": 6085
+   "print_axioms_command_count": 5605,
+   "print_axioms_distinct_targets": 5143,
+   "theorem_count": 6200,
+   "theorem_count_bol_convention": 6100
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6312,
-   "file_count": 543,
+   "counted_declaration_count": 6327,
+   "file_count": 545,
    "lemma_count": 139,
-   "print_axioms_command_count": 5588,
-   "print_axioms_distinct_targets": 5126,
-   "theorem_count": 6173,
-   "theorem_count_bol_convention": 6073
+   "print_axioms_command_count": 5605,
+   "print_axioms_distinct_targets": 5143,
+   "theorem_count": 6188,
+   "theorem_count_bol_convention": 6088
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60765,6 +60955,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_6OriginalMonitoringAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
@@ -61321,6 +61513,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_6OriginalMonitoringAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
@@ -61706,17 +61900,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3838566cbaacbd407a2e4b5db49958548f1cc50e59cf02e320d2cb70724ed50c",
+ "source_inventory_digest": "f833c0e999084f8ebff5585a538de4549dbded06c9f7d4c2b7cde46f6da430fa",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original05-6-20261101",
-  "commit": "9bc3d64c4930567e67439a752b2902a28e2e89cf",
-  "tree": "fd063c0235e810339e579dc2483129ba4ae0039f"
+  "branch": "formal/close-original06-1-20261101",
+  "commit": "594f95786ff7cc061905ddb359ef3d15ebb72abe",
+  "tree": "7db860e25c6124e36944402962eac177808e34b4"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 558,
+  "files_total": 560,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

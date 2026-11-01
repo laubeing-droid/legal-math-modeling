@@ -7,8 +7,8 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；本轮原题05.6模块级结果登记后，当前math_rows分布为43 COVERED/37 PARTIAL/17 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
-    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后，当前math_rows分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 43,
+    "COVERED": 44,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 17
+    "NOT_RECONCILED": 16
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2942,9 +2942,79 @@
           93
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original06-1-cash-identity-close-20261101",
+          "subject": "594f95786ff7cc061905ddb359ef3d15ebb72abe",
+          "subject_tree": "7db860e25c6124e36944402962eac177808e34b4",
+          "run_id": 41311622159,
+          "job_id": 124863028757,
+          "attempt": 1,
+          "artifact_id": 13086115538,
+          "artifact_sha256": "a95e11ebe0dd85daef61cc4c8f7e0452d9029d63d1a7d22ab58887d13d2a7f31",
+          "scope": "15 new original-question results plus two reused U09.2 Ledger targets; real-valued denotation and explicit one-way Q implementation embedding; requested changed-module target succeeded and the other seven workflow jobs were skipped. Full-record acceptance remains distinct."
+        }
+      ],
+      "remaining": "数学结果覆盖冻结L83/L87–L94所列的实数现金对象、事件身份与账面不变量。它不验证外部日期来源、共同估值时点、法源cap对象或组合桥，也不证明实际消费者接线或支付获法律许可；这些不作为本数学行已经得出的结论。",
+      "paragraph_evidence": [
+        {
+          "lines": [
+            87,
+            87
+          ],
+          "claim": "L83的实数金额域由RealCashEvent明确承载；fromQPayload逐字段保留PaymentPayload的ID、source、双方、AmountTag和factDate，旧Q账本仅有单向值嵌入与现金向量适配。L87由performance/commit投影与fresh-ID/Nodup条件连接。",
+          "named_targets": [
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQPayload_preserves_fields",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_vector_matches_real_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.performance_appends_payload_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.commit_payment_appends_payload_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.validated_commit_preserves_cash_ids"
+          ]
+        },
+        {
+          "lines": [
+            89,
+            89
+          ],
+          "claim": "在所选记录的ID Nodup前提下，现金和可按EventId重索引；字符串重命名、所选ID上单射的身份重编码与同ID别名不改账；ID像互不相交时现金向量可加。三标签一笔六单位的例子区分身份求和与错误的标签重复计数。",
+          "named_targets": [
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.rename_preserves_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.event_id_renaming_preserves_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.alias_preserves_cash",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.three_labels_one_six"
+          ]
+        },
+        {
+          "lines": [
+            91,
+            91
+          ],
+          "claim": "真实值域封闭账户集按payer/payee端点构造；在共同AmountTag（币种/单位/版本）前提下，各账户入账与出账抵消。另审计已有有理Ledger的账户守恒及U09.2定理；这不把旧Q实现说成任意R表示。",
+          "named_targets": [
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.actual_cash_accounts_conserve",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_accounts_conserve",
+            "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+            "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account"
+          ]
+        },
+        {
+          "lines": [
+            93,
+            93
+          ],
+          "claim": "两次真实performance记账各六、现金ID不同，旧账gross cashTotal为12、初始债额6、关系保留、余额归零、allocated为6且surplus为6；Q→R适配后收款账户净额+12、付款账户−12、封闭总额0。surplus是算术状态，不推出返还请求或法律许可。",
+          "named_targets": [
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payments_keep_debt",
+            "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payment_account_cash"
+          ]
+        }
+      ],
+      "formal_evidence_boundary": "source-core 594f95786ff7cc061905ddb359ef3d15ebb72abe / tree 7db860e25c6124e36944402962eac177808e34b4 上，changed-module run 41311622159 / job 124863028757 成功；17个审计输出仅列标准公理子集，无 sorryAx，其他7个workflow jobs为SKIPPED。前三个失败尝试（41307466967、41310172820、41311118139）均保留且无Audit目标输出；首个有理金额草稿因L83实数值域被替换为当前实数模型与单向Q适配。此证据仅为source-module结果，未声称本原题记录PR全链验收、actual consumer、法律许可、法源cap桥或部署已通过。",
+      "shortest_acceptance": "按本原题记录PR对同一subject执行Authority/ULM全链，核实际证书与引用字节，运行独立verifier与claims，再经授权合并并完成合后短核；source-module成功不替代这些记录验收步骤。",
+      "scope_correction": "仅原题06.1 L83/L87–L94数学行登记为COVERED；实数现金为原题denotation，旧有理Ledger只通过显式单向embedding连接。其他96个数学行、105工程行、六个designated cuts及十五条消费边评级不变；没有新增actual caller/validated admission/法律许可。U50仍50 wiring / 0 narrow / 0 open / 124 bindings；global discharges、Step 2、math_flip仍false。"
     },
     {
       "id": "06.2",

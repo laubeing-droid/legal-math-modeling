@@ -62,7 +62,7 @@ def terminalCashNet (z : BargainTerminal) (recipient : Bool) : ℝ :=
 def terminalCashPreference (z : BargainTerminal) (recipient : Bool) : ℝ :=
   match z with
   | .accept0 _ => terminalCashNet z recipient
-  | .accept1 _ _ => (bParamsDemo.delta : ℝ) * terminalCashNet z recipient
+  | .accept1 _ _ => (JurisLean.Seams.UnifiedW4Games.bParamsDemo.delta : ℝ) * terminalCashNet z recipient
   | .failure _ _ => 0
 
 /-- The two terminal payments are distinct by their event IDs. Consequently
@@ -86,19 +86,19 @@ theorem terminal_cash_net_is_gross (z : BargainTerminal) (recipient : Bool) :
         norm_num [terminalCashNet, terminalCashSet, terminalCashEvents,
           terminalCashEvent, terminalEventId, terminalCode, terminalParty,
           terminalGross, terminalPaymentDate, netCash, cashFlow, bargainLedger,
-          bargainX, bargainY, bParamsDemo, cashTag]
+          bargainX, bargainY, JurisLean.Seams.UnifiedW4Games.bParamsDemo, cashTag]
   | accept1 first second =>
       cases first <;> cases second <;> cases recipient <;>
         norm_num [terminalCashNet, terminalCashSet, terminalCashEvents,
           terminalCashEvent, terminalEventId, terminalCode, terminalParty,
           terminalGross, terminalPaymentDate, netCash, cashFlow, bargainLedger,
-          bargainX, bargainY, bParamsDemo, cashTag]
+          bargainX, bargainY, JurisLean.Seams.UnifiedW4Games.bParamsDemo, cashTag]
   | failure first second =>
       cases first <;> cases second <;> cases recipient <;>
         norm_num [terminalCashNet, terminalCashSet, terminalCashEvents,
           terminalCashEvent, terminalEventId, terminalCode, terminalParty,
           terminalGross, terminalPaymentDate, netCash, cashFlow, bargainLedger,
-          bargainX, bargainY, bParamsDemo, cashTag]
+          bargainX, bargainY, JurisLean.Seams.UnifiedW4Games.bParamsDemo, cashTag]
 
 /-- The cash ledger plus the existing time preference yields the W4 abstract
 terminal utility. Delayed utility loss is derived from `delta`; it is not a
@@ -111,11 +111,11 @@ theorem terminal_cash_utility_matches_w4 (z : BargainTerminal) (recipient : Bool
       | accept0 first =>
           cases first <;> cases recipient <;>
             norm_num [terminalCashPreference, terminal_cash_net_is_gross,
-              terminalGross, bargainLedgerPay, bargainLedger, bargainX, bParamsDemo]
+              terminalGross, bargainLedgerPay, bargainLedger, bargainX, JurisLean.Seams.UnifiedW4Games.bParamsDemo]
       | accept1 first second =>
           cases first <;> cases second <;> cases recipient <;>
             norm_num [terminalCashPreference, terminal_cash_net_is_gross,
-              terminalGross, bargainLedgerPay, bargainLedger, bargainY, bParamsDemo,
+              terminalGross, bargainLedgerPay, bargainLedger, bargainY, JurisLean.Seams.UnifiedW4Games.bParamsDemo,
               bargain_delay_loss_formula]
       | failure first second =>
           cases first <;> cases second <;> cases recipient <;>

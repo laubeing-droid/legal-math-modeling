@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 36,
-    "PARTIAL": 38,
-    "NOT_RECONCILED": 23
+    "COVERED": 38,
+    "PARTIAL": 37,
+    "NOT_RECONCILED": 22
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -1904,7 +1904,7 @@
           101
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
@@ -1931,7 +1931,7 @@
           "attempt": 1,
           "artifact_id": 12998165175,
           "artifact_sha256": "c5c898f2f1a0b6a290781885cc98b40bf01b75335a90551b3014b969acd32199",
-          "scope": "原题04.2 L101“文件条数不能冒充有效样本量”仅映射有限等方差/等相关模型下的实际平均方差公式、正分母n_eff分支及零分母退化边界；B/(1-B)与共同原因实例限定聚合方差和坐标独立性边界。此source-only证据不表示现实数据满足模型，也不证明旧消费者数值调用。原题04.2保持PARTIAL。",
+          "scope": "原题04.2 L101“文件条数不能冒充有效样本量”仅映射有限等方差/等相关模型下的实际平均方差公式、正分母n_eff分支及零分母退化边界；B/(1-B)与共同原因实例限定聚合方差和坐标独立性边界。此source-only证据不表示现实数据满足模型，也不证明旧消费者数值调用。该包记录时原题04.2保持PARTIAL。",
           "named_targets": [
             "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
             "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_branches",
@@ -1976,9 +1976,38 @@
             101
           ],
           "scope": "The observation-unit schema, copied-versus-independent Bernoulli likelihood comparison, ten-unit common-cause instance, and explicit external identity/mechanism premises. Root-reviewed analytical instantiation; no new Lean declaration, machine instance, or source CI is claimed."
+        },
+        {
+          "evidence_type": "SOURCE_MODULE_EVIDENCE",
+          "package": "docs/formal-release/evidence/original04-2-6-observation-identification-close-20261101",
+          "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+          "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+          "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+          "source_core_tree": "c02837471cd0ea2a4dea510a09a87edc472391ef",
+          "run_id": 41264181836,
+          "job_id": 124723412599,
+          "attempt": 1,
+          "job_conclusion": "success",
+          "artifact_id": 13066187086,
+          "artifact_sha256": "faa544eebbbd18c413d6864ab807f76e9fdef1b1b70de540ecfb182e4400c6e4",
+          "scope": "Actual changed-module-only CI for named source results; plan scope CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE. Full-release jobs were skipped; this is not full-record PR acceptance.",
+          "named_targets": [
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.fixed_bernoulli_true_mass",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_of_declared_marginal",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_of_declared_marginals",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_law_probability",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_all_success_likelihood",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_all_success_likelihood",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.copied_and_independent_observation_laws_differ",
+            "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_distinct_labels_shared_cause",
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+            "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged"
+          ],
+          "row_scope": "L97/L99/L101：L99的theta与theta^10分别由声明边际、显式iIndepFun与边际条件连接；复制/Pi/共享Bool有限实例分别受其声明机制限制。L101复用sigma信息、a.e.条件期望及likelihood不变的既有声明。真实来源、单位身份和独立性仍是外部前提，不由文件数或模型标签推出。"
         }
       ],
-      "remaining": "本字段仍是纸面实例化草稿：保留已具名的σ/条件期望复制结果与common-cause反例；θ与θ^10十次观测实例尚未定位并接到具名声明，分别核清同一事件复制与给定条件独立机制前提。现实单位身份、机制真实性及unit counter字段生产消费仍留E04/105另账，不扩成新的原数学门槛。record PR通过不等于纸面推导已机器化。",
+      "remaining": "冻结L97/L99/L101的具名源声明与本轮changed-module实际CI已记录；exact-subject完整record PR验收待跑。现实单位身份、来源/机制真实性及unit-counter生产消费仍需外部来源/另账证据，本行不声称consumer执行或现实数据独立。",
       "modules": [
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
@@ -2013,6 +2042,30 @@
               "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
             ],
             "role": "原题04.2有效样本量/共同原因实例的既有有限模型边界。"
+          },
+          {
+            "package": "docs/formal-release/evidence/original04-2-6-observation-identification-close-20261101",
+            "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+            "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+            "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+            "run_id": 41264181836,
+            "job_id": 124723412599,
+            "attempt": 1,
+            "artifact_id": 13066187086,
+            "targets": [
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.fixed_bernoulli_true_mass",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_of_declared_marginal",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_of_declared_marginals",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_law_probability",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_all_success_likelihood",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_all_success_likelihood",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.copied_and_independent_observation_laws_differ",
+              "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_distinct_labels_shared_cause",
+              "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+              "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+              "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged"
+            ],
+            "role": "L97/L99/L101：L99的theta与theta^10分别由声明边际、显式iIndepFun与边际条件连接；复制/Pi/共享Bool有限实例分别受其声明机制限制。L101复用sigma信息、a.e.条件期望及likelihood不变的既有声明。真实来源、单位身份和独立性仍是外部前提，不由文件数或模型标签推出。"
           }
         ],
         "instance_argument": [
@@ -2024,16 +2077,20 @@
           "actual consumer execution不是原数学题另加的新要求；按原L133与另账E04.7区分。不删除或升级105中的E04合同，unit counter/字段的生产消费实现仍须另有证据。"
         ],
         "formal_evidence_boundary": {
-          "subject": "45404453161e338adfa348251307211c765a232e",
-          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
-          "accepted_full_release_run": 41249100938,
-          "scope": "仅证明该subject中既有Lean源码编译/验收；本字段新增的是纸面数学实例化，没有新增Lean声明或机器实例。"
+          "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+          "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+          "run_id": 41264181836,
+          "job_id": 124723412599,
+          "artifact_id": 13066187086,
+          "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+          "source_core_tree": "c02837471cd0ea2a4dea510a09a87edc472391ef",
+          "scope": "Successful changed-module-only source evidence for named declarations; full-release jobs skipped. The record PR, exact-subject certificate/reference reconciliation and independent verifier are pending."
         },
-        "remaining": "本字段仍是纸面实例化草稿：保留已具名的σ/条件期望复制结果与common-cause反例；θ与θ^10十次观测实例尚未定位并接到具名声明，分别核清同一事件复制与给定条件独立机制前提。现实单位身份、机制真实性及unit counter字段生产消费仍留E04/105另账，不扩成新的原数学门槛。record PR通过不等于纸面推导已机器化。",
-        "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+        "remaining": "冻结L97/L99/L101的具名源声明与本轮changed-module实际CI已记录；exact-subject完整record PR验收待跑。现实单位身份、来源/机制真实性及unit-counter生产消费仍需外部来源/另账证据，本行不声称consumer执行或现实数据独立。",
+        "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
       },
-      "scope_correction": "本字段登记冻结L97/L99/L101的纸面论证、反例和条件规范草稿；当前状态仍PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED。真实单位身份与机制须由来源给定并核验，字段或SourceRef不证明真实机制；θ/θ^10实例映射与相应独立CI尚待完成，source-generation、actual consumer及E04.7/105实现另账。",
-      "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+      "scope_correction": "本行C仅指冻结L97/L99/L101的原题数学映射已有具名新声明/复用声明和本轮独立changed-module CI。实际全链PR验收待跑；来源真实性、现实独立性与E04/105消费者实现不由此关闭。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
     },
     {
       "id": "04.3",
@@ -2263,7 +2320,7 @@
           133
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "evidence_type": "EXISTING_SOURCE_EVIDENCE",
@@ -2299,9 +2356,31 @@
             133
           ],
           "scope": "The continuous uniform a.e./forall counterexample, fixed-Obs Id definition, two-mechanism distinction, same-Obs endpoint laws, finite estimation-error example, and local conditions matrix. Root-reviewed analytical instantiation; no new Lean declaration, machine instance, or source CI is claimed."
+        },
+        {
+          "evidence_type": "SOURCE_MODULE_EVIDENCE",
+          "package": "docs/formal-release/evidence/original04-2-6-observation-identification-close-20261101",
+          "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+          "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+          "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+          "source_core_tree": "c02837471cd0ea2a4dea510a09a87edc472391ef",
+          "run_id": 41264181836,
+          "job_id": 124723412599,
+          "attempt": 1,
+          "job_conclusion": "success",
+          "artifact_id": 13066187086,
+          "artifact_sha256": "faa544eebbbd18c413d6864ab807f76e9fdef1b1b70de540ecfb182e4400c6e4",
+          "scope": "Actual changed-module-only CI for named source results; plan scope CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE. Full-release jobs were skipped; this is not full-record PR acceptance.",
+          "named_targets": [
+            "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.uniform_knowledge_comparison",
+            "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identical_reports_do_not_identify_missing_mean",
+            "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.quarter_parameter_identified",
+            "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identifiable_target_with_nonzero_sample_error"
+          ],
+          "row_scope": "L129/L131/L133：连续uniform下a.e./全称对照；以FactorsThrough固定Obs-law定义识别；复制/IID机制错配与同Obs-law目标歧义分别映射；有限参数例显示结构识别不等于一笔样本零误差。Q3/4/5继续仅引用既有结果和其原前提。未知生成机制可在候选族内变化，不添加共同机制假设。"
         }
       ],
-      "remaining": "本字段仍是纸面实例化草稿。连续uniform的a.e./全称差异可复用Seams.UniformContinuous.ae_truth_not_universal_truth_uniform及uniform01_truth_event；尚待将K1/K2比较、固定O与ψ的识别性定义、以及有限估计误差反例逐命题映射到具名结果。E04/105与02 formal source/consumer义务另账；record PR通过不等于这些纸面推导已机器化。",
+      "remaining": "冻结L129/L131/L133的具名新实例声明与既有结果映射已由本轮changed-module CI检查；exact-subject完整record PR验收待跑。现实观察机制、外部条件及概率到法律/全称结论的桥仍须分别给定；本行不声称actual consumer或现实识别已验收。",
       "paper_instance_reconciliation": {
         "classification": "B_REUSE_EXISTING_RESULTS_WITH_ORIGINAL_INSTANCE_AND_BRIDGE",
         "frozen_commitment": "冻结题单04 L129/L131/L133：区分a.e.与全称断言；界定固定观察映射下的结构可识别性；辨别复制机制错配与同一观察分布下目标未识别；说明估计误差不等同结构识别。",
@@ -2326,6 +2405,23 @@
           {
             "source": "JurisLean.Candidates.BetaFutureSampling20261031",
             "role": "只复用其明确条件下的posterior predictive/future kernel结果；不推出无条件预测律。"
+          },
+          {
+            "package": "docs/formal-release/evidence/original04-2-6-observation-identification-close-20261101",
+            "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+            "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+            "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+            "run_id": 41264181836,
+            "job_id": 124723412599,
+            "attempt": 1,
+            "artifact_id": 13066187086,
+            "targets": [
+              "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.uniform_knowledge_comparison",
+              "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identical_reports_do_not_identify_missing_mean",
+              "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.quarter_parameter_identified",
+              "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identifiable_target_with_nonzero_sample_error"
+            ],
+            "role": "L129/L131/L133：连续uniform下a.e./全称对照；以FactorsThrough固定Obs-law定义识别；复制/IID机制错配与同Obs-law目标歧义分别映射；有限参数例显示结构识别不等于一笔样本零误差。Q3/4/5继续仅引用既有结果和其原前提。未知生成机制可在候选族内变化，不添加共同机制假设。"
           }
         ],
         "instance_argument": [
@@ -2338,16 +2434,20 @@
           "条件E1–E8按结论局部声明：E1概率模型/RV可测、复制g可测且U可积；E2来源/单位/时间/目标/机制/RV解释由外部给定且正确，文件数不证明独立；E3 θ^10在本题ten条件独立Bernoulli族内由该明示条件推出；Beta共轭只要求指定likelihood L∝θ^s(1−θ)^(n−s)，可由任一已给采样模型保证，不声称独立是必要条件，也不由整数计数推出likelihood；E4 Beta先验α,β>0；E5预测需外给future kernel及条件success=θ或既有源所列充分条件；E6 Hoeffding需fixed-p IID、n≥1、δ>0；E7选择识别需外给MCAR及正值性/目标律范围，任意S/T transport不由MCAR自动得出；E8积分边界/正分母和污染分支0≤ε<1、P(B)>0等仅在相应局部命题下成立，Q(B)=0另分支。有限反例按定义成立，不要求把这些现实前提假设为真。概率/评分/效用到全称法律结果的转换需明确桥；无依据则UNKNOWN，政策权属不作法源定理。"
         ],
         "formal_evidence_boundary": {
-          "subject": "45404453161e338adfa348251307211c765a232e",
-          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
-          "accepted_full_release_run": 41249100938,
-          "scope": "仅证明该subject中既有Lean源码编译/验收；本字段新增的是纸面数学实例化，没有新增Lean声明或机器实例。"
+          "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+          "tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+          "run_id": 41264181836,
+          "job_id": 124723412599,
+          "artifact_id": 13066187086,
+          "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+          "source_core_tree": "c02837471cd0ea2a4dea510a09a87edc472391ef",
+          "scope": "Successful changed-module-only source evidence for named declarations; full-release jobs skipped. The record PR, exact-subject certificate/reference reconciliation and independent verifier are pending."
         },
-        "remaining": "本字段仍是纸面实例化草稿。连续uniform的a.e./全称差异可复用Seams.UniformContinuous.ae_truth_not_universal_truth_uniform及uniform01_truth_event；尚待将K1/K2比较、固定O与ψ的识别性定义、以及有限估计误差反例逐命题映射到具名结果。E04/105与02 formal source/consumer义务另账；record PR通过不等于这些纸面推导已机器化。",
-        "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+        "remaining": "冻结L129/L131/L133的具名新实例声明与既有结果映射已由本轮changed-module CI检查；exact-subject完整record PR验收待跑。现实观察机制、外部条件及概率到法律/全称结论的桥仍须分别给定；本行不声称actual consumer或现实识别已验收。",
+        "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
       },
-      "scope_correction": "本字段登记原题04.6的纸面定义、反例与有限实例推导草稿；当前状态仍NOT_RECONCILED。它不表示观测机制已验证、法律或全称结论可由概率推出，也不代表新增机器证明、源码或consumer实现已验收。",
-      "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+      "scope_correction": "本行C仅指冻结L129/L131/L133范围内的原题实例/定义连接有具名源码结果和本轮独立changed-module CI。没有新增对Q3/4/5的一般证明；只沿用原已C结论及前提。实际全链PR验收待跑，现实机制/法律结论与consumer实现未由此关闭。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
     },
     {
       "id": "05.1",

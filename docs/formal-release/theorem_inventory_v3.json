@@ -17957,6 +17957,63 @@
    "declarations": [
     {
      "kind": "theorem",
+     "name": "fixed_bernoulli_true_mass"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_copies_of_declared_marginal"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_independent_of_declared_marginals"
+    },
+    {
+     "kind": "def",
+     "name": "tenIndependentLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_independent_law_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_copies_all_success_likelihood"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_independent_all_success_likelihood"
+    },
+    {
+     "kind": "def",
+     "name": "tenCopiedObservationLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "copied_and_independent_observation_laws_differ"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_distinct_labels_shared_cause"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.BernoulliMeanInstance20261031",
+    "JurisLean.Candidates.ExactProbability20261027",
+    "JurisLean.Candidates.LearningDependence20261027",
+    "Mathlib.Probability.Independence.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "723e1154fa660ba2a5ff8892093f5f4ffd8472332a48371563912f71153b8b2c",
+   "size_bytes": 8275,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
      "name": "frozen_enclosure_width"
     },
     {
@@ -18079,6 +18136,46 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "uniform_knowledge_comparison"
+    },
+    {
+     "kind": "theorem",
+     "name": "identical_reports_do_not_identify_missing_mean"
+    },
+    {
+     "kind": "def",
+     "name": "quarterParameter"
+    },
+    {
+     "kind": "def",
+     "name": "quarterObservationLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "quarter_parameter_identified"
+    },
+    {
+     "kind": "theorem",
+     "name": "identifiable_target_with_nonzero_sample_error"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101",
+    "JurisLean.Candidates.U11_1OriginalInstances20261030",
+    "JurisLean.Seams.UniformContinuous"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "19565a03f8e2abb3e3d5d82b4dc4daf9d8cb4190a7fc3f4968be9d74bea69d51",
+   "size_bytes": 3493,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "scoreMap"
     },
@@ -18179,6 +18276,36 @@
    ],
    "sha256": "d6d5e1fbf72afb173b0ad74129b7a4e3747dc05bf8733abc103d27cf92bd408a",
    "size_bytes": 1485,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.MeasurementLikelihood20261027",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04OriginalObservationIdentificationAudit20261101.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+    "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+    "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.copied_and_independent_observation_laws_differ",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.fixed_bernoulli_true_mass",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_all_success_likelihood",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_of_declared_marginal",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_distinct_labels_shared_cause",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_all_success_likelihood",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_law_probability",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_of_declared_marginals",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identical_reports_do_not_identify_missing_mean",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identifiable_target_with_nonzero_sample_error",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.quarter_parameter_identified",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.uniform_knowledge_comparison"
+   ],
+   "sha256": "e2d9a346080bff79db0fd0624945ad13dc8ff060a914eeff8f70087f09866d65",
+   "size_bytes": 3436,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -59736,11 +59863,14 @@
     "JurisLean.Candidates.U03DebtClosureAudit20261027",
     "JurisLean.Candidates.U04LogisticContract20261101",
     "JurisLean.Candidates.U04LogisticContractAudit20261101",
+    "JurisLean.Candidates.U04OriginalObservationIdentificationAudit20261101",
     "JurisLean.Candidates.U04_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101",
     "JurisLean.Candidates.U04_1OriginalProbabilityInstancesAudit20261101",
+    "JurisLean.Candidates.U04_2OriginalObservationInstances20261101",
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101",
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
@@ -59948,8 +60078,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "573faf44eb6b15dab7ed1bc235a43f48cf926e720dcd41565dab0db08c4eff8c",
-   "size_bytes": 14048,
+   "sha256": "621560fd0174ff6f6d3e9228170958b7d4d1684c0cb5742f5e6f93a37d9233fc",
+   "size_bytes": 14269,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60113,22 +60243,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6303,
-   "file_count": 546,
+   "counted_declaration_count": 6315,
+   "file_count": 549,
    "lemma_count": 146,
-   "print_axioms_command_count": 5538,
-   "print_axioms_distinct_targets": 5092,
-   "theorem_count": 6157,
-   "theorem_count_bol_convention": 6057
+   "print_axioms_command_count": 5553,
+   "print_axioms_distinct_targets": 5104,
+   "theorem_count": 6169,
+   "theorem_count_bol_convention": 6069
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6284,
-   "file_count": 531,
+   "counted_declaration_count": 6296,
+   "file_count": 534,
    "lemma_count": 139,
-   "print_axioms_command_count": 5538,
-   "print_axioms_distinct_targets": 5092,
-   "theorem_count": 6145,
-   "theorem_count_bol_convention": 6045
+   "print_axioms_command_count": 5553,
+   "print_axioms_distinct_targets": 5104,
+   "theorem_count": 6157,
+   "theorem_count_bol_convention": 6057
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60326,11 +60456,14 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContractAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04OriginalObservationIdentificationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstancesAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
@@ -60870,11 +61003,14 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContract20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04LogisticContractAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04OriginalObservationIdentificationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstancesAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
@@ -61262,17 +61398,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "4335b5ffb9dfc2d9cd5f081322d0a15681da458e9c3e5d624a5f934b3937ed76",
+ "source_inventory_digest": "3050e23a11525266f1d005818c74b41b47fefbc4c9dac413a1bf657f1bae0757",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/reconcile-original04-20261101",
-  "commit": "bf0ab89bed8a4491ebcde5d2d13070ed23eb9284",
-  "tree": "4afd1f278b966782f60e35ffe1766dad57696775"
+  "branch": "formal/close-original04-2-6-20261101",
+  "commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+  "tree": "c02837471cd0ea2a4dea510a09a87edc472391ef"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 546,
+  "files_total": 549,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

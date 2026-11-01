@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 5064,
-  "theorem_declarations_in_package": 6300
+  "carriers_in_package": 5068,
+  "theorem_declarations_in_package": 6312
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -120,7 +120,7 @@
  "modules_imported_by_5_or_more": {
   "JurisLean.BusinessRoot.Semantics": 6,
   "JurisLean.Candidates.AdaptiveRoundLedger20261027": 6,
-  "JurisLean.Candidates.ExactProbability20261027": 5,
+  "JurisLean.Candidates.ExactProbability20261027": 6,
   "JurisLean.Candidates.Final20261021.Authorization": 8,
   "JurisLean.Candidates.Final20261021.Behavior": 9,
   "JurisLean.Candidates.Final20261021.Calibration": 5,
@@ -139,11 +139,13 @@
   "JurisLean.Candidates.Final20261021.Representation": 7,
   "JurisLean.Candidates.Final20261021.Temporal": 9,
   "JurisLean.Candidates.Final20261021.Trace": 5,
+  "JurisLean.Candidates.LearningDependence20261027": 5,
   "JurisLean.Candidates.LearningERM20261027": 5,
   "JurisLean.Candidates.LearningFiniteClass20261027": 7,
   "JurisLean.Candidates.LearningRisk20261027": 5,
   "JurisLean.Candidates.MeasuredPolicy20261027": 5,
   "JurisLean.Candidates.PolicyEvaluation20261027": 5,
+  "JurisLean.Candidates.U11_1OriginalInstances20261030": 5,
   "JurisLean.External.GameTheory.Concepts.SolutionConcepts": 7,
   "JurisLean.External.GameTheory.Math.PMFProduct": 7,
   "JurisLean.External.GameTheory.Math.Probability": 17,
@@ -192,6 +194,6 @@
   "Mathlib.Probability.ProbabilityMassFunction.Constructions": 10,
   "Mathlib.Tactic": 75
  },
- "package_files": 531,
+ "package_files": 534,
  "schema_version": "kernel-reuse-v1"
 }

@@ -50,7 +50,7 @@ theorem common_label_covariate_transport {X Y : Type*}
   have lossIntegrable : Integrable loss targetJoint := lossL2.integrable one_le_two
   have jointWeightedIntegrable : Integrable
       (fun z : X × Y => (targetJoint.rnDeriv sourceJoint z).toReal * loss z) sourceJoint :=
-    (Measure.integrable_toReal_rnDeriv_mul_iff
+    (MeasureTheory.integrable_toReal_rnDeriv_mul_iff
       (μ := targetJoint) (ν := sourceJoint) (f := loss) jointOverlap).mpr lossIntegrable
   have weightedEquality :
       (fun z : X × Y => (targetJoint.rnDeriv sourceJoint z).toReal * loss z)
@@ -67,7 +67,7 @@ theorem common_label_covariate_transport {X Y : Type*}
     (∫ z, loss z ∂targetJoint) =
         ∫ z, (targetJoint.rnDeriv sourceJoint z).toReal * loss z ∂sourceJoint := by
       simpa only [smul_eq_mul] using
-        (Measure.integral_rnDeriv_smul
+        (MeasureTheory.integral_rnDeriv_smul
           (μ := targetJoint) (ν := sourceJoint) (f := loss) jointOverlap).symm
     _ = ∫ z, (targetInput.rnDeriv sourceInput z.1).toReal * loss z ∂sourceJoint :=
       integral_congr_ae weightedEquality
@@ -98,7 +98,11 @@ theorem estimated_weight_error_identity {X Y : Type*}
       (estimated z.1 - (targetInput.rnDeriv sourceInput z.1).toReal) * loss z)
       (sourceInput ⊗ₘ labels) := by
     apply (estimatedIntegrable.sub weightedIntegrable).congr
-    exact Filter.Eventually.of_forall (fun z => by ring)
+    exact Filter.Eventually.of_forall (fun z => by
+      change (estimated z.1 * loss z -
+        (targetInput.rnDeriv sourceInput z.1).toReal * loss z) =
+        (estimated z.1 - (targetInput.rnDeriv sourceInput z.1).toReal) * loss z
+      ring)
   refine ⟨errorIntegrable, ?_⟩
   rw [meanEquality, ← integral_sub estimatedIntegrable weightedIntegrable]
   apply integral_congr_ae

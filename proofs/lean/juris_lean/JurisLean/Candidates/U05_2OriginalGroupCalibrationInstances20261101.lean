@@ -72,7 +72,7 @@ theorem fixed_groups_bernoulli_uniform_error
     (sampleMeasurable : ∀ g i, Measurable (sample g i))
     (independent : ∀ g, iIndepFun (sample g) μ)
     (law : ∀ g i, IdentDistrib (sample g i) id μ
-      (bernoulliMeasure (p g) (hp0 g) (hp1 g))
+      (bernoulliMeasure (p g) (hp0 g) (hp1 g)))
     (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
     1 - δ ≤ μ.real {w | ∀ g : Fin m,
       |empiricalMean (fun i w => bitValue (sample g i w)) w - p g| ≤
@@ -106,7 +106,8 @@ theorem fixed_groups_bernoulli_uniform_error
         (sample g) (independent g) (law g) (finiteRadius (n g) m δ) radpos
       rw [exponent, Real.exp_neg, Real.exp_log (lt_trans (by norm_num) ratio)] at bound
       rw [coefficient] at bound
-      exact bound    have unionBound : μ.real (⋃ g : Fin m, {w | finiteRadius (n g) m δ ≤
+      exact bound
+    have unionBound : μ.real (⋃ g : Fin m, {w | finiteRadius (n g) m δ ≤
         |empiricalMean (fun i w => bitValue (sample g i w)) w - p g|}) ≤ δ := by
       calc
         _ ≤ ∑ g : Fin m, μ.real {w | finiteRadius (n g) m δ ≤

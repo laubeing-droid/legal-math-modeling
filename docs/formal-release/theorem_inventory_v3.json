@@ -451,6 +451,7 @@
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityAudit20261101",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
     "JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031",
     "JurisLean.Candidates.U06_5OriginalClosureAudit20261031",
@@ -4652,8 +4653,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "1e1b6a173f0bf34553768852cc736713ca1c190028a1838597884fb9e4ab0309",
-   "size_bytes": 311288,
+   "sha256": "2c1f8bfd6f368734beafe873a188782c1d47fc4b91394c96d7a1ec238766f745",
+   "size_bytes": 311358,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -19169,6 +19170,93 @@
    "size_bytes": 35711,
    "theorem_count": 30,
    "theorem_count_bol_convention": 30
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
+    "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_cash",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_value",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_utility_two_branch",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.expected_cash_from_event_sets",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.higher_win_probability_lower_expected_cash",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_expected_utility",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_threshold_iff",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility"
+   ],
+   "sha256": "7c1c415e9023409719bf8fe7bd63feeb6e410538adced464a74f6aea0eb552c0",
+   "size_bytes": 1486,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "bernoulli_expected_value"
+    },
+    {
+     "kind": "def",
+     "name": "cashOutcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernoulli_expected_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "branch_costs_paid_once"
+    },
+    {
+     "kind": "theorem",
+     "name": "expected_cash_from_event_sets"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernoulli_utility_two_branch"
+    },
+    {
+     "kind": "theorem",
+     "name": "linear_risk_neutral_expected_utility"
+    },
+    {
+     "kind": "theorem",
+     "name": "linear_risk_neutral_action_order_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "linear_risk_neutral_threshold_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "higher_win_probability_lower_expected_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_expected_cash_different_concave_utility"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.BernoulliMeanInstance20261031",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101",
+    "Mathlib.Probability.ProbabilityMassFunction.Integrals"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "5d546537660976476d07109c25f6bbef5dba0e6d11df131a371d92cec3b6a599",
+   "size_bytes": 12118,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
   },
   {
    "declarations": [
@@ -60354,6 +60442,8 @@
     "JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101",
     "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityAudit20261101",
+    "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101",
     "JurisLean.Candidates.U06_4ConditionalInformation20261031",
     "JurisLean.Candidates.U06_4ConditionalInformationAudit20261031",
     "JurisLean.Candidates.U06_5FiniteObservationInstance20261031",
@@ -60558,8 +60648,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "47e11c41c9ce5110b85e284f107ff066e17d815b56c109a5c8fdc3c121557c93",
-   "size_bytes": 15018,
+   "sha256": "a45eab43e00318901580042e19ef5e2b39efc2fb499aaad0c0a68f0ea8ec4a80",
+   "size_bytes": 15162,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60723,22 +60813,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6346,
-   "file_count": 560,
+   "counted_declaration_count": 6356,
+   "file_count": 562,
    "lemma_count": 146,
-   "print_axioms_command_count": 5605,
-   "print_axioms_distinct_targets": 5143,
-   "theorem_count": 6200,
-   "theorem_count_bol_convention": 6100
+   "print_axioms_command_count": 5617,
+   "print_axioms_distinct_targets": 5154,
+   "theorem_count": 6210,
+   "theorem_count_bol_convention": 6110
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6327,
-   "file_count": 545,
+   "counted_declaration_count": 6337,
+   "file_count": 547,
    "lemma_count": 139,
-   "print_axioms_command_count": 5605,
-   "print_axioms_distinct_targets": 5143,
-   "theorem_count": 6188,
-   "theorem_count_bol_convention": 6088
+   "print_axioms_command_count": 5617,
+   "print_axioms_distinct_targets": 5154,
+   "theorem_count": 6198,
+   "theorem_count_bol_convention": 6098
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60958,6 +61048,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
@@ -61516,6 +61608,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformationAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
@@ -61900,17 +61994,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f833c0e999084f8ebff5585a538de4549dbded06c9f7d4c2b7cde46f6da430fa",
+ "source_inventory_digest": "73271fb2416f3bc37750b73a45e833a324570d5872a8e6e489f3376cbbf5bd8f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original06-1-20261101",
-  "commit": "594f95786ff7cc061905ddb359ef3d15ebb72abe",
-  "tree": "7db860e25c6124e36944402962eac177808e34b4"
+  "branch": "formal/close-original06-2-20261101",
+  "commit": "e1a653254ebc13e96e055c34dd3c517040093833",
+  "tree": "4fb1ec0c8c60690bef335a85df2c7fe78066d33d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 560,
+  "files_total": 562,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

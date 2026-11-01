@@ -8,6 +8,8 @@ open JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101
 #print axioms fixed_atom_measure_singleton
 #check fixed_atom_measure_injective
 #print axioms fixed_atom_measure_injective
+#check fixed_atom_measure_unique
+#print axioms fixed_atom_measure_unique
 #check fixed_atom_measure_surjective
 #print axioms fixed_atom_measure_surjective
 #check two_couplings_same_marginals

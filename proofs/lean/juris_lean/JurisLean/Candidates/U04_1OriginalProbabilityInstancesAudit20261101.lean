@@ -1,0 +1,20 @@
+import JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101
+
+open JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101
+
+#check fixed_atom_measure_is_probability
+#print axioms fixed_atom_measure_is_probability
+#check fixed_atom_measure_singleton
+#print axioms fixed_atom_measure_singleton
+#check fixed_atom_measure_injective
+#print axioms fixed_atom_measure_injective
+#check fixed_atom_measure_surjective
+#print axioms fixed_atom_measure_surjective
+#check two_couplings_same_marginals
+#print axioms two_couplings_same_marginals
+#check two_couplings_different_joints
+#print axioms two_couplings_different_joints
+#check probability_one_constraints_incompatible
+#print axioms probability_one_constraints_incompatible
+#check normalized_scores_do_not_identify_target
+#print axioms normalized_scores_do_not_identify_target

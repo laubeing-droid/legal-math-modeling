@@ -22,6 +22,8 @@ local instance : MeasurableSpace Bool := ⊤
 
 open JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101
 
+local instance : DecidableEq RealCashEvent := Classical.decEq _
+
 open JurisLean.Candidates.BernoulliMeanInstance20261031
 open JurisLean.Candidates.Final20261021
 
@@ -199,9 +201,10 @@ theorem same_expected_cash_different_concave_utility :
   have hJensen := Real.strictConcaveOn_sqrt.2
     (show (0 : ℝ) ∈ Set.Ici 0 by norm_num)
     (show (10 : ℝ) ∈ Set.Ici 0 by norm_num)
-    (by norm_num : (0 : ℝ) ≠ 10)
-    (a := (1 / 2 : ℝ)) (b := (1 / 2 : ℝ))
-    (by norm_num) (by norm_num) (by norm_num)
+    (show (0 : ℝ) ≠ 10 by norm_num)
+    (show (0 : ℝ) < 1 / 2 by norm_num)
+    (show (0 : ℝ) < 1 / 2 by norm_num)
+    (show (1 / 2 : ℝ) + 1 / 2 = 1 by norm_num)
   norm_num at hJensen
   have hDomain : ∀ outcome, 0 ≤ (0 + cashOutcome outcome 5 5 0) ∧
       0 ≤ (0 + cashOutcome outcome 10 0 0) := by
@@ -219,7 +222,7 @@ theorem same_expected_cash_different_concave_utility :
         ∂bernoulliMeasure (1 / 2) (by norm_num) (by norm_num)) = Real.sqrt 5 := by
     rw [bernoulli_expected_value (1 / 2) (by norm_num) (by norm_num)
       (fun outcome => Real.sqrt (0 + cashOutcome outcome 5 5 0))]
-    simp [cashOutcome]
+    simp [cashOutcome] <;> ring
   refine ⟨?_, ?_, hDomain, ?_⟩
   · rw [bernoulli_expected_cash (1 / 2) (by norm_num) (by norm_num) 5 5 0]
     norm_num [Decision.net]

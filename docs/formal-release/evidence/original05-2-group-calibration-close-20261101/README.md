@@ -1,0 +1,19 @@
+# Original question 05.2 calibration — evidence package
+
+This package records the named source result for frozen original-question 05.2, L95/L97/L99. The handoff row is a candidate COVERED math-row result from three new declarations plus three reused declarations under a successful independent changed-module run. Full-record PR acceptance remains pending.
+
+## Frozen-clause mapping
+
+- **L95 — population versus group calibration.** `finite_population_calibration_not_group_calibration` uses the same fair two-atom population, with score constantly `1/2` and group equal to the observed Bool. Overall conditional expectation is `1/2`; each observed group has conditional expectation `0` or `1`. This proves the stated finite construction only; it does not guarantee calibration on unexamined or cross-cutting groups.
+- **L97 — uniform error across fixed groups.** `fixed_groups_bernoulli_uniform_error` assumes a probability measure, fixed finite `m`, each `n_g ≥ 1`, measurable Bool observations, within-group `iIndepFun`, and each observation `IdentDistrib` to Bernoulli(`p_g`) with `p_g ∈ [0,1]`. For `δ ∈ (0,1)`, it reuses `iid_bernoulli_mean_two_tail` with radius `sqrt(log(2m/δ)/(2n_g))` for each group, then applies a finite union bound. It assumes no cross-group independence and no shared sample size. For `m=0` the event is vacuous; for small `n_g` the radius may be wide and the bound may carry little information. The result controls errors in true group success rates, not fitted-score calibration. The per-group assumptions apply to fixed groups. For later selection from a predeclared finite candidate family, instantiate `m` as the family size and use the same uniform event over that family; this does not cover arbitrary post-hoc or out-of-family selection.固定组论证在调用逐组Bernoulli界时使用给定的组内law/IID前提，并对同一个预先固定的有限索引族取联合界；若同一批标签用于挑选或重新定义组/阈值，不能仅凭此前的单组界直接代入该数据依赖对象。事先固定有限候选族并以其总数取m、使用已证∀g事件，即覆盖族内后续选择；这不自动验证族外新组的前提。
+- **L99 — zero empirical ECE is not population calibration.** `oneSampleECE` is the standard one-bin, one-observation example with forecast `1`; the training and population law are the same `fairBoolLaw`. The zero-ECE event has probability `1/2`, while the constant forecast is not population calibrated. This is the finite counterexample allowed by the original question, not a replacement for the L95/L97 general statements.
+
+The audit checks three new declarations and three reused declarations. The raw changed-module log is preserved byte-for-byte as `axiom-audit.raw.txt`; run, job, artifact, source pins, target map and hashes are recorded in `verification.json`.
+
+## Evidence boundary
+
+Run 41277923020 attempt 1 / job 124763778322 succeeded for the requested changed-module target on subject `e18a219df684f8a7c5844c81fea59399493d5e94`, tree `394344baeccb221a0ff8cb1f159f3226e6b7750d`. All six audited targets use only `propext`, `Classical.choice`, and `Quot.sound`, with no `sorryAx`. The source-core commit `606dde980bf30dfb17f786e410013274661d9be0` adds only the two generated imports in `JurisLean.lean`; the module run itself is bound to its exact earlier source subject. This is module-level evidence only. Full-record PR acceptance and subsequent exact-subject checks remain pending.
+
+The first changed-module run, 41277516242, failed on two source transcription issues (a missing closing parenthesis in the `law` binder and a line break lost between `exact bound` and `have unionBound`). Those errors were repaired in source commit `e18a219`; the failed run remains historical failure provenance and is not counted as a pass.
+
+This math-row result adds no actual consumer caller or joint-sampling execution. It does not upgrade other original-question rows, engineering requirements, or the separate designated Brier design cut. The archive ledger remains 50 wiring / 0 narrow / 0 open; it is a different denominator from the 97 math rows.

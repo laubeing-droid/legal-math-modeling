@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 6405,
-  "duplicated_statement_types": 62,
+  "distinct_statement_types": 6409,
+  "duplicated_statement_types": 63,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -112,6 +112,18 @@
         "carrier": "root/other/u04_1_integer_shape_conjugacy",
         "line": 146,
         "path": "Candidates/Final20261021/Probability.lean"
+      }
+    ],
+    "(b : Bool) : fairBoolLaw {b} = (1 / 2 : ENNReal)": [
+      {
+        "carrier": "root/other/fairBool_atom",
+        "line": 105,
+        "path": "Candidates/U04_1OriginalProbabilityInstances20261101.lean"
+      },
+      {
+        "carrier": "root/other/fair_atom",
+        "line": 23,
+        "path": "Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean"
       }
     ],
     "(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept": [
@@ -792,12 +804,12 @@
       }
     ]
   },
-  "files_scanned": 536,
+  "files_scanned": 538,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 124,
-  "inventory_package_theorems": 6300,
-  "private_protected_headers_read": 292,
+  "inventory_package_theorems": 6303,
+  "private_protected_headers_read": 294,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 6468
+  "statements_read": 6473
 }

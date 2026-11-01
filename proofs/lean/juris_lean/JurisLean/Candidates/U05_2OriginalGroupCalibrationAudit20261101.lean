@@ -1,0 +1,20 @@
+import JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101
+
+/-! Frozen original05.2: three original instances and three admitted dependencies. -/
+open JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101
+open JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101
+open JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101
+open JurisLean.Candidates.BernoulliMeanInstance20261031
+
+#check finite_population_calibration_not_group_calibration
+#print axioms finite_population_calibration_not_group_calibration
+#check fixed_groups_bernoulli_uniform_error
+#print axioms fixed_groups_bernoulli_uniform_error
+#check zero_empirical_ece_not_population_calibration
+#print axioms zero_empirical_ece_not_population_calibration
+#check population_calibration_not_conditional_correctness
+#print axioms population_calibration_not_conditional_correctness
+#check fixed_atom_measure_singleton
+#print axioms fixed_atom_measure_singleton
+#check iid_bernoulli_mean_two_tail
+#print axioms iid_bernoulli_mean_two_tail

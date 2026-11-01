@@ -1,0 +1,185 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "7b5a13729386ec30c3ad3c19441951c4f6c9b1fe",
+  "subject_tree": "b5c8b211b2beb154bbff84b62044d44185f5e953",
+  "run_id": 41257289665,
+  "job_id": 124703062623,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41257289665",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41257289665/job/124703062623",
+  "artifact_name": "changed-module-only-41257289665-1",
+  "artifact_id": 13063577254,
+  "artifact_sha256": "ff7dfa603fc0827052ffb542eebacfeea9e2a717c2b481c2c542f56f2749ccc5",
+  "artifact_size_bytes": 4094,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 26038,
+      "sha256": "720e4f4644eb678a22e29fef834b1da78742916e53d0ec2f04477bb21ae8f4ef"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 299,
+      "sha256": "6a9606b30e777f4af526df81ec10e9922239eb537d229009028509dd80efb77c"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstancesAudit20261101.lean",
+  "named_count": 9,
+  "names_by_clause": {
+    "U04.1": [
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_is_probability",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_injective",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_unique",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_surjective",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_same_marginals",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_different_joints",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.probability_one_constraints_incompatible",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.normalized_scores_do_not_identify_target"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 9,
+    "axiom_vocabulary": {
+      "propext": 9,
+      "Classical.choice": 9,
+      "Quot.sound": 9
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstances20261101.lean",
+      "sha256": "82d8f0b61bf8fbaac9ca20cef211b8c72ce220e98a459e71540452f959f7dca3",
+      "git_blob_sha1": "1db74fb5112fef02bfac5303483958976a3eaeb7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstancesAudit20261101.lean",
+      "sha256": "eada0b6ca676e467b4cfab87239ca82ff5acafc3f6db7da90027f4076b431503",
+      "git_blob_sha1": "719f2c0b41d79b2b2820ff98f5598bdee29afce5"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
+      "sha256": "5ced2dd6a14bebd694a896d70de502b387ff1f86e68442ebdd6630135ac1370f",
+      "git_blob_sha1": "229f057e73cc1d3186b91003a8da184dd6d55916"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
+      "sha256": "e29d09e901e1e76de62bc3010616954a36ab16efe5bbd517c5ecc887c0b89203",
+      "git_blob_sha1": "568170d63e2d93a3739d2c1f1dd277c02580d27a"
+    }
+  ],
+  "original_residuals": {
+    "04.1": "冻结题单04 L89/L91/L93：同一有限空间上相同边际可有不同联合律；区分共同概率空间约束不相容与目标未识别；固定有限标签K上有理权重与单点质量为有理数的概率measure双向对应及固定K唯一性。新模块给出两耦合、概率1约束不相容实例、固定K测度桥和归一化评分不推出目标事实律的有限实例。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题04.1数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original04-1-finite-probability-close-20261101/axiom-audit.raw.txt",
+    "sha256": "720e4f4644eb678a22e29fef834b1da78742916e53d0ec2f04477bb21ae8f4ef",
+    "blocks": 18
+  },
+  "source_module_status": "SUCCESS; changed-module evidence only",
+  "full_record_status": "PENDING; full-release PR acceptance, artifact reconciliation, independent verifier, merge and post-merge checks not run",
+  "historical_diagnostics": [
+    {
+      "run_id": 41256406659,
+      "status": "failure",
+      "note": "Initial notation parser errors for ℝ≥0∞; retained as failure provenance."
+    },
+    {
+      "run_id": 41256759430,
+      "status": "failure",
+      "note": "Initial carrier simplification errors; retained as failure provenance."
+    }
+  ],
+  "scope_note": "U50 archive ledger counters are unchanged at 50 wiring / 0 narrow / 0 open. This package records the separate original-question mathematical row 04.1 only.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_is_probability",
+      "source_line": 26,
+      "check_log_line": 272,
+      "axiom_log_line": 275,
+      "original_clause": "L93"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton",
+      "source_line": 32,
+      "check_log_line": 278,
+      "axiom_log_line": 281,
+      "original_clause": "L93"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_injective",
+      "source_line": 41,
+      "check_log_line": 284,
+      "axiom_log_line": 287,
+      "original_clause": "L93"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_unique",
+      "source_line": 49,
+      "check_log_line": 290,
+      "axiom_log_line": 294,
+      "original_clause": "L93"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_surjective",
+      "source_line": 64,
+      "check_log_line": 297,
+      "axiom_log_line": 301,
+      "original_clause": "L93"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_same_marginals",
+      "source_line": 113,
+      "check_log_line": 304,
+      "axiom_log_line": 306,
+      "original_clause": "L89"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_different_joints",
+      "source_line": 122,
+      "check_log_line": 309,
+      "axiom_log_line": 313,
+      "original_clause": "L89"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.probability_one_constraints_incompatible",
+      "source_line": 140,
+      "check_log_line": 316,
+      "axiom_log_line": 319,
+      "original_clause": "L91"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.normalized_scores_do_not_identify_target",
+      "source_line": 152,
+      "check_log_line": 322,
+      "axiom_log_line": 326,
+      "original_clause": "L93"
+    }
+  ]
+}

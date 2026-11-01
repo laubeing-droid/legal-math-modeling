@@ -7,8 +7,8 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。",
-    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements and original 06.5 finite observation supplement; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 本次数学行分类依据97个原题数学row更新为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 35,
+    "COVERED": 36,
     "PARTIAL": 38,
-    "NOT_RECONCILED": 24
+    "NOT_RECONCILED": 23
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -1698,9 +1698,184 @@
           93
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "subject": "45404453161e338adfa348251307211c765a232e",
+          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
+          "run_id": 41249100938,
+          "scope": "Existing finite-law declaration and pinned finite PMF/measure APIs are reused as mathematical ingredients; this is not an existing JurisLean adapter or verification of the newly written bidirectional proof.",
+          "named_local_results": [
+            "JurisLean.Candidates.Final20261021.Probability.FiniteLaw",
+            "PMF.ofFintype",
+            "ProbabilityMassFunction.toMeasure_apply_singleton",
+            "ProbabilityMeasure.toPMF",
+            "ProbabilityMassFunction.toMeasure_toPMF"
+          ],
+          "mathlib_pin": "c5ea00351c28e24afc9f0f84379aa41082b1188f"
+        },
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+          "subject": "5c8cf787c1d545a0ab1e037fa793d8f6417b886e",
+          "run_id": 40879691794,
+          "job_id": 123467594841,
+          "artifact_id": 12899702798,
+          "named_targets": [
+            "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds"
+          ],
+          "scope": "Previously accepted theorem used for the original-question incompatibility instance only."
+        },
+        {
+          "evidence_type": "ANALYTICAL_ORIGINAL_INSTANCE",
+          "paper_reference": "math_rows.04.1.paper_instance_reconciliation.instance_argument",
+          "frozen_subparagraph_lines": [
+            89,
+            91,
+            93
+          ],
+          "scope": "Root-reviewed mathematical instantiation of frozen L89/L91/L93, alongside the new named Lean source declarations and successful changed-module CI. It does not assert real-world dependence identification, cross-label uniqueness, actual consumer wiring or full-record acceptance."
+        },
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "subject": "7b5a13729386ec30c3ad3c19441951c4f6c9b1fe",
+          "tree": "b5c8b211b2beb154bbff84b62044d44185f5e953",
+          "run_id": 41257289665,
+          "job_id": 124703062623,
+          "attempt": 1,
+          "artifact_id": 13063577254,
+          "artifact_sha256": "ff7dfa603fc0827052ffb542eebacfeea9e2a717c2b481c2c542f56f2749ccc5",
+          "artifact_size_bytes": 4094,
+          "source_blob": "1db74fb5112fef02bfac5303483958976a3eaeb7",
+          "audit_blob": "719f2c0b41d79b2b2820ff98f5598bdee29afce5",
+          "named_targets": [
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_is_probability",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_injective",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_unique",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_surjective",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_same_marginals",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_different_joints",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.probability_one_constraints_incompatible",
+            "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.normalized_scores_do_not_identify_target"
+          ],
+          "scope": "Successful changed-module source CI only: fixed-K rational weights/probability-measure bridge, finite same-marginal distinct couplings, common-space incompatibility instance and normalized-score counterexample. Full-record PR acceptance remains pending; no real-world dependence identification, cross-label uniqueness or consumer wiring is claimed.",
+          "named_declaration_map": [
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_is_probability",
+              "source_line": 26,
+              "check_log_line": 272,
+              "axiom_log_line": 275,
+              "original_clause": "L93"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton",
+              "source_line": 32,
+              "check_log_line": 278,
+              "axiom_log_line": 281,
+              "original_clause": "L93"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_injective",
+              "source_line": 41,
+              "check_log_line": 284,
+              "axiom_log_line": 287,
+              "original_clause": "L93"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_unique",
+              "source_line": 49,
+              "check_log_line": 290,
+              "axiom_log_line": 294,
+              "original_clause": "L93"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_surjective",
+              "source_line": 64,
+              "check_log_line": 297,
+              "axiom_log_line": 301,
+              "original_clause": "L93"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_same_marginals",
+              "source_line": 113,
+              "check_log_line": 304,
+              "axiom_log_line": 306,
+              "original_clause": "L89"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.two_couplings_different_joints",
+              "source_line": 122,
+              "check_log_line": 309,
+              "axiom_log_line": 313,
+              "original_clause": "L89"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.probability_one_constraints_incompatible",
+              "source_line": 140,
+              "check_log_line": 316,
+              "axiom_log_line": 319,
+              "original_clause": "L91"
+            },
+            {
+              "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.normalized_scores_do_not_identify_target",
+              "source_line": 152,
+              "check_log_line": 322,
+              "axiom_log_line": 326,
+              "original_clause": "L93"
+            }
+          ]
+        }
+      ],
+      "remaining": "本行数学模块已由本轮具名源声明及changed-module CI验证；当前完整record PR验收待跑，不表示全链通过。 固定标签K范围内的数学桥接与有限实例已进入本候选记录；02 formal目标、E04/105消费者、真实来源/依赖机制、跨标签表示唯一性仍另账。",
+      "paper_instance_reconciliation": {
+        "classification": "B_REUSE_EXISTING_RESULTS_WITH_ORIGINAL_INSTANCE_AND_BRIDGE",
+        "frozen_commitment": "冻结题单04 L89/L91/L93：共同空间及边际不唯一识别joint；区分约束不相容与目标不识别；固定有限标签K上的有理概率质量与概率measure双向接口和唯一性。",
+        "existing_evidence": [
+          {
+            "source": "JurisLean.Candidates.Final20261021.Probability.FiniteLaw",
+            "role": "已有有限概率律构造来源；本次仅给出其到固定标签measure接口的数学桥，不声称既有u01_2_finite_label_bridge已经实现measure映射。"
+          },
+          {
+            "package": "docs/formal-release/evidence/u04-2-debt-close-20261029",
+            "target": "JurisLean.Candidates.U04_2SharpConditioning20261029.three_event_bounds",
+            "role": "已验收三事件界；用于本题的约束不相容实例。"
+          },
+          {
+            "package": "docs/formal-release/evidence/u04-1-original-close-20261031",
+            "targets": [
+              "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_channel",
+              "JurisLean.Candidates.BetaFutureSampling20261031.beta_future_success_of_conditional_independence"
+            ],
+            "role": "仅支撑明确future-kernel/条件独立前提下的已有预测边界，不从score归一化推出posterior或prediction。"
+          }
+        ],
+        "instance_argument": [
+          "共同空间取Ω={0,1}，两点各质量1/2，X(ω)=ω，Y+(ω)=ω，Y−(ω)=1−ω。两种(X,Y)的X与Y边际都为Bernoulli(1/2)；逐点求和，正耦合有P(X=Y)=1、P(X=1,Y=1)=1/2，反耦合有P(X=Y)=0、P(X=1,Y=1)=0。因此边际相同而联合分布不同，joint不由边际唯一识别。这里共同空间是定义出的候选模型，不声称真实依赖已识别。",
+          "令A、B可测且P(A)=P(B)=1，要求同时P(A∩B)=0不可满足。以第三事件取Ω，三边际全为1；已验收three_event_bounds给交集概率上下界均为1，与0矛盾（有限离散模型中全部子集可测）。候选律集合C=∅表示约束不相容；C非空而ψ在C上多值表示信息不足/目标未识别；ψ(C)单点才是该目标可识别。不得把律不唯一与任何目标都不识别混为一谈。",
+          "固定有限标签集K及完整幂集σ代数，不改变或拆分标签。设W_Q(K)={w:K→Q | w_i≥0 且 Σ_i w_i=1}；设P_Q(K)为K上的概率measure且每个singleton的实质量为有理数。对w定义f_w(i)=ENNReal.ofReal((w_i:R))。逐项非负，有限和与ofReal相容，Σ_i f_w(i)=ofReal(Σ_i w_i)=1，故满足PMF.ofFintype条件。令Φ(w)=(PMF.ofFintype f_w).toMeasure；由toMeasure_apply_singleton，Φ(w){i}=f_w(i)，并对S⊆K有Φ(w)(S)=ofReal(Σ_{i∈S}w_i)，给出概率measure。",
+          "反向取μ∈P_Q(K)。μ{i}≤μ(K)=1，故singleton质量有限；令r_i=(μ{i}).toReal∈R且非负；由μ∈P_Q(K)，r_i属于嵌入Q→R的像，故取唯一q_i∈Q使cast(q_i)=r_i。有限个互不相交单点可加给出Σ_i q_i=1，故q∈W_Q(K)。μ.toPMF逐点等于f_q，由toPMF_toMeasure得到Φ(q)=μ；从Φ(w)的singleton质量反取q时，非负ofReal单射及Q→R单射给q=w。两映射互逆，得到固定K双向对应及唯一性。K为空时两侧均无概率对象，不额外偷加K非空前提。",
+          "固定K的唯一性不延伸为跨表示唯一：K={a}且w(a)=1可拆成K′={a0,a1}、各权重1/2，经商映射都到a得到同一粗化律；也可加零质量标签。",
+          "归一化评分不识别真实概率：取K={a,b}，分数(1,1)归一为P=(1/2,1/2)，而目标事实律仍可为Q=(1,0)；既有权重前提没有P=Q约束。这是逻辑反例，不是数值实验。posterior还需外给prior/likelihood，prediction还需future kernel；已有BetaFutureSampling结果只在其明示条件下作边界，不由score normalization推出这些事实。"
+        ],
+        "formal_evidence_boundary": {
+          "subject": "7b5a13729386ec30c3ad3c19441951c4f6c9b1fe",
+          "tree": "b5c8b211b2beb154bbff84b62044d44185f5e953",
+          "run_id": 41257289665,
+          "job_id": 124703062623,
+          "attempt": 1,
+          "artifact_id": 13063577254,
+          "artifact_sha256": "ff7dfa603fc0827052ffb542eebacfeea9e2a717c2b481c2c542f56f2749ccc5",
+          "source_blob": "1db74fb5112fef02bfac5303483958976a3eaeb7",
+          "audit_blob": "719f2c0b41d79b2b2820ff98f5598bdee29afce5",
+          "scope": "Nine named declarations in the added U04_1OriginalProbabilityInstances20261101 source and its audit driver passed changed-module CI with only standard axioms and no sorryAx. This is source/module evidence only; full-record PR acceptance, full-release checks, independent certificate verification and post-merge checks remain pending."
+        },
+        "remaining": "本行数学模块已由本轮具名源声明及changed-module CI验证；当前完整record PR验收待跑，不表示全链通过。 固定标签K范围内的数学桥接与有限实例已进入本候选记录；02 formal目标、E04/105消费者、真实来源/依赖机制、跨标签表示唯一性仍另账。",
+        "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。该验收不得扩张到真实依赖识别、跨标签唯一性、consumer wiring或其他原题行。"
+      },
+      "scope_correction": "本行仅覆盖冻结原题04.1 L89/L91/L93及固定K上的概率测度桥。新具名源模块和实际changed-module CI已记录；当前候选C仍待本记录PR完整验收。它不表示现实依赖已识别、跨表示唯一性、消费者接线或U50/全理论关闭；02 formal目标与E04/105另账。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。该验收不得扩张到真实依赖识别、跨标签唯一性、consumer wiring或其他原题行。"
     },
     {
       "id": "04.2",
@@ -1763,15 +1938,102 @@
             "JurisLean.Candidates.EquicorrelatedMean20261030.fair_coin_complement_witness",
             "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
           ]
+        },
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "subject": "45404453161e338adfa348251307211c765a232e",
+          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
+          "run_id": 41249100938,
+          "scope": "The existing declarations cover measurable-copy sigma-field equality and the integrable conditional-expectation result up to a.e.; they do not establish real-world source identity or independence.",
+          "named_local_results": [
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation"
+          ]
+        },
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+          "subject": "f80e790e6d6ecbd8449f2181433673945540e5af",
+          "tree": "21de998db857fc5cbd642a198a8a11b5fb25483b",
+          "run_id": 41081311144,
+          "job_id": 124150886815,
+          "attempt": 1,
+          "artifact_id": 12989961441,
+          "artifact_sha256": "7a311f75069f797acfeb1efb879af00dae6e1e95f29016abe5fbfa3fa55497bc",
+          "named_targets": [
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+            "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+          ],
+          "scope": "Previously accepted finite variance/common-cause results; the n=10 example is an analytical instance and does not upgrade its source scope."
+        },
+        {
+          "evidence_type": "ANALYTICAL_ORIGINAL_INSTANCE",
+          "paper_reference": "math_rows.04.2.paper_instance_reconciliation.instance_argument",
+          "frozen_subparagraph_lines": [
+            97,
+            99,
+            101
+          ],
+          "scope": "The observation-unit schema, copied-versus-independent Bernoulli likelihood comparison, ten-unit common-cause instance, and explicit external identity/mechanism premises. Root-reviewed analytical instantiation; no new Lean declaration, machine instance, or source CI is claimed."
         }
       ],
-      "remaining": "Other 04.2 claims, source-generation premises, and actual consumer evidence remain to be reconciled; the U04.4 variance/effective-count package maps only the finite effective-sample-size paragraph.",
+      "remaining": "本字段仍是纸面实例化草稿：保留已具名的σ/条件期望复制结果与common-cause反例；θ与θ^10十次观测实例尚未定位并接到具名声明，分别核清同一事件复制与给定条件独立机制前提。现实单位身份、机制真实性及unit counter字段生产消费仍留E04/105另账，不扩成新的原数学门槛。record PR通过不等于纸面推导已机器化。",
       "modules": [
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/EquicorrelatedMean20261030.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean"
-      ]
+      ],
+      "paper_instance_reconciliation": {
+        "classification": "B_REUSE_EXISTING_RESULTS_WITH_ORIGINAL_INSTANCE_AND_BRIDGE",
+        "frozen_commitment": "冻结题单04 L97/L99/L101：定义一次观测/生成单位与来源目标机制；复制不增加同一生成事件的信息；不同单位不自动独立，不能以文件数冒充有效n；区分已给采样机制下的似然。",
+        "existing_evidence": [
+          {
+            "package": "docs/formal-release/evidence/u01-4-original-close-20261030",
+            "targets": [
+              "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance",
+              "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+              "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+            ],
+            "role": "既有独立/复制方差与共同原因有限反例；范围仍只限具名模型。"
+          },
+          {
+            "source": "JurisLean.Candidates.ExactProbability20261027",
+            "targets": [
+              "deterministic_copy_preserves_generated_information",
+              "deterministic_copy_keeps_integrable_conditional_expectation"
+            ],
+            "role": "复用复制可测函数不增加生成σ代数及可积条件期望仅a.e.相等的通用结果。"
+          },
+          {
+            "package": "docs/formal-release/evidence/u04-4-original-close-20261031",
+            "targets": [
+              "JurisLean.Candidates.EquicorrelatedMean20261030.equicorrelated_mean_variance",
+              "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample"
+            ],
+            "role": "原题04.2有效样本量/共同原因实例的既有有限模型边界。"
+          }
+        ],
+        "instance_argument": [
+          "每个观测单位合同记录(V_src, sampling_unit_id, time, target_definition, measurement_mechanism, random_variable_ref)，并登记生成事件及父记录/复制函数（如派生）。真实身份和机制关系由来源给出，不由字符串、新文件名或数值相等推出。相同值可能来自独立新单位；新措辞或重复引用也不自动是新单位。 这些metadata是来源外供且须核验的前提；字段或SourceRef本身存在不证明真实身份或机制。",
+          "重复引用可保留案卷先后与来源，但统计更新对同一随机生成事件只计一次。若Y=g(X)且g可测，调用deterministic_copy_preserves_generated_information及deterministic_copy_keeps_integrable_conditional_expectation：σ(X,gX)=σX；U可积时两个条件期望仅a.e.相等，不能改写为逐点相等。identity/mechanism未知则标UNKNOWN，不按文件条数填写n_effective。",
+          "十次复制实例：对每个θ∈[0,1]明确给Bernoulli(θ)法则Pθ，令X_i=Z；十个“成功”事件与Z=1完全同一，likelihood=θ。若另给十个条件独立Bernoulli(θ)变量，all-success事件概率按独立性因子分解为∏_{i=1}^{10}θ=θ^10。θ=1/2时分别为1/2与1/1024。θ^10是参数化法则族在指定独立采样机制下的likelihood；不对零测事件“θ=某值”偷用条件化，独立性不从十条记录推出。",
+          "不同单位共享潜变量：将已验收u01_4_concrete_common_cause_counterexample实例化到n=10。fairCoinMeasure支撑H=0/1且各1/2，十个模型单位u_i上令X_i=H。i↦u_i为injective只是模型标号，不证明现实抽样单位身份；后者仍需外部来源合同。此模型P(X_i=1,X_j=1)=1/2≠1/4，且已给平均方差1/4，而独立时为1/40。保留原U01.4/等相关结果范围，不扩大为所有来源身份保证。",
+          "新的独立测量不属于复制定理前提：取Ω={0,1}²上的uniform，X、Y为两个坐标，U=Y。则E[U|X]=1/2而E[U|X,Y]=Y；因此不能把复制不增信息推广成任意新测量都不增信息。这是有限说明，不另造通用测量系统。",
+          "actual consumer execution不是原数学题另加的新要求；按原L133与另账E04.7区分。不删除或升级105中的E04合同，unit counter/字段的生产消费实现仍须另有证据。"
+        ],
+        "formal_evidence_boundary": {
+          "subject": "45404453161e338adfa348251307211c765a232e",
+          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
+          "accepted_full_release_run": 41249100938,
+          "scope": "仅证明该subject中既有Lean源码编译/验收；本字段新增的是纸面数学实例化，没有新增Lean声明或机器实例。"
+        },
+        "remaining": "本字段仍是纸面实例化草稿：保留已具名的σ/条件期望复制结果与common-cause反例；θ与θ^10十次观测实例尚未定位并接到具名声明，分别核清同一事件复制与给定条件独立机制前提。现实单位身份、机制真实性及unit counter字段生产消费仍留E04/105另账，不扩成新的原数学门槛。record PR通过不等于纸面推导已机器化。",
+        "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+      },
+      "scope_correction": "本字段登记冻结L97/L99/L101的纸面论证、反例和条件规范草稿；当前状态仍PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED。真实单位身份与机制须由来源给定并核验，字段或SourceRef不证明真实机制；θ/θ^10实例映射与相应独立CI尚待完成，source-generation、actual consumer及E04.7/105实现另账。",
+      "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
     },
     {
       "id": "04.3",
@@ -2002,8 +2264,90 @@
         ]
       ],
       "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "evidence": [
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "subject": "45404453161e338adfa348251307211c765a232e",
+          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
+          "run_id": 41249100938,
+          "scope": "Existing copy/a.e. declarations only; not the new continuous-uniform example or the fixed-Obs definition.",
+          "named_local_results": [
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+            "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation"
+          ]
+        },
+        {
+          "evidence_type": "EXISTING_SOURCE_EVIDENCE",
+          "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+          "subject": "95a7cc43bfbad5c5c9ba69894c7209b9a33e730e",
+          "run_id": 40987962686,
+          "job_id": 123843315122,
+          "artifact_id": 12947703490,
+          "named_targets": [
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints",
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton",
+            "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers"
+          ],
+          "scope": "Existing original04.4 finite endpoint/MCAR results; this record restates the endpoints under one explicit Ω and one fixed Obs, without reopening 04.4."
+        },
+        {
+          "evidence_type": "ANALYTICAL_ORIGINAL_INSTANCE",
+          "paper_reference": "math_rows.04.6.paper_instance_reconciliation.instance_argument",
+          "frozen_subparagraph_lines": [
+            129,
+            131,
+            133
+          ],
+          "scope": "The continuous uniform a.e./forall counterexample, fixed-Obs Id definition, two-mechanism distinction, same-Obs endpoint laws, finite estimation-error example, and local conditions matrix. Root-reviewed analytical instantiation; no new Lean declaration, machine instance, or source CI is claimed."
+        }
+      ],
+      "remaining": "本字段仍是纸面实例化草稿。连续uniform的a.e./全称差异可复用Seams.UniformContinuous.ae_truth_not_universal_truth_uniform及uniform01_truth_event；尚待将K1/K2比较、固定O与ψ的识别性定义、以及有限估计误差反例逐命题映射到具名结果。E04/105与02 formal source/consumer义务另账；record PR通过不等于这些纸面推导已机器化。",
+      "paper_instance_reconciliation": {
+        "classification": "B_REUSE_EXISTING_RESULTS_WITH_ORIGINAL_INSTANCE_AND_BRIDGE",
+        "frozen_commitment": "冻结题单04 L129/L131/L133：区分a.e.与全称断言；界定固定观察映射下的结构可识别性；辨别复制机制错配与同一观察分布下目标未识别；说明估计误差不等同结构识别。",
+        "existing_evidence": [
+          {
+            "package": "docs/formal-release/evidence/u11-1-debt-close-20261030",
+            "targets": [
+              "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_two_feasible_endpoints",
+              "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_compatible_endpoints_not_singleton",
+              "JurisLean.Candidates.U11_1OriginalInstances20261030.original04_4_mcar_recovers"
+            ],
+            "role": "同一visible report law、两种总体目标端点的原04.4既有有限实例；本次只按固定Obs/同一Ω重述，不重开04.4。"
+          },
+          {
+            "source": "JurisLean.Candidates.ExactProbability20261027",
+            "targets": [
+              "deterministic_copy_preserves_generated_information",
+              "deterministic_copy_keeps_integrable_conditional_expectation"
+            ],
+            "role": "复制信息与a.e.条件期望边界。"
+          },
+          {
+            "source": "JurisLean.Candidates.BetaFutureSampling20261031",
+            "role": "只复用其明确条件下的posterior predictive/future kernel结果；不推出无条件预测律。"
+          }
+        ],
+        "instance_argument": [
+          "a.e.与全称：Ω=W=[0,1]，τ=id，P为uniform即区间上的长度概率测度。P{0}=0，故P(x≠0)=1；K1=[0,1]含反例0，因此∀x∈K1, x≠0为假；K2=(0,1]上该全称命题为真。P(K1)=P(K2)=1且P(x≠0|K1)=P(x≠0|K2)=1。概率与a.e.相同不决定支持集合上的全称结论；不是用有限零质量点替代指定连续uniform例。",
+          "固定观测单位/记录schema/目标ψ及观测映射O；候选族M_A保留A未限制的生成/选择/缺失机制自由度，不要求所有候选具有相同潜在生成律。令Obs(m)为O下的分布，定义Id_A(ψ)当且仅当对所有m,m′∈M_A，Obs(m)=Obs(m′)蕴含ψ(m)=ψ(m′)。不同机制可以产生同一Obs law（Q4正是例子）；不能改变O或单位解释后冒充同一观测。Q2中已知复制机制却套IID是建模错配，因为非退化θ下两联合观测律不同；这不排除不同机制作为候选未知量。",
+          "复制十次与十个独立实验是不同观测机制/法则；对非退化θ，mixed tuple在独立法则下为正概率而复制法则仅支持对角，因此两种正确Obs不同。把复制误当独立是观测身份/likelihood建模错误，不是同一正确Obs下目标不识别。复制族自身仍有Pθ(all-success)=θ而识别θ；一个实现不等于精确估计。",
+          "既有U11 finite endpoints统一为同一Ω={(M,Y):M,Y∈{0,1}}及同一Obs(M,Y)=(M, 若M=1则Y否则⊥)，S=T=1。P−的三非零质量为(0,0):1/2、(1,0):1/4、(1,1):1/4；P+为(0,1):1/2、(1,0):1/4、(1,1):1/4。两者Obs law三项严格相同(.5,.25,.25)，但ψ(P)=P(Y=1)分别为.25与.75，直接违反上面的Id定义。它是原04.4已有端点的同一有限表重述，不新增模型承诺，不重审04.4。",
+          "识别不要求参数估计误差为0：取family p∈{1/4,3/4}、Y~Bernoulli(p)、Obs为Y的总体law、ψ=p。因为law{1}=p，ψ可识别。真p=1/4而只观察一枚Y，估计p_hat=Y；Y=0/1时绝对误差分别1/4与3/4，均非0，不改变结构识别。反向精度也不能代识别：上段两模型的精确visible-law oracle仍相同而目标不同。",
+          "L133六问按原四标签逐子结果登记：Q1【反例否定】两couplings否定“相同边际唯一决定joint”，约束P(A)=P(B)=1且P(A∩B)=0被three_event_bounds否定为不相容；【本次数学证明或定义规格】固定K、完整幂集上的Q权重↔singleton质量有理的概率measure双向唯一接口及目标识别定义；【缺指定前提】真实依赖是否属于任一候选coupling未由这些实例给出。Q2【已有局部结果】可测复制不增generated sigma、可积条件期望仅a.e.相等；【本次数学证明或定义规格】观测单位字段/复制父项合同、Bernoulli ten-product两种机制的likelihood手算；【反例否定】不同单位自动IID被既有common-cause反例否定；【缺指定前提】现实单位身份/生成机制/独立性由外部来源给出。Q3/4/5【已有局部结果】保持已C源、端点、MCAR、三事件界、污染与Beta/预测/误差结果及其显式前提，不重审、不扩张；【缺指定前提】任何超出其已证前提的真实posterior/future/selection/数值输入仍需相应给定条件。Q6【反例否定】连续uniform中a.e.相同不推出K1上的forall；同Obs双端点否定该psi的识别；【本次数学证明或定义规格】固定A、模型族和Obs下的Id定义，以及可识别但有限样本误差非零的Bernoulli有限例；【缺指定前提】现实观测机制与法律/全称结论之间若无明示桥，不从概率或识别自动推出。四标签区分数学已有局部结果、本次纸面论证、反例边界与需外供前提；不背书真实数据机制或actual consumer。",
+          "条件E1–E8按结论局部声明：E1概率模型/RV可测、复制g可测且U可积；E2来源/单位/时间/目标/机制/RV解释由外部给定且正确，文件数不证明独立；E3 θ^10在本题ten条件独立Bernoulli族内由该明示条件推出；Beta共轭只要求指定likelihood L∝θ^s(1−θ)^(n−s)，可由任一已给采样模型保证，不声称独立是必要条件，也不由整数计数推出likelihood；E4 Beta先验α,β>0；E5预测需外给future kernel及条件success=θ或既有源所列充分条件；E6 Hoeffding需fixed-p IID、n≥1、δ>0；E7选择识别需外给MCAR及正值性/目标律范围，任意S/T transport不由MCAR自动得出；E8积分边界/正分母和污染分支0≤ε<1、P(B)>0等仅在相应局部命题下成立，Q(B)=0另分支。有限反例按定义成立，不要求把这些现实前提假设为真。概率/评分/效用到全称法律结果的转换需明确桥；无依据则UNKNOWN，政策权属不作法源定理。"
+        ],
+        "formal_evidence_boundary": {
+          "subject": "45404453161e338adfa348251307211c765a232e",
+          "tree": "8250e8a28ce2e23ffd103682f840c518d9d25ab6",
+          "accepted_full_release_run": 41249100938,
+          "scope": "仅证明该subject中既有Lean源码编译/验收；本字段新增的是纸面数学实例化，没有新增Lean声明或机器实例。"
+        },
+        "remaining": "本字段仍是纸面实例化草稿。连续uniform的a.e./全称差异可复用Seams.UniformContinuous.ae_truth_not_universal_truth_uniform及uniform01_truth_event；尚待将K1/K2比较、固定O与ψ的识别性定义、以及有限估计误差反例逐命题映射到具名结果。E04/105与02 formal source/consumer义务另账；record PR通过不等于这些纸面推导已机器化。",
+        "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
+      },
+      "scope_correction": "本字段登记原题04.6的纸面定义、反例与有限实例推导草稿；当前状态仍NOT_RECONCILED。它不表示观测机制已验证、法律或全称结论可由概率推出，也不代表新增机器证明、源码或consumer实现已验收。",
+      "shortest_acceptance": "先完成本行各项纸面实例到既有具名声明的精确映射及必要桥接；若需新增形式连接，先取得对应模块独立CI。随后提交记录PR，完成exact-subject全链、实际证书/引用比对与独立verifier，再按授权squash并做合后短核。当前草稿分支CI_NOT_RUN；record PR绿不等于纸面论证机器化。"
     },
     {
       "id": "05.1",
@@ -6932,7 +7276,7 @@
     }
   ],
   "designated_cuts": [
-        {
+    {
       "topic": "04",
       "heading": "## 指定实现切口：JC 逻辑回归与可回放的概率入口",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\04_概率统计与共同空间识别.md",
@@ -7229,7 +7573,7 @@
         "scope_note": "Acceptance is attached to the existing source subject/tree. It is not acceptance of a newly proposed legal/statistical interface or of this draft record branch."
       }
     },
-        {
+    {
       "topic": "06",
       "heading": "## 指定金额接口：概率 × ExactExpr × IR 及合法和解",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\06_概率决策信息价值与策略.md",
@@ -7565,7 +7909,7 @@
       },
       "scope_note": "本 cut 只覆盖冻结原题13 L125/L127/L129的proposed设计合同；不升级原题13任一数学行、主题13整体、工程105、生产服务实现或法律决定状态。本分支仍待独立PR exact-subject验收。"
     },
-        {
+    {
       "topic": "14",
       "heading": "## 工程接口问题（不是执行授权）",
       "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\14_反馈学习与候选更新.md",

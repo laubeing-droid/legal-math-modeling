@@ -1,0 +1,678 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "9e62edd834bae22dbd8fc85d3c2fd0f34f0e8ed7",
+  "subject_tree": "19ea36929958d4e7914b2103c52ebe95a3cdc1cd",
+  "run_id": 41358291966,
+  "job_id": 125003002576,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41358291966",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41358291966/job/125003002576",
+  "artifact_name": "changed-module-only-41358291966-1",
+  "artifact_id": 13103568603,
+  "artifact_sha256": "d576683df802188ed3aafdabf02c1590832ea7579bb19c5c13fb53c34f327986",
+  "artifact_size_bytes": 18159,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 169788,
+      "sha256": "d40dbf830138ca49da1d78b07d4bd0a9d5973e7841d3cc560a4419c02e153339"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 273,
+      "sha256": "b307a73347fb226956188de3876d840c705f1db7794744621b8055fd620141dd"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "b307a73347fb226956188de3876d840c705f1db7794744621b8055fd620141dd",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalChapterAudit20261102.lean",
+  "named_count": 32,
+  "names_by_clause": {
+    "L137": [
+      "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_event_ids_nodup",
+      "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_net_is_gross",
+      "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_utility_matches_w4",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff"
+    ],
+    "L139": [
+      "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction",
+      "GameTheory.brouwer_mixedSimplex",
+      "GameTheory.KernelGame.nash_fp_is_nash",
+      "GameTheory.KernelGame.mixed_nash_exists",
+      "JurisLean.Candidates.Final20261021.Decision.u06_5_matching_pennies_no_pure",
+      "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream",
+      "EFG.oneShotDeviation_iff_spe"
+    ],
+    "L141": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min",
+      "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information",
+      "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone",
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options",
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost",
+      "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty"
+    ]
+  },
+  "object_checks": [
+    "Finite terminal cash-event IDs are distinct within each terminal case.",
+    "The finite terminal cash-event net equals the existing W4 gross amount for the recipient.",
+    "Cash-derived terminal utility equals the existing W4 abstract payoff under its stated preference.",
+    "The successful Audit entrypoint prints 32 selected target results: 3 new bridge declarations and 29 reused declarations.",
+    "Seven #check outputs are distinct from the 32 #print axioms target outputs.",
+    "The two failed runs remain distinct: the first printed 0/32; the second printed 31/32 before the missing EFG import.",
+    "Q1-Q6 remain supported by their accepted full evidence packages; this round does not reopen or reduce them."
+  ],
+  "axiom_audit": {
+    "audited_targets": 32,
+    "axiom_vocabulary": {
+      "Classical.choice": 27,
+      "Quot.sound": 29,
+      "propext": 28
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {},
+    "no_axiom_targets": [
+      "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+      "JurisLean.Candidates.Final20261021.Decision.u06_5_matching_pennies_no_pure"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalCashBargainBridge20261102.lean",
+      "bytes": 6506,
+      "sha256": "b54ba5f98036c430b156caed0b1ce8b937633c0c63a39e0e8bdb7cda7d0562f0",
+      "git_blob": "e1cc96143425dca7b71e1595e3a491c48e799e3f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalChapterAudit20261102.lean",
+      "bytes": 4029,
+      "sha256": "bed1d43908d8aee3bf730b82354a91a899f25c3624d44f77555595fa8ed07689",
+      "git_blob": "cb3336c14a58d15893579733aacee461139149bc"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "bytes": 21255,
+      "sha256": "124d06faf08b1d1be41aedd1fcd47c77363f5cc35eac682ccd1a1727358efa7d",
+      "git_blob": "e51614b5095d8ba4acc764bbf1829e41620ad3a7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "bytes": 12118,
+      "sha256": "5d546537660976476d07109c25f6bbef5dba0e6d11df131a371d92cec3b6a599",
+      "git_blob": "f28391db575a975440b545911d49c6334242e78c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "bytes": 25910,
+      "sha256": "79e0b7e71bd261e590d5ae2820e6fd546982f262afe9c6b3856733c1235823b2",
+      "git_blob": "bc33026b38402ebcf134f1c22ddab8e944879ab0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
+      "bytes": 11622,
+      "sha256": "1130f2f2da61bd55353e8c2a0843712d6ee4ab21ee6d46f5c0ee80e419598362",
+      "git_blob": "9876be79ca5c2c907d34d8417fd31bdc38e1ecba"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
+      "bytes": 13257,
+      "sha256": "87ef9339a589c7468830c57b68d246092ca888099779ffe40c69e5368081509a",
+      "git_blob": "bc4efe80213dcb8eb53bfdc3c10600c7ab2a3d0b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "bytes": 20065,
+      "sha256": "ba60a8084e534c3873a2cafabce50095ad89fa61e23963de429acd39b92aa25e",
+      "git_blob": "93749f53a981d096670eeee2532cb53684c7f00d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "bytes": 35711,
+      "sha256": "bbc3f3c3a3084d0087030060499fcf59298c5ea6acfa88f1f90580ed45729829",
+      "git_blob": "6dfdc56ff31d25bc3e16749ba31bfa9224916381"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+      "bytes": 12472,
+      "sha256": "808c893e2514c57c42ebbe556897ab0e918abc6f4834fc749ff1cca42454edd9",
+      "git_blob": "8c0463111dda39a51f6a1416bdacf584fc900aab"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "bytes": 11062,
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88",
+      "git_blob": "698e40b8cb26c4880f81c0d4018e5d539d3efb82"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+      "bytes": 42830,
+      "sha256": "65065e301b35efba8de2f38ede9f57fabcfd8a66893d05ed0b5d08f750c84549",
+      "git_blob": "7971c99b8f631f654fbccd07077284cbc90e1850"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+      "bytes": 59083,
+      "sha256": "f2e8db01e8ff4b04e00ae1c523716bf11ca57615165e603cd89642fe4be864f9",
+      "git_blob": "fc002d0476308ceb4da9f1298840bfdc6e2e4200"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
+      "bytes": 9056,
+      "sha256": "7d71c142a645a855be39a616a0e1117d80a8ecb79c268146b7902e698195f252",
+      "git_blob": "2e53c75e453d46d481ea48182ea37264deb3b938"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+      "bytes": 30896,
+      "sha256": "8c36e247eb037f433c343c99025449f45340aa605c0fb92116d7e00a9b560f9a",
+      "git_blob": "9a46ffe143c30b70c414c7e6204ad472d979fec5"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+      "bytes": 17785,
+      "sha256": "f277968447545bd690ca595df6cb4c1bde610f9986358d813077e1c8bd2033b0",
+      "git_blob": "fdeb83db7d4dba0303a778b6d1928e83160a2e2b"
+    }
+  ],
+  "original_residuals": {
+    "L137": "The finite cash-event-to-W4 terminal utility connection is proved for the stated synthetic terminal witness; T113 is not applied without its exact statement, assumptions, and source version.",
+    "L139": "Existing finite Nash/matching-pennies and given-profile one-shot deviation evidence is mapped under its own assumptions; no general backward-induction construction or strategy-selection rule is added.",
+    "L141": "The seven-question finite deliverable is mapped using the accepted Q1-Q6 packages plus this Q7 bridge, with the listed external-input and runtime boundaries."
+  },
+  "closed_ids": {
+    "path": "原题06.7数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题06.7数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待完整记录PR验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original06-7-finite-chapter-close-20261102/changed-module.log",
+    "sha256": "d40dbf830138ca49da1d78b07d4bd0a9d5973e7841d3cc560a4419c02e153339",
+    "blocks": 32
+  },
+  "source_module_status": "SUCCESS; the changed-module Audit entrypoint was requested and compiled the new bridge module; the other seven workflow jobs were skipped. The raw log also contains seven separate #check outputs.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate/reference verification, authorized merge, and post-merge checks remain separate.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41341079538,
+      "attempt": 1,
+      "head_sha": "b0b506d2819f48c68572c8fb19f6243fbbbad675",
+      "head_tree": "9c9da5c25997911b1b6f145d118844945b66b27d",
+      "job_id": 124951029949,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341079538",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341079538/job/124951029949",
+      "artifact_id": 13097735281,
+      "artifact_name": "changed-module-only-41341079538-1",
+      "artifact_size_bytes": 5347,
+      "artifact_sha256": "ae9b84a9f2b4d7fe4d7defe335bd7d9c96fb1668234354031f744026b8662cff",
+      "log_size_bytes": 40854,
+      "log_sha256": "cf008005ac5268f9c82b60e1f0e3593025fe5af5f669743ab1b208715aa745b3",
+      "plan_size_bytes": 277,
+      "plan_sha256": "007753825b4ebbebba31ef8390dd3b0593574a98d46740d73573aafb5b3e4288",
+      "audit_targets_printed": 0,
+      "error_count": 37,
+      "note": "First run requested only the Instances module. The invalid namespace alias led to cascading unresolved Core names and filter-instance errors; no Audit output was produced. Retained as failure, not pass."
+    },
+    {
+      "run_id": 41341699568,
+      "attempt": 1,
+      "head_sha": "b4fdafb3013b77b2de2b2876445297d2536fd636",
+      "head_tree": "f2283cd6bbaa03dd87e7da764aca9ec17ef7921a",
+      "job_id": 124952909430,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341699568",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341699568/job/124952909430",
+      "artifact_id": 13097486346,
+      "artifact_name": "changed-module-only-41341699568-1",
+      "artifact_size_bytes": 5479,
+      "artifact_sha256": "1965fd2360d207ebd7a0a4644820346b1e8486e6fb7aea3b0bab576681d21e7b",
+      "log_size_bytes": 40567,
+      "log_sha256": "e15cc51555b4271c408e88d266e8e5c017b7d43145b1ce66ccc21442ef1ba30f",
+      "plan_size_bytes": 287,
+      "plan_sha256": "fba42820cb22846ea2a43d2cb8359f4af71a705f9bc20a5c6aa216cca94ddf58",
+      "audit_targets_printed": 0,
+      "error_count": 7,
+      "note": "Second run requested the Audit module and failed on History name resolution, riskDemoLaw probability/finite-measure instances, and filter proof terms including unavailable Finset.not_mem_empty; no Audit output was produced. Retained as failure, not pass."
+    }
+  ],
+  "scope_note": "This package maps original 06.7 only. The seven-question summary reuses the six accepted Q1-Q6 packages and adds the finite Q7 cash-to-W4 bridge. It does not establish runtime consumer wiring, real-world provenance of model inputs, T113 applicability, a universal backward-induction construction, or a new legal rule.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_event_ids_nodup",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalCashBargainBridge20261102.lean",
+      "source_line": 70,
+      "audit_source_line": 25,
+      "audit_log_line": 1991,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_net_is_gross",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalCashBargainBridge20261102.lean",
+      "source_line": 81,
+      "audit_source_line": 26,
+      "audit_log_line": 1994,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_utility_matches_w4",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_7OriginalCashBargainBridge20261102.lean",
+      "source_line": 106,
+      "audit_source_line": 27,
+      "audit_log_line": 1997,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 114,
+      "audit_source_line": 29,
+      "audit_log_line": 2000,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 208,
+      "audit_source_line": 30,
+      "audit_log_line": 2003,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 57,
+      "audit_source_line": 31,
+      "audit_log_line": 2006,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 132,
+      "audit_source_line": 32,
+      "audit_log_line": 2009,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 190,
+      "audit_source_line": 33,
+      "audit_log_line": 2012,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 113,
+      "audit_source_line": 34,
+      "audit_log_line": 2015,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 268,
+      "audit_source_line": 35,
+      "audit_log_line": 2018,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_conditional_value_of_information",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
+      "source_line": 218,
+      "audit_source_line": 36,
+      "audit_log_line": 2021,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_4ConditionalInformation20261031.finite_robust_information_monotone",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
+      "source_line": 253,
+      "audit_source_line": 37,
+      "audit_log_line": 2024,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
+      "source_line": 181,
+      "audit_source_line": 38,
+      "audit_log_line": 2027,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
+      "source_line": 280,
+      "audit_source_line": 39,
+      "audit_log_line": 2030,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5FiniteObservationInstance20261031.lean",
+      "source_line": 302,
+      "audit_source_line": 40,
+      "audit_log_line": 2033,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 89,
+      "audit_source_line": 41,
+      "audit_log_line": 2036,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 144,
+      "audit_source_line": 42,
+      "audit_log_line": 2039,
+      "original_clause": "L141",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_ledger_payoff_eq",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 607,
+      "audit_source_line": 43,
+      "audit_log_line": 2042,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_actions_preserved",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 485,
+      "audit_source_line": 44,
+      "audit_log_line": 2045,
+      "original_clause": "L137",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_trace_terminal",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 515,
+      "audit_source_line": 45,
+      "audit_log_line": 2046,
+      "original_clause": "L137",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_perfect_information",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 528,
+      "audit_source_line": 46,
+      "audit_log_line": 2047,
+      "original_clause": "L137",
+      "axioms": []
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_publicInfo_preserved",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 531,
+      "audit_source_line": 47,
+      "audit_log_line": 2048,
+      "original_clause": "L137",
+      "axioms": [
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_deterministic_kernel_preserved",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 541,
+      "audit_source_line": 48,
+      "audit_log_line": 2049,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_profile_payoff_eq",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 628,
+      "audit_source_line": 49,
+      "audit_log_line": 2052,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2EquilibriumTransfer20261030.bargain_bi_profile_payoff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
+      "source_line": 673,
+      "audit_source_line": 50,
+      "audit_log_line": 2055,
+      "original_clause": "L137",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_5OriginalModels20261031.lean",
+      "source_line": 222,
+      "audit_source_line": 51,
+      "audit_log_line": 2058,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "GameTheory.brouwer_mixedSimplex",
+      "source_path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
+      "source_line": 199,
+      "audit_source_line": 52,
+      "audit_log_line": 2061,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "GameTheory.KernelGame.nash_fp_is_nash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+      "source_line": 139,
+      "audit_source_line": 53,
+      "audit_log_line": 2062,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "GameTheory.KernelGame.mixed_nash_exists",
+      "source_path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+      "source_line": 717,
+      "audit_source_line": 54,
+      "audit_log_line": 2063,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_matching_pennies_no_pure",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "source_line": 265,
+      "audit_source_line": 55,
+      "audit_log_line": 2064,
+      "original_clause": "L139",
+      "axioms": []
+    },
+    {
+      "name": "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+      "source_line": 613,
+      "audit_source_line": 56,
+      "audit_log_line": 2065,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "EFG.oneShotDeviation_iff_spe",
+      "source_path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+      "source_line": 365,
+      "audit_source_line": 57,
+      "audit_log_line": 2068,
+      "original_clause": "L139",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ]
+}

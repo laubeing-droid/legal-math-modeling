@@ -44,7 +44,7 @@ theorem bounded_binary_brier_contract
     {Ω : Type*} [mΩ : MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
     (m : MeasurableSpace Ω) (hm : m ≤ mΩ) (Y p : Ω → ℝ)
-    (labelMeasurable : AEStronglyMeasurable Y μ)
+    (labelMeasurable : AEStronglyMeasurable[mΩ] Y μ)
     (scoreMeasurable : StronglyMeasurable[m] p)
     (binary : ∀ᵐ w ∂μ, Y w = 0 ∨ Y w = 1)
     (scoreRange : ∀ᵐ w ∂μ, 0 ≤ p w ∧ p w ≤ 1) :
@@ -56,7 +56,7 @@ theorem bounded_binary_brier_contract
   have hY : MemLp Y 2 μ := MemLp.of_bound labelMeasurable 1 <| by
     filter_upwards [binary] with w hw
     rcases hw with hw | hw <;> simp [hw]
-  have ambientScore : Measurable p := scoreMeasurable.measurable.mono hm le_rfl
+  have ambientScore : Measurable[mΩ] p := scoreMeasurable.measurable.mono hm le_rfl
   have hp : MemLp p 2 μ := MemLp.of_bound ambientScore.aestronglyMeasurable 1 <| by
     filter_upwards [scoreRange] with w hw
     rw [Real.norm_eq_abs, abs_of_nonneg hw.1]
@@ -100,7 +100,7 @@ theorem population_calibration_not_conditional_correctness :
   have fullInput : fairBoolLaw[fairLabel | (inferInstance : MeasurableSpace Bool)] = fairLabel :=
     condExp_of_stronglyMeasurable le_rfl labelMeasurable.stronglyMeasurable
       (labelL2.integrable one_le_two)
-  refine ⟨?, fullInput, ?_⟩
+  refine ⟨?_, fullInput, ?_⟩
   · filter_upwards [] with b
     exact congrFun (fair_constant_score_condExp (1 / 2)) b
   · intro claimed

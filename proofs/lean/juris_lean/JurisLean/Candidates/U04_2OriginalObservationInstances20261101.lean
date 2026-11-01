@@ -126,6 +126,8 @@ theorem copied_and_independent_observation_laws_differ :
     ten_independent_all_success_likelihood (1 / 2) (by norm_num) (by norm_num)
   intro h
   have hh := congrArg (fun nu : Measure (Fin 10 → Bool) => nu.real event) h
+  change (tenCopiedObservationLaw (1 / 2) (by norm_num) (by norm_num)).real event =
+    (tenIndependentLaw (1 / 2) (by norm_num) (by norm_num)).real event at hh
   rw [hcopy, hind] at hh
   norm_num at hh
 

@@ -10,6 +10,7 @@ import JurisLean.Candidates.U06_5OriginalModels20261031
 import JurisLean.Seams.UnifiedEquilExist
 import JurisLean.Seams.UnifiedW4Games
 import JurisLean.Candidates.Final20261021.Decision
+import JurisLean.External.GameTheory.Theorems.OneShotDeviation
 
 /-! Original 06.7: finite terminal cash-to-utility bridge and scoped reuse. -/
 open JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102

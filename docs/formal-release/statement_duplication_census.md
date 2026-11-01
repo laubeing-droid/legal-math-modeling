@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 536
-- theorem/lemma headers read: 6468
-- distinct statement types: 6405
-- statement types declared more than once: 62
+- files scanned: 538
+- theorem/lemma headers read: 6473
+- distinct statement types: 6409
+- statement types declared more than once: 63
 - of those spanning module families: 3
 
 ## Across module families (3)
@@ -16,7 +16,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 
-## Within the package (62)
+## Within the package (63)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -24,6 +24,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(a b : TrustVector) : TrustLE (a.meet b) a` — `ULM16TheoryComposition.lean:75` (root/other/COMP_C01_trust_nonupgrade_left), `ULM14CoverageTrust.lean:92` (root/other/trust_meet_le_left)
 - `(a b : TrustVector) : TrustLE (a.meet b) b` — `ULM16TheoryComposition.lean:78` (root/other/COMP_C01_trust_nonupgrade_right), `ULM14CoverageTrust.lean:97` (root/other/trust_meet_le_right)
 - `(a b k l : ℕ) : ((∫ x in 0..1, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l)) = ((betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) / (betaTwoConst a b : ℚ) : ` — `Seams/UnifiedNeedlesS3a.lean:445` (root/other/beta_posterior_from_likelihood), `Candidates/Final20261021/Probability.lean:146` (root/other/u04_1_integer_shape_conjugacy)
+- `(b : Bool) : fairBoolLaw {b} = (1 / 2 : ENNReal)` — `Candidates/U04_1OriginalProbabilityInstances20261101.lean:105` (root/other/fairBool_atom), `Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean:23` (root/other/fair_atom)
 - `(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept` — `SafetyTheorems.lean:12` (root/other/candidate_cannot_enter_verified_fact_gate), `CertificateChecker.lean:56` (root/other/candidate_evidence_not_accepted)
 - `(d : CaseDocket) (r : LawRule) (hr : r ∈ familyRuleList) : r.horn ∈ (hornOf d).rules` — `Seams/UnifiedNetTrajectory.lean:180` (root/other/rule_horn_mem_any), `Seams/UnifiedNeedlesGap05.lean:655` (root/other/rule_horn_mem_general)
 - `(e : NFEdge) : (requiredObligations e).Nonempty` — `ULM16TheoryComposition.lean:246` (root/other/CORE_23_required_nonempty), `ULM04Obligations.lean:64` (root/other/requiredObligations_nonempty)
@@ -57,5 +58,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) ` — `External/GameTheory/Math/PMFProduct.lean:1193` (External/pmfPi_cond_coord_other_marginal), `External/GameTheory/Math/PMFProduct.lean:708` (External/pmfPi_cond_coord_push_other)
 - `{Rel : Type} [DecidableEq Rel] (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) : effective (next L (.formative eventId rel)) r ↔ effective L r` — `Seams/UnifiedNeedlesS5.lean:104` (root/other/formative_preserves_common_constraints), `Seams/UnifiedNeedlesS5.lean:52` (root/other/judgment_step_frozen_side)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
-- `{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧` — `Seams/UnifiedNeedlesTotal.lean:49` (root/other/total_legacy_five_contracts), `Seams/Unified.lean:259` (root/other/unified_legal_derivation_on_declared_fragment)
-- …22 more in the JSON
+- …23 more in the JSON

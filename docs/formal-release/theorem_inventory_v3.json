@@ -18394,6 +18394,62 @@
    "theorem_count_bol_convention": 0
   },
   {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
+   "print_axioms_targets": [
+    "finite_population_calibration_not_group_calibration",
+    "fixed_atom_measure_singleton",
+    "fixed_groups_bernoulli_uniform_error",
+    "iid_bernoulli_mean_two_tail",
+    "population_calibration_not_conditional_correctness",
+    "zero_empirical_ece_not_population_calibration"
+   ],
+   "sha256": "9062a5f606eff9ac2bfa8fcb4cd6e03802ece6c4f1d15ca94acdd63fe3d625c8",
+   "size_bytes": 1039,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "scoreWithGroup"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_population_calibration_not_group_calibration"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_groups_bernoulli_uniform_error"
+    },
+    {
+     "kind": "def",
+     "name": "oneSampleECE"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_empirical_ece_not_population_calibration"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.BernoulliMeanInstance20261031",
+    "JurisLean.Candidates.LearningFiniteClass20261027",
+    "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "4df13e3f2b3555832fc2bdc2df58e74389e383e3bd6fdc4bdc7903d0b234a866",
+   "size_bytes": 9892,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
    "declarations": [
     {
      "kind": "structure",
@@ -59937,6 +59993,8 @@
     "JurisLean.Candidates.U05_1OriginalCalibrationAudit20261101",
     "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101",
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
+    "JurisLean.Candidates.U05_2OriginalGroupCalibrationAudit20261101",
+    "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
     "JurisLean.Candidates.U06_4ConditionalInformation20261031",
@@ -60143,8 +60201,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "3cfe461273c96b03e61725165c3591e812fd6c3a4d5dc745f11128fa5e3eedb0",
-   "size_bytes": 14405,
+   "sha256": "027e278822b196356beeb1551397cca55b7703d042836ff5fc6e2edc5ffe4a2a",
+   "size_bytes": 14551,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60308,22 +60366,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6319,
-   "file_count": 551,
+   "counted_declaration_count": 6322,
+   "file_count": 553,
    "lemma_count": 146,
-   "print_axioms_command_count": 5562,
-   "print_axioms_distinct_targets": 5113,
-   "theorem_count": 6173,
-   "theorem_count_bol_convention": 6073
+   "print_axioms_command_count": 5568,
+   "print_axioms_distinct_targets": 5117,
+   "theorem_count": 6176,
+   "theorem_count_bol_convention": 6076
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6300,
-   "file_count": 536,
+   "counted_declaration_count": 6303,
+   "file_count": 538,
    "lemma_count": 139,
-   "print_axioms_command_count": 5562,
-   "print_axioms_distinct_targets": 5113,
-   "theorem_count": 6161,
-   "theorem_count_bol_convention": 6061
+   "print_axioms_command_count": 5568,
+   "print_axioms_distinct_targets": 5117,
+   "theorem_count": 6164,
+   "theorem_count_bol_convention": 6064
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60532,6 +60590,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61081,6 +61141,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationAudit20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_4ConditionalInformation20261031.lean",
@@ -61467,17 +61529,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a0dcda233eb8ddb01cb15984caabde0e8e3f62c44458182fb338682b455b13f5",
+ "source_inventory_digest": "cb4ab5564596edfd06eb97a7919f60fc76632af717d76ad404bc40ace92467f1",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original05-1-20261101",
-  "commit": "48fcf0282436fb55d36a5621efda877fd538d397",
-  "tree": "cd7371b551add17d21a94e2c3ed348dd2337eb40"
+  "branch": "formal/close-original05-2-20261101",
+  "commit": "606dde980bf30dfb17f786e410013274661d9be0",
+  "tree": "a764de42611420de60c9d6dd76abc451e5184556"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 551,
+  "files_total": 553,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

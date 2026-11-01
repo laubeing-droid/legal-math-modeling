@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.1补齐后，当前math_rows分布为39 COVERED/37 PARTIAL/21 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.2补齐后，当前math_rows分布为40 COVERED/37 PARTIAL/20 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 39,
+    "COVERED": 40,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 21
+    "NOT_RECONCILED": 20
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2546,9 +2546,47 @@
           99
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original05-2-group-calibration-close-20261101",
+          "subject": "e18a219df684f8a7c5844c81fea59399493d5e94",
+          "subject_tree": "394344baeccb221a0ff8cb1f159f3226e6b7750d",
+          "run_id": 41277923020,
+          "job_id": 124763778322,
+          "scope": "Three new named declarations plus three reused declarations for frozen L95/L97/L99; successful changed-module CI only. Full-record PR acceptance remains pending. No actual consumer caller or joint-sampling execution is claimed."
+        }
+      ],
+      "remaining": "原题05.2 L95/L97/L99已由具名声明、既有定理与列明条件覆盖并经独立changed-module CI核验；本记录完整PR验收仍待跑。固定组的组内IID/IdentDistrib前提不能直接推广到事后任意挑选组；仅预先有限候选族由同一统一事件覆盖。未声称actual consumer调用、跨组独立或现实数据单位机制已核验；原题其他行、105工程实现及独立Brier设计切口不升级。",
+      "clause_evidence": [
+        {
+          "clause": "L95",
+          "new_declaration": "finite_population_calibration_not_group_calibration",
+          "existing_declarations": [
+            "population_calibration_not_conditional_correctness",
+            "fixed_atom_measure_singleton"
+          ],
+          "result": "在同一个fairBoolLaw双原子总体上，score恒为1/2的总体CE是1/2；scoreWithGroup实际投影到完整Bool信息域，两个组的CE分别为0与1，故不等于总体分数。这里只证明该明确有限构造，不保证未审查组或交叉子群。"
+        },
+        {
+          "clause": "L97",
+          "new_declaration": "fixed_groups_bernoulli_uniform_error",
+          "existing_declaration": "iid_bernoulli_mean_two_tail",
+          "result": "给定μ为概率测度、固定m及每组n_g≥1、可测Bool样本、组内iIndepFun且每项IdentDistrib到参数p_g∈[0,1]的Bernoulli律、δ∈(0,1)，各组半径sqrt(log(2m/δ)/(2n_g))并由有限union保证同时误差≤半径的事件概率至少1−δ。未加跨组独立或共同n；m=0为真空情形，小n_g半径可很宽。事件控制真实组成功率而非拟合分数校准。逐固定组前提不自动覆盖标签事后选择的新组；若候选组族预先有限，取m为族大小并使用同一全族事件控制族内后续选择，不涵盖族外任意后验选择。"
+        },
+        {
+          "clause": "L99",
+          "new_declaration": "zero_empirical_ece_not_population_calibration",
+          "existing_declarations": [
+            "population_calibration_not_conditional_correctness",
+            "fixed_atom_measure_singleton"
+          ],
+          "result": "单一固定bin、n=1、forecast=1，训练律与总体律同为fairBoolLaw；经验ECE为零事件概率1/2，而常数预测1并非总体校准。该有限反例符合原题允许的实例，不替代L95/L97全称结果。"
+        }
+      ],
+      "formal_evidence_boundary": "本行3个新声明与3个复用声明已由changed-module run 41277923020 / job 124763778322独立核验；source-module仅覆盖模块目标，full-record PR与全链仍待验。源码不代表实际消费者调用、跨组联合抽样执行、族外事后选择保证或法律规范结论。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前记录完整验收待PR，不以source-module成功代替全链。",
+      "scope_correction": "C仅覆盖冻结原题05.2 L95/L97/L99的数学命题与列明条件；L97后续选择仅限预先有限候选族的统一事件，不扩为任意post-hoc选择。未新增actual consumer caller或跨组联合抽样接线；不升级原题其他数学行、105工程状态或designated Brier cut。U50与97行分别计数。"
     },
     {
       "id": "05.3",

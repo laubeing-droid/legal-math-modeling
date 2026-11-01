@@ -105,6 +105,8 @@ instance : IsProbabilityMeasure fairBoolLaw :=
 private theorem fairBool_atom (b : Bool) : fairBoolLaw {b} = (1 / 2 : ENNReal) := by
   change fixedAtomMeasure (fun _ : Bool => (1 / 2 : ℚ)) half_nonneg half_sum {b} = _
   rw [fixed_atom_measure_singleton]
+  have hc : (((1 / 2 : ℚ) : ℝ)) = (1 / 2 : ℝ) := by norm_num
+  rw [hc, ENNReal.ofReal_div_of_pos (by norm_num : 0 < (2 : ℝ))]
   norm_num
 
 /-- L89: id, its copy, and its complement all have Bernoulli(1/2) marginals. -/
@@ -128,7 +130,10 @@ theorem two_couplings_different_joints :
   have hj : {w : Bool | w = true ∧ (!w) = true} = ∅ := by
     ext w
     cases w <;> simp
-  refine ⟨by simp, ?_, by rw [he]; simp, by rw [hj]; simp⟩
+  have hs : {w : Bool | w = w} = (Set.univ : Set Bool) := by
+    ext w
+    simp
+  refine ⟨by rw [hs]; exact measure_univ, ?_, by rw [he]; simp, by rw [hj]; simp⟩
   simpa using fairBool_atom true
 
 /-- L91: instantiate the admitted common-space bound; these three constraints conflict. -/
@@ -154,6 +159,7 @@ theorem normalized_scores_do_not_identify_target :
   intro h
   have hc := fairBool_atom true
   rw [h, hd] at hc
-  norm_num at hc
+  have hcR := congrArg ENNReal.toReal hc
+  norm_num [ENNReal.toReal_inv] at hcR
 
 end JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101

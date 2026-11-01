@@ -244,6 +244,7 @@ import JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101
 import JurisLean.Candidates.U06_2OriginalExpectedUtilityAudit20261101
 import JurisLean.Candidates.U06_3OriginalStrategyAudit20261102
 import JurisLean.Candidates.U06_6OriginalRiskEvaluationAudit20261102
+import JurisLean.Candidates.U06_7OriginalChapterAudit20261102
 import JurisLean.Candidates.HarnessOriginalInstancesAudit20261031
 import JurisLean.Candidates.U06_4ConditionalInformationAudit20261031
 import JurisLean.Candidates.U06_5OriginalClosureAudit20261031
@@ -268,6 +269,9 @@ import JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_risk_picker_selects_one
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_zero_is_empty
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_zero_limit_picker_returns_none
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_event_ids_nodup
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_net_is_gross
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_utility_matches_w4
 
 /-! Axiom audit for formal core release v1. -/
 

@@ -1,0 +1,13 @@
+import JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101
+import JurisLean.Candidates.CalibrationSemantics20261027
+
+/-! Original 05.3: actual population quantities, meaningful sufficient ordering,
+real bounded-loss joint finite-threshold guarantee, and explicit no-result gates. -/
+#print axioms JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk
+#print axioms JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.threshold_population_quantities
+#print axioms JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.true_conditional_error_ordering
+#print axioms JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff
+#print axioms JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_no_valid_coverage
+#print axioms JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.finite_threshold_interval_certificate
+#print axioms JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate
+#print axioms JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound

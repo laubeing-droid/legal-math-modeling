@@ -72,9 +72,9 @@ theorem riskPolicies_commonPolicies_subset {J S A P Ω : Type}
     [MeasurableSpace Ω] [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
     (horizon : ℕ) (branches : Finset J) (initial : J → S)
-    (next : J → ℕ → History S A → S → A → S → Prop)
-    (legal : J → ℕ → History S A → S → Finset A)
-    (implementable : ℕ → History S A → S → Finset A)
+    (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+    (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+    (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
     (hbranches : branches.Nonempty) (law : J → Measure Ω)
     (loss : P → Ω → ℝ) (limit : ℝ) :
     riskPolicies
@@ -90,9 +90,9 @@ theorem riskPolicies_common_member_is_feasible {J S A P Ω : Type}
     [MeasurableSpace Ω] [DecidableEq J] [DecidableEq A] [DecidableEq P]
     (candidates : Finset P) (realize : P → VisiblePolicy S A)
     (horizon : ℕ) (branches : Finset J) (initial : J → S)
-    (next : J → ℕ → History S A → S → A → S → Prop)
-    (legal : J → ℕ → History S A → S → Finset A)
-    (implementable : ℕ → History S A → S → Finset A)
+    (next : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → A → S → Prop)
+    (legal : J → ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
+    (implementable : ℕ → JurisLean.Candidates.U06_1FiniteBellman20261030.History S A → S → Finset A)
     (hbranches : branches.Nonempty) (law : J → Measure Ω)
     (loss : P → Ω → ℝ) (limit : ℝ) (p : P)
     (hp : p ∈ riskPolicies
@@ -204,7 +204,7 @@ def riskDemoRealize (p : RiskDemoPolicy) : VisiblePolicy Unit DemoAction :=
   demoVisiblePolicy (riskDemoCoreAction p)
 
 theorem riskDemo_realization_matches_existing_policy (p : RiskDemoPolicy) (n : ℕ)
-    (h : History Unit DemoAction) (s : Unit)
+    (h : JurisLean.Candidates.U06_1FiniteBellman20261030.History Unit DemoAction) (s : Unit)
     (hn : (demoControl.legal (n + 1) s).Nonempty) :
     (demoPolicy (riskDemoCoreAction p) n h s hn).val =
       riskDemoRealize p n h s := by
@@ -221,11 +221,24 @@ def riskDemoCommonPolicies : Finset RiskDemoPolicy :=
 
 theorem riskDemoCommonPolicies_eq_univ : riskDemoCommonPolicies = Finset.univ := by
   classical
-  ext p
-  simp [riskDemoCommonPolicies, commonPolicies, riskDemoRealize,
-    demo_policies_feasible, demoVisiblePolicy]
+  have hb : demoBranchSet = (Finset.univ : Finset DemoBranch) := by decide
+  apply Finset.ext
+  intro p
+  constructor
+  · intro _
+    exact Finset.mem_univ p
+  · intro _
+    unfold riskDemoCommonPolicies commonPolicies
+    apply Finset.mem_filter.mpr
+    refine ⟨Finset.mem_univ p, ?_⟩
+    simpa only [riskDemoRealize, hb] using
+      (demo_policies_feasible (riskDemoCoreAction p))
 
 def riskDemoLaw (j : DemoBranch) : Measure DemoWorld := demoBranchMeasure j
+
+local instance (j : DemoBranch) : IsProbabilityMeasure (riskDemoLaw j) := by
+  change IsProbabilityMeasure ((fixedBranchLaw j).toMeasure)
+  infer_instance
 
 def riskDemoOutcome (p : RiskDemoPolicy) (_ω : DemoWorld) : ℝ :=
   if p.val = 0 then 10 else 4
@@ -324,31 +337,28 @@ theorem riskDemo_filter_at_two_is_singleton :
     riskPolicies riskDemoCommonPolicies demoBranchSet demo_branches_nonempty
       riskDemoLaw riskDemoLoss 2 = ({1} : Finset RiskDemoPolicy) := by
   classical
-  rw [riskDemoCommonPolicies_eq_univ]
   rcases riskDemo_expected_loss_values with ⟨_, hLoss01, hLoss10, hLoss11⟩
-  have hPolicy01 : (0 : RiskDemoPolicy) ≠ 1 := by decide
-  ext p
-  fin_cases p
-  · simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_singleton, hPolicy01]
-    constructor
-    · rintro ⟨_, hWorst⟩
-      have hAll := (Finset.sup'_le_iff demo_branches_nonempty
-        (lossMean riskDemoLaw riskDemoLoss (0 : RiskDemoPolicy))).mp hWorst
+  apply Finset.ext
+  intro p
+  rw [riskPolicies_mem_iff, riskDemoCommonPolicies_eq_univ]
+  simp only [Finset.mem_univ, true_and, Finset.mem_singleton]
+  constructor
+  · intro hRisk
+    have hp01 : p = (0 : RiskDemoPolicy) ∨ p = 1 := by
+      fin_cases p <;> simp
+    rcases hp01 with rfl | rfl
+    · have hAll := (Finset.sup'_le_iff demo_branches_nonempty
+        (lossMean riskDemoLaw riskDemoLoss (0 : RiskDemoPolicy))).mp hRisk.2
       have hbad := hAll 1 (by simp [demoBranchSet])
       norm_num [hLoss01] at hbad
-    · intro h
-      exact False.elim h
-  · simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_singleton]
-    constructor
-    · intro _
-      rfl
-    · intro _
-      refine ⟨riskDemo_model_inputs 1, ?_⟩
-      apply (Finset.sup'_le_iff demo_branches_nonempty
-        (lossMean riskDemoLaw riskDemoLoss (1 : RiskDemoPolicy))).mpr
-      intro j hj
-      fin_cases j <;> norm_num [hLoss10, hLoss11]
-
+    · rfl
+  · intro hp
+    subst p
+    refine ⟨riskDemo_model_inputs 1, ?_⟩
+    apply (Finset.sup'_le_iff demo_branches_nonempty
+      (lossMean riskDemoLaw riskDemoLoss (1 : RiskDemoPolicy))).mpr
+    intro j hj
+    fin_cases j <;> norm_num [hLoss10, hLoss11]
 theorem riskDemo_risk_picker_selects_one :
     pickMaxMin demoBranchSet demo_branches_nonempty
       (riskPolicies riskDemoCommonPolicies demoBranchSet demo_branches_nonempty
@@ -374,29 +384,26 @@ theorem riskDemo_filter_at_zero_is_empty :
     riskPolicies riskDemoCommonPolicies demoBranchSet demo_branches_nonempty
       riskDemoLaw riskDemoLoss 0 = ∅ := by
   classical
-  rw [riskDemoCommonPolicies_eq_univ]
   rcases riskDemo_expected_loss_values with ⟨_, hLoss01, hLoss10, _⟩
-  ext p
-  fin_cases p
-  · simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.not_mem_empty]
-    constructor
-    · rintro ⟨_, hWorst⟩
-      have hAll := (Finset.sup'_le_iff demo_branches_nonempty
-        (lossMean riskDemoLaw riskDemoLoss (0 : RiskDemoPolicy))).mp hWorst
+  apply Finset.ext
+  intro p
+  rw [riskPolicies_mem_iff]
+  constructor
+  · rintro ⟨_, hRisk⟩
+    have hp01 : p = (0 : RiskDemoPolicy) ∨ p = 1 := by
+      fin_cases p <;> simp
+    rcases hp01 with rfl | rfl
+    · have hAll := (Finset.sup'_le_iff demo_branches_nonempty
+        (lossMean riskDemoLaw riskDemoLoss (0 : RiskDemoPolicy))).mp hRisk.2
       have hbad := hAll 1 (by simp [demoBranchSet])
       norm_num [hLoss01] at hbad
-    · intro hfalse
-      exact False.elim hfalse
-  · simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.not_mem_empty]
-    constructor
-    · rintro ⟨_, hWorst⟩
-      have hAll := (Finset.sup'_le_iff demo_branches_nonempty
-        (lossMean riskDemoLaw riskDemoLoss (1 : RiskDemoPolicy))).mp hWorst
+    · have hAll := (Finset.sup'_le_iff demo_branches_nonempty
+        (lossMean riskDemoLaw riskDemoLoss (1 : RiskDemoPolicy))).mp hRisk.2
       have hbad := hAll 0 (by simp [demoBranchSet])
       norm_num [hLoss10] at hbad
-    · intro hfalse
-      exact False.elim hfalse
-
+  · intro hEmpty
+    have hFalse : False := by simpa using hEmpty
+    exact hFalse.elim
 theorem riskDemo_zero_limit_picker_returns_none :
     pickMaxMin demoBranchSet demo_branches_nonempty
       (riskPolicies riskDemoCommonPolicies demoBranchSet demo_branches_nonempty

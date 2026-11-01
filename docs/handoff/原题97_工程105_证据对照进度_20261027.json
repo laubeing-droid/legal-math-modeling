@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 本次数学行分类依据97个原题数学row更新为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；本轮原题05.1补齐后，当前math_rows分布为39 COVERED/37 PARTIAL/21 NOT_RECONCILED。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -46,14 +46,14 @@
   },
   "original_manifest": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\12_原题小问覆盖核对.json",
   "reference_main": "3e8d2e5f4683006977d77f7b3316e0eb63295508",
-  "counts": {
+  "counts":   {
     "math_main_questions": 97,
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 38,
+    "COVERED": 39,
     "PARTIAL": 37,
-    "NOT_RECONCILED": 22
+    "NOT_RECONCILED": 21
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -2449,7 +2449,7 @@
       "scope_correction": "本行C仅指冻结L129/L131/L133范围内的原题实例/定义连接有具名源码结果和本轮独立changed-module CI。没有新增对Q3/4/5的一般证明；只沿用原已C结论及前提。实际全链PR验收待跑，现实机制/法律结论与consumer实现未由此关闭。",
       "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前分支完整记录验收待PR，不以source-module成功代替全链。"
     },
-    {
+        {
       "id": "05.1",
       "heading": "## 问题一：评分映射为概率还缺什么",
       "original_manifest_row": "05.1",
@@ -2475,9 +2475,50 @@
           91
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original05-1-calibration-close-20261101",
+          "subject": "53a76a8f950ce309b28963b86582e978f6c61c5e",
+          "subject_tree": "fcfdbc6aacd88a5a95735cf97a2f7ae79c793918",
+          "run_id": 41271710425,
+          "job_id": 124745651579,
+          "scope": "Four new named declarations plus five reused declarations for frozen L87/L89/L91; successful changed-module CI only. Full-record PR acceptance is pending. No actual consumer caller or joint-sampling contract is claimed."
+        }
+      ],
+      "remaining": "原题05.1 L87/L89/L91的数学声明已有具名新连接与既有定理，并由独立changed-module CI核验；本记录完整PR验收仍待跑。未声称actual consumer调用、联合抽样或跨分布/OOD条件律已经接通；原题其他行、105工程实现及独立Brier设计切口不升级。",
+      "clause_evidence": [
+        {
+          "clause": "L87",
+          "new_declarations": [
+            "conditional_correct_score_is_calibrated",
+            "population_calibration_not_conditional_correctness"
+          ],
+          "existing_declaration": "q05_1_conditional_correct_implies_calibration",
+          "result": "The tower theorem is instantiated at the actual sigma(score∘X) ≤ sigma(X), with Bool Y and the a.e. [0,1] condition only on observed score(X). Under fairBoolLaw, constant score 1/2 has score-field CE 1/2, while full-input CE is the 0/1 label and is not a.e. 1/2."
+        },
+        {
+          "clause": "L89",
+          "new_declaration": "normalized_rule_not_calibrated",
+          "existing_declarations": [
+            "q05_2_population_calibration_not_group_calibration",
+            "q05_1_normalized_score_not_calibrated"
+          ],
+          "result": "Fixed raw weights (1,9) emit 9/(1+9) independently of training samples; train and test law are both fairBoolLaw. The score is in [0,1], but true conditional expectation is 1/2, so the rule is not calibrated. The existing equal-weight finite bucket/group example remains separate; no arbitrary bucket-to-CE equivalence, training-optimum, or general temperature claim is made."
+        },
+        {
+          "clause": "L91",
+          "new_declaration": "bounded_binary_brier_contract",
+          "existing_declarations": [
+            "q05_1_conditional_brier_decomposition",
+            "q05_1_conditional_brier_unique_optimum"
+          ],
+          "result": "Under μ probability, m≤mΩ, ambient a.e. strong measurability of Y, binary Y, m-strong measurability of p, and the stated a.e. [0,1] score bound, derive both MemLp premises. Reuse conditional decomposition/pointwise minimum and integrate via integral_condExp. This is the population risk objective, not a finite-training convergence or OOD law claim."
+        }
+      ],
+      "formal_evidence_boundary": "本行新增4个具名声明与5个复用声明已由changed-module run 41271710425 / job 124745651579独立核验；full-record PR与全链仍待验。源码证据不代表实际消费者接线、联合抽样证明、有限训练收敛、OOD律一致或法律规范结论。",
+      "shortest_acceptance": "提交本记录并创建PR后，先完成exact-subject全链、实际证书/引用比对与独立verifier，再按既有授权squash合并并做合后短核。当前记录分支完整验收待PR，不以source-module成功代替全链。",
+      "scope_correction": "C仅覆盖冻结原题05.1 L87/L89/L91的数学命题和列明条件；不升级原题其他数学行、105工程状态或designated cut 05。15条消费边状态不变，边4仅新增理论producer证据说明，不新增actual caller或joint-sampling绑定。"
     },
     {
       "id": "05.2",

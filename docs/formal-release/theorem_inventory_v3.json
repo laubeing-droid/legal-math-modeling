@@ -18312,6 +18312,69 @@
   {
    "declarations": [],
    "imports": [
+    "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationAudit20261101.lean",
+   "print_axioms_targets": [
+    "bounded_binary_brier_contract",
+    "conditional_correct_score_is_calibrated",
+    "normalized_rule_not_calibrated",
+    "population_calibration_not_conditional_correctness",
+    "q05_1_conditional_brier_decomposition",
+    "q05_1_conditional_brier_unique_optimum",
+    "q05_1_conditional_correct_implies_calibration",
+    "q05_1_normalized_score_not_calibrated",
+    "q05_2_population_calibration_not_group_calibration"
+   ],
+   "sha256": "c4c788206779a72dd64fc7b95377c3fff8b5094d822a7c763f2a556875c45ad9",
+   "size_bytes": 1199,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "conditional_correct_score_is_calibrated"
+    },
+    {
+     "kind": "theorem",
+     "name": "bounded_binary_brier_contract"
+    },
+    {
+     "kind": "def",
+     "name": "fairLabel"
+    },
+    {
+     "kind": "theorem",
+     "name": "population_calibration_not_conditional_correctness"
+    },
+    {
+     "kind": "def",
+     "name": "normalizedRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "normalized_rule_not_calibrated"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CalibrationSemantics20261027",
+    "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101",
+    "Mathlib.Probability.ProbabilityMassFunction.Integrals"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
+   "print_axioms_targets": [],
+   "sha256": "d7111dc25767e753cf9d11d4b4583bd2cbf9d90dad0b310624ac35909fead9fc",
+   "size_bytes": 6783,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [],
+   "imports": [
     "JurisLean.Candidates.ExchangeableRank20261031",
     "JurisLean.Candidates.GroupedConformalInstance20261031"
    ],
@@ -59871,6 +59934,8 @@
     "JurisLean.Candidates.U04_2SharpConditioning20261029",
     "JurisLean.Candidates.U04_4OriginalClosureAudit20261031",
     "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101",
+    "JurisLean.Candidates.U05_1OriginalCalibrationAudit20261101",
+    "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101",
     "JurisLean.Candidates.U05_1OriginalClosureAudit20261031",
     "JurisLean.Candidates.U06_1FiniteBellman20261030",
     "JurisLean.Candidates.U06_2EquilibriumTransfer20261030",
@@ -60078,8 +60143,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "621560fd0174ff6f6d3e9228170958b7d4d1684c0cb5742f5e6f93a37d9233fc",
-   "size_bytes": 14269,
+   "sha256": "3cfe461273c96b03e61725165c3591e812fd6c3a4d5dc745f11128fa5e3eedb0",
+   "size_bytes": 14405,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -60243,22 +60308,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6315,
-   "file_count": 549,
+   "counted_declaration_count": 6319,
+   "file_count": 551,
    "lemma_count": 146,
-   "print_axioms_command_count": 5553,
-   "print_axioms_distinct_targets": 5104,
-   "theorem_count": 6169,
-   "theorem_count_bol_convention": 6069
+   "print_axioms_command_count": 5562,
+   "print_axioms_distinct_targets": 5113,
+   "theorem_count": 6173,
+   "theorem_count_bol_convention": 6073
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6296,
-   "file_count": 534,
+   "counted_declaration_count": 6300,
+   "file_count": 536,
    "lemma_count": 139,
-   "print_axioms_command_count": 5553,
-   "print_axioms_distinct_targets": 5104,
-   "theorem_count": 6157,
-   "theorem_count_bol_convention": 6057
+   "print_axioms_command_count": 5562,
+   "print_axioms_distinct_targets": 5113,
+   "theorem_count": 6161,
+   "theorem_count_bol_convention": 6061
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -60464,6 +60529,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
@@ -61011,6 +61078,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_2SharpConditioning20261029.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_4OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationAudit20261101.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalClosureAudit20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U06_2EquilibriumTransfer20261030.lean",
@@ -61398,17 +61467,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3050e23a11525266f1d005818c74b41b47fefbc4c9dac413a1bf657f1bae0757",
+ "source_inventory_digest": "a0dcda233eb8ddb01cb15984caabde0e8e3f62c44458182fb338682b455b13f5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original04-2-6-20261101",
-  "commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
-  "tree": "c02837471cd0ea2a4dea510a09a87edc472391ef"
+  "branch": "formal/close-original05-1-20261101",
+  "commit": "48fcf0282436fb55d36a5621efda877fd538d397",
+  "tree": "cd7371b551add17d21a94e2c3ed348dd2337eb40"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 549,
+  "files_total": 551,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

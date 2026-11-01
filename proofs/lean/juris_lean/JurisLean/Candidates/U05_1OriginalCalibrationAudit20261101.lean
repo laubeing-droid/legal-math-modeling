@@ -1,0 +1,25 @@
+import JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101
+
+/-! Frozen original05.1 only: four premise/CE connectors and five admitted results. -/
+open JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101
+open JurisLean.Candidates.CalibrationSemantics20261027
+
+#check conditional_correct_score_is_calibrated
+#print axioms conditional_correct_score_is_calibrated
+#check bounded_binary_brier_contract
+#print axioms bounded_binary_brier_contract
+#check population_calibration_not_conditional_correctness
+#print axioms population_calibration_not_conditional_correctness
+#check normalized_rule_not_calibrated
+#print axioms normalized_rule_not_calibrated
+
+#check q05_1_conditional_correct_implies_calibration
+#print axioms q05_1_conditional_correct_implies_calibration
+#check q05_1_conditional_brier_decomposition
+#print axioms q05_1_conditional_brier_decomposition
+#check q05_1_conditional_brier_unique_optimum
+#print axioms q05_1_conditional_brier_unique_optimum
+#check q05_2_population_calibration_not_group_calibration
+#print axioms q05_2_population_calibration_not_group_calibration
+#check q05_1_normalized_score_not_calibrated
+#print axioms q05_1_normalized_score_not_calibrated

@@ -61,9 +61,9 @@ theorem bounded_binary_brier_contract
     filter_upwards [scoreRange] with w hw
     rw [Real.norm_eq_abs, abs_of_nonneg hw.1]
     exact hw.2
-  have decomposition := q05_1_conditional_brier_decomposition μ m hm Y p hY hp scoreMeasurable
+  have decomposition := q05_1_conditional_brier_decomposition (m₀ := mΩ) μ m hm Y p hY hp scoreMeasurable
   refine ⟨decomposition, ?_,
-    q05_1_conditional_brier_unique_optimum μ m hm Y p hY hp scoreMeasurable⟩
+    q05_1_conditional_brier_unique_optimum (m₀ := mΩ) μ m hm Y p hY hp scoreMeasurable⟩
   calc
     (∫ w, (Y w - p w) ^ 2 ∂μ) = ∫ w, (μ[(Y - p) ^ 2 | m]) w ∂μ :=
       (integral_condExp hm).symm

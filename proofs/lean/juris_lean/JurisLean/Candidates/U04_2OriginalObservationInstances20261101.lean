@@ -28,6 +28,45 @@ private theorem fixed_bernoulli_probability (theta : ℝ)
   unfold bernoulliMeasure
   infer_instance
 
+/-- L99: the declared Bernoulli success marginal, on the given observation space. -/
+theorem ten_copies_of_declared_marginal {Ω : Type*} [MeasurableSpace Ω]
+    (theta : ℝ) (h0 : 0 ≤ theta) (_h1 : theta ≤ 1)
+    (mu : Measure Ω) [IsProbabilityMeasure mu]
+    (Z : Ω → Bool) (_hZ : Measurable Z)
+    (hMass : mu (Z ⁻¹' ({true} : Set Bool)) = ENNReal.ofReal theta) :
+    mu.real {w | ∀ _ : Fin 10, Z w = true} = theta := by
+  have hs : {w | ∀ _ : Fin 10, Z w = true} = Z ⁻¹' ({true} : Set Bool) := by
+    ext w
+    constructor
+    · intro h
+      exact h 0
+    · intro h i
+      exact h
+  change (mu {w | ∀ _ : Fin 10, Z w = true}).toReal = theta
+  rw [hs, hMass, ENNReal.toReal_ofReal h0]
+
+/-- L99: apply the existing finite independent-event product to the declared family,
+rather than infer a likelihood from the number of files or assume a Pi law. -/
+theorem ten_independent_of_declared_marginals {Ω : Type*} [MeasurableSpace Ω]
+    (theta : ℝ) (h0 : 0 ≤ theta) (_h1 : theta ≤ 1)
+    (mu : Measure Ω) [IsProbabilityMeasure mu]
+    (X : Fin 10 → Ω → Bool) (_hX : ∀ i, Measurable (X i))
+    (hInd : iIndepFun X mu)
+    (hMass : ∀ i, mu ((X i) ⁻¹' ({true} : Set Bool)) = ENNReal.ofReal theta) :
+    mu.real {w | ∀ i, X i w = true} = theta ^ 10 := by
+  have hprod := hInd.measure_inter_preimage_eq_mul
+    (Finset.univ : Finset (Fin 10)) (sets := fun _ => ({true} : Set Bool))
+    (fun _ _ => measurableSet_singleton true)
+  have hs :
+      (⋂ i ∈ (Finset.univ : Finset (Fin 10)), (X i) ⁻¹' ({true} : Set Bool)) =
+      {w | ∀ i, X i w = true} := by
+    ext w
+    simp
+  have hp : mu {w | ∀ i, X i w = true} = (ENNReal.ofReal theta) ^ 10 := by
+    simpa only [hs, hMass, Finset.prod_const, Finset.card_univ, Fintype.card_fin] using hprod
+  change (mu {w | ∀ i, X i w = true}).toReal = theta ^ 10
+  rw [hp, ENNReal.toReal_pow, ENNReal.toReal_ofReal h0]
+
 def tenIndependentLaw (theta : ℝ) (h0 : 0 ≤ theta) (h1 : theta ≤ 1) :
     Measure (Fin 10 → Bool) :=
   Measure.pi (fun _ : Fin 10 => bernoulliMeasure theta h0 h1)
@@ -43,16 +82,10 @@ theorem ten_copies_all_success_likelihood (theta : ℝ)
     (h0 : 0 ≤ theta) (h1 : theta ≤ 1) :
     (bernoulliMeasure theta h0 h1).real
       {w : Bool | ∀ _ : Fin 10, w = true} = theta := by
-  have hs : {w : Bool | ∀ _ : Fin 10, w = true} = ({true} : Set Bool) := by
-    ext w
-    constructor
-    · intro h
-      exact h 0
-    · intro h i
-      exact h
-  change ((bernoulliMeasure theta h0 h1)
-    {w : Bool | ∀ _ : Fin 10, w = true}).toReal = theta
-  rw [hs, fixed_bernoulli_true_mass, ENNReal.toReal_ofReal h0]
+  letI := fixed_bernoulli_probability theta h0 h1
+  exact ten_copies_of_declared_marginal theta h0 h1
+    (bernoulliMeasure theta h0 h1) id measurable_id
+    (by simpa using fixed_bernoulli_true_mass theta h0 h1)
 
 theorem ten_independent_all_success_likelihood (theta : ℝ)
     (h0 : 0 ≤ theta) (h1 : theta ≤ 1) :
@@ -76,22 +109,10 @@ theorem ten_independent_all_success_likelihood (theta : ℝ)
       _ = nu {true} := by
         rw [(measurePreserving_eval (fun _ : Fin 10 => nu) i).map_eq]
       _ = ENNReal.ofReal theta := fixed_bernoulli_true_mass theta h0 h1
-  have hprod := hind.measure_inter_preimage_eq_mul
-    (Finset.univ : Finset (Fin 10)) (sets := fun _ => ({true} : Set Bool))
-    (fun _ _ => measurableSet_singleton true)
-  have hs :
-      (⋂ i ∈ (Finset.univ : Finset (Fin 10)),
-        (fun w : Fin 10 → Bool => w i) ⁻¹' ({true} : Set Bool)) =
-      {w : Fin 10 → Bool | ∀ i, w i = true} := by
-    ext w
-    simp
-  have hp : (Measure.pi (fun _ : Fin 10 => nu))
-      {w : Fin 10 → Bool | ∀ i, w i = true} = (ENNReal.ofReal theta) ^ 10 := by
-    simpa only [hs, hmass, Finset.prod_const, Finset.card_univ,
-      Fintype.card_fin] using hprod
-  change ((Measure.pi (fun _ : Fin 10 => nu))
-    {w : Fin 10 → Bool | ∀ i, w i = true}).toReal = theta ^ 10
-  rw [hp, ENNReal.toReal_pow, ENNReal.toReal_ofReal h0]
+  exact ten_independent_of_declared_marginals theta h0 h1
+    (Measure.pi (fun _ : Fin 10 => nu))
+    (fun i : Fin 10 => fun w : Fin 10 → Bool => w i)
+    (fun i => measurable_pi_apply i) hind hmass
 
 /-- L99/L131: the observation object is the same ten-coordinate tuple space. -/
 def tenCopiedObservationLaw (theta : ℝ) (h0 : 0 ≤ theta) (h1 : theta ≤ 1) :
@@ -138,19 +159,15 @@ theorem ten_distinct_labels_shared_cause :
     ¬ iIndepFun (fun _ : Fin 10 => (id : Bool → Bool))
       (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num)) := by
   refine ⟨fun _ _ h => h, ?_⟩
+  letI := fixed_bernoulli_probability (1 / 2) (by norm_num) (by norm_num)
   intro hi
-  have hp := hi.measure_inter_preimage_eq_mul
-    (Finset.univ : Finset (Fin 10)) (sets := fun _ => ({true} : Set Bool))
-    (fun _ _ => measurableSet_singleton true)
-  have hs :
-      (⋂ i ∈ (Finset.univ : Finset (Fin 10)),
-        (id : Bool → Bool) ⁻¹' ({true} : Set Bool)) = ({true} : Set Bool) := by
-    ext b
-    simp
-  rw [hs] at hp
-  simp only [Set.preimage_id, fixed_bernoulli_true_mass, Finset.prod_const,
-    Finset.card_univ, Fintype.card_fin] at hp
-  have hr := congrArg ENNReal.toReal hp
-  norm_num [ENNReal.toReal_pow] at hr
+  have hp := ten_independent_of_declared_marginals (1 / 2) (by norm_num) (by norm_num)
+    (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num))
+    (fun _ : Fin 10 => (id : Bool → Bool)) (fun _ => measurable_id) hi
+    (fun _ => by simpa using fixed_bernoulli_true_mass (1 / 2) (by norm_num) (by norm_num))
+  change (bernoulliMeasure (1 / 2) (by norm_num) (by norm_num)).real
+    {w : Bool | ∀ _ : Fin 10, w = true} = (1 / 2 : ℝ) ^ 10 at hp
+  rw [ten_copies_all_success_likelihood] at hp
+  norm_num at hp
 
 end JurisLean.Candidates.U04_2OriginalObservationInstances20261101

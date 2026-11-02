@@ -30394,6 +30394,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/formal-release/evidence/original07-1-source-identity-close-20261102/README.md:34",
         "docs/formal-release/evidence/source-representation-20261027/README.md:3"
       ],
       "run_id": 40457212969,
@@ -30580,6 +30581,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/formal-release/evidence/original07-1-source-identity-close-20261102/README.md:35",
         "docs/formal-release/evidence/source-stages-20261027/README.md:3"
       ],
       "run_id": 40468260025,
@@ -35864,6 +35866,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-11-01T22:44:13Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-11-01T23:51:11Z",
+      "event": "pull_request",
+      "evidence": null,
+      "head_branch": "formal/close-original06-7-chapter-20261102",
+      "head_sha": "9de1037a28c7e201b994889bf2bc1bf0faab1e50",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41364107892",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "formal: close original 06.7 finite chapter coverage",
+      "quoted_by": [
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:442"
+      ],
+      "run_id": 41364107892,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-02T00:17:47Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

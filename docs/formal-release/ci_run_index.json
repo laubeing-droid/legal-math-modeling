@@ -36301,6 +36301,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/formal-release/evidence/original07-8-static-source-bridge-close-20261102/README.md:31",
         "docs/handoff/U00_十五条实际消费边复核_20261027.md:471"
       ],
       "run_id": 41473046523,
@@ -36363,12 +36364,76 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/formal-release/evidence/original07-8-static-source-bridge-close-20261102/README.md:27",
         "docs/handoff/U00_十五条实际消费边复核_20261027.md:471"
       ],
       "run_id": 41474329740,
       "started": true,
       "status": "completed",
       "updated_at": "2026-11-02T15:45:38Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-02T18:06:25Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original08-1-horn-semantics-20261103",
+      "head_sha": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41497387863",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original08-1-horn-boundary-close-20261103/README.md:38",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:475"
+      ],
+      "run_id": 41497387863,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-02T18:08:53Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

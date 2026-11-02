@@ -1,0 +1,85 @@
+import JurisLean.Candidates.TemporalInterpretationAudit20261027
+import JurisLean.Candidates.CompilerClosure20261026
+import JurisLean.Candidates.Final20261021.EvidenceProcedure
+
+namespace JurisLean.Candidates.TemporalIdentity20261103
+
+open JurisLean.Candidates.Final20261021
+open JurisLean.Candidates.Final20261021.Temporal
+open JurisLean.Candidates.TemporalInterpretation20261027
+
+-- Frozen 08.3 L117: the actual cut retains complete record identities.
+-- Distinct IDs therefore remain distinct even when their day fields agree.
+-- No ordering or equality assumption on a DayInt is used.
+theorem visible_cut_preserves_distinct_stable_ids
+    (g : Gamma) (history : List VersionRecord) (left right : VersionRecord)
+    (leftMember : left ∈ history) (rightMember : right ∈ history)
+    (leftVisible : visible g left = true) (rightVisible : visible g right = true)
+    (differentIds : left.id ≠ right.id) :
+    left ∈ visibleSet g history ∧ right ∈ visibleSet g history ∧ left ≠ right := by
+  refine ⟨?_, ?_, ?_⟩
+  · exact List.mem_toFinset.mpr (List.mem_filter.mpr ⟨leftMember, leftVisible⟩)
+  · exact List.mem_toFinset.mpr (List.mem_filter.mpr ⟨rightMember, rightVisible⟩)
+  · intro same
+    exact differentIds (congrArg (fun record : VersionRecord => record.id) same)
+
+end JurisLean.Candidates.TemporalIdentity20261103
+
+#check JurisLean.Candidates.TemporalIdentity20261103.visible_cut_preserves_distinct_stable_ids
+#print axioms JurisLean.Candidates.TemporalIdentity20261103.visible_cut_preserves_distinct_stable_ids
+
+#check JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation
+#check JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency
+#check JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality
+#check JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model
+#check JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact
+#check JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract
+#check JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable
+#check JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant
+#check JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant
+#check JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append
+#check JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion
+#check JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must
+#check JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership
+#check JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection
+#check JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers
+#check JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version
+#check JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure
+#check JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law
+#check JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers
+#print axioms JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers
+
+#check JurisLean.Candidates.Final20261021.Compiler.derives_mono_facts
+#print axioms JurisLean.Candidates.Final20261021.Compiler.derives_mono_facts
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted
+#print axioms JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.procedure
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal

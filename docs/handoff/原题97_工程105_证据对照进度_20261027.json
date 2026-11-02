@@ -7,8 +7,8 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. Current math_rows after this original 06.6 source-module candidate: 47 COVERED/35 PARTIAL/15 NOT_RECONCILED; this row remains a candidate until its exact-subject full-record acceptance and post-merge evidence are recorded.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
-    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag.",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. Current math_rows after the original 06.7 candidate: 48 COVERED/34 PARTIAL/15 NOT_RECONCILED; full-record acceptance and post-merge evidence for 06.7 remain pending.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
       "edge_markdown": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\U00_十五条实际消费边复核_20261027.md",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 47,
-    "PARTIAL": 35,
+    "COVERED": 48,
+    "PARTIAL": 34,
     "NOT_RECONCILED": 15
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -3565,7 +3565,7 @@
           141
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u06-2-debt-close-20261030",
@@ -3605,9 +3605,22 @@
             "JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction"
           ],
           "scope": "仅补原题06.7 L139的匹配硬币无纯均衡既有目标引用及一个具体有限完全信息两轮树的逆推实例；混合Nash/Brouwer的一般存在依据仍是PR80已接受的GameTheory目标，且不由本包raw冒充；不完成一般条件对齐或L141七问。"
+        },
+        {
+          "package": "docs/formal-release/evidence/original06-7-finite-chapter-close-20261102",
+          "subject": "9e62edd834bae22dbd8fc85d3c2fd0f34f0e8ed7",
+          "tree": "19ea36929958d4e7914b2103c52ebe95a3cdc1cd",
+          "run_id": 41358291966,
+          "job_id": 125003002576,
+          "attempt": 1,
+          "artifact_id": 13103568603,
+          "artifact_name": "changed-module-only-41358291966-1",
+          "artifact_size_bytes": 18159,
+          "artifact_sha256": "d576683df802188ed3aafdabf02c1590832ea7579bb19c5c13fb53c34f327986",
+          "scope": "Original-question 06.7 L137/L139/L141 mapping: the finite cash-event-to-existing-W4 terminal utility bridge is proved for its stated synthetic instance; finite equilibrium results remain under their own assumptions; the seven-question deliverable reuses accepted Q1-Q6 packages. The Audit printed 32 selected targets (3 new, 29 reused), separately from seven #check outputs. Full-record acceptance remains pending; no runtime consumer, T113 applicability, general backward-induction construction, or real-world provenance is inferred."
         }
       ],
-      "remaining": "L139：matching pennies无纯均衡、混合Nash/Brouwer有限存在条件与本包具体两轮完全信息树逆推实例已有具名证据，各自仍按其前提理解。L141的数学剩余是七问有限定义/算例/证明或反例、最多八项须外部提供输入的清单及明确缺口；冻结原句明确不需要代码、组件或其他会话成果。旧Pipeline q→recommendation是否接线只属于现有工程/consumer_edge_audit记录，不作为本数学行的剩余义务；本行仍PARTIAL，直到L141数学交付映射完整。"
+      "remaining": "The frozen L137/L139/L141 mapping and seven-question finite deliverable are now recorded. Remaining boundaries: this is the stated finite cash-to-W4 bridge, not a general game construction; mixed-Nash, Brouwer, and one-shot-deviation results retain their individual premises; T113 is not applied without its exact statement, assumptions, and source version. Q1-Q6 evidence remains in the prior accepted packages. Runtime consumer callers, real-world input provenance, and any legal application remain outside this mathematical producer. Exact-subject full-record PR acceptance and post-merge checks are pending."
     },
     {
       "id": "07.1",

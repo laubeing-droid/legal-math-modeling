@@ -1,0 +1,489 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.2",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.2 L107/L109 is COVERED as a mathematical mapping; full-record PR acceptance is pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      105,
+      110
+    ],
+    "subparagraph_lines": [
+      [
+        107,
+        107
+      ],
+      [
+        109,
+        109
+      ]
+    ],
+    "clause_ids": [
+      "U08.2"
+    ],
+    "sha256": "eeaa6e20a4a475ff81dd25b77b36ffa28a27cdcf0e2b554f31b5710da9f6db0c",
+    "quoted_lines": [
+      "L107: Publication, commencement/effectiveness, and applicability to the fact date are distinct; the stated inequalities do not determine one applicable version when effective date, repeal, and transition facts are unknown.",
+      "L109: The case asks for per-event selection, a whole-language lossless criterion, and separate preservation of labels, a single answer, and all expressible answers."
+    ]
+  },
+  "canonical_before": {
+    "row_id": "08.2",
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+        "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+        "run_id": 40472856489,
+        "job_id": 122083892400,
+        "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+      }
+    ],
+    "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。",
+    "counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 57,
+      "PARTIAL": 25,
+      "NOT_RECONCILED": 15
+    }
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original08-2-temporal-semantics-20261103",
+    "commit": "577902c7906106d54ac8fd860e1ba95be327928d",
+    "tree": "21279d7ada968c0fe94edec43c00526d0d190821",
+    "parent": "42306521627c6e3f87628054f271dd83ed0cc1cb"
+  },
+  "source_attempts": [
+    {
+      "run_id": 41511948575,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "577902c7906106d54ac8fd860e1ba95be327928d",
+      "head_branch": "formal/close-original08-2-temporal-semantics-20261103",
+      "job_id": 125505750460,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13174745187,
+      "artifact_name": "changed-module-only-41511948575-1",
+      "artifact_bytes": 6694,
+      "artifact_api_digest": "sha256:sha256:07f1bd7751225624f6383272fa8eb1238d8a5da6727d03435a1692502f6dccb1",
+      "artifact_zip_sha256": "07f1bd7751225624f6383272fa8eb1238d8a5da6727d03435a1692502f6dccb1",
+      "requested_module": "JurisLean.Candidates.SourceTemporalBoundaryAudit20261103",
+      "new_target_count": 3,
+      "explicit_check_axiom_pairs": 27,
+      "errors": 0,
+      "sorryAx_hits": 0
+    }
+  ],
+  "api_snapshots": [
+    {
+      "path": "D:\\tmp\\original08-2-source-r1\\artifacts-api.json",
+      "bytes": 810,
+      "sha256": "d31552c05df8ed71b89ac12341ea86bd7dbd8447a42981a3b7b799c0e6d88a97"
+    }
+  ],
+  "artifact": {
+    "id": 13174745187,
+    "name": "changed-module-only-41511948575-1",
+    "bytes": 6694,
+    "api_sha256": "sha256:07f1bd7751225624f6383272fa8eb1238d8a5da6727d03435a1692502f6dccb1",
+    "zip_path": "D:\\tmp\\original08-2-source-r1\\artifacts\\13174745187.zip",
+    "zip_sha256": "07f1bd7751225624f6383272fa8eb1238d8a5da6727d03435a1692502f6dccb1",
+    "package_log": "changed-module.log",
+    "log_bytes": 72934,
+    "log_sha256": "8624c697e1a4b8a3e9252b51f728bfb0bc600d4a9ec072e6bd28ac9872d98d5d",
+    "package_plan": "module-plan.json",
+    "plan_bytes": 277,
+    "plan_sha256": "275e0ee1f38d05c8ca776677bba47bf664f0a1b3d3f21a8f2e30d5a6000c54a3"
+  },
+  "module_plan": {
+    "include": [
+      {
+        "module": "JurisLean.Candidates.SourceTemporalBoundaryAudit20261103",
+        "target": "JurisLean.Candidates.SourceTemporalBoundaryAudit20261103"
+      }
+    ],
+    "removed_modules": [],
+    "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalBoundaryAudit20261103.lean",
+      "commit_git_blob": "d43d9b231c33debbd5fca4c07e80386fc83c0c52",
+      "physical_bytes": 9158,
+      "physical_sha256": "0e1669c0dfee622989047c92a46d8782cb397892f1e726c8cdaa1db305a9ca2b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "commit_git_blob": "da80c126f74d07993ec059869487f1c8a2a0deb4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "prior_verification_sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "matches_prior": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+      "bytes": 14711,
+      "sha256": "daeed74a372a1e090f3b6ba0c0fe6d5f82b3c2c0d83884b51af54a7f4ead92c0",
+      "git_blob": "b68b39006af4701a371f80c0641dcee68b2e4059",
+      "prior_verification_sha256": "daeed74a372a1e090f3b6ba0c0fe6d5f82b3c2c0d83884b51af54a7f4ead92c0",
+      "matches_prior": true
+    }
+  ],
+  "actual_output_counts": {
+    "requested_modules": 1,
+    "new_named_theorems": 3,
+    "selected_named_outputs": 27,
+    "selected_reused_outputs": 24,
+    "explicit_check_axiom_pairs": 27,
+    "source_plan_removed_modules": 0,
+    "raw_build": "success",
+    "error_count": 0,
+    "sorryAx_count": 0,
+    "new_theorem_standard_axioms": true
+  },
+  "selected_named_target_count": 27,
+  "selected_named_targets": [
+    {
+      "target": "JurisLean.Candidates.TemporalBoundary20261103.publication_commencement_and_fact_date_are_separate",
+      "check_source_line": 74,
+      "check_raw_log_line": 492,
+      "axiom_source_line": 75,
+      "axiom_raw_log_line": 518,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalBoundary20261103.whole_query_profile_compression_iff",
+      "check_source_line": 76,
+      "check_raw_log_line": 521,
+      "axiom_source_line": 77,
+      "axiom_raw_log_line": 526,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalBoundary20261103.all_query_answers_need_not_preserve_version_labels",
+      "check_source_line": 78,
+      "check_raw_log_line": 528,
+      "axiom_source_line": 79,
+      "axiom_raw_log_line": 534,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+      "check_source_line": 81,
+      "check_raw_log_line": 536,
+      "axiom_source_line": 82,
+      "axiom_raw_log_line": 556,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency",
+      "check_source_line": 84,
+      "check_raw_log_line": 559,
+      "axiom_source_line": 85,
+      "axiom_raw_log_line": 565,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality",
+      "check_source_line": 87,
+      "check_raw_log_line": 568,
+      "axiom_source_line": 88,
+      "axiom_raw_log_line": 583,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model",
+      "check_source_line": 90,
+      "check_raw_log_line": 586,
+      "axiom_source_line": 91,
+      "axiom_raw_log_line": 600,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact",
+      "check_source_line": 93,
+      "check_raw_log_line": 603,
+      "axiom_source_line": 94,
+      "axiom_raw_log_line": 607,
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+      "check_source_line": 96,
+      "check_raw_log_line": 608,
+      "axiom_source_line": 97,
+      "axiom_raw_log_line": 619,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable",
+      "check_source_line": 99,
+      "check_raw_log_line": 621,
+      "axiom_source_line": 100,
+      "axiom_raw_log_line": 631,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant",
+      "check_source_line": 102,
+      "check_raw_log_line": 634,
+      "axiom_source_line": 103,
+      "axiom_raw_log_line": 639,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant",
+      "check_source_line": 105,
+      "check_raw_log_line": 642,
+      "axiom_source_line": 106,
+      "axiom_raw_log_line": 647,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append",
+      "check_source_line": 108,
+      "check_raw_log_line": 650,
+      "axiom_source_line": 109,
+      "axiom_raw_log_line": 657,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion",
+      "check_source_line": 111,
+      "check_raw_log_line": 660,
+      "axiom_source_line": 112,
+      "axiom_raw_log_line": 670,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must",
+      "check_source_line": 114,
+      "check_raw_log_line": 673,
+      "axiom_source_line": 115,
+      "axiom_raw_log_line": 677,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership",
+      "check_source_line": 117,
+      "check_raw_log_line": 678,
+      "axiom_source_line": 118,
+      "axiom_raw_log_line": 681,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection",
+      "check_source_line": 120,
+      "check_raw_log_line": 682,
+      "axiom_source_line": 121,
+      "axiom_raw_log_line": 686,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers",
+      "check_source_line": 123,
+      "check_raw_log_line": 688,
+      "axiom_source_line": 124,
+      "axiom_raw_log_line": 692,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version",
+      "check_source_line": 126,
+      "check_raw_log_line": 693,
+      "axiom_source_line": 127,
+      "axiom_raw_log_line": 713,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure",
+      "check_source_line": 129,
+      "check_raw_log_line": 716,
+      "axiom_source_line": 130,
+      "axiom_raw_log_line": 732,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition",
+      "check_source_line": 132,
+      "check_raw_log_line": 735,
+      "axiom_source_line": 133,
+      "axiom_raw_log_line": 766,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version",
+      "check_source_line": 135,
+      "check_raw_log_line": 769,
+      "axiom_source_line": 136,
+      "axiom_raw_log_line": 796,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+      "check_source_line": 138,
+      "check_raw_log_line": 799,
+      "axiom_source_line": 139,
+      "axiom_raw_log_line": 808,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute",
+      "check_source_line": 141,
+      "check_raw_log_line": 811,
+      "axiom_source_line": 142,
+      "axiom_raw_log_line": 821,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates",
+      "check_source_line": 144,
+      "check_raw_log_line": 824,
+      "axiom_source_line": 145,
+      "axiom_raw_log_line": 854,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law",
+      "check_source_line": 147,
+      "check_raw_log_line": 857,
+      "axiom_source_line": 148,
+      "axiom_raw_log_line": 870,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers",
+      "check_source_line": 150,
+      "check_raw_log_line": 873,
+      "axiom_source_line": 151,
+      "axiom_raw_log_line": 884,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axioms_standard_subset": true,
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "The publication/effectiveness/fact-date example is a finite synthetic completion, not a claim about actual law or dates. Real applicability still depends on the separately supplied predicate and external fidelity.",
+    "The lossless theorem quantifies the complete declared Query type via equality of answer functions; it does not claim an infinite language can be enumerated by one finite procedure.",
+    "The Bool countermodel shows equal answers for the explicitly declared finite query language while labels differ; it does not replace the generic Query theorem.",
+    "The broader historical source/time/evidence/process and paragraph-engineering work remains in its existing U00/engineering scopes; this packet does not claim those completed.",
+    "Source-only changed-module build passed; full-record PR acceptance remains pending.",
+    "The source module is pinned to the committed 577902 Git blob bytes (9158 bytes, SHA256 0e1669c0dfee622989047c92a46d8782cb397892f1e726c8cdaa1db305a9ca2b); an earlier CRLF worktree representation was recorded separately and is not treated as CI source bytes. The generic whole-query theorem is also instantiated for any whole-case observation Obs and compression C over the stated finite frozen case domain, without assuming eventwise factorization; the domain is not claimed to be all cases."
+  ],
+  "diagnostics": {
+    "error_like_line_count": 0,
+    "sorryAx_line_count": 0,
+    "nonstandard_axiom_names": []
+  },
+  "pre_restore_worktree_source_observation": {
+    "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalBoundaryAudit20261103.lean",
+    "bytes": 9231,
+    "sha256": "48d135d7f80eb12e0a74eee238f33045bf83f64099d1898db2796dec2f9b33c2",
+    "detail": "Initial checkout contained CRLF on 73 otherwise blank lines. This physical checkout observation was not the committed source or CI pin. The file was restored byte-for-byte from HEAD 577902 before manifest generation; Git blob and source meaning did not change."
+  }
+}

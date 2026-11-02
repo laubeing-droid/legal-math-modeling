@@ -1,0 +1,303 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "07.7",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Finite four-stage L295 mapping is COVERED; candidate C pending full-record PR acceptance."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+    "lines": [
+      293,
+      296
+    ],
+    "subparagraph_lines": [
+      [
+        295,
+        295
+      ]
+    ],
+    "clause_ids": [
+      "U09.1",
+      "U07.2"
+    ],
+    "sha256": "1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a"
+  },
+  "canonical_before": {
+    "row_id": "07.7",
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "existing_evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+        "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+        "run_id": 40468260025,
+        "job_id": 122068840408,
+        "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+      }
+    ],
+    "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。",
+    "top_counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 54,
+      "PARTIAL": 28,
+      "NOT_RECONCILED": 15
+    }
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original07-7-finite-stage-witness-20261102",
+    "commit": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
+    "tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03",
+    "parent": "0a893ccb9d72b58ce6f5d58256589c821e653d52"
+  },
+  "source_attempts": [
+    {
+      "run_id": 41441275833,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "0a893ccb9d72b58ce6f5d58256589c821e653d52",
+      "head_branch": "formal/close-original07-7-finite-stage-witness-20261102",
+      "job_id": 125263468945,
+      "job_name": "changed-modules",
+      "job_conclusion": "failure",
+      "artifact_id": 13140446360,
+      "artifact_name": "changed-module-only-41441275833-1",
+      "artifact_bytes": 8066,
+      "artifact_sha256": "476ddb3048df183cb24f74643f765010c079b5a1e0c45162443000ad50980113",
+      "module_plan_path": "history/r1-module-plan.json",
+      "raw_log_path": "history/r1-failed-changed-module.log",
+      "disposition": "FAILED: default decide did not reduce; sorryAx in compiler recovery output is not source proof"
+    },
+    {
+      "run_id": 41443123829,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
+      "head_branch": "formal/close-original07-7-finite-stage-witness-20261102",
+      "job_id": 125269641272,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13140849372,
+      "artifact_name": "changed-module-only-41443123829-1",
+      "artifact_bytes": 6794,
+      "artifact_sha256": "c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
+      "module_plan_path": "module-plan.json",
+      "raw_log_path": "changed-module.log",
+      "disposition": "PASS: changed-module build only"
+    }
+  ],
+  "artifact": {
+    "id": 13140849372,
+    "name": "changed-module-only-41443123829-1",
+    "bytes": 6794,
+    "api_digest": "sha256:c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
+    "zip_sha256": "c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
+    "member_files": [
+      {
+        "path": "docs/formal-release/evidence/original07-7-finite-stage-close-20261102/module-plan.json",
+        "bytes": 257,
+        "sha256": "daa186675a843d18b01e457e16c854c553a28166446edfeb91e69dab18897912"
+      },
+      {
+        "path": "docs/formal-release/evidence/original07-7-finite-stage-close-20261102/changed-module.log",
+        "bytes": 50013,
+        "sha256": "1fb40f45c5636e54d81ad6f69fb7f067fa851e385b6896534565094aeae4f244"
+      }
+    ]
+  },
+  "module_plan": {
+    "include": [
+      {
+        "module": "JurisLean.Candidates.SourceStagesAudit20261027",
+        "target": "JurisLean.Candidates.SourceStagesAudit20261027"
+      }
+    ],
+    "removed_modules": [],
+    "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "module_plan_sha256": "daa186675a843d18b01e457e16c854c553a28166446edfeb91e69dab18897912",
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "bytes": 29160,
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "expected_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "source_subject": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
+      "source_tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "bytes": 15349,
+      "sha256": "0e9fd1a4c827cb4240aa5a50cc7e91aac3c26af77cdfaf7d3f6e035f4c635edb",
+      "git_blob": "30565bbdf60ade9b6333ace3aeae3bad37e7af4e",
+      "expected_blob": "30565bbdf60ade9b6333ace3aeae3bad37e7af4e",
+      "source_subject": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
+      "source_tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03"
+    }
+  ],
+  "actual_output_counts": {
+    "selected_targets": 9,
+    "target_outputs": 9,
+    "axiom_outputs": 9,
+    "errors": 0,
+    "sorryAx_occurrences": 0
+  },
+  "selected_named_target_count": 9,
+  "selected_named_targets": [
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.payment_preserves_complete_nonquantity_fields",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 177,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 19,
+      "audit_print_line": 20,
+      "raw_log_output_line": 420,
+      "raw_log_axioms_line": 442,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.scalar_and_item_projections_commute",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 190,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 21,
+      "audit_print_line": 22,
+      "raw_log_output_line": 445,
+      "raw_log_axioms_line": 452,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 210,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 23,
+      "audit_print_line": 24,
+      "raw_log_output_line": 455,
+      "raw_log_axioms_line": 467,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.adjacent_formation_projection",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 220,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 25,
+      "audit_print_line": 26,
+      "raw_log_output_line": 470,
+      "raw_log_axioms_line": 476,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.two_payments_balance_and_cash",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 226,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 27,
+      "audit_print_line": 28,
+      "raw_log_output_line": 477,
+      "raw_log_axioms_line": 491,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 334,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 35,
+      "audit_print_line": 36,
+      "raw_log_output_line": 541,
+      "raw_log_axioms_line": 557,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 413,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 43,
+      "audit_print_line": 44,
+      "raw_log_output_line": 572,
+      "raw_log_axioms_line": 580,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "declaration_line": 190,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 204,
+      "audit_print_line": 205,
+      "raw_log_output_line": 657,
+      "raw_log_axioms_line": 659,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "declaration_line": 211,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 248,
+      "audit_print_line": 249,
+      "raw_log_output_line": 667,
+      "raw_log_axioms_line": 678,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axioms_standard_subset": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "The successful plan requested only JurisLean.Candidates.SourceStagesAudit20261027; the Audit imports and checks the source declarations. This is not a full-source or full-release run.",
+    "R1 is retained as a failed attempt; its error-recovery sorryAx output is not counted as source sorry or as passing evidence.",
+    "Only the finite four-stage witness at original L295 is mapped. Other original-07 obligations and runtime/consumer contracts remain at their existing records."
+  ]
+}

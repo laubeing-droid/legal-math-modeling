@@ -17031,6 +17031,10 @@
     {
      "kind": "theorem",
      "name": "legacy_background_instance_is_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_stage_compatible_counterexample"
     }
    ],
    "imports": [
@@ -17047,6 +17051,7 @@
     "JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts",
     "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
     "JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique",
+    "JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample",
     "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts",
     "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
     "JurisLean.Candidates.SourceStages20261027.frame_contains_actual_computed_stages",
@@ -17069,10 +17074,10 @@
     "JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain",
     "JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified"
    ],
-   "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
-   "size_bytes": 12941,
-   "theorem_count": 2,
-   "theorem_count_bol_convention": 2
+   "sha256": "0e9fd1a4c827cb4240aa5a50cc7e91aac3c26af77cdfaf7d3f6e035f4c635edb",
+   "size_bytes": 15349,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
   },
   {
    "declarations": [
@@ -62230,22 +62235,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6405,
+   "counted_declaration_count": 6406,
    "file_count": 572,
    "lemma_count": 146,
-   "print_axioms_command_count": 5743,
-   "print_axioms_distinct_targets": 5240,
-   "theorem_count": 6259,
-   "theorem_count_bol_convention": 6159
+   "print_axioms_command_count": 5744,
+   "print_axioms_distinct_targets": 5241,
+   "theorem_count": 6260,
+   "theorem_count_bol_convention": 6160
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6386,
+   "counted_declaration_count": 6387,
    "file_count": 557,
    "lemma_count": 139,
-   "print_axioms_command_count": 5743,
-   "print_axioms_distinct_targets": 5240,
-   "theorem_count": 6247,
-   "theorem_count_bol_convention": 6147
+   "print_axioms_command_count": 5744,
+   "print_axioms_distinct_targets": 5241,
+   "theorem_count": 6248,
+   "theorem_count_bol_convention": 6148
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -63431,12 +63436,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e4370be2fb0429187af4d12559edf5e740d560845cc9be9856c0920163daeef4",
+ "source_inventory_digest": "f571ac5d84243745062aad3f3e3b7bbff2fd0ed80dd38bec790de1ad9c45b934",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original07-4-observation-instance-20261102",
-  "commit": "4a0e7edc7f26f3be1e444aca428a1004d351625e",
-  "tree": "4366472b73e47b3bea976f372af7deeb0f87aed3"
+  "branch": "formal/close-original07-7-finite-stage-witness-20261102",
+  "commit": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
+  "tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

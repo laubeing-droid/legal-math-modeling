@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。 本轮原题07.3候选C行登记后，当前math_rows为51 COVERED/31 PARTIAL/15 NOT_RECONCILED；完整记录PR验收仍待。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 50,
-    "PARTIAL": 32,
+    "COVERED": 51,
+    "PARTIAL": 31,
     "NOT_RECONCILED": 15
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -3740,7 +3740,7 @@
           279
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-compilation-20261027",
@@ -3765,9 +3765,31 @@
           "artifact_name": "changed-module-only-40771310113-1",
           "artifact_sha256": "49f4af9fc0a0614dc4a1a05f4157eee3ac000342ff20006e213590b392a735cc",
           "scope": "SOURCE_ONLY / FORMAL_MODULE: under an accepted sourceModel output and explicit external interpretation for the selected finite catalog row, reads CaseRecord key/claimedAmount/registered, observed relation and first-payment history key/full payload meaning; proves paymentFields equality for two accepted outputs with the same background/material/branch/catalog. Does not establish raw-to-reader truth, historical identity O05, universal extractor fidelity, old Pipeline connection, or whole original-question 07.3/07.5/07.6 completion."
+        },
+        {
+          "package": "docs/formal-release/evidence/original07-3-row-interpretation-close-20261102",
+          "subject": "5212227eb12f707d6a890f3082acf61d86a9f525",
+          "tree": "42e8158a10e011ed4a668fbc0c50afda10e1da39",
+          "run_id": 41387601998,
+          "attempt": 1,
+          "job_id": 125091802196,
+          "artifact_id": 13115534601,
+          "artifact_name": "changed-module-only-41387601998-1",
+          "artifact_sha256": "3d5eeca34aa9a8ea41acf53afbe3c69ef2155787150afbd5593dca30261e3d6e",
+          "targets": [
+            "JurisLean.Candidates.SourceCompilation20261027.actual_record_observations",
+            "JurisLean.Candidates.SourceCompilation20261027.extracted_observed_reference_resolves",
+            "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+            "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics",
+            "JurisLean.Candidates.Original07_3RowInterpretation20261102.interpretation_rowSeam",
+            "JurisLean.Candidates.Original07_3RowInterpretation20261102.same_raw_event_distinct_row_seams"
+          ],
+          "scope": "冻结L279的有限条件Interpretation→rowSeam连接及同raw反例；复用原三项CaseRecord/observed关系/μ evidence，不证明外部meaning真实、任意extractor忠实、旧Pipeline接入或O05/07.5/07.6。候选C待完整记录PR验收。"
         }
       ],
-      "remaining": "本次成功的独立模块证据已补固定历史下实际被选解释行的语义连接、CaseRecord三字段、observed relation、首笔付款history key/full payload读回及同背景/材料/分支/catalog下paymentFields相等；金额不能识别event/obligor，且不同catalog可出现相同CaseRecord而语义不同。条件依赖外部objectMeaning/paymentMeaning与有限被选行解释，未证明其由raw自动推出；历史身份O05/现实来源真值仍开放。17.2未量化所有extractors。旧Pipeline调用链未接新driver；原题07.3整体及07.5/07.6其余义务仍PARTIAL。"
+      "remaining": "冻结L279现由固定外部 meaning 下的有限条件语义连接及同 raw、同 source/ref/order、同 CaseRecord 但不同 payload/rowSeam 的反例覆盖；前提仍是显式 meaning 与该行 Interpretation，不推出来源真值或任意 extractor 忠实。原有三项证据继续承担 CaseRecord、observedRef/observedRel 与 μ 的既定条件结果。本行数学映射为候选 C，完整记录 PR 验收前不视为 main 已关账；O05、原题07.5/07.6及旧 Pipeline 消费接线各按原归属保持。"
     },
     {
       "id": "07.4",

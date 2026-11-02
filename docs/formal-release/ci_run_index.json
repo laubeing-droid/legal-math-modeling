@@ -35930,6 +35930,70 @@
       "status": "completed",
       "updated_at": "2026-11-02T00:17:47Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-02T04:17:14Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original07-3-raw-semantics-20261102",
+      "head_sha": "5212227eb12f707d6a890f3082acf61d86a9f525",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41387601998",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original07-3-row-interpretation-close-20261102/README.md:27",
+        "docs/formal-release/evidence/original07-3-row-interpretation-close-20261102/README.md:46",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:454"
+      ],
+      "run_id": 41387601998,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-02T04:19:51Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

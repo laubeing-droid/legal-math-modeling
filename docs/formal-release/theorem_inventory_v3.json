@@ -441,6 +441,7 @@
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.HarnessOriginalInstancesAudit20261031",
     "JurisLean.Candidates.Original07_3RowInterpretationAudit20261102",
+    "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
     "JurisLean.Candidates.U00SourcePersonalEpisodeAudit20261031",
     "JurisLean.Candidates.U01_4OriginalClosureAudit20261030",
     "JurisLean.Candidates.U02_4ExternalConditionRisk20261030",
@@ -969,6 +970,7 @@
     "JurisLean.Candidates.MeasuredPolicy20261027.supported_scores_are_bounded",
     "JurisLean.Candidates.Original07_3RowInterpretation20261102.interpretation_rowSeam",
     "JurisLean.Candidates.Original07_3RowInterpretation20261102.same_raw_event_distinct_row_seams",
+    "JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection",
     "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
     "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_winner_probability",
     "JurisLean.Candidates.PolicyEvaluation20261027.empirical_policy_winner_regret",
@@ -4671,8 +4673,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "a82a5045b09d9b2a27014eeab22f95d3086d4210f1458898ee43df4aa9cf75d9",
-   "size_bytes": 313299,
+   "sha256": "e73706c2ea5920de04bf7770193776ea5fb4656cb59a0b3444a3ff24dd69dc27",
+   "size_bytes": 313483,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14807,6 +14809,72 @@
    ],
    "sha256": "23935c824c2cf14fe02c73b783b8ec41692ed1a6b5258f0dbe802f5e5f9325c3",
    "size_bytes": 289,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "ActualObservation"
+    },
+    {
+     "kind": "def",
+     "name": "commitTrace"
+    },
+    {
+     "kind": "def",
+     "name": "stageBalances"
+    },
+    {
+     "kind": "def",
+     "name": "terminalBalance"
+    },
+    {
+     "kind": "def",
+     "name": "actualRead"
+    },
+    {
+     "kind": "theorem",
+     "name": "unit_bool_retraction_not_reflection"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.SourceRepresentation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstance20261102.lean",
+   "print_axioms_targets": [],
+   "sha256": "47998f91bc0c936a4df37edff31cd41a63fdc230e6da0a1eca77692b128709a8",
+   "size_bytes": 3271,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Original07_4ObservationInstance20261102",
+    "JurisLean.Candidates.SourceRepresentation20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective",
+    "JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity",
+    "JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection",
+    "JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection",
+    "JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence",
+    "JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history",
+    "JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact",
+    "adequate_representation_preserves_all_declared_observations",
+    "adequate_separating_representation_is_injective"
+   ],
+   "sha256": "cd78cb2d10992717254de105a346cba9d5f5270c04478815e70392b145655c29",
+   "size_bytes": 2782,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -61726,6 +61794,7 @@
     "JurisLean.Candidates.LoadedLegalConsumerAudit20261027",
     "JurisLean.Candidates.MeasurementLikelihoodAudit20261027",
     "JurisLean.Candidates.Original07_3RowInterpretationAudit20261102",
+    "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
     "JurisLean.Candidates.PendingCommit20261027",
     "JurisLean.Candidates.ProcedureClosureAudit20261027",
     "JurisLean.Candidates.SourceAction20261027",
@@ -61988,8 +62057,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "9d37753620b9c3eed5a65afc75aeb485e3f748cc412652309bd3ada64ac45058",
-   "size_bytes": 15628,
+   "sha256": "2e94c753b415d43603dc79122a6953eab5dc87d64a9e7b9f85ca82135949c237",
+   "size_bytes": 15701,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62161,22 +62230,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6404,
-   "file_count": 570,
+   "counted_declaration_count": 6405,
+   "file_count": 572,
    "lemma_count": 146,
-   "print_axioms_command_count": 5731,
-   "print_axioms_distinct_targets": 5237,
-   "theorem_count": 6258,
-   "theorem_count_bol_convention": 6158
+   "print_axioms_command_count": 5743,
+   "print_axioms_distinct_targets": 5240,
+   "theorem_count": 6259,
+   "theorem_count_bol_convention": 6159
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6385,
-   "file_count": 555,
+   "counted_declaration_count": 6386,
+   "file_count": 557,
    "lemma_count": 139,
-   "print_axioms_command_count": 5731,
-   "print_axioms_distinct_targets": 5237,
-   "theorem_count": 6246,
-   "theorem_count_bol_convention": 6146
+   "print_axioms_command_count": 5743,
+   "print_axioms_distinct_targets": 5240,
+   "theorem_count": 6247,
+   "theorem_count_bol_convention": 6147
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62328,6 +62397,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihoodAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretation20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretationAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstance20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
@@ -62896,6 +62967,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihoodAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretation20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretationAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstance20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
@@ -63358,17 +63431,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "169b18b6de21061d5ba968dec7bf67e6f04b7549cf47bd65b0662acecd0c8fda",
+ "source_inventory_digest": "e4370be2fb0429187af4d12559edf5e740d560845cc9be9856c0920163daeef4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original07-3-raw-semantics-20261102",
-  "commit": "45c16740b755cea9fe8f95618fd50cbf6e073487",
-  "tree": "e51a44236e889ad280c1f586dd2958b3113b993e"
+  "branch": "formal/close-original07-4-observation-instance-20261102",
+  "commit": "4a0e7edc7f26f3be1e444aca428a1004d351625e",
+  "tree": "4366472b73e47b3bea976f372af7deeb0f87aed3"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 570,
+  "files_total": 572,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

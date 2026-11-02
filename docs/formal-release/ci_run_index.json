@@ -35994,6 +35994,68 @@
       "status": "completed",
       "updated_at": "2026-11-02T04:19:51Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-02T07:38:06Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original07-4-observation-instance-20261102",
+      "head_sha": "b39268e1331b0afec4bd155b10a973a4ac636263",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41407568309",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original07-4-observation-close-20261102/README.md:41"
+      ],
+      "run_id": 41407568309,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-02T07:40:33Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

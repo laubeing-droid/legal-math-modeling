@@ -246,6 +246,7 @@ import JurisLean.Candidates.U06_3OriginalStrategyAudit20261102
 import JurisLean.Candidates.U06_6OriginalRiskEvaluationAudit20261102
 import JurisLean.Candidates.U06_7OriginalChapterAudit20261102
 import JurisLean.Candidates.Original07_3RowInterpretationAudit20261102
+import JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102
 import JurisLean.Candidates.HarnessOriginalInstancesAudit20261031
 import JurisLean.Candidates.U06_4ConditionalInformationAudit20261031
 import JurisLean.Candidates.U06_5OriginalClosureAudit20261031
@@ -275,6 +276,7 @@ import JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031
 #print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_utility_matches_w4
 #print axioms JurisLean.Candidates.Original07_3RowInterpretation20261102.interpretation_rowSeam
 #print axioms JurisLean.Candidates.Original07_3RowInterpretation20261102.same_raw_event_distinct_row_seams
+#print axioms JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection
 
 /-! Axiom audit for formal core release v1. -/
 

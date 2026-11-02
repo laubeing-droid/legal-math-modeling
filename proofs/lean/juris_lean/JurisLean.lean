@@ -9,6 +9,7 @@ import JurisLean.Candidates.U12_4FrozenAuditModel20261029
 import JurisLean.Candidates.U07_2JointObject20261029
 import JurisLean.Candidates.U07_3FixedBindingAudit20261029
 import JurisLean.Candidates.Original07_3RowInterpretationAudit20261102
+import JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102
 import JurisLean.Candidates.U02_1ActualPipeline20261029
 import JurisLean.Candidates.U04_2SharpConditioning20261029
 import JurisLean.Candidates.U06_1FiniteBellman20261030

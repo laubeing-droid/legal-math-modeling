@@ -1,0 +1,143 @@
+⚠ [8476/8492] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8481/8492] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8482/8492] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8483/8492] Replayed JurisLean.Seams.UnifiedNeedlesS3b
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:244:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:261:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_sel_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:467:5: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:478:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.legalJoint_material_mass`:
+  [DecidableEq Θ]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:537:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.posterior_predictive_normalizes`:
+  [DecidableEq Θ]
+  [DecidableEq Mt]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Mt] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:795:7: unused variable `k`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1032:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1035:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1042:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1045:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8486/8492] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8491/8492] Built JurisLean.Candidates.Original07_4ObservationInstance20261102 (4.5s)
+warning: JurisLean/Candidates/Original07_4ObservationInstance20261102.lean:74:23: Try `simp at hu` instead of `simpa using hu`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/Original07_4ObservationInstance20261102.lean:77:41: Try `simp at atTrue` instead of `simpa using atTrue`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ℹ [8492/8492] Built JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102 (3.6s)
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:18:0: ObservationAdequate encode (actualRead mu) : Prop
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:19:0: adequate_representation_preserves_all_declared_observations encode (actualRead mu)
+  adequate : ∀ (a b : ActualHistory),
+  encode a = encode b → ∀ (o : ActualObservation), actualRead mu o a = actualRead mu o b
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:20:0: adequate_separating_representation_is_injective encode (actualRead mu) adequate separating : Function.Injective encode
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:21:0: 'JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:22:0: 'JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:25:0: JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence (mu : SourceRef → Option ObjectId) :
+  Equivalence fun a b => InterpretedSame mu ↑a ↑b
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:26:0: 'JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:27:0: JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact (mu : SourceRef → Option ObjectId)
+  (a b : ResolvedReference mu) : semanticKey mu a = semanticKey mu b ↔ InterpretedSame mu ↑a ↑b
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:28:0: 'JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:29:0: JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity (mu : SourceRef → Option ObjectId)
+  (a b : SourceRef) (ha : mu a = none) : ¬InterpretedSame mu a b
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:30:0: 'JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:31:0: JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history :
+  JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [10] =
+      JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [4, 3, 3] ∧
+    [10] ≠ [4, 3, 3]
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:32:0: 'JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:33:0: JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection :
+  (∀ (r : Unit), (fun x => false) r = (fun x => x) false) ∧ (fun x => x) true = true ∧ ¬∃ r, (fun x => false) r = true
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:34:0: 'JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:35:0: JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection :
+  ∃ e d, (∀ (u : Unit), d (e u) = u) ∧ ¬Function.Surjective e ∧ e ∘ d ≠ id
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:36:0: 'JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:37:0: JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective {A B : Type} (e : A → B) (d : B → A)
+  (roundtrip : ∀ (a : A), d (e a) = a) : Function.Injective e
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:38:0: 'JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:39:0: JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective {A B : Type} (e : A → B) (d : B → A)
+  (roundtrip : ∀ (a : A), d (e a) = a) : Function.Surjective d
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:40:0: 'JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective' does not depend on any axioms
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:41:0: JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent {A B : Type} (e : A → B) (d : B → A)
+  (roundtrip : ∀ (a : A), d (e a) = a) (b : B) : e (d (e (d b))) = e (d b)
+info: JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean:42:0: 'JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent' does not depend on any axioms
+Build completed successfully (8492 jobs).

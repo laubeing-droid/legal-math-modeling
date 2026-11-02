@@ -56,7 +56,7 @@ theorem source_model_joint_semantic_quantity {V R : Type} [DecidableEq R]
     semantic.2.2.2
 
 theorem source_model_joint_bridge_nonempty_and_faithfulness_needed :
-    ∃ out (mu : SourceRef → Option LegalObject),
+    ∃ out, ∃ mu : SourceRef → Option LegalObject,
       sourceModel JurisLean.Seams.UnifiedInstance.instanceM
         stageMaterial 0 [⟨stageMaterial, 0, stageView⟩] = .ok out ∧
       (∀ view, extractView stageMaterial 0 [⟨stageMaterial, 0, stageView⟩] = .known view →

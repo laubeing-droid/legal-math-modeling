@@ -1,4 +1,4 @@
-⚠ [8483/8550] Replayed JurisLean.Genealogy.Part1
+⚠ [8484/8554] Replayed JurisLean.Genealogy.Part1
 warning: JurisLean/Genealogy/Part1.lean:119:5: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
@@ -8,11 +8,11 @@ Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus fa
 warning: JurisLean/Genealogy/Part1.lean:288:9: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8484/8550] Replayed JurisLean.Genealogy.Part2
+⚠ [8485/8554] Replayed JurisLean.Genealogy.Part2
 warning: JurisLean/Genealogy/Part2.lean:48:9: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8485/8550] Replayed JurisLean.Genealogy.Part3
+⚠ [8486/8554] Replayed JurisLean.Genealogy.Part3
 warning: JurisLean/Genealogy/Part3.lean:166:9: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
@@ -25,7 +25,7 @@ Note: This linter can be disabled with `set_option linter.unusedVariables false`
 warning: JurisLean/Genealogy/Part3.lean:238:11: unused variable `h2`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8487/8550] Replayed JurisLean.Seams.PrecedentFlow
+⚠ [8488/8554] Replayed JurisLean.Seams.PrecedentFlow
 warning: JurisLean/Seams/PrecedentFlow.lean:927:16: This simp argument is unused:
   h
 
@@ -40,23 +40,23 @@ Hint: Omit it from the simp argument list.
   simp ̵[̵h̵]̵
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8489/8550] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
+⚠ [8490/8554] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
 warning: JurisLean/Seams/UnifiedNeedlesS0S1.lean:420:57: unused variable `a`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8490/8550] Replayed JurisLean.ExactNumericContract
+⚠ [8491/8554] Replayed JurisLean.ExactNumericContract
 warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8492/8550] Replayed JurisLean.DungFixedPoint
+⚠ [8493/8554] Replayed JurisLean.DungFixedPoint
 warning: JurisLean/DungFixedPoint.lean:201:47: unused variable `hself`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8493/8550] Replayed JurisLean.Seams.AdjudicationBridge
+⚠ [8494/8554] Replayed JurisLean.Seams.AdjudicationBridge
 warning: JurisLean/Seams/AdjudicationBridge.lean:153:18: unused variable `pol`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8494/8550] Replayed JurisLean.Seams.BurdenStatutes
+⚠ [8495/8554] Replayed JurisLean.Seams.BurdenStatutes
 warning: JurisLean/Seams/BurdenStatutes.lean:1157:52: This simp argument is unused:
   standardFor
 
@@ -64,26 +64,26 @@ Hint: Omit it from the simp argument list.
   simp ̵[̵s̵t̵a̵n̵d̵a̵r̵d̵F̵o̵r̵]̵
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8506/8550] Replayed JurisLean.FactAdmissionSpec
+⚠ [8507/8554] Replayed JurisLean.FactAdmissionSpec
 warning: JurisLean/FactAdmissionSpec.lean:163:5: unused variable `a`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8514/8553] Replayed JurisLean.ULM09AttackDefeat
+⚠ [8511/8554] Replayed JurisLean.ULM09AttackDefeat
 warning: JurisLean/ULM09AttackDefeat.lean:63:4: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-⚠ [8519/8553] Replayed JurisLean.ULM14CoverageTrust
+⚠ [8516/8554] Replayed JurisLean.ULM14CoverageTrust
 warning: JurisLean/ULM14CoverageTrust.lean:192:5: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8521/8553] Replayed JurisLean.Seams.Transitions
+⚠ [8521/8554] Replayed JurisLean.Seams.Transitions
 warning: JurisLean/Seams/Transitions.lean:84:11: unused variable `x`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
 warning: JurisLean/Seams/Transitions.lean:84:13: unused variable `y`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-ℹ [8525/8553] Replayed JurisLean.Candidates.CompilerClosure20261026
+ℹ [8525/8554] Replayed JurisLean.Candidates.CompilerClosure20261026
 info: JurisLean/Candidates/CompilerClosure20261026.lean:235:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
@@ -96,7 +96,7 @@ info: JurisLean/Candidates/CompilerClosure20261026.lean:237:0: 'JurisLean.Candid
 info: JurisLean/Candidates/CompilerClosure20261026.lean:238:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-ℹ [8526/8553] Replayed JurisLean.Candidates.CompilerProvenance20261027
+ℹ [8526/8554] Replayed JurisLean.Candidates.CompilerProvenance20261027
 info: JurisLean/Candidates/CompilerProvenance20261027.lean:371:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
   (ctx : JurisLean.Candidates.Final20261021.Gamma)
   (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
@@ -227,14 +227,14 @@ info: JurisLean/Candidates/CompilerProvenance20261027.lean:389:0: JurisLean.Cand
   (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
   (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
 info: JurisLean/Candidates/CompilerProvenance20261027.lean:390:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]
-⚠ [8528/8553] Replayed JurisLean.FullMath.Numeric.Quantities
+⚠ [8528/8554] Replayed JurisLean.FullMath.Numeric.Quantities
 warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
 warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8534/8553] Replayed JurisLean.FullMath.Probability.FiniteBN
+⚠ [8534/8554] Replayed JurisLean.FullMath.Probability.FiniteBN
 warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
@@ -244,7 +244,7 @@ Note: This linter can be disabled with `set_option linter.unusedVariables false`
 warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8535/8553] Replayed JurisLean.FullMath.Probability.Conditioning
+⚠ [8535/8554] Replayed JurisLean.FullMath.Probability.Conditioning
 warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
   [DecidableEq S]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
@@ -269,7 +269,7 @@ Note: This linter can be disabled with `set_option linter.unusedSectionVars fals
 warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8536/8553] Replayed JurisLean.Seams.UnifiedNeedlesS3b
+⚠ [8536/8554] Replayed JurisLean.Seams.UnifiedNeedlesS3b
 warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:244:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_obs`:
   [DecidableEq Θ]
   [DecidableEq Nty]
@@ -317,7 +317,7 @@ Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus fa
 warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1045:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [8540/8553] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+⚠ [8540/8554] Replayed JurisLean.FullMath.Probability.DirichletPosterior
 warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
   Nat.cast_zero
 
@@ -331,7 +331,7 @@ Note: This linter can be disabled with `set_option linter.unusedVariables false`
 warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
 
 Note: This linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [8542/8553] Replayed JurisLean.Seams.Probability
+⚠ [8542/8554] Replayed JurisLean.Seams.Probability
 warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
   List.sum_nil
 
@@ -346,7 +346,7 @@ Hint: Omit it from the simp argument list.
   simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8546/8553] Replayed JurisLean.Mandate.PureNash
+⚠ [8546/8554] Replayed JurisLean.Mandate.PureNash
 warning: JurisLean/Mandate/PureNash.lean:263:21: This simp argument is unused:
   hb
 
@@ -354,7 +354,7 @@ Hint: Omit it from the simp argument list.
   simp ̵[̵h̵b̵]̵
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [8551/8553] Replayed JurisLean.Candidates.SourceStages20261027
+⚠ [8551/8554] Replayed JurisLean.Candidates.SourceStages20261027
 warning: JurisLean/Candidates/SourceStages20261027.lean:317:18: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
@@ -364,7 +364,7 @@ Note: This linter can be disabled with `set_option linter.unnecessarySimpa false
 warning: JurisLean/Candidates/SourceStages20261027.lean:332:16: try 'simp' instead of 'simpa'
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-ℹ [8553/8553] Built JurisLean.Candidates.SourceStagesAudit20261027 (4.0s)
+ℹ [8553/8554] Replayed JurisLean.Candidates.SourceStagesAudit20261027
 info: JurisLean/Candidates/SourceStagesAudit20261027.lean:4:0: JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact
   (mu :
     JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
@@ -664,18 +664,19 @@ info: JurisLean/Candidates/SourceStagesAudit20261027.lean:206:0: JurisLean.Candi
 info: JurisLean/Candidates/SourceStagesAudit20261027.lean:207:0: 'JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-info: JurisLean/Candidates/SourceStagesAudit20261027.lean:248:0: JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample :
+ℹ [8554/8554] Built JurisLean.Candidates.SourceFiniteStageAudit20261102 (4.5s)
+info: JurisLean/Candidates/SourceFiniteStageAudit20261102.lean:42:0: JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample :
   ∃ out,
-    runStageView stageView = Result.known out ∧
+    runStageView stageView = Final20261021.Result.known out ∧
       out.stages.beforeFormation.relations ≠ out.stages.afterFormation.relations ∧
         out.stages.afterFirst.relations = out.stages.afterSecond.relations ∧
-          (∀ (r : RelationId),
+          (∀ (r : Final20261021.RelationId),
               Seams.InstitutionalEffects.forms out.stages.afterFirst.relations r ↔
                 Seams.InstitutionalEffects.forms out.stages.afterSecond.relations r) ∧
             out.stages.afterFirst.state.debt.amount.value = 3 ∧
               out.stages.afterSecond.state.debt.amount.value = 0 ∧
                 out.stages.afterFirst.state ≠ out.stages.afterSecond.state
-info: JurisLean/Candidates/SourceStagesAudit20261027.lean:249:0: 'JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample' depends on axioms: [propext,
+info: JurisLean/Candidates/SourceFiniteStageAudit20261102.lean:43:0: 'JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample' depends on axioms: [propext,
  Classical.choice,
  Quot.sound]
-Build completed successfully (8553 jobs).
+Build completed successfully (8554 jobs).

@@ -48,10 +48,10 @@
     }
   },
   "source_checkpoint": {
-    "branch": "formal/close-original07-7-finite-stage-witness-20261102",
-    "commit": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
-    "tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03",
-    "parent": "0a893ccb9d72b58ce6f5d58256589c821e653d52"
+    "branch": "formal/close-original07-7-source-fix-20261102",
+    "commit": "8dd0aa76480f634f1fe64048106290470ad40c20",
+    "tree": "7e55e2bf884a04c9b38957b9ce8bfb54a45f1165",
+    "parent": "29b12a30b3258e3801600e71066acbf5e15349f3"
   },
   "source_attempts": [
     {
@@ -90,39 +90,58 @@
       "artifact_sha256": "c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
       "module_plan_path": "module-plan.json",
       "raw_log_path": "changed-module.log",
-      "disposition": "PASS: changed-module build only"
+      "disposition": "Historical success before the Audit split; its raw log and plan are retained under history/pre-split-run41443123829-* and it is not current path evidence."
+    },
+    {
+      "run_id": 41453061574,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "8dd0aa76480f634f1fe64048106290470ad40c20",
+      "head_branch": "formal/close-original07-7-source-fix-20261102",
+      "job_id": 125302769181,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13145392036,
+      "artifact_name": "changed-module-only-41453061574-1",
+      "artifact_bytes": 6826,
+      "artifact_sha256": "e1ac854d2ca0d6926fcac6bdb0187e1e24e33a097dbd4a6e59b61e90c8e2dac3",
+      "module_plan_path": "module-plan.json",
+      "raw_log_path": "changed-module.log",
+      "disposition": "PASS: separate Audit module for the unchanged finite witness; old 28-target Audit restored to historical bytes."
     }
   ],
   "artifact": {
-    "id": 13140849372,
-    "name": "changed-module-only-41443123829-1",
-    "bytes": 6794,
-    "api_digest": "sha256:c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
-    "zip_sha256": "c880967e445a560564265c09f81d318d2f53ecd63c7222990fbcd4dd98459651",
+    "id": 13145392036,
+    "name": "changed-module-only-41453061574-1",
+    "bytes": 6826,
+    "api_digest": "sha256:e1ac854d2ca0d6926fcac6bdb0187e1e24e33a097dbd4a6e59b61e90c8e2dac3",
+    "zip_sha256": "e1ac854d2ca0d6926fcac6bdb0187e1e24e33a097dbd4a6e59b61e90c8e2dac3",
     "member_files": [
       {
         "path": "docs/formal-release/evidence/original07-7-finite-stage-close-20261102/module-plan.json",
-        "bytes": 257,
-        "sha256": "daa186675a843d18b01e457e16c854c553a28166446edfeb91e69dab18897912"
+        "bytes": 267,
+        "sha256": "94b8115c8c9512e5e796d674d79147cb6746e6ce2ee4002268f8e5718b39140c"
       },
       {
         "path": "docs/formal-release/evidence/original07-7-finite-stage-close-20261102/changed-module.log",
-        "bytes": 50013,
-        "sha256": "1fb40f45c5636e54d81ad6f69fb7f067fa851e385b6896534565094aeae4f244"
+        "bytes": 50126,
+        "sha256": "0961272b229db71faf1d033580b84f311627ba0a3985d73da8f02858a41b68bb"
       }
     ]
   },
   "module_plan": {
     "include": [
       {
-        "module": "JurisLean.Candidates.SourceStagesAudit20261027",
-        "target": "JurisLean.Candidates.SourceStagesAudit20261027"
+        "module": "JurisLean.Candidates.SourceFiniteStageAudit20261102",
+        "target": "JurisLean.Candidates.SourceFiniteStageAudit20261102"
       }
     ],
     "removed_modules": [],
     "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
   },
-  "module_plan_sha256": "daa186675a843d18b01e457e16c854c553a28166446edfeb91e69dab18897912",
+  "module_plan_sha256": "94b8115c8c9512e5e796d674d79147cb6746e6ce2ee4002268f8e5718b39140c",
   "source_pins": [
     {
       "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
@@ -130,17 +149,26 @@
       "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
       "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
       "expected_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
-      "source_subject": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
-      "source_tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03"
+      "source_subject": "8dd0aa76480f634f1fe64048106290470ad40c20",
+      "source_tree": "7e55e2bf884a04c9b38957b9ce8bfb54a45f1165"
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
-      "bytes": 15349,
-      "sha256": "0e9fd1a4c827cb4240aa5a50cc7e91aac3c26af77cdfaf7d3f6e035f4c635edb",
-      "git_blob": "30565bbdf60ade9b6333ace3aeae3bad37e7af4e",
-      "expected_blob": "30565bbdf60ade9b6333ace3aeae3bad37e7af4e",
-      "source_subject": "af0dab242cc4518e7b51264eb8ae76613ceb51b7",
-      "source_tree": "6e836bfaf93c8af5d18a73fd9e50d4c458600a03"
+      "bytes": 12941,
+      "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
+      "git_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "expected_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "source_subject": "8dd0aa76480f634f1fe64048106290470ad40c20",
+      "source_tree": "7e55e2bf884a04c9b38957b9ce8bfb54a45f1165"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+      "bytes": 2462,
+      "sha256": "cf2cf9cf6e4355502bcd853ae15af2d1fcd916488b9f71985f8f49fe3abe76b8",
+      "git_blob": "66e9e54b41e23ee0cc9b674277ba72381db00f8c",
+      "expected_blob": "66e9e54b41e23ee0cc9b674277ba72381db00f8c",
+      "source_subject": "8dd0aa76480f634f1fe64048106290470ad40c20",
+      "source_tree": "7e55e2bf884a04c9b38957b9ce8bfb54a45f1165"
     }
   ],
   "actual_output_counts": {
@@ -273,13 +301,13 @@
     },
     {
       "name": "JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample",
-      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
-      "declaration_line": 211,
-      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
-      "audit_check_line": 248,
-      "audit_print_line": 249,
-      "raw_log_output_line": 667,
-      "raw_log_axioms_line": 678,
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+      "declaration_line": 5,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+      "audit_check_line": 42,
+      "audit_print_line": 43,
+      "raw_log_output_line": 668,
+      "raw_log_axioms_line": 679,
       "axioms": [
         "propext",
         "Classical.choice",
@@ -296,8 +324,9 @@
   "discharges_archived_manuscript_gaps": false,
   "runtime_consumer_changed": false,
   "notes": [
-    "The successful plan requested only JurisLean.Candidates.SourceStagesAudit20261027; the Audit imports and checks the source declarations. This is not a full-source or full-release run.",
-    "R1 is retained as a failed attempt; its error-recovery sorryAx output is not counted as source sorry or as passing evidence.",
+    "Current proof evidence is source run 41453061574:1, requesting only the separate SourceFiniteStageAudit20261102 module.",
+    "The earlier successful run 41443123829:1 is preserved as a historical pre-split audit; the old 28-target driver bytes are restored and its raw log/plan remain under history/.",
+    "Run 41441275833:1 remains a failed compiler attempt; recovery sorryAx is not source proof.",
     "Only the finite four-stage witness at original L295 is mapped. Other original-07 obligations and runtime/consumer contracts remain at their existing records."
   ]
 }

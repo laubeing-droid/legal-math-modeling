@@ -16506,6 +16506,102 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "boundaryCatalog"
+    },
+    {
+     "kind": "def",
+     "name": "encodedRule"
+    },
+    {
+     "kind": "def",
+     "name": "declaredExceptionRule"
+    },
+    {
+     "kind": "def",
+     "name": "boundaryGate"
+    },
+    {
+     "kind": "def",
+     "name": "boundaryNodes"
+    },
+    {
+     "kind": "def",
+     "name": "boundaryCompile"
+    },
+    {
+     "kind": "def",
+     "name": "otherVersion"
+    },
+    {
+     "kind": "def",
+     "name": "paidOnlyTruth"
+    },
+    {
+     "kind": "def",
+     "name": "paidAndConclusionTruth"
+    },
+    {
+     "kind": "def",
+     "name": "noPaymentTruth"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_source_completed_countermodels"
+    },
+    {
+     "kind": "def",
+     "name": "exceptionTruth"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_exception_witness_is_not_absence"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.SourceFinalBridgeAudit20261102",
+    "JurisLean.Candidates.SourceFiniteStageAudit20261102",
+    "JurisLean.Candidates.TemporalInterpretation20261027",
+    "JurisLean.Candidates.U03DebtClosureAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+    "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+    "JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact",
+    "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+    "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+    "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+    "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+    "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity",
+    "JurisLean.Candidates.SourceHornBoundary20261103.positive_exception_witness_is_not_absence",
+    "JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels",
+    "JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample",
+    "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+    "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable"
+   ],
+   "sha256": "2a17229ece90d4c0d1dc779e47095f5e752911c7f9bb5f63436aae28f2ebc0ac",
+   "size_bytes": 12332,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "BranchOpening"
     },
@@ -61848,6 +61944,7 @@
     "JurisLean.Candidates.SourceActionAudit20261027",
     "JurisLean.Candidates.SourceFinalBridgeAudit20261102",
     "JurisLean.Candidates.SourceFiniteStageAudit20261102",
+    "JurisLean.Candidates.SourceHornBoundaryAudit20261103",
     "JurisLean.Candidates.SourceOpening20261027",
     "JurisLean.Candidates.SourceOpeningAudit20261027",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
@@ -62106,8 +62203,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0fcb9721e103c45996177fc875c4adc407555f0718c83ae0e4c0bb0cde4298d2",
-   "size_bytes": 15819,
+   "sha256": "b02ef29ae42c193593f32de486c545d6feea733320efc4ebdecf65739ba2e1d5",
+   "size_bytes": 15879,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62279,22 +62376,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6408,
-   "file_count": 574,
+   "counted_declaration_count": 6410,
+   "file_count": 575,
    "lemma_count": 146,
-   "print_axioms_command_count": 5746,
-   "print_axioms_distinct_targets": 5243,
-   "theorem_count": 6262,
-   "theorem_count_bol_convention": 6162
+   "print_axioms_command_count": 5771,
+   "print_axioms_distinct_targets": 5245,
+   "theorem_count": 6264,
+   "theorem_count_bol_convention": 6164
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6389,
-   "file_count": 559,
+   "counted_declaration_count": 6391,
+   "file_count": 560,
    "lemma_count": 139,
-   "print_axioms_command_count": 5746,
-   "print_axioms_distinct_targets": 5243,
-   "theorem_count": 6250,
-   "theorem_count_bol_convention": 6150
+   "print_axioms_command_count": 5771,
+   "print_axioms_distinct_targets": 5245,
+   "theorem_count": 6252,
+   "theorem_count_bol_convention": 6152
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62469,6 +62566,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
@@ -63041,6 +63139,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
@@ -63484,17 +63583,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b6a9f29d804f015e968809874f5334b1493587a6cfc144d6e8b0cdb3758f545c",
+ "source_inventory_digest": "fb2ba49408994aa2db89ecf2fd3a947e93a0dc6d7c9c6f098d1d84dfb83ddcb9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original07-8-static-source-bridge-20261102",
-  "commit": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
-  "tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+  "branch": "formal/close-original08-1-horn-semantics-20261103",
+  "commit": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+  "tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 574,
+  "files_total": 575,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

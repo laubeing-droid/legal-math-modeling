@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。 本轮原题07.3候选C行登记后，当前math_rows为51 COVERED/31 PARTIAL/15 NOT_RECONCILED；完整记录PR验收仍待。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。 本轮原题07.3候选C行登记后，当前math_rows为51 COVERED/31 PARTIAL/15 NOT_RECONCILED；完整记录PR验收仍待。 本轮原题07.4的L283数学映射登记为候选C；当前math_rows分布52 COVERED/30 PARTIAL/15 NOT_RECONCILED，完整记录PR验收仍待。",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 51,
-    "PARTIAL": 31,
+    "COVERED": 52,
+    "PARTIAL": 30,
     "NOT_RECONCILED": 15
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -3809,7 +3809,7 @@
           283
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "module": "SourceRepresentation20261027",
@@ -3820,9 +3820,35 @@
           "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-representation-20261027",
           "run_id": 40457212969,
           "job_id": 122033215316
+        },
+        {
+          "package": "docs/formal-release/evidence/original07-4-observation-close-20261102",
+          "subject": "b39268e1331b0afec4bd155b10a973a4ac636263",
+          "subject_tree": "5eb8c124238abf99558e1380248e482af6e680b7",
+          "run_id": 41407568309,
+          "job_id": 125152967148,
+          "attempt": 1,
+          "artifact_id": 13123399277,
+          "artifact_name": "changed-module-only-41407568309-1",
+          "artifact_size_bytes": 2291,
+          "artifact_sha256": "16c20daf5375d8b50e4bd53aaffd6c690a23f5c4f10f48ac4eb647d66e939885",
+          "targets": [
+            "JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations",
+            "JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective",
+            "JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence",
+            "JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact",
+            "JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity",
+            "JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history",
+            "JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection",
+            "JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection",
+            "JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective",
+            "JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective",
+            "JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent"
+          ],
+          "scope": "本轮提供实际四项账本观察族、原金额历史终局余额反例与Unit→Bool左逆非右逆有限例；复用泛型保持/分离及既有反射边界。Audit入口成功构建，11项实际#打印输出中1新+10复用；实际观察族不选择生产编码，不证明观察分离所有状态、现实μ/来源真值、法律准入或旧consumer运行接线。候选C待完整记录PR验收。"
         }
       ],
-      "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。"
+      "remaining": "冻结L283的数学映射由既有R/M泛型往返与相对观察结果、实际账本有限四观察族、[List ℚ]终局余额反例及Unit→Bool反例共同覆盖。未选择或证明任何实际编码adequate；观察分离只在泛型前提成立时推出单射。现实来源真实性、μ正确性、准入效力、全Pipeline接线及完整记录验收仍按各自范围保持开放；本行为候选C，完整记录PR验收前不视为main已关账。"
     },
     {
       "id": "07.5",

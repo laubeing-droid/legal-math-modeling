@@ -1,0 +1,9 @@
+import JurisLean.Candidates.Original07_3RowInterpretation20261102
+
+open JurisLean.Candidates.Original07_3RowInterpretation20261102
+
+#check interpretation_rowSeam
+#print axioms interpretation_rowSeam
+
+#check same_raw_event_distinct_row_seams
+#print axioms same_raw_event_distinct_row_seams

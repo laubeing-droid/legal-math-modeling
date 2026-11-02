@@ -1,0 +1,253 @@
+{
+  "actual_output_counts": {
+    "selected_named_targets": 6,
+    "reused_accepted_outputs": 6,
+    "new_this_round": 0,
+    "selected_named_prints": 6
+  },
+  "artifact": {
+    "package_copy": "docs/formal-release/evidence/original07-1-source-identity-close-20261102/lake-clean-build.log",
+    "name": "lean-full-build-run41364107892-attempt1",
+    "package_copy_bytes": 5216301,
+    "package_copy_sha256": "663af0a0b4256d0d8c97b53c30a08f55fa878a33d587c433c558550afcf898bf",
+    "package_git_blob": "e5a8fc0e75f9dd9b7f000ed2eab6d115c1f7691b",
+    "source_member_path": "D:/tmp/original06-7-pr98-r2/artifacts/13107276983/expanded/lake-clean-build.log",
+    "source_member": "lake-clean-build.log",
+    "byte_identical_to_source_member": true,
+    "api_size_bytes": 699759,
+    "zip_sha256": "4cb1bd5192c000bc5e93bfaaa7d14f7978b3207daeede382e7b5cd821406dc06",
+    "source_member_bytes": 5216301,
+    "api_digest": "sha256:4cb1bd5192c000bc5e93bfaaa7d14f7978b3207daeede382e7b5cd821406dc06",
+    "zip_bytes": 699759,
+    "source_member_sha256": "663af0a0b4256d0d8c97b53c30a08f55fa878a33d587c433c558550afcf898bf",
+    "id": 13107276983,
+    "zip_path": "D:/tmp/original06-7-pr98-r2/artifacts/13107276983/artifact.zip"
+  },
+  "selected_named_targets": [
+    {
+      "source_line": 362,
+      "raw_log_axioms_line": 19393,
+      "axioms": [
+        "Classical.choice"
+      ],
+      "raw_log_output_line": 19391,
+      "name": "JurisLean.Candidates.SourceStages20261027.independent_local_witnesses_iff_tuple"
+    },
+    {
+      "source_line": 369,
+      "raw_log_axioms_line": 19398,
+      "axioms": [
+        "Classical.choice"
+      ],
+      "raw_log_output_line": 19394,
+      "name": "JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts"
+    },
+    {
+      "source_line": 377,
+      "raw_log_axioms_line": 19401,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_log_output_line": 19399,
+      "name": "JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber"
+    },
+    {
+      "source_line": 63,
+      "raw_log_axioms_line": 19126,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_log_output_line": 19113,
+      "name": "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object"
+    },
+    {
+      "source_line": 413,
+      "raw_log_axioms_line": 19411,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_log_output_line": 19403,
+      "name": "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts"
+    },
+    {
+      "source_line": 75,
+      "raw_log_axioms_line": 19195,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_log_output_line": 19188,
+      "name": "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+    }
+  ],
+  "schema": "original-learning-theory-module-evidence-v1",
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "bytes": 15083,
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+      "git_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "expected_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c"
+    },
+    {
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "expected_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "bytes": 29160
+    },
+    {
+      "git_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "expected_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f",
+      "bytes": 6542
+    },
+    {
+      "git_blob": "57e3770af97ac8361c36c35e08959c55fbe1299c",
+      "expected_blob": "57e3770af97ac8361c36c35e08959c55fbe1299c",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+      "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+      "bytes": 4327
+    },
+    {
+      "git_blob": "a5794312871efdd01cd565cad38abe071b3738b7",
+      "expected_blob": "a5794312871efdd01cd565cad38abe071b3738b7",
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesTotal.lean",
+      "sha256": "a0a7e051b5216030fc2fc0c5dd2cf09028646796fab46810158214e51dd6e091",
+      "bytes": 4805
+    }
+  ],
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "数学映射 COVERED；canonical 候选 C 待完整记录 PR 验收"
+  },
+  "module_plan": null,
+  "original_question": "07.5",
+  "authority_binding": {
+    "ordered_parents": [
+      "10049e40f3a73dda559ad3b0b0d97f8f0b313371",
+      "9de1037a28c7e201b994889bf2bc1bf0faab1e50"
+    ],
+    "workflow": ".github/workflows/lean-build.yml",
+    "job": "lean-full-clean-build",
+    "repository": "laubeing-droid/legal-math-modeling",
+    "tree": "31c197b7819c48146b93f0abfa549399c9fd31eb",
+    "api_snapshots": [
+      {
+        "path": "D:\\tmp\\original06-7-pr98-r2\\api-snapshots\\authority-run-11.json",
+        "bytes": 14663,
+        "sha256": "b0e87a71a322f01bba2bab3c98a4640bd5dc4affdab7ccb9813535506c1e9392"
+      },
+      {
+        "path": "D:\\tmp\\original06-7-pr98-r2\\api-snapshots\\authority-jobs-11.json",
+        "bytes": 22825,
+        "sha256": "6abfbc2021847843150914c11e02e458f2e35748bf25e6f7947b5ba744308587"
+      },
+      {
+        "path": "D:\\tmp\\original06-7-pr98-r2\\api-snapshots\\authority-artifacts-11.json",
+        "bytes": 7713,
+        "sha256": "9190ccd3a463f7ad628591860d04cc6a3d487933d6d535d173f5494ebd118976"
+      }
+    ],
+    "event": "pull_request",
+    "run_id": 41364107892,
+    "job_id": 125020511901,
+    "api_head": "9de1037a28c7e201b994889bf2bc1bf0faab1e50",
+    "job_conclusion": "success",
+    "reuse_role": "prior accepted full-source build output; not a new 07.5 dispatch",
+    "accepted_pr_merge_subject": "223bf1529e1f11d05187b2f3723d4552d83befcd",
+    "attempt": 1
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "axioms_standard_subset": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "closes_debt": false,
+  "canonical_before": {
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "handoff_path": "docs/handoff/原题97_工程105_证据对照进度_20261027.json",
+    "existing_evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+        "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+        "run_id": 40468260025,
+        "job_id": 122068840408,
+        "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+      },
+      {
+        "package": "docs/formal-release/evidence/u07-2-debt-close-20261029",
+        "subject": "0d1146372e5b7101b192eb21a1eaf2a9ee2792ad",
+        "run_id": 40743855261,
+        "job_id": 123012322952,
+        "artifact": "changed-module-only-40743855261-1",
+        "artifact_id": 12840926438,
+        "artifact_sha256": "bfb00fa1004acc614f7546f23b4e1ce54bd514f4cf9d3049ea8d17360a7746ea",
+        "named_targets": [
+          "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+          "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+          "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+          "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+          "JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output",
+          "JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve",
+          "JurisLean.Seams.unified_legal_derivation_on_declared_fragment"
+        ],
+        "scope": "SOURCE_ONLY / independent changed-module CI: conditional on sourceModel returning .ok out; constructs x=(frame,n) and binds actual extraction, two payments, four-stage projections, modelOf and ledger projections. Does not assert real-source faithfulness, arbitrary-layer compatibility, or U07.3 closure."
+      }
+    ],
+    "top_counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 52,
+      "PARTIAL": 30,
+      "NOT_RECONCILED": 15
+    },
+    "clauses": [
+      "U07.2"
+    ],
+    "source_lines": [
+      285,
+      288
+    ],
+    "row_id": "07.5",
+    "remaining": "本轮独立证据仅关闭U07.2关于成功sourceModel输出的条件共同对象与投影兼容残余；总体仍PARTIAL。未由本次证据闭合/仍待核对既有实现及原题实例：原题07其它段落与U00消费链的整体验收；本driver不是旧Final20261021.Pipeline的调用接线。"
+  },
+  "status": "DRAFT_REUSED_ACCEPTED_FULL_SOURCE_OUTPUTS_MAPPED",
+  "selected_named_target_count": 6,
+  "notes": [
+    "本轮未运行新Lean、Audit或CI；六项目标均为既有成功full-source日志中的实际输出。",
+    "∀i∃wi与∃family∀i的等价不要求共同base；同一base与各局部契约同时成立是 compatible_fibers_compose_local_contracts 的显式前提。",
+    "JointObject与JointContract仅由 sourceModel .ok out 的已给实例条件连接，不扩展到任意层或现实来源真实性。",
+    "LegacyContracts 的五个具名谓词与 background.candidate/norms/weight 保持范围如README所列；不宣称候选生成固定 legalPay(10)。",
+    "本行是候选C；完整记录PR验收前不视为main已关账。"
+  ],
+  "frozen_source": {
+    "quoted_obligation_line": 287,
+    "path": "D:/Codex/1.法律工作区/legal-math-modeling工作区/20261021挺进统一法律数学模型/理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965/题单/07_法律对象共同模型与表示.md",
+    "subparagraph_lines": [
+      287,
+      287
+    ],
+    "lines": [
+      285,
+      288
+    ],
+    "sha256": "1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a",
+    "physical_bytes": 32221,
+    "clause_ids": [
+      "U07.2"
+    ]
+  },
+  "module_plan_note": "Not applicable: reused prior successful lean-full-clean-build artifact, not a changed-module request.",
+  "runtime_consumer_changed": false
+}

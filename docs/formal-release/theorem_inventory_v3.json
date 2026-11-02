@@ -17274,6 +17274,54 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "visible_cut_preserves_distinct_stable_ids"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CompilerClosure20261026",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.TemporalInterpretationAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalIdentityAudit20261103.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Compiler.derives_mono_facts",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted",
+    "JurisLean.Candidates.TemporalIdentity20261103.visible_cut_preserves_distinct_stable_ids",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates",
+    "JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law",
+    "JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality",
+    "JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection",
+    "JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers",
+    "JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model",
+    "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+    "JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership",
+    "JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append",
+    "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+    "JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact",
+    "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable",
+    "JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition",
+    "JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure",
+    "JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version",
+    "JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion",
+    "JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency",
+    "JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant"
+   ],
+   "sha256": "37937be58a89e492fad40f448141e1cc07203fa2356ffca71faeaaeabcd9ea29",
+   "size_bytes": 6994,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "visibleSet"
     },
@@ -62002,6 +62050,7 @@
     "JurisLean.Candidates.SourceOpening20261027",
     "JurisLean.Candidates.SourceOpeningAudit20261027",
     "JurisLean.Candidates.SourceTemporalBoundaryAudit20261103",
+    "JurisLean.Candidates.SourceTemporalIdentityAudit20261103",
     "JurisLean.Candidates.TemporalInterpretationAudit20261027",
     "JurisLean.Candidates.U00ActualAssessmentChoice20261031",
     "JurisLean.Candidates.U00ActualAssessmentChoiceAudit20261031",
@@ -62258,8 +62307,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "3a11d2ea14762006b042ad455e0749b077133f6ec916d095d5265ea9daeef449",
-   "size_bytes": 15943,
+   "sha256": "aabe4dcd178e5a02fdc8222ec6fe35ec1ae5dad40d7f7ca85c403ff423997abd",
+   "size_bytes": 16007,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62431,22 +62480,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6413,
-   "file_count": 576,
+   "counted_declaration_count": 6414,
+   "file_count": 577,
    "lemma_count": 146,
-   "print_axioms_command_count": 5798,
-   "print_axioms_distinct_targets": 5248,
-   "theorem_count": 6267,
-   "theorem_count_bol_convention": 6167
+   "print_axioms_command_count": 5825,
+   "print_axioms_distinct_targets": 5250,
+   "theorem_count": 6268,
+   "theorem_count_bol_convention": 6168
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6394,
-   "file_count": 561,
+   "counted_declaration_count": 6395,
+   "file_count": 562,
    "lemma_count": 139,
-   "print_axioms_command_count": 5798,
-   "print_axioms_distinct_targets": 5248,
-   "theorem_count": 6255,
-   "theorem_count_bol_convention": 6155
+   "print_axioms_command_count": 5825,
+   "print_axioms_distinct_targets": 5250,
+   "theorem_count": 6256,
+   "theorem_count_bol_convention": 6156
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62629,6 +62678,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalBoundaryAudit20261103.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalIdentityAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualAssessmentChoice20261031.lean",
@@ -63203,6 +63253,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalBoundaryAudit20261103.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalIdentityAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualAssessmentChoice20261031.lean",
@@ -63640,17 +63691,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b636993b5867ba3b9f6e52e6de7cbc263a27aafabf4c0942d59c2ac60b8f25b2",
+ "source_inventory_digest": "0255a27fc5eef93a1d9ddba3883b6741b4147b39886b7e60e492edf045d4bf63",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original08-2-temporal-semantics-20261103",
-  "commit": "577902c7906106d54ac8fd860e1ba95be327928d",
-  "tree": "21279d7ada968c0fe94edec43c00526d0d190821"
+  "branch": "formal/close-original08-3-temporal-cut-20261103",
+  "commit": "53f9e635d1209ad1b1b6a6e84fff18d1e2eae63d",
+  "tree": "1cc25a41daf017f90882d3c714400bbb507304cd"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 576,
+  "files_total": 577,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": true
  },

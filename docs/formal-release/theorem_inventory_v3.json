@@ -16460,6 +16460,33 @@
    "declarations": [
     {
      "kind": "theorem",
+     "name": "source_model_joint_semantic_quantity"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_model_joint_bridge_nonempty_and_faithfulness_needed"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SourceRepresentationAudit20261027",
+    "JurisLean.Candidates.SourceStagesAudit20261027",
+    "JurisLean.Candidates.U07_2JointObject20261029"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+    "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity"
+   ],
+   "sha256": "2b891ab0c933591dc409873427654bd5e65c5239d9f6717c2599d33640e3d070",
+   "size_bytes": 6444,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
      "name": "finite_stage_compatible_counterexample"
     }
    ],
@@ -61819,6 +61846,7 @@
     "JurisLean.Candidates.ProcedureClosureAudit20261027",
     "JurisLean.Candidates.SourceAction20261027",
     "JurisLean.Candidates.SourceActionAudit20261027",
+    "JurisLean.Candidates.SourceFinalBridgeAudit20261102",
     "JurisLean.Candidates.SourceFiniteStageAudit20261102",
     "JurisLean.Candidates.SourceOpening20261027",
     "JurisLean.Candidates.SourceOpeningAudit20261027",
@@ -62078,8 +62106,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "4aac9369c2c4641bbdf3b584df69960677f0be992df2561f88af1751b6800196",
-   "size_bytes": 15760,
+   "sha256": "0fcb9721e103c45996177fc875c4adc407555f0718c83ae0e4c0bb0cde4298d2",
+   "size_bytes": 15819,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62251,22 +62279,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6406,
-   "file_count": 573,
+   "counted_declaration_count": 6408,
+   "file_count": 574,
    "lemma_count": 146,
-   "print_axioms_command_count": 5744,
-   "print_axioms_distinct_targets": 5241,
-   "theorem_count": 6260,
-   "theorem_count_bol_convention": 6160
+   "print_axioms_command_count": 5746,
+   "print_axioms_distinct_targets": 5243,
+   "theorem_count": 6262,
+   "theorem_count_bol_convention": 6162
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6387,
-   "file_count": 558,
+   "counted_declaration_count": 6389,
+   "file_count": 559,
    "lemma_count": 139,
-   "print_axioms_command_count": 5744,
-   "print_axioms_distinct_targets": 5241,
-   "theorem_count": 6248,
-   "theorem_count_bol_convention": 6148
+   "print_axioms_command_count": 5746,
+   "print_axioms_distinct_targets": 5243,
+   "theorem_count": 6250,
+   "theorem_count_bol_convention": 6150
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62439,6 +62467,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
@@ -63010,6 +63039,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
@@ -63454,17 +63484,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "866034df4dbe184c4300650a61e1a50162d64b73f133e163488a2d2e41394313",
+ "source_inventory_digest": "b6a9f29d804f015e968809874f5334b1493587a6cfc144d6e8b0cdb3758f545c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original07-7-finite-stage-witness-20261102",
-  "commit": "8dd0aa76480f634f1fe64048106290470ad40c20",
-  "tree": "7e55e2bf884a04c9b38957b9ce8bfb54a45f1165"
+  "branch": "formal/close-original07-8-static-source-bridge-20261102",
+  "commit": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+  "tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 573,
+  "files_total": 574,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

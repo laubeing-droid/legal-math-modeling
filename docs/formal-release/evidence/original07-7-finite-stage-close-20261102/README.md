@@ -1,0 +1,21 @@
+# Original 07.7: finite four-stage compatible witness
+
+**Disposition:** candidate C, pending full-record PR acceptance. The changed-module source build succeeds for the named audit target; this package records the finite L295 witness and its limits.
+
+## Frozen obligation and proof result
+
+The frozen question is original 07.7, source lines 293–296, with the four-stage obligation at L295 (source SHA256 `1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a`). The row asks for a finite four-stage common model and a counterexample to treating equal relations as equal complete states.
+
+The theorem `JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample` is declared in the separate `JurisLean.Candidates.SourceFiniteStageAudit20261102` audit module. It proves one closed existential over the existing `SourceFrame` and `runStageView stageView` fixture. The 44-line proof and its statement are unchanged; it was moved out of the historical 28-target `SourceStagesAudit20261027` driver so that driver and its successful-source byte binding remain exact. It establishes that the run succeeds; the before-formation and after-formation relation lists differ; the after-first and after-second relation lists are equal and satisfy the same `forms` predicate for every relation; their debt amount values are 3 and 0; and the complete ledger states differ. The proof obtains the existing successful fixture, uses kernel reduction (`decide +kernel`) for the finite data, then derives the relation predicate and complete-state inequality. It is a theorem, not an `#eval` claim.
+
+The earlier declarations supply the complementary generic pieces: actual previous-output threading, adjacent formation projection, complete nonquantity-field preservation, scalar/item projection, the two-payment balance/cash result, conservation, and fixed-background preservation of old contracts. Together these explain the finite witness while retaining the existing generic scope. A difference in the amount projection proves the whole states differ; the scalar equality alone is not treated as identity of every state field.
+
+## Exact build evidence
+
+The current source-only evidence is Run ID 41453061574, attempt 1, Job 125302769181 (`changed-modules`), event `workflow_dispatch`, on the isolated source-fix ref at commit `8dd0aa76480f634f1fe64048106290470ad40c20`, tree `7e55e2bf884a04c9b38957b9ce8bfb54a45f1165`. Its Artifact `changed-module-only-41453061574-1`, ID 13145392036; the primary `changed-module.log` and `module-plan.json` are copied byte-for-byte from that artifact. The plan requests only `JurisLean.Candidates.SourceFiniteStageAudit20261102`. The nine selected targets and their actual `#check` / `#print axioms` raw-log lines are listed in `verification.json`: eight existing targets from the imported 28-target audit and the moved witness. The new witness appears at raw log lines 668–678, with its axiom output at 679–681: `[propext, Classical.choice, Quot.sound]`. The successful log has zero `error:` and zero `sorryAx` occurrences.
+
+The first source attempt, Run 41441275833 (Job 125263468945, Artifact ID 13140446360), failed at the initial `by decide`; its original log and plan remain in `history/`, including compiler recovery output with `sorryAx`, and are not passing evidence. Run 41443123829 (Job 125269641272, Artifact ID 13140849372) then succeeded with the theorem still appended to the old Audit. Its original raw log and plan are retained byte-for-byte as `history/pre-split-run41443123829-*`; this run remains a historical success, but it is not the current path evidence after the audit split. The split restores the original 28-target driver bytes and puts the unchanged theorem/check/print in a separate imported audit module. Run 41453061574 is the current successful build for that module. All three source attempts, subjects, jobs, artifacts, plans, and outcomes are recorded separately in `verification.json`.
+
+## Scope limits
+
+This closes only the finite four-stage L295 mathematical mapping as a candidate C. It does not establish arbitrary stage systems, real-source truth or legal force, runtime Pipeline wiring, or completion of other original-07 rows and engineering/consumer obligations. The package is not full-record PR acceptance and does not close global archive gaps.

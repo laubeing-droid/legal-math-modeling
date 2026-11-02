@@ -36,6 +36,7 @@ import JurisLean.Mandate.PureNash
 import JurisLean.Mandate.ReLUApprox
 import JurisLean.Candidates.SourceOpening20261027
 import JurisLean.Candidates.SourceOpeningAudit20261027
+import JurisLean.Candidates.SourceFiniteStageAudit20261102
 import JurisLean.Candidates.SourceAction20261027
 import JurisLean.Candidates.SourceActionAudit20261027
 import JurisLean.Candidates.BusinessFeedbackLoop20261027

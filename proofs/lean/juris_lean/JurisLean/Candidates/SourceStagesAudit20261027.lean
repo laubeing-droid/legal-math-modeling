@@ -227,7 +227,7 @@ theorem finite_stage_compatible_counterexample :
              frame.stages.afterFirst.relations = frame.stages.afterSecond.relations ∧
              frame.stages.afterFirst.state.debt.amount.value = (3 : ℚ) ∧
              frame.stages.afterSecond.state.debt.amount.value = (0 : ℚ))
-       | _ => false) = true := by decide
+       | _ => false) = true := by decide +kernel
   have data :
       out.stages.beforeFormation.relations ≠ out.stages.afterFormation.relations ∧
       out.stages.afterFirst.relations = out.stages.afterSecond.relations ∧

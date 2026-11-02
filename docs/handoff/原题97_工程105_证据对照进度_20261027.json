@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。 本轮原题07.3候选C行登记后，当前math_rows为51 COVERED/31 PARTIAL/15 NOT_RECONCILED；完整记录PR验收仍待。 本轮原题07.4的L283数学映射登记为候选C；当前math_rows分布52 COVERED/30 PARTIAL/15 NOT_RECONCILED，完整记录PR验收仍待。 本轮原题07.5 L287候选C登记后，当前math_rows为53 COVERED/29 PARTIAL/15 NOT_RECONCILED；复用已接受full-source六目标，不代表新增CI或主线完整关账。",
+    "status_note": "本记录创建时，ci_status/CURRENT_HEAD_CI_NOT_RUN与source_checkpoint/tree仍是合并前source-core快照；PR82已由同subject接受并合入main，见designated_cuts topic 15 contract_reconciliation.accepted_subject_evidence。此记录分支的最终验收以其PR exact-subject证据为准；历史source_checkpoint/tree字段保留原值。 前轮记录形成时数学行分类为36 COVERED/38 PARTIAL/23 NOT_RECONCILED；PR92已合并并完成合后短核（原题05.5）；PR93已合并并完成合后短核（原题05.6）；本轮原题06.1 source-module候选C登记后分布为44 COVERED/37 PARTIAL/16 NOT_RECONCILED；原题06.2本轮登记后，当前math_rows分布为45 COVERED/37 PARTIAL/15 NOT_RECONCILED. PR96 has since merged and passed post-merge checks for original 06.3. PR97 for original 06.6 has since merged at main@10049e40f3a73dda559ad3b0b0d97f8f0b313371 and passed its post-merge short checks. PR98 for original 06.7 has since merged at main@e45955ece21a4b3d103954ae768fca40da29c688 and passed its post-merge short checks. Current math_rows after that merge were 48 COVERED/34 PARTIAL/15 NOT_RECONCILED. The original 07.1 row now has candidate C evidence from the PR98 R2 accepted-main build (43 named outputs); current math_rows are 49 COVERED/33 PARTIAL/15 NOT_RECONCILED, pending full-record acceptance. The original 07.2 row now has a candidate C mathematical mapping from the PR98 R2 accepted-main build (12 selected outputs); current math_rows are 50 COVERED/32 PARTIAL/15 NOT_RECONCILED, pending full-record PR acceptance.。source_checkpoint/source_tree/ci_status保留所记source-core时点快照，后续各批全链验收见相应PR记录；旧archive/source snapshot中的35/38/24保留为其历史状态，不覆盖当前数学row分布；archive ledger 50 clauses与97条数学row是不同分母。 本轮原题07.3候选C行登记后，当前math_rows为51 COVERED/31 PARTIAL/15 NOT_RECONCILED；完整记录PR验收仍待。 本轮原题07.4的L283数学映射登记为候选C；当前math_rows分布52 COVERED/30 PARTIAL/15 NOT_RECONCILED，完整记录PR验收仍待。 本轮原题07.5 L287候选C登记后，当前math_rows为53 COVERED/29 PARTIAL/15 NOT_RECONCILED；复用已接受full-source六目标，不代表新增CI或主线完整关账。 After the original 07.6 mathematical mapping was recorded as a candidate C, current math_rows are 54 COVERED / 28 PARTIAL / 15 NOT_RECONCILED, pending full-record PR acceptance.",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags. This round maps original 07.5 L287 using six previously accepted full-source outputs for the finite fiber conditions and sourceModel=.ok joint-object instance; no runtime caller or global completion flag is upgraded.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 53,
-    "PARTIAL": 29,
+    "COVERED": 54,
+    "PARTIAL": 28,
     "NOT_RECONCILED": 15
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -3939,7 +3939,7 @@
           291
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
@@ -3980,9 +3980,29 @@
             "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique"
           ],
           "scope": "SOURCE_ONLY / FORMAL_MODULE: supplies existing actual-source fixed-input projections, including paymentFields identity from the bound first-payment payload and checked-model amount cast, plus an explicit different-catalog boundary counterexample. Does not establish a general strong common model, real-source truth, O05, or full original-question 07.6 completion."
+        },
+        {
+          "package": "docs/formal-release/evidence/original07-6-domain-binding-close-20261102",
+          "subject": "223bf1529e1f11d05187b2f3723d4552d83befcd",
+          "tree": "31c197b7819c48146b93f0abfa549399c9fd31eb",
+          "run_id": 41364107892,
+          "job_id": 125020511901,
+          "artifact": "lean-full-build-run41364107892-attempt1",
+          "artifact_id": 13107276983,
+          "artifact_sha256": "4cb1bd5192c000bc5e93bfaaa7d14f7978b3207daeede382e7b5cd821406dc06",
+          "named_targets": [
+            "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+            "JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.fixed_binding_model_projection_unique",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_source_model_projection_unique",
+            "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics",
+            "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+            "JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts"
+          ],
+          "scope": "Reuses seven named outputs from the accepted full-source build for the original 07.6 domain distinction: fixed-background sourceModel success-domain projections, exact bound-payment/modelOf fields under their declared inputs, the different-catalog boundary, and the existing conditional joint-object/C1–C5 results. This is a mathematical mapping candidate, not a new source run or a general strong-model theorem; full-record PR acceptance remains pending."
         }
       ],
-      "remaining": "This source evidence supplements the fixed-input projections for the accepted sourceModel case and illustrates the boundary for differing catalogs. It does not prove the stronger/general common-model claim, derive interpretation inputs from raw source, establish historical identity O05 or real-source truth, or complete original question 07.6; the row remains PARTIAL."
+      "remaining": "L291 is mapped by separating the two model claims and the scope of the supplied construction. The weak family is only a notation for fixed background z and fixed branch/catalog K on the sourceModel .ok domain; success is not assumed for every c and z is not derived from c. The strong model requires an independent semantic case and interpretation relation; no general strong-model theorem is claimed. Existing results show the declared sourceModel/JointObject and fixed-background projections, with payment-field uniqueness only under the full stated binding inputs and exact Nat-to-rational cast premise. Real-source truth, arbitrary extractor fidelity, and old Pipeline wiring remain in their existing scopes. This row is a candidate C pending full-record PR acceptance."
     },
     {
       "id": "07.7",

@@ -16940,6 +16940,51 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "syntheticPaymentId"
+    },
+    {
+     "kind": "theorem",
+     "name": "sourced_calls_with_same_payment_id_are_at_most_once"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_payment_identity_and_retry_outcomes"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.SourceAction20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+    "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+    "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+    "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
+    "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable",
+    "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+    "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+    "JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions",
+    "JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity",
+    "JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes",
+    "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+    "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments"
+   ],
+   "sha256": "eb263504f3efadc7d7e3a8463994437fc1284dfa22c03794b9866afe41504259",
+   "size_bytes": 9843,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "counterAAF"
     },
     {
@@ -62285,6 +62330,7 @@
     "JurisLean.Candidates.SourceHornBoundaryAudit20261103",
     "JurisLean.Candidates.SourceOpening20261027",
     "JurisLean.Candidates.SourceOpeningAudit20261027",
+    "JurisLean.Candidates.SourcePaymentIdentityAudit20261103",
     "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
     "JurisLean.Candidates.SourceTemporalBoundaryAudit20261103",
     "JurisLean.Candidates.SourceTemporalIdentityAudit20261103",
@@ -62544,8 +62590,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "f7e75e66e8de6b605637d52daf898a32c7a09072cc2e74b5576790a4f6e7ac4b",
-   "size_bytes": 16137,
+   "sha256": "0bfeafb09738ff0b4f8d4636f7bfdfbc560f355c89c41e849b57b7dca8bc2a5f",
+   "size_bytes": 16200,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62717,22 +62763,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6430,
-   "file_count": 580,
+   "counted_declaration_count": 6432,
+   "file_count": 581,
    "lemma_count": 146,
-   "print_axioms_command_count": 5863,
-   "print_axioms_distinct_targets": 5266,
-   "theorem_count": 6284,
-   "theorem_count_bol_convention": 6184
+   "print_axioms_command_count": 5880,
+   "print_axioms_distinct_targets": 5268,
+   "theorem_count": 6286,
+   "theorem_count_bol_convention": 6186
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6411,
-   "file_count": 565,
+   "counted_declaration_count": 6413,
+   "file_count": 566,
    "lemma_count": 139,
-   "print_axioms_command_count": 5863,
-   "print_axioms_distinct_targets": 5266,
-   "theorem_count": 6272,
-   "theorem_count_bol_convention": 6172
+   "print_axioms_command_count": 5880,
+   "print_axioms_distinct_targets": 5268,
+   "theorem_count": 6274,
+   "theorem_count_bol_convention": 6174
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62912,6 +62958,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
@@ -63490,6 +63537,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpeningAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
@@ -63934,17 +63982,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e2833cef231943b8a622dd0bbbda0f4e190389d3e0d6c07ca9c247931c24fc19",
+ "source_inventory_digest": "5442f0833389b1ecad5e848ca8fbf1841a7c4b8645e119ed7698af0b5561b5d5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original09-1-2-single-debt-20261103",
-  "commit": "332c6ea1e41df0878023a20d7c02e83d8c02b926",
-  "tree": "5cc94945e241e013ec5ff6d7b4af169e779c2642"
+  "branch": "formal/close-original09-3-payment-identity-20261103",
+  "commit": "2c07cdb41bd317bed458589265e2a30a5e747597",
+  "tree": "ce5ae4c3043c60f5f371fc934b94d9b465074937"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 580,
+  "files_total": 581,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

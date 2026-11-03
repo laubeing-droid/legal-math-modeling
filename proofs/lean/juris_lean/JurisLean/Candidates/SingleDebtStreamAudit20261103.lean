@@ -37,12 +37,18 @@ theorem min_payment_step_nine_laws (d p : ℚ) (hd : 0 ≤ d) (hp : 0 ≤ p) :
   · rcases le_total p d with hpd | hdp
     · rw [min_eq_left hpd, max_eq_left (sub_nonneg.mpr hpd)]
     · rw [min_eq_right hdp, max_eq_right (sub_nonpos.mpr hdp)]
+      simp
   · rcases le_total p d with hpd | hdp
     · rw [min_eq_left hpd, max_eq_right (sub_nonpos.mpr hpd)]
+      simp
     · rw [min_eq_right hdp, max_eq_left (sub_nonneg.mpr hdp)]
   · rcases le_total p d with hpd | hdp
-    · rw [min_eq_left hpd, min_eq_right (sub_nonneg.mpr hpd)]
-    · rw [min_eq_right hdp, min_eq_left (sub_nonneg.mpr hdp)]
+    · rw [min_eq_left hpd]
+      simp only [sub_self]
+      exact min_eq_right (sub_nonneg.mpr hpd)
+    · rw [min_eq_right hdp]
+      simp only [sub_self]
+      exact min_eq_left (sub_nonneg.mpr hdp)
 
 def sameItemFrameLe (after before : LedgerItem) : Prop :=
   after.ident = before.ident ∧
@@ -363,8 +369,8 @@ end JurisLean.Candidates.SingleDebtStream20261103
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation
 #check JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement
-#check JurisLean.Candidates.Final20261021.Ledger.n09_2_state_conservation_mismatch
-#print axioms JurisLean.Candidates.Final20261021.Ledger.n09_2_state_conservation_mismatch
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch
 #check JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp
 #check JurisLean.Seams.UnifiedQuantities.waterfall_conservation

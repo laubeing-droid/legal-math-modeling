@@ -317,3 +317,4 @@ import JurisLean.TypedAttack
 import JurisLean.UnifiedV21.Audit
 import JurisLean.WeightedSupNorm
 -- END GENERATED reachability block
+import JurisLean.Candidates.SourceDependencySnapshotAudit20261103

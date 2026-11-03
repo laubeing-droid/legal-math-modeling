@@ -83,25 +83,17 @@
     "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
   },
   "source_checkpoint": {
-    "commit": "bd1830aaec052822f07aefe8826c1c1361128ae9",
-    "tree": "84854b05512e34e91c72c2a0a957d9f5e6a7195d",
+    "commit": "7a5714d0d1f09ae3c0f45d16b65892f8aa2634f3",
+    "tree": "d4308cf9ff7aee2ef96730c5a78dfb5a130812db",
+    "parent": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
     "root_import": {
       "path": "proofs/lean/juris_lean/JurisLean.lean",
-      "bytes": 16071,
-      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
-      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
-      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+      "working_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
     },
-    "parent": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
-    "source_file": {
-      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
-      "bytes": 8142,
-      "sha256": "6e002d6bad25b362021d9a342a23c7132712201e4e0fb833628d896eef07fa1e",
-      "git_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
-      "working_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7"
-    },
-    "branch": "formal/close-original08-5-policy-exhaustion-20261103",
-    "tracked_status": "clean; checked with fixed tracked-only wrapper"
+    "tracked_status": "clean at source checkpoint; root-only generated-import repair"
   },
   "source_attempts": [
     {
@@ -317,10 +309,10 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean.lean",
-      "bytes": 16071,
-      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
-      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
-      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+      "working_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
@@ -393,5 +385,980 @@
     "Module-only evidence is not full PR/release acceptance.",
     "No caller, runtime, global discharge, source truth or legal authorization is upgraded."
   ],
-  "diagnostics": []
+  "diagnostics": [],
+  "source_module_checkpoint": {
+    "commit": "bd1830aaec052822f07aefe8826c1c1361128ae9",
+    "tree": "84854b05512e34e91c72c2a0a957d9f5e6a7195d",
+    "parent": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
+    "root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    "proof_module": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+    "proof_module_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+    "source_run_id": 41559151149,
+    "source_job_id": 125665263921,
+    "source_artifact_id": 13196147073,
+    "note": "The changed-module run validates the Audit module on this checkpoint; it does not validate the later root import repair."
+  },
+  "root_reachability_repair": {
+    "commit": "7a5714d0d1f09ae3c0f45d16b65892f8aa2634f3",
+    "tree": "d4308cf9ff7aee2ef96730c5a78dfb5a130812db",
+    "changed_path": "proofs/lean/juris_lean/JurisLean.lean",
+    "generator_argv": [
+      "scripts/ci/check_import_reachability.py",
+      "--write"
+    ],
+    "generator_cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+    "generator_exit_code": 0,
+    "generator_stdout_file": "D:\\tmp\\original08-5-pr111-r1\\check-import-reachability-write.stdout.txt",
+    "generator_stdout_bytes": 63,
+    "generator_stdout_sha256": "a2f6bb918a7fae42ec04c52567f3b4fa96fc70e6fc5b08461a7a62fe12748b04",
+    "focused_test_argv": [
+      "-m",
+      "pytest",
+      "-q",
+      "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs"
+    ],
+    "focused_test_cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+    "focused_test_exit_code": 0,
+    "focused_test_stdout_file": "D:\\tmp\\original08-5-pr111-r1\\source-fix\\test-import-reachability.stdout.txt",
+    "focused_test_stdout_bytes": 100,
+    "focused_test_stdout_sha256": "49bf6922cd8f1b22088f46dbdc62055c772502e6e8302c2c11cdc240a39c8aba",
+    "old_root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    "new_root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
+    },
+    "note": "The generated root block dropped the redundant ProcedureClosureAudit import, which is reachable through SourcePolicyExhaustionAudit; the direct SourcePolicy import remains. Full PR validation of this updated root import is pending."
+  },
+  "pre_rootfix_pr111_attempt": {
+    "pr": 111,
+    "head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+    "base": "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+    "tested_merge": "410561fb7f0ef27c4dfe4caa37b61e2d19dd6de2",
+    "tree": "ca4d76d0282312e1bf76dc4098de2e129696ac38",
+    "ordered_parents": [
+      "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+      "cfda24ca2eaa9c7924ffe71d04a298df728e18ba"
+    ],
+    "ulm_run": {
+      "run_id": 41563884970,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+      "snapshot": "D:/tmp/original08-5-pr111-r1/api-snapshots/ulm-run-initial.json"
+    },
+    "authority_run": {
+      "run_id": 41563885577,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+      "snapshot": "D:/tmp/original08-5-pr111-r1/api-snapshots/authority-run-terminal.json"
+    },
+    "authority_jobs": [
+      {
+        "id": 125680628019,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYxMw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628019",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628019",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:17:04Z",
+        "name": "python-gates",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:18Z",
+            "completed_at": "2026-11-03T02:05:19Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Install current project test dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:26Z"
+          },
+          {
+            "name": "Existing gates plus full retained and new root tests",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:26Z",
+            "completed_at": "2026-11-03T02:17:00Z"
+          },
+          {
+            "name": "Upload original gate inputs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:17:00Z",
+            "completed_at": "2026-11-03T02:17:01Z"
+          },
+          {
+            "name": "Upload same-run extended evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:17:01Z",
+            "completed_at": "2026-11-03T02:17:01Z"
+          },
+          {
+            "name": "All mathematics implementation tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 8,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Upload full mathematics Python evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 17,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628019",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012723,
+        "runner_name": "GitHub Actions 1000012723",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680628381,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYynQ",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628381",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628381",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:24:59Z",
+        "name": "lean-full-clean-build",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:20Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:20Z",
+            "completed_at": "2026-11-03T02:05:24Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:24Z",
+            "completed_at": "2026-11-03T02:05:24Z"
+          },
+          {
+            "name": "Fixed toolchain, no lake update",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:24Z",
+            "completed_at": "2026-11-03T02:05:25Z"
+          },
+          {
+            "name": "Restore compiled dependency cache with seeds fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:25Z",
+            "completed_at": "2026-11-03T02:06:00Z"
+          },
+          {
+            "name": "Generate and verify all mathematics type assertions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:06:00Z",
+            "completed_at": "2026-11-03T02:06:02Z"
+          },
+          {
+            "name": "Build all project Lean modules from a clean project build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:06:02Z",
+            "completed_at": "2026-11-03T02:24:43Z"
+          },
+          {
+            "name": "Upload original release-compatible logs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-03T02:24:43Z",
+            "completed_at": "2026-11-03T02:24:44Z"
+          },
+          {
+            "name": "Upload full-root evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:24:44Z",
+            "completed_at": "2026-11-03T02:24:45Z"
+          },
+          {
+            "name": "Audit whole mathematical plan",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-03T02:24:45Z",
+            "completed_at": "2026-11-03T02:24:56Z"
+          },
+          {
+            "name": "Upload full mathematics Lean evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-03T02:24:56Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Restore compiled dependency cache with seeds fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628381",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012724,
+        "runner_name": "GitHub Actions 1000012724",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680628416,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYywA",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628416",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628416",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:05:32Z",
+        "name": "runtime-refinement / produce",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:18Z",
+            "completed_at": "2026-11-03T02:05:19Z"
+          },
+          {
+            "name": "Check out Legal Math Modeling subject",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:21Z"
+          },
+          {
+            "name": "Check out Juris Calculus producer",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:21Z",
+            "completed_at": "2026-11-03T02:05:22Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:22Z",
+            "completed_at": "2026-11-03T02:05:22Z"
+          },
+          {
+            "name": "Verify immutable checkout identities",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:22Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Install runtime fixture dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:27Z"
+          },
+          {
+            "name": "Materialize subject-bound expected fixtures",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:05:27Z",
+            "completed_at": "2026-11-03T02:05:27Z"
+          },
+          {
+            "name": "Execute Juris Calculus fixtures and issue receipts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-03T02:05:27Z",
+            "completed_at": "2026-11-03T02:05:28Z"
+          },
+          {
+            "name": "Verify every receipt independently",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:05:28Z",
+            "completed_at": "2026-11-03T02:05:29Z"
+          },
+          {
+            "name": "Upload bound runtime evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-03T02:05:29Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Check out Juris Calculus producer",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Check out Legal Math Modeling subject",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628416",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012725,
+        "runner_name": "GitHub Actions 1000012725",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680630035,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyY5Ew",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680630035",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680630035",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:15Z",
+        "completed_at": "2026-11-03T02:05:15Z",
+        "name": "changed-modules",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680630035",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      },
+      {
+        "id": 125687459431,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ45uZw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687459431",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687459431",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:24:59Z",
+        "started_at": "2026-11-03T02:25:07Z",
+        "completed_at": "2026-11-03T02:25:15Z",
+        "name": "seven-axis-acceptance",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:25:08Z",
+            "completed_at": "2026-11-03T02:25:09Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:25:09Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 4,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Actual same-run acceptance",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 13,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687459431",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012727,
+        "runner_name": "GitHub Actions 1000012727",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125687461071,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ450zw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687461071",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687461071",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:24:59Z",
+        "started_at": "2026-11-03T02:24:59Z",
+        "completed_at": "2026-11-03T02:24:59Z",
+        "name": "mathematics-completion",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687461071",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      },
+      {
+        "id": 125687561723,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ4_9-w",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687561723",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687561723",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:25:16Z",
+        "started_at": "2026-11-03T02:25:21Z",
+        "completed_at": "2026-11-03T02:25:27Z",
+        "name": "final-gate",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:25:22Z",
+            "completed_at": "2026-11-03T02:25:23Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 2,
+            "started_at": "2026-11-03T02:25:23Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 3,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Verify both the retained and new scope receipts",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 4,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687561723",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012728,
+        "runner_name": "GitHub Actions 1000012728",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125687563042,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ5ADIg",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687563042",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687563042",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:25:16Z",
+        "started_at": "2026-11-03T02:25:16Z",
+        "completed_at": "2026-11-03T02:25:16Z",
+        "name": "release-certificate",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687563042",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      }
+    ],
+    "artifact_count": 14,
+    "zip_member_count": 87,
+    "artifacts": [
+      {
+        "artifact_id": "13197293188",
+        "name": "consolidated-jc-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 890,
+        "api_digest": "sha256:408ddd184fe443ef29c28bd0283ccfb59b651865286147caf587837c89d1dcd6",
+        "api_expired": false,
+        "zip_bytes": 890,
+        "zip_sha256": "408ddd184fe443ef29c28bd0283ccfb59b651865286147caf587837c89d1dcd6",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197293188\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197459438",
+        "name": "consolidated-lean-fullmath-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 281701,
+        "api_digest": "sha256:45860f3073bb70e9541d932091680c7f3881369102ca11804895b08179b2aef0",
+        "api_expired": false,
+        "zip_bytes": 281701,
+        "zip_sha256": "45860f3073bb70e9541d932091680c7f3881369102ca11804895b08179b2aef0",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197459438\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197478544",
+        "name": "consolidated-lean-consolidated-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 40178,
+        "api_digest": "sha256:c9f0a919a8954808bb91a30b52a013bcdc821744df179d6b5aaed8b1facc5111",
+        "api_expired": false,
+        "zip_bytes": 40178,
+        "zip_sha256": "c9f0a919a8954808bb91a30b52a013bcdc821744df179d6b5aaed8b1facc5111",
+        "member_count": 6,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197478544\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197837846",
+        "name": "consolidated-python-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 40418,
+        "api_digest": "sha256:894d1c10ebfc0d743265f9947d3ea6f5a45350b6ff13948a590bdba3f397099d",
+        "api_expired": false,
+        "zip_bytes": 40418,
+        "zip_sha256": "894d1c10ebfc0d743265f9947d3ea6f5a45350b6ff13948a590bdba3f397099d",
+        "member_count": 31,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197837846\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198238112",
+        "name": "runtime-refinement-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 6803,
+        "api_digest": "sha256:cbf1f630c21d199d05694828ed38ac4ce9ddb1d850f0fa2de10d3e2206944437",
+        "api_expired": false,
+        "zip_bytes": 6803,
+        "zip_sha256": "cbf1f630c21d199d05694828ed38ac4ce9ddb1d850f0fa2de10d3e2206944437",
+        "member_count": 10,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198238112\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198318375",
+        "name": "consolidated-lean-mandate-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 4380,
+        "api_digest": "sha256:176adfc56d2c0c8479c8f2efe9ff57935798b5e1c39c0125d75f5b5289643d7b",
+        "api_expired": false,
+        "zip_bytes": 4380,
+        "zip_sha256": "176adfc56d2c0c8479c8f2efe9ff57935798b5e1c39c0125d75f5b5289643d7b",
+        "member_count": 5,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198318375\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198323618",
+        "name": "consolidated-lean-business-root-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 37534,
+        "api_digest": "sha256:5a84d66986043deb4af0b5dea85cb6a93d7a0ba9d4a86d991442ab0c47d54778",
+        "api_expired": false,
+        "zip_bytes": 37534,
+        "zip_sha256": "5a84d66986043deb4af0b5dea85cb6a93d7a0ba9d4a86d991442ab0c47d54778",
+        "member_count": 6,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198323618\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198408018",
+        "name": "consolidated-lean-unified-v2-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 3435,
+        "api_digest": "sha256:b952fb24e0cddd0c5b2345ccd2d71524320dce4332f3320e9bf1403d9874c925",
+        "api_expired": false,
+        "zip_bytes": 3435,
+        "zip_sha256": "b952fb24e0cddd0c5b2345ccd2d71524320dce4332f3320e9bf1403d9874c925",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198408018\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198423156",
+        "name": "consolidated-lean-candidates-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 26925,
+        "api_digest": "sha256:a265e0a5d3322065d85f76d661a1915671b98a4e575262e22191e2f621cac20c",
+        "api_expired": false,
+        "zip_bytes": 26925,
+        "zip_sha256": "a265e0a5d3322065d85f76d661a1915671b98a4e575262e22191e2f621cac20c",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198423156\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198558032",
+        "name": "consolidated-gate-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 627,
+        "api_digest": "sha256:d59c73881acc8277ac766a4a26de158ae5d30dde317677c51d710470a053f649",
+        "api_expired": false,
+        "zip_bytes": 627,
+        "zip_sha256": "d59c73881acc8277ac766a4a26de158ae5d30dde317677c51d710470a053f649",
+        "member_count": 1,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198558032\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198711943",
+        "name": "full-math-lean-41563885577-1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 566429,
+        "api_digest": "sha256:48a6e4742576c4b011e39cbebfec26c892c85024fcea87300d1f80d4dfb83efa",
+        "api_expired": false,
+        "zip_bytes": 566429,
+        "zip_sha256": "48a6e4742576c4b011e39cbebfec26c892c85024fcea87300d1f80d4dfb83efa",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198711943\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199015012",
+        "name": "python-gates-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 17723,
+        "api_digest": "sha256:3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+        "api_expired": false,
+        "zip_bytes": 17723,
+        "zip_sha256": "3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199015012\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199376185",
+        "name": "seven-axis-lean-41563885577-1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 670031,
+        "api_digest": "sha256:9521930ca1c8b5fcd70482e26d9a27c5c140b29b427635d6f944abb74a35581c",
+        "api_expired": false,
+        "zip_bytes": 670031,
+        "zip_sha256": "9521930ca1c8b5fcd70482e26d9a27c5c140b29b427635d6f944abb74a35581c",
+        "member_count": 8,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199376185\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199571006",
+        "name": "lean-full-build-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 712380,
+        "api_digest": "sha256:15db48c25e036af087cc62a169e18c482cd566769ad2e88e04d6a327040af8da",
+        "api_expired": false,
+        "zip_bytes": 712380,
+        "zip_sha256": "15db48c25e036af087cc62a169e18c482cd566769ad2e88e04d6a327040af8da",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199571006\\artifact-receipt.json"
+      }
+    ],
+    "python_failure": {
+      "job_id": 125680628019,
+      "failed_step": "Existing gates plus full retained and new root tests",
+      "test": "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs",
+      "summary": "775 passed, 1 failed; generated block had 220 imports while base root needed 219, due to the redundant ProcedureClosureAudit module entry.",
+      "artifact_id": 13199015012,
+      "artifact_name": "python-gates-run41563885577-attempt1",
+      "artifact_api_size": 17723,
+      "artifact_api_sha256": "sha256:3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+      "zip_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199015012\\artifact.zip",
+      "member_receipt_path": "D:/tmp/original08-5-pr111-r1/artifacts/13199015012/artifact-receipt.json",
+      "pytest_full_log_path": "D:/tmp/original08-5-pr111-r1/artifacts/13199015012/expanded/pytest-full.log",
+      "pytest_full_log_bytes": 29824,
+      "pytest_full_log_sha256": "b21994af46491bca8b898f6357c86288bd7a179cad7d2133d647852ebeef7daa"
+    },
+    "release_certificate": "NOT_PRODUCED; release-certificate job skipped",
+    "independent_verifier": "NOT_RUN",
+    "claims_checker": "NOT_RUN",
+    "note": "Historical pre-rootfix PR run only; it does not validate checkpoint 7a5714d or the repaired root import."
+  },
+  "records_status": "ROOTFIX_COMMITTED_LOCALLY; CURRENT_PR_FULL_VALIDATION_PENDING"
 }

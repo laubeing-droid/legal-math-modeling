@@ -37205,6 +37205,198 @@
       "status": "completed",
       "updated_at": "2026-11-03T04:37:02Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-03T07:30:29Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "head_sha": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41596762048",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original08-7-dependency-snapshot-close-20261103/README.md:23",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:253"
+      ],
+      "run_id": 41596762048,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-03T07:33:26Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "cancelled",
+      "created_at": "2026-11-03T08:05:44Z",
+      "event": "pull_request",
+      "evidence": null,
+      "head_branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "head_sha": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41600741217",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Close frozen original 08.7 dependency and snapshot obligation",
+      "quoted_by": [
+        "docs/formal-release/evidence/original08-7-dependency-snapshot-close-20261103/README.md:19"
+      ],
+      "run_id": 41600741217,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-03T08:18:55Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 9,
+      "conclusion": "success",
+      "created_at": "2026-11-03T08:05:44Z",
+      "event": "pull_request",
+      "evidence": null,
+      "head_branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "head_sha": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41600741223",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-reference",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "existing-jc-transport",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (candidates, JurisLean.Candidates.Final20261021.CIAll, module, build)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (consolidated, JurisLean.Consolidated.All, module, seeds)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (business-root, JurisLean.BusinessRoot.All, module, root)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (mandate, JurisLean.Mandate, directory, build)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (fullmath, JurisLean.FullMath.All, module, build)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-seeds (unified-v2, JurisLean.UnifiedV2.All, module, build)",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "reference-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 9,
+      "name": "Close frozen original 08.7 dependency and snapshot obligation",
+      "quoted_by": [
+        "docs/formal-release/evidence/original08-7-dependency-snapshot-close-20261103/README.md:19"
+      ],
+      "run_id": 41600741223,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-03T08:11:17Z",
+      "workflow": "ULM Consolidated Reference and Retained Proof Seeds"
     }
   ],
   "schema_version": "ci-run-index-v1",

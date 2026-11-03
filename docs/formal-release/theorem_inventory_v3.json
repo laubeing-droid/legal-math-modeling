@@ -3793,8 +3793,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.QIv.vneg_sound",
     "JurisLean.Seams.UnifiedQuantLedger.QIv.vscale_sound",
     "JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound",
-    "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg",
-    "JurisLean.Seams.UnifiedQuantLedger.afterPay_idents",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
@@ -3831,7 +3829,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp",
-    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg",
     "JurisLean.Seams.UnifiedQuantLedger.pays_sum_base",
@@ -3845,7 +3842,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.signing_not_pledge_established",
     "JurisLean.Seams.UnifiedQuantLedger.small_share_mask_rejected",
     "JurisLean.Seams.UnifiedQuantLedger.stacking_not_default",
-    "JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal",
     "JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition",
     "JurisLean.Seams.UnifiedQuantLedger.supp_unfold",
     "JurisLean.Seams.UnifiedQuantLedger.supp_zero_when_primary_covers",
@@ -3855,7 +3851,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.unknown_kept_in_residual",
     "JurisLean.Seams.UnifiedQuantLedger.unmatched_partition",
     "JurisLean.Seams.UnifiedQuantLedger.unsourced_not_admitted",
-    "JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min",
     "JurisLean.Seams.UnifiedQuantileNarrow.bern_cdfEnc_valid",
     "JurisLean.Seams.UnifiedQuantileNarrow.bern_full_chain",
     "JurisLean.Seams.UnifiedQuantileNarrow.certFound_both_iff",
@@ -3903,15 +3898,12 @@
     "JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum",
     "JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded",
     "JurisLean.Seams.UnifiedQuantities.remainingAfter_cons",
-    "JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg",
     "JurisLean.Seams.UnifiedQuantities.waterfall_cons",
-    "JurisLean.Seams.UnifiedQuantities.waterfall_conservation",
     "JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_debt",
     "JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_payment",
     "JurisLean.Seams.UnifiedQuantities.waterfall_head_full_of_tail_positive",
     "JurisLean.Seams.UnifiedQuantities.waterfall_homogeneous",
     "JurisLean.Seams.UnifiedQuantities.waterfall_mem_nonneg",
-    "JurisLean.Seams.UnifiedQuantities.waterfall_sum_le",
     "JurisLean.Seams.UnifiedQuantities.waterfall_t25_prefix",
     "JurisLean.Seams.UnifiedQuantities.waterfall_zero",
     "JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable",
@@ -4672,8 +4664,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "b93afaadd229454597b1e8b9ae0a759a16b42559afd699a4536c590ab01a4de9",
-   "size_bytes": 313401,
+   "sha256": "6c048b4f15570ab456f2a22b41c47f079a66f4bc53f16d4a2e51db041b21baff",
+   "size_bytes": 312841,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16038,6 +16030,132 @@
    "size_bytes": 2349,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "min_payment_step_nine_laws"
+    },
+    {
+     "kind": "def",
+     "name": "sameItemFrameLe"
+    },
+    {
+     "kind": "theorem",
+     "name": "sameItemFrameLe_is_partial_order"
+    },
+    {
+     "kind": "theorem",
+     "name": "afterPay_preserves_full_frame_and_pointwise_order"
+    },
+    {
+     "kind": "def",
+     "name": "negativePaymentItem"
+    },
+    {
+     "kind": "theorem",
+     "name": "negative_payment_breaks_the_one_step_bounds"
+    },
+    {
+     "kind": "def",
+     "name": "tenUnitItem"
+    },
+    {
+     "kind": "def",
+     "name": "streamUnusedPayments"
+    },
+    {
+     "kind": "def",
+     "name": "finitePaymentStepLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_payment_steps_follow_actual_prefix"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_stream_payments_equal_allocations_plus_unused"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_stream_debt_conservation"
+    },
+    {
+     "kind": "theorem",
+     "name": "single_item_final_balance_invariant_under_payment_permutation"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_ten_seven_seven_matches_quantity_stream"
+    },
+    {
+     "kind": "def",
+     "name": "reportedOldDebtAsRemainder"
+    },
+    {
+     "kind": "theorem",
+     "name": "seven_three_allocation_report_cannot_keep_old_debt"
+    },
+    {
+     "kind": "def",
+     "name": "paymentOrder12First"
+    },
+    {
+     "kind": "def",
+     "name": "paymentOrder12Second"
+    },
+    {
+     "kind": "def",
+     "name": "paymentOrder21First"
+    },
+    {
+     "kind": "def",
+     "name": "paymentOrder21Second"
+    },
+    {
+     "kind": "theorem",
+     "name": "final_balance_order_independent_but_payment_identity_allocation_is_not"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Seams.UnifiedQuantLedger"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+    "JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order",
+    "JurisLean.Candidates.SingleDebtStream20261103.continuous_ten_seven_seven_matches_quantity_stream",
+    "JurisLean.Candidates.SingleDebtStream20261103.final_balance_order_independent_but_payment_identity_allocation_is_not",
+    "JurisLean.Candidates.SingleDebtStream20261103.finite_payment_steps_follow_actual_prefix",
+    "JurisLean.Candidates.SingleDebtStream20261103.finite_stream_debt_conservation",
+    "JurisLean.Candidates.SingleDebtStream20261103.finite_stream_payments_equal_allocations_plus_unused",
+    "JurisLean.Candidates.SingleDebtStream20261103.min_payment_step_nine_laws",
+    "JurisLean.Candidates.SingleDebtStream20261103.negative_payment_breaks_the_one_step_bounds",
+    "JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe_is_partial_order",
+    "JurisLean.Candidates.SingleDebtStream20261103.seven_three_allocation_report_cannot_keep_old_debt",
+    "JurisLean.Candidates.SingleDebtStream20261103.single_item_final_balance_invariant_under_payment_permutation",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_idents",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream",
+    "JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal",
+    "JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min",
+    "JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg",
+    "JurisLean.Seams.UnifiedQuantities.waterfall_conservation",
+    "JurisLean.Seams.UnifiedQuantities.waterfall_sum_le"
+   ],
+   "sha256": "4b096dba3892ea1fe4fa3d5a52e1412de2e23dbc042d9eb9f2a16b2c09fe02a0",
+   "size_bytes": 20310,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
   },
   {
    "declarations": [
@@ -62158,6 +62276,7 @@
     "JurisLean.Candidates.Original07_3RowInterpretationAudit20261102",
     "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
     "JurisLean.Candidates.PendingCommit20261027",
+    "JurisLean.Candidates.SingleDebtStreamAudit20261103",
     "JurisLean.Candidates.SourceAction20261027",
     "JurisLean.Candidates.SourceActionAudit20261027",
     "JurisLean.Candidates.SourceDependencySnapshotAudit20261103",
@@ -62425,8 +62544,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "88fce5187c878b73631e26146ad9a262a2bc07355c37d6e02dd04fdb57177d49",
-   "size_bytes": 16079,
+   "sha256": "f7e75e66e8de6b605637d52daf898a32c7a09072cc2e74b5576790a4f6e7ac4b",
+   "size_bytes": 16137,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62598,22 +62717,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6419,
-   "file_count": 579,
+   "counted_declaration_count": 6430,
+   "file_count": 580,
    "lemma_count": 146,
-   "print_axioms_command_count": 5846,
-   "print_axioms_distinct_targets": 5255,
-   "theorem_count": 6273,
-   "theorem_count_bol_convention": 6173
+   "print_axioms_command_count": 5863,
+   "print_axioms_distinct_targets": 5266,
+   "theorem_count": 6284,
+   "theorem_count_bol_convention": 6184
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6400,
-   "file_count": 564,
+   "counted_declaration_count": 6411,
+   "file_count": 565,
    "lemma_count": 139,
-   "print_axioms_command_count": 5846,
-   "print_axioms_distinct_targets": 5255,
-   "theorem_count": 6261,
-   "theorem_count_bol_convention": 6161
+   "print_axioms_command_count": 5863,
+   "print_axioms_distinct_targets": 5266,
+   "theorem_count": 6272,
+   "theorem_count_bol_convention": 6172
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62782,6 +62901,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceAction20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
@@ -63359,6 +63479,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceAction20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceActionAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
@@ -63813,17 +63934,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "25521b54854df2c12ba87b37d6a56d0d180f27d9bb481f0cbe75a352b527f7dd",
+ "source_inventory_digest": "e2833cef231943b8a622dd0bbbda0f4e190389d3e0d6c07ca9c247931c24fc19",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original08-7-dependency-snapshot-20261103",
-  "commit": "7909ad120fa8519b91fc3de3143fa412dcc0a46f",
-  "tree": "0e7d5d626cb2175085faa8992c47d211c9b4ab33"
+  "branch": "formal/close-original09-1-2-single-debt-20261103",
+  "commit": "332c6ea1e41df0878023a20d7c02e83d8c02b926",
+  "tree": "5cc94945e241e013ec5ff6d7b4af169e779c2642"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 579,
+  "files_total": 580,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

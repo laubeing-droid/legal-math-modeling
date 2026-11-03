@@ -3454,8 +3454,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vneg_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vscale_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound
-#print axioms JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantLedger.afterPay_idents
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining
@@ -3492,7 +3490,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp
-#print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg
 #print axioms JurisLean.Seams.UnifiedQuantLedger.pays_sum_base
@@ -3506,7 +3503,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.signing_not_pledge_established
 #print axioms JurisLean.Seams.UnifiedQuantLedger.small_share_mask_rejected
 #print axioms JurisLean.Seams.UnifiedQuantLedger.stacking_not_default
-#print axioms JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal
 #print axioms JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition
 #print axioms JurisLean.Seams.UnifiedQuantLedger.supp_unfold
 #print axioms JurisLean.Seams.UnifiedQuantLedger.supp_zero_when_primary_covers
@@ -3516,7 +3512,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unknown_kept_in_residual
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unmatched_partition
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unsourced_not_admitted
-#print axioms JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.bern_cdfEnc_valid
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.bern_full_chain
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.certFound_both_iff
@@ -3564,15 +3559,12 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum
 #print axioms JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded
 #print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_cons
-#print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_cons
-#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_conservation
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_debt
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_payment
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_head_full_of_tail_positive
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_homogeneous
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_mem_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_sum_le
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_t25_prefix
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_zero
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable

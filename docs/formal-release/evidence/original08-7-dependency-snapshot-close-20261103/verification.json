@@ -539,5 +539,88 @@
     ],
     "remaining": "Frozen 08.7 L139/L141 is covered by the independently compiled source snapshot and finite dependency witnesses. Broader original-08 engineering work, external source/rule/App fidelity, and U00 consumer/runtime integration remain in their existing scopes."
   },
-  "full_record_acceptance": "PENDING"
+  "full_record_acceptance": "PENDING",
+  "root_metadata_repair": {
+    "purpose": "Repair the generated release-root reachability block after the first PR113 validation found one missing block entry; the original source-module proof remains bound to its original source checkpoint.",
+    "initial_pr": {
+      "number": 113,
+      "head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "base": "f71c3f1ed08e6472c9fedeaa6a71e840612a419f",
+      "tested_merge": "0f1f4cfdc66e5a9ae3bea3b7dfb58161306b1dd9",
+      "tree": "e8e81503d351edb82c94fb25075f6e6bb6a6fa77",
+      "ordered_parents": [
+        "f71c3f1ed08e6472c9fedeaa6a71e840612a419f",
+        "5df54b849a7f4002f751f7a50493ef5651d2b564"
+      ]
+    },
+    "ulm_run": {
+      "id": 41600741223,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "api_head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "role": "historical validation of the pre-repair PR head; not current acceptance"
+    },
+    "authority_run": {
+      "id": 41600741217,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "api_head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "pre_cancel_status": "in_progress",
+      "python_job_failure": {
+        "job": "python-gates",
+        "failed_test": "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs",
+        "summary": "775 passed, 1 failed; generated block listed 219 modules while the base root required 220"
+      },
+      "cancel_request": {
+        "exit_code": 0,
+        "receipt": "D:/tmp/original08-7-pr113-r2/cancel-old-authority-run.json"
+      },
+      "role": "pre-repair historical failure; not current acceptance"
+    },
+    "repair": {
+      "argv": [
+        "python",
+        "scripts/ci/check_import_reachability.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "wrote All.lean (64 imports) and a root block with 220 imports",
+      "change": "The generated block contains the new SourceDependencySnapshotAudit import once; the duplicate suffix import was removed.",
+      "all_lean_unchanged": true,
+      "focused_validation": {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "tests/spec/test_import_reachability.py",
+          "tests/test_declaration_collisions.py"
+        ],
+        "exit_code": 0,
+        "summary": "17 passed",
+        "receipt": "D:/tmp/original08-7-pr113-r2/reachability-and-collision-pytest.receipt.json"
+      }
+    },
+    "root_metadata_checkpoint": {
+      "commit": "7909ad120fa8519b91fc3de3143fa412dcc0a46f",
+      "tree": "0e7d5d626cb2175085faa8992c47d211c9b4ab33",
+      "parent": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16079,
+      "sha256": "88fce5187c878b73631e26146ad9a262a2bc07355c37d6e02dd04fdb57177d49",
+      "git_blob": "0a21431a241d46543afea206815cd8cb577705ca"
+    },
+    "source_module_evidence_unchanged": {
+      "commit": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "tree": "ea86fcde17887b0e2a1ce8933721809eb9ae1a8b",
+      "run_id": 41596762048,
+      "attempt": 1,
+      "selected_output_count": 13,
+      "role": "original source-module proof; not the later root-metadata checkpoint"
+    },
+    "current_pr_validation": "PENDING_NEW_PR113_HEAD"
+  }
 }

@@ -39,7 +39,13 @@ private theorem counter_rounds_empty (n : Nat) :
     rounds counterPolicy n = (∅, ∅) := by
   induction n with
   | zero => simp [rounds, baseSet, counterPolicy]
-  | succ n ih => simp [rounds, ih, adoptedStep, rejectedStep, counterPolicy]
+  | succ n ih =>
+      change
+        (adoptedStep counterPolicy (rounds counterPolicy n).1
+          (rejectedStep counterPolicy (rounds counterPolicy n).1 (rounds counterPolicy n).2),
+          rejectedStep counterPolicy (rounds counterPolicy n).1 (rounds counterPolicy n).2) = (∅, ∅)
+      simp only [ih]
+      simp [adoptedStep, rejectedStep, counterPolicy]
 
 -- L127: the old counter omitted an actual executable-step witness.
 theorem declared_finality_misses_one_executable_requirement :
@@ -99,7 +105,7 @@ structure ValidPolicy (raw : RawProcess) (norm : ProcessPolicy)
 theorem actual_bound_valid_policy_exhaustion {W : Type}
     (bound : BoundData) (history : List VersionRecord) (versions : List Nat)
     (app : TemporalInterpretation20261027.App)
-    (rules : CompilerProvenance20261027.RuleUse)
+    (rules : List CompilerProvenance20261027.RuleUse)
     (ruleGate : Gamma → CompilerProvenance20261027.RuleUse → Bool)
     (modelWorlds : List W) (truth : W → Nat → Bool)
     (valid : ValidPolicy bound.supplement.process bound.policy

@@ -36680,7 +36680,10 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/formal-release/evidence/original08-4-evidence-worlds-close-20261103/README.md:18",
-        "docs/handoff/U00_十五条实际消费边复核_20261027.md:251"
+        "docs/formal-release/evidence/original08-6-state-product-close-20261103/README.md:11",
+        "docs/formal-release/evidence/original08-6-state-product-close-20261103/README.md:19",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:251",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:253"
       ],
       "run_id": 41541346784,
       "started": true,
@@ -37138,6 +37141,69 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-11-03T03:08:23Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-03T04:34:52Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original08-6-state-product-20261103",
+      "head_sha": "df9fa5a94c4f62cd234c7200227b2a0d90eb6513",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41578958684",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original08-6-state-product-close-20261103/README.md:17",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:253"
+      ],
+      "run_id": 41578958684,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-03T04:37:02Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

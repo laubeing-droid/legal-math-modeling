@@ -1,0 +1,397 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.5",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.5 L127/L129 mapped as COVERED; full-record PR acceptance pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      125,
+      130
+    ],
+    "subparagraph_lines": [
+      [
+        127,
+        127
+      ],
+      [
+        129,
+        129
+      ]
+    ],
+    "clause_ids": [
+      "U08.2",
+      "U08.3"
+    ],
+    "sha256": "eeaa6e20a4a475ff81dd25b77b36ffa28a27cdcf0e2b554f31b5710da9f6db0c"
+  },
+  "canonical_before": {
+    "id": "08.5",
+    "heading": "## 08.5 任意策略的耗尽为什么可能空洞",
+    "original_manifest_row": "08.5",
+    "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "source_lines": [
+      125,
+      130
+    ],
+    "clauses": [
+      "U08.2",
+      "U08.3"
+    ],
+    "subparagraph_lines": [
+      [
+        127,
+        127
+      ],
+      [
+        129,
+        129
+      ]
+    ],
+    "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\procedure-closure-20261027",
+        "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+        "run_id": 40476074285,
+        "job_id": 122094508524,
+        "scope": "20目标16执行：独立required覆盖/耗尽方向/四乘积/未来扩展反例/实际过程结果消费/分支保留/严格Nat降秩；不是完整跨层有限验证器"
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+        "subject": "14e4937923ed3dea042317845568636108537f9b",
+        "run_id": 40482741482,
+        "job_id": 122116867789,
+        "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+      },
+      {
+        "pr": 54,
+        "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+        "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+        "ulm_run": 40485466352,
+        "authority_run": 40485467117,
+        "final_job": 122132576496,
+        "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+        "main_run": 40488021816,
+        "main_final_job": 122141376859,
+        "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+      }
+    ],
+    "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+  },
+  "source_checkpoint": {
+    "commit": "bd1830aaec052822f07aefe8826c1c1361128ae9",
+    "tree": "84854b05512e34e91c72c2a0a957d9f5e6a7195d",
+    "root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    "parent": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
+    "source_file": {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+      "bytes": 8142,
+      "sha256": "6e002d6bad25b362021d9a342a23c7132712201e4e0fb833628d896eef07fa1e",
+      "git_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+      "working_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7"
+    },
+    "branch": "formal/close-original08-5-policy-exhaustion-20261103",
+    "tracked_status": "clean; checked with fixed tracked-only wrapper"
+  },
+  "source_attempts": [
+    {
+      "label": "initial source attempt; failed history",
+      "conclusion": "failure",
+      "diagnostics": [
+        "successor rounds induction unsolved goal at source line 42",
+        "two RuleUse versus List RuleUse application mismatches at source lines 110 and 121",
+        "error recovery output contained sorryAx; nonpassing history"
+      ],
+      "run_id": 41557640550,
+      "artifact_id": 13195970015,
+      "tree": "37457183abf3995bde6fda3ba7c074f03657383f",
+      "module": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+      "raw_log": {
+        "path": "D:/tmp/original08-5-source-r1/artifacts/13195970015/extracted/changed-module.log",
+        "bytes": 49335,
+        "sha256": "eaf792d59dc71821e342d47caf252b03fba25c37b5e27b85e71233e3bae1ab11"
+      },
+      "artifact_name": "changed-module-only-41557640550-1",
+      "attempt": 1,
+      "head_sha": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
+      "artifact_bytes": 7166,
+      "artifact_sha256": "sha256:35427875da2efe3735e5bda2b2de1ff461ee2aab98d9d69b5dd166c873edbdcf",
+      "mode": "changed-module",
+      "job_conclusion": "failure",
+      "job_id": 125660319119,
+      "status": "completed"
+    },
+    {
+      "artifact_api_size": 6105,
+      "conclusion": "success",
+      "sorryAx": 0,
+      "build_success": "Build completed successfully (8512 jobs).",
+      "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+      "run_id": 41559151149,
+      "head_sha": "bd1830aaec052822f07aefe8826c1c1361128ae9",
+      "artifact_id": 13196147073,
+      "include": [
+        "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103"
+      ],
+      "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+      "artifact_api_sha256": "sha256:c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1",
+      "artifact_expired": false,
+      "raw_log": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original08-5-policy-exhaustion-close-20261103\\changed-module.log",
+        "bytes": 44463,
+        "sha256": "9490d31048ac55c21f30fa0c498dd3cfe97dbc8a1ca89224fecb25cf963cda93"
+      },
+      "artifact_name": "changed-module-only-41559151149-1",
+      "attempt": 1,
+      "physical_zip": {
+        "path": "D:/tmp/original08-5-source-r2/artifacts/13196147073/changed-module-only-41559151149-1.zip",
+        "bytes": 6105,
+        "sha256": "c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1"
+      },
+      "event": "workflow_dispatch",
+      "job_name": "changed-modules",
+      "label": "corrected source attempt",
+      "targets": [
+        {
+          "target": "JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted",
+          "raw_check_line": 408,
+          "raw_axiom_line": 412,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement",
+          "raw_check_line": 415,
+          "raw_axiom_line": 428,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage",
+          "raw_check_line": 430,
+          "raw_axiom_line": 435,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain",
+          "raw_check_line": 437,
+          "raw_axiom_line": 441,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy",
+          "raw_check_line": 443,
+          "raw_axiom_line": 458,
+          "axioms": [
+            "propext"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.selected_horn_cannot_rewrite_original_context",
+          "raw_check_line": 459,
+          "raw_axiom_line": 471,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements",
+          "raw_check_line": 474,
+          "raw_axiom_line": 490,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.PolicyExhaustion20261103.declared_finality_misses_one_executable_requirement",
+          "raw_check_line": 493,
+          "raw_axiom_line": 512,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion",
+          "raw_check_line": 515,
+          "raw_axiom_line": 538,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ],
+      "module": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+      "errors": 0,
+      "mode": "changed-module",
+      "selected_named_target_count": 9,
+      "job_conclusion": "success",
+      "job_id": 125665263921,
+      "module_plan": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original08-5-policy-exhaustion-close-20261103\\module-plan.json",
+        "bytes": 277,
+        "sha256": "2cc6b14189f0782ecede92556cdc5e2f560118dc31cb0c53206eb8753153779a"
+      },
+      "status": "completed",
+      "type_only_checks": [
+        "JurisLean.KernelV3.FullyExhausted",
+        "JurisLean.Seams.AdjudicationBridge.exhaustionOf",
+        "JurisLean.Seams.AdjudicationBridge.finalUndetermined",
+        "JurisLean.Candidates.PolicyExhaustion20261103.ValidPolicy"
+      ],
+      "removed_modules": []
+    }
+  ],
+  "artifacts": [
+    {
+      "run_id": 41559151149,
+      "attempt": 1,
+      "job_id": 125665263921,
+      "artifact_id": 13196147073,
+      "artifact_name": "changed-module-only-41559151149-1",
+      "api_size_bytes": 6105,
+      "api_sha256": "sha256:c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1",
+      "physical_zip": {
+        "path": "D:/tmp/original08-5-source-r2/artifacts/13196147073/changed-module-only-41559151149-1.zip",
+        "bytes": 6105,
+        "sha256": "c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1"
+      },
+      "members": [
+        {
+          "path": "changed-module.log",
+          "bytes": 44463,
+          "sha256": "9490d31048ac55c21f30fa0c498dd3cfe97dbc8a1ca89224fecb25cf963cda93"
+        },
+        {
+          "path": "module-plan.json",
+          "bytes": 277,
+          "sha256": "2cc6b14189f0782ecede92556cdc5e2f560118dc31cb0c53206eb8753153779a"
+        }
+      ]
+    }
+  ],
+  "selected_named_target_count": 9,
+  "selected_target_counts_by_module": {
+    "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103": 9
+  },
+  "type_only_check_count": 4,
+  "axioms_standard_subset": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+      "bytes": 8142,
+      "sha256": "6e002d6bad25b362021d9a342a23c7132712201e4e0fb833628d896eef07fa1e",
+      "git_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+      "working_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
+      "bytes": 57823,
+      "sha256": "0c0e633ec225876c1928dd5b8e944c37b5cdcb9fed5a6d976f540af12752f522",
+      "git_blob": "c10782dddbec6c06231956f2a97da38afec2c463",
+      "working_blob": "c10782dddbec6c06231956f2a97da38afec2c463"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+      "bytes": 9970,
+      "sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a",
+      "git_blob": "033d14ad6edf9e8057c5217db633e6131cf6e47d",
+      "working_blob": "033d14ad6edf9e8057c5217db633e6131cf6e47d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+      "bytes": 8470,
+      "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+      "git_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078",
+      "working_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidation20261027.lean",
+      "bytes": 34408,
+      "sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d",
+      "git_blob": "a3876253a1da37cb4a1f7b7b5d657ed025adf767",
+      "working_blob": "a3876253a1da37cb4a1f7b7b5d657ed025adf767"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
+      "bytes": 21206,
+      "sha256": "65476152aa24f8cdc9297d1473d596fd1078022d51fd04e43e0a8bd2c251309a",
+      "git_blob": "cf5c4901f2e51f7ebae9c2692e06f6f85c1623d0",
+      "working_blob": "cf5c4901f2e51f7ebae9c2692e06f6f85c1623d0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+      "bytes": 3719,
+      "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a",
+      "git_blob": "694be6d8c778c7ebf6e049823fcf249695532f42",
+      "working_blob": "694be6d8c778c7ebf6e049823fcf249695532f42"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "working_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "bytes": 19515,
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2",
+      "git_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a",
+      "working_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a"
+    }
+  ],
+  "mathematical_mapping": {
+    "l127": "Reuse TerminalPolicy rounds, finalUndetermined, FullyExhausted, exhaustionOf. New singleton-claim/empty-rule finite policy is undetermined at every round; separate counterRequired=[1] has exactly one executable step. Old ProcedureClosure badPolicy is a different ProcessInput type.",
+    "l129": "ValidPolicy binds actual Gamma × Result Nat, independent ProcessPolicy/RawProcess, actual selectVersion, primitive checks and completed dependencies. actual_bound_valid_policy_exhaustion requires ValidPolicy and explicit actual RawProcess.exhausted=true; it derives lawful closure and terminality for required operations. Primitive checks do not assert exhaustion/final outcome.",
+    "external_boundary": "Normative policy, actual material and process remain distinct; records do not establish external authorization, real-world truth or execution.",
+    "broader_remaining": "Only frozen 08.5 L127/L129 is covered. Wider 08 engineering and U00 consumer tasks remain in their existing scopes."
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "Only original 08.5 is mapped in this round.",
+    "Module-only evidence is not full PR/release acceptance.",
+    "No caller, runtime, global discharge, source truth or legal authorization is upgraded."
+  ],
+  "diagnostics": []
+}

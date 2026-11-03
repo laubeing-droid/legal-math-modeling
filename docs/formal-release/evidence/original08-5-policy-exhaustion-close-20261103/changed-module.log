@@ -1,0 +1,541 @@
+⚠ [2947/3174] Replayed JurisLean.DungFixedPoint
+warning: JurisLean/DungFixedPoint.lean:201:47: unused variable `hself`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2948/3174] Replayed JurisLean.Seams.AdjudicationBridge
+warning: JurisLean/Seams/AdjudicationBridge.lean:153:18: unused variable `pol`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8487/8512] Replayed JurisLean.Genealogy.Part1
+warning: JurisLean/Genealogy/Part1.lean:119:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part1.lean:214:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Genealogy/Part1.lean:288:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8512] Replayed JurisLean.Genealogy.Part2
+warning: JurisLean/Genealogy/Part2.lean:48:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8489/8512] Replayed JurisLean.Genealogy.Part3
+warning: JurisLean/Genealogy/Part3.lean:166:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:203:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:237:9: unused variable `h1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:238:11: unused variable `h2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8491/8512] Replayed JurisLean.Seams.PrecedentFlow
+warning: JurisLean/Seams/PrecedentFlow.lean:927:16: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/PrecedentFlow.lean:928:17: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8493/8512] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
+warning: JurisLean/Seams/UnifiedNeedlesS0S1.lean:420:57: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8497/8512] Replayed JurisLean.Candidates.ProcedureClosure20261027
+warning: JurisLean/Candidates/ProcedureClosure20261027.lean:40:24: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [checkProcess, binding, lawful_closed_iff_local_checks, validPolicy,
+  ̵  ̵ ̵ ̵ ̵ ̵Bool.and_eq_true,
+  ̲ a̵n̵d̵_̵a̵s̵s̵o̵c̵,̵  ̲ ̲and_left_comm, and_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8498/8512] Replayed JurisLean.Candidates.ProcedureClosureAudit20261027
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:3:0: JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.procedure p =
+      JurisLean.Candidates.Final20261021.Procedure.closedLawfully ↔
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.covered p = true ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true ∧
+        decide (List.map (fun x => x.id) p.records).Nodup = true ∧
+          Option.any (fun r => decide (r ∈ p.validClosureAuthorities)) p.closureAuthority = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:4:0: 'JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:5:0: JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) :
+  JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully ↔
+    JurisLean.Candidates.ProcedureClosure20261027.validPolicy required p = true ∧
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:6:0: 'JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:7:0: JurisLean.Candidates.ProcedureClosure20261027.checked_closure_exhausts_independent_requirements (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (closed :
+    JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully)
+  (o : ℕ) : o ∈ required → JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:8:0: 'JurisLean.Candidates.ProcedureClosure20261027.checked_closure_exhausts_independent_requirements' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:9:0: JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (coverage : ∀ o ∈ required, o ∈ p.policyDomain)
+  (done : JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true) (o : ℕ) :
+  o ∈ required → JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:10:0: 'JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:11:0: JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (noExtra : ∀ o ∈ p.policyDomain, o ∈ required)
+  (done : ∀ o ∈ required, JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:12:0: 'JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:13:0: JurisLean.Candidates.ProcedureClosure20261027.missing_witness_is_an_actual_uncovered_requirement (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (o : ℕ) :
+  o ∈ JurisLean.Candidates.ProcedureClosure20261027.missingOpportunities required p ↔ o ∈ required ∧ o ∉ p.policyDomain
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:14:0: 'JurisLean.Candidates.ProcedureClosure20261027.missing_witness_is_an_actual_uncovered_requirement' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:15:0: JurisLean.Candidates.ProcedureClosure20261027.unfinished_witness_is_an_actual_open_policy_opportunity
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (o : ℕ) :
+  o ∈ JurisLean.Candidates.ProcedureClosure20261027.unfinishedOpportunities p ↔
+    o ∈ p.policyDomain ∧ JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = false
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:16:0: 'JurisLean.Candidates.ProcedureClosure20261027.unfinished_witness_is_an_actual_open_policy_opportunity' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:17:0: JurisLean.Candidates.ProcedureClosure20261027.final_undetermined_exact
+  (state : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure) :
+  JurisLean.Candidates.ProcedureClosure20261027.finalUndetermined state = true ↔
+    state.1 = JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+      state.2 = JurisLean.Candidates.Final20261021.Procedure.closedLawfully
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:18:0: 'JurisLean.Candidates.ProcedureClosure20261027.final_undetermined_exact' depends on axioms: [propext]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:19:0: JurisLean.Candidates.ProcedureClosure20261027.successful_inspection_reads_actual_process_result (budget : ℕ)
+  (required : List ℕ) (query : ℕ) (evidence : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (out : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure)
+  (accepted :
+    JurisLean.Candidates.ProcedureClosure20261027.inspect budget required query evidence p =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  0 < budget ∧
+    JurisLean.Candidates.ProcedureClosure20261027.checkProcess required p =
+        JurisLean.Candidates.Final20261021.Result.known out.2 ∧
+      out.1 = JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment query evidence
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:20:0: 'JurisLean.Candidates.ProcedureClosure20261027.successful_inspection_reads_actual_process_result' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:21:0: JurisLean.Candidates.ProcedureClosure20261027.inspected_final_undetermined_retains_coverage (budget : ℕ)
+  (required : List ℕ) (query : ℕ) (evidence : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (out : JurisLean.Candidates.Final20261021.Judgment × JurisLean.Candidates.Final20261021.Procedure)
+  (accepted :
+    JurisLean.Candidates.ProcedureClosure20261027.inspect budget required query evidence p =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (final : JurisLean.Candidates.ProcedureClosure20261027.finalUndetermined out = true) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.judgment query evidence =
+      JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+    ∀ o ∈ required, JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:22:0: 'JurisLean.Candidates.ProcedureClosure20261027.inspected_final_undetermined_retains_coverage' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:23:0: JurisLean.Candidates.ProcedureClosure20261027.branch_inspection_does_not_drop_open_results (budget : ℕ)
+  (required : ℕ → List ℕ) (query : ℕ)
+  (evidence : ℕ → List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (processes : ℕ → JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (branches : List ℕ) (branch : ℕ)
+  (member : branch ∈ branches) :
+  (branch,
+      JurisLean.Candidates.ProcedureClosure20261027.inspect budget (required branch) query (evidence branch)
+        (processes branch)) ∈
+    JurisLean.Candidates.ProcedureClosure20261027.inspectBranches budget required query evidence processes branches
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:24:0: 'JurisLean.Candidates.ProcedureClosure20261027.branch_inspection_does_not_drop_open_results' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:25:0: JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (decreases : ∀ (s t : S), step s t → rank t < rank s) (path : ℕ → S) (n : ℕ)
+  (valid : ∀ k < n, step (path k) (path (k + 1))) : rank (path n) + n ≤ rank (path 0)
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:26:0: 'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:27:0: JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (decreases : ∀ (s t : S), step s t → rank t < rank s) :
+  ¬∃ path, ∀ (k : ℕ), step (path k) (path (k + 1))
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:28:0: 'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:29:0: JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank {S : Type} (rank : S → ℕ)
+  (step : S → S → Prop) (state : S) (loop : step state state) : ¬∀ (s t : S), step s t → rank t < rank s
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:30:0: 'JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank' does not depend on any axioms
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:165:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement :
+  exhausted Audit.badPolicy = true ∧
+    procedure Audit.badPolicy = Procedure.closedLawfully ∧
+      missingOpportunities [1] Audit.badPolicy = [1] ∧
+        checkProcess [1] Audit.badPolicy = Result.rejected Error.scopeMismatch
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:166:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:167:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.required_exhaustion_need_not_exhaust_larger_policy_domain :
+  (∀ o ∈ [1],
+      terminal
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked })
+          o =
+        true) ∧
+    exhausted
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked }) =
+        false ∧
+      procedure
+          (have __src := Audit.closedInput;
+          { required := __src.required, policyDomain := [1, 2], records := __src.records,
+            validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+            closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+            blocked := __src.blocked }) =
+        Procedure.open
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:168:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.required_exhaustion_need_not_exhaust_larger_policy_domain' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:169:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct :
+  proposed_judgment_and_process 0 [Audit.positive] Audit.openInput = (Judgment.supported, Procedure.open) ∧
+    proposed_judgment_and_process 0 [] Audit.closedInput = (Judgment.insufficient, Procedure.closedLawfully) ∧
+      proposed_judgment_and_process 0 [Audit.positive, Audit.negative] Audit.openInput =
+          (Judgment.incompatible, Procedure.open) ∧
+        proposed_judgment_and_process 0 []
+            (have __src := Audit.openInput;
+            { required := __src.required, policyDomain := __src.policyDomain, records := __src.records,
+              validExecutionReceipts := __src.validExecutionReceipts, validWaivers := __src.validWaivers,
+              closureAuthority := __src.closureAuthority, validClosureAuthorities := __src.validClosureAuthorities,
+              blocked := true }) =
+          (Judgment.insufficient, Procedure.blocked)
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:170:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:171:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.same_current_record_has_different_future_extensions :
+  Audit.futureWithoutNew 0 = Audit.futureWithNew 0 ∧
+    judgment 0 (Audit.futureWithoutNew 1) = Judgment.insufficient ∧
+      judgment 0 (Audit.futureWithNew 1) = Judgment.supported ∧
+        finalUndetermined (judgment 0 (Audit.futureWithoutNew 0), procedure Audit.closedInput) = true
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:172:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.same_current_record_has_different_future_extensions' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:173:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.current_record_does_not_imply_future_impossibility :
+  ¬∀ (future : ℕ → List EvidenceItem), future 0 = [] → ∀ (time : ℕ), judgment 0 (future time) ≠ Judgment.supported
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:174:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.current_record_does_not_imply_future_impossibility' does not depend on any axioms
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:175:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution :
+  ∃ path,
+    (∀ (k : ℕ), Audit.retryStep (path k) (path (k + 1))) ∧
+      inspect 1 [1] 0 [] Audit.openInput = Result.known (Judgment.insufficient, Procedure.open)
+info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:176:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution' depends on axioms: [propext,
+ Quot.sound]
+ℹ [8501/8512] Replayed JurisLean.Candidates.CompilerClosure20261026
+info: JurisLean/Candidates/CompilerClosure20261026.lean:235:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:236:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:237:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:238:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8502/8512] Replayed JurisLean.Candidates.CompilerProvenance20261027
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:371:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:372:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:373:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:374:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:375:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:376:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:377:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:378:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:379:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ) (i : ℕ) (member : i ∈ parents)
+  (notEarlier : known.length ≤ i) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:380:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:381:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (mismatch :
+    List.map JurisLean.Candidates.CompilerProvenance20261027.Evidence.atom
+        (List.filterMap (fun i => known[i]?) parents) ≠
+      use.rule.premises) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:382:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:383:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (claim : JurisLean.Candidates.CompilerProvenance20261027.Leaf) (unsupported : leafCheck ctx claim = false) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.leaf claim) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:384:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:385:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:386:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:387:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact.{u_1, u_2} {Concrete : Type u_1}
+  {Abstract : Type u_2} (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+  (abstractQuery : Abstract → Prop) (coverage : ∀ (c : Concrete), ∃ a, relation c a)
+  (reverseCoverage : ∀ (a : Abstract), ∃ c, relation c a)
+  (sameAnswer : ∀ (c : Concrete) (a : Abstract), relation c a → (abstractQuery a ↔ concreteQuery c)) :
+  (∀ (a : Abstract), abstractQuery a) ↔ ∀ (c : Concrete), concreteQuery c
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:388:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact' does not depend on any axioms
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:389:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries.{u_1, u_2, u_3}
+  {Left : Type u_1} {Right : Type u_2} {Query : Type u_3} (correspondence : Left ≃ Right)
+  (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+  (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
+  (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:390:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]
+⚠ [8504/8512] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8511/8512] Replayed JurisLean.Candidates.FiniteLegalValidation20261027
+warning: JurisLean/Candidates/FiniteLegalValidation20261027.lean:507:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8512/8512] Built JurisLean.Candidates.SourcePolicyExhaustionAudit20261103 (4.3s)
+warning: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:64:6: Try `simp at member` instead of `simpa using member`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:66:6: Try `simp at member` instead of `simpa using member`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:79:4: Try `simp at impossible` instead of `simpa using impossible`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:131:0: JurisLean.KernelV3.FullyExhausted (state : JurisLean.KernelV3.Exhaustion) : Prop
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:132:0: JurisLean.Seams.AdjudicationBridge.exhaustionOf {aaf : DungAAF}
+  (pol : JurisLean.Seams.AdjudicationBridge.TerminalPolicy aaf) (a : Arg) : JurisLean.KernelV3.Exhaustion
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:133:0: JurisLean.Seams.AdjudicationBridge.finalUndetermined {aaf : DungAAF}
+  (pol : JurisLean.Seams.AdjudicationBridge.TerminalPolicy aaf) (a : Arg) : Prop
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:134:0: JurisLean.Candidates.PolicyExhaustion20261103.ValidPolicy
+  (raw : JurisLean.Candidates.FiniteLegalValidation20261027.RawProcess)
+  (norm : JurisLean.Candidates.FiniteLegalValidation20261027.ProcessPolicy)
+  (branch : JurisLean.Candidates.Final20261021.Gamma × JurisLean.Candidates.Final20261021.Result ℕ) : Prop
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:136:0: JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted {aaf : DungAAF}
+  (pol : JurisLean.Seams.AdjudicationBridge.TerminalPolicy aaf) (a : Arg) :
+  JurisLean.Seams.AdjudicationBridge.finalUndetermined pol a ↔
+    JurisLean.KernelV3.FullyExhausted (JurisLean.Seams.AdjudicationBridge.exhaustionOf pol a)
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:137:0: 'JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:138:0: JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted
+        JurisLean.Candidates.ProcedureClosure20261027.Audit.badPolicy =
+      true ∧
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.procedure
+          JurisLean.Candidates.ProcedureClosure20261027.Audit.badPolicy =
+        JurisLean.Candidates.Final20261021.Procedure.closedLawfully ∧
+      JurisLean.Candidates.ProcedureClosure20261027.missingOpportunities [1]
+            JurisLean.Candidates.ProcedureClosure20261027.Audit.badPolicy =
+          [1] ∧
+        JurisLean.Candidates.ProcedureClosure20261027.checkProcess [1]
+            JurisLean.Candidates.ProcedureClosure20261027.Audit.badPolicy =
+          JurisLean.Candidates.Final20261021.Result.rejected JurisLean.Candidates.Final20261021.Error.scopeMismatch
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:139:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:140:0: JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput)
+  (coverage : ∀ o ∈ required, o ∈ p.policyDomain)
+  (done : JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true) (o : ℕ) :
+  o ∈ required → JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:141:0: 'JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:142:0: JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain (required : List ℕ)
+  (p : JurisLean.Candidates.Final20261021.EvidenceProcedure.ProcessInput) (noExtra : ∀ o ∈ p.policyDomain, o ∈ required)
+  (done : ∀ o ∈ required, JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal p o = true) :
+  JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted p = true
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:143:0: 'JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:144:0: JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (rows : List JurisLean.Candidates.FiniteLegalValidation20261027.Supplement)
+  (policies : List JurisLean.Candidates.FiniteLegalValidation20261027.ProcessPolicy)
+  (out : JurisLean.Candidates.FiniteLegalValidation20261027.BoundData)
+  (accepted :
+    JurisLean.Candidates.FiniteLegalValidation20261027.bindAdditional view rows policies =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.source = view ∧
+    out.supplement ∈ rows ∧
+      out.policy ∈ policies ∧
+        out.supplement.material = view.material ∧
+          out.supplement.branch = view.branch ∧
+            JurisLean.Candidates.FiniteLegalValidation20261027.supplementChecks out.supplement = true ∧
+              out.policy.gamma = view.material.gamma ∧ out.policy.version = out.supplement.policyVersion
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:145:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy' depends on axioms: [propext]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:146:0: JurisLean.Candidates.FiniteLegalValidation20261027.selected_horn_cannot_rewrite_original_context
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (selection : JurisLean.Candidates.Final20261021.Result ℕ)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (facts : List ℕ) (out : JurisLean.Candidates.FiniteLegalValidation20261027.HornReport)
+  (accepted :
+    JurisLean.Candidates.FiniteLegalValidation20261027.selectedHorn view selection rules ruleGate facts =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  selection = JurisLean.Candidates.Final20261021.Result.known out.selectedVersion ∧
+    out.selectedVersion = view.material.gamma.normVersion ∧
+      out = JurisLean.Candidates.FiniteLegalValidation20261027.fullHorn view out.selectedVersion rules ruleGate facts
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:147:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.selected_horn_cannot_rewrite_original_context' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:148:0: JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements {W : Type}
+  (bound : JurisLean.Candidates.FiniteLegalValidation20261027.BoundData)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (modelWorlds : List W) (truth : W → ℕ → Bool)
+  (closed :
+    (JurisLean.Candidates.FiniteLegalValidation20261027.inspectBound bound history versions app rules ruleGate
+          modelWorlds truth).procedure =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully)
+  (o : ℕ) :
+  o ∈ bound.policy.required →
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal
+        (JurisLean.Candidates.FiniteLegalValidation20261027.processInput bound.supplement.process bound.policy) o =
+      true
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:149:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:150:0: JurisLean.Candidates.PolicyExhaustion20261103.declared_finality_misses_one_executable_requirement :
+  JurisLean.Candidates.PolicyExhaustion20261103.counterRequired = [1] ∧
+    JurisLean.Candidates.PolicyExhaustion20261103.counterAAF.args = {"claim"} ∧
+      JurisLean.Seams.AdjudicationBridge.finalUndetermined JurisLean.Candidates.PolicyExhaustion20261103.counterPolicy
+          "claim" ∧
+        (JurisLean.Seams.AdjudicationBridge.finalUndetermined
+              JurisLean.Candidates.PolicyExhaustion20261103.counterPolicy "claim" ↔
+            JurisLean.KernelV3.FullyExhausted
+              (JurisLean.Seams.AdjudicationBridge.exhaustionOf
+                JurisLean.Candidates.PolicyExhaustion20261103.counterPolicy "claim")) ∧
+          JurisLean.KernelV3.FullyExhausted
+              (JurisLean.Seams.AdjudicationBridge.exhaustionOf
+                JurisLean.Candidates.PolicyExhaustion20261103.counterPolicy "claim") ∧
+            JurisLean.Candidates.PolicyExhaustion20261103.counterExecution false 1 = some true ∧
+              (∀ (o : ℕ),
+                  (∃ after, JurisLean.Candidates.PolicyExhaustion20261103.counterExecution false o = some after) ↔
+                    o = 1) ∧
+                ¬∀ o ∈ JurisLean.Candidates.PolicyExhaustion20261103.counterRequired,
+                    JurisLean.Candidates.PolicyExhaustion20261103.counterExecution false o = none
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:151:0: 'JurisLean.Candidates.PolicyExhaustion20261103.declared_finality_misses_one_executable_requirement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:152:0: JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion {W : Type}
+  (bound : JurisLean.Candidates.FiniteLegalValidation20261027.BoundData)
+  (history : List JurisLean.Candidates.Final20261021.Temporal.VersionRecord) (versions : List ℕ)
+  (app : JurisLean.Candidates.TemporalInterpretation20261027.App)
+  (rules : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (modelWorlds : List W) (truth : W → ℕ → Bool)
+  (valid :
+    JurisLean.Candidates.PolicyExhaustion20261103.ValidPolicy bound.supplement.process bound.policy
+      (bound.source.material.gamma,
+        JurisLean.Candidates.TemporalInterpretation20261027.selectVersion bound.source.material.gamma history versions
+          app))
+  (done :
+    JurisLean.Candidates.Final20261021.EvidenceProcedure.exhausted
+        (JurisLean.Candidates.FiniteLegalValidation20261027.processInput bound.supplement.process bound.policy) =
+      true) :
+  (JurisLean.Candidates.FiniteLegalValidation20261027.inspectBound bound history versions app rules ruleGate modelWorlds
+          truth).procedure =
+      JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Procedure.closedLawfully ∧
+    ∀ o ∈ bound.policy.required,
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.terminal
+          (JurisLean.Candidates.FiniteLegalValidation20261027.processInput bound.supplement.process bound.policy) o =
+        true
+info: JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean:153:0: 'JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8512 jobs).

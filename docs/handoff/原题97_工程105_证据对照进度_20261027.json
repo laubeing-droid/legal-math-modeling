@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending.",
+    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending. 09.1/09.2 L145/L147/L151/L153 mapped COVERED from source run 41620019146 at b84d28bf; this records finite mathematical evidence only, not legal discharge or full PR acceptance.",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags. This round maps original 07.5 L287 using six previously accepted full-source outputs for the finite fiber conditions and sourceModel=.ok joint-object instance; no runtime caller or global completion flag is upgraded.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 63,
+    "COVERED": 65,
     "PARTIAL": 19,
-    "NOT_RECONCILED": 15
+    "NOT_RECONCILED": 13
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -4596,9 +4596,27 @@
           147
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+      {
+        "package": "docs/formal-release/evidence/original09-1-2-single-debt-close-20261103",
+        "subject": "b84d28bf173e80649489a65b39b26cce77a30e36",
+        "tree": "b494b9a253b87c4207aa7d042a07aa806bf83e71",
+        "run_id": 41620019146,
+        "attempt": 1,
+        "job_id": 125863088295,
+        "artifact_id": 13222714051,
+        "artifact_sha256": "72995f43e176af7f771c7e2e1411771311cfc55bdcc4498ce71caa472409f546",
+        "scope": "Changed-module-only source evidence; full PR acceptance pending.",
+        "named_targets": [
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.min_payment_step_nine_laws",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.negative_payment_breaks_the_one_step_bounds",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.afterPay_preserves_full_frame_and_pointwise_order",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.sameItemFrameLe_is_partial_order"
+        ]
+      }
+    ],
+      "remaining": "The frozen mathematical clauses are mapped by the source-module evidence. Same-unit meaning and external legal effects remain outside the formal result; full PR acceptance is pending."
     },
     {
       "id": "09.2",
@@ -4622,9 +4640,30 @@
           153
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+      {
+        "package": "docs/formal-release/evidence/original09-1-2-single-debt-close-20261103",
+        "subject": "b84d28bf173e80649489a65b39b26cce77a30e36",
+        "tree": "b494b9a253b87c4207aa7d042a07aa806bf83e71",
+        "run_id": 41620019146,
+        "attempt": 1,
+        "job_id": 125863088295,
+        "artifact_id": 13222714051,
+        "artifact_sha256": "72995f43e176af7f771c7e2e1411771311cfc55bdcc4498ce71caa472409f546",
+        "scope": "Changed-module-only source evidence; full PR acceptance pending.",
+        "named_targets": [
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.finite_payment_steps_follow_actual_prefix",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.finite_stream_payments_equal_allocations_plus_unused",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.finite_stream_debt_conservation",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.single_item_final_balance_invariant_under_payment_permutation",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.continuous_ten_seven_seven_matches_quantity_stream",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.seven_three_allocation_report_cannot_keep_old_debt",
+          "JurisLean.Candidates.SingleDebtStreamAudit20261103.final_balance_order_independent_but_payment_identity_allocation_is_not"
+        ]
+      }
+    ],
+      "remaining": "The frozen finite-list and example claims are mapped under the stated nonnegative-domain and same-unit boundaries. This does not establish legal discharge or stronger signed-payment claims; full PR acceptance is pending."
     },
     {
       "id": "09.3",

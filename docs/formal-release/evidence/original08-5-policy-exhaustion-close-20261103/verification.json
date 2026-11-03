@@ -1360,5 +1360,299 @@
     "claims_checker": "NOT_RUN",
     "note": "Historical pre-rootfix PR run only; it does not validate checkpoint 7a5714d or the repaired root import."
   },
-  "records_status": "ROOTFIX_COMMITTED_LOCALLY; CURRENT_PR_FULL_VALIDATION_PENDING"
+  "records_status": "SOURCE_SURFACE_SYNC_COMMITTED_LOCALLY; PR111 R2 AUTHORITY FAILURE ON STALE MUTABLE AUDIT SURFACE; FULL PR VALIDATION PENDING",
+  "source_surface_sync_checkpoint": {
+    "commit": "3b9601f075d42138a79ccc716cf02e444f938bf9",
+    "tree": "cf91d0ee6397e41e53caf8abe8b5bbc310d7fa2f",
+    "parent": "965534233714ada6d3acdac60a4b5425412a55cc",
+    "branch": "formal/close-original08-5-policy-exhaustion-20261103",
+    "changed_path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "changed_path_bytes": 313401,
+    "changed_path_sha256": "b93afaadd229454597b1e8b9ae0a759a16b42559afd699a4536c590ab01a4de9",
+    "changed_path_git_blob": "68ff38936db50d149f8bbdd11974b0646246653a",
+    "changed_path_worktree_blob": "68ff38936db50d149f8bbdd11974b0646246653a",
+    "diff_summary": "0 insertions, 1 deletion: removed the duplicate #print for final_undetermined_iff_exhausted from mutable AxiomAudit.lean; it remains printed by SourcePolicyExhaustionAudit20261103.",
+    "target_still_covered_by": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+    "generator_write": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.receipt.json",
+        "bytes": 747,
+        "sha256": "8b29de52ed0f866211fdeaa27f59754706bacc13fce7e68854972b58a44be73c"
+      },
+      "stdout": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.stdout.txt",
+        "bytes": 55,
+        "sha256": "ee43e84604aa63ffb3cdd89add60d7fa4676b363c4c70b52e71077181ab061a1"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "generator_check": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.receipt.json",
+        "bytes": 771,
+        "sha256": "232433fda09d46932a81f38dd36d5550a8b1b48e89b233a8d6126083bec634ea"
+      },
+      "stdout": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.stdout.txt",
+        "bytes": 55,
+        "sha256": "c96764eab75b18af6689514a14cafc73af2ff9e8e570b037ea02ecd1e650c9cf"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "message": "AxiomAudit probability surface current (3479 targets)"
+    },
+    "frozen_audit_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+    "source_audit_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+    "root_import_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+    "full_record_validation": "PENDING; checkpoint follows the failed R2 PR subject and has not been pushed or validated by full PR CI"
+  },
+  "post_rootfix_pr111_attempt": {
+    "pr": 111,
+    "label": "R2 after root reachability repair; terminal failure retained",
+    "head": "965534233714ada6d3acdac60a4b5425412a55cc",
+    "base": "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+    "tested_merge": "f250fc20bf1ee89bdfcfb4d6a11125d2f7e3402f",
+    "tree": "08cddfec4ce437f26d2e22a2867809ef73a4ffcd",
+    "ordered_parents": [
+      "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+      "965534233714ada6d3acdac60a4b5425412a55cc"
+    ],
+    "ulm_run": {
+      "run_id": 41568443815,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "965534233714ada6d3acdac60a4b5425412a55cc",
+      "updated_at": "2026-11-03T02:53:14Z",
+      "run_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568443815-run-poll02.json",
+        "bytes": 14568,
+        "sha256": "84193b721ceee0e165ce603e35b1712d665d1f2c368039bde39922f9a9c6f962"
+      },
+      "artifact_roster_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568443815-artifacts-poll02.json",
+        "bytes": 7067,
+        "sha256": "de876cdb9ddfd65d4d8d9ac5382241bcb708c803d8f1e8db8ce01b7ed26afdaf"
+      },
+      "unique_artifacts": 9,
+      "file_members": 63,
+      "byte_union_receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\artifact-byte-receipt-r2-ulm-union-partial02.json",
+        "bytes": 6369,
+        "sha256": "a876a2c90ded679b2c16b247b9496e5524398e8221c66fb1cc7dd994068e8e31"
+      }
+    },
+    "authority_run": {
+      "run_id": 41568444175,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "965534233714ada6d3acdac60a4b5425412a55cc",
+      "updated_at": "2026-11-03T03:08:23Z",
+      "run_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-run-terminal-r2.json",
+        "bytes": 14714,
+        "sha256": "cc222d10e961624cb20a9fdc5391d9f86e5bfc961f09b180c467527d255df4e3"
+      },
+      "jobs_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-jobs-terminal-r2.json",
+        "bytes": 18526,
+        "sha256": "f9f6dc9500b8f61217540474eda0381e62105f1730e493555f3b2d5c2cae8681"
+      },
+      "artifact_roster_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-artifacts-terminal-r2.json",
+        "bytes": 3927,
+        "sha256": "9fb0d6d59cc6d8dfdda73d9c209cf62ca793b61f8bd267be994bc903af424556"
+      }
+    },
+    "authority_jobs": [
+      {
+        "id": 125695470902,
+        "name": "python-gates",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125695471067,
+        "name": "lean-full-clean-build",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 125695471201,
+        "name": "runtime-refinement / produce",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 125695472114,
+        "name": "changed-modules",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 125701491671,
+        "name": "seven-axis-acceptance",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125701493280,
+        "name": "mathematics-completion",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 125701567380,
+        "name": "final-gate",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125701568632,
+        "name": "release-certificate",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "python_gate_failure": {
+      "job_id": 125695470902,
+      "step": "Existing gates plus full retained and new root tests",
+      "failed_check": "python scripts/ci/generate_probability_audit_surface.py --check",
+      "diagnostic": "AxiomAudit probability surface is stale against the declaration sites (expected 3479 targets); run --write",
+      "root_cause": "The generated surface duplicated final_undetermined_iff_exhausted, which was explicitly printed by the new SourcePolicyExhaustionAudit.",
+      "full_pytest_log": {
+        "artifact_id": "13201020627",
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\13201020627\\expanded\\pytest-full.log",
+        "bytes": 912,
+        "sha256": "906c21ec912431af97e08edf77a403027213e0a29de3631a0378cb716e94b8a1",
+        "footer": "776 passed in 615.02s (0:10:15)"
+      },
+      "lean_guard_report": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\13201020627\\expanded\\lean-guard-report.json",
+        "forbidden_construct_count": 0
+      }
+    },
+    "authority_api_artifacts": [
+      {
+        "artifact_id": "13201020627",
+        "name": "python-gates-run41568444175-attempt1",
+        "api_size": 30199,
+        "api_digest": "sha256:1561c1d4adb0133175379eb08ca73adb724acc31f31c5c47950b48921e9d3255",
+        "expired": false,
+        "materialized_and_byte_reviewed": true
+      },
+      {
+        "artifact_id": "13200284023",
+        "name": "full-math-lean-41568444175-1",
+        "api_size": 566428,
+        "api_digest": "sha256:9490dba42a183014d8e37ba37bed86ae4b1c087cdb56ed902c795af540257556",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200219052",
+        "name": "lean-full-build-run41568444175-attempt1",
+        "api_size": 715691,
+        "api_digest": "sha256:cbb95e61e1ad51818098eaddb2ed29c14ed3156bf1c36565b45de8ec8ac11303",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200199107",
+        "name": "seven-axis-lean-41568444175-1",
+        "api_size": 673366,
+        "api_digest": "sha256:ce0109e8c02a374a100c6b9852bbc895d2e4fcb88844ee3d6e0aa2e42a26168d",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200104348",
+        "name": "runtime-refinement-run41568444175-attempt1",
+        "api_size": 6804,
+        "api_digest": "sha256:667cd2ea1599f1d8201d3c1dfae6e2f0d3f8b488a815d29a774f8f8aa8b1c429",
+        "expired": false,
+        "materialized_and_byte_reviewed": true
+      }
+    ],
+    "no_release_certificate_or_cli": true,
+    "release_certificate_job": "skipped",
+    "independent_verifier": "NOT_RUN",
+    "claims_checker": "NOT_RUN",
+    "next_subject_full_validation": "pending after source surface sync and updated records"
+  },
+  "current_manifest_binding": {
+    "path": "docs/formal-release/theorem_inventory_v3.json",
+    "subject": {
+      "branch": "formal/close-original08-5-policy-exhaustion-20261103",
+      "commit": "3b9601f075d42138a79ccc716cf02e444f938bf9",
+      "tree": "cf91d0ee6397e41e53caf8abe8b5bbc310d7fa2f"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 578,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "scope_summary": {
+      "all_tracked_lean": {
+        "counted_declaration_count": 6416,
+        "file_count": 578,
+        "lemma_count": 146,
+        "print_axioms_command_count": 5833,
+        "print_axioms_distinct_targets": 5252,
+        "theorem_count": 6270,
+        "theorem_count_bol_convention": 6170
+      },
+      "juris_lean_package": {
+        "counted_declaration_count": 6397,
+        "file_count": 563,
+        "lemma_count": 139,
+        "print_axioms_command_count": 5833,
+        "print_axioms_distinct_targets": 5252,
+        "theorem_count": 6258,
+        "theorem_count_bol_convention": 6158
+      },
+      "ulm_import_closure": {
+        "counted_declaration_count": 52,
+        "file_count": 7,
+        "lemma_count": 0,
+        "print_axioms_command_count": 0,
+        "print_axioms_distinct_targets": 0,
+        "theorem_count": 52,
+        "theorem_count_bol_convention": 51
+      },
+      "ulm_package": {
+        "counted_declaration_count": 145,
+        "file_count": 19,
+        "lemma_count": 0,
+        "print_axioms_command_count": 199,
+        "print_axioms_distinct_targets": 145,
+        "theorem_count": 145,
+        "theorem_count_bol_convention": 111
+      }
+    }
+  }
 }

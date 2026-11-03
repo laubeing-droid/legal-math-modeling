@@ -25,7 +25,8 @@ def syntheticPaymentId (token : Bool) : PaymentId := if token then ⟨2⟩ else 
 -- SourceAction requests with that key; the trace theorem excludes a second
 -- committed effect. This proof does not establish the external contract.
 theorem sourced_calls_with_same_payment_id_are_at_most_once {W : Type}
-    (opening : SharedOpening W) (firstCall nextCall : PaymentCall)
+    (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+    (firstCall nextCall : PaymentCall)
     (before previousOutput after later laterOutput : Ledger.Handle)
     (permission permissionNext : Bool)
     (mode modeNext : Ledger.Submission) (receipt : Ledger.Receipt)
@@ -84,38 +85,58 @@ theorem finite_payment_identity_and_retry_outcomes :
       ({ request 1 with key := syntheticPaymentId false }).key ≠
         ({ request 2 with key := syntheticPaymentId true }).key ∧
       ({ request 1 with key := syntheticPaymentId false }).payload.cashId =
-        ({ request 2 with key := syntheticPaymentId true,
-          payload := { payload 2 with cashId := (request 1).payload.cashId } }).payload.cashId ∧
+        ({ request 2 with
+          key := syntheticPaymentId true
+          payload := { payload 2 with
+            cashId := (request 1).payload.cashId } }).payload.cashId ∧
       Ledger.consume_ext post1 post1
-        { request 2 with key := syntheticPaymentId true,
-          payload := { payload 2 with cashId := (request 1).payload.cashId } } true .submit =
+        { request 2 with
+          key := syntheticPaymentId true
+          payload := { payload 2 with
+            cashId := (request 1).payload.cashId } } true .submit =
           .rejectedNoCommit ⟨2⟩ .duplicateCash ∧
       Ledger.Outcome.post post1
         (Ledger.consume_ext post1 post1
-          { request 2 with key := syntheticPaymentId true,
-            payload := { payload 2 with cashId := (request 1).payload.cashId } } true .submit) =
+          { request 2 with
+            key := syntheticPaymentId true
+            payload := { payload 2 with
+              cashId := (request 1).payload.cashId } } true .submit) =
             some post1 ∧
       Ledger.Outcome.acknowledgedUsed post1
         (Ledger.consume_ext post1 post1
-          { request 2 with key := syntheticPaymentId true,
-            payload := { payload 2 with cashId := (request 1).payload.cashId } } true .submit) =
+          { request 2 with
+            key := syntheticPaymentId true
+            payload := { payload 2 with
+              cashId := (request 1).payload.cashId } } true .submit) =
             post1.state.used) ∧
-    (({ request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ }).key =
+    (({ request 1 with
+        key := syntheticPaymentId false
+        attempt := ⟨2⟩ }).key =
         (request 1).key ∧
-      ({ request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ }).attempt ≠
+      ({ request 1 with
+        key := syntheticPaymentId false
+        attempt := ⟨2⟩ }).attempt ≠
         (request 1).attempt ∧
-      ({ request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ }).payload =
+      ({ request 1 with
+        key := syntheticPaymentId false
+        attempt := ⟨2⟩ }).payload =
         (request 1).payload ∧
       Ledger.consume_ext post1 post1
-        { request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ } true .submit =
+        { request 1 with
+          key := syntheticPaymentId false
+          attempt := ⟨2⟩ } true .submit =
         .replay (Ledger.commitPayment opening (request 1)).1 ∧
       Ledger.Outcome.post post1
         (Ledger.consume_ext post1 post1
-          { request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ } true .submit) =
+          { request 1 with
+            key := syntheticPaymentId false
+            attempt := ⟨2⟩ } true .submit) =
           some post1 ∧
       Ledger.Outcome.acknowledgedUsed post1
         (Ledger.consume_ext post1 post1
-          { request 1 with key := syntheticPaymentId false, attempt := ⟨2⟩ } true .submit) =
+          { request 1 with
+            key := syntheticPaymentId false
+            attempt := ⟨2⟩ } true .submit) =
           post1.state.used) := by
   decide +kernel
 

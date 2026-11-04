@@ -85,6 +85,21 @@ theorem lifecycle_failure_preserves_effect :
       toyScope.object {revokeGuard with atTime := 100}))).after.core.state.L =
       revokeStart.core.state.L := by decide
 
+/- Permission to undo an existing effect does not first create a replacement
+   relation. This case deliberately has formed = none in the selected rule. -/
+def undoOnlyStart : Situation :=
+  let s := readyCase {toyRule with formed := none} .lifecycle
+  let st := {s.core.state with L := [toyRelation]}
+  {s.withCore (s.core.putState st rfl) with
+    life := assign s.life toyScope.object (some revocableLife)
+    actRelations := assign s.actRelations toyScope.object [toyRelation.id]}
+
+theorem revoke_without_fictitious_formed :
+    (executeCommand undoOnlyStart (.institution (.revoke (call .constitute) (.atom toyAtom)
+      toyScope.object revokeGuard))).answer = .success (revokeLife revocableLife) ∧
+    (executeCommand undoOnlyStart (.institution (.revoke (call .constitute) (.atom toyAtom)
+      toyScope.object revokeGuard))).after.core.state.L = [] := by decide
+
 def agency : Agency := ⟨⟨12⟩, ⟨22⟩, ⟨23⟩, toyScope, true, []⟩
 def agencyStart : Situation :=
   let s := readyCase toyRule .agency
@@ -101,6 +116,30 @@ theorem agency_actual :
 theorem agency_over_scope_rejected :
     (executeCommand agencyStart (.institution (.delegate (call .constitute) (.atom toyAtom)
       toyScope.object {child with stop := 100}))).after.core.state.N.grants = agencyStart.core.state.N.grants := by decide
+
+def apparentRelation : LegalRelation := {toyRelation with holder := ⟨22⟩}
+
+def apparentStart : Situation :=
+  let s := readyCase {toyRule with formed := none} .agency
+  let st := {s.core.state with L := [apparentRelation]
+    constraints := [.sameLoss apparentRelation apparentRelation]}
+  s.withCore (s.core.putState st rfl)
+
+def apparentResult : Reply Judgment := executeCommand apparentStart
+  (.institution (.apparent (call .constitute) (.atom toyAtom) ⟨22⟩ ⟨12⟩
+    ⟨true,true,.established,true⟩))
+
+theorem apparent_actual_attribution :
+    apparentResult.answer = .success .established ∧
+    (apparentResult.after.core.state.L.head?).map LegalRelation.holder = some ⟨12⟩ ∧
+    apparentResult.after.core.state.constraints = [.sameLoss toyRelation toyRelation] ∧
+    apparentResult.after.core.state.F = apparentStart.core.state.F := by decide
+
+theorem apparent_unchecked_faith_is_not_attribution :
+    (executeCommand apparentStart (.institution (.apparent (call .constitute) (.atom toyAtom)
+      ⟨22⟩ ⟨12⟩ ⟨true,true,.undetermined,true⟩))).answer = .unknown .inputUnchecked ∧
+    (executeCommand apparentStart (.institution (.apparent (call .constitute) (.atom toyAtom)
+      ⟨22⟩ ⟨12⟩ ⟨true,true,.undetermined,true⟩))).after.core.state.L = [apparentRelation] := by decide
 
 /- 3: exclusive is a branch; ordinary jurisdiction requires no agreement. -/
 theorem jurisdiction_actual :

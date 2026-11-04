@@ -440,8 +440,7 @@ def resJudicataQuery (s : Situation) (idx : Option BindingIndex)
 
 def proposeEngine (s : Situation) (out : EngineOutput) : Reply Candidate :=
   let candidate := candidateFromEngine s.core.state.A.model out
-  let st := propose s.core.state candidate
-  ⟨{s with core := {s.core with state := st}}, .success candidate⟩
+  ⟨EffectIR.adjust (EffectIR.proposal candidate) s, .success candidate⟩
 
 theorem engine_proposal_only (s : Situation) (out : EngineOutput) :
     (proposeEngine s out).after.core.state.L = s.core.state.L ∧

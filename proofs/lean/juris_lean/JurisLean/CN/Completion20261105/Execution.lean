@@ -182,7 +182,7 @@ def admission (s : Situation) (r : Request) (m : Mode) (i : Ref .material)
     match s.core.state.E i with
     | .pending current =>
       if current == raw then
-        ⟨s.withCore (s.core.setCell i (.accepted raw receipt)), .success i⟩
+        ⟨EffectIR.adjust (EffectIR.admission i raw receipt) s, .success i⟩
       else quiet s (.conflict .competentReview)
     | _ => quiet s (.rejected .prerequisites)
 
@@ -200,8 +200,7 @@ def withdrawal (s : Situation) (r : Request) (i : Ref .material)
 def occurrence (s : Situation) (o : Occurrence) : Reply (Ref .event) :=
   match s.core.state.F.find? (fun old => old.id == o.id) with
   | none =>
-    let st := {s.core.state with F := s.core.state.F ++ [o]}
-    ⟨{s with core := {s.core with state := st}}, .success o.id⟩
+    ⟨EffectIR.adjust [.fact o] s, .success o.id⟩
   | some old =>
     if old == o then quiet s (.success o.id) else quiet s (.conflict .competentReview)
 

@@ -81,7 +81,7 @@ def bindDecided (s : Situation) (b : DecideBinding) (mode : Mode) : Reply Unit :
     quiet s .blockedHuman
   else if s.core.state.decisions.contains b.decision &&
       freshRequest s b.decision.request && b.decision.request.act == .decide && sourceBindingAllows s b then
-    ⟨s.withCore (s.core.putState (bindDecision s.core.state b) rfl), .success ()⟩
+    ⟨EffectIR.adjust [.binding (.decide b)] s, .success ()⟩
   else quiet s (.rejected .unauthorized)
 
 def registeredInScope (s : Situation) (scope : Scope) (n : NormRef) : Bool :=
@@ -110,7 +110,7 @@ def bindOtherSource (s : Situation) (b : OtherBinding) (mode : Mode) : Reply Uni
   else if !(otherSourceAllowed s b.request.scope b.source) || !otherDocumentAvailable s b then
     quiet s (.unknown .inputUnchecked)
   else
-    ⟨s.withCore (s.core.putState (bindOther s.core.state b) rfl), .success ()⟩
+    ⟨EffectIR.adjust [.binding (.other b)] s, .success ()⟩
 
 def learnMaterial (s : Situation) (r : Request) (theta : List Rat)
     (i : Ref .material) (raw : Raw i) : Reply Unit :=
@@ -119,9 +119,7 @@ def learnMaterial (s : Situation) (r : Request) (theta : List Rat)
   else match rawOf (s.core.state.E i) with
     | some _ => quiet s (.rejected .prerequisites)
     | none =>
-      let x := s.core.setCell i (.pending raw)
-      let st := {x.state with A := {x.state.A with theta := theta}}
-      ⟨s.withCore (x.putState st rfl), .success ()⟩
+      ⟨EffectIR.adjust (EffectIR.learning theta i raw) s, .success ()⟩
 
 def performPayment (s : Situation) (r : Request) (mode : Mode)
     (relation : Ref .relation) (payment : Native.PaymentPayload) : Reply Unit :=
@@ -146,11 +144,7 @@ def performPayment (s : Situation) (r : Request) (mode : Mode)
         | .known after =>
           let entry : Performance :=
             ⟨⟨payment.cashId.value⟩, relation, ⟨after.allocated - before.allocated⟩, r⟩
-          let st := {s.core.state with ledger := s.core.state.ledger ++ [entry]}
-          ⟨{s with
-              core := s.core.putState st rfl
-              accounts := fun key => if key = relation then some after else s.accounts key},
-            .success ()⟩
+          ⟨EffectIR.adjust (EffectIR.payment entry relation after) s, .success ()⟩
         | .rejected _ => quiet s (.rejected .prerequisites)
         | .unknown reason => quiet s (.unknown (sourceUnknown reason))
         | .conflict _ _ => quiet s (.conflict .competentReview)

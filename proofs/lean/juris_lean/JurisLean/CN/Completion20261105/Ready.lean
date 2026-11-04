@@ -1,4 +1,4 @@
-import JurisLean.CN.Completion20261105.State
+import JurisLean.CN.Completion20261105.EffectIR
 
 /-!
 F07/A10 repair of the public entry, preserving the older mathematical fragment.

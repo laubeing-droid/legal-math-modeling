@@ -140,13 +140,22 @@ def checkIO : IO Unit := do
     (.perform (call .perform) ⟨6⟩ payment)
   unless decide (noRule.answer = .unknown .inputUnchecked ∧ noRule.after.core.state.ledger.isEmpty = true) do
     throw (IO.userError "same-loss label fabricated a reduction rule")
-  let foreign := {secondAccount with debt := {secondAccount.debt with
+  let foreignAccount := {secondAccount with debt := {secondAccount.debt with
     amount := {secondAccount.debt.amount with tag := ⟨"USD","money",1⟩}}}
-  let mixed := executeCommand {jointStart with accounts := fun id =>
-      if id = ⟨16⟩ then some foreign else jointStart.accounts id}
-    (.perform (call .perform) ⟨6⟩ payment)
+  let foreignAccounts := fun id => if id = ⟨16⟩ then some foreignAccount else jointStart.accounts id
+  let mixed := executeCommand {jointStart with accounts := foreignAccounts} (.perform (call .perform) ⟨6⟩ payment)
   unless decide (mixed.after.core.state.ledger.isEmpty = true) do
     throw (IO.userError "mixed currency silently committed")
+  let agentAccount := {cashBefore with debt := {cashBefore.debt with creditor := ⟨22⟩}}
+  let agentAccounts := fun id => if id = ⟨6⟩ then some agentAccount else none
+  let attributed := executeCommand {apparentStart with accounts := agentAccounts}
+    (.institution (.apparent (call .constitute) (.atom toyAtom) ⟨22⟩ ⟨12⟩
+      ⟨true,true,.established,true⟩))
+  unless decide (attributed.answer = .success .established ∧
+      (attributed.after.accounts ⟨6⟩).map (fun a => a.debt.creditor.value) = some 12 ∧
+      (attributed.after.accounts ⟨6⟩).map (fun a => a.debt.amount.value) = some 10 ∧
+      (attributed.after.accounts ⟨6⟩).map (fun a => a.cash.length) = some 0) do
+    throw (IO.userError "apparent attribution did not preserve the native account identity/history")
   unless decide (kindOf (run fit) = some .fit) do throw (IO.userError "fit_actual_call failed")
   unless decide (kindOf (run prob) = some .prob) do throw (IO.userError "prob_actual_call failed")
   unless decide (kindOf (run causal) = some .causal) do throw (IO.userError "causal_actual_call failed")

@@ -133,7 +133,8 @@ def apparentResult : Reply Judgment := executeCommand apparentStart
 theorem apparent_actual_attribution :
     apparentResult.answer = .success .established ∧
     (apparentResult.after.core.state.L.head?).map LegalRelation.holder = some ⟨12⟩ ∧
-    apparentResult.after.core.state.constraints = [.sameLoss toyRelation toyRelation] ∧
+    apparentResult.after.core.state.constraints =
+      [.sameLoss {toyRelation with holder := ⟨12⟩} {toyRelation with holder := ⟨12⟩}] ∧
     apparentResult.after.core.state.F = apparentStart.core.state.F := by exact ⟨rfl,rfl,rfl,rfl⟩
 
 theorem apparent_unchecked_faith_is_not_attribution :

@@ -132,8 +132,11 @@ theorem performance_preserves_F_L (s : Situation) (r : Request) (m : Mode)
 theorem no_decision_no_binding (s : Situation) (b : DecideBinding) (m : Mode)
     (h : s.core.state.decisions.contains b.decision = false) :
     (bindDecided s b m).after = s := by
-  by_cases hg : automationAllowed s.core.state b.decision.request.scope m = false <;>
-    simp [bindDecided, hg, h, quiet]
+  unfold bindDecided
+  split
+  · rfl
+  · simp only [h, Bool.false_and, Bool.false_eq_true, ↓reduceIte]
+    rfl
 
 theorem learning_frame (s : Situation) (r : Request) (theta : List Rat)
     (i : Ref .material) (raw : Raw i) :
@@ -149,14 +152,19 @@ theorem learning_frame (s : Situation) (r : Request) (theta : List Rat)
 theorem decision_assessment_preserves_relations (s : Situation) (c : Law.Call)
     (document : Ref .document) : (decide s c document).after.core.state.L = s.core.state.L := by
   unfold decide
-  split
-  · split
-    · rfl
-    · split <;> rfl
-  · rfl
-  · rfl
-  · rfl
-  · rfl
+  cases he : (assessDispatch s c).answer with
+  | success j =>
+    simp only [he]
+    dsimp only
+    cases hf : s.core.state.decisions.find? (fun old => old.document == document) with
+    | none => rfl
+    | some old =>
+      simp only [hf]
+      split <;> rfl
+  | rejected k => rfl
+  | unknown k => rfl
+  | conflict k => rfl
+  | blockedHuman => rfl
 
 #print axioms no_decision_no_binding
 #print axioms learning_frame

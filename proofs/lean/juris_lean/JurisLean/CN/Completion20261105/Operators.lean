@@ -167,7 +167,49 @@ def assignmentAllowed (s : Situation) (a : MeaningAssignment) (r : Request) : Bo
     (a.expression.eval s.meanings).isSome
 
 def assignmentQuery (s : Situation) (a : MeaningAssignment) (r : Request) : Reply Formula :=
-  if assignmentAllowed s a r then assignLocal s a else quiet s (.rejected .unauthorized)
+  if automationAllowed s.core.state r.scope .automated = false then quiet s .blockedHuman
+  else if assignmentAllowed s a r then assignLocal s a else quiet s (.rejected .unauthorized)
+
+/- C2/A02: the public assignment is gated, so the store algebra alone is
+   insufficient. This lemma states the exact gate-stability condition that
+   the subsequent actual-call composition needs. The expression condition is
+   an input evaluation equality, not the desired commutation conclusion. -/
+theorem assignment_gate_stable (s : Situation) (a b : MeaningAssignment) (r : Request)
+    (hb : b.expression.eval (assignLocal s a).after.meanings = b.expression.eval s.meanings) :
+    assignmentAllowed (assignLocal s a).after b r = assignmentAllowed s b r := by
+  have hn : (assignLocal s a).after.core.state.N = s.core.state.N := by
+    unfold assignLocal
+    split <;> rfl
+  simp only [assignmentAllowed, freshRequest, hn, hb]
+
+theorem actual_assignments_commute (s : Situation) (a b : MeaningAssignment)
+    (ra rb : Request) (h : Independent a b)
+    (ga : assignmentAllowed s a ra = true) (gb : assignmentAllowed s b rb = true)
+    (ma : automationAllowed s.core.state ra.scope .automated = true)
+    (mb : automationAllowed s.core.state rb.scope .automated = true)
+    (fa fb : Formula) (ha : a.expression.eval s.meanings = some fa)
+    (hb : b.expression.eval s.meanings = some fb) :
+    (assignmentQuery (assignmentQuery s a ra).after b rb).after.meanings =
+      (assignmentQuery (assignmentQuery s b rb).after a ra).after.meanings := by
+  have va := assignLocal_view s a fa ha
+  have vb := assignLocal_view s b fb hb
+  have ea : a.expression.eval (assignLocal s b).after.meanings = a.expression.eval s.meanings := by
+    rw [vb, expression_after_unread_write a.expression b s.meanings h.2.2]
+  have eb : b.expression.eval (assignLocal s a).after.meanings = b.expression.eval s.meanings := by
+    rw [va, expression_after_unread_write b.expression a s.meanings h.2.1]
+  have gba := assignment_gate_stable s a b rb eb
+  have gab := assignment_gate_stable s b a ra ea
+  have preserve (z : MeaningAssignment) :
+      (assignLocal s z).after.core.state.refusals = s.core.state.refusals := by
+    unfold assignLocal
+    split <;> rfl
+  have pma : automationAllowed (assignLocal s b).after.core.state ra.scope .automated = true := by
+    simpa only [automationAllowed, preserve] using ma
+  have pmb : automationAllowed (assignLocal s a).after.core.state rb.scope .automated = true := by
+    simpa only [automationAllowed, preserve] using mb
+  simp only [assignmentQuery, ma, mb, Bool.true_eq_false, ↓reduceIte,
+    ga, gb, Bool.true_eq, gba, gab, pma, pmb]
+  exact assignment_two_defined s a b fa fb h ha hb
 
 def commuteQuery (s : Situation) (a b : MeaningAssignment) (ra rb : Request) : Reply Bool :=
   if assignmentAllowed s a ra && assignmentAllowed s b rb then
@@ -254,6 +296,8 @@ theorem witness_pending (s : Situation) (r : WitnessRequest) (raw : Raw r.materi
   simp [witnessQuery, h, quiet]
 
 #print axioms commute_true_sound
+#print axioms assignment_gate_stable
+#print axioms actual_assignments_commute
 #print axioms adjustment_no_authority
 #print axioms expiry_not_extinction
 #print axioms project_denied

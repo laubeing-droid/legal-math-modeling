@@ -1,4 +1,4 @@
-import JurisLean.CN.Completion20261105.Edges
+import JurisLean.CN.Completion20261105.EvidenceInstitutions
 
 /-!
 One executable command graph: observations, admitted evidence, legal steps,
@@ -151,6 +151,14 @@ inductive Command : Type → Type 1
   | institution {α : Type} (call : InstitutionCall α) : Command α
   | engine (context : EngineContext) (call : EngineCall) : Command EngineOutput
   | legal (call : Law.Call) : Command Unit
+  | burdenEvidence (c : Law.Call) (body : Formula) : Command Judgment
+  | acquisitionEvidence (c : Law.Call) (parties : AcquisitionParties) (route : AcqRoute)
+      (faith price publicity : Atom) : Command Judgment
+  | offenseEvidence (c : Law.Call) (ps : List Participation) (person : Ref .actor)
+      (event : Ref .event) (commonScope : Ref .query) (ability elements : Atom) : Command (Ref .query)
+  | storedResJudicata (doc : Ref .document) (person : Ref .actor) (scope : Scope) (time : Nat) : Command Bool
+  | contractQuery (c : Law.Call) (obj : Ref .object) : Command Judgment
+  | assignment (a : MeaningAssignment) (r : Request) : Command Formula
   | perform (r : Request) (mode : Mode) (relation : Ref .relation) (p : Native.PaymentPayload) : Command Unit
   | addTemplate (r : Request) (t : ProofTemplate) : Command (Ref .document)
   | decide (c : Law.Call) (document : Ref .document) : Command DecisionRecord
@@ -170,6 +178,13 @@ def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .engine context call => (callEngine s context call).legal
   | .legal call => legalDispatch s call.request call.policy call.mode call.world
   | .perform r mode relation p => performPayment s r mode relation p
+  | .assignment a r => assignmentQuery s a r
+  | .burdenEvidence c body => burdenEvidence s c body
+  | .acquisitionEvidence c ps route faith price pub => acquisitionEvidence s c ps route faith price pub
+  | .offenseEvidence c ps person event commonScope ability elements =>
+      offenseEvidence s c ps person event commonScope ability elements
+  | .storedResJudicata doc person scope time => storedResJudicata s doc person scope time
+  | .contractQuery c obj => contractQuery s c obj
   | .addTemplate r t => registerTemplate s r t
   | .decide c document => decide s c document
   | .bindDecided b mode => bindDecided s b mode

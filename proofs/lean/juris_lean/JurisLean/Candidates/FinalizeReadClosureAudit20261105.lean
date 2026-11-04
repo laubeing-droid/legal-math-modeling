@@ -31,8 +31,11 @@ theorem actual_eval_reads_snapshot_selection {W : Type} (current : Ledger.Handle
        | .unknown e => .unknown e
        | .rejected e => .rejected e
        | .conflict left right => .conflict left right) := by
-  simp [JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules,
-    sameGamma, sameHistory, extracted, admitted, fresh]
+  cases hs : selectedHorn bound.source
+      (Temporal.proposed_applicability current.gamma current.state.normHistory)
+      input.rules input.ruleGate (eligibleFacts bound) <;>
+    simp [JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules,
+      sameGamma, sameHistory, extracted, admitted, fresh, hs]
 
 /-- 阻断L111：Gamma或history不属于本次同一快照的请求在真实入口拒绝。 -/
 theorem mismatched_request_is_rejected {W : Type} (current : Ledger.Handle)
@@ -171,15 +174,19 @@ theorem actual_fixture_has_refresh_and_known_evaluation :
 
 /-- 阻断L111：三个指定时间分支使用实际授权refresh后态及真实evaluator。 -/
 def dormantVersion : Temporal.VersionRecord :=
-  { currentVersion with id := ⟨701⟩, version := 2,
+  { currentVersion with
+    id := ⟨701⟩
+    version := 2
     factFrom := ⟨fixtureGamma.lawDate.ordinal + 1⟩ }
 
 def overlappingVersion : Temporal.VersionRecord :=
   { currentVersion with id := ⟨702⟩, version := 2 }
 
 def lateRecordedVersion : Temporal.VersionRecord :=
-  { currentVersion with id := ⟨703⟩, version := 3,
-    recordedAt := ⟨fixtureGamma.recordCutoff.ticks + 1⟩,
+  { currentVersion with
+    id := ⟨703⟩
+    version := 3
+    recordedAt := ⟨fixtureGamma.recordCutoff.ticks + 1⟩
     knownAt := ⟨fixtureGamma.knowledgeCutoff.ticks + 1⟩ }
 
 def dormantAfter : Ledger.Handle := publishedAfter fixtureAfter dormantVersion

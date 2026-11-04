@@ -3456,8 +3456,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining
-#print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_le
 #print axioms JurisLean.Seams.UnifiedQuantLedger.causeTimesLoss_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.clamp_clamp
@@ -3488,7 +3486,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.no_blanket_invalidation
 #print axioms JurisLean.Seams.UnifiedQuantLedger.no_resp_zero_share
 #print axioms JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount
-#print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg

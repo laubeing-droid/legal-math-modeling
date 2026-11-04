@@ -1,0 +1,559 @@
+⚠ [8479/8514] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8486/8514] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8488/8514] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8489/8514] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8490/8514] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8492/8514] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8493/8514] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8500/8514] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8505/8514] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8507/8514] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8513/8514] Built JurisLean.Candidates.SingleDebtStreamAudit20261103 (5.1s)
+warning: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:86:14: This simp argument is unused:
+  sameItemFrameLe
+
+Hint: Omit it from the simp argument list.
+  simp_all [̵s̵a̵m̵e̵I̵t̵e̵m̵F̵r̵a̵m̵e̵L̵e̵,̵ ̵a̵m̵o̵u̵n̵t̵E̵q̵]̵[̲a̲m̲o̲u̲n̲t̲E̲q̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:86:31: This simp argument is unused:
+  amountEq
+
+Hint: Omit it from the simp argument list.
+  simp_all [sameItemFrameLe,̵ ̵a̵m̵o̵u̵n̵t̵E̵q̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:339:0: JurisLean.Candidates.SingleDebtStream20261103.min_payment_step_nine_laws (d p : ℚ) (hd : 0 ≤ d) (hp : 0 ≤ p) :
+  (0 ≤ min p d ∧ min p d ≤ d) ∧
+    min p d ≤ p ∧
+      0 ≤ d - min p d ∧
+        0 ≤ p - min p d ∧
+          d = min p d + (d - min p d) ∧
+            p = min p d + (p - min p d) ∧
+              d - min p d = max (d - p) 0 ∧ p - min p d = max (p - d) 0 ∧ min (d - min p d) (p - min p d) = 0
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:340:0: 'JurisLean.Candidates.SingleDebtStream20261103.min_payment_step_nine_laws' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:341:0: JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (p : ℚ) (hp : 0 ≤ p)
+  (hnn : ∀ item ∈ items, 0 ≤ item.amount) :
+  List.Forall₂ JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe
+    (JurisLean.Seams.UnifiedQuantLedger.afterPay p items) items
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:342:0: 'JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:343:0: JurisLean.Candidates.SingleDebtStream20261103.negative_payment_breaks_the_one_step_bounds :
+  JurisLean.Seams.UnifiedQuantLedger.allocsOf (-1) [JurisLean.Candidates.SingleDebtStream20261103.negativePaymentItem] =
+      [-1] ∧
+    JurisLean.Seams.UnifiedQuantLedger.afterPay (-1)
+          [JurisLean.Candidates.SingleDebtStream20261103.negativePaymentItem] =
+        [have __src := JurisLean.Candidates.SingleDebtStream20261103.negativePaymentItem;
+          { ident := __src.ident, kind := __src.kind, basis := __src.basis, beneficiary := __src.beneficiary,
+            status := __src.status, amount := 2 }] ∧
+      JurisLean.Seams.UnifiedQuantLedger.outstanding
+          (JurisLean.Seams.UnifiedQuantLedger.afterPay (-1)
+            [JurisLean.Candidates.SingleDebtStream20261103.negativePaymentItem]) =
+        2
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:344:0: 'JurisLean.Candidates.SingleDebtStream20261103.negative_payment_breaks_the_one_step_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:345:0: JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe_is_partial_order :
+  (∀ (item : JurisLean.Seams.UnifiedQuantLedger.LedgerItem),
+      JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe item item) ∧
+    (∀ (first second third : JurisLean.Seams.UnifiedQuantLedger.LedgerItem),
+        JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe first second →
+          JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe second third →
+            JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe first third) ∧
+      ∀ (first second : JurisLean.Seams.UnifiedQuantLedger.LedgerItem),
+        JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe first second →
+          JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe second first → first = second
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:346:0: 'JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe_is_partial_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:347:0: JurisLean.Candidates.SingleDebtStream20261103.finitePaymentStepLaw :
+  List ℚ → List JurisLean.Seams.UnifiedQuantLedger.LedgerItem → Prop
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:348:0: JurisLean.Candidates.SingleDebtStream20261103.finite_payment_steps_follow_actual_prefix (ps : List ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (hnn : ∀ item ∈ items, 0 ≤ item.amount)
+  (hps : ∀ p ∈ ps, 0 ≤ p) : JurisLean.Candidates.SingleDebtStream20261103.finitePaymentStepLaw ps items
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:349:0: 'JurisLean.Candidates.SingleDebtStream20261103.finite_payment_steps_follow_actual_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:350:0: JurisLean.Candidates.SingleDebtStream20261103.streamUnusedPayments :
+  List ℚ → List JurisLean.Seams.UnifiedQuantLedger.LedgerItem → List ℚ
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:351:0: JurisLean.Candidates.SingleDebtStream20261103.finite_stream_payments_equal_allocations_plus_unused (ps : List ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  ps.sum =
+    (List.map List.sum (JurisLean.Seams.UnifiedQuantLedger.streamAllocs ps items)).sum +
+      (JurisLean.Candidates.SingleDebtStream20261103.streamUnusedPayments ps items).sum
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:352:0: 'JurisLean.Candidates.SingleDebtStream20261103.finite_stream_payments_equal_allocations_plus_unused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:353:0: JurisLean.Candidates.SingleDebtStream20261103.finite_stream_debt_conservation (ps : List ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  JurisLean.Seams.UnifiedQuantLedger.outstanding items =
+    JurisLean.Seams.UnifiedQuantLedger.outstanding (JurisLean.Seams.UnifiedQuantLedger.afterStream ps items) +
+      (List.map List.sum (JurisLean.Seams.UnifiedQuantLedger.streamAllocs ps items)).sum
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:354:0: 'JurisLean.Candidates.SingleDebtStream20261103.finite_stream_debt_conservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:355:0: JurisLean.Candidates.SingleDebtStream20261103.single_item_final_balance_invariant_under_payment_permutation
+  (ps qs : List ℚ) (item : JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (hitem : 0 ≤ item.amount)
+  (hps : ∀ p ∈ ps, 0 ≤ p) (permutation : ps.Perm qs) :
+  JurisLean.Seams.UnifiedQuantLedger.outstanding (JurisLean.Seams.UnifiedQuantLedger.afterStream ps [item]) =
+    JurisLean.Seams.UnifiedQuantLedger.outstanding (JurisLean.Seams.UnifiedQuantLedger.afterStream qs [item])
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:356:0: 'JurisLean.Candidates.SingleDebtStream20261103.single_item_final_balance_invariant_under_payment_permutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:357:0: JurisLean.Candidates.SingleDebtStream20261103.continuous_ten_seven_seven_matches_quantity_stream :
+  JurisLean.Seams.UnifiedQuantLedger.streamAllocs [7, 7] [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem] =
+      [[7], [3]] ∧
+    JurisLean.Seams.UnifiedQuantities.remainingAfter
+          (JurisLean.Seams.UnifiedQuantLedger.liAmounts [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem]) 7 =
+        0 ∧
+      JurisLean.Seams.UnifiedQuantities.remainingAfter
+            (JurisLean.Seams.UnifiedQuantLedger.liAmounts
+              (JurisLean.Seams.UnifiedQuantLedger.afterPay 7
+                [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem]))
+            7 =
+          4 ∧
+        [7, 7].sum =
+            (List.map List.sum
+                  (JurisLean.Seams.UnifiedQuantLedger.streamAllocs [7, 7]
+                    [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem])).sum +
+              [0, 4].sum ∧
+          JurisLean.Seams.UnifiedQuantLedger.outstanding
+                (JurisLean.Seams.UnifiedQuantLedger.afterStream [7, 7]
+                  [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem]) =
+              0 ∧
+            JurisLean.Candidates.Final20261021.Ledger.balance
+                JurisLean.Candidates.Final20261021.Acceptance.post2.state =
+              JurisLean.Seams.UnifiedQuantLedger.outstanding
+                (JurisLean.Seams.UnifiedQuantLedger.afterStream [7, 7]
+                  [JurisLean.Candidates.SingleDebtStream20261103.tenUnitItem])
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:358:0: 'JurisLean.Candidates.SingleDebtStream20261103.continuous_ten_seven_seven_matches_quantity_stream' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:359:0: JurisLean.Candidates.SingleDebtStream20261103.seven_three_allocation_report_cannot_keep_old_debt :
+  (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.opening
+            (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1.allocated =
+      7 ∧
+    (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.post1
+              (JurisLean.Candidates.Final20261021.Acceptance.request 2)).1.allocated =
+        3 ∧
+      JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.opening.state =
+          10 ∧
+        JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.post2.state =
+            0 ∧
+          (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.opening
+                      (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1.allocated +
+                (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Acceptance.request 2)).1.allocated =
+              10 ∧
+            JurisLean.Candidates.Final20261021.Ledger.balance
+                  JurisLean.Candidates.Final20261021.Acceptance.opening.state ≠
+                JurisLean.Candidates.Final20261021.Ledger.balance
+                  JurisLean.Candidates.Final20261021.Acceptance.post2.state ∧
+              JurisLean.Candidates.Final20261021.Ledger.balance
+                  JurisLean.Candidates.Final20261021.Acceptance.opening.state ≠
+                JurisLean.Candidates.SingleDebtStream20261103.reportedOldDebtAsRemainder +
+                    (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                          JurisLean.Candidates.Final20261021.Acceptance.opening
+                          (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1.allocated +
+                  (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (JurisLean.Candidates.Final20261021.Acceptance.request 2)).1.allocated
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:360:0: 'JurisLean.Candidates.SingleDebtStream20261103.seven_three_allocation_report_cannot_keep_old_debt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:361:0: JurisLean.Candidates.SingleDebtStream20261103.final_balance_order_independent_but_payment_identity_allocation_is_not :
+  List.map (fun r => (r.key, r.allocated))
+        JurisLean.Candidates.SingleDebtStream20261103.paymentOrder12Second.2.state.receipts =
+      [({ value := 1 }, 7), ({ value := 2 }, 3)] ∧
+    List.map (fun r => (r.key, r.allocated))
+          JurisLean.Candidates.SingleDebtStream20261103.paymentOrder21Second.2.state.receipts =
+        [({ value := 2 }, 7), ({ value := 1 }, 3)] ∧
+      JurisLean.Candidates.Final20261021.Ledger.balance
+            JurisLean.Candidates.SingleDebtStream20261103.paymentOrder12Second.2.state =
+          JurisLean.Candidates.Final20261021.Ledger.balance
+            JurisLean.Candidates.SingleDebtStream20261103.paymentOrder21Second.2.state ∧
+        JurisLean.Candidates.Final20261021.Ledger.balance
+            JurisLean.Candidates.SingleDebtStream20261103.paymentOrder12Second.2.state =
+          0
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:362:0: 'JurisLean.Candidates.SingleDebtStream20261103.final_balance_order_independent_but_payment_identity_allocation_is_not' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:364:0: JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7 :
+  JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.post1.state = 3 ∧
+    JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.post2.state = 0 ∧
+      JurisLean.Candidates.Final20261021.Acceptance.post2.state.allocated = 10 ∧
+        JurisLean.Candidates.Final20261021.Acceptance.post2.state.paid = 14 ∧
+          JurisLean.Candidates.Final20261021.Acceptance.post2.state.surplus = 4
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:365:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:366:0: JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume :
+  JurisLean.Candidates.Final20261021.Ledger.balance
+        (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.opening
+              (JurisLean.Candidates.Final20261021.Acceptance.request 2)).2.state =
+      3 ∧
+    JurisLean.Candidates.Final20261021.Ledger.balance
+        (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.post1
+              (JurisLean.Candidates.Final20261021.Acceptance.request 2)).2.state =
+      0
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:367:0: 'JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:368:0: JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (hs : JurisLean.Candidates.Final20261021.Ledger.Conserves s) (hp : 0 ≤ p.amount.value) :
+  JurisLean.Candidates.Final20261021.Ledger.Conserves (JurisLean.Candidates.Final20261021.Ledger.performance s p)
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:369:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:370:0: JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (ps : List JurisLean.Candidates.Final20261021.PaymentPayload)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (itemsNonneg : ∀ it ∈ items, 0 ≤ it.amount)
+  (paymentsNonneg : ∀ p ∈ ps, 0 ≤ p.amount.value)
+  (initialProjection :
+    JurisLean.Candidates.Final20261021.Ledger.balance s = JurisLean.Seams.UnifiedQuantLedger.outstanding items) :
+  JurisLean.Candidates.Final20261021.Ledger.balance (JurisLean.Candidates.Final20261021.Ledger.afterPayments s ps) =
+    JurisLean.Seams.UnifiedQuantLedger.outstanding
+      (JurisLean.Seams.UnifiedQuantLedger.afterStream (List.map (fun p => p.amount.value) ps) items)
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:371:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:372:0: JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch :
+  JurisLean.Candidates.Final20261021.Ledger.auditReceipt
+      (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.opening
+          (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1
+      JurisLean.Candidates.Final20261021.Acceptance.opening.state =
+    JurisLean.Candidates.Final20261021.Result.rejected
+      JurisLean.Candidates.Final20261021.Error.stateConservationMismatch
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:373:0: 'JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:374:0: JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (ps : List JurisLean.Candidates.Final20261021.PaymentPayload)
+  (nonneg : 0 ≤ JurisLean.Candidates.Final20261021.Ledger.balance s) (payments : ∀ p ∈ ps, 0 ≤ p.amount.value) :
+  JurisLean.Candidates.Final20261021.Ledger.balance (JurisLean.Candidates.Final20261021.Ledger.afterPayments s ps) =
+    max (JurisLean.Candidates.Final20261021.Ledger.balance s - (List.map (fun p => p.amount.value) ps).sum) 0
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:375:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:376:0: JurisLean.Seams.UnifiedQuantities.waterfall_conservation (L : List ℚ) (p : ℚ) :
+  (JurisLean.Seams.UnifiedQuantities.waterfall L p).sum + JurisLean.Seams.UnifiedQuantities.remainingAfter L p = p
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:377:0: 'JurisLean.Seams.UnifiedQuantities.waterfall_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:378:0: JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg (L : List ℚ) (p : ℚ) :
+  0 ≤ p → 0 ≤ JurisLean.Seams.UnifiedQuantities.remainingAfter L p
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:379:0: 'JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:380:0: JurisLean.Seams.UnifiedQuantities.waterfall_sum_le (L : List ℚ) (p : ℚ) (h0 : 0 ≤ p) :
+  (JurisLean.Seams.UnifiedQuantities.waterfall L p).sum ≤ p
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:381:0: 'JurisLean.Seams.UnifiedQuantities.waterfall_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:382:0: JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min (L : List ℚ) (p : ℚ) :
+  0 ≤ p → (∀ d ∈ L, 0 ≤ d) → (JurisLean.Seams.UnifiedQuantities.waterfall L p).sum = min p L.sum
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:383:0: 'JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:384:0: JurisLean.Seams.UnifiedQuantLedger.afterPay_idents (p : ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  List.map JurisLean.Seams.UnifiedQuantLedger.LedgerItem.ident (JurisLean.Seams.UnifiedQuantLedger.afterPay p items) =
+    List.map JurisLean.Seams.UnifiedQuantLedger.LedgerItem.ident items
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:385:0: 'JurisLean.Seams.UnifiedQuantLedger.afterPay_idents' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:386:0: JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem)
+  (p : ℚ) (it : JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  it ∈ JurisLean.Seams.UnifiedQuantLedger.afterPay p items → 0 ≤ it.amount
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:387:0: 'JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:388:0: JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream (ps : List ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (hnn : ∀ it ∈ items, 0 ≤ it.amount)
+  (hps : ∀ p ∈ ps, 0 ≤ p) :
+  JurisLean.Seams.UnifiedQuantLedger.outstanding (JurisLean.Seams.UnifiedQuantLedger.afterStream ps items) =
+    max (JurisLean.Seams.UnifiedQuantLedger.outstanding items - ps.sum) 0
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:389:0: 'JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:390:0: JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal (ps : List ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (hnn : ∀ it ∈ items, 0 ≤ it.amount)
+  (hps : ∀ p ∈ ps, 0 ≤ p) (as : List ℚ) :
+  as ∈ JurisLean.Seams.UnifiedQuantLedger.streamAllocs ps items →
+    (∀ a ∈ as, 0 ≤ a) ∧ as.sum ≤ JurisLean.Seams.UnifiedQuantLedger.outstanding items
+info: JurisLean/Candidates/SingleDebtStreamAudit20261103.lean:391:0: 'JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8514/8514] Built JurisLean.Candidates.ParametricAllocationAudit20261104 (5.1s)
+warning: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:67:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:193:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:250:0: JurisLean.Candidates.ParametricAllocationAudit20261104.AllocTheta
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem)
+  (payment : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (rowBinding : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationRowBinding items)
+  (paymentIdentity : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationPaymentIdentity)
+  (theta : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationThetaRule)
+  (time : JurisLean.Candidates.Final20261021.LawDate) (version : ℕ) : Type
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:251:0: JurisLean.Candidates.ParametricAllocationAudit20261104.AccrueTheta
+  (state : JurisLean.Candidates.Final20261021.Ledger.State) (t0 t1 : JurisLean.Candidates.Final20261021.LawDate)
+  (formula : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualFormula)
+  (rounding : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualRounding)
+  (effective : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualEffectiveness)
+  (factsValid : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualFactCondition) : Type
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:252:0: JurisLean.Candidates.ParametricAllocationAudit20261104.certified_allocation_updates_actual_list
+  {items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem}
+  {payment : JurisLean.Candidates.Final20261021.PaymentPayload}
+  {rowBinding : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationRowBinding items}
+  {paymentIdentity : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationPaymentIdentity}
+  {theta : JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationThetaRule}
+  {time : JurisLean.Candidates.Final20261021.LawDate} {version : ℕ}
+  (certificate :
+    JurisLean.Candidates.ParametricAllocationAudit20261104.AllocationCertificate items payment rowBinding
+      paymentIdentity theta time version) :
+  JurisLean.Candidates.ParametricAllocationAudit20261104.applyAllocTheta (some certificate) =
+      some (JurisLean.Candidates.ParametricAllocationAudit20261104.applyAllocationVector items certificate.allocation) ∧
+    (JurisLean.Candidates.ParametricAllocationAudit20261104.applyAllocationVector items certificate.allocation).length =
+        items.length ∧
+      (∀ (i : Fin items.length),
+          JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe
+            (JurisLean.Candidates.ParametricAllocationAudit20261104.allocatedRow items certificate.allocation i)
+            (items.get i)) ∧
+        (∀ (i : Fin items.length),
+            0 ≤
+              (JurisLean.Candidates.ParametricAllocationAudit20261104.allocatedRow items certificate.allocation
+                  i).amount) ∧
+          JurisLean.Seams.UnifiedQuantLedger.outstanding items =
+              JurisLean.Seams.UnifiedQuantLedger.outstanding
+                  (JurisLean.Candidates.ParametricAllocationAudit20261104.applyAllocationVector items
+                    certificate.allocation) +
+                ∑ i, certificate.allocation i ∧
+            0 ≤ payment.amount.value - ∑ i, certificate.allocation i ∧
+              payment.amount.value =
+                  ∑ i, certificate.allocation i + (payment.amount.value - ∑ i, certificate.allocation i) ∧
+                ∀ (i : Fin items.length),
+                  (certificate.sourceDebt i).amount.value = (items.get i).amount ∧
+                    (certificate.sourceDebt i).amount.tag = payment.amount.tag
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:253:0: JurisLean.Candidates.ParametricAllocationAudit20261104.accrue_theta_output_is_actual_accrual
+  {state : JurisLean.Candidates.Final20261021.Ledger.State} {t0 t1 : JurisLean.Candidates.Final20261021.LawDate}
+  {formula : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualFormula}
+  {rounding : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualRounding}
+  {effective : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualEffectiveness}
+  {factsValid : JurisLean.Candidates.ParametricAllocationAudit20261104.AccrualFactCondition}
+  (output :
+    JurisLean.Candidates.ParametricAllocationAudit20261104.AccrueTheta state t0 t1 formula rounding effective
+      factsValid) :
+  JurisLean.Candidates.ParametricAllocationAudit20261104.applyAccrueTheta output =
+    Option.map
+      (fun certificate =>
+        JurisLean.Candidates.Final20261021.Ledger.accrue state (rounding (formula state t0 t1 certificate.terms).value))
+      output
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:254:0: JurisLean.Candidates.ParametricAllocationAudit20261104.actual_accrual_balance_and_non_cash
+  (state : JurisLean.Candidates.Final20261021.Ledger.State) (amount : ℚ) :
+  JurisLean.Candidates.Final20261021.Ledger.balance (JurisLean.Candidates.Final20261021.Ledger.accrue state amount) =
+      JurisLean.Candidates.Final20261021.Ledger.balance state + amount ∧
+    (JurisLean.Candidates.Final20261021.Ledger.accrue state amount).cash = state.cash ∧
+      (JurisLean.Candidates.Final20261021.Ledger.accrue state amount).paid = state.paid ∧
+        (JurisLean.Candidates.Final20261021.Ledger.accrue state amount).refundCash = state.refundCash ∧
+          (JurisLean.Candidates.Final20261021.Ledger.accrue state amount).debt.amount.tag = state.debt.amount.tag
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:255:0: JurisLean.Candidates.ParametricAllocationAudit20261104.synthetic_accrual_increases_balance_without_payment :
+  JurisLean.Candidates.Final20261021.Ledger.balance
+        (JurisLean.Candidates.Final20261021.Ledger.accrue JurisLean.Candidates.Final20261021.Acceptance.opening.state
+          1) =
+      11 ∧
+    (JurisLean.Candidates.Final20261021.Ledger.accrue JurisLean.Candidates.Final20261021.Acceptance.opening.state
+            1).cash =
+        JurisLean.Candidates.Final20261021.Acceptance.opening.state.cash ∧
+      (JurisLean.Candidates.Final20261021.Ledger.accrue JurisLean.Candidates.Final20261021.Acceptance.opening.state
+              1).paid =
+          JurisLean.Candidates.Final20261021.Acceptance.opening.state.paid ∧
+        (JurisLean.Candidates.Final20261021.Ledger.accrue JurisLean.Candidates.Final20261021.Acceptance.opening.state
+              1).refundCash =
+          JurisLean.Candidates.Final20261021.Acceptance.opening.state.refundCash
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:256:0: JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity :
+  List.map (fun item => (item.ident, item.amount))
+        JurisLean.Candidates.ParametricAllocationAudit20261104.forwardAfterPay =
+      [(1, 0), (2, 5)] ∧
+    List.map (fun item => (item.ident, item.amount))
+          JurisLean.Candidates.ParametricAllocationAudit20261104.reversedAfterPay =
+        [(2, 0), (1, 5)] ∧
+      JurisLean.Seams.UnifiedQuantLedger.outstanding
+            JurisLean.Candidates.ParametricAllocationAudit20261104.forwardAfterPay =
+          5 ∧
+        JurisLean.Seams.UnifiedQuantLedger.outstanding
+            JurisLean.Candidates.ParametricAllocationAudit20261104.reversedAfterPay =
+          5
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:257:0: 'JurisLean.Candidates.ParametricAllocationAudit20261104.certified_allocation_updates_actual_list' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:258:0: 'JurisLean.Candidates.ParametricAllocationAudit20261104.accrue_theta_output_is_actual_accrual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:259:0: 'JurisLean.Candidates.ParametricAllocationAudit20261104.actual_accrual_balance_and_non_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:260:0: 'JurisLean.Candidates.ParametricAllocationAudit20261104.synthetic_accrual_increases_balance_without_payment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:261:0: 'JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:262:0: JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation {I : Type} (items : Finset I) (d k : I → ℚ) (p : ℚ)
+  (legalBounds : ∀ i ∈ items, 0 ≤ k i ∧ k i ≤ d i) (budget : ∑ i ∈ items, k i ≤ p) :
+  (∀ i ∈ items, 0 ≤ d i - k i ∧ d i - k i ≤ d i) ∧
+    ∑ i ∈ items, d i = ∑ i ∈ items, (d i - k i) + ∑ i ∈ items, k i ∧ 0 ≤ p - ∑ i ∈ items, k i
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:263:0: JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash (s : JurisLean.Candidates.Final20261021.Ledger.State)
+  (a : ℚ) :
+  (JurisLean.Candidates.Final20261021.Ledger.accrue s a).cash = s.cash ∧
+    (JurisLean.Candidates.Final20261021.Ledger.accrue s a).paid = s.paid ∧
+      (JurisLean.Candidates.Final20261021.Ledger.accrue s a).refundCash = s.refundCash
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:264:0: JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (p : ℚ) (hp : 0 ≤ p)
+  (hnn : ∀ item ∈ items, 0 ≤ item.amount) :
+  List.Forall₂ JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe
+    (JurisLean.Seams.UnifiedQuantLedger.afterPay p items) items
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:265:0: JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) (p : ℚ) :
+  (JurisLean.Seams.UnifiedQuantLedger.allocsOf p items).sum +
+      JurisLean.Seams.UnifiedQuantities.remainingAfter (JurisLean.Seams.UnifiedQuantLedger.liAmounts items) p =
+    p
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:266:0: JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem)
+  (p : ℚ) (hp : 0 ≤ p) (hnn : ∀ it ∈ items, 0 ≤ it.amount) :
+  (JurisLean.Seams.UnifiedQuantLedger.allocsOf p items).sum =
+    min p (JurisLean.Seams.UnifiedQuantLedger.outstanding items)
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:267:0: JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay (p : ℚ)
+  (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  JurisLean.Seams.UnifiedQuantLedger.outstanding (JurisLean.Seams.UnifiedQuantLedger.afterPay p items) =
+    JurisLean.Seams.UnifiedQuantLedger.outstanding items - (JurisLean.Seams.UnifiedQuantLedger.allocsOf p items).sum
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:268:0: JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem)
+  (p : ℚ) (it : JurisLean.Seams.UnifiedQuantLedger.LedgerItem) :
+  it ∈ JurisLean.Seams.UnifiedQuantLedger.afterPay p items → 0 ≤ it.amount
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:269:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:270:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:271:0: 'JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:272:0: 'JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:273:0: 'JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:274:0: 'JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/ParametricAllocationAudit20261104.lean:275:0: 'JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (8514 jobs).

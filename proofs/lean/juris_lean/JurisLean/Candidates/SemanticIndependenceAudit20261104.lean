@@ -121,7 +121,7 @@ theorem obligation_semantically_entails_power :
   rcases hmodel with ⟨hctx, hp, hoDef, hx, hg⟩
   change m.o = true at ho
   change m.p = true
-  have hAnd : m.l && m.g = true := by
+  have hAnd : (m.l && m.g) = true := by
     rw [hoDef] at ho
     exact ho
   cases hl : m.l with
@@ -192,8 +192,8 @@ theorem received_content_and_permission_entail_obligation :
   have hTriggered : m.g = true := by
     rw [hg]
     exact hDocument
-  rw [hoDef, hLicensed, hTriggered]
-  rfl
+  change m.o = true
+  simpa [hLicensed, hTriggered] using hoDef
 
 end SemanticIndependenceAudit20261104
 

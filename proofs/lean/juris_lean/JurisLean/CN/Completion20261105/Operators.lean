@@ -75,11 +75,21 @@ def exactDatum (u : UnitKind) (out : EngineOutput) : Option (Quantity u) :=
   | .exact, ⟨v, quantity⟩ => if h : v = u then some (h ▸ quantity) else none
   | _, _ => none
 
+def moneyLedgerOK (s : Situation) : List Performance → Bool
+  | [] => true
+  | first :: rest =>
+    match s.accounts first.relation with
+    | none => false
+    | some account => rest.all (fun entry =>
+        (s.accounts entry.relation).any (fun other => other.debt.amount.tag == account.debt.amount.tag))
+
 def measureQuery (s : Situation) (u : UnitKind) (scope : Scope) : Reply (Quantity u) :=
   match u with
   | .money =>
     let xs := s.core.state.ledger.filter (fun p => p.request.scope == scope)
-    quiet s (.success ⟨xs.foldl (fun total p => total + p.amount.value) 0⟩)
+    if moneyLedgerOK s xs then
+      quiet s (.success ⟨xs.foldl (fun total p => total + p.amount.value) 0⟩)
+    else quiet s (.unknown .inputUnchecked)
   | .day =>
     match clockAt s scope with
     | none => quiet s (.unknown .inputUnchecked)
@@ -93,6 +103,14 @@ def measureQuery (s : Situation) (u : UnitKind) (scope : Scope) : Reply (Quantit
     match (outs.filterMap (exactDatum unit)).head? with
     | none => quiet s (.unknown .inputUnchecked)
     | some q => quiet s (.success q)
+
+theorem money_measure_has_matching_tags (s : Situation) (scope : Scope) (q : Quantity .money)
+    (h : (measureQuery s .money scope).answer = .success q) :
+    moneyLedgerOK s (s.core.state.ledger.filter (fun p => p.request.scope == scope)) = true := by
+  unfold measureQuery at h
+  split at h
+  · assumption
+  · cases h
 
 def excludeQuery (s : Situation) (times removed : List Nat) : Reply (List Nat) :=
   quiet s (.success ((times.filter (fun t => !removed.contains t)).eraseDups))
@@ -346,6 +364,7 @@ theorem witness_pending (s : Situation) (r : WitnessRequest) (raw : Raw r.materi
   simp [witnessQuery, h, quiet]
 
 #print axioms advance_clock_exact
+#print axioms money_measure_has_matching_tags
 #print axioms commute_true_sound
 #print axioms commute_true_actual_calls
 #print axioms assignment_gate_stable

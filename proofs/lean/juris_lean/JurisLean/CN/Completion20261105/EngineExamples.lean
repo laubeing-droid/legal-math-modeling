@@ -146,6 +146,13 @@ def checkIO : IO Unit := do
   let mixed := executeCommand {jointStart with accounts := foreignAccounts} (.perform (call .perform) ⟨6⟩ payment)
   unless decide (mixed.after.core.state.ledger.isEmpty = true) do
     throw (IO.userError "mixed currency silently committed")
+  let mixedLedger := {jointStart.core.state with ledger :=
+    [⟨⟨81⟩,⟨6⟩,⟨3⟩,request .perform⟩,⟨⟨82⟩,⟨16⟩,⟨4⟩,request .perform⟩]}
+  let mixedMeasure := {jointStart.withCore (jointStart.core.putState mixedLedger rfl) with
+    accounts := foreignAccounts}
+  unless decide ((executeCommand mixedMeasure (.operator ⟨[],[],[]⟩ (.measure .money toyScope))).answer =
+      .unknown .inputUnchecked) do
+    throw (IO.userError "money measure silently summed different currency tags")
   let agentAccount := {cashBefore with debt := {cashBefore.debt with creditor := ⟨22⟩}}
   let agentAccounts := fun id => if id = ⟨6⟩ then some agentAccount else none
   let attributed := executeCommand {apparentStart with accounts := agentAccounts}
@@ -165,6 +172,7 @@ def checkIO : IO Unit := do
   unless decide (kindOf (run behavior) = some .behave) do throw (IO.userError "behavior_actual_call failed")
   unless decide (paid.answer = .success () ∧
     (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
+    (executeCommand paid.after (.operator ⟨[],[],[]⟩ (.measure .money toyScope))).answer = .success ⟨3⟩ ∧
     paid.after.core.state.ledger.length = 1 ∧
     paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L) do throw (IO.userError "actual_performance_consumes_native_cash failed")
   unless decide ((executeCommand paid.after (.perform (call .perform) ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")

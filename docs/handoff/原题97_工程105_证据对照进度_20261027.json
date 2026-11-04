@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending. 09.1/09.2 L145/L147/L151/L153 mapped COVERED from source run 41620019146 at b84d28bf; this records finite mathematical evidence only, not legal discharge or full PR acceptance. 09.3 L157/L159 mapped COVERED from changed-module source run 41636538195 at source checkpoint 2c07cdb; this is conditional source evidence only, not proof of real-world identity, legal discharge, or full PR acceptance. 09.4 L163/L165/L167 mapped COVERED from source run 41761045186 at source checkpoint 4a1156c; the later metadata-only audit de-duplication checkpoint c19c7fef is not a source-CI subject. This is conditional mathematical/source evidence, not concrete legal-rule instantiation or full PR acceptance. 09.5 L171/L173/L175 mapped COVERED from source run 41773914244 at source checkpoint 0b6bd5a; finite ToyTheta witnesses are not general-theta, real-domain, or runtime-caller evidence. Full PR acceptance remains pending. 09.6 L179/L181/L183 mapped COVERED from changed-module source run 41787704361 at source checkpoint a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce; this is conditional quantity/cash State evidence plus finite examples, not real-law, validated-protocol, general-theta, or actual-caller evidence. U09.3 remains closed; full record/PR acceptance is pending. 09.7 L187/L189/L191-L196/L198/L200 mapped COVERED from changed-module source run 41807723062 at source checkpoint 87b7fe1b1054d610c70bef76055fb8074b92c8ea; this is a finite same-Theta/W6/cash-projection witness and conditional source-bound rJ branch, not arbitrary-theta, real-law, validated-protocol, or actual-caller evidence. U09.3 remains closed; full record/PR acceptance is pending.",
+    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending. 09.1/09.2 L145/L147/L151/L153 mapped COVERED from source run 41620019146 at b84d28bf; this records finite mathematical evidence only, not legal discharge or full PR acceptance. 09.3 L157/L159 mapped COVERED from changed-module source run 41636538195 at source checkpoint 2c07cdb; this is conditional source evidence only, not proof of real-world identity, legal discharge, or full PR acceptance. 09.4 L163/L165/L167 mapped COVERED from source run 41761045186 at source checkpoint 4a1156c; the later metadata-only audit de-duplication checkpoint c19c7fef is not a source-CI subject. This is conditional mathematical/source evidence, not concrete legal-rule instantiation or full PR acceptance. 09.5 L171/L173/L175 mapped COVERED from source run 41773914244 at source checkpoint 0b6bd5a; finite ToyTheta witnesses are not general-theta, real-domain, or runtime-caller evidence. Full PR acceptance remains pending. 09.6 L179/L181/L183 mapped COVERED from changed-module source run 41787704361 at source checkpoint a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce; this is conditional quantity/cash State evidence plus finite examples, not real-law, validated-protocol, general-theta, or actual-caller evidence. U09.3 remains closed; full record/PR acceptance is pending. 09.7 L187/L189/L191-L196/L198/L200 mapped COVERED from changed-module source run 41807723062 at source checkpoint 87b7fe1b1054d610c70bef76055fb8074b92c8ea; this is a finite same-Theta/W6/cash-projection witness and conditional source-bound rJ branch, not arbitrary-theta, real-law, validated-protocol, or actual-caller evidence. U09.3 remains closed; full record/PR acceptance is pending. 09.8 L204/L206/L208 mapped COVERED from changed-module source run 41825560137 at source checkpoint 88f29a6a; this is conditional finite restitution/quantity/cash evidence and does not establish real source authenticity, actual payment occurrence, legal authorization, or general protocol/caller wiring. Full records and PR acceptance remain pending.",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags. This round maps original 07.5 L287 using six previously accepted full-source outputs for the finite fiber conditions and sourceModel=.ok joint-object instance; no runtime caller or global completion flag is upgraded.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 70,
-    "PARTIAL": 19,
+    "COVERED": 71,
+    "PARTIAL": 18,
     "NOT_RECONCILED": 8
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -4970,7 +4970,7 @@
           208
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u09-2-original-close-20261030",
@@ -4989,9 +4989,35 @@
             "JurisLean.Candidates.Final20261021.Ledger.cashVector"
           ],
           "scope": "仅映射冻结09.8现金守恒子段：原题ℚ金额域下，两个既有Ledger有限和定理在每事件平衡、同单位封闭账户前提下经changed-module独立CI核验；实际事件发生、账户边界完整性仍为原文明示外部前提。未覆盖09.8其余返还/数量联合要求、U09.3或真实法律清偿。"
+        },
+        {
+          "package": "docs/formal-release/evidence/original09-8-restitution-finite-close-20261104",
+          "subject": "88f29a6a029de736607650ea01cf738419e3adc1",
+          "tree": "71f3562ce57842bb1dd2faef71519bcb4ebd09cb",
+          "run_id": 41825560137,
+          "attempt": 1,
+          "job_id": 126559282946,
+          "artifact_id": 13318902082,
+          "artifact_sha256": "16fe95102e81791bf92b58f2068c637d78e3844f4d8778aba4f4e68bd9a17594",
+          "scope": "冻结09.8 L204/L206/L208的条件数学闭合：给定完整规范化Extractor输出、Θ明确的Option RefundRule及Ready前提，证明阶段无现金变化、q与实际PaymentRequest/payload/cash event及历史ID连接、新关系数量与原paid/cash分项守恒、有限轨迹下联合效果与封闭账户现金守恒；一般credit效果与旧RestPay仅min且金额门控的实例分开。有限合成例不证明现实来源真实性、真实付款发生、法律授权、任意parser或通用生产协议接入。U09.3保持已闭合且不重开。",
+          "named_targets": [
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.first_two_stages_no_cash",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.q_receipt_is_actual_event_and_history",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.separated_quantity_and_cash_components",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.actual_closed_account_conservation",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.joint_from_actual_trace",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.legacy_RestPay_is_min_branch",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.cash_balance_does_not_supply_admission",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.ten_seven_seven_nonempty_witness",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.w6_nonempty_witness"
+          ],
+          "object_checks": [
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.RefundRule",
+            "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.Ready"
+          ]
         }
       ],
-      "remaining": "本轮只覆盖09.8现金有限和守恒子段。返还节点、身份和数量分项及最强联合条件结论仍未在本轮完整核对；U09.3保持独立。实际事件发生与边界账户完整性继续作为冻结命题的明示外部前提。"
+      "remaining": "本轮按原题给定输入条件覆盖L204/L206/L208的有限数学命题；不证明Extractor在现实中的来源真实性或一般解析正确性，不证明真实付款事件已发生或现实法律已授权。任意credit的数学返还生产者与旧RestPay的min分支/金额门控保持区分，有限实例仅证明该门控在指定例子可满足，不构成通用协议接入或production caller wiring。U09.3保持已闭合且不重开；完整记录与PR接受状态仍待完成。"
     },
     {
       "id": "10.1",

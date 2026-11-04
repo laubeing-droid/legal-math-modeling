@@ -137,7 +137,7 @@ structure AgencyOutcome where
 
 /-- 无权代理对本人不生预期效力 ≠ 行为人与相对人绝无责任。 -/
 def unauthorizedAgencyOutcome : AgencyOutcome :=
-  ⟨.notEstablished, .established⟩
+  ⟨.notEstablished, .undetermined⟩
 
 theorem twelve_apparent_success :
     apparentAttribution ⟨true, true, .established, true⟩ = .established :=
@@ -162,7 +162,7 @@ theorem twelve_delegate_keeps_capacity :
 
 theorem twelve_unauthorized_not_no_liability :
     unauthorizedAgencyOutcome.attribution = .notEstablished ∧
-    unauthorizedAgencyOutcome.agentCounterpartyLiability = .established :=
+    unauthorizedAgencyOutcome.agentCounterpartyLiability = .undetermined :=
   ⟨rfl, rfl⟩
 
 /-! ## 6.3 管辖 -/
@@ -378,7 +378,7 @@ def cutDay (accepted : Check Bool) (acceptedAt : Nat) (c : InterestClaim) (t : N
   | .known true =>
     if c.in46 then
       if t ≤ acceptedAt then .known t else .known acceptedAt
-    else .unknown .lawNotWritten
+    else .unknown .systemNotJudge
 
 theorem twelve_cut_day :
     cutDay (.known true) 10 ⟨⟨20⟩, aD, 0, true⟩ 5 = .known 5 := by decide
@@ -387,7 +387,7 @@ theorem twelve_cut_day_cap :
     cutDay (.known true) 10 ⟨⟨20⟩, aD, 0, true⟩ 15 = .known 10 := by decide
 
 theorem twelve_cut_not46_unknown :
-    cutDay (.known true) 10 ⟨⟨20⟩, aD, 0, false⟩ 5 = .unknown .lawNotWritten := rfl
+    cutDay (.known true) 10 ⟨⟨20⟩, aD, 0, false⟩ 5 = .unknown .systemNotJudge := rfl
 
 /-- 受理未核不能提前冻结；申请日不替代受理日。 -/
 structure CaseDates where
@@ -502,18 +502,12 @@ def setMeaning (m : MeaningMap) (c : Ref .document) (f : Formula) : MeaningMap :
 
 theorem twelve_interpret_self (m : MeaningMap) (c : Ref .document) (f : Formula) :
     setMeaning m c f c = some f := by
-  simp only [setMeaning]
-  split
-  · rfl
-  · next h => exact (h rfl).elim
+  simp [setMeaning]
 
 theorem twelve_interpret_other (m : MeaningMap) (c1 c2 : Ref .document) (f : Formula)
     (hne : c1 ≠ c2) :
     setMeaning m c1 f c2 = m c2 := by
-  simp only [setMeaning]
-  split
-  · next hc => exact absurd hc.symm hne
-  · rfl
+  simp [setMeaning, Ne.symm hne]
 
 /-- 争议未解决不选评分最高解释：没有评分器，返回 UNKNOWN。 -/
 def disputedMeaning : Check Formula := .unknown .inputUnchecked

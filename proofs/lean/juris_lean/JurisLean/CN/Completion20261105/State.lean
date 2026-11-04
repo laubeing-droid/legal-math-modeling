@@ -1,0 +1,151 @@
+import JurisLean.CN.Completion20261105.Foundation
+import JurisLean.CN.Completion20261105.InstitutionRules
+
+/-!
+Common object used by institution commands, operator programs and runtime.
+The dated extension adds institution-indexed legal positions; there is one
+underlying F/E/N/L/A/ledger, exposed by core.state, not a second fact system.
+V4 P1/P4/P12 require stateful instances and ordered, composable histories.
+-/
+namespace JurisLean.CN.Completion20261105
+open JurisLean.KernelV3
+open JurisLean.CN.Revision20261101
+namespace IR
+export InstitutionRules (ExecProc InterestClaim InterestLedger Participation RevokeGuard
+  ApparentGuard FourOut CompTrack)
+end IR
+
+def CaseState.putState (x : CaseState) (s : Sit) (h : s.E = x.state.E) : CaseState :=
+  ⟨s, x.keys, by intro i hi; rw [h]; exact x.closed i hi⟩
+
+def CaseState.setCell (x : CaseState) (i : Ref .material) (cell : EvidenceCell i) : CaseState :=
+  ⟨{x.state with E := setEvidence x.state.E i cell}, i :: x.keys, by
+    intro j hj
+    have hn : j ≠ i ∧ j ∉ x.keys := by simpa using hj
+    simp only [setEvidence, hn.1, dite_false]
+    exact x.closed j hn.2⟩
+
+structure Situation where
+  core : CaseState
+  life : Ref .object → Option CivilActLife
+  agencies : Ref .object → Option Agency
+  meanings : Ref .object → Option Formula
+  executions : List IR.ExecProc
+  stayed : List (Ref .event)
+  interest : Ref .relation → Option IR.InterestLedger
+  cutoffs : Ref .relation → Option Nat
+  responsibility : Ref .actor → Ref .event → Ref .query → Judgment
+  tracks : LiabilityTracks
+
+def Situation.initial : Situation :=
+  ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
+    fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩⟩
+
+def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
+
+def assign {α : Type} (m : Ref .object → α) (key : Ref .object) (value : α) :
+    Ref .object → α :=
+  fun j => if j = key then value else m j
+
+/- Obligation P12: a concrete keyed update has the claimed scope; this is used
+   by actual lifecycle, agency and interpretation commands, not a label test. -/
+theorem assign_self {α : Type} (m : Ref .object → α) (k : Ref .object) (v : α) :
+    assign m k v k = v := by simp [assign]
+
+theorem assign_other {α : Type} (m : Ref .object → α) (a b : Ref .object) (v : α)
+    (h : b ≠ a) : assign m a v b = m b := by simp [assign, h]
+
+inductive Refusal
+  | unauthorized | prerequisites | unsupported
+  deriving DecidableEq, Repr
+
+inductive Answer (α : Type)
+  | success (value : α)
+  | rejected (why : Refusal)
+  | unknown (why : UnknownKind)
+  | conflict (route : ReviewRoute)
+  | blockedHuman
+  deriving Repr
+
+structure Reply (α : Type) where
+  after : Situation
+  answer : Answer α
+
+def ruleIdentityMatches (r : Request) (law : Rule) : Bool :=
+  law.source.id == r.rule && law.source.version == r.version && law.scope == r.scope
+
+def selectedRules (x : CaseState) (r : Request) : List Rule :=
+  x.state.N.rules.filter (ruleIdentityMatches r)
+
+def statusAnswer : StepStatus → Answer Unit
+  | .applied => .success ()
+  | .unauthorized => .rejected .unauthorized
+  | .blockedHuman => .blockedHuman
+  | .awaiting k => .unknown k
+
+/- The public legal dispatcher obtains its law from N. No caller can pass an
+   unregistered rule or assume a unique applicable norm in a ticket. -/
+def legalDispatch (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld) : Reply Unit :=
+  match selectedRules s.core r with
+  | [] => ⟨s, .unknown .inputUnchecked⟩
+  | [law] =>
+    let ex := executeChecked s.core r law p m w
+    ⟨s.withCore (s.core.putState ex.after (executeChecked_frame s.core r law p m w).2.2),
+      statusAnswer ex.status⟩
+  | _ :: _ :: _ => ⟨s, .conflict .competentReview⟩
+
+/- Obligation F01/F02/S1: the actual selected rule is in N, and unresolved
+   alternatives return conflict without a state change. -/
+theorem selected_rule_member (x : CaseState) (r : Request) (law : Rule)
+    (h : selectedRules x r = [law]) : law ∈ x.state.N.rules := by
+  have hm : law ∈ selectedRules x r := by rw [h]; simp
+  exact (List.mem_filter.mp hm).1
+
+theorem legalDispatch_conflict (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld) (a b : Rule) (rest : List Rule)
+    (h : selectedRules s.core r = a :: b :: rest) :
+    (legalDispatch s r p m w).after = s ∧
+      (legalDispatch s r p m w).answer = .conflict .competentReview := by
+  simp [legalDispatch, h]
+
+theorem legalDispatch_missing (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld) (h : selectedRules s.core r = []) :
+    (legalDispatch s r p m w).answer = .unknown .inputUnchecked := by
+  simp [legalDispatch, h]
+
+def quiet (s : Situation) {α : Type} (a : Answer α) : Reply α := ⟨s, a⟩
+
+/- State coherence is preserved when a new cell is recorded at any material
+   key. Admission permission is checked by the command, not by this helper. -/
+theorem setCell_closed (x : CaseState) (i j : Ref .material) (c : EvidenceCell i)
+    (h : j ∉ (x.setCell i c).keys) :
+    (x.setCell i c).state.E j = .absent :=
+  (x.setCell i c).closed j h
+
+theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld)
+    (h : (legalDispatch s r p m w).answer = .success ()) :
+    ∃ law, law ∈ s.core.state.N.rules ∧ SemanticReady s.core law := by
+  cases hs : selectedRules s.core r with
+  | nil => simp [legalDispatch, hs] at h
+  | cons law rest =>
+    cases rest with
+    | nil =>
+      have ha : (executeChecked s.core r law p m w).status = .applied := by
+        cases he : (executeChecked s.core r law p m w).status <;>
+          simp_all [legalDispatch, statusAnswer]
+      exact ⟨law, selected_rule_member s.core r law hs,
+        executeChecked_ready s.core r law p m w ha⟩
+    | cons b tail => simp [legalDispatch, hs] at h
+
+#print axioms assign_self
+#print axioms assign_other
+#print axioms selected_rule_member
+#print axioms legalDispatch_conflict
+#print axioms legalDispatch_missing
+#print axioms setCell_closed
+#print axioms legalDispatch_success_ready
+
+end JurisLean.CN.Completion20261105
+

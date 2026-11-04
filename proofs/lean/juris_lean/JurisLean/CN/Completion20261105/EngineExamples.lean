@@ -92,6 +92,26 @@ def cashStart : Situation :=
     accounts := fun id => if id = ⟨6⟩ then some cashBefore else none}
 def paid : Reply Unit := executeCommand cashStart (.perform (call .perform) ⟨6⟩ payment)
 
+def secondClaim : LegalRelation := {toyRelation with id := ⟨16⟩}
+def secondAccount : Native.Cash.State := {cashBefore with debt := {cashBefore.debt with relation := ⟨16⟩}}
+def jointStart : Situation :=
+  let st := {cashStart.core.state with
+    L := [toyRelation,secondClaim]
+    constraints := [.equalReduction toyRelation secondClaim,.sameLoss toyRelation secondClaim]}
+  {cashStart.withCore (cashStart.core.putState st rfl) with
+    accounts := fun id => if id = ⟨16⟩ then some secondAccount else cashStart.accounts id
+    equalReductionRules := [⟨toyNorm,toyScope,[⟨6⟩,⟨16⟩]⟩]}
+def jointlyPaid : Reply Unit := executeCommand jointStart (.perform (call .perform) ⟨6⟩ payment)
+
+def jointChecks : Bool := decide
+  (jointlyPaid.answer = .success () ∧
+   (jointlyPaid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
+   (jointlyPaid.after.accounts ⟨16⟩).map Native.Cash.balance = some 7 ∧
+   (jointlyPaid.after.accounts ⟨6⟩).map (fun s => s.paid) = some 3 ∧
+   (jointlyPaid.after.accounts ⟨16⟩).map (fun s => s.paid) = some 0 ∧
+   (jointlyPaid.after.accounts ⟨16⟩).map (fun s => s.cash.length) = some 0 ∧
+   jointlyPaid.after.core.state.ledger.length = 1)
+
 
 
 def rsiCheck : Bool :=
@@ -115,6 +135,18 @@ def rsiCheck : Bool :=
   | _ => false
 
 def checkIO : IO Unit := do
+  unless jointChecks do throw (IO.userError "actual shared reduction did not update both accounts from one payment")
+  let noRule := executeCommand {jointStart with equalReductionRules := []}
+    (.perform (call .perform) ⟨6⟩ payment)
+  unless decide (noRule.answer = .unknown .inputUnchecked ∧ noRule.after.core.state.ledger.isEmpty = true) do
+    throw (IO.userError "same-loss label fabricated a reduction rule")
+  let foreign := {secondAccount with debt := {secondAccount.debt with
+    amount := {secondAccount.debt.amount with tag := ⟨"USD","money",1⟩}}}
+  let mixed := executeCommand {jointStart with accounts := fun id =>
+      if id = ⟨16⟩ then some foreign else jointStart.accounts id}
+    (.perform (call .perform) ⟨6⟩ payment)
+  unless decide (mixed.after.core.state.ledger.isEmpty = true) do
+    throw (IO.userError "mixed currency silently committed")
   unless decide (kindOf (run fit) = some .fit) do throw (IO.userError "fit_actual_call failed")
   unless decide (kindOf (run prob) = some .prob) do throw (IO.userError "prob_actual_call failed")
   unless decide (kindOf (run causal) = some .causal) do throw (IO.userError "causal_actual_call failed")
@@ -135,6 +167,7 @@ def checkIO : IO Unit := do
     throw (IO.userError "Learn did not consume the retained actual fitted table")
   unless rsiCheck do throw (IO.userError "actual admitted RSI consumer/load/round budget failed")
   IO.println "CN_EIGHT_NATIVE_CONSUMERS_PASS; RSI_ACTUAL_POST_RETAINED"
+  IO.println "CN_SHARED_REDUCTION_ONE_CASH_PASS"
 
 #eval checkIO
 #print axioms exact_cannot_relabel_money_as_day

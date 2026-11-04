@@ -60,3 +60,17 @@
 41903200627 / beb5a8db：Program左单位等式须用生成的递归方程simp，induction不得重复generalize依赖索引的r，均已按日志修复。41903914771 / d4514af6eb80fd67e349a51fcc9b1464053f2b1d：**Program及其当前全部依赖PASS**，含共同Command/History、实际后态连接、顺序结合律、保留分支、有限迭代历史及完整快照回放。此绿仍不核销上节第1项语义问题，也不等于已完成实际解码/调用入口。
 
 PolicyIR.lean开始把证明方法与自然真值分开：ProofStandard三类、BurdenBearer单列，ProofCriterion只消费AdmittedItem，支持具名材料/文书资格、合取/析取/否定及明确未知原因，不包含总分或自动权属结论。**下一步**接入Situation中的授权模板注册（D2）、由自然事实F和关系/选择约束构造LegalCompatible、实际模板求值导出法律步Ready，迁移公共Command入口；保留现有v4数学片段不改Frozen定义。需要证明准入材料可与不同自然真值并存，不能继续以v4.compatible的钉真证明替代这一项。
+
+## 当前施工增量（取代以上“下一项”的旧进度，不改历史证据）
+
+截至本次提交：C1–C5的实际代码已形成同一Situation/Command/History调用链，当前聚合Acceptance仍待最终PASS，不能宣布本范围完成。
+
+- **语义修正位置/内容/原因**：Foundation中继承v4.compatible的数学片段保持原样，但不再作为一般法律步的公共语义。Ready/WorldSemantics分开自然事实世界与按实际准入证据、实际注册方法求值的法律评价世界；准入不钉自然真值。`admitted_not_natural_truth`是反例见证；`legalDispatch_success_ready`、`permissionLaw_ready`和新增的`permissionDispatch_success_ready`把实际成功分支连接Ready，`ready_refines_all_supported_worlds`连接非空全支持世界。Ready、政策健全性和欲证结论均未作为票据字段。
+- **C1**：State保存共同关系、约束、制度字段、材料及完整原生引擎报告；Ready的实际量投影和FinancialMerge将共同减记约束接至原生账户，`checkPost_success_nonempty`检查实际后继，失败原子回滚；Execution/Program记录有索引的实际端点与调用先后。
+- **C2**：九个实际OpRequest分支、Program顺序/选择/有限迭代、Algebra关系层证明、Exchange/Operators实际门控与交叉读写反例已接入。选择的代数律只在成功端点关系层成立，历史未被商掉。
+- **C3**：Examples/Acceptance经同一executeCommand实例化十二项内容；具体修复包括撤销不要求虚构formed关系、代理派生授权不减本人能力、表见归属同时更新关系/约束/账户主体但不改F、破产从实际受理记录读取对应债权停止后息、三主体善意取得分原子求值、共同犯罪带人/事件/罪名法定槽、合同解释只写该合同、既判力只来自实际准入的外部裁判文书及其索引。国家赔偿例采用17条第2项、终止追究且无19条免责的代表性参数，不把无罪或退轨写成自动赔偿。
+- **C4**：EngineConsumers调用固定main提交的八类原生声明；Execution绑定实际材料输入，保存同一次调用的完整EngineReport；learnReport消费拟合/RSI实际返回表；现金perform消费账户、F事件与准入材料，并复用performance与writeOff源定理。FinancialMerge的等额减记需要具名法源规则，主债一笔真实现金，关联债非现金减记，未将sameLoss标签直接当结论。
+- **C5**：Runtime具有可实际调用的decode/runLine/serveLine/stdioOnce。观察值是同一次executeCommand的返回值与后态，非另算理想结果；成功、拒绝、三种未知、冲突、拒绝纯AI均保留。EngineExamples/Acceptance实际IO检查现金与RSI等有理数结果；通用数学性质复用源证明，IO不冒充定理。
+- **最近CI**：41925159962在recordDecision证明的let残留处失败，41927088558已越过该处，仅WorldSemantics:93未展开atomAssessment，已定点补展开。FinancialMerge、运行时、十二制度、八引擎及当前依赖在该失败流水中已构建；这不替代最终聚合绿。正在补充实际成对减记成功/缺规则/错币种三个分支及第一准入的语义K收缩证明，随后重跑Acceptance。
+
+精确剩余：当前源码聚合编译与实际IO验收；许可分发/制度门的Ready连接；表见代理与无formed撤销边界实例；最终理论、原承诺/具名证明/消费者/当前CI对应及合流复制件。此列表是同一原承诺的收尾，不扩大为全部中国法或所有B8任务。所有冻结及U源定义保持不变，未进入关债工作树或改其台账。

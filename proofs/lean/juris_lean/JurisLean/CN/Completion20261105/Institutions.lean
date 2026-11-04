@@ -41,6 +41,36 @@ def gateFor (s : Situation) (c : Call) (grounds : Formula) (kind : InstitutionKi
     | _ => gate s c grounds
   else quiet s (.rejected .unsupported)
 
+theorem gate_success_ready (s : Situation) (c : Call) (grounds : Formula)
+    (h : (gate s c grounds).answer = .success ()) :
+    ∃ law t, law ∈ s.core.state.N.rules ∧ Ready s law t c.policy := by
+  have hp : (permissionDispatch s c.request c.policy c.mode c.world).answer = .success () := by
+    unfold gate at h
+    split at h
+    · cases h
+    · split at h
+      · split at h
+        · exact h
+        · cases h
+      · exact h
+  exact permissionDispatch_success_ready s c.request c.policy c.mode c.world hp
+
+theorem gateFor_success_ready (s : Situation) (c : Call) (grounds : Formula)
+    (kind : InstitutionKind)
+    (h : (gateFor s c grounds kind).answer = .success ()) :
+    ∃ law t, law ∈ s.core.state.N.rules ∧ Ready s law t c.policy := by
+  apply gate_success_ready s c grounds
+  unfold gateFor at h
+  split at h
+  · cases h
+  · split at h
+    · split at h
+      · split at h
+        · exact h
+        · cases h
+      · exact h
+    · cases h
+
 def continueWith {α : Type} (permission : Reply Unit)
     (next : Situation → Reply α) : Reply α :=
   match permission.answer with
@@ -59,6 +89,11 @@ def atomic {α : Type} (before : Situation) (staged : Reply α) : Reply α :=
 
 def grounded {α : Type} (before : Situation) (c : Call) (staged : Reply α) : Reply α :=
   checkPost before c.world (atomic before staged)
+
+theorem grounded_success_nonempty {α : Type} (s : Situation) (c : Call) (r : Reply α)
+    (value : α) (h : (grounded s c r).answer = .success value) :
+    ∃ w, legalCompatible (grounded s c r).after w :=
+  checkPost_success_nonempty s c.world (atomic s r) value h
 
 theorem atomic_failure_preserves {α : Type} (s : Situation) (r : Reply α)
     (h : ∀ v, r.answer ≠ .success v) : (atomic s r).after = s := by
@@ -415,6 +450,7 @@ theorem engine_proposal_only (s : Situation) (out : EngineOutput) :
   exact ⟨rfl, rfl, rfl⟩
 
 #print axioms unknown_propagates
+#print axioms grounded_success_nonempty
 #print axioms atomic_failure_preserves
 #print axioms conflict_propagates
 #print axioms revoke_effective_and_power

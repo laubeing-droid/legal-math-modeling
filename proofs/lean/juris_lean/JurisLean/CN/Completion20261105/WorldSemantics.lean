@@ -90,6 +90,7 @@ theorem ready_refines_all_supported_worlds (s : Situation) (law : Rule) (t : Iss
   have href := formula_refines (atomAssessment s law t) (z.assessment law t) law.guard
     (hz.2 law hl t h.2.1)
   have hc : evalFormula (atomAssessment s law t) law.guard = .established := by
+    unfold atomAssessment
     rw [←collapse_formula t.body (admittedView s.core.state.E law.materials) law.guard]
     change collapse (assessed s law t.body) = .established
     rw [h.2.2.1]
@@ -125,10 +126,62 @@ theorem admission_preserves_natural_K (s : Situation) (r : Request) (m : Mode)
   unfold admission
   repeat' first | rfl | split
 
+theorem criterion_empty_assessment (c : ProofCriterion) :
+    collapse (evalCriterion [] c) = .undetermined := by
+  induction c with
+  | support a => rfl
+  | document i doc a => rfl
+  | unresolved k => rfl
+  | both a b ha hb => simp only [evalCriterion,collapse_and,ha,hb,andJ]
+  | either a b ha hb => simp only [evalCriterion,collapse_or,ha,hb,orJ]
+  | neg a ha =>
+    cases he : evalCriterion [] a with
+    | unknown k => simp [evalCriterion,he,collapse]
+    | known j =>
+      have hj : j = .undetermined := by simpa [he,collapse] using ha
+      simp [evalCriterion,he,hj,collapse,notJ]
+
+theorem template_empty_assessment (t : ProofTemplate) (a : Atom) :
+    collapse (templateAtom t [] a) = .undetermined := by
+  unfold templateAtom
+  split
+  · exact criterion_empty_assessment _
+  · rfl
+
+theorem no_admitted_view (e : Evidence) (ids : List (Ref .material))
+    (h : ∀ i, isAdmitted (e i) = false) : admittedView e ids = [] := by
+  induction ids with
+  | nil => rfl
+  | cons i ids ih =>
+    cases he : e i with
+    | accepted raw receipt => have bad := h i; simp [he,isAdmitted] at bad
+    | absent => simpa [admittedView,admittedAt,he] using ih
+    | pending raw => simpa [admittedView,admittedAt,he] using ih
+    | excluded raw why => simpa [admittedView,admittedAt,he] using ih
+
+/- Actual first-admission refinement of K, with all other legal fields fixed
+   by admission. This derives subset from the interpreter's evidence update;
+   subset/Ready are not receipt fields. Later opposing material or withdrawal
+   need not satisfy this hypothesis and are recomputed, as in Examples. -/
+theorem first_admission_narrows_semantic_K (s : Situation) (r : Request) (m : Mode)
+    (i : Ref .material) (raw : Raw i) (receipt : Receipt raw)
+    (empty : ∀ id, isAdmitted (s.core.state.E id) = false) :
+    (semanticKernel (admission s r m i raw receipt).after).K_et ⊆ (semanticKernel s).K_et := by
+  intro z hz
+  refine ⟨(admission_preserves_natural_K s r m i raw receipt z.nature).mp hz.1,?_⟩
+  intro law hl t ht a
+  unfold atomAssessment
+  rw [no_admitted_view s.core.state.E law.materials empty,template_empty_assessment]
+  exact Or.inl rfl
+
 #print axioms collapse_formula
 #print axioms canonicalWorld_compatible
 #print axioms ready_refines_all_supported_worlds
 #print axioms actual_legal_step_semantic_ready
 #print axioms trusted_constraint_narrows
 #print axioms admission_preserves_natural_K
+#print axioms criterion_empty_assessment
+#print axioms template_empty_assessment
+#print axioms no_admitted_view
+#print axioms first_admission_narrows_semantic_K
 end JurisLean.CN.Completion20261105

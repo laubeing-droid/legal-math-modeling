@@ -291,6 +291,34 @@ theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPoli
                 refine ⟨law, t, selected_rule_member s.core r law hs, ?_⟩
                 exact checkedLaw_ready s r law p w t (by rw [ht]; simp) h
 
+theorem permissionDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld)
+    (h : (permissionDispatch s r p m w).answer = .success ()) :
+    ∃ law t, law ∈ s.core.state.N.rules ∧ Ready s law t p := by
+  unfold permissionDispatch at h
+  split at h
+  · cases h
+  · split at h
+    · cases h
+    · split at h
+      · cases h
+      · cases hs : selectedRules s.core r with
+        | nil => simp [hs, quiet] at h
+        | cons law rest =>
+          cases rest with
+          | cons b tail => simp [hs, quiet] at h
+          | nil =>
+            simp only [hs] at h
+            cases ht : selectedTemplates s law with
+            | nil => simp [ht, quiet] at h
+            | cons t rest =>
+              cases rest with
+              | cons b tail => simp [ht, quiet] at h
+              | nil =>
+                simp only [ht] at h
+                refine ⟨law,t,selected_rule_member s.core r law hs,?_⟩
+                exact permissionLaw_ready s r law p w t (by rw [ht]; simp) h
+
 theorem legalDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
     (w : PossibleWorld) (h : s.core.state.refusals.contains r.scope = true) :
     (legalDispatch s r p .automated w).answer = .blockedHuman := by
@@ -332,6 +360,7 @@ theorem selected_exclusive_empty (s : Situation) (a b : LegalRelation)
 #print axioms no_template_authority_no_registration
 #print axioms checkedLaw_ready
 #print axioms legalDispatch_success_ready
+#print axioms permissionDispatch_success_ready
 #print axioms legalDispatch_refused
 #print axioms admitted_not_natural_truth
 #print axioms selected_exclusive_empty

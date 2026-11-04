@@ -20,8 +20,12 @@ def grants : List Grant :=
 def confirmation : Rule := {toyRule with effect := .confirmatory, formed := none}
 def policy : ProofPolicy := ⟨toyNorm, toyScope, support⟩
 def call (act : Act) : Law.Call := ⟨request act, policy, .human, toyWorld⟩
+def faithAtom : Atom := ⟨toyScope,⟨90⟩⟩
+def priceAtom : Atom := ⟨toyScope,⟨91⟩⟩
+def publicityAtom : Atom := ⟨toyScope,⟨92⟩⟩
 def template : ProofTemplate :=
-  ⟨toyNorm, toyScope, .civil, .claimant, [(toyAtom, .support toyAtom)], ⟨12⟩, ⟨50⟩⟩
+  ⟨toyNorm, toyScope, .civil, .claimant, [(toyAtom, .support toyAtom),(faithAtom,.support faithAtom),
+      (priceAtom,.support priceAtom),(publicityAtom,.support publicityAtom)], ⟨12⟩, ⟨50⟩⟩
 
 def configured (law : Rule) (kind : InstitutionKind) : Situation :=
   let st := {initial with N := ⟨1, [law], grants⟩}
@@ -111,28 +115,40 @@ theorem evidence_actual :
     rawOf (withdrawnCase.core.state.E ⟨9⟩) = some toyRaw ∧
     withdrawnCase.core.state.F = normal.core.state.F := by decide
 
+def admitOne (s : Situation) (id : Ref .material) (atom : Atom) (value : Bool) : Situation :=
+  let raw : Raw id := ⟨atom,value,⟨id.value⟩,0⟩
+  let receipt : Receipt raw := ⟨⟨id.value⟩,⟨12⟩,toyNorm,true,true,true,by decide⟩
+  advance (advance s (.record id raw)) (.admitEvidence (request .admitEvidence) .human id raw receipt)
 def ownerRelation : LegalRelation := {toyRelation with holder := aO}
+def acquisitionLaw : Rule := {confirmation with materials := [⟨9⟩,⟨90⟩,⟨91⟩,⟨92⟩,⟨93⟩]}
 def acquisitionStart : Situation :=
-  let s := readyCase confirmation .acquisition
+  let s := admitOne (admitOne (admitOne (readyCase acquisitionLaw .acquisition)
+    ⟨90⟩ faithAtom true) ⟨91⟩ priceAtom true) ⟨92⟩ publicityAtom true
   let st := {s.core.state with
     L := [ownerRelation]
     F := [⟨⟨60⟩,aD,toyAtom,0⟩, ⟨⟨61⟩,aT,toyAtom,0⟩]}
   s.withCore (s.core.putState st rfl)
 def parties : AcquisitionParties := ⟨aO,aD,aT,by decide,by decide,by decide⟩
-def badRaw : Raw ⟨9⟩ := {toyRaw with asserted := false}
-def badReceipt : Receipt badRaw := ⟨⟨11⟩,⟨12⟩,toyNorm,true,true,true,by decide⟩
-def badFaithStart : Situation :=
-  acquisitionStart.withCore (acquisitionStart.core.setCell ⟨9⟩ (.accepted badRaw badReceipt))
+def disputedFaith : Situation := admitOne acquisitionStart ⟨93⟩ faithAtom false
+def badFaithStart : Situation := advance disputedFaith (.withdraw (request .admitEvidence) ⟨90⟩ ⟨94⟩)
+def repairedFaith : Situation := advance disputedFaith (.withdraw (request .admitEvidence) ⟨93⟩ ⟨95⟩)
 
-/- 5: three actors matter to the query's shared F/L projection. Proven bad
-   faith is notEstab even though the other conditions could remain unknown. -/
+/- 5: three actors and three distinct predicates, each evaluated from actual
+   admitted material. Contradiction/withdrawal changes assessment, never F. -/
 theorem acquisition_actual :
     (executeCommand acquisitionStart (.acquisitionEvidence (call .decide) parties .ordinary311
-      toyAtom toyAtom toyAtom)).answer = .success .established ∧
+      faithAtom priceAtom publicityAtom)).answer = .success .established ∧
     (executeCommand badFaithStart (.acquisitionEvidence (call .decide) parties .ordinary311
-      toyAtom toyAtom toyAtom)).answer = .success .notEstablished ∧
+      faithAtom priceAtom publicityAtom)).answer = .success .notEstablished ∧
     (executeCommand acquisitionStart (.acquisitionEvidence (call .decide) parties .lost312
-      toyAtom toyAtom toyAtom)).answer = .unknown .systemNotJudge := by decide
+      faithAtom priceAtom publicityAtom)).answer = .unknown .systemNotJudge := by decide
+
+theorem actual_nonmonotone_withdrawal :
+    (executeCommand disputedFaith (.acquisitionEvidence (call .decide) parties .ordinary311
+      faithAtom priceAtom publicityAtom)).answer = .unknown .systemNotJudge ∧
+    (executeCommand repairedFaith (.acquisitionEvidence (call .decide) parties .ordinary311
+      faithAtom priceAtom publicityAtom)).answer = .success .established ∧
+    repairedFaith.core.state.F = acquisitionStart.core.state.F := by decide
 
 def offenseStart (actor : Ref .actor) : Situation :=
   let s := readyCase confirmation .offense
@@ -215,4 +231,23 @@ theorem refused_actual :
     (executeCommand refused (.legal {call .decide with mode := .automated})).answer = .blockedHuman ∧
     (executeCommand refused (.decide {call .decide with mode := .automated} ⟨90⟩)).answer = .blockedHuman := by decide
 
+#print axioms actual_nonjudicial_formation
+#print axioms formation_history_has_three_ordered_calls
+#print axioms lifecycle_actual
+#print axioms lifecycle_failure_preserves_effect
+#print axioms agency_actual
+#print axioms agency_over_scope_rejected
+#print axioms jurisdiction_actual
+#print axioms evidence_actual
+#print axioms acquisition_actual
+#print axioms actual_nonmonotone_withdrawal
+#print axioms offense_actual
+#print axioms bankruptcy_actual
+#print axioms compensation_actual
+#print axioms rights_actual
+#print axioms interpretation_actual
+#print axioms resJudicata_actual
+#print axioms proposal_actual
+#print axioms unauthorized_actual
+#print axioms refused_actual
 end JurisLean.CN.Completion20261105.Examples

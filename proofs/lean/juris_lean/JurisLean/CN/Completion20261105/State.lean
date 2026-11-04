@@ -103,7 +103,7 @@ inductive Answer (α : Type)
   | unknown (why : UnknownKind)
   | conflict (route : ReviewRoute)
   | blockedHuman
-  deriving Repr
+  deriving DecidableEq, Repr
 
 structure Reply (α : Type) where
   after : Situation

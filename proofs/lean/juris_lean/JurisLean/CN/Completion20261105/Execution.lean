@@ -172,7 +172,11 @@ def selectClaim (s : Situation) (r : Request) (mode : Mode) (rel : LegalRelation
       .success rel.id⟩
   else quiet s (.rejected .unauthorized)
 
+def legalPositions (s : Situation) (scope : Scope) : List HohfeldPosition :=
+  (s.core.state.L.filter (fun rel => rel.scope == scope)).flatMap hohfeld
+
 inductive Command : Type → Type 1
+  | positions (scope : Scope) : Command (List HohfeldPosition)
   | operator (params : OperatorParams) {α : Type} (op : OpRequest α) : Command α
   | institution {α : Type} (call : InstitutionCall α) : Command α
   | engine (context : EngineContext) (material : Ref .material) : Command EngineOutput
@@ -200,6 +204,7 @@ inductive Command : Type → Type 1
   | choose (r : Request) (mode : Mode) (relation : LegalRelation) : Command (Ref .relation)
 
 def executeCommand (s : Situation) {α : Type} : Command α → Reply α
+  | .positions scope => quiet s (.success (legalPositions s scope))
   | .operator params op => runOperator params s op
   | .institution call => callInstitution s call
   | .engine context material => (runBoundEngine s context material).legal

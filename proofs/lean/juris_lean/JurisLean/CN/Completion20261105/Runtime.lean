@@ -19,6 +19,7 @@ inductive Tag
 
 def commandTag {α : Type} : Command α → Tag
   | .operator _ _ => .operator
+  | .positions _ => .institution
   | .institution _ | .burdenEvidence _ _ | .acquisitionEvidence _ _ _ _ _ _ |
       .offenseEvidence _ _ _ _ _ _ _ | .storedResJudicata _ _ _ _ | .contractQuery _ _ => .institution
   | .engine _ _ | .registerEngine _ _ => .engine

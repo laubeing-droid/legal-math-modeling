@@ -1,6 +1,6 @@
 # 中国法算子统一：本会话施工与验收记录
 
-状态：ACTIVE。2026-11-05 Asia/Taipei。只在 D:/tmp/codex-cn-v4-20261101 与 paper/codex-cn-ops-v4-20261101 施工。此件增量维护，不替换原冻结稿、审计或关债权威台账。
+状态：PASS（原C1–C6施工及本范围验收）；MERGE_PENDING_D1。2026-11-05 Asia/Taipei。只在 D:/tmp/codex-cn-v4-20261101 与 paper/codex-cn-ops-v4-20261101 施工。此件增量维护，不替换原冻结稿、审计或关债权威台账；下面的ACTIVE/待验描述保留为施工历史，以末尾终态为准。
 
 ## 接手差异，已核一次
 
@@ -92,3 +92,16 @@ PolicyIR.lean开始把证明方法与自然真值分开：ProofStandard三类、
 - 41932216251 / 0798e587：Acceptance继续验证。随后金额汇总增加原生币种/单位/倍率一致检查，实际成功推出moneyLedgerOK；多个不一致精确候选不再取head，保留冲突。正负IO均经实际operator入口，不把数字当法律判断。
 - 公共InstitutionCall不再接受四种自填Judgment/索引的低层查询；它们作为局部数学函数保留，实际公共路径改为共同证据/法定罪名槽/已存裁判的四个rich入口，未删题或缩制度内容。
 - 比较三基线blob：Walls=10e9753ba22feae8223689019bea354ffe8d884c，Ops=5bbac252840287d3acc827c8a876dab0d8e1dad9，World=561da330968039678876f3c7a1e536933bc97ed6，均与ZCode分支8a367135相同。U源目录相对固定main提交差异为0。
+
+## 本范围终态
+
+原分母C1–C6：PASS 6 / PARTIAL 0 / BLOCKED 0 / NOT_RUN 0。这里的分母不是97原题、全部中国法、项目full-release或工作台发布。
+
+- 41932216251 / 0798e587：Acceptance首次全部PASS，包括实际公共门、十二制度、8原生消费者、单现金等额共同减记和参考运行时。
+- 41933008574 / f04d3832：新金额单位检查的证明需先化简依赖返回类型的match，Operators:112失败；保留原命题改simp展开。
+- 41933733392 / 1f2f03b77f9dbe46332f3ab3406c7cd1ef32dfd5：当前金额同标签、冲突候选处理与Acceptance全部PASS。
+- **最终source**：218050693a8c87e4b80cbe01f00b81b1005e2321，tree cba667a34343496c1be1ced94ed19d49bce66475；聚合JurisLean.CN.Completion20261105；**run41934457964:1 / job126939305754 SUCCESS**。artifact13373651719，digest sha256:24e702f6098b90f055ddb7f27e6360807779fa29e0a5f518bf615cf201e5375a。
+- 原始module-plan、changed-module.log、run/artifact元数据已下载核验。plan为CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE，其他发布jobs全skipped；不升级为Authority/full-release。聚合104个精确公理目标，均只有标准公理或更少，sorryAx0、error0；聚合自己执行三个实际IO入口，CN_FINAL_SCOPE_ACCEPTANCE_PASS等标记齐全。
+- THEORY-20261105.md给完整理论和纸面证明；EVIDENCE-20261105.json给C1–C6到49处具名证明、22处实际消费者、八原生源声明与行号及唯一当前CI身份。49/22是引用数，不是新关闭U债数。旧42项源码保持；ZCode三基线blob保持；U和Kernel源差异0。
+- 合法未知出口保留。过去ZCode历史CI例外授权仍UNKNOWN；真实文书/法源/权限/回执认证继续按原输入合同，不由绿CI变真。此两类不冒充本范围未写的证明、未编译或未接线。
+- 合流仍按D1/D7由主人选线后执行；本轮没有合main、停关债、修改其台账、运行本地Lean/Lake/Elan或full-release、落DeepInfer适配器、改工作台。后续交付提交仅写文档与证据，Lean/构建依赖与上述source保持一致。

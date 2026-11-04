@@ -1,0 +1,1061 @@
+⚠ [8484/8593] Replayed JurisLean.Genealogy.Part1
+warning: JurisLean/Genealogy/Part1.lean:119:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part1.lean:214:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Genealogy/Part1.lean:288:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8485/8593] Replayed JurisLean.Genealogy.Part2
+warning: JurisLean/Genealogy/Part2.lean:48:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8486/8593] Replayed JurisLean.Genealogy.Part3
+warning: JurisLean/Genealogy/Part3.lean:166:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:203:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:237:9: unused variable `h1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:238:11: unused variable `h2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8593] Replayed JurisLean.Seams.PrecedentFlow
+warning: JurisLean/Seams/PrecedentFlow.lean:927:16: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/PrecedentFlow.lean:928:17: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8490/8593] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
+warning: JurisLean/Seams/UnifiedNeedlesS0S1.lean:420:57: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8491/8593] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8493/8593] Replayed JurisLean.DungFixedPoint
+warning: JurisLean/DungFixedPoint.lean:201:47: unused variable `hself`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8494/8593] Replayed JurisLean.Seams.AdjudicationBridge
+warning: JurisLean/Seams/AdjudicationBridge.lean:153:18: unused variable `pol`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8495/8593] Replayed JurisLean.Seams.BurdenStatutes
+warning: JurisLean/Seams/BurdenStatutes.lean:1157:52: This simp argument is unused:
+  standardFor
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵a̵n̵d̵a̵r̵d̵F̵o̵r̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8507/8593] Replayed JurisLean.FactAdmissionSpec
+warning: JurisLean/FactAdmissionSpec.lean:163:5: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8511/8593] Replayed JurisLean.ULM09AttackDefeat
+warning: JurisLean/ULM09AttackDefeat.lean:63:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8516/8593] Replayed JurisLean.ULM14CoverageTrust
+warning: JurisLean/ULM14CoverageTrust.lean:192:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8524/8593] Replayed JurisLean.Candidates.CompilerClosure20261026
+info: JurisLean/Candidates/CompilerClosure20261026.lean:235:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:236:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:237:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:238:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8525/8593] Replayed JurisLean.Candidates.CompilerProvenance20261027
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:371:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:372:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:373:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:374:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:375:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:376:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:377:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:378:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:379:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ) (i : ℕ) (member : i ∈ parents)
+  (notEarlier : known.length ≤ i) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:380:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:381:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (mismatch :
+    List.map JurisLean.Candidates.CompilerProvenance20261027.Evidence.atom
+        (List.filterMap (fun i => known[i]?) parents) ≠
+      use.rule.premises) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:382:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:383:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (claim : JurisLean.Candidates.CompilerProvenance20261027.Leaf) (unsupported : leafCheck ctx claim = false) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.leaf claim) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:384:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:385:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:386:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:387:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact.{u_1, u_2} {Concrete : Type u_1}
+  {Abstract : Type u_2} (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+  (abstractQuery : Abstract → Prop) (coverage : ∀ (c : Concrete), ∃ a, relation c a)
+  (reverseCoverage : ∀ (a : Abstract), ∃ c, relation c a)
+  (sameAnswer : ∀ (c : Concrete) (a : Abstract), relation c a → (abstractQuery a ↔ concreteQuery c)) :
+  (∀ (a : Abstract), abstractQuery a) ↔ ∀ (c : Concrete), concreteQuery c
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:388:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact' does not depend on any axioms
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:389:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries.{u_1, u_2, u_3}
+  {Left : Type u_1} {Right : Type u_2} {Query : Type u_3} (correspondence : Left ≃ Right)
+  (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+  (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
+  (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:390:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]
+⚠ [8527/8593] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8533/8593] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8534/8593] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8535/8593] Replayed JurisLean.Seams.UnifiedNeedlesS3b
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:244:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:261:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_sel_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:467:5: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:478:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.legalJoint_material_mass`:
+  [DecidableEq Θ]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:537:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.posterior_predictive_normalizes`:
+  [DecidableEq Θ]
+  [DecidableEq Mt]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Mt] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:795:7: unused variable `k`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1032:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1035:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1042:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1045:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8539/8593] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8541/8593] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8545/8593] Replayed JurisLean.Mandate.PureNash
+warning: JurisLean/Mandate/PureNash.lean:263:21: This simp argument is unused:
+  hb
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵b̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8550/8593] Replayed JurisLean.Candidates.SourceStages20261027
+warning: JurisLean/Candidates/SourceStages20261027.lean:317:18: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourceStages20261027.lean:317:48: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourceStages20261027.lean:332:16: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8554/8593] Replayed JurisLean.Candidates.ProcedureClosure20261027
+warning: JurisLean/Candidates/ProcedureClosure20261027.lean:40:24: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [checkProcess, binding, lawful_closed_iff_local_checks, validPolicy,
+  ̵  ̵ ̵ ̵ ̵ ̵Bool.and_eq_true,
+  ̲ a̵n̵d̵_̵a̵s̵s̵o̵c̵,̵  ̲ ̲and_left_comm, and_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8555/8593] Replayed JurisLean.Candidates.FiniteLegalValidation20261027
+warning: JurisLean/Candidates/FiniteLegalValidation20261027.lean:507:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8556/8593] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8557/8593] Replayed JurisLean.Candidates.LearningRisk20261027
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/LearningRisk20261027.lean:157:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:158:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:159:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:160:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:161:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8558/8593] Replayed JurisLean.Candidates.LearningFiniteClass20261027
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:135:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:211:0: 'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:212:0: 'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:213:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:214:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8559/8593] Replayed JurisLean.Candidates.LearningERM20261027
+info: JurisLean/Candidates/LearningERM20261027.lean:174:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  {n : ℕ} (loss : H → Z → ℚ) (first : H) (rest : List H) (data : Fin n → Z) (hn : 0 < n) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss (first :: rest) data =
+      some (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ∧
+    JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data ∈ first :: rest ∧
+      ∀ h ∈ first :: rest,
+        JurisLean.Candidates.LearningERM20261027.empiricalScore loss data
+            (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ≤
+          JurisLean.Candidates.LearningERM20261027.empiricalScore loss data h
+info: JurisLean/Candidates/LearningERM20261027.lean:175:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:176:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] [DecidableEq H] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (first : H) (rest : List H) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ first :: rest, Measurable fun z => ↑(loss h z))
+  (lossRange : ∀ h ∈ first :: rest, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z),
+            ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+              ↑(first :: rest).toFinset +
+            2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z),
+              ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+                ↑(first :: rest).toFinset +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ}
+info: JurisLean/Candidates/LearningERM20261027.lean:177:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:178:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2} {n : ℕ}
+  (loss : H → Z → ℚ) (data : Fin n → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [] data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:179:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:180:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  (loss : H → Z → ℚ) (models : List H) (data : Fin 0 → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss models data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:181:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:182:0: JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample :
+  have loss := fun h z => if h = z then 0 else 1;
+  (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => false) = some false ∧
+    (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => true) = some true
+info: JurisLean/Candidates/LearningERM20261027.lean:183:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8560/8593] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8562/8593] Replayed JurisLean.Candidates.SelectiveCalibration20261027
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8564/8593] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8568/8593] Replayed JurisLean.Candidates.IntervalDecisionConsumer20261027
+warning: JurisLean/Candidates/IntervalDecisionConsumer20261027.lean:227:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/IntervalDecisionConsumer20261027.lean:227:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8575/8593] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8581/8593] Replayed JurisLean.Candidates.ProtectedFeedback20261027
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:33: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8583/8593] Replayed JurisLean.Candidates.AdaptiveRoundLedger20261027
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:210:48: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all [̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]̵[̲r̲o̲u̲n̲d̲C̲o̲s̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:210:66: This simp argument is unused:
+  roundCost
+
+Hint: Omit it from the simp argument list.
+  simp_all [emptyRoundRecord,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:211:44: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all [̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]̵[̲r̲o̲u̲n̲d̲C̲o̲s̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:211:62: This simp argument is unused:
+  roundCost
+
+Hint: Omit it from the simp argument list.
+  simp_all [emptyRoundRecord,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:222:54: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:261:12: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:261:2: 'all_goals split at computed <;> simp_all [emptyRoundRecord]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:312:56: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:313:52: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8586/8593] Replayed JurisLean.Candidates.PolicyEvaluation20261027
+warning: JurisLean/Candidates/PolicyEvaluation20261027.lean:159:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/PolicyEvaluation20261027.lean:206:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/PolicyEvaluation20261027.lean:215:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: JurisLean/Candidates/PolicyEvaluation20261027.lean:215:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+warning: JurisLean/Candidates/PolicyEvaluation20261027.lean:224:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/PolicyEvaluation20261027.lean:314:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/PolicyEvaluation20261027.lean:314:46: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [8593/8593] Built JurisLean.Candidates.SourcePaymentIdentityAudit20261103 (3.4s)
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:145:0: JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (firstCall nextCall : JurisLean.Candidates.SourceAction20261027.PaymentCall)
+  (before previousOutput after later laterOutput : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (permission permissionNext : Bool) (mode modeNext : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (samePaymentId :
+    (JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame nextCall.slot).payment.value.key =
+      (JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame firstCall.slot).payment.value.key)
+  (committed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext before previousOutput
+        (JurisLean.Candidates.SourceAction20261027.paymentRequest opening firstCall) permission mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt after)
+  (intervening : JurisLean.Candidates.Final20261021.Trace.Path after later)
+  (nextReceipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (nextPost : JurisLean.Candidates.Final20261021.Ledger.Handle) :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext later laterOutput
+      (JurisLean.Candidates.SourceAction20261027.paymentRequest opening nextCall) permissionNext modeNext ≠
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.committed nextReceipt nextPost
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:146:0: 'JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:147:0: JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes :
+  (JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false = { value := 1 } ∧
+      (JurisLean.Candidates.Final20261021.Acceptance.request 1).key =
+          JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false ∧
+        JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.opening
+            JurisLean.Candidates.Final20261021.Acceptance.opening
+            (JurisLean.Candidates.Final20261021.Acceptance.request 1) true
+            JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+          JurisLean.Candidates.Final20261021.Ledger.Outcome.committed
+            (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                JurisLean.Candidates.Final20261021.Acceptance.opening
+                (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1
+            (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                JurisLean.Candidates.Final20261021.Acceptance.opening
+                (JurisLean.Candidates.Final20261021.Acceptance.request 1)).2) ∧
+    (JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false = { value := 1 } ∧
+        JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true = { value := 2 } ∧
+          JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true ≠
+              JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false ∧
+            (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                  { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                    attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                    interpretedPayment := __src.interpretedPayment }).interpretedPayment =
+                some (JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false) ∧
+              JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.post1
+                    JurisLean.Candidates.Final20261021.Acceptance.post1
+                    (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                    { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                      attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                      interpretedPayment := __src.interpretedPayment })
+                    true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.pending
+                    JurisLean.Candidates.Final20261021.Error.identityUnknown ∧
+                JurisLean.Candidates.Final20261021.Ledger.Outcome.post
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                          attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                          interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    some JurisLean.Candidates.Final20261021.Acceptance.post1 ∧
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.acknowledgedUsed
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                          attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                          interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    JurisLean.Candidates.Final20261021.Acceptance.post1.state.used) ∧
+      (JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false ≠
+            JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true ∧
+          (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                  attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                  interpretedPayment := __src.interpretedPayment }).key ≠
+              (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 2;
+                { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                  attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                  interpretedPayment := __src.interpretedPayment }).key ∧
+            (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                    { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                      attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+                      interpretedPayment := __src.interpretedPayment }).payload.cashId =
+                (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 2;
+                    { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                      attempt := __src.attempt,
+                      payload :=
+                        have __src := JurisLean.Candidates.Final20261021.Acceptance.payload 2;
+                        { caseId := __src.caseId, caseRevision := __src.caseRevision, relation := __src.relation,
+                          payer := __src.payer, payee := __src.payee, amount := __src.amount, source := __src.source,
+                          cashId := (JurisLean.Candidates.Final20261021.Acceptance.request 1).payload.cashId,
+                          normVersion := __src.normVersion, factDate := __src.factDate },
+                      applicable := __src.applicable, interpretedPayment := __src.interpretedPayment }).payload.cashId ∧
+              JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.post1
+                    JurisLean.Candidates.Final20261021.Acceptance.post1
+                    (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 2;
+                    { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                      attempt := __src.attempt,
+                      payload :=
+                        have __src := JurisLean.Candidates.Final20261021.Acceptance.payload 2;
+                        { caseId := __src.caseId, caseRevision := __src.caseRevision, relation := __src.relation,
+                          payer := __src.payer, payee := __src.payee, amount := __src.amount, source := __src.source,
+                          cashId := (JurisLean.Candidates.Final20261021.Acceptance.request 1).payload.cashId,
+                          normVersion := __src.normVersion, factDate := __src.factDate },
+                      applicable := __src.applicable, interpretedPayment := __src.interpretedPayment })
+                    true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.rejectedNoCommit { value := 2 }
+                    JurisLean.Candidates.Final20261021.Error.duplicateCash ∧
+                JurisLean.Candidates.Final20261021.Ledger.Outcome.post
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 2;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                          attempt := __src.attempt,
+                          payload :=
+                            have __src := JurisLean.Candidates.Final20261021.Acceptance.payload 2;
+                            { caseId := __src.caseId, caseRevision := __src.caseRevision, relation := __src.relation,
+                              payer := __src.payer, payee := __src.payee, amount := __src.amount,
+                              source := __src.source,
+                              cashId := (JurisLean.Candidates.Final20261021.Acceptance.request 1).payload.cashId,
+                              normVersion := __src.normVersion, factDate := __src.factDate },
+                          applicable := __src.applicable, interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    some JurisLean.Candidates.Final20261021.Acceptance.post1 ∧
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.acknowledgedUsed
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 2;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId true,
+                          attempt := __src.attempt,
+                          payload :=
+                            have __src := JurisLean.Candidates.Final20261021.Acceptance.payload 2;
+                            { caseId := __src.caseId, caseRevision := __src.caseRevision, relation := __src.relation,
+                              payer := __src.payer, payee := __src.payee, amount := __src.amount,
+                              source := __src.source,
+                              cashId := (JurisLean.Candidates.Final20261021.Acceptance.request 1).payload.cashId,
+                              normVersion := __src.normVersion, factDate := __src.factDate },
+                          applicable := __src.applicable, interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    JurisLean.Candidates.Final20261021.Acceptance.post1.state.used) ∧
+        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+              { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                interpretedPayment := __src.interpretedPayment }).key =
+            (JurisLean.Candidates.Final20261021.Acceptance.request 1).key ∧
+          (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                  attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                  interpretedPayment := __src.interpretedPayment }).attempt ≠
+              (JurisLean.Candidates.Final20261021.Acceptance.request 1).attempt ∧
+            (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                  { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                    attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                    interpretedPayment := __src.interpretedPayment }).payload =
+                (JurisLean.Candidates.Final20261021.Acceptance.request 1).payload ∧
+              JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.post1
+                    JurisLean.Candidates.Final20261021.Acceptance.post1
+                    (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                    { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                      attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                      interpretedPayment := __src.interpretedPayment })
+                    true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.replay
+                    (JurisLean.Candidates.Final20261021.Ledger.commitPayment
+                        JurisLean.Candidates.Final20261021.Acceptance.opening
+                        (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1 ∧
+                JurisLean.Candidates.Final20261021.Ledger.Outcome.post
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                          attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                          interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    some JurisLean.Candidates.Final20261021.Acceptance.post1 ∧
+                  JurisLean.Candidates.Final20261021.Ledger.Outcome.acknowledgedUsed
+                      JurisLean.Candidates.Final20261021.Acceptance.post1
+                      (JurisLean.Candidates.Final20261021.Ledger.consume_ext
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        JurisLean.Candidates.Final20261021.Acceptance.post1
+                        (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+                        { key := JurisLean.Candidates.SourcePaymentIdentity20261103.syntheticPaymentId false,
+                          attempt := { value := 2 }, payload := __src.payload, applicable := __src.applicable,
+                          interpretedPayment := __src.interpretedPayment })
+                        true JurisLean.Candidates.Final20261021.Ledger.Submission.submit) =
+                    JurisLean.Candidates.Final20261021.Acceptance.post1.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:148:0: 'JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:150:0: JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (call : JurisLean.Candidates.SourceAction20261027.PaymentCall) :
+  have row := JurisLean.Candidates.SourceAction20261027.boundRow opening.anchor.frame call.slot;
+  (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).key = row.payment.value.key ∧
+    (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload = row.payment.value.payload ∧
+      (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).interpretedPayment =
+          some row.payment.value.key ∧
+        (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).attempt = call.attempt
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:151:0: 'JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:152:0: JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once
+  (s ref after later laterRef : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req next : JurisLean.Candidates.Final20261021.PaymentRequest) (permission permissionNext : Bool)
+  (mode modeNext : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+  (committed :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext s ref req permission mode =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt after)
+  (intervening : JurisLean.Candidates.Final20261021.Trace.Path after later) (sameKey : next.key = req.key)
+  (r : JurisLean.Candidates.Final20261021.Ledger.Receipt) (post : JurisLean.Candidates.Final20261021.Ledger.Handle) :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext later laterRef next permissionNext modeNext ≠
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.committed r post
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:153:0: 'JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:154:0: JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U
+  (before : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (outcome : JurisLean.Candidates.Final20261021.Ledger.Outcome)
+  (noncommit :
+    ∀ (receipt : JurisLean.Candidates.Final20261021.Ledger.Receipt)
+      (post : JurisLean.Candidates.Final20261021.Ledger.Handle),
+      outcome ≠ JurisLean.Candidates.Final20261021.Ledger.Outcome.committed receipt post) :
+  JurisLean.Candidates.Final20261021.Ledger.Outcome.acknowledgedUsed before outcome = before.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:155:0: 'JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:156:0: JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable
+  (prev : JurisLean.Candidates.Final20261021.Ledger.Handle) (req : JurisLean.Candidates.Final20261021.PaymentRequest) :
+  req.key ∈ (JurisLean.Candidates.Final20261021.Ledger.commitPayment prev req).2.state.used ∧
+    (JurisLean.Candidates.Final20261021.Ledger.commitPayment prev req).2.state.used = insert req.key prev.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:157:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:158:0: JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused
+  (prev previous_output_ref : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req : JurisLean.Candidates.Final20261021.PaymentRequest) (permission : Bool)
+  (ready : JurisLean.Candidates.Final20261021.Ledger.validationError prev previous_output_ref req permission = none) :
+  req.key ∉ prev.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:159:0: 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:160:0: JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin
+  (prev previous_output_ref : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req : JurisLean.Candidates.Final20261021.PaymentRequest) (permission : Bool)
+  (submission : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (r : JurisLean.Candidates.Final20261021.Ledger.Receipt) (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (success :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext prev previous_output_ref req permission submission =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed r post) :
+  submission = JurisLean.Candidates.Final20261021.Ledger.Submission.submit ∧
+    JurisLean.Candidates.Final20261021.Ledger.lookupReceipt prev.state req.key = none ∧
+      JurisLean.Candidates.Final20261021.Ledger.validationError prev previous_output_ref req permission = none ∧
+        r = (JurisLean.Candidates.Final20261021.Ledger.commitPayment prev req).1 ∧
+          post = (JurisLean.Candidates.Final20261021.Ledger.commitPayment prev req).2
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:161:0: 'JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:162:0: JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated
+  (prev previous_output_ref : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (req : JurisLean.Candidates.Final20261021.PaymentRequest) (permission : Bool)
+  (submission : JurisLean.Candidates.Final20261021.Ledger.Submission)
+  (r : JurisLean.Candidates.Final20261021.Ledger.Receipt) (post : JurisLean.Candidates.Final20261021.Ledger.Handle)
+  (success :
+    JurisLean.Candidates.Final20261021.Ledger.consume_ext prev previous_output_ref req permission submission =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.committed r post) :
+  req.applicable = JurisLean.Candidates.Final20261021.Applicable.yes ∧
+    req.interpretedPayment = some req.key ∧ req.key ∈ post.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:163:0: 'JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:164:0: JurisLean.Candidates.Final20261021.Trace.used_monotone_path {s t : JurisLean.Candidates.Final20261021.Ledger.Handle}
+  (path : JurisLean.Candidates.Final20261021.Trace.Path s t) : s.state.used ⊆ t.state.used
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:165:0: 'JurisLean.Candidates.Final20261021.Trace.used_monotone_path' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:166:0: JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.stagesFromView view =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.source = view ∧
+    JurisLean.Candidates.SourceStages20261027.bindPayment view 1 =
+        JurisLean.Candidates.Final20261021.Result.known out.first ∧
+      JurisLean.Candidates.SourceStages20261027.bindPayment view 2 =
+          JurisLean.Candidates.Final20261021.Result.known out.second ∧
+        out.stages =
+          JurisLean.Candidates.SourceStages20261027.buildStages view out.first out.second out.formationSource
+            out.formationRelation
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:167:0: 'JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:168:0: JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions {W : Type}
+  (opening : JurisLean.Candidates.SourceOpening20261027.SharedOpening W)
+  (call : JurisLean.Candidates.SourceAction20261027.PaymentCall) :
+  (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).applicable =
+      JurisLean.Candidates.Final20261021.Applicable.yes ↔
+    opening.handle.state.env =
+        JurisLean.Candidates.Final20261021.Result.known
+          (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload.normVersion ∧
+      ∀ branch ∈ opening.branches,
+        branch.legal.selected =
+          JurisLean.Candidates.Final20261021.Result.known
+            (JurisLean.Candidates.SourceAction20261027.paymentRequest opening call).payload.normVersion
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:169:0: 'JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:170:0: JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.opening
+        JurisLean.Candidates.Final20261021.Acceptance.opening (JurisLean.Candidates.Final20261021.Acceptance.request 1)
+        true JurisLean.Candidates.Final20261021.Ledger.Submission.unknownCommit =
+      JurisLean.Candidates.Final20261021.Ledger.Outcome.unknownCommit { value := 1 } { value := 1 } ∧
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.post JurisLean.Candidates.Final20261021.Acceptance.opening
+        (JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.opening
+          JurisLean.Candidates.Final20261021.Acceptance.opening
+          (JurisLean.Candidates.Final20261021.Acceptance.request 1) true
+          JurisLean.Candidates.Final20261021.Ledger.Submission.unknownCommit) =
+      none
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:171:0: 'JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:172:0: JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.opening
+      JurisLean.Candidates.Final20261021.Acceptance.opening
+      (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+      { key := __src.key, attempt := __src.attempt, payload := __src.payload, applicable := __src.applicable,
+        interpretedPayment := none })
+      true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.pending JurisLean.Candidates.Final20261021.Error.identityUnknown
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:173:0: 'JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:174:0: JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.opening
+      JurisLean.Candidates.Final20261021.Acceptance.opening
+      (have __src := JurisLean.Candidates.Final20261021.Acceptance.request 1;
+      { key := __src.key, attempt := __src.attempt, payload := __src.payload,
+        applicable := JurisLean.Candidates.Final20261021.Applicable.unknown,
+        interpretedPayment := __src.interpretedPayment })
+      true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.pending
+      JurisLean.Candidates.Final20261021.Error.applicabilityUnknown
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:175:0: 'JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:176:0: JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.post2
+      JurisLean.Candidates.Final20261021.Acceptance.post2 (JurisLean.Candidates.Final20261021.Acceptance.request 1)
+      false JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.replay
+      (JurisLean.Candidates.Final20261021.Ledger.commitPayment JurisLean.Candidates.Final20261021.Acceptance.opening
+          (JurisLean.Candidates.Final20261021.Acceptance.request 1)).1
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:177:0: 'JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:178:0: JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict :
+  JurisLean.Candidates.Final20261021.Ledger.consume_ext JurisLean.Candidates.Final20261021.Acceptance.post2
+      JurisLean.Candidates.Final20261021.Acceptance.post2 (JurisLean.Candidates.Final20261021.Acceptance.request 1 9)
+      true JurisLean.Candidates.Final20261021.Ledger.Submission.submit =
+    JurisLean.Candidates.Final20261021.Ledger.Outcome.conflict (JurisLean.Candidates.Final20261021.Acceptance.payload 1)
+      (JurisLean.Candidates.Final20261021.Acceptance.payload 1 9)
+info: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:179:0: 'JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8593 jobs).

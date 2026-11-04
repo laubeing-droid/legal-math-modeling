@@ -1,0 +1,488 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.3"
+  ],
+  "proposed_disposition": {
+    "09.3": "COVERED",
+    "note": "Source-module conditional proof mapping; full PR acceptance remains pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      155,
+      160
+    ],
+    "subparagraph_lines": {
+      "09.3": [
+        [
+          157,
+          157
+        ],
+        [
+          159,
+          159
+        ]
+      ]
+    },
+    "clauses": [
+      "U02.2",
+      "U09.1"
+    ],
+    "sha256": "4bd373e6653aa1b637b5d3642c7792b650d7b68e0e99429a06859b140ea9471f"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-3-payment-identity-20261103",
+    "base_main": "b9bec44ffe032f79ae681d1e8e9bab338b3d276b",
+    "commit": "2c07cdb41bd317bed458589265e2a30a5e747597",
+    "tree": "ce5ae4c3043c60f5f371fc934b94d9b465074937",
+    "parent": "b977e9dd859eab39d38acbefd0dc3827e4730301"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41636538195,
+    "attempt": 1,
+    "job_id": 125919056100,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.SourcePaymentIdentityAudit20261103",
+    "build": "Build completed successfully (8593 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "local_prechecks": "TOOL_RETURN_ONLY"
+  },
+  "artifact": {
+    "artifact_id": 13230991770,
+    "name": "changed-module-only-41636538195-1",
+    "api_snapshot_path": "D:\\tmp\\original09-3-source-r2\\r2_success\\artifact-api.json",
+    "api_snapshot_sha256": "1ef1978aa2f3def2840d8da849793b62be6ab0bdb3e021d3c21ae2d2aa1c285c",
+    "api_digest": "sha256:b88a363a69321b2c70b4ef18ba3fe6b76c1237c5b64679d40aaeaba37144f92b",
+    "zip_path": "D:\\tmp\\original09-3-source-r2\\r2_success\\artifact-13230991770.zip",
+    "zip_bytes": 8671,
+    "zip_sha256": "b88a363a69321b2c70b4ef18ba3fe6b76c1237c5b64679d40aaeaba37144f92b",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-3-payment-identity-close-20261103/changed-module.log",
+      "bytes": 76922,
+      "sha256": "0934de99a5100e4e396de5d64df9cb428f2bba72c27078cdb297ac583ced8efe"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-3-payment-identity-close-20261103/module-plan.json",
+      "bytes": 275,
+      "sha256": "45949b1ab5ff5050295cee8ffa224ef123427beb981669b359da681cde8046fc",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 275,
+        "sha256": "45949b1ab5ff5050295cee8ffa224ef123427beb981669b359da681cde8046fc",
+        "expanded_bytes_match": true
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 76922,
+        "sha256": "0934de99a5100e4e396de5d64df9cb428f2bba72c27078cdb297ac583ced8efe",
+        "expanded_bytes_match": true
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 17,
+    "new_theorem_pairs": 2,
+    "reused_theorem_pairs": 15,
+    "targets": [
+      "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+      "JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes",
+      "JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity",
+      "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+      "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable",
+      "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+      "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+      "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+      "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+      "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+      "JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt",
+      "JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict"
+    ],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16200,
+      "sha256": "0bfeafb09738ff0b4f8d4636f7bfdfbc560f355c89c41e849b57b7dca8bc2a5f",
+      "git_blob": "6992ea169378ea79650985609279dfb45d928a2a",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean",
+      "bytes": 9843,
+      "sha256": "eb263504f3efadc7d7e3a8463994437fc1284dfa22c03794b9866afe41504259",
+      "git_blob": "f9fad633ecb4be0fe0123eaad5a4ebdb3faf137d",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceAction20261027.lean",
+      "bytes": 13069,
+      "sha256": "9d23a0af70eb7f18c762bf0af53a35dea96dcd2a597dcd74211181bebfb72d2c",
+      "git_blob": "b0e5366206edaf3475b0b51ad81d9c61aeacdf00",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "bytes": 29160,
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceOpening20261027.lean",
+      "bytes": 15200,
+      "sha256": "fb1f29415ffcba0d14ee5be525ff644e1056119416f7c2f2afb8528c8098ede6",
+      "git_blob": "da449db47193f2425b533491fc38eded123f120e",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "bytes": 20327,
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "bytes": 30850,
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d",
+      "git_blob": "1a2632047bf0ee7f8f6fc8c32a85e601514f2d64",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "bytes": 8889,
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f",
+      "git_blob": "4fe47a0b6e0364dc1753da5aed252718580d817e",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "physical_matches_source_commit": true
+    }
+  ],
+  "toolchain": {
+    "lean_toolchain": {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "physical_matches_source_commit": true
+    },
+    "lake_manifest": {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "physical_matches_source_commit": true
+    },
+    "mathlib_package": {
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "type": "git",
+      "subDir": null,
+      "scope": "",
+      "rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "name": "mathlib",
+      "manifestFile": "lake-manifest.json",
+      "inputRev": "v4.30.0",
+      "inherited": false,
+      "configFile": "lakefile.lean"
+    }
+  },
+  "r1_history": {
+    "description": "Failed first changed-module attempt; retained only as failure history, not a successful source binding.",
+    "run_id": 41635146188,
+    "attempt": 1,
+    "artifact_id": 13229893478,
+    "artifact_bytes": 9075,
+    "artifact_sha256": "a04de0eee7a50538051b9cd7e42fba8b89b99345f8b905b4f42500c22dd069bc",
+    "raw_path": "D:\\tmp\\original09-3-source-r2\\r1_failure\\expanded\\changed-module.log",
+    "raw_bytes": 69683,
+    "raw_sha256": "47722eab5fce13f79bd440f300ae387e37009940e9bdbe3b1d8a78c80b9a3c6c",
+    "error_line_count": 6,
+    "error_lines": [
+      "error: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:28:15: Function expected at",
+      "error: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:87:57: unexpected identifier; expected '}'",
+      "error: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:124:7: Unknown identifier `JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once`",
+      "error: JurisLean/Candidates/SourcePaymentIdentityAudit20261103.lean:125:14: Unknown constant `JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once`",
+      "error: Lean exited with code 1",
+      "error: build failed"
+    ],
+    "sorryAx": 1,
+    "success_binding": false
+  },
+  "scope_mapping": {
+    "09.3_L157": "The frozen external PaymentId identity contract is a premise. The actual source-request key/payload/identity bridge and Trace at-most-once result are reused; no real-world alias recognition is proved.",
+    "09.3_L159": "The synthetic finite result separates canonical identity mismatch (pending identityUnknown), two distinct IDs sharing cashId (duplicateCash rejection), and same key/payload with a changed attempt (replay). Exact used-set insertion is covered by u09_writeU_on_committed_applicable second result, connected to actual post by consume_committed_origin.",
+    "reused_support": [
+      "JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity",
+      "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable",
+      "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+      "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+      "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
+      "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+      "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+      "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+      "JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U",
+      "JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt",
+      "JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict"
+    ],
+    "new_targets": [
+      "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+      "JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes"
+    ],
+    "boundaries": [
+      "The PaymentId/token map in the finite examples is synthetic and is not a production recognizer.",
+      "Unknown commit has no determined post; no non-occurrence inference is made.",
+      "No claim that every real payment is successful, that legal discharge follows, or that external source identity is truthful."
+    ]
+  },
+  "consumer_edge": {
+    "u00_edge": 8,
+    "label": "8 事务→账本",
+    "current_row_path": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
+    "current_row_line": 256,
+    "existing_callers": [
+      "Pipeline.executePayments",
+      "Pipeline.finishPayment"
+    ],
+    "change": "Producer-only note appended to the existing edge-8 cell; caller/runtime path and rating unchanged."
+  },
+  "acceptance_boundary": "Source-module evidence only; full PR, same-C verifier, and post-merge acceptance are pending.",
+  "generated_audit_surface": {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "generator": "scripts/ci/generate_probability_audit_surface.py --write",
+    "generator_exit": 0,
+    "target_count": 3471,
+    "tracked_diff": false,
+    "metadata_checkpoint": null,
+    "frozen_audit_unchanged_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+    "check_command": "python scripts/ci/generate_probability_audit_surface.py --check",
+    "check_exit": 0,
+    "change": "Official --write exit 0; no tracked mutable AxiomAudit diff. --check exit 0 at 3471 targets."
+  },
+  "manifest_binding": {
+    "path": "docs/formal-release/theorem_inventory_v3.json",
+    "subject": {
+      "branch": "formal/close-original09-3-payment-identity-20261103",
+      "commit": "2c07cdb41bd317bed458589265e2a30a5e747597",
+      "tree": "ce5ae4c3043c60f5f371fc934b94d9b465074937"
+    },
+    "bytes": 1706652,
+    "sha256": "69f6cd31b71846fe0a25c4f80ccd49dfbab02b2717df7c24cb5dbe64678df3ec",
+    "source_inventory_digest": "5442f0833389b1ecad5e848ca8fbf1841a7c4b8645e119ed7698af0b5561b5d5",
+    "subject_binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 581,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "all_tracked_lean": {
+      "counted_declaration_count": 6432,
+      "file_count": 581,
+      "lemma_count": 146,
+      "print_axioms_command_count": 5880,
+      "print_axioms_distinct_targets": 5268,
+      "theorem_count": 6286,
+      "theorem_count_bol_convention": 6186
+    },
+    "juris_lean_package": {
+      "counted_declaration_count": 6413,
+      "file_count": 566,
+      "lemma_count": 139,
+      "print_axioms_command_count": 5880,
+      "print_axioms_distinct_targets": 5268,
+      "theorem_count": 6274,
+      "theorem_count_bol_convention": 6174
+    },
+    "audit_targets_without_declarations": 0
+  },
+  "derived_outputs": [
+    {
+      "path": "docs/formal-release/trivial_proof_census.json",
+      "bytes": 556347,
+      "sha256": "844729a54b9d100c6dacf18c05dc5907e56a99946f66123cebfabe98995d8633"
+    },
+    {
+      "path": "docs/formal-release/gap_status.json",
+      "bytes": 2300,
+      "sha256": "16b4357f1296e1d0d6fa1f661a0b94504a9802efb31b059673edca955fb9bb01"
+    },
+    {
+      "path": "docs/formal-release/statement_duplication_census.json",
+      "bytes": 30677,
+      "sha256": "e6dbefbbe5e989677307eb243915a54d7c1c93402d433cf34cfd3d8dd8d598c6"
+    },
+    {
+      "path": "docs/formal-release/statement_duplication_census.md",
+      "bytes": 12181,
+      "sha256": "56e793dbe500df02cebee78acc7013bbf2b60d30e5290bc2c47233381a7dcacb"
+    },
+    {
+      "path": "docs/formal-release/kernel_reuse_report.json",
+      "bytes": 7050,
+      "sha256": "213521a43144aa4e125c48e2aadce659976239f56dc85bf15a96f7ca89ca47dc"
+    },
+    {
+      "path": "docs/formal-release/declaration_shape_report.json",
+      "bytes": 1920,
+      "sha256": "cc5d99b64d6e3aba01f11a3fef10a2ba7e0daefe39c348904865ad9c26e911ed"
+    },
+    {
+      "path": "docs/paper-rewrite/paper_cn.md",
+      "bytes": 41256,
+      "sha256": "1e682a653d272b2170bfb1d9ed73db06debe67fa14b9c3f6d3e802c540d44a3d"
+    },
+    {
+      "path": "docs/paper-rewrite/paper_en.md",
+      "bytes": 45947,
+      "sha256": "24622976b7995ff7c5cf4bdc15bf39addc0477b67cc959b325eb5378f29d0cdf"
+    },
+    {
+      "path": "docs/master-plan/基线/T谱/卷覆盖账.jsonl",
+      "bytes": 12082,
+      "sha256": "f61f08d34a72f6e9e56945c497546ad61b8b81d8ccb09824cda25e39e2496280"
+    }
+  ],
+  "derived_generation_commands": [
+    {
+      "name": "manifest-generate",
+      "argv": "python scripts/ci/generate_theorem_manifest.py --require-bound",
+      "exit_code": 0,
+      "capture_mode": "TOOL_RETURN_ONLY"
+    },
+    {
+      "name": "probability-audit-write",
+      "argv": "python scripts/ci/generate_probability_audit_surface.py --write",
+      "exit_code": 0,
+      "capture_mode": "TOOL_RETURN_ONLY"
+    },
+    {
+      "name": "probability-audit-check",
+      "argv": "python scripts/ci/generate_probability_audit_surface.py --check",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\probability-audit-check.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\probability-audit-check.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\probability-audit-check.exit.txt",
+      "stdout_sha256": "e523eea381e9070c195a661ea49a6ccb94ff1282a5247ac1c9cd85859ff0555a",
+      "stdout_bytes": 55,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "trivial-census-generate",
+      "argv": "python scripts/ci/generate_trivial_proof_census.py",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\trivial-census-generate.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\trivial-census-generate.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\trivial-census-generate.exit.txt",
+      "stdout_sha256": "4ce2a8d3f45faf932ddf142bf93011a027d5deab3eda24b495aea102074be612",
+      "stdout_bytes": 129,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "gap-status-write",
+      "argv": "python scripts/ci/generate_gap_status.py --write",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\gap-status-write.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\gap-status-write.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\gap-status-write.exit.txt",
+      "stdout_sha256": "403d387ec864449f8e1cd5837b39587c8c5765f3e5933cf814ffd52520cb4d06",
+      "stdout_bytes": 551,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "duplication-census-write",
+      "argv": "python scripts/ci/build_statement_duplication_census.py --write",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\statement-duplication-write.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\statement-duplication-write.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\statement-duplication-write.exit.txt",
+      "stdout_sha256": "a97f3c19bdf09ca6817c924cca32569df8ee5d3116c0ec69c314c6e8d94265b0",
+      "stdout_bytes": 168,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "structure-volume-generate",
+      "argv": "python scripts/ci/generate_structure_and_volume_reports.py",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\structure-volume-generate.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\structure-volume-generate.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\structure-volume-generate.exit.txt",
+      "stdout_sha256": "5b111c3d9068fd0c54cf8854a94c7b4f5868f0f96b0a12bc7b5877509b5165b1",
+      "stdout_bytes": 806,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "declaration-shape-generate",
+      "argv": "python scripts/ci/generate_declaration_shape_report.py",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\declaration-shape-generate.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\declaration-shape-generate.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\declaration-shape-generate.exit.txt",
+      "stdout_sha256": "f08c0c3095b90650ead52fa07f10dfc80b880a63f75b85ec192689a567a8d944",
+      "stdout_bytes": 118,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    },
+    {
+      "name": "paper-derived-write",
+      "argv": "python scripts/rebind_paper_derived_accounting.py --write",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\paper-derived-write.stdout.txt",
+      "stderr_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\paper-derived-write.stderr.txt",
+      "exit_receipt_path": "D:\\tmp\\original09-3-records-41636538195\\commands\\paper-derived-write.exit.txt",
+      "stdout_sha256": "0710c477db7bb40492530bdb7422cd2ce7fe349f9ca55b756f7d70a5fc69128a",
+      "stdout_bytes": 482,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0
+    }
+  ],
+  "same_c_verifier": "NOT_RUN",
+  "full_pr_acceptance": "PENDING"
+}

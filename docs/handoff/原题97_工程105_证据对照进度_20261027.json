@@ -7,7 +7,7 @@
     "ci_status": "CURRENT_HEAD_CI_NOT_RUN. PR81 accepted baseline main@3e8d2e5f4683006977d77f7b3316e0eb63295508 (50 rows; 49 wiring + 1 narrow; 0 open; saved post-merge checks pass). This source-core commit contains U00 + original03 + original06.5 and D3/D4 Python guards. Independent source-module CI is pinned separately in each package; current-head full-chain CI, authority/ULM PR acceptance and post-merge checks are not yet run. No merged debt closure is claimed.",
     "closes_debt": false,
     "current_archive_open": 0,
-    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending. 09.1/09.2 L145/L147/L151/L153 mapped COVERED from source run 41620019146 at b84d28bf; this records finite mathematical evidence only, not legal discharge or full PR acceptance.",
+    "status_note": "08.7 L139/L141 mapped COVERED from changed-module evidence at source checkpoint d7f45ec; this does not close broader engineering/U00 consumer work or assert external source, rule, or App fidelity. Full PR validation pending. 09.1/09.2 L145/L147/L151/L153 mapped COVERED from source run 41620019146 at b84d28bf; this records finite mathematical evidence only, not legal discharge or full PR acceptance. 09.3 L157/L159 mapped COVERED from changed-module source run 41636538195 at source checkpoint 2c07cdb; this is conditional source evidence only, not proof of real-world identity, legal discharge, or full PR acceptance.",
     "scope": "Original-question evidence navigation only. This round adds bounded 03.2-03.6 supplements, original 06.5 finite observation supplement, and original-question math row 04.1 source evidence; it does not upgrade 06.7 or the 105 engineering requirements, six designated cuts, or whole-theory completion. Global discharges, Step 2 and math_flip remain false. This update also records a candidate source-module result for original-question 06.1 real-valued cash identity; it does not claim a consumer caller or legal-cap bridge. This round adds a source-module candidate record for original-question 06.3 common robust strategies; it does not claim full-chain acceptance or an actual runtime caller. This round adds only original 06.6 risk-filter and finite-example mathematical producer evidence while retaining the earlier conditional U11.1 identification scope; it does not upgrade any runtime consumer, engineering row, cut, or global completion flag. This round adds the original 06.7 finite cash-event-to-W4 terminal utility bridge and maps L137/L139/L141 using the accepted Q1-Q6 packages; it does not alter consumer callers, runtime ratings, the 105 engineering requirements, six cuts, or global completion flags. This round maps original 07.5 L287 using six previously accepted full-source outputs for the finite fiber conditions and sourceModel=.ok joint-object instance; no runtime caller or global completion flag is upgraded.",
     "legacy_source": {
       "json": "C:\\Users\\being\\legal-math-modeling\\docs\\handoff\\原题97_工程105_证据对照进度_20261027.json",
@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 65,
+    "COVERED": 66,
     "PARTIAL": 19,
-    "NOT_RECONCILED": 13
+    "NOT_RECONCILED": 12
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -4688,9 +4688,40 @@
           159
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original09-3-payment-identity-close-20261103",
+          "subject": "2c07cdb41bd317bed458589265e2a30a5e747597",
+          "tree": "ce5ae4c3043c60f5f371fc934b94d9b465074937",
+          "run_id": 41636538195,
+          "attempt": 1,
+          "job_id": 125919056100,
+          "artifact_id": 13230991770,
+          "artifact_sha256": "b88a363a69321b2c70b4ef18ba3fe6b76c1237c5b64679d40aaeaba37144f92b",
+          "scope": "Changed-module source proof evidence; full PR and post-merge acceptance pending.",
+          "named_targets": [
+            "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+            "JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes",
+            "JurisLean.Candidates.SourceAction20261027.source_request_keeps_actual_key_payload_and_identity",
+            "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+            "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
+            "JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable",
+            "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+            "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+            "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+            "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+            "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+            "JurisLean.Candidates.SourceAction20261027.applicable_request_requires_actual_environment_and_all_versions",
+            "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+            "JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U",
+            "JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U",
+            "JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt",
+            "JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict"
+          ]
+        }
+      ],
+      "remaining": "The stated PaymentId identity contract is an external premise; no real-world alias recognition or external source truth is proved. Unknown identity/applicability remains pending and unknown commit has no determined post. Full PR acceptance, same-C verifier, and post-merge checks remain pending."
     },
     {
       "id": "09.4",

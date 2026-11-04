@@ -107,6 +107,8 @@ def legalDispatch (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) : Reply Unit :=
   if automationAllowed s.core.state r.scope m = false then quiet s .blockedHuman
   else if authorized s.core.state.N r = false then quiet s (.rejected .unauthorized)
+  else if (activeConflict s r.scope).isSome then
+    quiet s (.conflict ((activeConflict s r.scope).getD .competentReview))
   else
     match selectedRules s.core r with
     | [] => quiet s (.unknown .inputUnchecked)
@@ -152,22 +154,24 @@ theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPoli
   · cases h
   · split at h
     · cases h
-    · cases hs : selectedRules s.core r with
-      | nil => simp [hs, quiet] at h
-      | cons law rest =>
-        cases rest with
-        | cons b tail => simp [hs, quiet] at h
-        | nil =>
-          simp only [hs] at h
-          cases ht : selectedTemplates s law with
-          | nil => simp [ht, quiet] at h
-          | cons t rest =>
-            cases rest with
-            | cons b tail => simp [ht, quiet] at h
-            | nil =>
-              simp only [ht] at h
-              refine ⟨law, t, selected_rule_member s.core r law hs, ?_⟩
-              exact checkedLaw_ready s r law p w t (by rw [ht]; simp) h
+    · split at h
+      · cases h
+      · cases hs : selectedRules s.core r with
+        | nil => simp [hs, quiet] at h
+        | cons law rest =>
+          cases rest with
+          | cons b tail => simp [hs, quiet] at h
+          | nil =>
+            simp only [hs] at h
+            cases ht : selectedTemplates s law with
+            | nil => simp [ht, quiet] at h
+            | cons t rest =>
+              cases rest with
+              | cons b tail => simp [ht, quiet] at h
+              | nil =>
+                simp only [ht] at h
+                refine ⟨law, t, selected_rule_member s.core r law hs, ?_⟩
+                exact checkedLaw_ready s r law p w t (by rw [ht]; simp) h
 
 theorem legalDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
     (w : PossibleWorld) (h : s.core.state.refusals.contains r.scope = true) :

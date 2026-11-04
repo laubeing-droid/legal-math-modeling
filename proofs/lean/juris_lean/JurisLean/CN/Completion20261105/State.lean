@@ -60,11 +60,18 @@ structure Situation where
   engineInputs : List EngineMaterial
   uses : List InstitutionPermit
   bankruptcyCases : Ref .actor → Option Nat
+  disputes : List (Scope × ConflictKind)
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, []⟩
+
+def activeConflict (s : Situation) (scope : Scope) : Option ReviewRoute :=
+  match ((s.disputes.filter (fun d => d.1 == scope)).map (fun d => reviewRoute d.2)).eraseDups with
+  | [] => none
+  | [route] => some route
+  | _ :: _ :: _ => some .competentReview
 
 def institutionAllowed (s : Situation) (r : Request) (kind : InstitutionKind) : Bool :=
   s.uses.any (fun u => u.kind == kind && u.source.id == r.rule &&

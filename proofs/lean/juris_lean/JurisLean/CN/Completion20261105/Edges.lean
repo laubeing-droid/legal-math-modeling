@@ -15,6 +15,8 @@ def assessDispatch (s : Situation) (c : Law.Call) : Reply Judgment :=
   let r := c.request
   if automationAllowed s.core.state r.scope c.mode = false then quiet s .blockedHuman
   else if !freshRequest s r || r.act != .decide then quiet s (.rejected .unauthorized)
+  else if (activeConflict s r.scope).isSome then
+    quiet s (.conflict ((activeConflict s r.scope).getD .competentReview))
   else match selectedRules s.core r with
     | [law] =>
       if c.policy.source.id != law.source.id ||
@@ -154,8 +156,6 @@ theorem decision_assessment_preserves_relations (s : Situation) (c : Law.Call)
   unfold decide
   cases he : (assessDispatch s c).answer with
   | success j =>
-    simp only [he]
-    dsimp only
     cases hf : s.core.state.decisions.find? (fun old => old.document == document) with
     | none => rfl
     | some old =>

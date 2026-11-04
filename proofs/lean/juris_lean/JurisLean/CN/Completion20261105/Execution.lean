@@ -93,8 +93,7 @@ inductive InstitutionCall : Type → Type
   | interest (c : Law.Call) (grounds : Formula)
       (claim : InterestClaim) (time : Nat) : InstitutionCall Nat
   | compensation (c : Law.Call) (grounds : Formula) (kind : CompensationKind)
-      (relation : Ref .relation) (custody : Bool) (conditions1719 : Judgment) :
-      InstitutionCall Judgment
+      (relation : Ref .relation) : InstitutionCall Judgment
   | rightsConflict : InstitutionCall Unit
   | interpret (c : Law.Call) (grounds : Formula) (obj : Ref .object) (meaning : Check Formula) :
       InstitutionCall Formula
@@ -115,9 +114,10 @@ def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply �
   | .interest c ground claim time =>
       Law.atomic s (Law.continueWith (Law.gateFor s c ground .bankruptcy)
         (fun z => Law.interestFromCase z claim time))
-  | .compensation c ground kind rel custody conditions =>
+  | .compensation c ground kind rel =>
       Law.atomic s (Law.continueWith (Law.gateFor s c ground (.compensation kind))
-        (fun z => Law.stateCompensationLocal z kind rel custody conditions))
+        (fun z => ⟨{z with tracks := {z.tracks with
+            stateCompensation := (kind,rel) :: z.tracks.stateCompensation}}, .success .established⟩))
   | .rightsConflict => Law.rightsConflict s
   | .interpret c ground obj meaning => Law.interpret s c ground obj meaning
   | .resJudicata index who scope time => Law.resJudicataQuery s index who scope time

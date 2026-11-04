@@ -165,7 +165,7 @@ theorem bankruptcy_actual :
 
 /- 8: representative art17 personal-restraint route writes only track4. -/
 def compensated : Reply Judgment := executeCommand (readyCase confirmation (.compensation .criminal))
-  (.institution (.compensation (call .decide) (.atom toyAtom) .criminal ⟨62⟩ true .established))
+  (.institution (.compensation (call .decide) (.atom toyAtom) .criminal ⟨62⟩))
 theorem compensation_actual :
     compensated.after.tracks.stateCompensation = [(.criminal,⟨62⟩)] ∧
     compensated.after.tracks.civil = [] ∧ compensated.after.tracks.criminal = [] ∧

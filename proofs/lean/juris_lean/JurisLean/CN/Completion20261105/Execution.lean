@@ -146,7 +146,7 @@ def selectClaim (s : Situation) (r : Request) (mode : Mode) (rel : LegalRelation
       .success rel.id⟩
   else quiet s (.rejected .unauthorized)
 
-inductive Command : Type → Type
+inductive Command : Type → Type 1
   | operator (params : OperatorParams) {α : Type} (op : OpRequest α) : Command α
   | institution {α : Type} (call : InstitutionCall α) : Command α
   | engine (context : EngineContext) (call : EngineCall) : Command EngineOutput

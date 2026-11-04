@@ -157,7 +157,7 @@ theorem performance_success_conserves (s : Situation) (r : Request) (m : Mode)
           · rename_i hd
             cases hc : cashSource before p with
             | known after =>
-              refine ⟨before,after,hb,hc,?_,?_⟩
+              refine ⟨before,after,rfl,rfl,?_,?_⟩
               · simp [hm,ha,hp,hd,hc]
               · exact cash_actual_post_conserves s ⟨r.scope,r.scope.question⟩ before p after hc
             | unknown k => simp [hc,quiet] at h

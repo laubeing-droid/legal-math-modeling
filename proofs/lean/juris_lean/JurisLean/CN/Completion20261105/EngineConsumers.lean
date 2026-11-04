@@ -94,6 +94,19 @@ def causalSource {n k : Nat} (x : CausalInput n k) : Native.Result ℚ :=
   if x.supported then .known (x.recovered true - x.recovered false)
   else .unknown .notIdentified
 
+def containsAtom (target : Atom) : Formula → Bool
+  | .atom a => a == target
+  | .both a b | .either a b => containsAtom target a || containsAtom target b
+  | .neg a => containsAtom target a
+
+def causalClauseAllowed (s : Situation) (p : CausalPermit) : Bool :=
+  s.causalClauses.any (fun clause =>
+    clause.source.id == p.source.id && clause.source.version == p.source.version &&
+    clause.scope == p.scope && clause.statistic == p.statistic && clause.element.scope == p.scope &&
+    s.core.state.N.rules.any (fun law => law.source.id == clause.source.id &&
+      law.source.version == clause.source.version && law.scope == clause.scope &&
+      containsAtom clause.element law.guard))
+
 def consumeCausal {n k : Nat} (s : Situation) (c : EngineContext)
     (x : CausalInput n k) (permit : Option CausalPermit) :
     NativeReply (Native.Result ℚ) :=
@@ -101,7 +114,7 @@ def consumeCausal {n k : Nat} (s : Situation) (c : EngineContext)
   match permit with
   | none => ⟨quiet s (.unknown .inputUnchecked), actual⟩
   | some p =>
-    if p.scope == c.scope && p.statistic == c.target && registeredNorm s p.source then
+    if p.scope == c.scope && p.statistic == c.target && registeredNorm s p.source && causalClauseAllowed s p then
       relayNative s actual (fun value =>
         engineOutput s c .causal
           "JurisLean.Candidates.CausalSelection20261027.selected_weight_recovery"

@@ -41,6 +41,12 @@ structure InstitutionPermit where
   scope : Scope
   kind : InstitutionKind
 
+structure CausalClause where
+  source : NormRef
+  scope : Scope
+  statistic : Ref .query
+  element : Atom
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -61,11 +67,13 @@ structure Situation where
   bankruptcyCases : Ref .actor → Option Nat
   disputes : List (Scope × ConflictKind)
   participations : List IR.Participation
+  engineResults : List EngineReport
+  causalClauses : List CausalClause
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], []⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], []⟩
 
 def activeConflict (s : Situation) (scope : Scope) : Option ReviewRoute :=
   match ((s.disputes.filter (fun d => d.1 == scope)).map (fun d => reviewRoute d.2)).eraseDups with

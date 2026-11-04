@@ -89,4 +89,8 @@ structure EngineMaterial where
   version : Nat
   input : EngineCall
 
+structure EngineReport where
+  material : EngineMaterial
+  output : material.input.NativeType
+
 end JurisLean.CN.Completion20261105

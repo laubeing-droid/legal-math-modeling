@@ -13,7 +13,9 @@ open Examples
 
 def context : EngineContext := ⟨toyScope,toyScope.question⟩
 def input (call : EngineCall) : EngineMaterial := ⟨⟨9⟩,toyScope,toyScope.question,⟨10⟩,1,call⟩
-def stored (call : EngineCall) : Situation := advance normal (.registerEngine (request .learnModel) (input call))
+def stored (call : EngineCall) : Situation :=
+  advance {normal with causalClauses := [⟨toyNorm,toyScope,toyScope.question,toyAtom⟩]}
+    (.registerEngine (request .learnModel) (input call))
 def run (call : EngineCall) : Reply EngineOutput := executeCommand (stored call) (.engine context ⟨9⟩)
 
 def protocol : Native.Fit.LearningProtocol :=
@@ -99,13 +101,16 @@ def rsiCheck : Bool :=
     let engine := EngineCall.rsi 2 generated req [req.sampling] [req.permit] ⟨83⟩
     let s := stored engine
     let result := runBoundEngine s context ⟨9⟩
-    let actual := consumeRSI s context generated req [req.sampling] [req.permit] ⟨83⟩
-    _root_.decide (kindOf result.legal = some .rsi ∧ actual.native.status = .evaluated ∧
-      Native.RSI.roundSpent actual.native.post = 1/10 ∧
-      actual.native.post.service.loaded =
-        (AdaptiveRoundLedgerFixture.firstRound service evaluation).post.service.loaded ∧
-      result.legal.after.core.state.decisions.isEmpty = true ∧
-      result.legal.after.core.state.bindings.isEmpty = true)
+    match result.native with
+    | some ⟨.rsi _ _ _ _ _ _,actual⟩ =>
+      _root_.decide (kindOf result.legal = some .rsi ∧ actual.status = .evaluated ∧
+        Native.RSI.roundSpent actual.post = 1/10 ∧
+        actual.post.service.loaded.fitted.table = [0,1] ∧
+        (actual.receipt.bind (fun record => record.load)).map (fun load => load.status) = some .loaded ∧
+        result.legal.after.engineResults.length = 1 ∧
+        result.legal.after.core.state.decisions.isEmpty = true ∧
+        result.legal.after.core.state.bindings.isEmpty = true)
+    | _ => false
   | _ => false
 
 def checkIO : IO Unit := do
@@ -122,6 +127,11 @@ def checkIO : IO Unit := do
     paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L) do throw (IO.userError "actual_performance_consumes_native_cash failed")
   unless _root_.decide ((executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
 
+  let fitted := run fit
+  let learned := executeCommand fitted.after (.learnReport (request .learnModel) ⟨9⟩)
+  unless _root_.decide (learned.after.core.state.A.theta = [1] ∧ learned.after.core.state.N.version = 1 ∧
+      learned.after.core.state.L.isEmpty = true) do
+    throw (IO.userError "Learn did not consume the retained actual fitted table")
   unless rsiCheck do throw (IO.userError "actual admitted RSI consumer/load/round budget failed")
   IO.println "CN_EIGHT_NATIVE_CONSUMERS_PASS; RSI_ACTUAL_POST_RETAINED"
 

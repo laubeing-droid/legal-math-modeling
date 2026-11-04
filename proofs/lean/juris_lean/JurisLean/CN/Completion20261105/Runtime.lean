@@ -30,7 +30,7 @@ def commandTag {α : Type} : Command α → Tag
   | .decide _ _ => .decide
   | .bindDecided _ _ => .bindDecision
   | .bindOther _ _ => .bindOther
-  | .learn _ _ _ _ => .learn
+  | .learn _ _ _ _ | .learnReport _ _ => .learn
   | .record _ _ => .record
   | .admitEvidence _ _ _ _ _ => .admit
   | .withdraw _ _ _ => .withdraw
@@ -114,6 +114,7 @@ def institutionValue {α : Type} : InstitutionCall α → α → Value
   | .propose _,v => .candidate v
 
 def commandValue {α : Type} : Command α → α → Value
+  | .learnReport _ _,_ => .unit
   | .check _,_ => .unit | .positions _,v => .positions v
   | .operator _ op,v => operatorValue op v
   | .institution call,v => institutionValue call v

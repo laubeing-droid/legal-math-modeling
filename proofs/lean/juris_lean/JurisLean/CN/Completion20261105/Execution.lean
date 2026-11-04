@@ -41,7 +41,9 @@ def runBoundEngine (s : Situation) (c : EngineContext) (i : Ref .material) : Bou
   | [input] =>
     if engineMaterialAllowed s c input then
       let actual := callEngine s c input.input
-      ⟨actual.legal, some ⟨input.input, actual.native⟩⟩
+      let reported := {actual.legal.after with
+        engineResults := ⟨input,actual.native⟩ :: actual.legal.after.engineResults}
+      ⟨⟨reported,actual.legal.answer⟩, some ⟨input.input, actual.native⟩⟩
     else ⟨quiet s (.unknown .inputUnchecked), none⟩
   | [] => ⟨quiet s (.unknown .inputUnchecked), none⟩
   | _ :: _ :: _ => ⟨quiet s (.conflict .competentReview), none⟩
@@ -58,6 +60,43 @@ def registerEngineMaterial (s : Situation) (r : Request) (input : EngineMaterial
         ⟨{s with engineInputs := input :: s.engineInputs}, .success ()⟩
       else quiet s (.rejected .unsupported)
 
+def learnedTable : (report : EngineReport) → Option (List Rat)
+  | ⟨⟨_,_,_,_,_,.fit _ _ _ _ _ _⟩,.known fitted⟩ => some fitted.table
+  | ⟨⟨_,_,_,_,_,.rsi _ _ _ _ _ _⟩,actual⟩ =>
+    if actual.status == .evaluated &&
+        (actual.receipt.bind (fun record => record.load)).any (fun load => load.status == .loaded) then
+      some actual.post.service.loaded.fitted.table
+    else none
+  | _ => none
+
+def learnReport (s : Situation) (r : Request) (id : Ref .material) : Reply Unit :=
+  if !freshRequest s r || r.act != .learnModel then quiet s (.rejected .unauthorized)
+  else match s.engineResults.find? (fun report => report.material.id == id) with
+    | none => quiet s (.unknown .inputUnchecked)
+    | some report =>
+      if engineMaterialAllowed s ⟨r.scope,report.material.target⟩ report.material then
+        match learnedTable report with
+        | none => quiet s (.unknown .systemNotJudge)
+        | some theta =>
+          let st := {s.core.state with A := {s.core.state.A with theta := theta}}
+          ⟨s.withCore (s.core.putState st rfl),.success ()⟩
+      else quiet s (.unknown .inputUnchecked)
+
+/- C4: a subsequent authorized Learn consumes the retained actual native
+   table. It cannot write N/F/L, and an excluded input cannot be reused here. -/
+theorem learnReport_frame (s : Situation) (r : Request) (i : Ref .material) :
+    (learnReport s r i).after.core.state.N = s.core.state.N ∧
+    (learnReport s r i).after.core.state.F = s.core.state.F ∧
+    (learnReport s r i).after.core.state.L = s.core.state.L := by
+  unfold learnReport
+  split
+  · exact ⟨rfl,rfl,rfl⟩
+  · split
+    · exact ⟨rfl,rfl,rfl⟩
+    · split
+      · split <;> exact ⟨rfl,rfl,rfl⟩
+      · exact ⟨rfl,rfl,rfl⟩
+
 /- C4: the public graph fetches the native input from the admitted keyed
    material; it cannot attach provenance to an unrelated supplied calculation.
    A raw/source decoder is an external input contract, not legal fact truth. -/
@@ -65,8 +104,10 @@ theorem bound_engine_calls_stored_input (s : Situation) (c : EngineContext)
     (i : Ref .material) (input : EngineMaterial)
     (h : s.engineInputs.filter (fun record => record.id == i) = [input])
     (ha : engineMaterialAllowed s c input = true) :
-    (runBoundEngine s c i).legal = (callEngine s c input.input).legal ∧
-    (runBoundEngine s c i).native = some ⟨input.input, (callEngine s c input.input).native⟩ := by
+    (runBoundEngine s c i).legal.answer = (callEngine s c input.input).legal.answer ∧
+    (runBoundEngine s c i).native = some ⟨input.input, (callEngine s c input.input).native⟩ ∧
+    (runBoundEngine s c i).legal.after.engineResults.head? =
+      some ⟨input,(callEngine s c input.input).native⟩ := by
   simp [runBoundEngine, h, ha]
 
 theorem unadmitted_engine_material_blocks (s : Situation) (c : EngineContext)
@@ -176,6 +217,7 @@ def legalPositions (s : Situation) (scope : Scope) : List HohfeldPosition :=
   (s.core.state.L.filter (fun rel => rel.scope == scope)).flatMap hohfeld
 
 inductive Command : Type → Type 1
+  | learnReport (r : Request) (material : Ref .material) : Command Unit
   | check (predicate : Situation → Bool) : Command Unit
   | positions (scope : Scope) : Command (List HohfeldPosition)
   | operator (params : OperatorParams) {α : Type} (op : OpRequest α) : Command α
@@ -205,6 +247,7 @@ inductive Command : Type → Type 1
   | choose (r : Request) (mode : Mode) (relation : LegalRelation) : Command (Ref .relation)
 
 def executeCommand (s : Situation) {α : Type} : Command α → Reply α
+  | .learnReport r i => learnReport s r i
   | .check predicate => if predicate s then quiet s (.success ()) else quiet s (.rejected .prerequisites)
   | .positions scope => quiet s (.success (legalPositions s scope))
   | .operator params op => runOperator params s op
@@ -273,5 +316,6 @@ theorem choice_not_model_score (s : Situation) (r : Request) (mode : Mode)
 #print axioms choice_not_model_score
 #print axioms bound_engine_calls_stored_input
 #print axioms unadmitted_engine_material_blocks
+#print axioms learnReport_frame
 end JurisLean.CN.Completion20261105
 

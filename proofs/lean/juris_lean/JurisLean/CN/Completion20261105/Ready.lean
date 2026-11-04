@@ -273,12 +273,13 @@ theorem checkedLaw_success_nonempty (s : Situation) (r : Request) (law : Rule)
   · split
     · intro h; cases h
     · cases ha : assessed s law t.body with
-      | unknown k => intro h; cases h
+      | unknown k => simp [ha,quiet]
       | known j =>
         cases j with
-        | notEstablished => intro h; cases h
-        | undetermined => intro h; cases h
+        | notEstablished => simp [ha,quiet]
+        | undetermined => simp [ha,quiet]
         | established =>
+          simp only [ha]
           split
           · exact checkPost_success_nonempty s w _ ()
           · intro h; cases h
@@ -295,17 +296,18 @@ theorem legalDispatch_success_nonempty (s : Situation) (r : Request) (p : ProofP
     · split
       · intro h; cases h
       · cases hs : selectedRules s.core r with
-        | nil => intro h; cases h
+        | nil => simp [hs,quiet]
         | cons law rest =>
           cases rest with
-          | cons other tail => intro h; cases h
+          | cons other tail => simp [hs,quiet]
           | nil =>
+            simp only [hs]
             cases ht : selectedTemplates s law with
-            | nil => intro h; cases h
+            | nil => simp [ht,quiet]
             | cons t rest =>
               cases rest with
-              | cons other tail => intro h; cases h
-              | nil => exact checkedLaw_success_nonempty s r law p w t
+              | cons other tail => simp [ht,quiet]
+              | nil => simpa only [ht] using checkedLaw_success_nonempty s r law p w t
 
 theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld)

@@ -178,7 +178,7 @@ theorem certified_allocation_updates_actual_list
     simp only [allocatedRow, applyAllocationVector, List.getElem_ofFn,
       JurisLean.Candidates.SingleDebtStream20261103.sameItemFrameLe]
     obtain ⟨halloc, _⟩ := certificate.bounds i
-    exact ⟨rfl, rfl, rfl, rfl, rfl, by linarith⟩
+    exact ⟨trivial, trivial, trivial, trivial, trivial, by linarith⟩
   have postNonnegative : ∀ i : Fin items.length,
       0 ≤ (allocatedRow items certificate.allocation i).amount := by
     intro i

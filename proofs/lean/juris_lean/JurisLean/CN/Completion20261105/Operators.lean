@@ -24,6 +24,7 @@ structure ClockPolicy where
   scope : Scope
   norm : NormRef
   allowed : List ChangeKind
+  action : Act
 
 structure ViewPermit where
   grant : Grant
@@ -110,7 +111,7 @@ def adjustQuery (p : OperatorParams) (s : Situation) (r : Request) (mode : Mode)
   else if freshRequest s r = false then quiet s (.rejected .unauthorized)
   else if p.clocks.any (fun policy =>
       policy.scope == r.scope && policy.norm.id == r.rule &&
-      registeredNorm s policy.norm && policy.allowed.contains d.kind) = false then
+      registeredNorm s policy.norm && policy.allowed.contains d.kind && policy.action == r.act) = false then
     quiet s (.unknown .inputUnchecked)
   else if d.amount.value < 0 then quiet s (.rejected .prerequisites)
   else
@@ -163,8 +164,8 @@ def projectQuery (p : OperatorParams) (s : Situation) (r : ViewRequest) :
   else quiet s (.rejected .unauthorized)
 
 def assignmentAllowed (s : Situation) (a : MeaningAssignment) (r : Request) : Bool :=
-  freshRequest s r && r.scope.object == a.target &&
-    (a.expression.eval s.meanings).isSome
+  freshRequest s r && r.act == .decide && institutionAllowed s r .interpretation &&
+    r.scope.object == a.target && (a.expression.eval s.meanings).isSome
 
 def assignmentQuery (s : Situation) (a : MeaningAssignment) (r : Request) : Reply Formula :=
   if automationAllowed s.core.state r.scope .automated = false then quiet s .blockedHuman
@@ -180,7 +181,10 @@ theorem assignment_gate_stable (s : Situation) (a b : MeaningAssignment) (r : Re
   have hn : (assignLocal s a).after.core.state.N = s.core.state.N := by
     unfold assignLocal
     split <;> rfl
-  simp only [assignmentAllowed, freshRequest, hn, hb]
+  have hu : (assignLocal s a).after.uses = s.uses := by
+    unfold assignLocal
+    split <;> rfl
+  simp only [assignmentAllowed, freshRequest, institutionAllowed, hn, hu, hb]
 
 theorem actual_assignments_commute (s : Situation) (a b : MeaningAssignment)
     (ra rb : Request) (h : Independent a b)
@@ -256,13 +260,15 @@ theorem commute_true_sound (s : Situation) (a b : MeaningAssignment) (ra rb : Re
     · rename_i hi
       have both : assignmentAllowed s a ra = true ∧ assignmentAllowed s b rb = true := by
         simpa only [Bool.and_eq_true] using hg
-      have ag : freshRequest s ra = true ∧ ra.scope.object = a.target ∧
-          (a.expression.eval s.meanings).isSome = true := by
-        simpa [assignmentAllowed, Bool.and_eq_true, and_assoc] using both.1
-      have bg : freshRequest s rb = true ∧ rb.scope.object = b.target ∧
-          (b.expression.eval s.meanings).isSome = true := by
-        simpa [assignmentAllowed, Bool.and_eq_true, and_assoc] using both.2
-      have defined := And.intro ag.2.2 bg.2.2
+      have ag : (a.expression.eval s.meanings).isSome = true := by
+        have hg := both.1
+        simp only [assignmentAllowed, Bool.and_eq_true] at hg
+        exact hg.2
+      have bg : (b.expression.eval s.meanings).isSome = true := by
+        have hg := both.2
+        simp only [assignmentAllowed, Bool.and_eq_true] at hg
+        exact hg.2
+      have defined := And.intro ag bg
       cases ha : a.expression.eval s.meanings with
       | none => simp [ha] at defined
       | some fa =>

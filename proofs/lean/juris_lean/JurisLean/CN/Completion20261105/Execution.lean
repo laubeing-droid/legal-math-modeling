@@ -176,6 +176,7 @@ def legalPositions (s : Situation) (scope : Scope) : List HohfeldPosition :=
   (s.core.state.L.filter (fun rel => rel.scope == scope)).flatMap hohfeld
 
 inductive Command : Type → Type 1
+  | check (predicate : Situation → Bool) : Command Unit
   | positions (scope : Scope) : Command (List HohfeldPosition)
   | operator (params : OperatorParams) {α : Type} (op : OpRequest α) : Command α
   | institution {α : Type} (call : InstitutionCall α) : Command α
@@ -204,6 +205,7 @@ inductive Command : Type → Type 1
   | choose (r : Request) (mode : Mode) (relation : LegalRelation) : Command (Ref .relation)
 
 def executeCommand (s : Situation) {α : Type} : Command α → Reply α
+  | .check predicate => if predicate s then quiet s (.success ()) else quiet s (.rejected .prerequisites)
   | .positions scope => quiet s (.success (legalPositions s scope))
   | .operator params op => runOperator params s op
   | .institution call => callInstitution s call

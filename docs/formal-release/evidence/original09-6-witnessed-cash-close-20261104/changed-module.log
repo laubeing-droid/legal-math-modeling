@@ -1,0 +1,198 @@
+⚠ [8487/8493] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8493/8493] Built JurisLean.Candidates.WitnessedCashAllocationAudit20261104 (5.1s)
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:98:39: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:67:5: unused variable `hd`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:67:18: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:165:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:167:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:169:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:170:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:195:6: This simp argument is unused:
+  Ledger.cashTotal
+
+Hint: Omit it from the simp argument list.
+  simp [unformedToyOpening, unformedToyPost, toyCashSix, toyZeroDebt, toyTag, Trace.initial,
+  ̲  ̲ ̲ ̲ ̲ ̲Ledger.performance, Ledger.quantity, Ledger.balance, L̵e̵d̵g̵e̵r̵.̵c̵a̵s̵h̵T̵o̵t̵a̵l̵,̵ ̵toyCashEvent]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:221:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (k : ℚ) : JurisLean.Candidates.Final20261021.Ledger.State
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:222:0: JurisLean.Candidates.Final20261021.Ledger.quantity (s : JurisLean.Candidates.Final20261021.Ledger.State)
+  (r : JurisLean.Candidates.Final20261021.RelationId) : Option ℚ
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:223:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.performance_is_min_allocation
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload) :
+  JurisLean.Candidates.Final20261021.Ledger.performance s p =
+    JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+      (min p.amount.value (JurisLean.Candidates.Final20261021.Ledger.balance s))
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:224:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.performance_is_min_allocation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:225:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_record_frame
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (k : ℚ) :
+  (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).formations = s.formations ∧
+    (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).debt.relation = s.debt.relation ∧
+      (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).debt.obligor = s.debt.obligor ∧
+        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).debt.creditor =
+            s.debt.creditor ∧
+          (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).debt.amount.tag =
+              s.debt.amount.tag ∧
+            (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).debt.metadata =
+                s.debt.metadata ∧
+              (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).executionEligible =
+                  s.executionEligible ∧
+                (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).judgment = s.judgment ∧
+                  (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).procedure =
+                      s.procedure ∧
+                    (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).claim = s.claim ∧
+                      (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).initialDebt =
+                          s.initialDebt ∧
+                        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).newDebt =
+                            s.newDebt ∧
+                          (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).accrual =
+                              s.accrual ∧
+                            (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                    k).writtenOff =
+                                s.writtenOff ∧
+                              (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).used =
+                                  s.used ∧
+                                (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                        k).receipts =
+                                    s.receipts ∧
+                                  (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                          k).rest =
+                                      s.rest ∧
+                                    (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                            k).refundCash =
+                                        s.refundCash ∧
+                                      (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                              k).normHistory =
+                                          s.normHistory ∧
+                                        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p
+                                              k).env =
+                                          s.env
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:226:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_record_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:227:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_cash_consistent
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload) (k : ℚ)
+  (h : JurisLean.Candidates.Final20261021.Ledger.CashConsistent s) :
+  JurisLean.Candidates.Final20261021.Ledger.CashConsistent
+    (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k)
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:228:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_cash_consistent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:229:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.arbitrary_k_same_state_update
+  (s : JurisLean.Candidates.Final20261021.Ledger.State) (p : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (r : JurisLean.Candidates.Final20261021.RelationId) (d k : ℚ)
+  (hq : JurisLean.Candidates.Final20261021.Ledger.quantity s r = some d) (hd : 0 ≤ d) (ha : 0 ≤ p.amount.value)
+  (hk0 : 0 ≤ k) (hkMin : k ≤ min p.amount.value d) :
+  JurisLean.Candidates.Final20261021.Ledger.quantity
+        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k) r =
+      some (d - k) ∧
+    (0 ≤
+          JurisLean.Candidates.Final20261021.Ledger.balance
+            (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k) ∧
+        JurisLean.Candidates.Final20261021.Ledger.balance s =
+            JurisLean.Candidates.Final20261021.Ledger.balance
+                (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k) +
+              k ∧
+          0 ≤ p.amount.value - k) ∧
+      (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).allocated = s.allocated + k ∧
+        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).paid =
+            s.paid + p.amount.value ∧
+          (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).surplus =
+              s.surplus + (p.amount.value - k) ∧
+            JurisLean.Candidates.Final20261021.Ledger.cashTotal
+                  (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k) =
+                JurisLean.Candidates.Final20261021.Ledger.cashTotal s + p.amount.value ∧
+              (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost s p k).cash =
+                s.cash ++
+                  [{ id := p.cashId, source := p.source, payer := p.payer, payee := p.payee, amount := p.amount }]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:230:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.arbitrary_k_same_state_update' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:231:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformed_option_none_cash_six
+  (g : JurisLean.Candidates.Final20261021.Gamma) (relation : JurisLean.Candidates.Final20261021.RelationId)
+  (obligor creditor : JurisLean.Candidates.Final20261021.PartyId) (metadata : String)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (cashId : JurisLean.Candidates.Final20261021.EventId) :
+  have pre :=
+    (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformedToyOpening g relation obligor creditor
+        metadata).state;
+  have post :=
+    JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformedToyPost g relation obligor creditor metadata
+      source cashId;
+  JurisLean.Candidates.Final20261021.Ledger.quantity pre relation = none ∧
+    JurisLean.Candidates.Final20261021.Ledger.quantity post relation = none ∧
+      JurisLean.Candidates.Final20261021.Ledger.balance post = 0 ∧
+        post.allocated = 0 ∧
+          post.paid = 6 ∧
+            JurisLean.Candidates.Final20261021.Ledger.cashTotal pre = 0 ∧
+              JurisLean.Candidates.Final20261021.Ledger.cashTotal post = 6 ∧
+                post ≠ pre ∧
+                  post.cash =
+                      [JurisLean.Candidates.WitnessedCashAllocationAudit20261104.toyCashEvent g relation obligor
+                          creditor source cashId] ∧
+                    post.newDebt = 0 ∧
+                      post.rest = none ∧
+                        post.refundCash = [] ∧
+                          JurisLean.Candidates.Final20261021.Ledger.Conserves post ∧
+                            JurisLean.Candidates.Final20261021.Ledger.CashConsistent post
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:232:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformed_option_none_cash_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:233:0: JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formed_four_cash_six_allocates_four
+  (g : JurisLean.Candidates.Final20261021.Gamma) (relation : JurisLean.Candidates.Final20261021.RelationId)
+  (obligor creditor : JurisLean.Candidates.Final20261021.PartyId) (metadata : String)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (cashId : JurisLean.Candidates.Final20261021.EventId) :
+  JurisLean.Candidates.Final20261021.Ledger.quantity
+        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor metadata
+          source cashId)
+        relation =
+      some 0 ∧
+    JurisLean.Candidates.Final20261021.Ledger.balance
+          (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor metadata
+            source cashId) =
+        0 ∧
+      (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor metadata
+              source cashId).allocated =
+          4 ∧
+        (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor metadata
+                source cashId).paid =
+            6 ∧
+          (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor metadata
+                  source cashId).surplus =
+              2 ∧
+            JurisLean.Candidates.Final20261021.Ledger.cashTotal
+                  (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor
+                    metadata source cashId) =
+                6 ∧
+              (JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formedToyPost g relation obligor creditor
+                    metadata source cashId).cash =
+                [JurisLean.Candidates.WitnessedCashAllocationAudit20261104.toyCashEvent g relation obligor creditor
+                    source cashId]
+info: JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean:234:0: 'JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formed_four_cash_six_allocates_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8493 jobs).

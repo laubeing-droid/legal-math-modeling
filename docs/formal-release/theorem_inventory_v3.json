@@ -22204,6 +22204,88 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "allocationPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_is_min_allocation"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocationPost_record_frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocationPost_cash_consistent"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_k_same_state_update"
+    },
+    {
+     "kind": "def",
+     "name": "toyTag"
+    },
+    {
+     "kind": "def",
+     "name": "toyZeroDebt"
+    },
+    {
+     "kind": "def",
+     "name": "toyFourDebt"
+    },
+    {
+     "kind": "def",
+     "name": "toyCashSix"
+    },
+    {
+     "kind": "def",
+     "name": "unformedToyOpening"
+    },
+    {
+     "kind": "def",
+     "name": "unformedToyPost"
+    },
+    {
+     "kind": "def",
+     "name": "formedToyPost"
+    },
+    {
+     "kind": "def",
+     "name": "toyCashEvent"
+    },
+    {
+     "kind": "theorem",
+     "name": "unformed_option_none_cash_six"
+    },
+    {
+     "kind": "theorem",
+     "name": "formed_four_cash_six_allocates_four"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Trace",
+    "JurisLean.Seams.InstitutionalEffects"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_cash_consistent",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_record_frame",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.arbitrary_k_same_state_update",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formed_four_cash_six_allocates_four",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.performance_is_min_allocation",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformed_option_none_cash_six"
+   ],
+   "sha256": "865235663d8479fa2cd34a1c292fff3578411385dbcfdb97c51a688aa2280afd",
+   "size_bytes": 14084,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "CanonicalCollection"
     },
@@ -62618,6 +62700,7 @@
     "JurisLean.Candidates.U13_4ColdStartFallback20261030",
     "JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030",
     "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
+    "JurisLean.Candidates.WitnessedCashAllocationAudit20261104",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
     "JurisLean.CertificateCheckerV2",
@@ -62797,8 +62880,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "e5760b9ca57807ba1be485aba3e0ded711dcb6e43f23a67362faadf12877117b",
-   "size_bytes": 16324,
+   "sha256": "2fe0a284d488537986bd87ba297a688c89727a86e813bce9ba6596ba983b7ae0",
+   "size_bytes": 16389,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62970,22 +63053,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6444,
-   "file_count": 583,
+   "counted_declaration_count": 6450,
+   "file_count": 584,
    "lemma_count": 146,
-   "print_axioms_command_count": 5896,
-   "print_axioms_distinct_targets": 5280,
-   "theorem_count": 6298,
-   "theorem_count_bol_convention": 6198
+   "print_axioms_command_count": 5902,
+   "print_axioms_distinct_targets": 5286,
+   "theorem_count": 6304,
+   "theorem_count_bol_convention": 6204
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6425,
-   "file_count": 568,
+   "counted_declaration_count": 6431,
+   "file_count": 569,
    "lemma_count": 139,
-   "print_axioms_command_count": 5896,
-   "print_axioms_distinct_targets": 5280,
-   "theorem_count": 6286,
-   "theorem_count_bol_convention": 6186
+   "print_axioms_command_count": 5902,
+   "print_axioms_distinct_targets": 5286,
+   "theorem_count": 6292,
+   "theorem_count_bol_convention": 6192
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -63256,6 +63339,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -63837,6 +63921,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -64193,17 +64278,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "fe2bdf5f68fcc1aa264a4a0d2420b9e65f075d0a3dc3e748ad891474b4b75514",
+ "source_inventory_digest": "a5c4d18cc09b5496410243e4eed1f215758227fcc2331ba4242e07d20b12bda9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original09-5-semantics-20261104",
-  "commit": "0b6bd5aa8ade03b6132dffe2b3dbcf00634ca416",
-  "tree": "1355460ed08d9083048197d56ced01c9f02f7c4e"
+  "branch": "formal/close-original09-6-witnessed-cash-20261104",
+  "commit": "a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce",
+  "tree": "6ab85fb1afb541f28bbd49e30656407ab96c04f4"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 583,
+  "files_total": 584,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

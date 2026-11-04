@@ -64,7 +64,8 @@ def activeDebt (r : RefundRule) (eligible : Bool) : Ledger.RestDebt :=
     eligible, r.claim.evidence, if eligible then some r.eligibilityEvidence else none⟩
 
 def claimPost (s : Ledger.State) (r : RefundRule) : Ledger.State :=
-  { s with rest := some (activeDebt r false),
+  { s with
+    rest := some (activeDebt r false)
     formations := s.formations ++ [r.claim.relation] }
 
 def eligiblePost (s : Ledger.State) (r : RefundRule) : Ledger.State :=
@@ -387,7 +388,7 @@ theorem ten_complete : tenEvents.map (·.event) =
 
 theorem ten_units : ∀ e ∈ tenEvents, e.event.amount.tag = tenRule.payment.payload.amount.tag := by
   intro e he
-  simp only [tenEvents, List.mem_cons, List.mem_singleton] at he
+  simp [tenEvents] at he
   rcases he with rfl | rfl <;> rfl
 
 def TenNumbers : Prop :=
@@ -419,7 +420,7 @@ theorem ten_seven_seven_nonempty_witness :
     tenExtractor (some tenRule) tenRule ten_ready tenEvents tenFresh ten_complete rfl ten_units
   rcases hj with ⟨hs, he, hq, hr, hc⟩
   exact ⟨ten_ready, hs, he, hq, hr, hc, Acceptance.a_u09_continuous_10_7_7,
-    (by decide +kernel),
+    (by unfold TenNumbers; decide +kernel),
     legacy_RestPay_is_min_branch ten_ready (by decide +kernel) (by decide +kernel)⟩
 
 /-- 同一W6+数值/现金/J/V对象为新返还的起点，保持原程序未证状态。 -/
@@ -466,7 +467,7 @@ theorem refundW6_complete : refundW6Events.map (·.event) =
 theorem refundW6_units : ∀ e ∈ refundW6Events,
     e.event.amount.tag = refundW6Rule.payment.payload.amount.tag := by
   intro e he
-  simp only [refundW6Events, List.mem_cons, List.mem_singleton] at he
+  simp [refundW6Events] at he
   rcases he with rfl | rfl <;> rfl
 
 def refundW6After : ToyW6State :=
@@ -514,7 +515,8 @@ theorem w6_nonempty_witness :
   refine ⟨refundW6_ready, hs, he, hq, hr, hc, ⟨hb, hcash, hpaid, halloc, hsurplus⟩,
     ?_, ?_, legacy_RestPay_is_min_branch refundW6_ready (by decide +kernel)
       (by decide +kernel)⟩
-  · decide +kernel
+  · unfold W6RefundNumbers
+    decide +kernel
   · exact (timed_X_is_actual_cash_projection refundW6Context true false false).2.2.2
 
 #check RefundRule

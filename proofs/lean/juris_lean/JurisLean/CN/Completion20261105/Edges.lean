@@ -90,7 +90,10 @@ def performPayment (s : Situation) (r : Request) (mode : Mode)
     | some before =>
       if before.debt.relation.value != relation.value ||
           before.debt.obligor != payment.payer || before.debt.creditor != payment.payee ||
-          !s.core.state.L.any (fun rel => rel.id == relation && rel.scope == r.scope) ||
+          !s.core.state.L.any (fun rel => rel.id == relation && rel.scope == r.scope &&
+            rel.holder.value == before.debt.creditor.value &&
+            rel.counterparty.value == before.debt.obligor.value) ||
+          !admittedSource s ⟨payment.source.value⟩ r.scope ||
           !s.core.state.F.any (fun event => event.id.value == payment.cashId.value &&
             event.atom.scope == r.scope && event.actor.value == payment.payer.value) then
         quiet s (.rejected .prerequisites)
@@ -157,7 +160,7 @@ theorem performance_success_conserves (s : Situation) (r : Request) (m : Mode)
           · rename_i hd
             cases hc : cashSource before p with
             | known after =>
-              refine ⟨before,after,rfl,rfl,?_,?_⟩
+              refine ⟨before,after,rfl,hc,?_,?_⟩
               · simp [hm,ha,hp,hd,hc]
               · exact cash_actual_post_conserves s ⟨r.scope,r.scope.question⟩ before p after hc
             | unknown k => simp [hc,quiet] at h

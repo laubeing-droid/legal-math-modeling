@@ -54,7 +54,9 @@ def templateGate (s : Situation) (issued : IssuedTemplate) : Bool :=
   authorized s.core.state.N r && r.act == .addTemplate && t.scoped &&
   s.core.state.N.version == r.version && r.actor == t.issuer &&
   r.rule == t.source.id && r.version == t.source.version && r.scope == t.scope &&
-  !(selectedRules s.core r).isEmpty
+  (match selectedRules s.core r with
+   | [law] => t.clauses.all (fun clause => containsAtom clause.1 law.guard)
+   | _ => false)
 
 def templateMatches (law : Rule) (issued : IssuedTemplate) : Bool :=
   issued.body.scope == law.scope && issued.body.source.id == law.source.id &&

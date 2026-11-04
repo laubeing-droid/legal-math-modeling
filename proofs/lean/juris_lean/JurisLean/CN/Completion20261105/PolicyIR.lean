@@ -10,6 +10,12 @@ namespace JurisLean.CN.Completion20261105
 open JurisLean.KernelV3
 open JurisLean.CN.Revision20261101
 
+def containsAtom (target : Atom) : Formula → Bool
+  | .atom a => a == target
+  | .both a b | .either a b => containsAtom target a || containsAtom target b
+  | .neg a => containsAtom target a
+
+
 inductive ProofStandard
   | criminal | civil | administrative
   deriving DecidableEq, Repr

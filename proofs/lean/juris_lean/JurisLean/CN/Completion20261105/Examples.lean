@@ -36,7 +36,8 @@ def configured (law : Rule) (kind : InstitutionKind) : Situation :=
 def advance {α : Type} (s : Situation) (c : Command α) : Situation :=
   (executeCommand s c).after
 def registered (law : Rule) (kind : InstitutionKind) : Situation :=
-  advance (configured law kind) (.addTemplate (request .addTemplate) template)
+  advance (configured law kind) (.addTemplate (request .addTemplate)
+    {template with clauses := template.clauses.filter (fun clause => containsAtom clause.1 law.guard)})
 def recordedCase (law : Rule) (kind : InstitutionKind) : Situation :=
   advance (registered law kind) (.record ⟨9⟩ toyRaw)
 def readyCase (law : Rule) (kind : InstitutionKind) : Situation :=
@@ -120,7 +121,9 @@ def admitOne (s : Situation) (id : Ref .material) (atom : Atom) (value : Bool) :
   let receipt : Receipt raw := ⟨⟨id.value⟩,⟨12⟩,toyNorm,true,true,true,by decide⟩
   advance (advance s (.record id raw)) (.admitEvidence (request .admitEvidence) .human id raw receipt)
 def ownerRelation : LegalRelation := {toyRelation with holder := aO}
-def acquisitionLaw : Rule := {confirmation with materials := [⟨9⟩,⟨90⟩,⟨91⟩,⟨92⟩,⟨93⟩]}
+def acquisitionLaw : Rule := {confirmation with
+  guard := .both (.atom faithAtom) (.both (.atom priceAtom) (.atom publicityAtom))
+  materials := [⟨9⟩,⟨90⟩,⟨91⟩,⟨92⟩,⟨93⟩]}
 def acquisitionStart : Situation :=
   let s := admitOne (admitOne (admitOne (readyCase acquisitionLaw .acquisition)
     ⟨90⟩ faithAtom true) ⟨91⟩ priceAtom true) ⟨92⟩ publicityAtom true

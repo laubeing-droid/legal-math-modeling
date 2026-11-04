@@ -94,10 +94,6 @@ def causalSource {n k : Nat} (x : CausalInput n k) : Native.Result ℚ :=
   if x.supported then .known (x.recovered true - x.recovered false)
   else .unknown .notIdentified
 
-def containsAtom (target : Atom) : Formula → Bool
-  | .atom a => a == target
-  | .both a b | .either a b => containsAtom target a || containsAtom target b
-  | .neg a => containsAtom target a
 
 def causalClauseAllowed (s : Situation) (p : CausalPermit) : Bool :=
   s.causalClauses.any (fun clause =>

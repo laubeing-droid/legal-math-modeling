@@ -198,7 +198,7 @@ theorem performance_success_conserves (s : Situation) (r : Request) (m : Mode)
             cases hc : cashSource before p with
             | known after =>
               refine ⟨before,after,rfl,hc,?_,?_⟩
-              · simp [hm,ha,hp,hd,hc]
+              · simp [hm,ha,hp,hd,hc,EffectIR.adjust,EffectIR.payment,EffectIR.write]
               · exact cash_actual_post_conserves s ⟨r.scope,r.scope.question⟩ before p after hc
             | unknown k => simp [hc,quiet] at h
             | rejected k => simp [hc,quiet] at h

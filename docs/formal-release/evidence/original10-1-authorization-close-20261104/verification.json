@@ -1,6 +1,6 @@
 {
   "schema": "original-question-evidence-v1",
-  "status": "CANDIDATE_PENDING_STAGED_PEER_REVIEW",
+  "status": "CANDIDATE_PENDING_REPAIR_COMMIT_H2_CI_AND_PEER_REVIEW",
   "original_question": "10.1",
   "clauses": [
     "U10.1"
@@ -588,7 +588,9 @@
           "path": "D:\\tmp\\original10-1-records-20261104\\checks\\07-paper-derived-check.receipt.json",
           "bytes": 824,
           "sha256": "d4d1aabbee2d27a6fa07e9d05860d2d83dc52e33e7ae53b07214b543bd277969"
-        }
+        },
+        "scope": "No-argument dry-run only: validates replacement-template matches and prints figure counts; it does not prove existing paper text equals generated output.",
+        "observed_dry_run_count": "closed=1790 while committed drafts still showed 1783"
       },
       {
         "name": "duplication-check",
@@ -842,8 +844,8 @@
   },
   "staged_diff_check": {
     "status": "RECORDED_EXTERNALLY_AFTER_FINAL_STAGE",
-    "receipt_path": "D:/tmp/original10-1-records-20261104/final-checks-r2/cached-diff-check-receipt.json",
-    "note": "The verification file was finalized and staged before this external cached diff check; its result remains in the referenced receipt and is not copied here to avoid self-reference."
+    "receipt_path": "D:/tmp/original10-1-pr121-r1/final-checks-r5/cached-diff-check-receipt.json",
+    "note": "本JSON填好并暂存后执行最终检查，结果保存在此外部收据；本JSON不回写最终PASS或收据hash，避免自指。"
   },
   "consumer_wiring": {
     "current_edges_reviewed": 15,
@@ -1048,5 +1050,129 @@
     "COVERED": 72,
     "PARTIAL": 17,
     "NOT_RECONCILED": 8
+  },
+  "paper_accounting_correction": {
+    "prior_required_check": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/rebind_paper_derived_accounting.py"
+      ],
+      "returncode": 0,
+      "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+      "pid": 12372,
+      "started_utc": "2026-11-04T15:17:29.925913+00:00",
+      "ended_utc": "2026-11-04T15:17:30.616374+00:00",
+      "scope": "dry-run template matching and count print only; no content-equality assertion",
+      "stdout": {
+        "path": "D:\\tmp\\original10-1-records-20261104\\checks\\07-paper-derived-check.stdout.bin",
+        "bytes": 494,
+        "sha256": "d8443656d1de1a740d0a1fb67a288f0fc045f1bc1009211dd9753728a1195e09"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-1-records-20261104\\checks\\07-paper-derived-check.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt": {
+        "path": "D:\\tmp\\original10-1-records-20261104\\checks\\07-paper-derived-check.receipt.json",
+        "bytes": 824,
+        "sha256": "d4d1aabbee2d27a6fa07e9d05860d2d83dc52e33e7ae53b07214b543bd277969"
+      }
+    },
+    "H1_failure_context": {
+      "label": "PR121 full-chain H1 at merge-test M1",
+      "head_commit": "d3285f0d8b0a924ebf7e107e46cd2814b9e483e0",
+      "merge_test_commit": "f68ce6d4b70b68e7f60a8f1bb5153e75d00345e2",
+      "failed_component": "python-gates",
+      "summary": "774 passed, 2 failed",
+      "failure": "Both drafts stated 1783 closed-no-binders declarations while declaration_shape_report.json reported 1790.",
+      "failed_tests": [
+        "tests/spec/test_declaration_shape_report.py::test_papers_quote_the_shape_artifact_and_not_a_memory",
+        "tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces"
+      ],
+      "Dtmp_failure_history": "D:/tmp/original10-1-pr121-r1/failure-history.json",
+      "Dtmp_native_artifact_zip": "D:/tmp/original10-1-pr121-r1/artifact-13338264698.zip",
+      "note": "CI identifiers and failed artifact details remain in Dtmp/PR history, not added as new run quotes in this repository packet."
+    },
+    "dependency_order": "Update shape report and all of its source inputs first; run rebind_paper_derived_accounting.py --write last.",
+    "repair_writer": {
+      "argv": [
+        "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "scripts/rebind_paper_derived_accounting.py",
+        "--write"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "returncode": 0,
+      "pid": 15308,
+      "started_utc": "2026-11-04T15:49:22.2173800Z",
+      "ended_utc": "2026-11-04T15:49:26.5243493Z",
+      "stdout": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-rebind-write.stdout.bin",
+        "bytes": 482,
+        "sha256": "6697b9be4aa4b3e29a18577f2fb5d2c8e860ff2daa190d288c4185c26d3e3318"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-rebind-write.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-rebind-write-receipt.json",
+        "bytes": 679,
+        "sha256": "8fb7415cb77439b676ad5d3bf4f2132f49e2a93efafe113bb2727d502fa5831c"
+      },
+      "changes": [
+        {
+          "path": "docs/paper-rewrite/paper_cn.md",
+          "old_1783_occurrences": 2,
+          "new_1790_occurrences": 2,
+          "only_change": "closed_no_binders 1783 -> 1790"
+        },
+        {
+          "path": "docs/paper-rewrite/paper_en.md",
+          "old_1783_occurrences": 2,
+          "new_1790_occurrences": 2,
+          "only_change": "closed_no_binders 1783 -> 1790"
+        }
+      ]
+    },
+    "regression_tests": {
+      "argv": [
+        "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/spec/test_declaration_shape_report.py::test_papers_quote_the_shape_artifact_and_not_a_memory",
+        "tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "returncode": 0,
+      "pid": 29968,
+      "started_utc": "2026-11-04T15:49:42.6070725Z",
+      "ended_utc": "2026-11-04T15:49:46.5534025Z",
+      "summary": "2 passed in 1.20s",
+      "stdout": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-regressions.stdout.bin",
+        "bytes": 100,
+        "sha256": "7b535be52aa04c7e9cd9e02fd4dd8cd5e4cc5189950fe2c7c7c517e06902e911"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-regressions.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "receipt": {
+        "path": "D:\\tmp\\original10-1-pr121-r1\\repair\\paper-regressions-receipt.json",
+        "bytes": 872,
+        "sha256": "0ca8a1818b9ab6df67a8aa75f3a8df53642a399f5e24b2d863b4bc14d37fac22"
+      },
+      "scope": "Only the two H1-failing paper consistency tests; no full pytest rerun."
+    }
   }
 }

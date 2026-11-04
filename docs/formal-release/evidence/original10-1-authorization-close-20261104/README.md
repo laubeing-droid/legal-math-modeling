@@ -1,6 +1,6 @@
 # 原题 10.1：授权绑定、经验建议与循环自证
 
-**状态：** Source R2 changed-module CI 与本轮 11 项 required record checks 均通过；12 项 CI-index tests 已通过；最终 CI-index --check / staged diff check 与独立记录复核待完成。当前 source checkpoint 为 `df00067f251b4725e17dffc79c39c3fe6c34eb28`，tree `d8005b78145891981acdc1c94a0cdb47c27a479b`，parent `d19f52d353482a65853f98b380daec86ca4d5c22`；base main 为 `9ea442160b9e938665d3b4b738665103806accd5`。R2 run [`41852112057:1`](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41852112057)，job `126650871579`，只构建 `JurisLean.Candidates.AuthorizationClosureAudit20261104`。Artifact `changed-module-only-41852112057-1`, ID `13335867239`，官方 ZIP 7729 bytes，SHA-256 `6e0c085d3f3d0291daf49fe41c38dc373510aceb34341ce77584cf3cb9474088`。`changed-module.log` 和 `module-plan.json` 是 ZIP 成员的原始字节副本。日志显示 8543 jobs、15 个本题目标和 1 个复用目标的 axiom 输出、2 个定义检查、error 0、`sorryAx` 0；逐目标结果见 `verification.json`。
+**状态：** Source R2 changed-module CI、原 11 项 required record checks、CI-index 检查及 12 项 index tests 已通过；PR121 H1 的 Python gate 发现文稿计数滞后，现已按 shape 报告重生成两篇稿件并通过两项定向回归测试。修复 commit 的新全链 CI 与独立复核待完成。
 
 ## 冻结条文与源证据
 
@@ -19,6 +19,7 @@ R1 run [`41851077228:1`](https://github.com/laubeing-droid/legal-math-modeling/a
 17 项结构测试只在 R1 source 提交前运行一次：`python -X utf8 -m pytest -q tests/spec/test_import_reachability.py tests/test_declaration_collisions.py`，stdout `17 passed in 5.65s`；R2 仅改 proof body/footer，未重跑。物理收据见 `D:/tmp/original10-1-source-r1/pytest-receipt.json`。Changed-module success 不等于全链、records、PR 或现实授权验收。
 
 ## Source pins
+Source R2 run [41852112057:1](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41852112057) is the accepted source checkpoint CI referenced by this packet.
 
 - 新 Candidate：30990 bytes，SHA-256 `be740b3b5ef8296b7c6364430ce34d0c926337f07684d4ffed531e956c3c3e3a`，Git blob `83e3689d8dc80aef2c6ed2ec72f08d8783bd1741`。
 - `JurisLean.lean`：16573 bytes，SHA-256 `fb0faedc0aed2e2a31d204eb8ec4325c1879380920e5dc768c4ec2eb95edd779`，Git blob `4f9913459aa70aa088b3cffa5e676b498dc34960`；仅含本模块一个 generated root import。
@@ -30,3 +31,9 @@ R1 run [`41851077228:1`](https://github.com/laubeing-droid/legal-math-modeling/a
 ## Record validation
 
 本轮 11 项 required record checks 均以实际命令运行并 exit 0；另有 gap-status check exit 0。各命令的 argv、cwd、PID、UTC 起止、stdout/stderr 字节与 SHA-256 均列在 `verification.json`，物理流与收据保存在 `D:/tmp/original10-1-records-20261104/checks/`。官方 CI run index 已从旧基线 602 runs / 1456 quotes 更新为 604 runs / 1458 quotes，仅新增 R1/R2 两个 run；12 项 CI-index tests 已通过（12 passed in 6.33s）。最终 index `--check` 与 CRLF-aware staged diff check 将独立记录在 Dtmp，不写回本文件或 verification，以避免自引用。
+
+## PR121 H1 downstream finding and correction
+
+PR121 的 H1 Python-gates 曾报告 774 passed、2 failed：两篇稿件仍写 closed-no-binders 1783，而 `declaration_shape_report.json` 已给出 1790。失败 artifact、逐字节 ZIP 成员、run/job 身份与原始失败历史保存在 `D:/tmp/original10-1-pr121-r1/failure-history.json` 及同目录下；本仓 packet 不新增该轮 run 引用。
+原 11 项 required checks 中的无参数 `scripts/rebind_paper_derived_accounting.py` 实际是 dry-run：它匹配替换模板并打印生成计数，exit 0 不代表现有文稿内容等于生成结果。本次保留该真实通过记录及其 scope；形状报告和输入先更新，文稿重绑定必须最后运行 `python -X utf8 scripts/rebind_paper_derived_accounting.py --write`。
+本次官方 writer 只将中文稿与英文稿的 1783 改为 1790，其余文稿字节均与原稿相同。之后仅运行原先失败的两项 paper-consistency regression tests，结果为 2 passed in 1.20s。该定向结果修复了可复现差异，新的全链 CI 仍待运行。

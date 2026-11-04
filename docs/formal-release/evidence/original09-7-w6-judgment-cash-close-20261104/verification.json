@@ -1,0 +1,840 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.7"
+  ],
+  "proposed_disposition": {
+    "09.7": "COVERED",
+    "note": "Frozen L187/L189/L191-L196/L198/L200 mapped to the stated finite abstract same-Theta/W6/cash and source-bound rJ evidence. All required 11 record checks and the 12 CI-index tests passed; independent record review and full PR acceptance remain pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      185,
+      201
+    ],
+    "subparagraph_lines": {
+      "09.7": [
+        [
+          187,
+          187
+        ],
+        [
+          189,
+          189
+        ],
+        [
+          191,
+          196
+        ],
+        [
+          198,
+          198
+        ],
+        [
+          200,
+          200
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.3"
+    ]
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-7-w6-judgment-cash-20261104",
+    "base_main": "2fb3cfe30759f64e16f648cec8cb864ab4b7b83e",
+    "commit": "87b7fe1b1054d610c70bef76055fb8074b92c8ea",
+    "tree": "fc074202bf6f02de6c7b86ba7d6bdcfffa02c84e",
+    "parent": "8856a737c7d7f91373ded1371de8f5ebcf422925"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41807723062,
+    "attempt": 1,
+    "job_id": 126498847023,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.W6JudgmentCashAudit20261104",
+    "build": "Build completed successfully (8493 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "axiom_sets_by_target": {
+      "four_stage_numeric_and_cash_witness": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "timed_X_is_actual_cash_projection": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_stages_reuse_existing_invariants": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "toyWorlds_satisfy_one_Theta": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "toyWorlds_share_same_observed_W6": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Bp_does_not_semantically_entail_Bn": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Bn_does_not_semantically_entail_E": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "E_does_not_semantically_entail_X": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "conditional_rJ_branch_is_separate_and_source_bound": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "definition_only_checks": [
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.ModelsTheta",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.X"
+    ],
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "artifact": {
+    "artifact_id": 13310766708,
+    "name": "changed-module-only-41807723062-1",
+    "api_digest": "sha256:956fad59522a9f0ed01ae422a676e390302a7fd817be5488069eafd5b0239c04",
+    "zip_path": "D:\\tmp\\original09-7-source-r3\\artifact-13310766708.zip",
+    "zip_bytes": 2067,
+    "zip_sha256": "956fad59522a9f0ed01ae422a676e390302a7fd817be5488069eafd5b0239c04",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-7-w6-judgment-cash-close-20261104/changed-module.log",
+      "bytes": 9908,
+      "sha256": "4fbd4c282928756e330373bdb6de12ebb289b65e076f674014684f1d5b07e0c8"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-7-w6-judgment-cash-close-20261104/module-plan.json",
+      "bytes": 261,
+      "sha256": "4304f3549a46b67d1fbbc5c901d1f5c20dc382ac89bf9f402172ed2e482fd2be",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 261,
+        "sha256": "4304f3549a46b67d1fbbc5c901d1f5c20dc382ac89bf9f402172ed2e482fd2be"
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 9908,
+        "sha256": "4fbd4c282928756e330373bdb6de12ebb289b65e076f674014684f1d5b07e0c8"
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 9,
+    "new_theorem_pairs": 9,
+    "reused_theorem_pairs": 0,
+    "definition_only_checks": 2,
+    "new_targets": [
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.timed_X_is_actual_cash_projection",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.raw_stages_reuse_existing_invariants",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_satisfy_one_Theta",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_share_same_observed_W6",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.Bp_does_not_semantically_entail_Bn",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.Bn_does_not_semantically_entail_E",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.E_does_not_semantically_entail_X",
+      "JurisLean.Candidates.W6JudgmentCashAudit20261104.conditional_rJ_branch_is_separate_and_source_bound"
+    ],
+    "reused_targets": [],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/W6JudgmentCashAudit20261104.lean",
+      "bytes": 20586,
+      "sha256": "91faf114b615e3054507ceab52f1108c45dbc6201115ec5723fe6bb9f1b372dd",
+      "git_blob": "1da4927e4d5ec77738388ebe600167181bd161c3",
+      "role": "new source module; direct source CI subject"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16445,
+      "sha256": "63364fc3d419bc68516e605a8cd129fe84a5fe3b8a14a0522b213c85fcae9aff",
+      "git_blob": "1fa492ba227c3dd8de338e620e818b07ca6d7522",
+      "role": "single generated root import"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "normalized_lf_bytes": 25,
+      "normalized_lf_sha256": "54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325",
+      "raw_matches_git": false,
+      "normalized_matches_git": true,
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "role": "Lean toolchain pin"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "normalized_lf_bytes": 3129,
+      "normalized_lf_sha256": "7230ea7eeaf37899cdf17d1c878e853e3650d276e6ec6b7f1d2f4c841952963e",
+      "raw_matches_git": false,
+      "normalized_matches_git": true,
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "role": "dependency manifest; Mathlib rev c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "role": "frozen Final20261021 audit source; unchanged"
+    }
+  ],
+  "failed_history": [
+    {
+      "run_id": 41804371257,
+      "attempt": 1,
+      "subject": "3d65c803fdfc196e58cf9894a1e9eefd6964253d",
+      "tree": "879e525cba08f18b6ada22fd066d0e854c90f8a8",
+      "artifact_id": 13309950968,
+      "artifact_name": "changed-module-only-41804371257-1",
+      "zip_path": "D:\\tmp\\original09-7-source-r1\\artifact-13309950968.zip",
+      "zip_bytes": 3723,
+      "zip_sha256": "ca1d250c73266bd932b7834172fd3b3750d9a5c475de7fc8d893efcd760b5dd4",
+      "success_binding": false,
+      "diagnosis": "A newly added record field named at used a reserved Lean token; parser cascades followed, with all nine target recovery reports containing sorryAx. R2 changed only this new module field name and its projections to atTime; no old interfaces or frozen audit changed."
+    },
+    {
+      "run_id": 41806734801,
+      "attempt": 1,
+      "subject": "8856a737c7d7f91373ded1371de8f5ebcf422925",
+      "tree": "f3beefd5e2f2bd1115e0508986681c68d5a14a76",
+      "artifact_id": 13309902910,
+      "artifact_name": "changed-module-only-41806734801-1",
+      "zip_path": "D:\\tmp\\original09-7-source-r2\\artifact-13309902910.zip",
+      "zip_bytes": 2762,
+      "zip_sha256": "86358ff9048dee000c2c81f674012e409a47f1b1ca0db9ab0b363d7a058e88e4",
+      "success_binding": false,
+      "diagnosis": "One unresolved proof goal remained in toyWorld_is_a_Theta_model: scopedBool value projection equalities. R3 adds scopedBool to that simp expansion only; R2 recovery showed sorryAx in four dependent target reports."
+    }
+  ],
+  "subparagraph_mapping": {
+    "09.7.187": "JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness, timed_X_is_actual_cash_projection, and raw_stages_reuse_existing_invariants record the four-stage quantity/cash progression and existing invariant/cash-projection links. The witness keeps judgment truth separate from cash occurrence, uses distinct cash event IDs, and prevents a second amount from copying or double-debiting the original debt under the stated finite inputs.",
+    "09.7.189": "four_stage_numeric_and_cash_witness records the bounded judgment/payment accounting and state distinction; no numeric result itself establishes a real payment or external legal effect.",
+    "09.7.191-196": "toyWorlds_satisfy_one_Theta and toyWorlds_share_same_observed_W6 give three finite worlds under one explicit Theta and the same W6 observation; Bp_does_not_semantically_entail_Bn, Bn_does_not_semantically_entail_E, and E_does_not_semantically_entail_X provide the three non-entailment witnesses. X is the stipulated secondId actual-cash projection in this toy model.",
+    "09.7.198": "The finite witness separates the original debt quantity from judgment state and recorded cash; conclusions are conditional on the stated model inputs and do not derive arbitrary-layer compatibility.",
+    "09.7.200": "conditional_rJ_branch_is_separate_and_source_bound proves the conditional rJ record uses its source-bound identity and distinct judgment relation. This only supports the listed duplicate-relief/Theta constraints; it does not invent or certify any additional Theta rule."
+  },
+  "semantic_scope": {
+    "theta": "One finite explicit abstract Theta with the same context and observation is used; no claim for arbitrary Theta, any real legal domain, or production protocol acceptance.",
+    "worlds": "Three explicit worlds and the exact stated conditions only; no general compatibility theorem for arbitrary layer semantics.",
+    "cash": "X is the stipulated secondId cash projection. This does not prove any real payment occurred or passed a validated payment protocol.",
+    "rj": "The conditional rJ branch is separate and source-bound under the theorem hypotheses; no extra legal rule is inferred."
+  },
+  "consumer_wiring": {
+    "current_edge_count": 15,
+    "affected_edges": [],
+    "basis": "No actual caller among the current 15 U00 edges consumes this finite same-Theta witness; no edge or rating changes."
+  },
+  "same_c_verifier": "NOT_RUN",
+  "full_pr_acceptance": "PENDING",
+  "record_checks11": {
+    "required_count": 11,
+    "status": "PASS",
+    "all_exit_0": true,
+    "checks": [
+      {
+        "name": "manifest-verify",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_theorem_manifest.py",
+          "--verify",
+          "docs/formal-release/theorem_inventory_v3.json",
+          "--require-bound"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\manifest-verify.stdout.bin",
+          "bytes": 31,
+          "sha256": "a1a1acf63e0f45fc1565b08106e3e82153e2cb8b835a17cc3283a18ffb8a21e2"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\manifest-verify.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\manifest-verify.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "probability-audit-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_probability_audit_surface.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\probability-audit-check.stdout.bin",
+          "bytes": 55,
+          "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\probability-audit-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\probability-audit-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "trivial-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_trivial_proof_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\trivial-census-check.stdout.bin",
+          "bytes": 95,
+          "sha256": "fefdffcc130e6e793759e68b5003e3c2d60d089c6b5534600abb086fbd796f46"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\trivial-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\trivial-census-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "structure-volume-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_structure_and_volume_reports.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\structure-volume-check.stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\structure-volume-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\structure-volume-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "reachability",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_import_reachability.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\reachability.stdout.bin",
+          "bytes": 76,
+          "sha256": "64387816c9757a85020e4dd949d62cc126984acef4579090e0c1f91b44a19565"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\reachability.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\reachability.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "paper-single-count",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_paper_single_count.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-single-count.stdout.bin",
+          "bytes": 126,
+          "sha256": "5e5ad637e02063925d45ce7cac3b49a6b5a52d73d11180419d8ae9e91405d43c"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-single-count.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-single-count.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "paper-derived-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/rebind_paper_derived_accounting.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-derived-check.stdout.bin",
+          "bytes": 494,
+          "sha256": "875b352558235cf7435e54988080fdffc10340fcd97aeb72c75a058ba65defed"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-derived-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\paper-derived-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "duplication-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\duplication-census-check.stdout.bin",
+          "bytes": 75,
+          "sha256": "5eec765dd70817d3309f94ed0509dfb81d5eca9ac0cf73bdcbe7f2c7f185eb9d"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\duplication-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\duplication-census-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "declaration-shape-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_declaration_shape_report.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\declaration-shape-check.stdout.bin",
+          "bytes": 29,
+          "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\declaration-shape-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\declaration-shape-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "clause-binding",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_clause_declaration_binding.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\clause-binding.stdout.bin",
+          "bytes": 310,
+          "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\clause-binding.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\clause-binding.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "archive-gap",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_archive_gap_close.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\archive-gap.stdout.bin",
+          "bytes": 228,
+          "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\checks\\archive-gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\archive-gap.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      }
+    ]
+  },
+  "extra_checks": [
+    {
+      "name": "gap-status-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\gap-status-extra.stdout.bin",
+        "bytes": 26,
+        "sha256": "28bf703de509d7ee6e3f125fb0eb9253b04162eb05012784bfeb4bd22fa067a6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\gap-status-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\gap-status-extra.exit.txt",
+      "capture": "PHYSICAL_STREAMS"
+    },
+    {
+      "name": "ci-index-check-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-check-extra.stdout.bin",
+        "bytes": 40,
+        "sha256": "498dfad285f1297666dccec87274648e65e731c0ae24322b37e0a38e7ec77880"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-check-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-check-extra.exit.txt",
+      "capture": "PHYSICAL_STREAMS"
+    },
+    {
+      "name": "ci-index-final-check",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-final-check.stdout.bin",
+        "bytes": 40,
+        "sha256": "498dfad285f1297666dccec87274648e65e731c0ae24322b37e0a38e7ec77880"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-final-check.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-final-check.exit.txt",
+      "capture": "PHYSICAL_STREAMS",
+      "scope": "After final README/verification bytes and explicit 15-path stage were present; verification JSON itself is not part of the run-quote scan."
+    }
+  ],
+  "ci_run_index_tests": {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "tests/test_ci_run_index.py",
+      "-q"
+    ],
+    "exit": 0,
+    "summary": "12 passed in 6.07s",
+    "stdout": {
+      "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-12tests.stdout.bin",
+      "bytes": 101,
+      "sha256": "0215b41ba56ff6ea05563b3c3d20119790abbe73501062115af3800d18ca4ed9"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-12tests.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\ci-index-12tests.exit.txt",
+    "capture": "PHYSICAL_STREAMS"
+  },
+  "staged_diff_check": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "D:\\tmp\\original09-7-records-20261104\\checks\\cached-diff-cr-at-eol.stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-7-records-20261104\\checks\\cached-diff-cr-at-eol.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-7-records-20261104\\checks\\cached-diff-cr-at-eol.exit.txt",
+    "capture": "PHYSICAL_STREAMS",
+    "scope": "Passed after explicit 15-path stage. This recorded check predates only this verification evidence subrecord; a final cached diffcheck is run after restaging it and retained in Dtmp without self-hashing."
+  },
+  "ci_run_index": {
+    "baseline_runs": 596,
+    "baseline_quotes": 1450,
+    "runs_after_quotes_only": 599,
+    "quotes_after_quotes_only": 1453,
+    "newly_added_runs": [
+      {
+        "run_id": 41804371257,
+        "head_sha": "3d65c803fdfc196e58cf9894a1e9eefd6964253d",
+        "conclusion": "failure",
+        "artifact_id": 13309950968
+      },
+      {
+        "run_id": 41806734801,
+        "head_sha": "8856a737c7d7f91373ded1371de8f5ebcf422925",
+        "conclusion": "failure",
+        "artifact_id": 13309902910
+      },
+      {
+        "run_id": 41807723062,
+        "head_sha": "87b7fe1b1054d610c70bef76055fb8074b92c8ea",
+        "conclusion": "success",
+        "artifact_id": 13310766708
+      }
+    ],
+    "old_metadata_refreshed": false,
+    "full_evidence_fetched": false,
+    "metadata_capture": "Three new Actions run records fetched from official API only; JSON saved to D:/tmp/original09-7-records-20261104/ci-index-new-run-metadata.json, summary stdout TOOL_RETURN_ONLY. Existing 596 run metadata retained.",
+    "quotes_only": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--quotes-only"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\ci-index-quotes-only.stdout.bin",
+        "bytes": 109,
+        "sha256": "43e072b308870f8e69a0c3cc39172c44dca3af5e18a18901b5d4349a4417b909"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\ci-index-quotes-only.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-7-records-20261104\\ci-index-quotes-only.exit.txt"
+    }
+  },
+  "record_generation": {
+    "probability_audit_write": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "exit": 0,
+      "capture": "TOOL_RETURN_ONLY",
+      "stdout_text": "wrote 3468 #print axioms targets into AxiomAudit.lean",
+      "diff": "0 diff; no metadata checkpoint"
+    },
+    "theorem_manifest_generate": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_theorem_manifest.py",
+        "--require-bound"
+      ],
+      "exit": 0,
+      "subject": "87b7fe1b1054d610c70bef76055fb8074b92c8ea",
+      "tree": "fc074202bf6f02de6c7b86ba7d6bdcfffa02c84e",
+      "stdout": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\manifest-generate.stdout.bin",
+        "bytes": 576,
+        "sha256": "6991195c6905928850ac34f255a5986a071f8d35124de01b0da251f115fd1cd2"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-7-records-20261104\\manifest-generate.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-7-records-20261104\\manifest-generate.exit.txt",
+      "binding": "BOUND_TO_SUBJECT",
+      "diverging_files": []
+    },
+    "derived_writes": {
+      "duplication-census-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\duplication-census-write.stdout.bin",
+          "bytes": 168,
+          "sha256": "a97f3c19bdf09ca6817c924cca32569df8ee5d3116c0ec69c314c6e8d94265b0"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\duplication-census-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\duplication-census-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      "trivial-census-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\trivial-census-write.stdout.bin",
+          "bytes": 129,
+          "sha256": "dab26bf89dc0e2bf69be89027432872753fa2641b919d3a69ef5696cc67aa49a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\trivial-census-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\trivial-census-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      "structure-volume-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\structure-volume-write.stdout.bin",
+          "bytes": 806,
+          "sha256": "5b111c3d9068fd0c54cf8854a94c7b4f5868f0f96b0a12bc7b5877509b5165b1"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\structure-volume-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\structure-volume-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      "declaration-shape-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\declaration-shape-write.stdout.bin",
+          "bytes": 118,
+          "sha256": "1be7eac3e9cb71e15afc99f38804e1df735c05e653d8e75d455ee4cc7a6ac7c1"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\declaration-shape-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\declaration-shape-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      "gap-status-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\gap-status-write.stdout.bin",
+          "bytes": 551,
+          "sha256": "403d387ec864449f8e1cd5837b39587c8c5765f3e5933cf814ffd52520cb4d06"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\gap-status-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\gap-status-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      "paper-derived-write": {
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\paper-derived-write.stdout.bin",
+          "bytes": 482,
+          "sha256": "02c8e96eaf4e60cb606b7866377f1027c84642eedb52baef30ee11d1a63d0d48"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-7-records-20261104\\paper-derived-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-7-records-20261104\\paper-derived-write.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      }
+    },
+    "ci_index_metadata": {
+      "path": "D:\\tmp\\original09-7-records-20261104\\ci-index-new-run-metadata.json",
+      "bytes": 5225,
+      "sha256": "4162601a99f01f9fb01764fc3cf4986209844e251a36655d2c041ecf4a09021a",
+      "method": "official build_ci_run_index.py run_ids_in_markdown/describe for the three newly quoted run IDs only; no older metadata refresh and no full evidence fetch."
+    }
+  },
+  "test_capture_boundary": {
+    "source_structural_tests17": "Not repeated for record stage; source CI is bound to R3."
+  }
+}

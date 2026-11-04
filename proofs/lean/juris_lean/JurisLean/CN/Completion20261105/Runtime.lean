@@ -106,11 +106,9 @@ def operatorValue {α : Type} : OpRequest α → α → Value
 def institutionValue {α : Type} : InstitutionCall α → α → Value
   | .revoke _ _ _ _,v => .life v | .delegate _ _ _ _,v => .agency v
   | .apparent _ _ _ _ _,v => .judgment v | .jurisdiction _ _,v => .jurisdiction v
-  | .burden _ _ _,v => .judgment v | .acquisition _ _ _ _,v => .judgment v
-  | .offense _ _ _ _ _ _ _ _,v => .reference .query v.value
   | .bankruptcy _ _ _ _,v => .events v | .interest _ _ _ _,v => .natural v
   | .compensation _ _ _ _,v => .judgment v | .rightsConflict,_ => .unit
-  | .interpret _ _ _ _,v => .formula v | .resJudicata _ _ _ _,v => .boolean v
+  | .interpret _ _ _ _,v => .formula v
   | .propose _,v => .candidate v
 
 def commandValue {α : Type} : Command α → α → Value

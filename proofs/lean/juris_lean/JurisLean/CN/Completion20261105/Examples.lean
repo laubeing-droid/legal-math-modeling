@@ -98,7 +98,7 @@ theorem revoke_without_fictitious_formed :
     (executeCommand undoOnlyStart (.institution (.revoke (call .constitute) (.atom toyAtom)
       toyScope.object revokeGuard))).answer = .success (revokeLife revocableLife) ∧
     (executeCommand undoOnlyStart (.institution (.revoke (call .constitute) (.atom toyAtom)
-      toyScope.object revokeGuard))).after.core.state.L = [] := by decide
+      toyScope.object revokeGuard))).after.core.state.L = [] := by exact ⟨rfl,rfl⟩
 
 def agency : Agency := ⟨⟨12⟩, ⟨22⟩, ⟨23⟩, toyScope, true, []⟩
 def agencyStart : Situation :=
@@ -121,7 +121,8 @@ def apparentRelation : LegalRelation := {toyRelation with holder := ⟨22⟩}
 
 def apparentStart : Situation :=
   let s := readyCase {toyRule with formed := none} .agency
-  let st := {s.core.state with L := [apparentRelation]
+  let st := {s.core.state with
+    L := [apparentRelation]
     constraints := [.sameLoss apparentRelation apparentRelation]}
   s.withCore (s.core.putState st rfl)
 
@@ -133,7 +134,7 @@ theorem apparent_actual_attribution :
     apparentResult.answer = .success .established ∧
     (apparentResult.after.core.state.L.head?).map LegalRelation.holder = some ⟨12⟩ ∧
     apparentResult.after.core.state.constraints = [.sameLoss toyRelation toyRelation] ∧
-    apparentResult.after.core.state.F = apparentStart.core.state.F := by decide
+    apparentResult.after.core.state.F = apparentStart.core.state.F := by exact ⟨rfl,rfl,rfl,rfl⟩
 
 theorem apparent_unchecked_faith_is_not_attribution :
     (executeCommand apparentStart (.institution (.apparent (call .constitute) (.atom toyAtom)

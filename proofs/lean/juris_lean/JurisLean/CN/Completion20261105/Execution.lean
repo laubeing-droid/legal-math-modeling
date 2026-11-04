@@ -125,11 +125,6 @@ inductive InstitutionCall : Type → Type
       (g : ApparentGuard) : InstitutionCall Judgment
   | jurisdiction (known : Bool) (input : JurisdictionInput) :
       InstitutionCall (Option JurisdictionBranch)
-  | burden (p : ProofPolicy) (ids : List (Ref .material)) (a : Atom) : InstitutionCall Judgment
-  | acquisition (route : AcqRoute) (goodFaith price publicity : Judgment) : InstitutionCall Judgment
-  | offense (ps : List Participation) (known : Bool) (ability elements : Judgment)
-      (who : Ref .actor) (event : Ref .event) (commonScope charge : Ref .query) :
-      InstitutionCall (Ref .query)
   | bankruptcy (c : Law.Call) (grounds : Formula) (dates : CaseDates) (debtor : Ref .actor) :
       InstitutionCall (List (Ref .event))
   | interest (c : Law.Call) (grounds : Formula)
@@ -139,8 +134,6 @@ inductive InstitutionCall : Type → Type
   | rightsConflict : InstitutionCall Unit
   | interpret (c : Law.Call) (grounds : Formula) (obj : Ref .object) (meaning : Check Formula) :
       InstitutionCall Formula
-  | resJudicata (index : Option BindingIndex) (who : Ref .actor) (scope : Scope) (time : Nat) :
-      InstitutionCall Bool
   | propose (output : EngineOutput) : InstitutionCall Candidate
 
 def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply α
@@ -148,10 +141,6 @@ def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply �
   | .delegate c ground obj grant => Law.delegateCall s c ground obj grant
   | .apparent c ground agent principal guard => Law.apparentCall s c ground agent principal guard
   | .jurisdiction known input => Law.jurisdictionQuery s known input
-  | .burden policy ids a => Law.burdenQuery s policy ids a
-  | .acquisition route faith price pub => Law.acquisitionQuery s route faith price pub
-  | .offense ps known ability elements who event scope charge =>
-      Law.offenseQuery s ps known ability elements who event scope charge
   | .bankruptcy c ground dates debtor => Law.acceptBankruptcy s c ground dates debtor
   | .interest c ground claim time =>
       Law.grounded s c (Law.continueWith (Law.gateFor s c ground .bankruptcy)
@@ -162,7 +151,6 @@ def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply �
             stateCompensation := (kind,rel) :: z.tracks.stateCompensation}}, .success .established⟩))
   | .rightsConflict => Law.rightsConflict s
   | .interpret c ground obj meaning => Law.interpret s c ground obj meaning
-  | .resJudicata index who scope time => Law.resJudicataQuery s index who scope time
   | .propose output => Law.proposeEngine s output
 
 def recordMaterial (s : Situation) (i : Ref .material) (raw : Raw i) : Reply (Ref .material) :=

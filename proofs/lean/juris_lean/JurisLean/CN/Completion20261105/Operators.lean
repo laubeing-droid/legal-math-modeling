@@ -220,7 +220,9 @@ theorem actual_assignments_commute (s : Situation) (a b : MeaningAssignment)
     assignment_two_defined s a b fa fb h ha hb
 
 def commuteQuery (s : Situation) (a b : MeaningAssignment) (ra rb : Request) : Reply Bool :=
-  if assignmentAllowed s a ra && assignmentAllowed s b rb then
+  if automationAllowed s.core.state ra.scope .automated = false ||
+      automationAllowed s.core.state rb.scope .automated = false then quiet s .blockedHuman
+  else if assignmentAllowed s a ra && assignmentAllowed s b rb then
     if Independent a b then quiet s (.success true)
     else
       let ab := (assignLocal (assignLocal s a).after b).after.meanings
@@ -260,29 +262,67 @@ theorem commute_true_sound (s : Situation) (a b : MeaningAssignment) (ra rb : Re
       (assignLocal (assignLocal s b).after a).after.meanings := by
   unfold commuteQuery at h
   split at h
-  · rename_i hg
+  · cases h
+  · split at h
+    · rename_i hg
+      split at h
+      · rename_i hi
+        have both : assignmentAllowed s a ra = true ∧ assignmentAllowed s b rb = true := by
+          simpa only [Bool.and_eq_true] using hg
+        have ag : (a.expression.eval s.meanings).isSome = true := by
+          have hg := both.1
+          simp only [assignmentAllowed, Bool.and_eq_true] at hg
+          exact hg.2
+        have bg : (b.expression.eval s.meanings).isSome = true := by
+          have hg := both.2
+          simp only [assignmentAllowed, Bool.and_eq_true] at hg
+          exact hg.2
+        have defined := And.intro ag bg
+        cases ha : a.expression.eval s.meanings with
+        | none => simp [ha] at defined
+        | some fa =>
+          cases hb : b.expression.eval s.meanings with
+          | none => simp [hb] at defined
+          | some fb => exact assignment_two_defined s a b fa fb hi ha hb
+      · dsimp only at h
+        split at h <;> cases h
+    · cases h
+
+theorem commute_true_actual_calls (s : Situation) (a b : MeaningAssignment) (ra rb : Request)
+    (h : (commuteQuery s a b ra rb).answer = .success true) :
+    (assignmentQuery (assignmentQuery s a ra).after b rb).after.meanings =
+      (assignmentQuery (assignmentQuery s b rb).after a ra).after.meanings := by
+  unfold commuteQuery at h
+  split at h
+  · cases h
+  · rename_i hm
+    have ma : automationAllowed s.core.state ra.scope .automated = true := by
+      cases ha : automationAllowed s.core.state ra.scope .automated <;> simp_all
+    have mb : automationAllowed s.core.state rb.scope .automated = true := by
+      cases hb : automationAllowed s.core.state rb.scope .automated <;> simp_all
     split at h
-    · rename_i hi
+    · rename_i hg
       have both : assignmentAllowed s a ra = true ∧ assignmentAllowed s b rb = true := by
         simpa only [Bool.and_eq_true] using hg
-      have ag : (a.expression.eval s.meanings).isSome = true := by
-        have hg := both.1
-        simp only [assignmentAllowed, Bool.and_eq_true] at hg
-        exact hg.2
-      have bg : (b.expression.eval s.meanings).isSome = true := by
-        have hg := both.2
-        simp only [assignmentAllowed, Bool.and_eq_true] at hg
-        exact hg.2
-      have defined := And.intro ag bg
-      cases ha : a.expression.eval s.meanings with
-      | none => simp [ha] at defined
-      | some fa =>
-        cases hb : b.expression.eval s.meanings with
-        | none => simp [hb] at defined
-        | some fb => exact assignment_two_defined s a b fa fb hi ha hb
-    · dsimp only at h
-      split at h <;> cases h
-  · cases h
+      split at h
+      · rename_i independent
+        have ag : (a.expression.eval s.meanings).isSome = true := by
+          have h := both.1
+          simp only [assignmentAllowed,Bool.and_eq_true] at h
+          exact h.2
+        have bg : (b.expression.eval s.meanings).isSome = true := by
+          have h := both.2
+          simp only [assignmentAllowed,Bool.and_eq_true] at h
+          exact h.2
+        cases ha : a.expression.eval s.meanings with
+        | none => simp [ha] at ag
+        | some fa =>
+          cases hb : b.expression.eval s.meanings with
+          | none => simp [hb] at bg
+          | some fb => exact actual_assignments_commute s a b ra rb independent both.1 both.2 ma mb fa fb ha hb
+      · dsimp only at h
+        split at h <;> cases h
+    · cases h
 
 theorem adjustment_no_authority (p : OperatorParams) (s : Situation) (r : Request)
     (m : Mode) (d : Change) (h : freshRequest s r = false) :
@@ -307,6 +347,7 @@ theorem witness_pending (s : Situation) (r : WitnessRequest) (raw : Raw r.materi
 
 #print axioms advance_clock_exact
 #print axioms commute_true_sound
+#print axioms commute_true_actual_calls
 #print axioms assignment_gate_stable
 #print axioms actual_assignments_commute
 #print axioms adjustment_no_authority

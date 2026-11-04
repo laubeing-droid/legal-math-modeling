@@ -46,7 +46,8 @@ def History.append {a b c : Situation} (left : History a b) :
 
 theorem program_pure_left {α β : Type} (v : α) (next : α → Program β)
     (s : Situation) :
-    runProgram (.bind (.pure v) next) s = runProgram (next v) s := rfl
+    runProgram (.bind (.pure v) next) s = runProgram (next v) s := by
+  simp [runProgram, quiet, joinReply]
 
 theorem joinReply_assoc {α β γ : Type} (r : Reply α)
     (first : α → Situation → List (Reply β))
@@ -80,7 +81,7 @@ theorem program_conflict_stops {α β : Type} (s : Situation) (route : ReviewRou
 theorem program_has_actual_history {α : Type} (p : Program α)
     (s : Situation) (r : Reply α) (h : r ∈ runProgram p s) :
     Nonempty (History s r.after) := by
-  induction p generalizing s r with
+  induction p generalizing s with
   | pure value =>
     simp [runProgram] at h
     subst r

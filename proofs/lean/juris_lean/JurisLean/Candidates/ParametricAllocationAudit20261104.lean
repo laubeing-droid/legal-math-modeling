@@ -25,7 +25,7 @@ structure AllocationCertificate
     (rowBinding : AllocationRowBinding items)
     (paymentIdentity : AllocationPaymentIdentity)
     (theta : AllocationThetaRule)
-    (at : LawDate)
+    (time : LawDate)
     (version : Nat) where
   sourceDebt : Fin items.length → DebtRecord
   facts : Fin items.length → List SourceRef
@@ -38,7 +38,7 @@ structure AllocationCertificate
   paymentIdentityEvidence : ∀ i,
     0 < allocation i → paymentIdentity (sourceDebt i) payment
   thetaEvidence : ∀ i,
-    0 < allocation i → theta items (sourceDebt i) payment at version (facts i)
+    0 < allocation i → theta items (sourceDebt i) payment time version (facts i)
   bounds : ∀ i, 0 ≤ allocation i ∧ allocation i ≤ (items.get i).amount
   budget : (∑ i, allocation i) ≤ payment.amount.value
 
@@ -48,9 +48,9 @@ abbrev AllocTheta
     (rowBinding : AllocationRowBinding items)
     (paymentIdentity : AllocationPaymentIdentity)
     (theta : AllocationThetaRule)
-    (at : LawDate)
+    (time : LawDate)
     (version : Nat) :=
-  Option (AllocationCertificate items payment rowBinding paymentIdentity theta at version)
+  Option (AllocationCertificate items payment rowBinding paymentIdentity theta time version)
 
 def applyAllocationVector
     (items : List LedgerItem)
@@ -72,9 +72,9 @@ def applyAllocTheta
     {rowBinding : AllocationRowBinding items}
     {paymentIdentity : AllocationPaymentIdentity}
     {theta : AllocationThetaRule}
-    {at : LawDate}
+    {time : LawDate}
     {version : Nat}
-    (output : AllocTheta items payment rowBinding paymentIdentity theta at version) :
+    (output : AllocTheta items payment rowBinding paymentIdentity theta time version) :
     Option (List LedgerItem) :=
   output.map fun certificate => applyAllocationVector items certificate.allocation
 
@@ -131,9 +131,9 @@ theorem certified_allocation_updates_actual_list
     {rowBinding : AllocationRowBinding items}
     {paymentIdentity : AllocationPaymentIdentity}
     {theta : AllocationThetaRule}
-    {at : LawDate}
+    {time : LawDate}
     {version : Nat}
-    (certificate : AllocationCertificate items payment rowBinding paymentIdentity theta at version) :
+    (certificate : AllocationCertificate items payment rowBinding paymentIdentity theta time version) :
     applyAllocTheta (some certificate) =
         some (applyAllocationVector items certificate.allocation) ∧
       (applyAllocationVector items certificate.allocation).length = items.length ∧
@@ -242,7 +242,8 @@ theorem l163_equal_total_does_not_fix_identity :
     forwardAfterPay.map (fun item => (item.ident, item.amount)) = [(1, 0), (2, 5)] ∧
       reversedAfterPay.map (fun item => (item.ident, item.amount)) = [(2, 0), (1, 5)] ∧
       outstanding forwardAfterPay = 5 ∧ outstanding reversedAfterPay = 5 := by
-  decide
+  norm_num [forwardAfterPay, reversedAfterPay, twoEqualItems, afterPay,
+    outstanding, liAmounts]
 
 end JurisLean.Candidates.ParametricAllocationAudit20261104
 

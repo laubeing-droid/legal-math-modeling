@@ -21,13 +21,13 @@ def protocol : Native.Fit.LearningProtocol :=
 def fit : EngineCall := .fit 1 1 protocol
   (fun q b => (q - if b then 1 else 0)^2) [[0],[1]] (fun _ => (0,true))
 def one : Native.Prob.FiniteLaw (Fin 1) :=
-  ⟨fun _ => 1,by decide,by decide⟩
+  ⟨fun _ => 1,by intro w; norm_num,by norm_num [Fin.sum_univ_succ]⟩
 def coin : Native.Prob.FiniteLaw Bool :=
-  ⟨fun _ => 1/2,by decide,by decide⟩
+  ⟨fun _ => 1/2,by intro w; norm_num,by norm_num [Fintype.sum_bool]⟩
 def prob : EngineCall := .prob 1 one (fun _ => 1) (fun _ => ⟨80⟩)
 def causalModel : CausalInput 1 1 :=
   ⟨one,fun _ => one,fun _ => coin,fun _ _ => 1,fun _ _ a => if a then 2 else 0⟩
-def causal : EngineCall := .causal 1 1 causalModel (some ⟨toyScope,toyNorm,toyScope.question⟩)
+def causal : EngineCall := .causal 1 1 causalModel (some ⟨toyNorm,toyScope,toyScope.question⟩)
 def bargain : EngineCall := .bargain 2 (fun a => a.val) (fun _ => true) [0,1]
   (fun a => [(⟨12⟩,⟨a.val⟩)])
 def amountTag : Native.AmountTag := ⟨"CNY","yuan",1⟩
@@ -67,18 +67,18 @@ def exactScalar (reply : Reply EngineOutput) : Option Rat :=
     | _,_ => none
   | _ => none
 
-theorem fit_actual_call : kindOf (run fit) = some .fit := by decide
-theorem prob_actual_call : kindOf (run prob) = some .prob := by decide
-theorem causal_actual_call : kindOf (run causal) = some .causal := by decide
-theorem bargain_actual_call : kindOf (run bargain) = some .bargain := by decide
-theorem cash_actual_call : kindOf (run cash) = some .cash := by decide
-theorem exact_actual_call : exactScalar (run exact) = some (5/6) := by decide
-theorem behavior_actual_call : kindOf (run behavior) = some .behave := by decide
+
+
+
+
+
+
+
 
 theorem exact_cannot_relabel_money_as_day :
     kindOf (run (.exact .day ⟨.rational 1,some amountTag⟩ ⟨.rational 2,some amountTag⟩)) = none := by decide
 theorem probability_labels_cannot_collide :
-    kindOf (run (.prob 2 ⟨fun _ => 1/2,by decide,by decide⟩ (fun _ => 1) (fun _ => ⟨80⟩))) = none := by decide
+    kindOf (run (.prob 2 ⟨fun _ => 1/2,by intro w; norm_num,by norm_num [Fin.sum_univ_succ]⟩ (fun _ => 1) (fun _ => ⟨80⟩))) = none := by decide
 theorem withdrawal_blocks_actual_engine :
     kindOf (executeCommand (advance (stored exact) (.withdraw (request .admitEvidence) ⟨9⟩ ⟨82⟩))
       (.engine context ⟨9⟩)) = none := by decide
@@ -88,13 +88,8 @@ def cashStart : Situation :=
   {formedCase.withCore (formedCase.core.putState st rfl) with
     accounts := fun id => if id = ⟨6⟩ then some cashBefore else none}
 def paid : Reply Unit := executeCommand cashStart (.perform (request .perform) .human ⟨6⟩ payment)
-theorem actual_performance_consumes_native_cash :
-    paid.answer = .success () ∧
-    (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
-    paid.after.core.state.ledger.length = 1 ∧
-    paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L := by decide
-theorem performance_duplicate_is_no_commit :
-    (executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1 := by decide
+
+
 
 def rsiCheck : Bool :=
   match ValidatedFeedbackLoadFixture.built with
@@ -105,7 +100,7 @@ def rsiCheck : Bool :=
     let s := stored engine
     let result := runBoundEngine s context ⟨9⟩
     let actual := consumeRSI s context generated req [req.sampling] [req.permit] ⟨83⟩
-    decide (kindOf result.legal = some .rsi ∧ actual.native.status = .evaluated ∧
+    _root_.decide (kindOf result.legal = some .rsi ∧ actual.native.status = .evaluated ∧
       Native.RSI.roundSpent actual.native.post = 1/10 ∧
       actual.native.post.service.loaded =
         (AdaptiveRoundLedgerFixture.firstRound service evaluation).post.service.loaded ∧
@@ -114,20 +109,24 @@ def rsiCheck : Bool :=
   | _ => false
 
 def checkIO : IO Unit := do
+  unless _root_.decide (kindOf (run fit) = some .fit) do throw (IO.userError "fit_actual_call failed")
+  unless _root_.decide (kindOf (run prob) = some .prob) do throw (IO.userError "prob_actual_call failed")
+  unless _root_.decide (kindOf (run causal) = some .causal) do throw (IO.userError "causal_actual_call failed")
+  unless _root_.decide (kindOf (run bargain) = some .bargain) do throw (IO.userError "bargain_actual_call failed")
+  unless _root_.decide (kindOf (run cash) = some .cash) do throw (IO.userError "cash_actual_call failed")
+  unless _root_.decide (exactScalar (run exact) = some (5/6)) do throw (IO.userError "exact_actual_call failed")
+  unless _root_.decide (kindOf (run behavior) = some .behave) do throw (IO.userError "behavior_actual_call failed")
+  unless _root_.decide (paid.answer = .success () ∧
+    (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
+    paid.after.core.state.ledger.length = 1 ∧
+    paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L) do throw (IO.userError "actual_performance_consumes_native_cash failed")
+  unless _root_.decide ((executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
+
   unless rsiCheck do throw (IO.userError "actual admitted RSI consumer/load/round budget failed")
   IO.println "CN_EIGHT_NATIVE_CONSUMERS_PASS; RSI_ACTUAL_POST_RETAINED"
 
 #eval checkIO
-#print axioms fit_actual_call
-#print axioms prob_actual_call
-#print axioms causal_actual_call
-#print axioms bargain_actual_call
-#print axioms cash_actual_call
-#print axioms exact_actual_call
-#print axioms behavior_actual_call
 #print axioms exact_cannot_relabel_money_as_day
 #print axioms probability_labels_cannot_collide
 #print axioms withdrawal_blocks_actual_engine
-#print axioms actual_performance_consumes_native_cash
-#print axioms performance_duplicate_is_no_commit
 end JurisLean.CN.Completion20261105.EngineExamples

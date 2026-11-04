@@ -78,7 +78,8 @@ def revokeLocal (s : Situation) (obj : Ref .object) (g : RevokeGuard) : Reply Ci
 
 def revoke (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (g : RevokeGuard) : Reply CivilActLife :=
-  if c.request.actor != g.holder || c.request.time != g.atTime then quiet s (.rejected .unauthorized)
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else if c.request.actor != g.holder || c.request.time != g.atTime then quiet s (.rejected .unauthorized)
   else atomic s (if c.request.actor == g.holder && c.request.scope.object == obj then
     continueWith (gateFor s c grounds .lifecycle) (fun z => revokeLocal z obj g)
   else quiet s (.rejected .unauthorized))
@@ -148,7 +149,8 @@ def delegateLocal (s : Situation) (obj : Ref .object)
 
 def delegateCall (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (child : Grant) : Reply Agency :=
-  if c.request.act != .constitute || child.role != .party then quiet s (.rejected .unauthorized)
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else if c.request.act != .constitute || child.role != .party then quiet s (.rejected .unauthorized)
   else atomic s (continueWith (gateFor s c grounds .agency) (fun z => delegateLocal z obj c.request child))
 
 /- Norm text/version are unchanged; the derived authority registry changes.
@@ -353,7 +355,8 @@ def interpretLocal (s : Situation) (obj : Ref .object) (f : Formula) : Reply For
 
 def interpret (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (f : Check Formula) : Reply Formula :=
-  atomic s (match f with
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else atomic s (match f with
   | .unknown k => quiet s (.unknown k)
   | .known meaning =>
     if c.request.scope.object == obj then

@@ -85,7 +85,8 @@ def lookupMeaning : List (Ref .object × Formula) → Ref .object → Option For
     if key = target then some value else lookupMeaning rest target
 
 def contractQuery (s : Situation) (c : Law.Call) (obj : Ref .object) : Reply Judgment :=
-  if obj != c.request.scope.object then quiet s (.rejected .unauthorized)
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else if obj != c.request.scope.object then quiet s (.rejected .unauthorized)
   else match s.meanings obj with
     | none => quiet s (.unknown .inputUnchecked)
     | some body =>

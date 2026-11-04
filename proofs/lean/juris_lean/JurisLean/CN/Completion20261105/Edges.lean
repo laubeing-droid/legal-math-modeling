@@ -129,6 +129,41 @@ theorem performance_preserves_F_L (s : Situation) (r : Request) (m : Mode)
           · exact ⟨rfl,rfl⟩
           · split <;> exact ⟨rfl,rfl⟩
 
+/- C4: closing the actual Perform consumer requires the stored post, not
+   just a theorem about a different call to consumeCash. Success below derives
+   the native prior/post equality and reuses the accepted conservation result. -/
+theorem performance_success_conserves (s : Situation) (r : Request) (m : Mode)
+    (rel : Ref .relation) (p : Native.PaymentPayload)
+    (h : (performPayment s r m rel p).answer = .success ()) :
+    ∃ before after, s.accounts rel = some before ∧ cashSource before p = .known after ∧
+      (performPayment s r m rel p).after.accounts rel = some after ∧
+      Native.Cash.Conserves after ∧ Native.Cash.CashConsistent after := by
+  unfold performPayment at h ⊢
+  split at h
+  · cases h
+  · rename_i hm
+    split at h
+    · cases h
+    · rename_i ha
+      cases hb : s.accounts rel with
+      | none => simp [hb,quiet] at h
+      | some before =>
+        simp only [hb] at h ⊢
+        split at h
+        · cases h
+        · rename_i hp
+          split at h
+          · cases h
+          · rename_i hd
+            cases hc : cashSource before p with
+            | known after =>
+              refine ⟨before,after,hb,hc,?_,?_⟩
+              · simp [hm,ha,hp,hd,hc]
+              · exact cash_actual_post_conserves s ⟨r.scope,r.scope.question⟩ before p after hc
+            | unknown k => simp [hc,quiet] at h
+            | rejected k => simp [hc,quiet] at h
+            | conflict a b => simp [hc,quiet] at h
+
 /- F06: having a decision candidate, score, template or model output never
    satisfies the exact stored-decision membership check. -/
 theorem no_decision_no_binding (s : Situation) (b : DecideBinding) (m : Mode)
@@ -170,4 +205,5 @@ theorem decision_assessment_preserves_relations (s : Situation) (c : Law.Call)
 #print axioms learning_frame
 #print axioms decision_assessment_preserves_relations
 #print axioms performance_preserves_F_L
+#print axioms performance_success_conserves
 end JurisLean.CN.Completion20261105

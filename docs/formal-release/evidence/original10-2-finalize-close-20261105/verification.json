@@ -1,0 +1,1009 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CI_AND_RECORD_CHECKS_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "10.2",
+  "clauses": [
+    "U10.1"
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original10-2-finalize-20261105",
+    "base_main": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+    "commit": "f075c6a691bae3322b457d6c87a4ac0a46f91c56",
+    "tree": "baa0dc2d58256330db2aa44bd7a9dc5033bef582",
+    "parent": "2d1e7656eaaa26fd32480f23e05464af3abef3f0",
+    "structural_test_receipt": {
+      "path": "D:/tmp/original10-2-source-r1/pytest17-receipt.json",
+      "result": "17 passed in 5.75s",
+      "reused_for_proof_only_R2_R3": true
+    }
+  },
+  "workflow": {
+    "run_id": 41882199186,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 126757285444,
+    "job_name": "Build requested modules only",
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by workflow condition",
+    "module": "JurisLean.Candidates.FinalizeReadClosureAudit20261105"
+  },
+  "artifact": {
+    "id": 13349073814,
+    "name": "changed-module-only-41882199186-1",
+    "zip_path": "D:/tmp/original10-2-source-r3/artifact-13349073814.zip",
+    "zip_bytes": 19967,
+    "zip_sha256": "101e67b27a6060eb5e63eb5cd4bfa5a4e34abb4c229e8b43ec955a4fcb276c8f",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 271,
+        "sha256": "2aafc580dcf37a9db3902acac3e4889f7ed7ae4f35ac2e72f4619876431ee85f",
+        "packet_path": "module-plan.json"
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 167351,
+        "sha256": "3882456ba604c997d2f6a967ab7d7e2144a0dbb7963076aaad46c6ce4f586cec",
+        "packet_path": "changed-module.log"
+      }
+    ],
+    "errors": 0,
+    "sorryAx": 0
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.actual_eval_reads_snapshot_selection",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.mismatched_request_is_rejected",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.authorized_append_is_not_environment_refresh",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.actual_finalize_next_eval_reads_selection",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.actual_fixture_has_refresh_and_known_evaluation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.not_yet_effective_is_not_latest_evaluation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.unresolved_conflict_stays_in_actual_evaluation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.historical_cutpoint_is_consumed_by_actual_evaluation",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.three_idempotences_have_inequivalent_finite_witnesses",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.same_known_result_and_text_do_not_certify_environment_refresh",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.duplicate_confirmation_grants_add_no_permissions",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.FinalizeReadClosureAudit20261105.repeated_actual_confirmation_does_not_self_activate",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "reused_targets": [
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "fqn": "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "type_checks": [
+    "JurisLean.Candidates.FinalizeReadClosureAudit20261105.AppendIdempotent",
+    "JurisLean.Candidates.FinalizeReadClosureAudit20261105.SelectionIdempotent",
+    "JurisLean.Candidates.FinalizeReadClosureAudit20261105.EvaluationIdempotent"
+  ],
+  "supporting_declarations_note": "12 own source footer targets only; 2 reused theorem checks and 3 type checks listed separately. Imported Audit footer output is not counted as this module targets.",
+  "failed_history": [
+    {
+      "run_id": 41880726037,
+      "attempt": 1,
+      "artifact_id": 13348607874,
+      "artifact_name": "changed-module-only-41880726037-1",
+      "zip_path": "D:/tmp/original10-2-source-r1/artifact-13348607874.zip",
+      "zip_bytes": 20917,
+      "zip_sha256": "761681ca7b913083a0ddeb497a9e60e8540cf3e12ad88d23d988dda41af629b8",
+      "plan_bytes": 271,
+      "plan_sha256": "2aafc580dcf37a9db3902acac3e4889f7ed7ae4f35ac2e72f4619876431ee85f",
+      "raw_bytes": 173354,
+      "raw_sha256": "f4320696855c60b057c5f3f519dabf5b03a4dbf8d22afc517bcccf8148c91858",
+      "summary": "Compilation failed in the selectedHorn case proof and the two version-record update syntax forms; R1 recovery sorry output is failure history only."
+    }
+  ],
+  "precommit_structural_tests": {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/spec/test_import_reachability.py",
+      "tests/test_declaration_collisions.py"
+    ],
+    "returncode": 0,
+    "result": "17 passed in 5.75s",
+    "receipt_path": "D:/tmp/original10-2-source-r1/pytest17-receipt.json",
+    "rerun_for_R2_R3": false,
+    "note": "Ran before initial source commit; later source changes were proof-only."
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FinalizeReadClosureAudit20261105.lean",
+      "bytes": 18953,
+      "sha256": "c71bd8dfda38ecc1f3c92e330c8437cd239420edbd6adccbc8f4292097ebd6bd",
+      "git_blob": "9dc9eea511681e7ef80c4b045266f366bc70cb75",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16634,
+      "sha256": "3f61cb3147756b451a37a2b46338faa4ea4abc2fc6bf459175d12c205919bace",
+      "git_blob": "8eec53e8eb11457b8dc89d6d2a4307f4589a1814",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/AuthorizationClosureAudit20261104.lean",
+      "bytes": 30990,
+      "sha256": "be740b3b5ef8296b7c6364430ce34d0c926337f07684d4ffed531e956c3c3e3a",
+      "git_blob": "83e3689d8dc80aef2c6ed2ec72f08d8783bd1741",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LegalActionDomainAudit20261027.lean",
+      "bytes": 17162,
+      "sha256": "aa24e219e4639f44b9e0fd12d150c78895b1ba336cb75baa78995c39f804f887",
+      "git_blob": "c1ebc34fa0951d69bfe36064a045e18223b6bf12",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean",
+      "bytes": 32271,
+      "sha256": "a91d94e509a8b94eec5950232dfd62e53a578be412ef981bf80abaf7916aa01d",
+      "git_blob": "084765f0ccd07686925599f350c7980807f5da4d",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "bytes": 20327,
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+      "bytes": 2774,
+      "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7",
+      "git_blob": "0f218e3292f53c2cd2a23e4ed19195272d32ea6c",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+      "bytes": 14906,
+      "sha256": "885c69582ea1dedbc98be512744ba98f3f84360a8372dd983c0192c287484972",
+      "git_blob": "33816dfd39dae9e22ff2981113e7c4ef04caa75f",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+      "bytes": 3205,
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
+      "git_blob": "dfca2f35a7cee919ff7d5813f9dc19f0bde2b935",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+      "bytes": 6847,
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
+      "git_blob": "5068dc7b66c8eefbdba821830e873ff9ebc2774a",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "raw_equals_git": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "physical_bytes": 26,
+      "physical_sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "raw_equals_git_bytes": false,
+      "lf_normalized_bytes": 25,
+      "lf_normalized_sha256": "54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325",
+      "lf_normalized_equals_git_content": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "physical_bytes": 3225,
+      "physical_sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "raw_equals_git_bytes": false,
+      "lf_normalized_bytes": 3129,
+      "lf_normalized_sha256": "7230ea7eeaf37899cdf17d1c878e853e3650d276e6ec6b7f1d2f4c841952963e",
+      "lf_normalized_equals_git_content": true
+    }
+  ],
+  "aa_writer": {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/ci/generate_probability_audit_surface.py",
+      "--write"
+    ],
+    "receipt_path": "D:/tmp/original10-2-records-20261105/aa-write-receipt.json",
+    "receipt": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 16356,
+      "started_epoch": 1793815706.2067225,
+      "ended_epoch": 1793815707.4107625,
+      "exit": 0,
+      "stdout_bytes": 55,
+      "stdout_sha256": "e264063ad37e6871fa808007763ddea626458fe3f97ce2be17e673ef0dded2ba",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tracked_diff": [],
+    "metadata_checkpoint": null
+  },
+  "manifest": {
+    "writer_receipt_path": "D:/tmp/original10-2-records-20261105/manifest-write-receipt.json",
+    "writer_receipt": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_theorem_manifest.py",
+        "--require-bound"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 34352,
+      "started_epoch": 1793815722.2807083,
+      "ended_epoch": 1793815763.1323152,
+      "exit": 0,
+      "stdout_bytes": 576,
+      "stdout_sha256": "d4e08d0901f0bb7ee10cdb1843fe5e4b55c1d7d5a204b76218edfccbb868e1e7",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verify_receipt_path": "D:/tmp/original10-2-records-20261105/required11/manifest-verify-receipt.json",
+    "subject": {
+      "branch": "formal/close-original10-2-finalize-20261105",
+      "commit": "f075c6a691bae3322b457d6c87a4ac0a46f91c56",
+      "tree": "baa0dc2d58256330db2aa44bd7a9dc5033bef582"
+    },
+    "subject_binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 588,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "status": "static_source_inventory_not_release_certificate",
+    "counts": {
+      "all_tracked_lean": 588,
+      "juris_lean_package": 573,
+      "ulm_import_closure": 7,
+      "ulm_package": 19
+    }
+  },
+  "record_checks11": {
+    "status": "PASS",
+    "required_count": 11,
+    "all_exit_zero": true,
+    "checks": [
+      {
+        "name": "manifest-verify",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_theorem_manifest.py",
+          "--verify",
+          "docs/formal-release/theorem_inventory_v3.json",
+          "--require-bound"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 31784,
+        "started_utc": "2026-11-04T18:19:24.549616+00:00",
+        "ended_utc": "2026-11-04T18:19:25.367286+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\manifest-verify.stdout.bin",
+          "bytes": 31,
+          "sha256": "b2dde92a3b94a91340504e31a307bc5080f5e74fa2fa109ac4bcccd345812012"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\manifest-verify.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "probability-audit-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_probability_audit_surface.py",
+          "--check"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 33192,
+        "started_utc": "2026-11-04T18:19:25.402869+00:00",
+        "ended_utc": "2026-11-04T18:19:27.500400+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\probability-audit-check.stdout.bin",
+          "bytes": 55,
+          "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\probability-audit-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "trivial-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_trivial_proof_census.py",
+          "--check"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 32732,
+        "started_utc": "2026-11-04T18:19:27.527394+00:00",
+        "ended_utc": "2026-11-04T18:19:37.520249+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\trivial-census-check.stdout.bin",
+          "bytes": 95,
+          "sha256": "d0825e6074bbe998fd75ab0196d4ee667e5a6a9700c596c95fe014d93029201d"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\trivial-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "structure-volume-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_structure_and_volume_reports.py",
+          "--check"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 35384,
+        "started_utc": "2026-11-04T18:19:37.532254+00:00",
+        "ended_utc": "2026-11-04T18:19:38.005076+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\structure-volume-check.stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\structure-volume-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "reachability",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_import_reachability.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 33840,
+        "started_utc": "2026-11-04T18:19:38.007074+00:00",
+        "ended_utc": "2026-11-04T18:19:38.467216+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\reachability.stdout.bin",
+          "bytes": 76,
+          "sha256": "75f4d52042f555a9e7d97fb302207ee8e01ca228a2ff174d1220d87d7d20d901"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\reachability.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "paper-single-count",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_paper_single_count.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 34516,
+        "started_utc": "2026-11-04T18:19:38.548738+00:00",
+        "ended_utc": "2026-11-04T18:19:38.742774+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\paper-single-count.stdout.bin",
+          "bytes": 126,
+          "sha256": "6659b3c7eb0fb17a339e7e6992678ccb93f3db04afa04f9ed8e18e018f5d64c8"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\paper-single-count.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "paper-derived-dry-run",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/rebind_paper_derived_accounting.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 32236,
+        "started_utc": "2026-11-04T18:19:38.744783+00:00",
+        "ended_utc": "2026-11-04T18:19:39.432842+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\paper-derived-dry-run.stdout.bin",
+          "bytes": 494,
+          "sha256": "190e7a954bde8977771b9a43e515f2893c322f2e96da06f1a326a40b0755fe8a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\paper-derived-dry-run.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "duplication-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--check"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 31176,
+        "started_utc": "2026-11-04T18:19:39.445351+00:00",
+        "ended_utc": "2026-11-04T18:19:41.563678+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\duplication-check.stdout.bin",
+          "bytes": 75,
+          "sha256": "616f8028dcac66693d8c6309c67a3a53482e783f856e581f2b8871c56cecf680"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\duplication-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "declaration-shape-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_declaration_shape_report.py",
+          "--check"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 26284,
+        "started_utc": "2026-11-04T18:19:41.565680+00:00",
+        "ended_utc": "2026-11-04T18:19:49.696597+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\declaration-shape-check.stdout.bin",
+          "bytes": 29,
+          "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\declaration-shape-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "clause-binding",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_clause_declaration_binding.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 15184,
+        "started_utc": "2026-11-04T18:19:49.711599+00:00",
+        "ended_utc": "2026-11-04T18:20:24.222233+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\clause-binding.stdout.bin",
+          "bytes": 310,
+          "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\clause-binding.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "archive-gap",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_archive_gap_close.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 29044,
+        "started_utc": "2026-11-04T18:20:24.244633+00:00",
+        "ended_utc": "2026-11-04T18:21:07.903516+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\archive-gap.stdout.bin",
+          "bytes": 228,
+          "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\required11\\archive-gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "paper_derived_scope": "The no-argument rebind_paper_derived_accounting.py invocation is template-matching dry-run only. Paper-content consistency is established separately by the two targeted regression tests."
+  },
+  "paper_regressions": {
+    "status": "PASS",
+    "receipt": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/spec/test_declaration_shape_report.py::test_papers_quote_the_shape_artifact_and_not_a_memory",
+        "tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 9944,
+      "started_utc": "2026-11-04T18:16:11.659465+00:00",
+      "ended_utc": "2026-11-04T18:16:14.055619+00:00",
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\tests\\paper-regressions.stdout.bin",
+        "bytes": 100,
+        "sha256": "e0fed98dfc01ddaca2724c399973bbd02d5982c5308d4551b4b1be0eb45bd003"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\tests\\paper-regressions.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "result": "2 passed in 1.06s",
+    "scope": "Two targeted paper consistency tests only."
+  },
+  "ci_run_index": {
+    "previous_runs": 604,
+    "previous_quotes": 1458,
+    "new_runs": [
+      41880726037,
+      41882199186
+    ],
+    "current_runs": 606,
+    "current_quotes": 1463,
+    "metadata_receipt_path": "D:/tmp/original10-2-records-20261105/ci-index-add-receipt.json",
+    "metadata_receipt": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "D:/tmp/original10-2-records-20261105/ci-index-add-two.py"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 7808,
+      "started_utc": "2026-11-04T18:18:43.629419+00:00",
+      "ended_utc": "2026-11-04T18:18:51.658014+00:00",
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\ci-index-add.stdout.bin",
+        "bytes": 532,
+        "sha256": "64ed306d52153247c606eb3fe37837bd36c2ece09f1541d759c98cb2ff5630ca"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\ci-index-add.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "metadata_stdout_path": "D:/tmp/original10-2-records-20261105/ci-index-add.stdout.bin",
+    "metadata_stdout_sha256": "64ed306d52153247c606eb3fe37837bd36c2ece09f1541d759c98cb2ff5630ca",
+    "metadata_stderr_path": "D:/tmp/original10-2-records-20261105/ci-index-add.stderr.bin",
+    "metadata_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "old_run_metadata_refreshed": false,
+    "quotes_only": "TOOL_RETURN_ONLY exit 0 after final README was staged; 12 tests below verify physical citations/locators."
+  },
+  "ci_run_index_tests": {
+    "status": "PASS",
+    "receipt": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_ci_run_index.py"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 35204,
+      "started_utc": "2026-11-04T18:22:25.250690+00:00",
+      "ended_utc": "2026-11-04T18:22:33.005788+00:00",
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\ci-index-tests\\index-tests.stdout.bin",
+        "bytes": 101,
+        "sha256": "4572ff53584fab0e825f400b4ad325adcbc83e9358feb3bc26206c9dfb9c6db2"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\ci-index-tests\\index-tests.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "result": "12 passed in 6.26s"
+  },
+  "staged_diff_check": {
+    "status": "RECORDED_EXTERNALLY_AFTER_FINAL_STAGE",
+    "receipt_path": "D:/tmp/original10-2-records-20261105/final-checks-r2/cached-diff-check-receipt.json",
+    "note": "This JSON is filled and staged before the final cached diff check; final output is captured externally and is not written back here."
+  },
+  "consumer_wiring": {
+    "affected_edges": [],
+    "note": "Current U00 15-edge audit found no caller affected; no edge or rating changed."
+  },
+  "scope": "This source round maps the frozen 10.2 L109/L111/L113 finite obligations only. It reuses existing U10.1/Temporal interfaces and source/admission fixtures; it does not assert real-world input truth, universal caller wiring, external side effects, or PR acceptance.",
+  "metadata_checkpoint": null,
+  "derived_writers": {
+    "ordered_writers": [
+      {
+        "name": "trivial",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_trivial_proof_census.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 24284,
+        "started_utc": "2026-11-04T18:15:28.647598+00:00",
+        "ended_utc": "2026-11-04T18:15:36.766074+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\trivial.stdout.bin",
+          "bytes": 129,
+          "sha256": "859a6e962566397122d6218b734c35427e8327a1d1cf8d019e352c886ae97a4e"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\trivial.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "structure-volume",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_structure_and_volume_reports.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 33868,
+        "started_utc": "2026-11-04T18:15:36.787591+00:00",
+        "ended_utc": "2026-11-04T18:15:37.260531+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\structure-volume.stdout.bin",
+          "bytes": 806,
+          "sha256": "5b111c3d9068fd0c54cf8854a94c7b4f5868f0f96b0a12bc7b5877509b5165b1"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\structure-volume.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "duplication",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--write"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 31616,
+        "started_utc": "2026-11-04T18:15:37.261531+00:00",
+        "ended_utc": "2026-11-04T18:15:39.519121+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\duplication.stdout.bin",
+          "bytes": 168,
+          "sha256": "a97f3c19bdf09ca6817c924cca32569df8ee5d3116c0ec69c314c6e8d94265b0"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\duplication.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "shape",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_declaration_shape_report.py"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 32600,
+        "started_utc": "2026-11-04T18:15:39.520123+00:00",
+        "ended_utc": "2026-11-04T18:15:47.836075+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\shape.stdout.bin",
+          "bytes": 118,
+          "sha256": "d549611ce0b3c0128566da515736553a7a49fc8b4036d0ef54750c76eb8c6830"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\shape.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "name": "gap",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_gap_status.py",
+          "--write"
+        ],
+        "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+        "pid": 32424,
+        "started_utc": "2026-11-04T18:15:47.838084+00:00",
+        "ended_utc": "2026-11-04T18:15:48.358144+00:00",
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\gap.stdout.bin",
+          "bytes": 551,
+          "sha256": "403d387ec864449f8e1cd5837b39587c8c5765f3e5933cf814ffd52520cb4d06"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original10-2-records-20261105\\writers\\gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "paper_rebind_last": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/rebind_paper_derived_accounting.py",
+        "--write"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 33944,
+      "started_utc": "2026-11-04T18:15:58.664868+00:00",
+      "ended_utc": "2026-11-04T18:15:59.461992+00:00",
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\writers\\paper-rebind.stdout.bin",
+        "bytes": 482,
+        "sha256": "3201feaae91f24f0668e3874182dfd40a57b042ab0c3775b8cc551fb02a6b55a"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\writers\\paper-rebind.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "paper_figures": {
+      "pkg_theorems": 6369,
+      "pkg_lemmas": 139,
+      "pkg_counted": 6508,
+      "pkg_files": 573,
+      "tracked_theorems": 6381,
+      "tracked_files": 588,
+      "reachable": 549,
+      "reach_total": 573,
+      "reach_booked": 38,
+      "reach_drivers": 37,
+      "cmds": 5950,
+      "targets": 5332,
+      "audit_cmds": 4013,
+      "audit_mandate": 280,
+      "outside_audit": 1937,
+      "trivial": 392,
+      "decide": 146,
+      "tactic": 5831,
+      "alias": 297,
+      "closed_no_binders": 1798
+    },
+    "note": "Shape and other figure inputs were generated before paper --write; paper rebind was the last writer."
+  },
+  "extra_checks": {
+    "gap_status_check": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "cwd": "C:/Users/being/legal-math-modeling-u03-20261026",
+      "pid": 34872,
+      "started_utc": "2026-11-04T18:21:32.164507+00:00",
+      "ended_utc": "2026-11-04T18:21:32.635338+00:00",
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\extra-checks\\gap-status-check.stdout.bin",
+        "bytes": 26,
+        "sha256": "28bf703de509d7ee6e3f125fb0eb9253b04162eb05012784bfeb4bd22fa067a6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original10-2-records-20261105\\extra-checks\\gap-status-check.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "ci_index_quotes_only": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--quotes-only"
+      ],
+      "returncode": 0,
+      "tool_capture": "TOOL_RETURN_ONLY",
+      "stdout_text": "wrote docs\\formal-release\\ci_run_index.json and docs\\formal-release\\ci_run_index.md (606 runs, 1463 quotes)",
+      "physical_sidecars": false
+    },
+    "ci_index_check": {
+      "status": "RECORDED_EXTERNALLY_AFTER_FINAL_STAGE",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "receipt_path": "D:/tmp/original10-2-records-20261105/final-checks-r2/index-check-receipt.json",
+      "note": "Run after the final README and verification were staged; receipt remains external."
+    }
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 73,
+      "PARTIAL": 16,
+      "NOT_RECONCILED": 8
+    },
+    "ci_run_index": {
+      "previous_runs": 604,
+      "previous_quotes": 1458,
+      "current_runs": 606,
+      "current_quotes": 1463
+    }
+  }
+}

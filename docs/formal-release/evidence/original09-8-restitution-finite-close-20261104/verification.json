@@ -1,0 +1,958 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_INDEPENDENT_RECORD_REVIEW",
+  "original_questions": [
+    "09.8"
+  ],
+  "proposed_disposition": {
+    "09.8": "COVERED",
+    "note": "Frozen L204/L206/L208 are mapped to conditional finite receipt, quantity, cash-account and trace evidence. Source CI passed; required 11 checks and 12 CI-index tests passed. Independent record review and PR acceptance remain pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      202,
+      209
+    ],
+    "subparagraph_lines": {
+      "09.8": [
+        [
+          204,
+          204
+        ],
+        [
+          206,
+          206
+        ],
+        [
+          208,
+          208
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.2",
+      "U09.3"
+    ]
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-8-restitution-20261104",
+    "base_main": "1359ffae3feebcbf4dc120bff4f7f44d0daa294d",
+    "commit": "88f29a6a029de736607650ea01cf738419e3adc1",
+    "tree": "71f3562ce57842bb1dd2faef71519bcb4ebd09cb",
+    "parent": "68fecb20e70f7a9a3b894871c03d0458f8452c6a"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41825560137,
+    "attempt": 1,
+    "job_id": 126559282946,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104",
+    "build": "Build completed successfully (8516 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "axiom_sets_by_target": {
+      "first_two_stages_no_cash": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "q_receipt_is_actual_event_and_history": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "separated_quantity_and_cash_components": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "actual_closed_account_conservation": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "joint_from_actual_trace": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "legacy_RestPay_is_min_branch": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "cash_balance_does_not_supply_admission": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "ten_seven_seven_nonempty_witness": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "w6_nonempty_witness": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "definition_only_checks": [
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.RefundRule",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.Ready"
+    ],
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "artifact": {
+    "artifact_id": 13318902082,
+    "name": "changed-module-only-41825560137-1",
+    "api_digest": "sha256:16fe95102e81791bf92b58f2068c637d78e3844f4d8778aba4f4e68bd9a17594",
+    "zip_path": "D:\\tmp\\original09-8-source-r3\\artifact-13318902082.zip",
+    "zip_bytes": 4620,
+    "zip_sha256": "16fe95102e81791bf92b58f2068c637d78e3844f4d8778aba4f4e68bd9a17594",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-8-restitution-finite-close-20261104/changed-module.log",
+      "bytes": 28289,
+      "sha256": "04f005fb30e5920cffec8ec29c023ebcb0242eebd0bd2046b74432d42020bb40"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-8-restitution-finite-close-20261104/module-plan.json",
+      "bytes": 281,
+      "sha256": "796681c9e36a72bb0a97a695a560cce7798d075db9756abfd2d0d593a5b8e390",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 281,
+        "sha256": "796681c9e36a72bb0a97a695a560cce7798d075db9756abfd2d0d593a5b8e390"
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 28289,
+        "sha256": "04f005fb30e5920cffec8ec29c023ebcb0242eebd0bd2046b74432d42020bb40"
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 9,
+    "new_theorem_pairs": 9,
+    "reused_theorem_pairs": 0,
+    "definition_only_checks": 2,
+    "new_targets": [
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.first_two_stages_no_cash",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.q_receipt_is_actual_event_and_history",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.separated_quantity_and_cash_components",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.actual_closed_account_conservation",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.joint_from_actual_trace",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.legacy_RestPay_is_min_branch",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.cash_balance_does_not_supply_admission",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.ten_seven_seven_nonempty_witness",
+      "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.w6_nonempty_witness"
+    ],
+    "reused_targets": [],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
+      "bytes": 27323,
+      "sha256": "9ebf32570fed030fa7822f49dbdb739d0785e4f66944bbec8edc4516da74b77f",
+      "git_blob": "8b6826241eba8bf385e1e96b7cccb25556f3b5c0",
+      "role": "new source module; direct source CI subject"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16511,
+      "sha256": "bf289a64aa655fe0b1b84b5f6c5ac90fbea9f83398d348a7ddb92a83cde2e46e",
+      "git_blob": "a3335588afe47a7e3de2bc18cdf7911c4d40e294",
+      "role": "single generated root import"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "normalized_lf_bytes": 25,
+      "normalized_lf_sha256": "54727eec5cba149c18842e6deb5c41b369d66455c93ce135d7d5347c782b2325",
+      "raw_matches_git": false,
+      "normalized_matches_git": true,
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "role": "Lean toolchain pin"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "normalized_lf_bytes": 3129,
+      "normalized_lf_sha256": "7230ea7eeaf37899cdf17d1c878e853e3650d276e6ec6b7f1d2f4c841952963e",
+      "raw_matches_git": false,
+      "normalized_matches_git": true,
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "role": "dependency manifest; Mathlib rev c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "role": "frozen audit source; unchanged"
+    }
+  ],
+  "failed_history": [
+    {
+      "run_id": 41823095980,
+      "attempt": 1,
+      "subject": "75e822c72e558fc1501645e175046e1fee2e7075",
+      "tree": "0ec2b2eb03d240962e6ca99e25bfa5e604ddc6cb",
+      "artifact_id": 13316624404,
+      "artifact_name": "changed-module-only-41823095980-1",
+      "zip_path": "D:\\tmp\\original09-8-source-r1\\artifact-13316624404.zip",
+      "zip_bytes": 5808,
+      "zip_sha256": "990d54912c3798826617b9102a35e92fb1a984e971e1e2948fdfa528ee90e473",
+      "success_binding": false,
+      "error_count": 7,
+      "recovery_sorryAx_targets": [
+        "first_two_stages_no_cash",
+        "q_receipt_is_actual_event_and_history",
+        "joint_from_actual_trace",
+        "ten_seven_seven_nonempty_witness",
+        "w6_nonempty_witness"
+      ],
+      "diagnosis": "7 Lean error diagnostics: claimPost record layout caused parser failure/cascades; two event membership branches and named numeric propositions also needed local proof fixes. Five recovery target outputs contained sorryAx.",
+      "members": [
+        {
+          "path": "module-plan.json",
+          "bytes": 281,
+          "sha256": "796681c9e36a72bb0a97a695a560cce7798d075db9756abfd2d0d593a5b8e390"
+        },
+        {
+          "path": "changed-module.log",
+          "bytes": 34589,
+          "sha256": "383aedc09f522bf3724faf7045ca0143aef6e2779555e9d04e8b510f19964e0d"
+        }
+      ]
+    },
+    {
+      "run_id": 41824812639,
+      "attempt": 1,
+      "subject": "68fecb20e70f7a9a3b894871c03d0458f8452c6a",
+      "tree": "8e42a71e2d7c81da7deae556b2dc8a9a8ad99a9c",
+      "artifact_id": 13317444139,
+      "artifact_name": "changed-module-only-41824812639-1",
+      "zip_path": "D:\\tmp\\original09-8-source-r2\\artifact-13317444139.zip",
+      "zip_bytes": 5617,
+      "zip_sha256": "1bf100d53bae86766b22f18ace524e296cd34dc1fec07cfdb81d02c60aca94d7",
+      "success_binding": false,
+      "error_count": 1,
+      "diagnosis": "q_receipt quantity projection proof required unfolding Ledger.balance; R3 adds only that def to its simp list.",
+      "members": [
+        {
+          "path": "module-plan.json",
+          "bytes": 281,
+          "sha256": "796681c9e36a72bb0a97a695a560cce7798d075db9756abfd2d0d593a5b8e390"
+        },
+        {
+          "path": "changed-module.log",
+          "bytes": 32871,
+          "sha256": "835f4bb42dfbb9e705f7559c0724c866bde3980bf5c116d9ec4958de336fa9df"
+        }
+      ]
+    }
+  ],
+  "subparagraph_mapping": [
+    {
+      "lines": [
+        204,
+        204
+      ],
+      "targets": [
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.first_two_stages_no_cash",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.q_receipt_is_actual_event_and_history"
+      ],
+      "scope": "RestClaim and ExecEligible are connected to existing no-cash facts; q records PaymentId while payload and cashId preserve the actual event identity and complete payment input."
+    },
+    {
+      "lines": [
+        206,
+        206
+      ],
+      "targets": [
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.separated_quantity_and_cash_components",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.actual_closed_account_conservation",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.joint_from_actual_trace",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.legacy_RestPay_is_min_branch"
+      ],
+      "scope": "Given valid extracted inputs and explicit credit k, preserve historical quantity and cash fields, record R-k and a-k separately, maintain finite closed-account balance, and connect a trace; the legacy consumer connection is only the min/amount-gated branch."
+    },
+    {
+      "lines": [
+        208,
+        208
+      ],
+      "targets": [
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.cash_balance_does_not_supply_admission",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.ten_seven_seven_nonempty_witness",
+        "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.w6_nonempty_witness"
+      ],
+      "scope": "Conditional composition plus two explicit finite instances; cash balance alone does not admit an effect. No actual-caller or general-Theta implementation claim."
+    }
+  ],
+  "semantic_scope": {
+    "extractor": "The original prompt supplies the effective full normalized PaymentRequest extraction; no real source truth or universal parser is proved.",
+    "theta": "Option RefundRule represents the explicit Theta decision for this input; none is not admitted. No normative conflict resolution is inferred from cash conservation.",
+    "identities": "q is PaymentId; full payload and cashId remain distinct from monetary value.",
+    "quantity_cash": "Old paid/cash history is retained; the new rest quantity and refundCash are separate projections. The actual payment amount a and legal credit k have independent residual equations.",
+    "legacy_RestPay": "Both nonempty examples apply the existing min-amount-gated RestPay branch. The general quantity producer for Theta-supplied k is not claimed to be wired into all protocol execution.",
+    "real_world": "Finite model evidence does not prove real-world source truth, actual payment occurrence, legal authorization, real-jurisdiction rule, or validated-protocol acceptance."
+  },
+  "consumer_wiring": {
+    "u00_current_edge_count": 15,
+    "affected_edges": [],
+    "edge8": "U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation",
+    "direct_caller": "U00ActualAssessmentChoice20261031.lean:213",
+    "note": "Neither the existing edge nor caller consumes this new finite restitution producer; no edge rating or caller changes are claimed."
+  },
+  "same_c_verifier": {
+    "status": "NOT_RUN",
+    "scope": "not part of source-only record stage"
+  },
+  "full_pr_acceptance": {
+    "status": "PENDING",
+    "note": "Source CI success is not whole-protocol or PR acceptance."
+  },
+  "record_checks11": {
+    "required_count": 11,
+    "status": "PASS",
+    "all_exit_0": true,
+    "checks": [
+      {
+        "name": "manifest-verify",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_theorem_manifest.py",
+          "--verify",
+          "docs/formal-release/theorem_inventory_v3.json",
+          "--require-bound"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\manifest-verify.stdout.bin",
+          "bytes": 31,
+          "sha256": "f99292bd73ded763f10eaba6db303583fbeb67e6345a8453ffe7926fda74069a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\manifest-verify.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\manifest-verify.exit.txt",
+        "capture": "PHYSICAL_STREAMS",
+        "reuse_note": "Same required command completed after manifest generation and before this records batch; no manifest change followed."
+      },
+      {
+        "name": "probability-audit-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_probability_audit_surface.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\probability-audit-check.stdout.bin",
+          "bytes": 55,
+          "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\probability-audit-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\probability-audit-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "trivial-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_trivial_proof_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\trivial-census-check.stdout.bin",
+          "bytes": 95,
+          "sha256": "aa5a7bdb734877d222ad1600013c9f45f4104f472bf5b70119823c6507e348c1"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\trivial-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\trivial-census-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "structure-volume-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_structure_and_volume_reports.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\structure-volume-check.stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\structure-volume-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\structure-volume-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "reachability",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_import_reachability.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\reachability.stdout.bin",
+          "bytes": 76,
+          "sha256": "dc204e713a5048a3134008a9ee2b93d16666fa252a4f8f474d9a071fc65fc2f8"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\reachability.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\reachability.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "paper-single-count",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_paper_single_count.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-single-count.stdout.bin",
+          "bytes": 126,
+          "sha256": "5637b6ac9f7640406ef64b3e7cf9dd907e8f6e7bb3d2125d20703f102ffa30bd"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-single-count.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-single-count.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "paper-derived-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/rebind_paper_derived_accounting.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-derived-check.stdout.bin",
+          "bytes": 494,
+          "sha256": "2e4377a675fff2943c55d08383d8caa1cb5af0f344b73d0007179bae0c35747a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-derived-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\paper-derived-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "duplication-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\duplication-census-check.stdout.bin",
+          "bytes": 75,
+          "sha256": "189eb869b770798fa0fb56ab2ca6335713a34dda31bd86b1b6c281fa82666037"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\duplication-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\duplication-census-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "declaration-shape-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_declaration_shape_report.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\declaration-shape-check.stdout.bin",
+          "bytes": 29,
+          "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\declaration-shape-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\declaration-shape-check.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "clause-binding",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_clause_declaration_binding.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\clause-binding.stdout.bin",
+          "bytes": 310,
+          "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\clause-binding.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\clause-binding.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      },
+      {
+        "name": "archive-gap",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_archive_gap_close.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\archive-gap.stdout.bin",
+          "bytes": 228,
+          "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\archive-gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\archive-gap.exit.txt",
+        "capture": "PHYSICAL_STREAMS"
+      }
+    ]
+  },
+  "extra_checks": [
+    {
+      "name": "gap-status-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\checks\\gap-status-extra.stdout.bin",
+        "bytes": 26,
+        "sha256": "28bf703de509d7ee6e3f125fb0eb9253b04162eb05012784bfeb4bd22fa067a6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\checks\\gap-status-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\gap-status-extra.exit.txt",
+      "capture": "PHYSICAL_STREAMS"
+    },
+    {
+      "name": "ci-index-check-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-check-extra.stdout.bin",
+        "bytes": 40,
+        "sha256": "28c9bf4ab6fec5563b70f28c9cbeaf320116f52cbd3b3b298ca6a02e41809d4b"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-check-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-check-extra.exit.txt",
+      "capture": "PHYSICAL_STREAMS"
+    }
+  ],
+  "ci_run_index_tests": {
+    "required_count": 12,
+    "status": "PASS",
+    "all_exit_0": true,
+    "tests": [
+      {
+        "name": "ci-index-12tests",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "-m",
+          "pytest",
+          "tests/test_ci_run_index.py",
+          "-q"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-12tests.stdout.bin",
+          "bytes": 101,
+          "sha256": "b6b8aee09a83e853ed0707fc472192531fa1c693c4ad1fc592c3004b94faaa85"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-12tests.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-8-records-20261104\\checks\\ci-index-12tests.exit.txt",
+        "capture": "PHYSICAL_STREAMS",
+        "result": "12 passed in 6.08s"
+      }
+    ]
+  },
+  "staged_diff_check": {
+    "status": "PENDING"
+  },
+  "ci_run_index": {
+    "baseline_runs": 599,
+    "baseline_quotes": 1453,
+    "runs_after_metadata_add": 602,
+    "quotes_after_metadata_add": 1456,
+    "runs_after_quotes_only": 602,
+    "quotes_after_quotes_only": 1456,
+    "newly_added_runs": [
+      {
+        "run_id": 41823095980,
+        "head_sha": "75e822c72e558fc1501645e175046e1fee2e7075",
+        "conclusion": "failure",
+        "artifacts_total": 1
+      },
+      {
+        "run_id": 41824812639,
+        "head_sha": "68fecb20e70f7a9a3b894871c03d0458f8452c6a",
+        "conclusion": "failure",
+        "artifacts_total": 1
+      },
+      {
+        "run_id": 41825560137,
+        "head_sha": "88f29a6a029de736607650ea01cf738419e3adc1",
+        "conclusion": "success",
+        "artifacts_total": 1
+      }
+    ],
+    "old_metadata_refreshed": false,
+    "full_evidence_fetched": false,
+    "metadata_capture": "Three official Actions run descriptions saved to ci-index-new-run-metadata.json; metadata-add stdout/stderr captured in Dtmp receipt.",
+    "metadata_receipt": "D:\\tmp\\original09-8-records-20261104\\ci-index-add-three.receipt.json",
+    "metadata_exit": 0,
+    "quotes_only": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--quotes-only"
+      ],
+      "exit": 0,
+      "pid": 13448,
+      "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+      "started_unix": 1793795829.0621057,
+      "ended_unix": 1793795830.0158055,
+      "elapsed_seconds": 0.9537,
+      "stdout": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\ci-index-quotes-only.stdout.bin",
+        "bytes": 109,
+        "sha256": "6be31c81142101ef2d17c47a984872caf27d2787ac8300759c2b8ac32fecdbb0"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\ci-index-quotes-only.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-8-records-20261104\\ci-index-quotes-only.exit.txt",
+      "receipt": "D:\\tmp\\original09-8-records-20261104\\ci-index-quotes-only.receipt.json",
+      "receipt_sha256": "ebf93d4455d9deefae2c622d28adbefeb1b70efc2e510a8e73c3ef0e7ca0cf45"
+    }
+  },
+  "record_generation": {
+    "probability_audit_write": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "exit": 0,
+      "capture": "PHYSICAL_STREAMS",
+      "receipt": "D:\\tmp\\original09-8-records-20261104\\probability-audit-write.receipt.json",
+      "stdout_text": "wrote 3468 #print axioms targets into AxiomAudit.lean",
+      "diff": "0 diff; no metadata checkpoint"
+    },
+    "theorem_manifest_generate": {
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_theorem_manifest.py",
+        "--require-bound"
+      ],
+      "exit": 0,
+      "capture": "PHYSICAL_STREAMS",
+      "receipt": "D:\\tmp\\original09-8-records-20261104\\manifest-generate.receipt.json",
+      "subject": "88f29a6a029de736607650ea01cf738419e3adc1",
+      "tree": "71f3562ce57842bb1dd2faef71519bcb4ebd09cb",
+      "stdout": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\manifest-generate.stdout.bin",
+        "bytes": 576,
+        "sha256": "4d9cb1e613d6a87d7380132da8698c4e25a109b99eef74b86d6d72401406e330"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\manifest-generate.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-8-records-20261104\\manifest-generate.exit.txt",
+      "binding": "BOUND_TO_SUBJECT",
+      "diverging_files": []
+    },
+    "derived_writes": {
+      "duplication-census-write": {
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--write"
+        ],
+        "child_terminal": "true (subprocess.run returned)",
+        "exit": "UNKNOWN",
+        "capture": "TOOL_RETURN_ONLY",
+        "wrapper_diagnostic": "AttributeError: 'CompletedProcess' object has no attribute 'pid'; capture stopped before persisting child streams/return code.",
+        "rerun": false,
+        "independent_followup_check": {
+          "name": "duplication-census-check",
+          "exit": 0,
+          "receipt_path": "D:\\tmp\\original09-8-records-20261104\\checks\\duplication-census-check.stdout.bin"
+        }
+      },
+      "other_writes": [
+        {
+          "name": "trivial-census-write",
+          "argv": [
+            "python",
+            "-X",
+            "utf8",
+            "scripts/ci/generate_trivial_proof_census.py"
+          ],
+          "pid": 28200,
+          "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+          "started_unix": 1793795251.4922228,
+          "ended_unix": 1793795259.2451985,
+          "elapsed_seconds": 7.753,
+          "exit": 0,
+          "stdout": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\trivial-census-write.stdout.bin",
+            "bytes": 129,
+            "sha256": "220374ed29ca82a78fbf88cc760a842494f4db6374a37b1282616753113ce226"
+          },
+          "stderr": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\trivial-census-write.stderr.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "exit_path": "D:\\tmp\\original09-8-records-20261104\\derived\\trivial-census-write.exit.txt"
+        },
+        {
+          "name": "structure-volume-write",
+          "argv": [
+            "python",
+            "-X",
+            "utf8",
+            "scripts/ci/generate_structure_and_volume_reports.py"
+          ],
+          "pid": 13124,
+          "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+          "started_unix": 1793795259.248199,
+          "ended_unix": 1793795259.7413802,
+          "elapsed_seconds": 0.4932,
+          "exit": 0,
+          "stdout": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\structure-volume-write.stdout.bin",
+            "bytes": 806,
+            "sha256": "5b111c3d9068fd0c54cf8854a94c7b4f5868f0f96b0a12bc7b5877509b5165b1"
+          },
+          "stderr": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\structure-volume-write.stderr.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "exit_path": "D:\\tmp\\original09-8-records-20261104\\derived\\structure-volume-write.exit.txt"
+        },
+        {
+          "name": "declaration-shape-write",
+          "argv": [
+            "python",
+            "-X",
+            "utf8",
+            "scripts/ci/generate_declaration_shape_report.py"
+          ],
+          "pid": 2564,
+          "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+          "started_unix": 1793795259.7730944,
+          "ended_unix": 1793795268.0207458,
+          "elapsed_seconds": 8.2477,
+          "exit": 0,
+          "stdout": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\declaration-shape-write.stdout.bin",
+            "bytes": 118,
+            "sha256": "99f84f27f0b0fc01f1392e46f52d46a39b000f1a6efdcb33bd28b81d7ac213ac"
+          },
+          "stderr": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\declaration-shape-write.stderr.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "exit_path": "D:\\tmp\\original09-8-records-20261104\\derived\\declaration-shape-write.exit.txt"
+        },
+        {
+          "name": "gap-status-write",
+          "argv": [
+            "python",
+            "-X",
+            "utf8",
+            "scripts/ci/generate_gap_status.py",
+            "--write"
+          ],
+          "pid": 16692,
+          "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+          "started_unix": 1793795268.037743,
+          "ended_unix": 1793795268.5378342,
+          "elapsed_seconds": 0.5001,
+          "exit": 0,
+          "stdout": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\gap-status-write.stdout.bin",
+            "bytes": 551,
+            "sha256": "403d387ec864449f8e1cd5837b39587c8c5765f3e5933cf814ffd52520cb4d06"
+          },
+          "stderr": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\gap-status-write.stderr.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "exit_path": "D:\\tmp\\original09-8-records-20261104\\derived\\gap-status-write.exit.txt"
+        },
+        {
+          "name": "paper-derived-write",
+          "argv": [
+            "python",
+            "-X",
+            "utf8",
+            "scripts/rebind_paper_derived_accounting.py",
+            "--write"
+          ],
+          "pid": 25436,
+          "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+          "started_unix": 1793795268.539833,
+          "ended_unix": 1793795269.3151107,
+          "elapsed_seconds": 0.7753,
+          "exit": 0,
+          "stdout": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\paper-derived-write.stdout.bin",
+            "bytes": 482,
+            "sha256": "659fe623c99e6ebe055f41f1de88554141f2f0ce1a27c48fd4311c420b12e1d4"
+          },
+          "stderr": {
+            "path": "D:\\tmp\\original09-8-records-20261104\\derived\\paper-derived-write.stderr.bin",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "exit_path": "D:\\tmp\\original09-8-records-20261104\\derived\\paper-derived-write.exit.txt"
+        }
+      ],
+      "other_writes_receipt": {
+        "path": "D:\\tmp\\original09-8-records-20261104\\derived\\derived-writes-r2.receipt.json",
+        "bytes": 6321,
+        "sha256": "be6ba746d8d72df3b6be236e723873c134c66809135efafea2b3a7dac33c87f9"
+      }
+    },
+    "ci_index_metadata": {
+      "path": "D:\\tmp\\original09-8-records-20261104\\ci-index-new-run-metadata.json",
+      "bytes": 5784,
+      "sha256": "fa88e15fa67cf947090c938eef968b672a722f99aaffe579fd91ac6d5da9595f",
+      "receipt": "D:\\tmp\\original09-8-records-20261104\\ci-index-add-three.receipt.json",
+      "receipt_sha256": "6e818ed3a6c31c11e8eaf72e42bad8f44aaa17c26061269c9216a8e54457c6b9",
+      "method": "Official build_ci_run_index.py run_ids_in_markdown/describe/render for the three newly quoted run IDs only; no older metadata refresh and no full-evidence fetch."
+    }
+  },
+  "supporting_declarations": [
+    {
+      "fqn": "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.checkedEffect_of_ready",
+      "role": "compiled supporting theorem called by joint_from_actual_trace; not one of the nine footer #check/#print axioms target pairs"
+    }
+  ]
+}

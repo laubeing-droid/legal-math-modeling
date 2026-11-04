@@ -1,0 +1,626 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.7",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.7 L139/L141 mapped as COVERED; full-record PR acceptance pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      137,
+      142
+    ],
+    "subparagraph_lines": [
+      [
+        139,
+        139
+      ],
+      [
+        141,
+        141
+      ]
+    ],
+    "clause_ids": [
+      "U00",
+      "U10.2"
+    ],
+    "sha256": "eeaa6e20a4a475ff81dd25b77b36ffa28a27cdcf0e2b554f31b5710da9f6db0c"
+  },
+  "canonical_before": {
+    "id": "08.7",
+    "heading": "## 08.7 相连的法律推导与终局推导不得互相冒充",
+    "original_manifest_row": "08.7",
+    "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "source_lines": [
+      137,
+      142
+    ],
+    "clauses": [
+      "U00",
+      "U10.2"
+    ],
+    "subparagraph_lines": [
+      [
+        139,
+        139
+      ],
+      [
+        141,
+        141
+      ]
+    ],
+    "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+        "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+        "run_id": 40472856489,
+        "job_id": 122083892400,
+        "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+        "subject": "14e4937923ed3dea042317845568636108537f9b",
+        "run_id": 40482741482,
+        "job_id": 122116867789,
+        "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+      },
+      {
+        "pr": 54,
+        "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+        "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+        "ulm_run": 40485466352,
+        "authority_run": 40485467117,
+        "final_job": 122132576496,
+        "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+        "main_run": 40488021816,
+        "main_final_job": 122141376859,
+        "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+      }
+    ],
+    "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original08-7-dependency-snapshot-20261103",
+    "commit": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+    "tree": "ea86fcde17887b0e2a1ce8933721809eb9ae1a8b",
+    "parent": "f71c3f1ed08e6472c9fedeaa6a71e840612a419f"
+  },
+  "source_attempts": [
+    {
+      "label": "08.7 DependencySnapshot changed-module run",
+      "module": "JurisLean.Candidates.SourceDependencySnapshotAudit20261103",
+      "mode": "changed-module",
+      "run_id": 41596762048,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "head_sha": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "head_branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "job_id": 125785872371,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "receipt_path": "D:\\tmp\\original08-7-source-r1\\source-success-receipt.json"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "commit": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "tree": "ea86fcde17887b0e2a1ce8933721809eb9ae1a8b",
+      "parent": "f71c3f1ed08e6472c9fedeaa6a71e840612a419f",
+      "event": "workflow_dispatch",
+      "run_id": 41596762048,
+      "attempt": 1,
+      "run_status": "completed",
+      "run_conclusion": "success",
+      "head_sha": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "head_branch": "formal/close-original08-7-dependency-snapshot-20261103",
+      "job_id": 125785872371,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "module": "JurisLean.Candidates.SourceDependencySnapshotAudit20261103",
+      "artifact_id": 13212128880,
+      "artifact_name": "changed-module-only-41596762048-1",
+      "artifact_api_size": 27671,
+      "artifact_api_digest": "sha256:4c9d09bec859d00ecea64eba93f3ca7d7ad2cc53f9b41f1be9857bc7ace625be",
+      "artifact_expired": false,
+      "zip_path": "D:\\tmp\\original08-7-source-r1\\artifact-13212128880.zip",
+      "zip_bytes": 27671,
+      "zip_sha256": "4c9d09bec859d00ecea64eba93f3ca7d7ad2cc53f9b41f1be9857bc7ace625be",
+      "raw_path": "D:\\tmp\\original08-7-source-r1\\expanded\\changed-module.log",
+      "raw_bytes": 246076,
+      "raw_sha256": "7bce893b9cd47281e0edeb1b4cea8a8d6f95303207e562544c174f6a1640aeca",
+      "plan_path": "D:\\tmp\\original08-7-source-r1\\expanded\\module-plan.json",
+      "plan_bytes": 281,
+      "plan_sha256": "714f7136391923ddb27252943c2344d7974f34d792160f488e6178f4b85f213e",
+      "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+      "plan_include": [
+        {
+          "module": "JurisLean.Candidates.SourceDependencySnapshotAudit20261103",
+          "target": "JurisLean.Candidates.SourceDependencySnapshotAudit20261103"
+        }
+      ],
+      "plan_removed_modules": [],
+      "declaration_output_count": 13,
+      "selected_named_target_count": 13,
+      "errors": 0,
+      "sorryAx": 0,
+      "build_jobs": 8586,
+      "selected_targets": [
+        {
+          "name": "JurisLean.Candidates.DependencySnapshot20261103.successful_binding_and_inspection_preserve_snapshot_inputs",
+          "check_line": 103,
+          "axiom_line": 104,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:104:0: 'JurisLean.Candidates.DependencySnapshot20261103.successful_binding_and_inspection_preserve_snapshot_inputs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.DependencySnapshot20261103.inspection_key_eq_iff_coordinates_equal",
+          "check_line": 105,
+          "axiom_line": 106,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:106:0: 'JurisLean.Candidates.DependencySnapshot20261103.inspection_key_eq_iff_coordinates_equal' depends on axioms: [propext]"
+        },
+        {
+          "name": "JurisLean.Candidates.DependencySnapshot20261103.finite_material_entity_program_dependencies_have_no_infinite_chain",
+          "check_line": 107,
+          "axiom_line": 108,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:108:0: 'JurisLean.Candidates.DependencySnapshot20261103.finite_material_entity_program_dependencies_have_no_infinite_chain' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations",
+          "check_line": 110,
+          "axiom_line": 111,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:111:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels",
+          "check_line": 112,
+          "axiom_line": 113,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:113:0: 'JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct",
+          "check_line": 114,
+          "axiom_line": 115,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:115:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct' depends on axioms: [propext,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+          "check_line": 116,
+          "axiom_line": 117,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:117:0: 'JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures",
+          "check_line": 118,
+          "axiom_line": 119,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:119:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.FiniteLegalValidation20261027.validator_consumes_actual_bound_source",
+          "check_line": 120,
+          "axiom_line": 121,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:121:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.validator_consumes_actual_bound_source' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete",
+          "check_line": 122,
+          "axiom_line": 123,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:123:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion",
+          "check_line": 124,
+          "axiom_line": 125,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:125:0: 'JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+          "check_line": 126,
+          "axiom_line": 127,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:127:0: 'JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract' depends on axioms: [propext,\n Quot.sound]"
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness",
+          "check_line": 128,
+          "axiom_line": 129,
+          "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:129:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness' does not depend on any axioms\nBuild completed successfully (8586 jobs)."
+        }
+      ],
+      "api_snapshot": {
+        "path": "D:\\tmp\\original08-7-source-r1\\artifact-api.json",
+        "bytes": 778,
+        "sha256": "aa34e7737ca4d70af141af9347c4945d7ea8910e00df4cbda920ff4a316ce06b",
+        "artifact_id": 13212128880,
+        "name": "changed-module-only-41596762048-1",
+        "expired": false,
+        "size_in_bytes": 27671,
+        "digest": "sha256:4c9d09bec859d00ecea64eba93f3ca7d7ad2cc53f9b41f1be9857bc7ace625be"
+      },
+      "new_public_target_count": 3,
+      "reused_named_target_count": 10
+    }
+  ],
+  "selected_named_target_count": 13,
+  "selected_targets": [
+    {
+      "name": "JurisLean.Candidates.DependencySnapshot20261103.successful_binding_and_inspection_preserve_snapshot_inputs",
+      "check_line": 103,
+      "axiom_line": 104,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:104:0: 'JurisLean.Candidates.DependencySnapshot20261103.successful_binding_and_inspection_preserve_snapshot_inputs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.DependencySnapshot20261103.inspection_key_eq_iff_coordinates_equal",
+      "check_line": 105,
+      "axiom_line": 106,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:106:0: 'JurisLean.Candidates.DependencySnapshot20261103.inspection_key_eq_iff_coordinates_equal' depends on axioms: [propext]"
+    },
+    {
+      "name": "JurisLean.Candidates.DependencySnapshot20261103.finite_material_entity_program_dependencies_have_no_infinite_chain",
+      "check_line": 107,
+      "axiom_line": 108,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:108:0: 'JurisLean.Candidates.DependencySnapshot20261103.finite_material_entity_program_dependencies_have_no_infinite_chain' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations",
+      "check_line": 110,
+      "axiom_line": 111,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:111:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels",
+      "check_line": 112,
+      "axiom_line": 113,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:113:0: 'JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct",
+      "check_line": 114,
+      "axiom_line": 115,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:115:0: 'JurisLean.Candidates.ProcedureClosure20261027.Audit.four_judgment_process_products_are_distinct' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+      "check_line": 116,
+      "axiom_line": 117,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:117:0: 'JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures",
+      "check_line": 118,
+      "axiom_line": 119,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:119:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.family_retains_each_branch_including_failures' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.FiniteLegalValidation20261027.validator_consumes_actual_bound_source",
+      "check_line": 120,
+      "axiom_line": 121,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:121:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.validator_consumes_actual_bound_source' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete",
+      "check_line": 122,
+      "axiom_line": 123,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:123:0: 'JurisLean.Candidates.FiniteLegalValidation20261027.inspected_horn_is_applicable_and_complete' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion",
+      "check_line": 124,
+      "axiom_line": 125,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:125:0: 'JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+      "check_line": 126,
+      "axiom_line": 127,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:127:0: 'JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness",
+      "check_line": 128,
+      "axiom_line": 129,
+      "axiom_output": "info: JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean:129:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness' does not depend on any axioms\nBuild completed successfully (8586 jobs)."
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16079,
+      "sha256": "d0e258bf5ff112f1ecfe7d9e46b2c5beed2036b164d12a4eddf8defc568108f5",
+      "git_blob": "d73f288c196f276590bcdf9bf2111e7a9500b3ae",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceDependencySnapshotAudit20261103.lean",
+      "bytes": 7543,
+      "sha256": "bf3f5e5e408392e2a1f105433731eef3b94201ffd24d3602bda2b365c13c5440",
+      "git_blob": "c67eb086492afd6769201e6c43b126f04563f878",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+      "bytes": 8142,
+      "sha256": "6e002d6bad25b362021d9a342a23c7132712201e4e0fb833628d896eef07fa1e",
+      "git_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
+      "bytes": 12332,
+      "sha256": "2a17229ece90d4c0d1dc779e47095f5e752911c7f9bb5f63436aae28f2ebc0ac",
+      "git_blob": "4646028d2d4bc6c27569a85061132d507ec624d4",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
+      "bytes": 21206,
+      "sha256": "65476152aa24f8cdc9297d1473d596fd1078022d51fd04e43e0a8bd2c251309a",
+      "git_blob": "cf5c4901f2e51f7ebae9c2692e06f6f85c1623d0",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+      "bytes": 14711,
+      "sha256": "daeed74a372a1e090f3b6ba0c0fe6d5f82b3c2c0d83884b51af54a7f4ead92c0",
+      "git_blob": "b68b39006af4701a371f80c0641dcee68b2e4059",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+      "bytes": 9970,
+      "sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a",
+      "git_blob": "033d14ad6edf9e8057c5217db633e6131cf6e47d",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidation20261027.lean",
+      "bytes": 34408,
+      "sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d",
+      "git_blob": "a3876253a1da37cb4a1f7b7b5d657ed025adf767",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "bytes": 15083,
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+      "git_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+      "bytes": 8470,
+      "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+      "git_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "bytes": 19515,
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2",
+      "git_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "bytes": 20327,
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+      "bytes": 6847,
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
+      "git_blob": "5068dc7b66c8eefbdba821830e873ff9ebc2774a",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "bytes": 5158,
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e",
+      "git_blob": "8e7c3b357a4aacbe0d3ba2d1af6fcac717857839",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+      "bytes": 3205,
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
+      "git_blob": "dfca2f35a7cee919ff7d5813f9dc19f0bde2b935",
+      "physical_matches_source_commit": true
+    }
+  ],
+  "frozen_axiom_audit": {
+    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+    "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198"
+  },
+  "toolchain": {
+    "lean_toolchain": "leanprover/lean4:v4.30.0",
+    "mathlib_package": {
+      "name": "mathlib",
+      "rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "inputRev": "v4.30.0",
+      "url": "https://github.com/leanprover-community/mathlib4"
+    }
+  },
+  "mathematical_mapping": [
+    "L139: successful_binding_and_inspection_preserve_snapshot_inputs connects a successful bindAdditional result to the actual inspected bound source, Gamma, selected version, selected Horn input, and independent process result. The source/App/rule external fidelity premises remain explicit.",
+    "L139: same_source_completed_countermodels and a_u09_three_observations provide finite counterexamples showing successful relative Horn closure does not establish external truth, and a zero balance can coexist with an open procedure.",
+    "L139: four_judgment_process_products_are_distinct supplies the finite lawfully-closed/insufficient product example; the procedure output remains separate from the judgment.",
+    "L141: InspectionSnapshot carries BoundData, temporal history, and an independently supplied eventFactTime; inspectBound receives appAtEventTime eventFactTime. The key equality theorem covers only Gamma coordinates, eventFactTime, and independent policy version, not complete semantic identity or verified real-world event time.",
+    "L141: finite_material_entity_program_dependencies_have_no_infinite_chain proves the stated material(0) -> entity(1) -> followup-program(2) prerequisite graph has no infinite dependency chain. A reverse 1 -> 2 dependency is outside this graph; no general RawProcess termination is claimed."
+  ],
+  "boundaries": [
+    "No external source, legal rule, or App fidelity is inferred from successful binding or inspection.",
+    "The supplied eventFactTime is an explicit input, not extracted from SourceHistory.",
+    "The finite dependency result applies only to the specified graph and does not prove arbitrary models or RawProcess execution terminate.",
+    "U00 edge 5 receives producer evidence only; no Harness runtime connection or rating change is claimed.",
+    "Full PR record acceptance is pending."
+  ],
+  "u00_producer_scope": {
+    "edge_id": 5,
+    "edge_name": "规范/证据→Harness",
+    "current_row": 253,
+    "action": "append producer evidence only",
+    "consumer_or_rating_changed": false,
+    "claim": "new source module records actual bound snapshot inputs and finite dependency graph; no runtime Harness wiring or external fidelity claim"
+  },
+  "canonical_after": {
+    "id": "08.7",
+    "heading": "## 08.7 相连的法律推导与终局推导不得互相冒充",
+    "original_manifest_row": "08.7",
+    "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "source_lines": [
+      137,
+      142
+    ],
+    "clauses": [
+      "U00",
+      "U10.2"
+    ],
+    "subparagraph_lines": [
+      [
+        139,
+        139
+      ],
+      [
+        141,
+        141
+      ]
+    ],
+    "reconciliation": "COVERED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+        "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+        "run_id": 40472856489,
+        "job_id": 122083892400,
+        "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+        "subject": "14e4937923ed3dea042317845568636108537f9b",
+        "run_id": 40482741482,
+        "job_id": 122116867789,
+        "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+      },
+      {
+        "pr": 54,
+        "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+        "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+        "ulm_run": 40485466352,
+        "authority_run": 40485467117,
+        "final_job": 122132576496,
+        "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+        "main_run": 40488021816,
+        "main_final_job": 122141376859,
+        "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original08-7-dependency-snapshot-close-20261103",
+        "subject": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+        "tree": "ea86fcde17887b0e2a1ce8933721809eb9ae1a8b",
+        "run_id": 41596762048,
+        "attempt": 1,
+        "job_id": 125785872371,
+        "artifact_id": 13212128880,
+        "artifact_sha256": "4c9d09bec859d00ecea64eba93f3ca7d7ad2cc53f9b41f1be9857bc7ace625be",
+        "scope": "Frozen L139/L141: three compiled snapshot/dependency connections and ten reused named targets; source-module evidence only. External source/App/rule fidelity and general RawProcess termination are not claimed; PR acceptance pending."
+      }
+    ],
+    "remaining": "Frozen 08.7 L139/L141 is covered by the independently compiled source snapshot and finite dependency witnesses. Broader original-08 engineering work, external source/rule/App fidelity, and U00 consumer/runtime integration remain in their existing scopes."
+  },
+  "full_record_acceptance": "PENDING",
+  "root_metadata_repair": {
+    "purpose": "Repair the generated release-root reachability block after the first PR113 validation found one missing block entry; the original source-module proof remains bound to its original source checkpoint.",
+    "initial_pr": {
+      "number": 113,
+      "head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "base": "f71c3f1ed08e6472c9fedeaa6a71e840612a419f",
+      "tested_merge": "0f1f4cfdc66e5a9ae3bea3b7dfb58161306b1dd9",
+      "tree": "e8e81503d351edb82c94fb25075f6e6bb6a6fa77",
+      "ordered_parents": [
+        "f71c3f1ed08e6472c9fedeaa6a71e840612a419f",
+        "5df54b849a7f4002f751f7a50493ef5651d2b564"
+      ]
+    },
+    "ulm_run": {
+      "id": 41600741223,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "api_head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "role": "historical validation of the pre-repair PR head; not current acceptance"
+    },
+    "authority_run": {
+      "id": 41600741217,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "api_head": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "pre_cancel_status": "in_progress",
+      "python_job_failure": {
+        "job": "python-gates",
+        "failed_test": "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs",
+        "summary": "775 passed, 1 failed; generated block listed 219 modules while the base root required 220"
+      },
+      "cancel_request": {
+        "exit_code": 0,
+        "receipt": "D:/tmp/original08-7-pr113-r2/cancel-old-authority-run.json"
+      },
+      "role": "pre-repair historical failure; not current acceptance"
+    },
+    "repair": {
+      "argv": [
+        "python",
+        "scripts/ci/check_import_reachability.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "stdout": "wrote All.lean (64 imports) and a root block with 220 imports",
+      "change": "The generated block contains the new SourceDependencySnapshotAudit import once; the duplicate suffix import was removed.",
+      "all_lean_unchanged": true,
+      "focused_validation": {
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "tests/spec/test_import_reachability.py",
+          "tests/test_declaration_collisions.py"
+        ],
+        "exit_code": 0,
+        "summary": "17 passed",
+        "receipt": "D:/tmp/original08-7-pr113-r2/reachability-and-collision-pytest.receipt.json"
+      }
+    },
+    "root_metadata_checkpoint": {
+      "commit": "7909ad120fa8519b91fc3de3143fa412dcc0a46f",
+      "tree": "0e7d5d626cb2175085faa8992c47d211c9b4ab33",
+      "parent": "5df54b849a7f4002f751f7a50493ef5651d2b564",
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16079,
+      "sha256": "88fce5187c878b73631e26146ad9a262a2bc07355c37d6e02dd04fdb57177d49",
+      "git_blob": "0a21431a241d46543afea206815cd8cb577705ca"
+    },
+    "source_module_evidence_unchanged": {
+      "commit": "d7f45ec7f08ce9295b2888110c5fad02f5193746",
+      "tree": "ea86fcde17887b0e2a1ce8933721809eb9ae1a8b",
+      "run_id": 41596762048,
+      "attempt": 1,
+      "selected_output_count": 13,
+      "role": "original source-module proof; not the later root-metadata checkpoint"
+    },
+    "current_pr_validation": "PENDING_NEW_PR113_HEAD"
+  }
+}

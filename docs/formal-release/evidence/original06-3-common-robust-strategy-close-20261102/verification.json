@@ -1,0 +1,445 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "5d3b76b79778006fa8dc3547b9df3eedd4d55d95",
+  "subject_tree": "a5c87b4518999a12f299b76b8aeebc1620de04a3",
+  "run_id": 41332534302,
+  "job_id": 124925470701,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41332534302",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41332534302/job/124925470701",
+  "artifact_name": "changed-module-only-41332534302-1",
+  "artifact_id": 13094136964,
+  "artifact_sha256": "878cadd51adb9805c49c80c8bf5b1b98b12235df922b6cb10c1635d03f05916f",
+  "artifact_size_bytes": 6261,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 57271,
+      "sha256": "20dda0ede535e5adcfe318bd88a187c6481666974b6a8ab82c78bc322663071c"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 275,
+      "sha256": "3c4d99fafae5d336f82dbbde4ba40ba1a3693f04d2de6717f5e6e9d01e218738"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "3c4d99fafae5d336f82dbbde4ba40ba1a3693f04d2de6717f5e6e9d01e218738",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean",
+  "named_count": 31,
+  "names_by_clause": {
+    "L105": [
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.common_policy_is_branch_blind",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policy_matches_visible_policy",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_visible_actions_equal_across_worlds",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.empty_joint_actions_block_common_policy",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policies_feasible",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_policy_set_eq_univ"
+    ],
+    "L107": [
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worst_branch_attained",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trace_eq_terminal",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trajectory_law_is_pure",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.every_policy_induces_fixed_branch_law",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_is_actual_trajectory_payoff",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_inputs_well_formed",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_max_min_scores",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_strategy_maximizes_minimum",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branchwise_optima_differ",
+      "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+      "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+      "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+      "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+      "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation"
+    ],
+    "L109": [
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_legal_unknown",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_preference_unknown",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_empty_returns_none",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_none_iff_no_feasible_candidate",
+      "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed"
+    ]
+  },
+  "object_checks": [
+    "VisiblePolicy has no legal-branch argument",
+    "reachable-history legal and implementability constraints",
+    "common feasible candidate class and local empty-joint-action obstruction",
+    "finite worst-branch and max-min attainment",
+    "expectedUtilityMatrix computed from fixed branch-law utility integrals",
+    "Result propagation for legal and preference inputs",
+    "existing finite Bellman trajectory law and expected-utility connection",
+    "three-action two-branch actual-trajectory example",
+    "existing Decision.u06_3_decision_respects_allowed"
+  ],
+  "axiom_audit": {
+    "audited_targets": 31,
+    "axiom_vocabulary": {
+      "propext": 28,
+      "Classical.choice": 27,
+      "Quot.sound": 28
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "sha256": "79e0b7e71bd261e590d5ae2820e6fd546982f262afe9c6b3856733c1235823b2",
+      "git_blob_sha1": "bc33026b38402ebcf134f1c22ddab8e944879ab0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalStrategyAudit20261102.lean",
+      "sha256": "0c5d73a63dcab056dcdc35ea9756c8bb213cd8ec0743f11ba4b2204ec911af0b",
+      "git_blob_sha1": "5f79297dafbbc328a0a649bdcbfd885997e3b96b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "sha256": "230d5492821f6f5762da2d550894ebcd5f40a5866163852718d5c2c33b35698d",
+      "git_blob_sha1": "56d9895cd8bb9aacb9868185fb86561939f2ee45"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e",
+      "git_blob_sha1": "8e7c3b357a4aacbe0d3ba2d1af6fcac717857839"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88",
+      "git_blob_sha1": "698e40b8cb26c4880f81c0d4018e5d539d3efb82"
+    }
+  ],
+  "original_residuals": {
+    "06.3": "Frozen L105/L107/L109: branch-blind visible policies and reachable-history legal/implementability feasibility; finite max-min attainment with values computed from actual branch-law expected utility; external legal and preference Results with unknown preserved; finite actual-trajectory example separating shared max-min selection from branch-specific optima."
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题06.3数学行",
+    "archive_gap_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original06-3-common-robust-strategy-close-20261102/changed-module.log",
+    "sha256": "20dda0ede535e5adcfe318bd88a187c6481666974b6a8ab82c78bc322663071c",
+    "blocks": 31
+  },
+  "source_module_status": "SUCCESS; changed-module only; 31 actual #print axioms outputs comprise 25 current-module declarations (24 theorems plus expectedUtilityMatrix) and six reused targets; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate and referenced-byte reconciliation, independent verification, authorized merge and post-merge checks remain separate.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41330488365,
+      "attempt": 1,
+      "head_sha": "85a3315103d41e1e2c9b934f0695e4e41668e703",
+      "head_tree": "e55e8bd42b84ef702004a98843012010f160773d",
+      "job_id": 124919353513,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41330488365",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41330488365/job/124919353513",
+      "artifact_id": 13093740167,
+      "artifact_name": "changed-module-only-41330488365-1",
+      "artifact_size_bytes": 5964,
+      "artifact_sha256": "ad2c5223bec703dcb3088e2cfa7cfcdfa9c686be9a1b1036c96aa1bcc48ad900",
+      "log_size_bytes": 39837,
+      "log_sha256": "e5ed35f4462f6078699679e4b68ed0a75dc5b7b11e3f522f17579e210f36a014",
+      "plan_size_bytes": 275,
+      "plan_sha256": "3c4d99fafae5d336f82dbbde4ba40ba1a3693f04d2de6717f5e6e9d01e218738",
+      "audit_targets_printed": 0,
+      "error_count": 37,
+      "note": "Initial source module build failed with 37 compiler errors and emitted no Audit target output; retained as failure, not pass."
+    },
+    {
+      "run_id": 41331754581,
+      "attempt": 1,
+      "head_sha": "a932629086f56e0f302952edf26a513125f693a5",
+      "head_tree": "e2546f9965f04f238e01332668ac2f7096c39627",
+      "job_id": 124923165176,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41331754581",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41331754581/job/124923165176",
+      "artifact_id": 13093503149,
+      "artifact_name": "changed-module-only-41331754581-1",
+      "artifact_size_bytes": 4329,
+      "artifact_sha256": "eb5a66812ea157f9d3bb4644cb4d29e7c1c5fdb38e805320fc63c2b2e5a066fc",
+      "log_size_bytes": 27143,
+      "log_sha256": "2285765c19093cfce579fd33520dd0c3ae50d24ca8458ba80b7126bab531655c",
+      "plan_size_bytes": 275,
+      "plan_sha256": "3c4d99fafae5d336f82dbbde4ba40ba1a3693f04d2de6717f5e6e9d01e218738",
+      "audit_targets_printed": 0,
+      "error_count": 7,
+      "note": "First repair head failed with seven compiler errors and emitted no Audit target output; retained as failure, not pass."
+    }
+  ],
+  "scope_note": "Only original math row 06.3 is mapped. The result covers frozen L105/L107/L109 under the stated finite-branch, feasibility, probability/integrability, legal-input and preference-input contracts. It adds no actual runtime caller, legal determination, unprovided preference, minimax interchange or mixed-strategy theorem. Other 96 math rows, 105 engineering rows, six designated cuts, 15 consumer-edge ratings, U50 50/0/0/124, and global discharges / Step 2 / math_flip remain unchanged.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.common_policy_is_branch_blind",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 69,
+      "audit_log_line": 301,
+      "original_clause": "L105",
+      "audit_source_line": 7
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policy_matches_visible_policy",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 369,
+      "audit_log_line": 311,
+      "original_clause": "L105",
+      "audit_source_line": 9
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_visible_actions_equal_across_worlds",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 376,
+      "audit_log_line": 327,
+      "original_clause": "L105",
+      "audit_source_line": 11
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.empty_joint_actions_block_common_policy",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 78,
+      "audit_log_line": 340,
+      "original_clause": "L105",
+      "audit_source_line": 13
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.worst_branch_attained",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 106,
+      "audit_log_line": 348,
+      "original_clause": "L107",
+      "audit_source_line": 15
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.finite_max_min_attained",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 113,
+      "audit_log_line": 358,
+      "original_clause": "L107",
+      "audit_source_line": 17
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 136,
+      "audit_log_line": 371,
+      "original_clause": "L107",
+      "audit_source_line": 19
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 152,
+      "audit_log_line": 378,
+      "original_clause": "L107",
+      "audit_source_line": 21
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_legal_unknown",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 220,
+      "audit_log_line": 399,
+      "original_clause": "L109",
+      "audit_source_line": 23
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_preserves_preference_unknown",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 235,
+      "audit_log_line": 425,
+      "original_clause": "L109",
+      "audit_source_line": 25
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_empty_returns_none",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 253,
+      "audit_log_line": 449,
+      "original_clause": "L109",
+      "audit_source_line": 27
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_choice_is_feasible_max_min",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 268,
+      "audit_log_line": 482,
+      "original_clause": "L109",
+      "audit_source_line": 29
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.conditional_advice_known_none_iff_no_feasible_candidate",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 302,
+      "audit_log_line": 505,
+      "original_clause": "L109",
+      "audit_source_line": 31
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.expectedUtilityMatrix",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 187,
+      "audit_log_line": 510,
+      "original_clause": "L107",
+      "audit_source_line": 33
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_policies_feasible",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 398,
+      "audit_log_line": 521,
+      "original_clause": "L105",
+      "audit_source_line": 35
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_policy_set_eq_univ",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 405,
+      "audit_log_line": 533,
+      "original_clause": "L105",
+      "audit_source_line": 37
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branches_nonempty",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 413,
+      "audit_log_line": 538,
+      "original_clause": "L107",
+      "audit_source_line": 39
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trace_eq_terminal",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 419,
+      "audit_log_line": 544,
+      "original_clause": "L107",
+      "audit_source_line": 41
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_trajectory_law_is_pure",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 424,
+      "audit_log_line": 551,
+      "original_clause": "L107",
+      "audit_source_line": 43
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.every_policy_induces_fixed_branch_law",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 447,
+      "audit_log_line": 561,
+      "original_clause": "L107",
+      "audit_source_line": 45
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_is_actual_trajectory_payoff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 481,
+      "audit_log_line": 569,
+      "original_clause": "L107",
+      "audit_source_line": 47
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_expected_utility_inputs_well_formed",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 472,
+      "audit_log_line": 578,
+      "original_clause": "L107",
+      "audit_source_line": 49
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_max_min_scores",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 497,
+      "audit_log_line": 597,
+      "original_clause": "L107",
+      "audit_source_line": 51
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_common_strategy_maximizes_minimum",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 505,
+      "audit_log_line": 611,
+      "original_clause": "L107",
+      "audit_source_line": 53
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.demo_branchwise_optima_differ",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 524,
+      "audit_log_line": 629,
+      "original_clause": "L107",
+      "audit_source_line": 55
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_nonneg",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "source_line": 171,
+      "audit_log_line": 638,
+      "original_clause": "L107",
+      "audit_source_line": 58
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_weight_one",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "source_line": 184,
+      "audit_log_line": 646,
+      "original_clause": "L107",
+      "audit_source_line": 60
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_law_mass",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "source_line": 205,
+      "audit_log_line": 656,
+      "original_clause": "L107",
+      "audit_source_line": 62
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1FiniteBellman20261030.trajectory_expectation_eq_policy_value",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "source_line": 217,
+      "audit_log_line": 665,
+      "original_clause": "L107",
+      "audit_source_line": 64
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1FiniteBellman20261030.bellman_optimum_of_actual_trajectory_expectation",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "source_line": 258,
+      "audit_log_line": 687,
+      "original_clause": "L107",
+      "audit_source_line": 66
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "source_line": 181,
+      "audit_log_line": 695,
+      "original_clause": "L109",
+      "audit_source_line": 68
+    }
+  ]
+}

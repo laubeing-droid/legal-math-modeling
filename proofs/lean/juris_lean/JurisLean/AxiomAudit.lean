@@ -237,12 +237,46 @@ import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U01_4OriginalClosureAudit20261030
 import JurisLean.Candidates.U04_4OriginalClosureAudit20261031
 import JurisLean.Candidates.U05_1OriginalClosureAudit20261031
+import JurisLean.Candidates.U05_3OriginalSelectiveRiskAudit20261101
+import JurisLean.Candidates.U05_5OriginalShiftAudit20261101
+import JurisLean.Candidates.U05_6OriginalMonitoringAudit20261101
+import JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101
+import JurisLean.Candidates.U06_2OriginalExpectedUtilityAudit20261101
+import JurisLean.Candidates.U06_3OriginalStrategyAudit20261102
+import JurisLean.Candidates.U06_6OriginalRiskEvaluationAudit20261102
+import JurisLean.Candidates.U06_7OriginalChapterAudit20261102
+import JurisLean.Candidates.Original07_3RowInterpretationAudit20261102
+import JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102
 import JurisLean.Candidates.HarnessOriginalInstancesAudit20261031
 import JurisLean.Candidates.U06_4ConditionalInformationAudit20261031
 import JurisLean.Candidates.U06_5OriginalClosureAudit20261031
 import JurisLean.Candidates.BetaFutureSampling20261031
 import JurisLean.Candidates.BernoulliMeanInstance20261031
 import JurisLean.Candidates.BetaEnclosureInstance20261031
+import JurisLean.Candidates.U00SourcePersonalEpisodeAudit20261031
+import JurisLean.Candidates.CompilerOriginalBoundariesAudit20261031
+import JurisLean.Candidates.U06_5FiniteObservationInstanceAudit20261031
+
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_iff
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_each_expected_loss_le
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_some_spec
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies_eq_univ
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_utility_values
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_loss_values
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_loss_nonnegative
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_unconstrained_original_optimum
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_two_is_singleton
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_risk_picker_selects_one
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_zero_is_empty
+#print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_zero_limit_picker_returns_none
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_event_ids_nodup
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_net_is_gross
+#print axioms JurisLean.Candidates.U06_7OriginalCashBargainBridge20261102.terminal_cash_utility_matches_w4
+#print axioms JurisLean.Candidates.Original07_3RowInterpretation20261102.interpretation_rowSeam
+#print axioms JurisLean.Candidates.Original07_3RowInterpretation20261102.same_raw_event_distinct_row_seams
+#print axioms JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -972,6 +1006,65 @@ open HornSystem
 #check JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
 #print axioms JurisLean.Candidates.U06_5OriginalModels20261031.bargain_backward_induction
 
+/-! U00 original conditional composition and current source-to-action path. -/
+#check JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained
+#print axioms JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained
+#check JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input
+#print axioms JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input
+#check JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column
+#print axioms JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column
+#check JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks
+#print axioms JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks
+#check JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence
+#print axioms JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence
+#check JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation
+#print axioms JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation
+#check JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection
+#print axioms JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection
+#check JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame
+#print axioms JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame
+#check JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry
+#print axioms JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry
+#check JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample
+#print axioms JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample
+#check JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation
+#print axioms JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation
+#check JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry
+#print axioms JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry
+#check JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting
+#print axioms JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch
+#print axioms JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation
+#print axioms JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation
+#print axioms JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result
+#print axioms JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation
+#print axioms JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation
+#check JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence
+#print axioms JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence
+#check JurisLean.Candidates.U00SourcePersonalEpisode20261031.runRefreshedPersonalSource
+#check JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket
+#check JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest
+
+/-! Original-question 03.2-03.6 finite boundary supplement. -/
+#check JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact
+#print axioms JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact
+#check JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth
+#print axioms JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth
+#check JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity
+#print axioms JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity
+
+/-! Original-question U06.5 finite observation supplement. -/
+#check JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options
+#print axioms JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_information_states_and_options
+#check JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost
+#print axioms JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_purchase_trajectory_and_single_cost
+#check JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum
+#print axioms JurisLean.Candidates.U06_5FiniteObservationInstance20261031.actual_nonanticipating_trajectory_optimum
+
 /-! Generated probability / expectation audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write
     These declarations are elaborated by the all-module CI plan but were
@@ -1360,7 +1453,6 @@ open HornSystem
 #print axioms JurisLean.Seams.AdjudicationBridge.cycle2_q_not_grounded
 #print axioms JurisLean.Seams.AdjudicationBridge.cycle2_q_undecided
 #print axioms JurisLean.Seams.AdjudicationBridge.finalDerivable_within_grounded
-#print axioms JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted
 #print axioms JurisLean.Seams.AdjudicationBridge.gateAdmitsRejectingPolicy
 #print axioms JurisLean.Seams.AdjudicationBridge.grounded_equivalence
 #print axioms JurisLean.Seams.AdjudicationBridge.grounded_rejection_is_not_legal_refutation
@@ -2548,7 +2640,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedEquilExist.exists_rowOf_eq
 #print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists
 #print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_of_menu
-#print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream
 #print axioms JurisLean.Seams.UnifiedEquilExist.fixed_point_brCorr_iff_nash
 #print axioms JurisLean.Seams.UnifiedEquilExist.gapmid_nash_iff_real
 #print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_Strategy_eq
@@ -3363,12 +3454,8 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vneg_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vscale_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound
-#print axioms JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantLedger.afterPay_idents
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining
-#print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min
 #print axioms JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_le
 #print axioms JurisLean.Seams.UnifiedQuantLedger.causeTimesLoss_sound
 #print axioms JurisLean.Seams.UnifiedQuantLedger.clamp_clamp
@@ -3399,9 +3486,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.no_blanket_invalidation
 #print axioms JurisLean.Seams.UnifiedQuantLedger.no_resp_zero_share
 #print axioms JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount
-#print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp
-#print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger
 #print axioms JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg
 #print axioms JurisLean.Seams.UnifiedQuantLedger.pays_sum_base
@@ -3415,7 +3500,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.signing_not_pledge_established
 #print axioms JurisLean.Seams.UnifiedQuantLedger.small_share_mask_rejected
 #print axioms JurisLean.Seams.UnifiedQuantLedger.stacking_not_default
-#print axioms JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal
 #print axioms JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition
 #print axioms JurisLean.Seams.UnifiedQuantLedger.supp_unfold
 #print axioms JurisLean.Seams.UnifiedQuantLedger.supp_zero_when_primary_covers
@@ -3425,7 +3509,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unknown_kept_in_residual
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unmatched_partition
 #print axioms JurisLean.Seams.UnifiedQuantLedger.unsourced_not_admitted
-#print axioms JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.bern_cdfEnc_valid
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.bern_full_chain
 #print axioms JurisLean.Seams.UnifiedQuantileNarrow.certFound_both_iff
@@ -3473,15 +3556,12 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum
 #print axioms JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded
 #print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_cons
-#print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_cons
-#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_conservation
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_debt
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_payment
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_head_full_of_tail_positive
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_homogeneous
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_mem_nonneg
-#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_sum_le
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_t25_prefix
 #print axioms JurisLean.Seams.UnifiedQuantities.waterfall_zero
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable
@@ -3834,7 +3914,6 @@ open HornSystem
 #print axioms EFG.isSubgame_terminal
 #print axioms EFG.nash_of_noOSD
 #print axioms EFG.nash_of_noOSD_of_bounded
-#print axioms EFG.oneShotDeviation_iff_spe
 #print axioms EFG.oneShotDeviation_iff_spe_of_bounded
 #print axioms EFG.perfectInfo_implies_perfectRecall
 #print axioms EFG.perfectInfo_isSubgame_decision
@@ -3969,7 +4048,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.mixedExtension_eu_update
 #print axioms GameTheory.KernelGame.mixedExtension_eu_update_of_bounded
 #print axioms GameTheory.KernelGame.mixedExtension_isZeroSum
-#print axioms GameTheory.KernelGame.mixed_nash_exists
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_bounded
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx
 #print axioms GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly
@@ -3986,7 +4064,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly
 #print axioms GameTheory.KernelGame.nash_eu_ge_securityLevel
 #print axioms GameTheory.KernelGame.nash_eu_ge_securityLevelSup
-#print axioms GameTheory.KernelGame.nash_fp_is_nash
 #print axioms GameTheory.KernelGame.nash_fp_is_nash_of_bounded
 #print axioms GameTheory.KernelGame.nash_p0_cap
 #print axioms GameTheory.KernelGame.ofEU_Strategy
@@ -4010,7 +4087,6 @@ open HornSystem
 #print axioms GameTheory.KernelGame.worstCaseEUInf_le
 #print axioms GameTheory.KernelGame.worstCaseEU_guarantees
 #print axioms GameTheory.KernelGame.worstCaseEU_le
-#print axioms GameTheory.brouwer_mixedSimplex
 #print axioms GameTheory.continuous_fromMixedSet
 #print axioms GameTheory.continuous_toMixedSet
 #print axioms GameTheory.convex_mixedSimplexAsSet

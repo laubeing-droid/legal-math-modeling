@@ -1,0 +1,295 @@
+⚠ [8476/8506] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8482/8506] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8483/8506] Replayed JurisLean.Candidates.LearningRisk20261027
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/LearningRisk20261027.lean:157:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:158:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:159:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:160:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:161:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8484/8506] Replayed JurisLean.Candidates.LearningFiniteClass20261027
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:135:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:211:0: 'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:212:0: 'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:213:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:214:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8486/8506] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8487/8506] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8506] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8490/8506] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8491/8506] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8495/8506] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8503/8506] Built JurisLean.Candidates.BernoulliMeanInstance20261031 (4.3s)
+info: JurisLean/Candidates/BernoulliMeanInstance20261031.lean:78:0: 'JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8504/8506] Built JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101 (5.3s)
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:210:5: unused variable `leftSelected`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:211:5: unused variable `rightSelected`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:212:5: unused variable `cashIdsNodup`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:296:5: unused variable `sameUnit`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8505/8506] Built JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101 (4.2s)
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:40:8: This simp argument is unused:
+  Fintype.sum_bool
+
+Hint: Omit it from the simp argument list.
+  simp [̵F̵i̵n̵t̵y̵p̵e̵.̵s̵u̵m̵_̵b̵o̵o̵l̵,̵ ̵P̵M̵F̵.̵b̵e̵r̵n̵o̵u̵l̵l̵i̵_̵a̵p̵p̵l̵y̵,̵[̲P̲M̲F̲.̲b̲e̲r̲n̲o̲u̲l̲l̲i̲_̲a̲p̲p̲l̲y̲,̲ NNReal.coe_sub hnn, NNReal.coe_one, Real.coe_toNNReal q hq0,
+  ̲  ̲ ̲ ̲smul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:42:46: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:42:46: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:53:35: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:79:27: unused variable `sameUnit`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:128:35: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:146:2: 'change
+  (slope * (wealth + Decision.net q1 success1 failure1 cost1) + offset + commonNoncash ≤
+      slope * (wealth + Decision.net q2 success2 failure2 cost2) + offset + commonNoncash) ↔
+    Decision.net q1 success1 failure1 cost1 ≤ Decision.net q2 success2 failure2 cost2' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean:225:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [8506/8506] Built JurisLean.Candidates.U06_2OriginalExpectedUtilityAudit20261101 (3.2s)
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:5:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:6:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:7:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:8:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.expected_cash_from_event_sets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:9:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_utility_two_branch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:10:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_expected_utility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:11:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:12:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_threshold_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:13:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.higher_win_probability_lower_expected_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:14:0: 'JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:16:0: 'JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean:17:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8506 jobs).

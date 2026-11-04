@@ -1,0 +1,3 @@
+import JurisLean.Candidates.U00ActualAssessmentChoice20261031
+#check JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence
+#print axioms JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence

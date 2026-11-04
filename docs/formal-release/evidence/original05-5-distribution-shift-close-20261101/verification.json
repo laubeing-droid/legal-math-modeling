@@ -1,0 +1,162 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "78b4be27ca98cf4013468cb75e6f3c80304d3e35",
+  "subject_tree": "4cfd33cc78f62eeb584dc482631c7b05e632d406",
+  "run_id": 41294062528,
+  "job_id": 124811103137,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41294062528",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41294062528/job/124811103137",
+  "artifact_name": "changed-module-only-41294062528-1",
+  "artifact_id": 13078901681,
+  "artifact_sha256": "f104abf2ba37e4adabb79a6d1b0f4a79e75f8894e475bebd54a99ebb748230bd",
+  "artifact_size_bytes": 2945,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 15201,
+      "sha256": "2e50c08a9f62dca3386c1780c077abdf54d8a85933be0e4e975efbecadb54a5a"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 269,
+      "sha256": "f8fd96617a1be8b9033212a98fe912d054f018b9137c02486c1eefc9ae400c14"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "f8fd96617a1be8b9033212a98fe912d054f018b9137c02486c1eefc9ae400c14",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftAudit20261101.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "L119": [
+      "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.common_label_covariate_transport",
+      "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.estimated_weight_error_identity"
+    ],
+    "L121": [
+      "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.randomized_unseen_input_lower_bound",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+    ],
+    "L123": [
+      "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.same_input_marginal_different_label_mechanism",
+      "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "propext": 6,
+      "Classical.choice": 6,
+      "Quot.sound": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftInstances20261101.lean",
+      "sha256": "f5f130d81e260cd78b4cb0a4d4c508787f898b0f1b7efcec80ba192a8945038a",
+      "git_blob_sha1": "cb5031dd5d9038de4b85ca1da1dfdeb2eb240506"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_5OriginalShiftAudit20261101.lean",
+      "sha256": "c708c51603277bb25c9eaf9fdec4d6aa49b646024cfc051af07a1e45cd226137",
+      "git_blob_sha1": "20c1c5cdf885156a4b48c55353813895534ff329"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+      "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e",
+      "git_blob_sha1": "0bb0b16fe8bb19a25c524f2a238425d7dc8e78c5"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExchangeableRank20261031.lean",
+      "sha256": "8c017caea1a60e1a6d3285f72c701e08780787d5b16e978045f885c10ddf3f7c",
+      "git_blob_sha1": "af967506262f770bbc16053aa8d5ce83dd81e655"
+    }
+  ],
+  "original_residuals": {
+    "05.5": "冻结L119共同标签核下的协变量换测度与估计权误差；L121随机化未见输入边界；L123相同输入边际但不同条件标签机制的可识别边界。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题05.5数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original05-5-distribution-shift-close-20261101/changed-module.log",
+    "sha256": "2e50c08a9f62dca3386c1780c077abdf54d8a85933be0e4e975efbecadb54a5a",
+    "blocks": 6
+  },
+  "source_module_status": "SUCCESS; changed-module target only; four new declarations and two reused declarations audited; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING; exact-subject full-record PR acceptance, certificate/reference reconciliation, independent verifier, authorized merge and post-merge checks remain pending.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41293198401,
+      "status": "failure",
+      "note": "Initial changed-module run failed on two RN lemma namespace references and the pointwise subtraction proof. Corrected in source commit 78b4be27ca98cf4013468cb75e6f3c80304d3e35; failure remains historical provenance, not a pass."
+    }
+  ],
+  "scope_note": "Only original math row 05.5 L119/L121/L123 is mapped. L119 uses the same Markov label kernel under source and target input measures, target-input absolute continuity, the true RN weight and an explicit estimated-weight error integral under its integrability premise; no estimation rate or bounded-weight concentration is claimed. L121 is the stated binary randomized two-world lower bound. L123 is a distinct same-X-marginal pair with different conditional label rates and identical X-only detector pushforwards. No actual consumer caller, deployment, empirical law validation, positive shifted conformal theorem, or legal-source conclusion is claimed. U50 remains 50 wiring / 0 narrow / 0 open, distinct from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.common_label_covariate_transport",
+      "source_line": 26,
+      "audit_log_line": 213,
+      "original_clause": "L119",
+      "audit_source_line": 6
+    },
+    {
+      "name": "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.estimated_weight_error_identity",
+      "source_line": 77,
+      "audit_log_line": 216,
+      "original_clause": "L119",
+      "audit_source_line": 7
+    },
+    {
+      "name": "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+      "source_line": 60,
+      "audit_log_line": 219,
+      "original_clause": "L121",
+      "audit_source_line": 8
+    },
+    {
+      "name": "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.randomized_unseen_input_lower_bound",
+      "source_line": 119,
+      "audit_log_line": 222,
+      "original_clause": "L121",
+      "audit_source_line": 9
+    },
+    {
+      "name": "JurisLean.Candidates.U05_5OriginalShiftInstances20261101.same_input_marginal_different_label_mechanism",
+      "source_line": 148,
+      "audit_log_line": 225,
+      "original_clause": "L123",
+      "audit_source_line": 10
+    },
+    {
+      "name": "JurisLean.Candidates.ExchangeableRank20261031.finite_group_and_deployment_boundaries",
+      "source_line": 982,
+      "audit_log_line": 228,
+      "original_clause": "L123",
+      "audit_source_line": 11
+    }
+  ]
+}

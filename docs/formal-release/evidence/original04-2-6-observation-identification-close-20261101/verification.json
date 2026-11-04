@@ -1,0 +1,339 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "de4f05017b9123ee8c8dd7a3adba5e2aa3245c84",
+  "subject_tree": "657504126b47f58a5939a9cc9f4bae008346feba",
+  "source_core_commit": "4bfc276d7f20adcdec6e323c53c46d93664c61b0",
+  "source_core_tree": "c02837471cd0ea2a4dea510a09a87edc472391ef",
+  "run_id": 41264181836,
+  "job_id": 124723412599,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41264181836",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41264181836/job/124723412599",
+  "artifact_name": "changed-module-only-41264181836-1",
+  "artifact_id": 13066187086,
+  "artifact_sha256": "faa544eebbbd18c413d6864ab807f76e9fdef1b1b70de540ecfb182e4400c6e4",
+  "artifact_size_bytes": 4249,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 27893,
+      "sha256": "559bec59a66ec5a1b8e802ad6919eb6be1a7c2df69a8d727a594da9ea5d068d7"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 305,
+      "sha256": "f67e55968ef3ac8be7eeb5e28049dcc0bfddf7bfdc3ebfbe937d69a0adadca59"
+    }
+  ],
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04OriginalObservationIdentificationAudit20261101.lean",
+  "named_count": 15,
+  "new_named_count": 12,
+  "reused_named_count": 3,
+  "names_by_clause": {
+    "04.2": [
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.fixed_bernoulli_true_mass",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_law_probability",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_all_success_likelihood",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_of_declared_marginal",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_of_declared_marginals",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_all_success_likelihood",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.copied_and_independent_observation_laws_differ",
+      "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_distinct_labels_shared_cause",
+      "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+      "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+      "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged"
+    ],
+    "04.6": [
+      "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.uniform_knowledge_comparison",
+      "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identical_reports_do_not_identify_missing_mean",
+      "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.quarter_parameter_identified",
+      "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identifiable_target_with_nonzero_sample_error"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 15,
+    "axiom_vocabulary": {
+      "propext": 15,
+      "Classical.choice": 15,
+      "Quot.sound": 15
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "sha256": "723e1154fa660ba2a5ff8892093f5f4ffd8472332a48371563912f71153b8b2c",
+      "git_blob_sha1": "108256d48109283a0f20797cd24608724262f69e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+      "sha256": "19565a03f8e2abb3e3d5d82b4dc4daf9d8cb4190a7fc3f4968be9d74bea69d51",
+      "git_blob_sha1": "26c8a05ed86dd1080402c711531a9a2c675fdb27"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "sha256": "dd32f1493b9248941c9c639357c87a47dba105f8288827005a82b242b856ff32",
+      "git_blob_sha1": "838fb9669826396357d90ca42cd54a66abd263b2"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihood20261027.lean",
+      "sha256": "73a285b5dedadb27a245a54804b1560038c9961fccc6cd0fbd4af0ded2c9a564",
+      "git_blob_sha1": "e5d37c165ac8ed6725c2ebc1427f5960f483b67e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
+      "sha256": "fd467e6186f7ac91a94f795dfb1f9d29e5802e0c5e808b7291235e2ea2f15f83",
+      "git_blob_sha1": "f15cbdb6328d63b3ae68fcbe58a493cabaa51ef7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+      "sha256": "d7826bb633877896d5e66bce574fa7b4585092b06b196b1795d05d1843c523c7",
+      "git_blob_sha1": "23c8b659f6737aaaf3be1a000b98bb476ede7ae7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U11_1OriginalInstances20261030.lean",
+      "sha256": "2ae8bc09fddc174d4ff0469554f055dabd5d83eef2bf435f4937cb5fd5ffabde",
+      "git_blob_sha1": "76502e19c94977cc042b2417d7fef30d91859cf1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04OriginalObservationIdentificationAudit20261101.lean",
+      "sha256": "e2d9a346080bff79db0fd0624945ad13dc8ff060a914eeff8f70087f09866d65",
+      "git_blob_sha1": "8c29ffd7b688a4cd0cb0186ea296df7cab3fb414"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UniformContinuous.lean",
+      "sha256": "c6b8ae89dd112b424d87fc6202035608f0d142a2b98f7f376087a1a2adaa909c",
+      "git_blob_sha1": "997859f97496d90ea06ca055a4328e49133d90cb"
+    }
+  ],
+  "original_residuals": {
+    "04.2": "冻结题单04 L97/L99/L101：观察单位与真实来源/目标/机制合同；同一事件复制不增加信息；不同单位不自动独立；区分复制与已给独立采样机制的likelihood。",
+    "04.6": "冻结题单04 L129/L131/L133：连续uniform下a.e.与全称差别；固定Obs-law下的结构识别；区分机制错配与同Obs-law目标歧义；识别不等于有限样本零误差。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "04.2": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "04.6": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "04.2": "COVERED; candidate pending full-record PR acceptance",
+    "04.6": "COVERED; candidate pending full-record PR acceptance"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original04-2-6-observation-identification-close-20261101/axiom-audit.raw.txt",
+    "sha256": "559bec59a66ec5a1b8e802ad6919eb6be1a7c2df69a8d727a594da9ea5d068d7",
+    "blocks": 30
+  },
+  "source_module_status": "SUCCESS; changed-module only; current plus reverse dependents",
+  "full_record_status": "PENDING; remaining release jobs skipped; exact-subject full PR acceptance, artifact reconciliation, independent verifier, merge and post-merge checks not run",
+  "other_jobs": {
+    "lean-full-clean-build": "SKIPPED",
+    "runtime-refinement": "SKIPPED",
+    "python-gates": "SKIPPED",
+    "seven-axis-acceptance": "SKIPPED",
+    "mathematics-completion": "SKIPPED",
+    "release-certificate": "SKIPPED",
+    "final-gate": "SKIPPED"
+  },
+  "historical_diagnostics": [
+    {
+      "run_id": 41263017291,
+      "status": "failure",
+      "note": "Initial observation law equality rewrite did not expose the real equality; retained as failure provenance."
+    },
+    {
+      "run_id": 41263300996,
+      "status": "success",
+      "note": "Earlier 13-target module snapshot, superseded by the later declared-marginal helpers; not evidence for the expanded 15-target source."
+    },
+    {
+      "run_id": 41263805157,
+      "status": "failure",
+      "note": "Bernoulli parameter proof metavariables were already discharged before inline norm_num; fixed by named h0/h1 witnesses."
+    }
+  ],
+  "scope_note": "This package covers only the frozen original-question 04.2 and 04.6 mathematical rows. U50 archive counters remain 50 wiring / 0 narrow / 0 open. The changed-module run is not full-record acceptance.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.fixed_bernoulli_true_mass",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 19,
+      "check_driver_line": 5,
+      "axiom_driver_line": 6,
+      "check_log_line": 273,
+      "axiom_log_line": 276,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_law_probability",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 74,
+      "check_driver_line": 7,
+      "axiom_driver_line": 8,
+      "check_log_line": 279,
+      "axiom_log_line": 283,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_all_success_likelihood",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 81,
+      "check_driver_line": 9,
+      "axiom_driver_line": 10,
+      "check_log_line": 286,
+      "axiom_log_line": 291,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_copies_of_declared_marginal",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 32,
+      "check_driver_line": 11,
+      "axiom_driver_line": 12,
+      "check_log_line": 294,
+      "axiom_log_line": 298,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_of_declared_marginals",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 50,
+      "check_driver_line": 13,
+      "axiom_driver_line": 14,
+      "check_log_line": 301,
+      "axiom_log_line": 306,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_independent_all_success_likelihood",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 90,
+      "check_driver_line": 15,
+      "axiom_driver_line": 16,
+      "check_log_line": 309,
+      "axiom_log_line": 314,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.copied_and_independent_observation_laws_differ",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 124,
+      "check_driver_line": 17,
+      "axiom_driver_line": 18,
+      "check_log_line": 317,
+      "axiom_log_line": 320,
+      "original_clause": "L99/L131",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_2OriginalObservationInstances20261101.ten_distinct_labels_shared_cause",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_2OriginalObservationInstances20261101.lean",
+      "source_line": 157,
+      "check_driver_line": 19,
+      "axiom_driver_line": 20,
+      "check_log_line": 323,
+      "axiom_log_line": 327,
+      "original_clause": "L99",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.uniform_knowledge_comparison",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+      "source_line": 19,
+      "check_driver_line": 21,
+      "axiom_driver_line": 22,
+      "check_log_line": 330,
+      "axiom_log_line": 334,
+      "original_clause": "L129",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identical_reports_do_not_identify_missing_mean",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+      "source_line": 36,
+      "check_driver_line": 23,
+      "axiom_driver_line": 24,
+      "check_log_line": 337,
+      "axiom_log_line": 340,
+      "original_clause": "L131",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.quarter_parameter_identified",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+      "source_line": 66,
+      "check_driver_line": 25,
+      "axiom_driver_line": 26,
+      "check_log_line": 343,
+      "axiom_log_line": 346,
+      "original_clause": "L131",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_6OriginalIdentificationInstances20261101.identifiable_target_with_nonzero_sample_error",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_6OriginalIdentificationInstances20261101.lean",
+      "source_line": 75,
+      "check_driver_line": 27,
+      "axiom_driver_line": 28,
+      "check_log_line": 349,
+      "axiom_log_line": 358,
+      "original_clause": "L131",
+      "evidence_kind": "NEW_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_preserves_generated_information",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "source_line": 19,
+      "check_driver_line": 29,
+      "axiom_driver_line": 30,
+      "check_log_line": 361,
+      "axiom_log_line": 365,
+      "original_clause": "L101",
+      "evidence_kind": "REUSED_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.ExactProbability20261027.deterministic_copy_keeps_integrable_conditional_expectation",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/ExactProbability20261027.lean",
+      "source_line": 28,
+      "check_driver_line": 31,
+      "axiom_driver_line": 32,
+      "check_log_line": 368,
+      "axiom_log_line": 375,
+      "original_clause": "L101",
+      "evidence_kind": "REUSED_NAMED_TARGET"
+    },
+    {
+      "name": "JurisLean.Candidates.MeasurementLikelihood20261027.deterministic_copy_likelihood_unchanged",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/MeasurementLikelihood20261027.lean",
+      "source_line": 71,
+      "check_driver_line": 33,
+      "axiom_driver_line": 34,
+      "check_log_line": 378,
+      "axiom_log_line": 384,
+      "original_clause": "L101",
+      "evidence_kind": "REUSED_NAMED_TARGET"
+    }
+  ]
+}

@@ -63,6 +63,8 @@ GitHub 验证的实际 head 与授权 head 一致。目标计划确认为 `Juris
 
 第一阶段已经在前述精确 head 通过完整 CIAll 目标。接根后的 run `39700447562` 对应 `799b42c43d16e839ec3305577867120cb0deb917`；干净 Lean 构建、现有数学审计和既有 runtime-refinement 作业通过，Python 为 651 通过、13 失败。下游证书没有生成，该次 full-release 为 FAIL。原始工件及 head/digest 核验见 `evidence/ci-stage2-799b42c/verification.json`。
 
+2026-10-31 API复核注记：当前 GitHub Actions API 对 run 39700447562 返回 HTTP 404；上段失败、head 与作业信息保留自历史索引快照，现标为 UNAVAILABLE，不代表当前API复核或本轮通过。
+
 同一流水线在派生账本同步之后的 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 上由 push 触发，run `39714740194` 结论为 success。作业结论来自 Actions API：`lean-full-clean-build`、`python-gates`、`runtime-refinement / produce`、`seven-axis-acceptance`、`mathematics-completion`、`release-certificate`、`final-gate` 为 success，`changed-modules` 为 skipped。API 列出的工件名称与编号见 `evidence/ci-stage2-5db4e04/verification.json`。该回执没有重新下载 ZIP，因此不记录工件字节散列。这次通过不把 50 条冻结条款的 `formal_ci` 改成验收通过，也不覆盖此后的源码修正。此后尖端的公理审计见 `evidence/ci-tip-f85ebe44/verification.json`，由尖端 `f85ebe44644f32820e9d0fad1325428fb8f171d9` 的 run `40115638107` `lean-full-clean-build` 工件重新抽出（job id 写在该回执里）。活的 `exact_scope` 与 `remaining_obligations` 为空；scope archive 沿用上一尖端原稿，没有因此变成证明，也不关闭归档债务。重钉≠关债 / retarget ≠ close debt。
 
 用户已明确授予完成本项目所需的全部授权。首轮 full-release 定位的 11 个派生账本、命名消歧及论文数字模板已按既有生成规则同步。没有修改冻结理论、Lake、workflow 或门禁规则，也没有新增 lean_lib。

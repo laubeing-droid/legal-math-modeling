@@ -1,0 +1,924 @@
+⚠ [8484/8556] Replayed JurisLean.Genealogy.Part1
+warning: JurisLean/Genealogy/Part1.lean:119:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part1.lean:214:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Genealogy/Part1.lean:288:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8485/8556] Replayed JurisLean.Genealogy.Part2
+warning: JurisLean/Genealogy/Part2.lean:48:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8486/8556] Replayed JurisLean.Genealogy.Part3
+warning: JurisLean/Genealogy/Part3.lean:166:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:203:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:237:9: unused variable `h1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:238:11: unused variable `h2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8556] Replayed JurisLean.Seams.PrecedentFlow
+warning: JurisLean/Seams/PrecedentFlow.lean:927:16: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/PrecedentFlow.lean:928:17: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8490/8556] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
+warning: JurisLean/Seams/UnifiedNeedlesS0S1.lean:420:57: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8491/8556] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8493/8556] Replayed JurisLean.DungFixedPoint
+warning: JurisLean/DungFixedPoint.lean:201:47: unused variable `hself`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8494/8556] Replayed JurisLean.Seams.AdjudicationBridge
+warning: JurisLean/Seams/AdjudicationBridge.lean:153:18: unused variable `pol`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8495/8556] Replayed JurisLean.Seams.BurdenStatutes
+warning: JurisLean/Seams/BurdenStatutes.lean:1157:52: This simp argument is unused:
+  standardFor
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵s̵t̵a̵n̵d̵a̵r̵d̵F̵o̵r̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8507/8556] Replayed JurisLean.FactAdmissionSpec
+warning: JurisLean/FactAdmissionSpec.lean:163:5: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8511/8556] Replayed JurisLean.ULM09AttackDefeat
+warning: JurisLean/ULM09AttackDefeat.lean:63:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8516/8556] Replayed JurisLean.ULM14CoverageTrust
+warning: JurisLean/ULM14CoverageTrust.lean:192:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8521/8556] Replayed JurisLean.Seams.Transitions
+warning: JurisLean/Seams/Transitions.lean:84:11: unused variable `x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/Transitions.lean:84:13: unused variable `y`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8525/8556] Replayed JurisLean.Candidates.CompilerClosure20261026
+info: JurisLean/Candidates/CompilerClosure20261026.lean:235:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:236:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:237:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:238:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8526/8556] Replayed JurisLean.Candidates.CompilerProvenance20261027
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:371:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:372:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:373:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:374:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:375:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:376:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:377:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:378:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:379:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ) (i : ℕ) (member : i ∈ parents)
+  (notEarlier : known.length ≤ i) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:380:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:381:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (mismatch :
+    List.map JurisLean.Candidates.CompilerProvenance20261027.Evidence.atom
+        (List.filterMap (fun i => known[i]?) parents) ≠
+      use.rule.premises) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:382:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:383:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (claim : JurisLean.Candidates.CompilerProvenance20261027.Leaf) (unsupported : leafCheck ctx claim = false) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.leaf claim) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:384:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:385:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:386:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:387:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact.{u_1, u_2} {Concrete : Type u_1}
+  {Abstract : Type u_2} (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+  (abstractQuery : Abstract → Prop) (coverage : ∀ (c : Concrete), ∃ a, relation c a)
+  (reverseCoverage : ∀ (a : Abstract), ∃ c, relation c a)
+  (sameAnswer : ∀ (c : Concrete) (a : Abstract), relation c a → (abstractQuery a ↔ concreteQuery c)) :
+  (∀ (a : Abstract), abstractQuery a) ↔ ∀ (c : Concrete), concreteQuery c
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:388:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact' does not depend on any axioms
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:389:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries.{u_1, u_2, u_3}
+  {Left : Type u_1} {Right : Type u_2} {Query : Type u_3} (correspondence : Left ≃ Right)
+  (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+  (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
+  (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:390:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]
+⚠ [8528/8556] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8534/8556] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8535/8556] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8536/8556] Replayed JurisLean.Seams.UnifiedNeedlesS3b
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:244:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:261:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.evMass_shared_sel_obs`:
+  [DecidableEq Θ]
+  [DecidableEq Nty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Nty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:467:5: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:478:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.legalJoint_material_mass`:
+  [DecidableEq Θ]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:537:0: automatically included section variable(s) unused in theorem `JurisLean.Seams.UnifiedNeedlesS3b.posterior_predictive_normalizes`:
+  [DecidableEq Θ]
+  [DecidableEq Mt]
+  [DecidableEq Yty]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq Θ] [DecidableEq Mt] [DecidableEq Yty] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:795:7: unused variable `k`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1032:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1035:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1042:31: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3b.lean:1045:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8540/8556] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8542/8556] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8546/8556] Replayed JurisLean.Mandate.PureNash
+warning: JurisLean/Mandate/PureNash.lean:263:21: This simp argument is unused:
+  hb
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵b̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8551/8556] Replayed JurisLean.Candidates.SourceStages20261027
+warning: JurisLean/Candidates/SourceStages20261027.lean:317:18: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourceStages20261027.lean:317:48: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/SourceStages20261027.lean:332:16: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ℹ [8553/8556] Replayed JurisLean.Candidates.SourceStagesAudit20261027
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:4:0: JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (left right : JurisLean.Candidates.SourceStages20261027.ResolvedLegalRef mu) :
+  JurisLean.Candidates.SourceStages20261027.canonicalLegalKey mu left =
+      JurisLean.Candidates.SourceStages20261027.canonicalLegalKey mu right ↔
+    ∃ object, mu ↑left = some object ∧ mu ↑right = some object
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:5:0: 'JurisLean.Candidates.SourceStages20261027.canonical_typed_identity_is_exact' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:6:0: JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject) :
+  Equivalence fun left right => ∃ object, mu ↑left = some object ∧ mu ↑right = some object
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:7:0: 'JurisLean.Candidates.SourceStages20261027.typed_identity_equivalence_on_defined_domain' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:8:0: JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (left right : JurisLean.Candidates.Final20261021.SourceRef) (missing : mu left = none) :
+  ¬∃ object, mu left = some object ∧ mu right = some object
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:9:0: 'JurisLean.Candidates.SourceStages20261027.undefined_typed_reference_is_not_identified' does not depend on any axioms
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:10:0: JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact
+  (left right : JurisLean.Candidates.SourceCompilation20261027.FullDebt)
+  (checked : JurisLean.Candidates.SourceStages20261027.sameDebt left right = true) : left = right
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:11:0: 'JurisLean.Candidates.SourceStages20261027.full_debt_comparison_is_exact' depends on axioms: [propext]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:13:0: JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView) (index : ℕ)
+  (bound : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (success :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known bound) :
+  JurisLean.Candidates.SourceStages20261027.candidatePayment view index = some bound ∧
+    JurisLean.Candidates.SourceStages20261027.BindingChecks view bound
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:14:0: 'JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:15:0: JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView) (index : ℕ)
+  (left right : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (hl :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known left)
+  (hr :
+    JurisLean.Candidates.SourceStages20261027.bindPayment view index =
+      JurisLean.Candidates.Final20261021.Result.known right) :
+  left = right
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:16:0: 'JurisLean.Candidates.SourceStages20261027.deterministic_binding_data_unique' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:17:0: JurisLean.Candidates.SourceStages20261027.quantity_step_is_existing_ledger_step
+  (before : JurisLean.Candidates.SourceStages20261027.Stage)
+  (payment : JurisLean.Candidates.Final20261021.PaymentPayload) :
+  [(JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item] =
+    JurisLean.Seams.UnifiedQuantLedger.afterPay payment.amount.value [before.quantity.item]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:18:0: 'JurisLean.Candidates.SourceStages20261027.quantity_step_is_existing_ledger_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:19:0: JurisLean.Candidates.SourceStages20261027.payment_preserves_complete_nonquantity_fields
+  (before : JurisLean.Candidates.SourceStages20261027.Stage)
+  (payment : JurisLean.Candidates.Final20261021.PaymentPayload) :
+  (JurisLean.Candidates.SourceStages20261027.payStage before payment).relations = before.relations ∧
+    (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.ident =
+        before.quantity.item.ident ∧
+      (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.kind =
+          before.quantity.item.kind ∧
+        (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.basis =
+            before.quantity.item.basis ∧
+          (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.beneficiary =
+              before.quantity.item.beneficiary ∧
+            (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.status =
+                before.quantity.item.status ∧
+              (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.debtRel =
+                  before.quantity.debtRel ∧
+                (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.obligor =
+                    before.quantity.obligor ∧
+                  (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.unit =
+                      before.quantity.unit ∧
+                    (JurisLean.Candidates.SourceStages20261027.payStage before payment).state.formations =
+                      before.state.formations
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:20:0: 'JurisLean.Candidates.SourceStages20261027.payment_preserves_complete_nonquantity_fields' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:21:0: JurisLean.Candidates.SourceStages20261027.scalar_and_item_projections_commute
+  (before : JurisLean.Candidates.SourceStages20261027.Stage)
+  (payment : JurisLean.Candidates.Final20261021.PaymentPayload)
+  (initial : before.quantity.item.amount = JurisLean.Candidates.Final20261021.Ledger.balance before.state) :
+  (JurisLean.Candidates.SourceStages20261027.payStage before payment).quantity.item.amount =
+    JurisLean.Candidates.Final20261021.Ledger.balance
+      (JurisLean.Candidates.SourceStages20261027.payStage before payment).state
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:22:0: 'JurisLean.Candidates.SourceStages20261027.scalar_and_item_projections_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:23:0: JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (first second : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (relation : JurisLean.Candidates.Final20261021.RelationId) :
+  have frame := JurisLean.Candidates.SourceStages20261027.buildStages view first second source relation;
+  frame.afterFormation = JurisLean.Candidates.SourceStages20261027.formStage frame.beforeFormation source relation ∧
+    frame.afterFirst =
+        JurisLean.Candidates.SourceStages20261027.payStage frame.afterFormation first.payment.value.payload ∧
+      frame.afterSecond =
+          JurisLean.Candidates.SourceStages20261027.payStage frame.afterFirst second.payment.value.payload ∧
+        frame.afterFirst.relations = frame.afterFormation.relations ∧
+          frame.afterSecond.relations = frame.afterFirst.relations
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:24:0: 'JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:25:0: JurisLean.Candidates.SourceStages20261027.adjacent_formation_projection
+  (before : JurisLean.Candidates.SourceStages20261027.Stage) (source : JurisLean.Candidates.Final20261021.SourceRef)
+  (relation observed : JurisLean.Candidates.Final20261021.RelationId) :
+  JurisLean.Seams.InstitutionalEffects.forms
+      (JurisLean.Candidates.SourceStages20261027.formStage before source relation).relations observed ↔
+    observed = relation ∨ JurisLean.Seams.InstitutionalEffects.forms before.relations observed
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:26:0: 'JurisLean.Candidates.SourceStages20261027.adjacent_formation_projection' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:27:0: JurisLean.Candidates.SourceStages20261027.two_payments_balance_and_cash
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (first second : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (relation : JurisLean.Candidates.Final20261021.RelationId)
+  (nonnegative : 0 ≤ first.relation.value.amount.value) (payOne : 0 ≤ first.payment.value.payload.amount.value)
+  (payTwo : 0 ≤ second.payment.value.payload.amount.value) :
+  have frame := JurisLean.Candidates.SourceStages20261027.buildStages view first second source relation;
+  JurisLean.Candidates.Final20261021.Ledger.balance frame.afterSecond.state =
+      max
+        (first.relation.value.amount.value -
+          (first.payment.value.payload.amount.value + second.payment.value.payload.amount.value))
+        0 ∧
+    JurisLean.Candidates.Final20261021.Ledger.Conserves frame.afterSecond.state ∧
+      JurisLean.Candidates.Final20261021.Ledger.CashConsistent frame.afterSecond.state
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:28:0: 'JurisLean.Candidates.SourceStages20261027.two_payments_balance_and_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:29:0: JurisLean.Candidates.SourceStages20261027.frame_contains_actual_computed_stages
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (first second : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.frameFromBindings view first second =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.source = view ∧
+    out.first = first ∧
+      out.second = second ∧
+        out.stages =
+          JurisLean.Candidates.SourceStages20261027.buildStages view first second out.formationSource
+            out.formationRelation
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:30:0: 'JurisLean.Candidates.SourceStages20261027.frame_contains_actual_computed_stages' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:31:0: JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.stagesFromView view =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.source = view ∧
+    JurisLean.Candidates.SourceStages20261027.bindPayment view 1 =
+        JurisLean.Candidates.Final20261021.Result.known out.first ∧
+      JurisLean.Candidates.SourceStages20261027.bindPayment view 2 =
+          JurisLean.Candidates.Final20261021.Result.known out.second ∧
+        out.stages =
+          JurisLean.Candidates.SourceStages20261027.buildStages view out.first out.second out.formationSource
+            out.formationRelation
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:32:0: 'JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:33:0: JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SourceCompilation20261027.extractView material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out.source ∧
+    JurisLean.Candidates.SourceStages20261027.stagesFromView out.source =
+      JurisLean.Candidates.Final20261021.Result.known out
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:34:0: 'JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:35:0: JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state =
+      max
+        (out.first.relation.value.amount.value -
+          (out.first.payment.value.payload.amount.value + out.second.payment.value.payload.amount.value))
+        0 ∧
+    JurisLean.Candidates.Final20261021.Ledger.Conserves out.stages.afterSecond.state ∧
+      JurisLean.Candidates.Final20261021.Ledger.CashConsistent out.stages.afterSecond.state ∧
+        out.stages.afterSecond.quantity.item.amount =
+          JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:36:0: 'JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:37:0: JurisLean.Candidates.SourceStages20261027.independent_local_witnesses_iff_tuple {I : Type} (W : I → Type)
+  (P : (i : I) → W i → Prop) : (∀ (i : I), ∃ w, P i w) ↔ ∃ ws, ∀ (i : I), P i (ws i)
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:38:0: 'JurisLean.Candidates.SourceStages20261027.independent_local_witnesses_iff_tuple' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:39:0: JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts {I B : Type} (W : I → Type)
+  (projection : (i : I) → W i → B) (P : (i : I) → W i → Prop) (base : B)
+  (fibers : ∀ (i : I), ∃ w, projection i w = base ∧ P i w) :
+  ∃ ws, (∀ (i : I), projection i (ws i) = base) ∧ ∀ (i : I), P i (ws i)
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:40:0: 'JurisLean.Candidates.SourceStages20261027.compatible_fibers_compose_local_contracts' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:41:0: JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber :
+  (∃ x, True) ∧ (∃ x, True) ∧ ¬∃ x y, (fun x => 0) x = (fun x => 1) y
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:42:0: 'JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:43:0: JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R) (frame : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (n : ℕ) :
+  JurisLean.Candidates.SourceStages20261027.LegacyContracts
+      (JurisLean.Candidates.SourceStages20261027.modelOf background frame n) ∧
+    (JurisLean.Candidates.SourceStages20261027.modelOf background frame n).candidate = background.candidate ∧
+      (JurisLean.Candidates.SourceStages20261027.modelOf background frame n).norms = background.norms ∧
+        (JurisLean.Candidates.SourceStages20261027.modelOf background frame n).weight = background.weight
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:44:0: 'JurisLean.Candidates.SourceStages20261027.fixed_background_preserves_exact_old_contracts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:45:0: JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique (amount : ℚ) (m n : ℕ) (hm : ↑m = amount)
+  (hn : ↑n = amount) : m = n
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:46:0: 'JurisLean.Candidates.SourceStages20261027.exact_nat_bridge_is_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:47:0: JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact
+  (frame : JurisLean.Candidates.SourceStages20261027.SourceFrame) (n : ℕ)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.legacyAmount frame = JurisLean.Candidates.Final20261021.Result.known n) :
+  ↑n = frame.first.payment.value.payload.amount.value
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:48:0: 'JurisLean.Candidates.SourceStages20261027.legacy_amount_success_is_exact' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:49:0: JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts {V R : Type}
+  [DecidableEq R] (background : JurisLean.Seams.UnifiedModel V R)
+  (frame : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (model : JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted : JurisLean.Candidates.SourceStages20261027.checkedModel background frame = Except.ok model) :
+  ↑model.performAmount = frame.first.payment.value.payload.amount.value ∧
+    model.ledger = frame.stages.beforeFormation.relations ∧
+      JurisLean.Candidates.SourceStages20261027.LegacyContracts model
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:50:0: 'JurisLean.Candidates.SourceStages20261027.checked_model_reads_exact_payment_and_old_contracts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:51:0: JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out.1 ∧
+    JurisLean.Candidates.SourceStages20261027.checkedModel background out.1 = Except.ok out.2 ∧
+      ↑out.2.performAmount = out.1.first.payment.value.payload.amount.value ∧
+        JurisLean.Candidates.SourceStages20261027.LegacyContracts out.2
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:52:0: 'JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:53:0: JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts {I X : Type} (W : I → Type)
+  (read : (i : I) → X → W i) (P : (i : I) → W i → Prop) (x : X) (layers : (i : I) → W i)
+  (same : JurisLean.Candidates.SourceStages20261027.StrongSameCase W read x layers)
+  (localSound : ∀ (i : I), P i (read i x)) (i : I) : P i (layers i)
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:54:0: 'JurisLean.Candidates.SourceStages20261027.same_case_projection_transfers_local_contracts' does not depend on any axioms
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:55:0: JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (resolveFaithful :
+    ∀ (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView),
+      JurisLean.Candidates.SourceCompilation20261027.extractView material branch catalog =
+          JurisLean.Candidates.Final20261021.Result.known view →
+        ∀ (ref : JurisLean.Candidates.Final20261021.SourceRef)
+          (obj : JurisLean.Candidates.SourceCompilation20261027.LegalObject),
+          JurisLean.Candidates.SourceCompilation20261027.resolve view.decoded ref =
+              JurisLean.Candidates.Final20261021.Result.known obj →
+            mu ref = some obj)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  mu out.source.decoded.observed.value.1 =
+      some (JurisLean.Candidates.SourceCompilation20261027.LegalObject.relation out.source.decoded.observed.value.2) ∧
+    (JurisLean.Candidates.SourceCompilation20261027.recordOf out.source).key = out.source.decoded.record.value.key ∧
+      out.stages.afterSecond =
+          JurisLean.Candidates.SourceStages20261027.payStage out.stages.afterFirst out.second.payment.value.payload ∧
+        JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+            (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity
+              out.stages.afterSecond.state.debt.amount) =
+          some out.stages.afterSecond.state.debt.amount
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:56:0: 'JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:204:0: JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture :
+  ∃ out, runStageView stageView = Result.known out
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:205:0: 'JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:206:0: JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty (frame : SourceFrame)
+  (naturalAmount : ℕ) : LegacyContracts (modelOf JurisLean.Seams.UnifiedInstance.instanceM frame naturalAmount)
+info: JurisLean/Candidates/SourceStagesAudit20261027.lean:207:0: 'JurisLean.Candidates.SourceStages20261027.legacy_background_instance_is_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8554/8556] Replayed JurisLean.Candidates.SourceRepresentationAudit20261027
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:3:0: JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence
+  (mu : JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.Final20261021.ObjectId) :
+  Equivalence fun a b => JurisLean.Candidates.Final20261021.Representation.InterpretedSame mu ↑a ↑b
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:4:0: 'JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence' does not depend on any axioms
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:5:0: JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact
+  (mu : JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.Final20261021.ObjectId)
+  (a b : JurisLean.Candidates.SourceRepresentation20261027.ResolvedReference mu) :
+  JurisLean.Candidates.SourceRepresentation20261027.semanticKey mu a =
+      JurisLean.Candidates.SourceRepresentation20261027.semanticKey mu b ↔
+    JurisLean.Candidates.Final20261021.Representation.InterpretedSame mu ↑a ↑b
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:6:0: 'JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact' depends on axioms: [Classical.choice]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:7:0: JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object
+  (table : List (JurisLean.Candidates.Final20261021.SourceRef × JurisLean.Candidates.Final20261021.ObjectId))
+  (reference : JurisLean.Candidates.Final20261021.SourceRef) (object : JurisLean.Candidates.Final20261021.ObjectId)
+  (accepted :
+    JurisLean.Candidates.SourceRepresentation20261027.resolveObject table reference =
+      JurisLean.Candidates.Final20261021.Result.known object) :
+  List.map Prod.snd (List.filter (fun row => decide (row.1 = reference)) table) = [object]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:8:0: 'JurisLean.Candidates.SourceRepresentation20261027.resolution_uses_unique_matching_object' depends on axioms: [propext]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:9:0: JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate :
+  JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+      JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 1 } ∧
+    ¬JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+          JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 2 } ∧
+      JurisLean.Candidates.SourceRepresentation20261027.bareEventExample { value := 0 } =
+          JurisLean.Candidates.SourceRepresentation20261027.bareEventExample { value := 2 } ∧
+        ¬JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+            JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 3 } { value := 3 }
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:10:0: 'JurisLean.Candidates.SourceRepresentation20261027.copies_and_distinct_payments_are_separate' depends on axioms: [propext]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:11:0: JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies :
+  0 ≠ 1 ∧
+    JurisLean.Candidates.Final20261021.Representation.InterpretedSame
+      JurisLean.Candidates.SourceRepresentation20261027.identityExample { value := 0 } { value := 1 }
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:12:0: 'JurisLean.Candidates.SourceRepresentation20261027.reference_strings_can_split_copies' does not depend on any axioms
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:13:0: JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order :
+  JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 7), (1, 9)] 1 = some 7 ∧
+    JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 9), (1, 7)] 1 = some 9 ∧
+      JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 7), (1, 9)] 1 ≠
+        JurisLean.Candidates.SourceRepresentation20261027.firstAmount [(1, 9), (1, 7)] 1
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:14:0: 'JurisLean.Candidates.SourceRepresentation20261027.first_match_depends_on_order' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:15:0: JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations.{u_1, u_2,
+    u_3, u_4}
+  {R : Type u_1} {M : Type u_2} {O : Type u_3} {V : Type u_4} (encode : R → M) (read : O → R → V)
+  (adequate : JurisLean.Candidates.SourceRepresentation20261027.ObservationAdequate encode read) (a b : R)
+  (same : encode a = encode b) (o : O) : read o a = read o b
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:16:0: 'JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations' does not depend on any axioms
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:17:0: JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective.{u_1, u_2, u_3, u_4}
+  {R : Type u_1} {M : Type u_2} {O : Type u_3} {V : Type u_4} (encode : R → M) (read : O → R → V)
+  (adequate : JurisLean.Candidates.SourceRepresentation20261027.ObservationAdequate encode read)
+  (separating : ∀ (a b : R), (∀ (o : O), read o a = read o b) → a = b) : Function.Injective encode
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:18:0: 'JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective' does not depend on any axioms
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:19:0: JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history :
+  JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [10] =
+      JurisLean.Candidates.SourceRepresentation20261027.terminalBalance [4, 3, 3] ∧
+    [10] ≠ [4, 3, 3]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:20:0: 'JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:21:0: JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection :
+  (∀ (r : Unit), (fun x => false) r = (fun x => x) false) ∧ (fun x => x) true = true ∧ ¬∃ r, (fun x => false) r = true
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:22:0: 'JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:23:0: JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding
+  (amount : JurisLean.Candidates.Final20261021.Amount) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity amount) =
+    some amount
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:24:0: 'JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:25:0: JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag
+  (a b : JurisLean.Candidates.Final20261021.Amount) (same : a.tag = b.tag) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      ((JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity a).add
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity b)) =
+    some { value := a.value + b.value, tag := a.tag }
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:26:0: 'JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_preserves_full_tag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:27:0: JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch
+  (a b : JurisLean.Candidates.Final20261021.Amount) (different : a.tag ≠ b.tag) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      ((JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity a).add
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity b)) =
+    none
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:28:0: 'JurisLean.Candidates.SourceRepresentation20261027.quantity_addition_refuses_tag_mismatch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:29:0: JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag (scalar : ℚ)
+  (amount : JurisLean.Candidates.Final20261021.Amount) :
+  JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+      (JurisLean.Candidates.SourceRepresentation20261027.RationalQty.scale scalar
+        (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity amount)) =
+    some { value := scalar * amount.value, tag := amount.tag }
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:30:0: 'JurisLean.Candidates.SourceRepresentation20261027.dimensionless_scaling_preserves_amount_tag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:31:0: JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half
+  (expression : JurisLean.Seams.UnifiedNeedlesS3b.QtyAst) (unit : String)
+  (free : JurisLean.Seams.UnifiedNeedlesS3b.divFree expression = true) :
+  JurisLean.Seams.UnifiedNeedlesS3b.qtyDenote expression ≠ some { val := 1 / 2, unit := unit }
+info: JurisLean/Candidates/SourceRepresentationAudit20261027.lean:32:0: 'JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8555/8556] Built JurisLean.Candidates.U07_2JointObject20261029 (4.3s)
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:97:0: JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  ∃ x,
+    JurisLean.Candidates.U07_2JointObject20261029.suppliedLayers out =
+        JurisLean.Candidates.U07_2JointObject20261029.jointLayers background x ∧
+      JurisLean.Candidates.U07_2JointObject20261029.JointContract background material branch catalog x
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:98:0: 'JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:99:0: JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty {I B : Type} [Fintype I] (W : I → Type)
+  (projection : (i : I) → W i → B) (b : B) (localWitness : ∀ (i : I), ∃ w, projection i w = b) :
+  ∃ ws, ∀ (i : I), projection i (ws i) = b
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:100:0: 'JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:101:0: JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber : ¬∃ b, false = b ∧ true = b
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:102:0: 'JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber' does not depend on any axioms
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:103:0: JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out.1 ∧
+    JurisLean.Candidates.SourceStages20261027.checkedModel background out.1 = Except.ok out.2 ∧
+      ↑out.2.performAmount = out.1.first.payment.value.payload.amount.value ∧
+        JurisLean.Candidates.SourceStages20261027.LegacyContracts out.2
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:104:0: 'JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:105:0: JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output
+  (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView)
+  (first second : JurisLean.Candidates.SourceStages20261027.BoundPayment)
+  (source : JurisLean.Candidates.Final20261021.SourceRef) (relation : JurisLean.Candidates.Final20261021.RelationId) :
+  have frame := JurisLean.Candidates.SourceStages20261027.buildStages view first second source relation;
+  frame.afterFormation = JurisLean.Candidates.SourceStages20261027.formStage frame.beforeFormation source relation ∧
+    frame.afterFirst =
+        JurisLean.Candidates.SourceStages20261027.payStage frame.afterFormation first.payment.value.payload ∧
+      frame.afterSecond =
+          JurisLean.Candidates.SourceStages20261027.payStage frame.afterFirst second.payment.value.payload ∧
+        frame.afterFirst.relations = frame.afterFormation.relations ∧
+          frame.afterSecond.relations = frame.afterFirst.relations
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:106:0: 'JurisLean.Candidates.SourceStages20261027.four_stages_use_actual_previous_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:107:0: JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out : JurisLean.Candidates.SourceStages20261027.SourceFrame)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceStages material branch catalog =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state =
+      max
+        (out.first.relation.value.amount.value -
+          (out.first.payment.value.payload.amount.value + out.second.payment.value.payload.amount.value))
+        0 ∧
+    JurisLean.Candidates.Final20261021.Ledger.Conserves out.stages.afterSecond.state ∧
+      JurisLean.Candidates.Final20261021.Ledger.CashConsistent out.stages.afterSecond.state ∧
+        out.stages.afterSecond.quantity.item.amount =
+          JurisLean.Candidates.Final20261021.Ledger.balance out.stages.afterSecond.state
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:108:0: 'JurisLean.Candidates.SourceStages20261027.successful_source_stages_conserve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:109:0: JurisLean.Seams.unified_legal_derivation_on_declared_fragment {V Rel : Type} [DecidableEq Rel]
+  (M : JurisLean.Seams.UnifiedModel V Rel) :
+  JurisLean.Seams.UnifiedNonDegenerate ∧
+    JurisLean.Seams.UnifiedInterpretationPreserved V Rel M ∧
+      JurisLean.Seams.UnifiedChainCorrespondence V Rel M ∧
+        JurisLean.Seams.UnifiedFiniteProcessComposition V Rel M ∧
+          JurisLean.Seams.UnifiedTimeAndUncertaintyPreserved V Rel M
+info: JurisLean/Candidates/U07_2JointObject20261029.lean:110:0: 'JurisLean.Seams.unified_legal_derivation_on_declared_fragment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [8556/8556] Building JurisLean.Candidates.SourceFinalBridgeAudit20261102 (3.6s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/SourceFinalBridgeAudit20261102.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/SourceFinalBridgeAudit20261102.setup.json --json
+error: JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean:59:9: unexpected token '('; expected ',' or binderPred
+info: JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean:116:0: JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity {V R : Type} [DecidableEq R]
+  (background : JurisLean.Seams.UnifiedModel V R)
+  (material : JurisLean.Candidates.SourceCompilation20261027.MaterialSnapshot) (branch : ℕ)
+  (catalog : List JurisLean.Candidates.SourceCompilation20261027.InterpretationRow)
+  (out :
+    JurisLean.Candidates.SourceStages20261027.SourceFrame ×
+      JurisLean.Seams.UnifiedModel V JurisLean.Candidates.Final20261021.RelationId)
+  (mu :
+    JurisLean.Candidates.Final20261021.SourceRef → Option JurisLean.Candidates.SourceCompilation20261027.LegalObject)
+  (resolveFaithful :
+    ∀ (view : JurisLean.Candidates.SourceCompilation20261027.ExtractedView),
+      JurisLean.Candidates.SourceCompilation20261027.extractView material branch catalog =
+          JurisLean.Candidates.Final20261021.Result.known view →
+        ∀ (ref : JurisLean.Candidates.Final20261021.SourceRef)
+          (obj : JurisLean.Candidates.SourceCompilation20261027.LegalObject),
+          JurisLean.Candidates.SourceCompilation20261027.resolve view.decoded ref =
+              JurisLean.Candidates.Final20261021.Result.known obj →
+            mu ref = some obj)
+  (accepted :
+    JurisLean.Candidates.SourceStages20261027.sourceModel background material branch catalog = Except.ok out) :
+  (∃ x,
+      JurisLean.Candidates.U07_2JointObject20261029.suppliedLayers out =
+          JurisLean.Candidates.U07_2JointObject20261029.jointLayers background x ∧
+        JurisLean.Candidates.U07_2JointObject20261029.JointContract background material branch catalog x) ∧
+    JurisLean.Candidates.SourceCompilation20261027.extractView material branch catalog =
+        JurisLean.Candidates.Final20261021.Result.known out.1.source ∧
+      mu out.1.source.decoded.observed.value.1 =
+          some
+            (JurisLean.Candidates.SourceCompilation20261027.LegalObject.relation
+              out.1.source.decoded.observed.value.2) ∧
+        JurisLean.Candidates.SourceCompilation20261027.recordOf out.1.source = out.1.source.decoded.record.value ∧
+          out.1.stages.afterSecond =
+              JurisLean.Candidates.SourceStages20261027.payStage out.1.stages.afterFirst
+                out.1.second.payment.value.payload ∧
+            JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+                  (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity
+                    out.1.stages.afterSecond.state.debt.amount) =
+                some out.1.stages.afterSecond.state.debt.amount ∧
+              Option.map (fun amount => (amount.value, amount.tag.unit))
+                  (JurisLean.Candidates.SourceRepresentation20261027.quantityDenote
+                    (JurisLean.Candidates.SourceRepresentation20261027.encodeQuantity
+                      out.1.stages.afterSecond.state.debt.amount)) =
+                some
+                  (out.1.stages.afterSecond.state.debt.amount.value,
+                    out.1.stages.afterSecond.state.debt.amount.tag.unit)
+info: JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean:117:0: 'JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean:118:7: Unknown identifier `JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed`
+error: JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean:119:14: Unknown constant `JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed`
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.SourceFinalBridgeAudit20261102
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.SourceFinalBridgeAudit20261102']' returned non-zero exit status 1.

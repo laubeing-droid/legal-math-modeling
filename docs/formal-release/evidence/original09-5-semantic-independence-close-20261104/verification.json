@@ -1,0 +1,513 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.5"
+  ],
+  "proposed_disposition": {
+    "09.5": "COVERED",
+    "note": "Frozen L171/L173/L175 mapped to a finite synthetic semantic model and named source proof; PR/full-record acceptance pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      169,
+      176
+    ],
+    "subparagraph_lines": {
+      "09.5": [
+        [
+          171,
+          171
+        ],
+        [
+          173,
+          173
+        ],
+        [
+          175,
+          175
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.3"
+    ],
+    "sha256": "4bd373e6653aa1b637b5d3642c7792b650d7b68e0e99429a06859b140ea9471f"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-5-semantics-20261104",
+    "base_main": "1183a28aa832e98f2278aa3255667407d2f0096e",
+    "commit": "0b6bd5aa8ade03b6132dffe2b3dbcf00634ca416",
+    "tree": "1355460ed08d9083048197d56ced01c9f02f7c4e",
+    "parent": "f0b0e9b8ec9540d6fa650a1c7f41fbc495225cd4"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41773914244,
+    "attempt": 1,
+    "job_id": 126389720124,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.SemanticIndependenceAudit20261104",
+    "build": "Build completed successfully (2942 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext"
+    ],
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "local_prechecks": "TOOL_RETURN_ONLY"
+  },
+  "artifact": {
+    "artifact_id": 13296003017,
+    "name": "changed-module-only-41773914244-1",
+    "api_digest": "sha256:87b6f383a0229e8db07617440536ab95cb15f943e6c71bf37c5a6341c4b34ded",
+    "zip_path": "D:\\tmp\\original09-5-source-r1\\artifact-13296003017.zip",
+    "zip_bytes": 1457,
+    "zip_sha256": "87b6f383a0229e8db07617440536ab95cb15f943e6c71bf37c5a6341c4b34ded",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-5-semantic-independence-close-20261104/changed-module.log",
+      "bytes": 8940,
+      "sha256": "d14aad454bd50cd623a69ec55bcc76b707b80fc4d90e2b356ea0b94cf3bceb0d"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-5-semantic-independence-close-20261104/module-plan.json",
+      "bytes": 273,
+      "sha256": "17dc25e78fb963a6813700190f4c736366089bc79473ec018a13d2f81a6d3124",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 273,
+        "sha256": "17dc25e78fb963a6813700190f4c736366089bc79473ec018a13d2f81a6d3124"
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 8940,
+        "sha256": "d14aad454bd50cd623a69ec55bcc76b707b80fc4d90e2b356ea0b94cf3bceb0d"
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 7,
+    "new_theorem_pairs": 7,
+    "reused_theorem_pairs": 0,
+    "definition_only_checks": 2,
+    "new_targets": [
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.three_complete_witness_models",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_semantically_entails_power",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.power_does_not_semantically_entail_obligation",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_does_not_semantically_entail_occurred",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.occurred_does_not_semantically_entail_power",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation",
+      "JurisLean.Candidates.SemanticIndependenceAudit20261104.received_content_and_permission_entail_obligation"
+    ],
+    "reused_targets": [],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SemanticIndependenceAudit20261104.lean",
+      "bytes": 9141,
+      "sha256": "1227502701dde8cee678864f8c10abe9d77d0c3ea5ade4e0e8f3dc92d2fe72d6",
+      "git_blob": "5c315c548e43164b7d3a016130a41a25ff036f2f",
+      "role": "new source module; direct source CI subject"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16324,
+      "sha256": "e5760b9ca57807ba1be485aba3e0ded711dcb6e43f23a67362faadf12877117b",
+      "git_blob": "e0430ee3476a0a0f276db2a1e2e81be204afe53a",
+      "role": "single generated root import"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "role": "Lean toolchain pin"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "role": "dependency manifest; Mathlib rev c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "role": "frozen Final20261021 audit source; unchanged"
+    }
+  ],
+  "failed_history": [
+    {
+      "run_id": 41773241403,
+      "attempt": 1,
+      "subject": "f0b0e9b8ec9540d6fa650a1c7f41fbc495225cd4",
+      "artifact_id": 13296300452,
+      "artifact_name": "changed-module-only-41773241403-1",
+      "zip_path": "D:\\tmp\\original09-5-source-r1\\artifact-13296300452.zip",
+      "zip_bytes": 2272,
+      "zip_sha256": "3b3f6decb9ab4bfe85a0b97e774f7348cba055787876ceb545a3f97f49cdd829",
+      "success_binding": false,
+      "diagnosis": "Two Lean elaboration errors; failure recovery output mentions sorryAx, but source contains no explicit sorry/admit/axiom. R2 changes only proof syntax in the two locations; ModelsTheta and proposition statements/premises are unchanged."
+    }
+  ],
+  "subparagraph_mapping": {
+    "09.5.171": "The source proves one explicit finite ToyTheta with ModelsTheta over the same ToyContext/ToyModel space; witnesses satisfy the stated semantic entailment direction and the three non-entailment directions. This is a toy witness, not a theorem for arbitrary theta or a real legal domain.",
+    "09.5.173": "The actual witness input bits (l,g,b) are 100, 110, and 001; l is permission, g is the document-trigger condition, and b is occurrence. The same ToyTheta defines P=l, O=l∧g, X=b. Thus 100 is permitted but untriggered and not occurred; 110 is permitted and triggered but not occurred; 001 is unpermitted/untriggered but occurred. False bits are constrained by these stated meanings, not freely interchangeable zeros. Existing event-bit separation is retained as prior evidence, not used as this same-ToyTheta counterexample.",
+    "09.5.175": "The same received document/context carries content payment 6 while issuer differs; the source proves differing power/obligation model values and separately that the explicit received-content plus permission conditions entail the same Obligation. The bridge is conditional on the modeled document and licensed/triggered predicates; it does not establish real-world document validity."
+  },
+  "semantic_scope": {
+    "theta": "ToyTheta is an explicitly constructed finite model only.",
+    "universal_claim": "No result claims semantic independence for arbitrary theta, all legal domains, or production runtime.",
+    "prior_event_bits": "Existing event-bit separation remains prior evidence and is not used as the same-ToyTheta counterexample."
+  },
+  "consumer_wiring": {
+    "current_edge_count": 15,
+    "affected_edges": [],
+    "basis": "The current 15 U00 consumer edges were checked; no actual caller consumes this toy semantic model or document bridge. L171/L173/L175 expressly permit toy semantics; no runtime wiring claim is made, and U00 is unchanged."
+  },
+  "same_c_verifier": "NOT_RUN",
+  "full_pr_acceptance": "PENDING",
+  "record_checks11": {
+    "required_count": 11,
+    "all_exit_0": true,
+    "checks": [
+      {
+        "name": "manifest-verify",
+        "argv": [
+          "python",
+          "scripts/ci/generate_theorem_manifest.py",
+          "--verify",
+          "docs/formal-release/theorem_inventory_v3.json",
+          "--require-bound"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\manifest-verify.stdout.bin",
+          "bytes": 31,
+          "sha256": "497105be30d4a808605cd089981b8e235d627407398423e4fc3b0278706381e0"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\manifest-verify.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\manifest-verify.exit.txt"
+      },
+      {
+        "name": "probability-audit-check",
+        "argv": [
+          "python",
+          "scripts/ci/generate_probability_audit_surface.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\probability-audit-check.stdout.bin",
+          "bytes": 55,
+          "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\probability-audit-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\probability-audit-check.exit.txt"
+      },
+      {
+        "name": "trivial-census",
+        "argv": [
+          "python",
+          "scripts/ci/generate_trivial_proof_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\trivial-census.stdout.bin",
+          "bytes": 95,
+          "sha256": "383f19ec99265685f08044e827c0d5067aaaca854f88f22dd109d68cfcb7de7b"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\trivial-census.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\trivial-census.exit.txt"
+      },
+      {
+        "name": "structure-volume",
+        "argv": [
+          "python",
+          "scripts/ci/generate_structure_and_volume_reports.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\structure-volume.stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\structure-volume.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\structure-volume.exit.txt"
+      },
+      {
+        "name": "reachability",
+        "argv": [
+          "python",
+          "scripts/ci/check_import_reachability.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\reachability.stdout.bin",
+          "bytes": 76,
+          "sha256": "533148b16dace1a5dde70a32caf95ded61d46ced5d063d59cd6a1407ef2d151e"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\reachability.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\reachability.exit.txt"
+      },
+      {
+        "name": "paper-single-count",
+        "argv": [
+          "python",
+          "scripts/ci/check_paper_single_count.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-single-count.stdout.bin",
+          "bytes": 126,
+          "sha256": "57f56aabdee9543656de1ca45ed7f8f88b790bc6d8ae38be1affbf956cacb2a4"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-single-count.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-single-count.exit.txt"
+      },
+      {
+        "name": "paper-derived-check",
+        "argv": [
+          "python",
+          "scripts/rebind_paper_derived_accounting.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-derived-check.stdout.bin",
+          "bytes": 494,
+          "sha256": "5f6cc9da5010c106adbe02a5c7edd77dd961407dc3a336379816ae5c5c0108aa"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-derived-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-derived-check.exit.txt"
+      },
+      {
+        "name": "duplication-census",
+        "argv": [
+          "python",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\duplication-census.stdout.bin",
+          "bytes": 75,
+          "sha256": "dc1cb7c5b90c9808e423d9cb5d90557db107974b892ab5411ffc3461ea197275"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\duplication-census.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\duplication-census.exit.txt"
+      },
+      {
+        "name": "declaration-shape",
+        "argv": [
+          "python",
+          "scripts/ci/generate_declaration_shape_report.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\declaration-shape.stdout.bin",
+          "bytes": 29,
+          "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\declaration-shape.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\declaration-shape.exit.txt"
+      },
+      {
+        "name": "clause-binding",
+        "argv": [
+          "python",
+          "scripts/ci/check_clause_declaration_binding.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\clause-binding.stdout.bin",
+          "bytes": 310,
+          "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\clause-binding.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\clause-binding.exit.txt"
+      },
+      {
+        "name": "archive-gap",
+        "argv": [
+          "python",
+          "scripts/ci/check_archive_gap_close.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\archive-gap.stdout.bin",
+          "bytes": 228,
+          "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-5-records-20261104\\checks\\archive-gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\archive-gap.exit.txt"
+      }
+    ]
+  },
+  "extra_checks": [
+    {
+      "name": "gap-status",
+      "argv": [
+        "python",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\gap-status.stdout.bin",
+        "bytes": 26,
+        "sha256": "28bf703de509d7ee6e3f125fb0eb9253b04162eb05012784bfeb4bd22fa067a6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\gap-status.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\gap-status.exit.txt"
+    },
+    {
+      "name": "ci-run-index",
+      "argv": [
+        "python",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-run-index.stdout.bin",
+        "bytes": 40,
+        "sha256": "bcf2de5dbe2f6eaa3b2de29212ed91c41d4410e91a9172a92acdf7516c866444"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-run-index.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-run-index.exit.txt"
+    },
+    {
+      "name": "paper-claims",
+      "argv": [
+        "python",
+        "scripts/check_paper_claims.py"
+      ],
+      "exit": 1,
+      "stdout": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-claims.stdout.bin",
+        "bytes": 3087,
+        "sha256": "b368d553788ce53ee2368452abd189891c91da62dce013d6d2ecb317f6eb2fc2"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-claims.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\paper-claims.exit.txt",
+      "classification": "NOT_IN_REQUIRED_11; baseline UNKNOWN; legacy TeX not changed in this round"
+    }
+  ],
+  "ci_run_index_tests": {
+    "argv": [
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_ci_run_index.py",
+      "-q"
+    ],
+    "exit": 0,
+    "summary": "12 passed in 5.78s",
+    "stdout": {
+      "path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-index-12tests.stdout.bin",
+      "bytes": 101,
+      "sha256": "ccce651ac8673685a11901dc7bc5e8c4cd70e19c006fa3112cc34c752ca3b379"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-index-12tests.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\ci-index-12tests.exit.txt"
+  },
+  "staged_diff_check": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "D:\\tmp\\original09-5-records-20261104\\checks\\cached-diff-cr-at-eol-final.stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-5-records-20261104\\checks\\cached-diff-cr-at-eol-final.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-5-records-20261104\\checks\\cached-diff-cr-at-eol-final.exit.txt",
+    "scope": "Captured on the staged packet/canonical/generator state immediately before adding this check-boundary record; the post-record staged-tree check is captured separately after staging verification.json."
+  }
+}

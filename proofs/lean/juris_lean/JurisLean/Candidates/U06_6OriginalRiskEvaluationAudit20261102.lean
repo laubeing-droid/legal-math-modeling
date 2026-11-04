@@ -1,0 +1,76 @@
+import JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102
+
+/-! Original 06.6 L129/L133: actual branch-loss filtering, common-policy
+feasibility retention, finite risk-constrained choice, and honest no-choice. -/
+open JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102
+open JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102
+
+#check lossMean
+#print axioms lossMean
+#check worstExpectedLoss
+#print axioms worstExpectedLoss
+#check riskModelInputsWellFormed
+#print axioms riskModelInputsWellFormed
+#check RiskFeasible
+#print axioms RiskFeasible
+#check riskPolicies
+#print axioms riskPolicies
+#check riskPolicies_mem_iff
+#print axioms riskPolicies_mem_iff
+#check riskPolicies_subset_candidates
+#print axioms riskPolicies_subset_candidates
+#check riskPolicies_commonPolicies_subset
+#print axioms riskPolicies_commonPolicies_subset
+#check riskPolicies_common_member_is_feasible
+#print axioms riskPolicies_common_member_is_feasible
+#check riskPolicies_mem_model_inputs_well_formed
+#print axioms riskPolicies_mem_model_inputs_well_formed
+#check riskPolicies_mem_each_expected_loss_le
+#print axioms riskPolicies_mem_each_expected_loss_le
+#check riskPickMaxMin_some_spec
+#print axioms riskPickMaxMin_some_spec
+#check riskPickMaxMin_none_iff_empty
+#print axioms riskPickMaxMin_none_iff_empty
+#check ConditionalModelRiskReport
+#print axioms ConditionalModelRiskReport
+#check conditionalModelRiskEvaluation
+#print axioms conditionalModelRiskEvaluation
+#check RiskDemoPolicy
+#print axioms RiskDemoPolicy
+#check riskDemoRealize
+#print axioms riskDemoRealize
+#check riskDemoCoreAction
+#print axioms riskDemoCoreAction
+#check riskDemo_realization_matches_existing_policy
+#print axioms riskDemo_realization_matches_existing_policy
+#check riskDemo_induced_law_is_fixed
+#print axioms riskDemo_induced_law_is_fixed
+#check riskDemoCommonPolicies
+#print axioms riskDemoCommonPolicies
+#check riskDemoCommonPolicies_eq_univ
+#print axioms riskDemoCommonPolicies_eq_univ
+#check riskDemoLaw
+#print axioms riskDemoLaw
+#check riskDemoOutcome
+#print axioms riskDemoOutcome
+#check riskDemoLoss
+#print axioms riskDemoLoss
+#check riskDemo_expected_utility_values
+#print axioms riskDemo_expected_utility_values
+#check riskDemo_expected_loss_values
+#print axioms riskDemo_expected_loss_values
+#check riskDemo_loss_nonnegative
+#print axioms riskDemo_loss_nonnegative
+#check riskDemo_unconstrained_original_optimum
+#print axioms riskDemo_unconstrained_original_optimum
+#check riskDemo_filter_at_two_is_singleton
+#print axioms riskDemo_filter_at_two_is_singleton
+#check riskDemo_risk_picker_selects_one
+#print axioms riskDemo_risk_picker_selects_one
+#check riskDemo_filter_at_zero_is_empty
+#print axioms riskDemo_filter_at_zero_is_empty
+#check riskDemo_zero_limit_picker_returns_none
+#print axioms riskDemo_zero_limit_picker_returns_none
+
+#print axioms JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec
+#print axioms JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff

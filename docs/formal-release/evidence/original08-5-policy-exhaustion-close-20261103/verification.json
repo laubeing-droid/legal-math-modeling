@@ -1,0 +1,1658 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.5",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.5 L127/L129 mapped as COVERED; full-record PR acceptance pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      125,
+      130
+    ],
+    "subparagraph_lines": [
+      [
+        127,
+        127
+      ],
+      [
+        129,
+        129
+      ]
+    ],
+    "clause_ids": [
+      "U08.2",
+      "U08.3"
+    ],
+    "sha256": "eeaa6e20a4a475ff81dd25b77b36ffa28a27cdcf0e2b554f31b5710da9f6db0c"
+  },
+  "canonical_before": {
+    "id": "08.5",
+    "heading": "## 08.5 任意策略的耗尽为什么可能空洞",
+    "original_manifest_row": "08.5",
+    "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "source_lines": [
+      125,
+      130
+    ],
+    "clauses": [
+      "U08.2",
+      "U08.3"
+    ],
+    "subparagraph_lines": [
+      [
+        127,
+        127
+      ],
+      [
+        129,
+        129
+      ]
+    ],
+    "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\procedure-closure-20261027",
+        "subject": "2cf8cf874edcb332adb13ef360bd76bb808cd1b3",
+        "run_id": 40476074285,
+        "job_id": 122094508524,
+        "scope": "20目标16执行：独立required覆盖/耗尽方向/四乘积/未来扩展反例/实际过程结果消费/分支保留/严格Nat降秩；不是完整跨层有限验证器"
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\finite-legal-validation-20261027",
+        "subject": "14e4937923ed3dea042317845568636108537f9b",
+        "run_id": 40482741482,
+        "job_id": 122116867789,
+        "scope": "33目标38执行：实际来源/可用事实/版本/Horn轨迹及独立checker/证据世界/独立过程政策/非空分支与失败见证；完整根PR及U00继续"
+      },
+      {
+        "pr": 54,
+        "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+        "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+        "ulm_run": 40485466352,
+        "authority_run": 40485467117,
+        "final_job": 122132576496,
+        "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+        "main_run": 40488021816,
+        "main_final_job": 122141376859,
+        "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+      }
+    ],
+    "remaining": "联合有限验证器及程序闭包PR54已全绿合并，main新全链通过；继续原08逐段/七项工程答卷复核和跨专题U00实际消费，外部来源/规范/实际世界前提保持具名。"
+  },
+  "source_checkpoint": {
+    "commit": "7a5714d0d1f09ae3c0f45d16b65892f8aa2634f3",
+    "tree": "d4308cf9ff7aee2ef96730c5a78dfb5a130812db",
+    "parent": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+    "root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+      "working_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
+    },
+    "tracked_status": "clean at source checkpoint; root-only generated-import repair"
+  },
+  "source_attempts": [
+    {
+      "label": "initial source attempt; failed history",
+      "conclusion": "failure",
+      "diagnostics": [
+        "successor rounds induction unsolved goal at source line 42",
+        "two RuleUse versus List RuleUse application mismatches at source lines 110 and 121",
+        "error recovery output contained sorryAx; nonpassing history"
+      ],
+      "run_id": 41557640550,
+      "artifact_id": 13195970015,
+      "tree": "37457183abf3995bde6fda3ba7c074f03657383f",
+      "module": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+      "raw_log": {
+        "path": "D:/tmp/original08-5-source-r1/artifacts/13195970015/extracted/changed-module.log",
+        "bytes": 49335,
+        "sha256": "eaf792d59dc71821e342d47caf252b03fba25c37b5e27b85e71233e3bae1ab11"
+      },
+      "artifact_name": "changed-module-only-41557640550-1",
+      "attempt": 1,
+      "head_sha": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
+      "artifact_bytes": 7166,
+      "artifact_sha256": "sha256:35427875da2efe3735e5bda2b2de1ff461ee2aab98d9d69b5dd166c873edbdcf",
+      "mode": "changed-module",
+      "job_conclusion": "failure",
+      "job_id": 125660319119,
+      "status": "completed"
+    },
+    {
+      "artifact_api_size": 6105,
+      "conclusion": "success",
+      "sorryAx": 0,
+      "build_success": "Build completed successfully (8512 jobs).",
+      "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+      "run_id": 41559151149,
+      "head_sha": "bd1830aaec052822f07aefe8826c1c1361128ae9",
+      "artifact_id": 13196147073,
+      "include": [
+        "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103"
+      ],
+      "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+      "artifact_api_sha256": "sha256:c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1",
+      "artifact_expired": false,
+      "raw_log": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original08-5-policy-exhaustion-close-20261103\\changed-module.log",
+        "bytes": 44463,
+        "sha256": "9490d31048ac55c21f30fa0c498dd3cfe97dbc8a1ca89224fecb25cf963cda93"
+      },
+      "artifact_name": "changed-module-only-41559151149-1",
+      "attempt": 1,
+      "physical_zip": {
+        "path": "D:/tmp/original08-5-source-r2/artifacts/13196147073/changed-module-only-41559151149-1.zip",
+        "bytes": 6105,
+        "sha256": "c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1"
+      },
+      "event": "workflow_dispatch",
+      "job_name": "changed-modules",
+      "label": "corrected source attempt",
+      "targets": [
+        {
+          "target": "JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted",
+          "raw_check_line": 408,
+          "raw_axiom_line": 412,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.Audit.vacuous_policy_exhaustion_misses_independent_requirement",
+          "raw_check_line": 415,
+          "raw_axiom_line": 428,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.exhaustion_transfers_under_coverage",
+          "raw_check_line": 430,
+          "raw_axiom_line": 435,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.ProcedureClosure20261027.reverse_exhaustion_needs_no_extra_domain",
+          "raw_check_line": 437,
+          "raw_axiom_line": 441,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.bound_data_keeps_exact_source_and_independent_policy",
+          "raw_check_line": 443,
+          "raw_axiom_line": 458,
+          "axioms": [
+            "propext"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.selected_horn_cannot_rewrite_original_context",
+          "raw_check_line": 459,
+          "raw_axiom_line": 471,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.FiniteLegalValidation20261027.inspected_closed_process_exhausts_independent_requirements",
+          "raw_check_line": 474,
+          "raw_axiom_line": 490,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.PolicyExhaustion20261103.declared_finality_misses_one_executable_requirement",
+          "raw_check_line": 493,
+          "raw_axiom_line": 512,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        {
+          "target": "JurisLean.Candidates.PolicyExhaustion20261103.actual_bound_valid_policy_exhaustion",
+          "raw_check_line": 515,
+          "raw_axiom_line": 538,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        }
+      ],
+      "module": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+      "errors": 0,
+      "mode": "changed-module",
+      "selected_named_target_count": 9,
+      "job_conclusion": "success",
+      "job_id": 125665263921,
+      "module_plan": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\original08-5-policy-exhaustion-close-20261103\\module-plan.json",
+        "bytes": 277,
+        "sha256": "2cc6b14189f0782ecede92556cdc5e2f560118dc31cb0c53206eb8753153779a"
+      },
+      "status": "completed",
+      "type_only_checks": [
+        "JurisLean.KernelV3.FullyExhausted",
+        "JurisLean.Seams.AdjudicationBridge.exhaustionOf",
+        "JurisLean.Seams.AdjudicationBridge.finalUndetermined",
+        "JurisLean.Candidates.PolicyExhaustion20261103.ValidPolicy"
+      ],
+      "removed_modules": []
+    }
+  ],
+  "artifacts": [
+    {
+      "run_id": 41559151149,
+      "attempt": 1,
+      "job_id": 125665263921,
+      "artifact_id": 13196147073,
+      "artifact_name": "changed-module-only-41559151149-1",
+      "api_size_bytes": 6105,
+      "api_sha256": "sha256:c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1",
+      "physical_zip": {
+        "path": "D:/tmp/original08-5-source-r2/artifacts/13196147073/changed-module-only-41559151149-1.zip",
+        "bytes": 6105,
+        "sha256": "c3361a00d6887eaabde70654ed72b0d573ce73307bfc1bd97f07047e637663c1"
+      },
+      "members": [
+        {
+          "path": "changed-module.log",
+          "bytes": 44463,
+          "sha256": "9490d31048ac55c21f30fa0c498dd3cfe97dbc8a1ca89224fecb25cf963cda93"
+        },
+        {
+          "path": "module-plan.json",
+          "bytes": 277,
+          "sha256": "2cc6b14189f0782ecede92556cdc5e2f560118dc31cb0c53206eb8753153779a"
+        }
+      ]
+    }
+  ],
+  "selected_named_target_count": 9,
+  "selected_target_counts_by_module": {
+    "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103": 9
+  },
+  "type_only_check_count": 4,
+  "axioms_standard_subset": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+      "bytes": 8142,
+      "sha256": "6e002d6bad25b362021d9a342a23c7132712201e4e0fb833628d896eef07fa1e",
+      "git_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+      "working_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+      "working_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
+      "bytes": 57823,
+      "sha256": "0c0e633ec225876c1928dd5b8e944c37b5cdcb9fed5a6d976f540af12752f522",
+      "git_blob": "c10782dddbec6c06231956f2a97da38afec2c463",
+      "working_blob": "c10782dddbec6c06231956f2a97da38afec2c463"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+      "bytes": 9970,
+      "sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a",
+      "git_blob": "033d14ad6edf9e8057c5217db633e6131cf6e47d",
+      "working_blob": "033d14ad6edf9e8057c5217db633e6131cf6e47d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+      "bytes": 8470,
+      "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+      "git_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078",
+      "working_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidation20261027.lean",
+      "bytes": 34408,
+      "sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d",
+      "git_blob": "a3876253a1da37cb4a1f7b7b5d657ed025adf767",
+      "working_blob": "a3876253a1da37cb4a1f7b7b5d657ed025adf767"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
+      "bytes": 21206,
+      "sha256": "65476152aa24f8cdc9297d1473d596fd1078022d51fd04e43e0a8bd2c251309a",
+      "git_blob": "cf5c4901f2e51f7ebae9c2692e06f6f85c1623d0",
+      "working_blob": "cf5c4901f2e51f7ebae9c2692e06f6f85c1623d0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+      "bytes": 3719,
+      "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a",
+      "git_blob": "694be6d8c778c7ebf6e049823fcf249695532f42",
+      "working_blob": "694be6d8c778c7ebf6e049823fcf249695532f42"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "working_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "bytes": 19515,
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2",
+      "git_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a",
+      "working_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a"
+    }
+  ],
+  "mathematical_mapping": {
+    "l127": "Reuse TerminalPolicy rounds, finalUndetermined, FullyExhausted, exhaustionOf. New singleton-claim/empty-rule finite policy is undetermined at every round; separate counterRequired=[1] has exactly one executable step. Old ProcedureClosure badPolicy is a different ProcessInput type.",
+    "l129": "ValidPolicy binds actual Gamma × Result Nat, independent ProcessPolicy/RawProcess, actual selectVersion, primitive checks and completed dependencies. actual_bound_valid_policy_exhaustion requires ValidPolicy and explicit actual RawProcess.exhausted=true; it derives lawful closure and terminality for required operations. Primitive checks do not assert exhaustion/final outcome.",
+    "external_boundary": "Normative policy, actual material and process remain distinct; records do not establish external authorization, real-world truth or execution.",
+    "broader_remaining": "Only frozen 08.5 L127/L129 is covered. Wider 08 engineering and U00 consumer tasks remain in their existing scopes."
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "Only original 08.5 is mapped in this round.",
+    "Module-only evidence is not full PR/release acceptance.",
+    "No caller, runtime, global discharge, source truth or legal authorization is upgraded."
+  ],
+  "diagnostics": [],
+  "source_module_checkpoint": {
+    "commit": "bd1830aaec052822f07aefe8826c1c1361128ae9",
+    "tree": "84854b05512e34e91c72c2a0a957d9f5e6a7195d",
+    "parent": "0fa0dea7a71c3187d645e5aa724ad1e592874dfb",
+    "root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    "proof_module": "proofs/lean/juris_lean/JurisLean/Candidates/SourcePolicyExhaustionAudit20261103.lean",
+    "proof_module_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+    "source_run_id": 41559151149,
+    "source_job_id": 125665263921,
+    "source_artifact_id": 13196147073,
+    "note": "The changed-module run validates the Audit module on this checkpoint; it does not validate the later root import repair."
+  },
+  "root_reachability_repair": {
+    "commit": "7a5714d0d1f09ae3c0f45d16b65892f8aa2634f3",
+    "tree": "d4308cf9ff7aee2ef96730c5a78dfb5a130812db",
+    "changed_path": "proofs/lean/juris_lean/JurisLean.lean",
+    "generator_argv": [
+      "scripts/ci/check_import_reachability.py",
+      "--write"
+    ],
+    "generator_cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+    "generator_exit_code": 0,
+    "generator_stdout_file": "D:\\tmp\\original08-5-pr111-r1\\check-import-reachability-write.stdout.txt",
+    "generator_stdout_bytes": 63,
+    "generator_stdout_sha256": "a2f6bb918a7fae42ec04c52567f3b4fa96fc70e6fc5b08461a7a62fe12748b04",
+    "focused_test_argv": [
+      "-m",
+      "pytest",
+      "-q",
+      "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs"
+    ],
+    "focused_test_cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+    "focused_test_exit_code": 0,
+    "focused_test_stdout_file": "D:\\tmp\\original08-5-pr111-r1\\source-fix\\test-import-reachability.stdout.txt",
+    "focused_test_stdout_bytes": 100,
+    "focused_test_stdout_sha256": "49bf6922cd8f1b22088f46dbdc62055c772502e6e8302c2c11cdc240a39c8aba",
+    "old_root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16071,
+      "sha256": "917ac5eabe30ac62d356d4bb0273a1c4fdbd74d2ca975cb9aa9c172c148ace80",
+      "git_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533",
+      "working_blob": "f70443df7b289710b3e9f5726bba7c2e2a664533"
+    },
+    "new_root_import": {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16013,
+      "sha256": "a6b80cf87754c45b245beb55a00cc2b4afdc1d70bbe2fce157c76bb3329111cb",
+      "git_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0"
+    },
+    "note": "The generated root block dropped the redundant ProcedureClosureAudit import, which is reachable through SourcePolicyExhaustionAudit; the direct SourcePolicy import remains. Full PR validation of this updated root import is pending."
+  },
+  "pre_rootfix_pr111_attempt": {
+    "pr": 111,
+    "head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+    "base": "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+    "tested_merge": "410561fb7f0ef27c4dfe4caa37b61e2d19dd6de2",
+    "tree": "ca4d76d0282312e1bf76dc4098de2e129696ac38",
+    "ordered_parents": [
+      "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+      "cfda24ca2eaa9c7924ffe71d04a298df728e18ba"
+    ],
+    "ulm_run": {
+      "run_id": 41563884970,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+      "snapshot": "D:/tmp/original08-5-pr111-r1/api-snapshots/ulm-run-initial.json"
+    },
+    "authority_run": {
+      "run_id": 41563885577,
+      "attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+      "snapshot": "D:/tmp/original08-5-pr111-r1/api-snapshots/authority-run-terminal.json"
+    },
+    "authority_jobs": [
+      {
+        "id": 125680628019,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYxMw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628019",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628019",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:17:04Z",
+        "name": "python-gates",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:18Z",
+            "completed_at": "2026-11-03T02:05:19Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Install current project test dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:26Z"
+          },
+          {
+            "name": "Existing gates plus full retained and new root tests",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:26Z",
+            "completed_at": "2026-11-03T02:17:00Z"
+          },
+          {
+            "name": "Upload original gate inputs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:17:00Z",
+            "completed_at": "2026-11-03T02:17:01Z"
+          },
+          {
+            "name": "Upload same-run extended evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:17:01Z",
+            "completed_at": "2026-11-03T02:17:01Z"
+          },
+          {
+            "name": "All mathematics implementation tests",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 8,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Upload full mathematics Python evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 17,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-03T02:17:02Z",
+            "completed_at": "2026-11-03T02:17:02Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628019",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012723,
+        "runner_name": "GitHub Actions 1000012723",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680628381,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYynQ",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628381",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628381",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:24:59Z",
+        "name": "lean-full-clean-build",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:20Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:20Z",
+            "completed_at": "2026-11-03T02:05:24Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:24Z",
+            "completed_at": "2026-11-03T02:05:24Z"
+          },
+          {
+            "name": "Fixed toolchain, no lake update",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:24Z",
+            "completed_at": "2026-11-03T02:05:25Z"
+          },
+          {
+            "name": "Restore compiled dependency cache with seeds fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:25Z",
+            "completed_at": "2026-11-03T02:06:00Z"
+          },
+          {
+            "name": "Generate and verify all mathematics type assertions",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:06:00Z",
+            "completed_at": "2026-11-03T02:06:02Z"
+          },
+          {
+            "name": "Build all project Lean modules from a clean project build",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:06:02Z",
+            "completed_at": "2026-11-03T02:24:43Z"
+          },
+          {
+            "name": "Upload original release-compatible logs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-03T02:24:43Z",
+            "completed_at": "2026-11-03T02:24:44Z"
+          },
+          {
+            "name": "Upload full-root evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:24:44Z",
+            "completed_at": "2026-11-03T02:24:45Z"
+          },
+          {
+            "name": "Audit whole mathematical plan",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-03T02:24:45Z",
+            "completed_at": "2026-11-03T02:24:56Z"
+          },
+          {
+            "name": "Upload full mathematics Lean evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11,
+            "started_at": "2026-11-03T02:24:56Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Restore compiled dependency cache with seeds fallback",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 22,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 23,
+            "started_at": "2026-11-03T02:24:57Z",
+            "completed_at": "2026-11-03T02:24:57Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628381",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012724,
+        "runner_name": "GitHub Actions 1000012724",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680628416,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyYywA",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680628416",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680628416",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:18Z",
+        "completed_at": "2026-11-03T02:05:32Z",
+        "name": "runtime-refinement / produce",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:05:18Z",
+            "completed_at": "2026-11-03T02:05:19Z"
+          },
+          {
+            "name": "Check out Legal Math Modeling subject",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:05:19Z",
+            "completed_at": "2026-11-03T02:05:21Z"
+          },
+          {
+            "name": "Check out Juris Calculus producer",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:05:21Z",
+            "completed_at": "2026-11-03T02:05:22Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-11-03T02:05:22Z",
+            "completed_at": "2026-11-03T02:05:22Z"
+          },
+          {
+            "name": "Verify immutable checkout identities",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:05:22Z",
+            "completed_at": "2026-11-03T02:05:23Z"
+          },
+          {
+            "name": "Install runtime fixture dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-11-03T02:05:23Z",
+            "completed_at": "2026-11-03T02:05:27Z"
+          },
+          {
+            "name": "Materialize subject-bound expected fixtures",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:05:27Z",
+            "completed_at": "2026-11-03T02:05:27Z"
+          },
+          {
+            "name": "Execute Juris Calculus fixtures and issue receipts",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8,
+            "started_at": "2026-11-03T02:05:27Z",
+            "completed_at": "2026-11-03T02:05:28Z"
+          },
+          {
+            "name": "Verify every receipt independently",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9,
+            "started_at": "2026-11-03T02:05:28Z",
+            "completed_at": "2026-11-03T02:05:29Z"
+          },
+          {
+            "name": "Upload bound runtime evidence",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 10,
+            "started_at": "2026-11-03T02:05:29Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Check out Juris Calculus producer",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Post Check out Legal Math Modeling subject",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 20,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 21,
+            "started_at": "2026-11-03T02:05:30Z",
+            "completed_at": "2026-11-03T02:05:30Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680628416",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012725,
+        "runner_name": "GitHub Actions 1000012725",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125680630035,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQyY5Ew",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125680630035",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125680630035",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:05:15Z",
+        "started_at": "2026-11-03T02:05:15Z",
+        "completed_at": "2026-11-03T02:05:15Z",
+        "name": "changed-modules",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125680630035",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      },
+      {
+        "id": 125687459431,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ45uZw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687459431",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687459431",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:24:59Z",
+        "started_at": "2026-11-03T02:25:07Z",
+        "completed_at": "2026-11-03T02:25:15Z",
+        "name": "seven-axis-acceptance",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:25:08Z",
+            "completed_at": "2026-11-03T02:25:09Z"
+          },
+          {
+            "name": "Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-11-03T02:25:09Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 4,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 5,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Actual same-run acceptance",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 6,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:12Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-11-03T02:25:12Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 13,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Post Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-11-03T02:25:13Z",
+            "completed_at": "2026-11-03T02:25:13Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687459431",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012727,
+        "runner_name": "GitHub Actions 1000012727",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125687461071,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ450zw",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687461071",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687461071",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:24:59Z",
+        "started_at": "2026-11-03T02:24:59Z",
+        "completed_at": "2026-11-03T02:24:59Z",
+        "name": "mathematics-completion",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687461071",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      },
+      {
+        "id": 125687561723,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ4_9-w",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687561723",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687561723",
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-03T02:25:16Z",
+        "started_at": "2026-11-03T02:25:21Z",
+        "completed_at": "2026-11-03T02:25:27Z",
+        "name": "final-gate",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-11-03T02:25:22Z",
+            "completed_at": "2026-11-03T02:25:23Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "failure",
+            "number": 2,
+            "started_at": "2026-11-03T02:25:23Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 3,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Verify both the retained and new scope receipts",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 4,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-11-03T02:25:24Z",
+            "completed_at": "2026-11-03T02:25:24Z"
+          }
+        ],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687561723",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": 1000012728,
+        "runner_name": "GitHub Actions 1000012728",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions"
+      },
+      {
+        "id": 125687563042,
+        "run_id": 41563885577,
+        "workflow_name": "Lean Authority + Formal Release Pipeline",
+        "head_branch": "formal/close-original08-5-policy-exhaustion-20261103",
+        "run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/runs/41563885577",
+        "run_attempt": 1,
+        "node_id": "CR_kwDOS7jvCs8AAAAdQ5ADIg",
+        "head_sha": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/jobs/125687563042",
+        "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41563885577/job/125687563042",
+        "status": "completed",
+        "conclusion": "skipped",
+        "created_at": "2026-11-03T02:25:16Z",
+        "started_at": "2026-11-03T02:25:16Z",
+        "completed_at": "2026-11-03T02:25:16Z",
+        "name": "release-certificate",
+        "steps": [],
+        "check_run_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/check-runs/125687563042",
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "runner_id": null,
+        "runner_name": null,
+        "runner_group_id": null,
+        "runner_group_name": null
+      }
+    ],
+    "artifact_count": 14,
+    "zip_member_count": 87,
+    "artifacts": [
+      {
+        "artifact_id": "13197293188",
+        "name": "consolidated-jc-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 890,
+        "api_digest": "sha256:408ddd184fe443ef29c28bd0283ccfb59b651865286147caf587837c89d1dcd6",
+        "api_expired": false,
+        "zip_bytes": 890,
+        "zip_sha256": "408ddd184fe443ef29c28bd0283ccfb59b651865286147caf587837c89d1dcd6",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197293188\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197459438",
+        "name": "consolidated-lean-fullmath-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 281701,
+        "api_digest": "sha256:45860f3073bb70e9541d932091680c7f3881369102ca11804895b08179b2aef0",
+        "api_expired": false,
+        "zip_bytes": 281701,
+        "zip_sha256": "45860f3073bb70e9541d932091680c7f3881369102ca11804895b08179b2aef0",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197459438\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197478544",
+        "name": "consolidated-lean-consolidated-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 40178,
+        "api_digest": "sha256:c9f0a919a8954808bb91a30b52a013bcdc821744df179d6b5aaed8b1facc5111",
+        "api_expired": false,
+        "zip_bytes": 40178,
+        "zip_sha256": "c9f0a919a8954808bb91a30b52a013bcdc821744df179d6b5aaed8b1facc5111",
+        "member_count": 6,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197478544\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13197837846",
+        "name": "consolidated-python-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 40418,
+        "api_digest": "sha256:894d1c10ebfc0d743265f9947d3ea6f5a45350b6ff13948a590bdba3f397099d",
+        "api_expired": false,
+        "zip_bytes": 40418,
+        "zip_sha256": "894d1c10ebfc0d743265f9947d3ea6f5a45350b6ff13948a590bdba3f397099d",
+        "member_count": 31,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13197837846\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198238112",
+        "name": "runtime-refinement-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 6803,
+        "api_digest": "sha256:cbf1f630c21d199d05694828ed38ac4ce9ddb1d850f0fa2de10d3e2206944437",
+        "api_expired": false,
+        "zip_bytes": 6803,
+        "zip_sha256": "cbf1f630c21d199d05694828ed38ac4ce9ddb1d850f0fa2de10d3e2206944437",
+        "member_count": 10,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198238112\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198318375",
+        "name": "consolidated-lean-mandate-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 4380,
+        "api_digest": "sha256:176adfc56d2c0c8479c8f2efe9ff57935798b5e1c39c0125d75f5b5289643d7b",
+        "api_expired": false,
+        "zip_bytes": 4380,
+        "zip_sha256": "176adfc56d2c0c8479c8f2efe9ff57935798b5e1c39c0125d75f5b5289643d7b",
+        "member_count": 5,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198318375\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198323618",
+        "name": "consolidated-lean-business-root-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 37534,
+        "api_digest": "sha256:5a84d66986043deb4af0b5dea85cb6a93d7a0ba9d4a86d991442ab0c47d54778",
+        "api_expired": false,
+        "zip_bytes": 37534,
+        "zip_sha256": "5a84d66986043deb4af0b5dea85cb6a93d7a0ba9d4a86d991442ab0c47d54778",
+        "member_count": 6,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198323618\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198408018",
+        "name": "consolidated-lean-unified-v2-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 3435,
+        "api_digest": "sha256:b952fb24e0cddd0c5b2345ccd2d71524320dce4332f3320e9bf1403d9874c925",
+        "api_expired": false,
+        "zip_bytes": 3435,
+        "zip_sha256": "b952fb24e0cddd0c5b2345ccd2d71524320dce4332f3320e9bf1403d9874c925",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198408018\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198423156",
+        "name": "consolidated-lean-candidates-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 26925,
+        "api_digest": "sha256:a265e0a5d3322065d85f76d661a1915671b98a4e575262e22191e2f621cac20c",
+        "api_expired": false,
+        "zip_bytes": 26925,
+        "zip_sha256": "a265e0a5d3322065d85f76d661a1915671b98a4e575262e22191e2f621cac20c",
+        "member_count": 4,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198423156\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198558032",
+        "name": "consolidated-gate-41563884970-1",
+        "run_id": "41563884970",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 627,
+        "api_digest": "sha256:d59c73881acc8277ac766a4a26de158ae5d30dde317677c51d710470a053f649",
+        "api_expired": false,
+        "zip_bytes": 627,
+        "zip_sha256": "d59c73881acc8277ac766a4a26de158ae5d30dde317677c51d710470a053f649",
+        "member_count": 1,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198558032\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13198711943",
+        "name": "full-math-lean-41563885577-1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 566429,
+        "api_digest": "sha256:48a6e4742576c4b011e39cbebfec26c892c85024fcea87300d1f80d4dfb83efa",
+        "api_expired": false,
+        "zip_bytes": 566429,
+        "zip_sha256": "48a6e4742576c4b011e39cbebfec26c892c85024fcea87300d1f80d4dfb83efa",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13198711943\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199015012",
+        "name": "python-gates-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 17723,
+        "api_digest": "sha256:3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+        "api_expired": false,
+        "zip_bytes": 17723,
+        "zip_sha256": "3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199015012\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199376185",
+        "name": "seven-axis-lean-41563885577-1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 670031,
+        "api_digest": "sha256:9521930ca1c8b5fcd70482e26d9a27c5c140b29b427635d6f944abb74a35581c",
+        "api_expired": false,
+        "zip_bytes": 670031,
+        "zip_sha256": "9521930ca1c8b5fcd70482e26d9a27c5c140b29b427635d6f944abb74a35581c",
+        "member_count": 8,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199376185\\artifact-receipt.json"
+      },
+      {
+        "artifact_id": "13199571006",
+        "name": "lean-full-build-run41563885577-attempt1",
+        "run_id": "41563885577",
+        "attempt": 1,
+        "api_head": "cfda24ca2eaa9c7924ffe71d04a298df728e18ba",
+        "api_size": 712380,
+        "api_digest": "sha256:15db48c25e036af087cc62a169e18c482cd566769ad2e88e04d6a327040af8da",
+        "api_expired": false,
+        "zip_bytes": 712380,
+        "zip_sha256": "15db48c25e036af087cc62a169e18c482cd566769ad2e88e04d6a327040af8da",
+        "member_count": 2,
+        "receipt_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199571006\\artifact-receipt.json"
+      }
+    ],
+    "python_failure": {
+      "job_id": 125680628019,
+      "failed_step": "Existing gates plus full retained and new root tests",
+      "test": "tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs",
+      "summary": "775 passed, 1 failed; generated block had 220 imports while base root needed 219, due to the redundant ProcedureClosureAudit module entry.",
+      "artifact_id": 13199015012,
+      "artifact_name": "python-gates-run41563885577-attempt1",
+      "artifact_api_size": 17723,
+      "artifact_api_sha256": "sha256:3714f6469c53230f2e88ac7e93fd6f3cb899dca493f31675cc0c58f65d9b651f",
+      "zip_path": "D:\\tmp\\original08-5-pr111-r1\\artifacts\\13199015012\\artifact.zip",
+      "member_receipt_path": "D:/tmp/original08-5-pr111-r1/artifacts/13199015012/artifact-receipt.json",
+      "pytest_full_log_path": "D:/tmp/original08-5-pr111-r1/artifacts/13199015012/expanded/pytest-full.log",
+      "pytest_full_log_bytes": 29824,
+      "pytest_full_log_sha256": "b21994af46491bca8b898f6357c86288bd7a179cad7d2133d647852ebeef7daa"
+    },
+    "release_certificate": "NOT_PRODUCED; release-certificate job skipped",
+    "independent_verifier": "NOT_RUN",
+    "claims_checker": "NOT_RUN",
+    "note": "Historical pre-rootfix PR run only; it does not validate checkpoint 7a5714d or the repaired root import."
+  },
+  "records_status": "SOURCE_SURFACE_SYNC_COMMITTED_LOCALLY; PR111 R2 AUTHORITY FAILURE ON STALE MUTABLE AUDIT SURFACE; FULL PR VALIDATION PENDING",
+  "source_surface_sync_checkpoint": {
+    "commit": "3b9601f075d42138a79ccc716cf02e444f938bf9",
+    "tree": "cf91d0ee6397e41e53caf8abe8b5bbc310d7fa2f",
+    "parent": "965534233714ada6d3acdac60a4b5425412a55cc",
+    "branch": "formal/close-original08-5-policy-exhaustion-20261103",
+    "changed_path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "changed_path_bytes": 313401,
+    "changed_path_sha256": "b93afaadd229454597b1e8b9ae0a759a16b42559afd699a4536c590ab01a4de9",
+    "changed_path_git_blob": "68ff38936db50d149f8bbdd11974b0646246653a",
+    "changed_path_worktree_blob": "68ff38936db50d149f8bbdd11974b0646246653a",
+    "diff_summary": "0 insertions, 1 deletion: removed the duplicate #print for final_undetermined_iff_exhausted from mutable AxiomAudit.lean; it remains printed by SourcePolicyExhaustionAudit20261103.",
+    "target_still_covered_by": "JurisLean.Candidates.SourcePolicyExhaustionAudit20261103",
+    "generator_write": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "exit_code": 0,
+      "receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.receipt.json",
+        "bytes": 747,
+        "sha256": "8b29de52ed0f866211fdeaa27f59754706bacc13fce7e68854972b58a44be73c"
+      },
+      "stdout": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.stdout.txt",
+        "bytes": 55,
+        "sha256": "ee43e84604aa63ffb3cdd89add60d7fa4676b363c4c70b52e71077181ab061a1"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-write-r2.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "generator_check": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.receipt.json",
+        "bytes": 771,
+        "sha256": "232433fda09d46932a81f38dd36d5550a8b1b48e89b233a8d6126083bec634ea"
+      },
+      "stdout": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.stdout.txt",
+        "bytes": 55,
+        "sha256": "c96764eab75b18af6689514a14cafc73af2ff9e8e570b037ea02ecd1e650c9cf"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\surface-diagnostic\\probability-surface-check-after-write-r2.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "message": "AxiomAudit probability surface current (3479 targets)"
+    },
+    "frozen_audit_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+    "source_audit_blob": "6bdd95aad9b500260f42de0f0c45cd57f3da99c7",
+    "root_import_blob": "42a786bd64ef0d99dd807b3f418f25e257dc50d0",
+    "full_record_validation": "PENDING; checkpoint follows the failed R2 PR subject and has not been pushed or validated by full PR CI"
+  },
+  "post_rootfix_pr111_attempt": {
+    "pr": 111,
+    "label": "R2 after root reachability repair; terminal failure retained",
+    "head": "965534233714ada6d3acdac60a4b5425412a55cc",
+    "base": "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+    "tested_merge": "f250fc20bf1ee89bdfcfb4d6a11125d2f7e3402f",
+    "tree": "08cddfec4ce437f26d2e22a2867809ef73a4ffcd",
+    "ordered_parents": [
+      "9384a42ce44852f1bf55a931c8a3b49c94e73adf",
+      "965534233714ada6d3acdac60a4b5425412a55cc"
+    ],
+    "ulm_run": {
+      "run_id": 41568443815,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "965534233714ada6d3acdac60a4b5425412a55cc",
+      "updated_at": "2026-11-03T02:53:14Z",
+      "run_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568443815-run-poll02.json",
+        "bytes": 14568,
+        "sha256": "84193b721ceee0e165ce603e35b1712d665d1f2c368039bde39922f9a9c6f962"
+      },
+      "artifact_roster_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568443815-artifacts-poll02.json",
+        "bytes": 7067,
+        "sha256": "de876cdb9ddfd65d4d8d9ac5382241bcb708c803d8f1e8db8ce01b7ed26afdaf"
+      },
+      "unique_artifacts": 9,
+      "file_members": 63,
+      "byte_union_receipt": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\artifact-byte-receipt-r2-ulm-union-partial02.json",
+        "bytes": 6369,
+        "sha256": "a876a2c90ded679b2c16b247b9496e5524398e8221c66fb1cc7dd994068e8e31"
+      }
+    },
+    "authority_run": {
+      "run_id": 41568444175,
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "965534233714ada6d3acdac60a4b5425412a55cc",
+      "updated_at": "2026-11-03T03:08:23Z",
+      "run_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-run-terminal-r2.json",
+        "bytes": 14714,
+        "sha256": "cc222d10e961624cb20a9fdc5391d9f86e5bfc961f09b180c467527d255df4e3"
+      },
+      "jobs_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-jobs-terminal-r2.json",
+        "bytes": 18526,
+        "sha256": "f9f6dc9500b8f61217540474eda0381e62105f1730e493555f3b2d5c2cae8681"
+      },
+      "artifact_roster_snapshot": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\api-snapshots\\41568444175-artifacts-terminal-r2.json",
+        "bytes": 3927,
+        "sha256": "9fb0d6d59cc6d8dfdda73d9c209cf62ca793b61f8bd267be994bc903af424556"
+      }
+    },
+    "authority_jobs": [
+      {
+        "id": 125695470902,
+        "name": "python-gates",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125695471067,
+        "name": "lean-full-clean-build",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 125695471201,
+        "name": "runtime-refinement / produce",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 125695472114,
+        "name": "changed-modules",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 125701491671,
+        "name": "seven-axis-acceptance",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125701493280,
+        "name": "mathematics-completion",
+        "status": "completed",
+        "conclusion": "skipped"
+      },
+      {
+        "id": 125701567380,
+        "name": "final-gate",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 125701568632,
+        "name": "release-certificate",
+        "status": "completed",
+        "conclusion": "skipped"
+      }
+    ],
+    "python_gate_failure": {
+      "job_id": 125695470902,
+      "step": "Existing gates plus full retained and new root tests",
+      "failed_check": "python scripts/ci/generate_probability_audit_surface.py --check",
+      "diagnostic": "AxiomAudit probability surface is stale against the declaration sites (expected 3479 targets); run --write",
+      "root_cause": "The generated surface duplicated final_undetermined_iff_exhausted, which was explicitly printed by the new SourcePolicyExhaustionAudit.",
+      "full_pytest_log": {
+        "artifact_id": "13201020627",
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\13201020627\\expanded\\pytest-full.log",
+        "bytes": 912,
+        "sha256": "906c21ec912431af97e08edf77a403027213e0a29de3631a0378cb716e94b8a1",
+        "footer": "776 passed in 615.02s (0:10:15)"
+      },
+      "lean_guard_report": {
+        "path": "D:\\tmp\\original08-5-pr111-r2\\artifacts\\13201020627\\expanded\\lean-guard-report.json",
+        "forbidden_construct_count": 0
+      }
+    },
+    "authority_api_artifacts": [
+      {
+        "artifact_id": "13201020627",
+        "name": "python-gates-run41568444175-attempt1",
+        "api_size": 30199,
+        "api_digest": "sha256:1561c1d4adb0133175379eb08ca73adb724acc31f31c5c47950b48921e9d3255",
+        "expired": false,
+        "materialized_and_byte_reviewed": true
+      },
+      {
+        "artifact_id": "13200284023",
+        "name": "full-math-lean-41568444175-1",
+        "api_size": 566428,
+        "api_digest": "sha256:9490dba42a183014d8e37ba37bed86ae4b1c087cdb56ed902c795af540257556",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200219052",
+        "name": "lean-full-build-run41568444175-attempt1",
+        "api_size": 715691,
+        "api_digest": "sha256:cbb95e61e1ad51818098eaddb2ed29c14ed3156bf1c36565b45de8ec8ac11303",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200199107",
+        "name": "seven-axis-lean-41568444175-1",
+        "api_size": 673366,
+        "api_digest": "sha256:ce0109e8c02a374a100c6b9852bbc895d2e4fcb88844ee3d6e0aa2e42a26168d",
+        "expired": false,
+        "materialized_and_byte_reviewed": false
+      },
+      {
+        "artifact_id": "13200104348",
+        "name": "runtime-refinement-run41568444175-attempt1",
+        "api_size": 6804,
+        "api_digest": "sha256:667cd2ea1599f1d8201d3c1dfae6e2f0d3f8b488a815d29a774f8f8aa8b1c429",
+        "expired": false,
+        "materialized_and_byte_reviewed": true
+      }
+    ],
+    "no_release_certificate_or_cli": true,
+    "release_certificate_job": "skipped",
+    "independent_verifier": "NOT_RUN",
+    "claims_checker": "NOT_RUN",
+    "next_subject_full_validation": "pending after source surface sync and updated records"
+  },
+  "current_manifest_binding": {
+    "path": "docs/formal-release/theorem_inventory_v3.json",
+    "subject": {
+      "branch": "formal/close-original08-5-policy-exhaustion-20261103",
+      "commit": "3b9601f075d42138a79ccc716cf02e444f938bf9",
+      "tree": "cf91d0ee6397e41e53caf8abe8b5bbc310d7fa2f"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 578,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "scope_summary": {
+      "all_tracked_lean": {
+        "counted_declaration_count": 6416,
+        "file_count": 578,
+        "lemma_count": 146,
+        "print_axioms_command_count": 5833,
+        "print_axioms_distinct_targets": 5252,
+        "theorem_count": 6270,
+        "theorem_count_bol_convention": 6170
+      },
+      "juris_lean_package": {
+        "counted_declaration_count": 6397,
+        "file_count": 563,
+        "lemma_count": 139,
+        "print_axioms_command_count": 5833,
+        "print_axioms_distinct_targets": 5252,
+        "theorem_count": 6258,
+        "theorem_count_bol_convention": 6158
+      },
+      "ulm_import_closure": {
+        "counted_declaration_count": 52,
+        "file_count": 7,
+        "lemma_count": 0,
+        "print_axioms_command_count": 0,
+        "print_axioms_distinct_targets": 0,
+        "theorem_count": 52,
+        "theorem_count_bol_convention": 51
+      },
+      "ulm_package": {
+        "counted_declaration_count": 145,
+        "file_count": 19,
+        "lemma_count": 0,
+        "print_axioms_command_count": 199,
+        "print_axioms_distinct_targets": 145,
+        "theorem_count": 145,
+        "theorem_count_bol_convention": 111
+      }
+    }
+  }
+}

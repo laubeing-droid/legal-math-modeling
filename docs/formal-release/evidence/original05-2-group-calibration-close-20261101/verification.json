@@ -1,0 +1,173 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "e18a219df684f8a7c5844c81fea59399493d5e94",
+  "subject_tree": "394344baeccb221a0ff8cb1f159f3226e6b7750d",
+  "run_id": 41277923020,
+  "job_id": 124763778322,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41277923020",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41277923020/job/124763778322",
+  "artifact_name": "changed-module-only-41277923020-1",
+  "artifact_id": 13072690043,
+  "artifact_sha256": "2240d437b37d4dc26c3a9b5bf22d405a22f9ec09fb18dce5c5d9a615eca94094",
+  "artifact_size_bytes": 5041,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 33370,
+      "sha256": "fb668c8e367d2a630d3bae25ee5dd0f4dc1660fb559460a165a097fc2786ec32"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 291,
+      "sha256": "450efc2d678e41e010283ae4419d493964cd670b66533f305b765f89b16b6549"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "L95": [
+      "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.finite_population_calibration_not_group_calibration",
+      "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101.population_calibration_not_conditional_correctness",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton"
+    ],
+    "L97": [
+      "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.fixed_groups_bernoulli_uniform_error",
+      "JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail"
+    ],
+    "L99": [
+      "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.zero_empirical_ece_not_population_calibration",
+      "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101.population_calibration_not_conditional_correctness",
+      "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "propext": 6,
+      "Classical.choice": 6,
+      "Quot.sound": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean",
+      "sha256": "4df13e3f2b3555832fc2bdc2df58e74389e383e3bd6fdc4bdc7903d0b234a866",
+      "git_blob_sha1": "4e0af0ec75eafd4bb9d937faf9331c7f1ca27a85"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_2OriginalGroupCalibrationAudit20261101.lean",
+      "sha256": "9062a5f606eff9ac2bfa8fcb4cd6e03802ece6c4f1d15ca94acdd63fe3d625c8",
+      "git_blob_sha1": "5f6d10982c5ce29ee7f0acb894f9e8760db6cbd8"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_1OriginalCalibrationInstances20261101.lean",
+      "sha256": "d7111dc25767e753cf9d11d4b4583bd2cbf9d90dad0b310624ac35909fead9fc",
+      "git_blob_sha1": "30110df0f587093f92066f4e5929f98ee1d696bd"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U04_1OriginalProbabilityInstances20261101.lean",
+      "sha256": "82d8f0b61bf8fbaac9ca20cef211b8c72ce220e98a459e71540452f959f7dca3",
+      "git_blob_sha1": "1db74fb5112fef02bfac5303483958976a3eaeb7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
+      "sha256": "fd467e6186f7ac91a94f795dfb1f9d29e5802e0c5e808b7291235e2ea2f15f83",
+      "git_blob_sha1": "f15cbdb6328d63b3ae68fcbe58a493cabaa51ef7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d",
+      "git_blob_sha1": "61fd14d9a69cadb2dac803f056b97a7fc0dd2fbc"
+    }
+  ],
+  "original_residuals": {
+    "05.2": "冻结L95总体/群体条件校准差异；L97固定有限组、各自样本量的Bernoulli均值统一误差界；L99零经验ECE与总体失校准的有限反例。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题05.2数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original05-2-group-calibration-close-20261101/axiom-audit.raw.txt",
+    "sha256": "fb668c8e367d2a630d3bae25ee5dd0f4dc1660fb559460a165a097fc2786ec32",
+    "blocks": 12
+  },
+  "source_module_status": "SUCCESS; changed-module evidence only; 3 new declarations and 3 reused declarations audited; other workflow jobs skipped",
+  "full_record_status": "PENDING; full-record PR acceptance, exact-subject full chain, certificate/reference reconciliation, independent verifier, merge and post-merge checks not run",
+  "historical_diagnostics": [
+    {
+      "run_id": 41277516242,
+      "status": "failure",
+      "note": "Initial changed-module run failed at source parsing: missing closing parenthesis in the law binder and a pasted line break joining exact bound with have unionBound. Corrected in source commit e18a219; this run remains failure provenance, not a pass."
+    }
+  ],
+  "scope_note": "This package covers original math row 05.2 only. The fixed-group bound assumes its stated within-group Bernoulli IID/IdentDistrib conditions; no cross-group independence is required. Later selection is covered only within a predeclared finite family by the same uniform event. No actual consumer caller, out-of-family post-hoc selection guarantee, or joint-sampling execution is added. U50 remains 50 wiring / 0 narrow / 0 open; this archive denominator differs from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.finite_population_calibration_not_group_calibration",
+      "source_line": 44,
+      "check_log_line": 403,
+      "axiom_log_line": 408,
+      "original_clause": "L95"
+    },
+    {
+      "name": "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.fixed_groups_bernoulli_uniform_error",
+      "source_line": 66,
+      "check_log_line": 411,
+      "axiom_log_line": 426,
+      "original_clause": "L97"
+    },
+    {
+      "name": "JurisLean.Candidates.U05_2OriginalGroupCalibrationInstances20261101.zero_empirical_ece_not_population_calibration",
+      "source_line": 164,
+      "check_log_line": 429,
+      "axiom_log_line": 432,
+      "original_clause": "L99"
+    },
+    {
+      "name": "JurisLean.Candidates.U05_1OriginalCalibrationInstances20261101.population_calibration_not_conditional_correctness",
+      "source_line": 87,
+      "check_log_line": 435,
+      "axiom_log_line": 439,
+      "original_clause": "L95/L99"
+    },
+    {
+      "name": "JurisLean.Candidates.U04_1OriginalProbabilityInstances20261101.fixed_atom_measure_singleton",
+      "source_line": 32,
+      "check_log_line": 442,
+      "axiom_log_line": 445,
+      "original_clause": "L95/L99"
+    },
+    {
+      "name": "JurisLean.Candidates.BernoulliMeanInstance20261031.iid_bernoulli_mean_two_tail",
+      "source_line": 51,
+      "check_log_line": 448,
+      "axiom_log_line": 457,
+      "original_clause": "L97"
+    }
+  ]
+}

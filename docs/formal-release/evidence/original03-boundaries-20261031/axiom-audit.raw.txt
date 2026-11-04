@@ -1,0 +1,63 @@
+JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact :
+  JurisLean.Candidates.CompilerOriginalBoundaries20261031.interpretationScore✝ [2] <
+      JurisLean.Candidates.CompilerOriginalBoundaries20261031.interpretationScore✝ [1] ∧
+    JurisLean.Candidates.Final20261021.Decision.best
+          JurisLean.Candidates.CompilerOriginalBoundaries20261031.interpretationScore✝ [[1], [2]] =
+        some [1] ∧
+      JurisLean.Candidates.CompilerOriginalBoundaries20261031.highestScoreFamily✝ = [[1]] ∧
+        JurisLean.Candidates.Final20261021.Compiler.proposed_robust_queries [] [[1], [2]] [1] =
+            JurisLean.Candidates.Final20261021.Result.known [] ∧
+          JurisLean.Candidates.Final20261021.Compiler.proposed_robust_queries []
+              JurisLean.Candidates.CompilerOriginalBoundaries20261031.highestScoreFamily✝ [1] =
+            JurisLean.Candidates.Final20261021.Result.known [1]
+JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth :
+  (∀ (a b : Bool),
+      JurisLean.Candidates.CompilerOriginalBoundaries20261031.finiteFingerprint✝
+            (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ a) =
+          JurisLean.Candidates.CompilerOriginalBoundaries20261031.finiteFingerprint✝
+            (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ b) ↔
+        JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ a =
+          JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ b) ∧
+    (∀ (a : Bool),
+        JurisLean.Candidates.CompilerOriginalBoundaries20261031.finiteFingerprint✝
+            (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ a) ≠
+          none) ∧
+      have first := (0, true);
+      have second := (1, true);
+      first.1 ≠ second.1 ∧
+        JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ first.2 =
+            JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ second.2 ∧
+          JurisLean.Candidates.CompilerOriginalBoundaries20261031.finiteFingerprint✝
+                (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ first.2) =
+              JurisLean.Candidates.CompilerOriginalBoundaries20261031.finiteFingerprint✝
+                (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ second.2) ∧
+            ¬JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalHolds✝ false first.2 ∧
+              ¬JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalHolds✝ false second.2
+JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity :
+  JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ false =
+      "not" :: JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ true ∧
+    JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalInterpretations✝
+          (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ true) =
+        JurisLean.Candidates.Final20261021.Result.known [true] ∧
+      JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalInterpretations✝
+            (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ false) =
+          JurisLean.Candidates.Final20261021.Result.known [false] ∧
+        JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalQuery✝
+              (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ true) =
+            JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Judgment.supported ∧
+          JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalQuery✝
+                (JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalWords✝ false) =
+              JurisLean.Candidates.Final20261021.Result.known JurisLean.Candidates.Final20261021.Judgment.opposed ∧
+            JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalInterpretations✝ ["paid", "?"] =
+                JurisLean.Candidates.Final20261021.Result.known [true, false] ∧
+              JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalQuery✝ ["paid", "?"] =
+                  JurisLean.Candidates.Final20261021.Result.known
+                    JurisLean.Candidates.Final20261021.Judgment.insufficient ∧
+                JurisLean.Candidates.CompilerOriginalBoundaries20261031.literalQuery✝ ["unknown"] =
+                  JurisLean.Candidates.Final20261021.Result.rejected
+                    JurisLean.Candidates.Final20261021.Error.unsupported
+'JurisLean.Candidates.CompilerOriginalBoundaries20261031.highest_score_selection_can_create_nonrobust_fact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.CompilerOriginalBoundaries20261031.identical_fingerprints_do_not_supply_source_truth' depends on axioms: [propext]
+'JurisLean.Candidates.CompilerOriginalBoundaries20261031.negation_changes_meaning_and_finite_interface_keeps_ambiguity' does not depend on any axioms

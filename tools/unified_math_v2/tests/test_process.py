@@ -243,6 +243,93 @@ class StepEventTests(TestCase):
         self.assertEqual(after.visible_evidence(8), ())
         self.assertEqual(len(after.visible_evidence(9)), 1)
 
+    def test_evidence_withdrawal_uses_submission_key_with_or_without_prefix(self):
+        submitted = step_event(
+            _state(),
+            ProcessEvent(
+                event=_event("e1", "filing", occurred=5, observed=9,
+                             obj="shared-artifact"),
+                kind=LegalEventKind.EVIDENCE_SUBMITTED,
+            ),
+        ).next_state
+
+        for object_ref in ("ev:e1", "e1"):
+            with self.subTest(object_ref=object_ref):
+                withdrawn = step_event(
+                    submitted,
+                    ProcessEvent(
+                        event=_event("w1", "withdrawal", occurred=9,
+                                     observed=10, obj=object_ref),
+                        kind=LegalEventKind.EVIDENCE_WITHDRAWN,
+                    ),
+                ).next_state
+                self.assertEqual(withdrawn.evidence, ())
+                self.assertEqual(withdrawn.visible_evidence(99), ())
+                self.assertEqual(
+                    tuple(event.event_id for event in withdrawn.events),
+                    ("e1", "w1"),
+                )
+
+    def test_evidence_withdrawal_removes_only_the_named_submission(self):
+        state = _state()
+        for event_id in ("e1", "e2"):
+            state = step_event(
+                state,
+                ProcessEvent(
+                    event=_event(event_id, "filing", obj="shared-artifact"),
+                    kind=LegalEventKind.EVIDENCE_SUBMITTED,
+                ),
+            ).next_state
+
+        withdrawn = step_event(
+            state,
+            ProcessEvent(
+                event=_event("w1", "withdrawal", occurred=9, observed=10,
+                             obj="ev:e1"),
+                kind=LegalEventKind.EVIDENCE_WITHDRAWN,
+            ),
+        ).next_state
+        self.assertEqual(
+            tuple(record.evidence_id for record in withdrawn.evidence),
+            ("ev:e2",),
+        )
+        self.assertEqual(withdrawn.evidence[0].artifact_ref, "shared-artifact")
+        self.assertEqual(
+            tuple(event.event_id for event in withdrawn.events),
+            ("e1", "e2", "w1"),
+        )
+
+    def test_evidence_withdrawal_rejects_empty_unknown_and_artifact_refs(self):
+        submitted = step_event(
+            _state(),
+            ProcessEvent(
+                event=_event("e1", "filing", obj="shared-artifact"),
+                kind=LegalEventKind.EVIDENCE_SUBMITTED,
+            ),
+        ).next_state
+
+        for object_ref in ("", "unknown", "shared-artifact"):
+            with self.subTest(object_ref=object_ref):
+                with self.assertRaisesRegex(
+                    ValueError, "evidence withdrawal submission key not found"
+                ):
+                    step_event(
+                        submitted,
+                        ProcessEvent(
+                            event=_event("w1", "withdrawal", occurred=9,
+                                         observed=10, obj=object_ref),
+                            kind=LegalEventKind.EVIDENCE_WITHDRAWN,
+                        ),
+                    )
+                self.assertEqual(
+                    tuple(record.evidence_id for record in submitted.evidence),
+                    ("ev:e1",),
+                )
+                self.assertEqual(
+                    tuple(event.event_id for event in submitted.events),
+                    ("e1",),
+                )
+
     def test_proposal_does_not_mutate_environment(self):
         env = LegalEnvironment(
             environment_id="env",

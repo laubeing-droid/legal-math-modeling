@@ -1,0 +1,133 @@
+⚠ [8487/8493] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8493/8493] Built JurisLean.Candidates.W6JudgmentCashAudit20261104 (4.6s)
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:283:39: This simp argument is unused:
+  stage1
+
+Hint: Omit it from the simp argument list.
+  simp [ModelsTheta, toyWorld, stage2, stage1̵,̵ ̵s̵t̵a̵g̵e̵0, mkW6, scopedBool]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:283:47: This simp argument is unused:
+  stage0
+
+Hint: Omit it from the simp argument list.
+  simp [ModelsTheta, toyWorld, stage2, stage1, s̵t̵a̵g̵e̵0̵,̵ ̵mkW6, scopedBool]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:335:29: This simp argument is unused:
+  stage1
+
+Hint: Omit it from the simp argument list.
+  simp [X, toyWorld, stage2, stage1̵,̵ ̵s̵t̵a̵g̵e̵0, mkW6, firstTimedCash,
+  ̵  ̵ ̵ ̵firstPayment, cashFromPayload, ledger0,
+  ̲  ̲ ̲ ̲ledger1, toyDebt, amountSix,
+  ̵  ̵ ̵ ̵toyTag, Trace.initial, Ledger.performance, hsecond]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:335:37: This simp argument is unused:
+  stage0
+
+Hint: Omit it from the simp argument list.
+  simp [X, toyWorld, stage2, stage1, s̵t̵a̵g̵e̵0̵,̵ ̵mkW6, firstTimedCash,
+  ̵  ̵ ̵ ̵firstPayment, cashFromPayload, ledger0,
+  ̲  ̲ ̲ ̲ledger1, toyDebt, amountSix,
+  ̵  ̵ ̵ ̵toyTag, Trace.initial, Ledger.performance, hsecond]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:403:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness (c : ToyContext)
+  (physical norm ready : Bool) (hids : c.firstId ≠ c.secondId) :
+  Ledger.balance (stage0 c physical norm ready).ledger = 6 ∧
+    Ledger.quantity (stage0 c physical norm ready).ledger c.relation = some 6 ∧
+      Ledger.cashTotal (stage0 c physical norm ready).ledger = 0 ∧
+        Ledger.balance (stage1 c physical norm ready).ledger = 0 ∧
+          Ledger.quantity (stage1 c physical norm ready).ledger c.relation = some 0 ∧
+            Ledger.cashTotal (stage1 c physical norm ready).ledger = 6 ∧
+              (stage2 c physical norm ready).ledger = (stage1 c physical norm ready).ledger ∧
+                (stage2 c physical norm ready).J = some (paymentSixDocument c) ∧
+                  Ledger.balance (stage2 c physical norm ready).ledger = 0 ∧
+                    Ledger.cashTotal (stage2 c physical norm ready).ledger = 6 ∧
+                      (stage2 c physical norm ready).V.status = Judgment.insufficient ∧
+                        Ledger.balance (stage3 c physical norm ready).ledger = 0 ∧
+                          Ledger.quantity (stage3 c physical norm ready).ledger c.relation = some 0 ∧
+                            Ledger.cashTotal (stage3 c physical norm ready).ledger = 12 ∧
+                              (stage3 c physical norm ready).ledger.paid = 12 ∧
+                                (stage3 c physical norm ready).ledger.allocated = 6 ∧
+                                  (stage3 c physical norm ready).ledger.surplus = 6 ∧
+                                    (stage3 c physical norm ready).ledger.newDebt = 0 ∧
+                                      (stage3 c physical norm ready).ledger.debt.relation = c.relation ∧
+                                        (stage3 c physical norm ready).ledger.formations = [c.relation] ∧
+                                          (stage3 c physical norm ready).V.status = Judgment.insufficient ∧
+                                            List.map (fun x => x.event.id) (stage3 c physical norm ready).X =
+                                                [c.firstId, c.secondId] ∧
+                                              c.firstId ≠ c.secondId
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:404:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:405:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.timed_X_is_actual_cash_projection (c : ToyContext)
+  (physical norm ready : Bool) :
+  cashProjection (stage0 c physical norm ready) = (stage0 c physical norm ready).ledger.cash ∧
+    cashProjection (stage1 c physical norm ready) = (stage1 c physical norm ready).ledger.cash ∧
+      cashProjection (stage2 c physical norm ready) = (stage2 c physical norm ready).ledger.cash ∧
+        cashProjection (stage3 c physical norm ready) = (stage3 c physical norm ready).ledger.cash
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:406:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.timed_X_is_actual_cash_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:407:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.raw_stages_reuse_existing_invariants (c : ToyContext)
+  (physical norm ready : Bool) :
+  Ledger.Conserves (stage0 c physical norm ready).ledger ∧
+    Ledger.CashConsistent (stage0 c physical norm ready).ledger ∧
+      Ledger.Conserves (stage1 c physical norm ready).ledger ∧
+        Ledger.CashConsistent (stage1 c physical norm ready).ledger ∧
+          Ledger.Conserves (stage2 c physical norm ready).ledger ∧
+            Ledger.CashConsistent (stage2 c physical norm ready).ledger ∧
+              Ledger.Conserves (stage3 c physical norm ready).ledger ∧
+                Ledger.CashConsistent (stage3 c physical norm ready).ledger
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:408:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.raw_stages_reuse_existing_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:409:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_satisfy_one_Theta (c : ToyContext) :
+  ModelsTheta c (toyWorld c true false false) ∧
+    ModelsTheta c (toyWorld c false true false) ∧ ModelsTheta c (toyWorld c true true true)
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:410:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_satisfy_one_Theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:411:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_share_same_observed_W6 (c : ToyContext) :
+  observe (toyWorld c true false false).state = observe (toyWorld c false true false).state ∧
+    observe (toyWorld c false true false).state = observe (toyWorld c true true true).state
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:412:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_share_same_observed_W6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:413:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.Bp_does_not_semantically_entail_Bn (c : ToyContext) :
+  ¬semanticEntails c Bp Bn
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:414:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.Bp_does_not_semantically_entail_Bn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:415:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.Bn_does_not_semantically_entail_E (c : ToyContext) :
+  ¬semanticEntails c Bn E
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:416:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.Bn_does_not_semantically_entail_E' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:417:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.E_does_not_semantically_entail_X (c : ToyContext)
+  (hids : c.firstId ≠ c.secondId) : ¬semanticEntails c E X
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:418:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.E_does_not_semantically_entail_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:419:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.conditional_rJ_branch_is_separate_and_source_bound (c : ToyContext)
+  (amount : Amount) :
+  (separateRjRecord c amount).relation = toyJudgmentRelation c ∧
+    (separateRjRecord c amount).subject = c.payer ∧
+      (separateRjRecord c amount).object = ObjectId.relation (toyJudgmentRelation c) ∧
+        (separateRjRecord c amount).atTime = c.documentAt ∧
+          (separateRjRecord c amount).source = c.documentSource ∧ toyJudgmentRelation c ≠ c.relation
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:420:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.conditional_rJ_branch_is_separate_and_source_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:421:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.ModelsTheta (c : ToyContext) (w : ToyWorld) : Prop
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:422:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.X (w : ToyWorld) : Bool
+Build completed successfully (8493 jobs).

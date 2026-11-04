@@ -1,0 +1,419 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "07.8",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "L299 static source/quantity bridge is COVERED as a mathematical mapping; candidate C pending full-record PR acceptance."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\07_法律对象共同模型与表示.md",
+    "lines": [
+      297,
+      300
+    ],
+    "subparagraph_lines": [
+      [
+        299,
+        299
+      ]
+    ],
+    "clause_ids": [
+      "U06.3",
+      "U07.2",
+      "U00"
+    ],
+    "sha256": "1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a",
+    "quoted_line": "给 encodeQty、readAmount、unit 及定义域 D，要求 qtyDenote(encodeQty(q))=some(readAmount(q),unit(q))，或者明确给近似误差。证明无除整值片段不能覆盖金额 1/2；选择限制金额域或扩展表达式语法，并阐明选择所需的新假设。别把 Nat→ℚ 的精确嵌入当成任意数量表达式桥。最后收束一条包含 μ/来源视图/记录观察/共同模型/阶段读数/数量解释的静态条件定理，逐项说明为健全性还是完备性服务；给非空见证并对不可删假设提供反例。不得把结论本身重复当作前提。"
+  },
+  "canonical_before": {
+    "row_id": "07.8",
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "existing_evidence": [
+      {
+        "module": "SourceRepresentation20261027",
+        "subject": "9a2d0bbfff264c8593fe148378a64460741a250a",
+        "targets": 15,
+        "executions": 12,
+        "scope": "scoped identity, observation adequacy, exact rational quantity bridge; not whole topic 07",
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\source-representation-20261027",
+        "run_id": 40457212969,
+        "job_id": 122033215316
+      },
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-cand8-audit-20261027\\docs\\formal-release\\evidence\\source-stages-20261027",
+        "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+        "run_id": 40468260025,
+        "job_id": 122068840408,
+        "scope": "28精确目标22执行：完整typed μ/历史付款绑定/连续四阶段/共同纤维与固定背景分域/实际Nat模型消费；完整PR和全部原题逐段收口仍待"
+      }
+    ],
+    "remaining": "SourceStages PR51双链/证书/同树合并8a6fbbf9/actualmain归档门及main40472848625全PASS；原07逐段/工程义务与强共同语义/U00继续核对。",
+    "top_counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 55,
+      "PARTIAL": 27,
+      "NOT_RECONCILED": 15
+    }
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original07-8-static-source-bridge-20261102",
+    "commit": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+    "tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1",
+    "parent": "252eb9ea0c68eeeddc55f042aecc58f981757ed1"
+  },
+  "source_attempts": [
+    {
+      "run_id": 41473046523,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "252eb9ea0c68eeeddc55f042aecc58f981757ed1",
+      "head_branch": "formal/close-original07-8-static-source-bridge-20261102",
+      "job_id": 125371369315,
+      "job_name": "changed-modules",
+      "job_conclusion": "failure",
+      "artifact_id": 13156865717,
+      "artifact_name": "changed-module-only-41473046523-1",
+      "artifact_bytes": 9384,
+      "artifact_sha256": "c5e4f3f97a7c2874bd0a5dce99b9ce98786b95cbae5465b565df006288336b2b",
+      "artifact_zip_sha256": "c5e4f3f97a7c2874bd0a5dce99b9ce98786b95cbae5465b565df006288336b2b",
+      "module_plan_path": "history/r1-module-plan.json",
+      "module_plan_bytes": 267,
+      "module_plan_sha256": "2e1553a221c2ceb17932e9f2356a899f186c0fa8333874c737f018d8fd76698c",
+      "raw_log_path": "history/r1-failed-changed-module.log",
+      "raw_log_bytes": 73092,
+      "raw_log_sha256": "4f85643d821c0bbd17f55b44a4ab96be5114b7b8c867b2ee05a23215f788f151",
+      "first_error": "SourceFinalBridgeAudit20261102.lean:59:9 unexpected token '('; expected ',' or binderPred",
+      "diagnosis": "The mixed existential binder ∃ out (mu : ...) failed to parse; later unknown-name errors are parser fallout. No pass is claimed."
+    },
+    {
+      "run_id": 41474329740,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "head_branch": "formal/close-original07-8-static-source-bridge-20261102",
+      "job_id": 125375808733,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13156906754,
+      "artifact_name": "changed-module-only-41474329740-1",
+      "artifact_bytes": 8877,
+      "artifact_sha256": "7b9c66a2716b1f9e8a9eb831c89bf4acce4a606c8cbec3f96dc7b08a13e699ae",
+      "artifact_zip_sha256": "7b9c66a2716b1f9e8a9eb831c89bf4acce4a606c8cbec3f96dc7b08a13e699ae",
+      "module_plan_path": "module-plan.json",
+      "module_plan_bytes": 267,
+      "module_plan_sha256": "2e1553a221c2ceb17932e9f2356a899f186c0fa8333874c737f018d8fd76698c",
+      "raw_log_path": "changed-module.log",
+      "raw_log_bytes": 71573,
+      "raw_log_sha256": "7e5281f556621bfbb250c8667692020d1cd7a302a6f54a4fab2c78691d4a2119",
+      "requested_module": "JurisLean.Candidates.SourceFinalBridgeAudit20261102",
+      "new_targets": 2,
+      "build_jobs": 8556,
+      "raw_check_axiom_lines": [
+        116,
+        117,
+        118,
+        119
+      ],
+      "errors": 0,
+      "sorryAx_hits": 0
+    }
+  ],
+  "artifact": {
+    "id": 13156906754,
+    "name": "changed-module-only-41474329740-1",
+    "bytes": 8877,
+    "api_sha256": "sha256:7b9c66a2716b1f9e8a9eb831c89bf4acce4a606c8cbec3f96dc7b08a13e699ae",
+    "zip_path": "D:/tmp/original07-8-source-r2/artifact-13156906754/artifact.zip",
+    "zip_sha256": "7b9c66a2716b1f9e8a9eb831c89bf4acce4a606c8cbec3f96dc7b08a13e699ae",
+    "raw_path": "changed-module.log",
+    "raw_bytes": 71573,
+    "raw_sha256": "7e5281f556621bfbb250c8667692020d1cd7a302a6f54a4fab2c78691d4a2119",
+    "plan_path": "module-plan.json",
+    "plan_bytes": 267,
+    "plan_sha256": "2e1553a221c2ceb17932e9f2356a899f186c0fa8333874c737f018d8fd76698c"
+  },
+  "history_artifacts": [
+    {
+      "run_id": 41473046523,
+      "artifact_id": 13156865717,
+      "zip_path": "D:/tmp/original07-8-source-r1/artifact-13156865717/artifact.zip",
+      "zip_bytes": 9384,
+      "zip_sha256": "c5e4f3f97a7c2874bd0a5dce99b9ce98786b95cbae5465b565df006288336b2b"
+    }
+  ],
+  "module_plan": {
+    "include": [
+      {
+        "module": "JurisLean.Candidates.SourceFinalBridgeAudit20261102",
+        "target": "JurisLean.Candidates.SourceFinalBridgeAudit20261102"
+      }
+    ],
+    "removed_modules": [],
+    "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
+      "bytes": 6444,
+      "sha256": "2b891ab0c933591dc409873427654bd5e65c5239d9f6717c2599d33640e3d070",
+      "git_blob": "b0072ee5f97ed616bc050687036b392b7c7ad747",
+      "expected_blob": "b0072ee5f97ed616bc050687036b392b7c7ad747",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+      "bytes": 8582,
+      "sha256": "40607d55d0912d6f5b135c13efc874c1f432a2899db5060a85c7f132a6d2c207",
+      "git_blob": "8663aeeabd8d97542af8a36da92058b369e59418",
+      "expected_blob": "8663aeeabd8d97542af8a36da92058b369e59418",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+      "bytes": 5345,
+      "sha256": "a53fa4dd305a0e5999437eaf1f184957426f926fb24b015a675a4789ed1a53af",
+      "git_blob": "d0adba4ec93f4b8388772adc196deaee3d26f4c4",
+      "expected_blob": "d0adba4ec93f4b8388772adc196deaee3d26f4c4",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "bytes": 15083,
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+      "git_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "expected_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "bytes": 29160,
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "expected_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "bytes": 12941,
+      "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
+      "git_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "expected_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "bytes": 6542,
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f",
+      "git_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "expected_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "source_subject": "b0f153e7dbb90c3965a46abdeb3102d5f09f3de3",
+      "source_tree": "841c45c1395d9ecca744fd218dcbe68dc87c40e1"
+    }
+  ],
+  "actual_output_counts": {
+    "new_driver_requested_modules": 1,
+    "new_driver_named_theorems": 2,
+    "selected_named_outputs": 16,
+    "selected_reused_outputs": 14,
+    "source_stages_audit_declared_targets": 28,
+    "source_representation_audit_declared_targets": 15,
+    "u07_2_joint_object_reused_target_count": 1,
+    "raw_build": "success",
+    "error_count": 0,
+    "sorryAx_count": 0
+  },
+  "selected_named_target_count": 16,
+  "selected_named_targets": [
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 668,
+      "axiom_log_line": 671,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 672,
+      "axiom_log_line": 678,
+      "axioms": [
+        "Classical.choice"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.adequate_representation_preserves_all_declared_observations",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 709,
+      "axiom_log_line": 714,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.adequate_separating_representation_is_injective",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 715,
+      "axiom_log_line": 719,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 720,
+      "axiom_log_line": 724,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 727,
+      "axiom_log_line": 729,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.all_rational_amounts_have_exact_tagged_encoding",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 731,
+      "axiom_log_line": 736,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceRepresentation20261027.old_division_free_syntax_cannot_represent_half",
+      "reuse": "SourceRepresentation",
+      "check_log_line": 766,
+      "axiom_log_line": 770,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+      "reuse": "U07_2JointObject",
+      "check_log_line": 774,
+      "axiom_log_line": 787,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.nonempty_local_models_can_have_empty_common_fiber",
+      "reuse": "SourceStages",
+      "check_log_line": 568,
+      "axiom_log_line": 570,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction",
+      "reuse": "SourceStages",
+      "check_log_line": 527,
+      "axiom_log_line": 538,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.public_model_consumes_the_actual_stage_frame",
+      "reuse": "SourceStages",
+      "check_log_line": 605,
+      "axiom_log_line": 619,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+      "reuse": "SourceStages",
+      "check_log_line": 627,
+      "axiom_log_line": 654,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+      "reuse": "SourceStages",
+      "check_log_line": 657,
+      "axiom_log_line": 659,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity",
+      "reuse": "new",
+      "check_log_line": 860,
+      "axiom_log_line": 905,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+      "reuse": "new",
+      "check_log_line": 908,
+      "axiom_log_line": 931,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axioms_standard_subset": true,
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "R1 parser failure is retained in history and is not passing evidence.",
+    "R2 is only the changed-module source build; PR/full-chain/main acceptance is pending.",
+    "The README and verification distinguish the fixture legacyAmount Nat guard from the exact RationalQty Amount bridge.",
+    "No production source truth, universal extractor adequacy, or runtime consumer connection is proved."
+  ],
+  "u00_producer_mapping": {
+    "document": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
+    "section": "2026-11-03 original 07.8 L299 producer-side static bridge",
+    "existing_theorem": "JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input",
+    "relationship": "A successful sourceThenProtocol call yields a successful sourceModel output; the new static theorem can be instantiated for that output under its explicit resolveFaithful condition. The existing producer does not establish mu-faithfulness.",
+    "runtime_contract_changed": false
+  }
+}

@@ -1,0 +1,42 @@
+import JurisLean.Candidates.Original07_4ObservationInstance20261102
+import JurisLean.Candidates.SourceRepresentation20261027
+import JurisLean.Candidates.Final20261021.Representation
+
+open JurisLean.Candidates.Final20261021
+open JurisLean.Candidates.Final20261021.Representation
+open JurisLean.Candidates.SourceRepresentation20261027
+open JurisLean.Candidates.Original07_4ObservationInstance20261102
+
+section GenericObservationInstance
+variable {M : Type}
+variable (encode : ActualHistory → M)
+variable (mu : SourceRef → Option ObjectId)
+variable (adequate : ObservationAdequate encode (actualRead mu))
+variable (separating : ∀ a b : ActualHistory,
+  (∀ observation, actualRead mu observation a = actualRead mu observation b) → a = b)
+
+#check ObservationAdequate encode (actualRead mu)
+#check adequate_representation_preserves_all_declared_observations encode (actualRead mu) adequate
+#check adequate_separating_representation_is_injective encode (actualRead mu) adequate separating
+#print axioms adequate_representation_preserves_all_declared_observations
+#print axioms adequate_separating_representation_is_injective
+end GenericObservationInstance
+
+#check JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence
+#print axioms JurisLean.Candidates.SourceRepresentation20261027.resolved_identity_is_equivalence
+#check JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact
+#print axioms JurisLean.Candidates.SourceRepresentation20261027.semantic_key_exact
+#check JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity
+#print axioms JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity
+#check JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history
+#print axioms JurisLean.Candidates.SourceRepresentation20261027.same_balance_does_not_identify_history
+#check JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection
+#print axioms JurisLean.Candidates.SourceRepresentation20261027.preservation_without_reflection
+#check JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection
+#print axioms JurisLean.Candidates.Original07_4ObservationInstance20261102.unit_bool_retraction_not_reflection
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent

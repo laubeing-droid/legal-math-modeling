@@ -1,0 +1,619 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.1",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.1 L101/L103 is COVERED as a mathematical mapping; full-record PR acceptance is pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      99,
+      104
+    ],
+    "subparagraph_lines": [
+      [
+        101,
+        101
+      ],
+      [
+        103,
+        103
+      ]
+    ],
+    "clause_ids": [
+      "U03.1",
+      "U03.2"
+    ],
+    "sha256": "1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a",
+    "quoted_lines": [
+      "精确定义立即后承算子、闭包、规则适用门控及对象语义，证明有限基原子条件下闭包存在、可计算并终止。证明一个条件性可靠性定理：在事实忠实、规则忠实、适用门控有效且对象语义满足规则的前提下，闭包导出的指定原子在对应世界成立。逐项说明哪条前提是内部可查结构，哪条仍需外部见证。",
+      "构造三个最小反例：规则形式正确但不忠实于所声明法律；规则本身正确但应用到错误版本或事项；事实基含未被证明的付款事实。三个例子均可让内部推导完成，却不能得到真实法律结论。用 10、7、7 说明数量结果正确不补足这些缺口。若一条规范带例外，请比较显式补充“例外不成立”的正向见证与仅未找到例外材料，两者为什么不等价。不要把本题扩成一般非单调逻辑的无界研究，只给一个足够表达该例外的有限子模型。"
+    ]
+  },
+  "canonical_before": {
+    "row_id": "08.1",
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "existing_evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+        "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+        "run_id": 40472856489,
+        "job_id": 122083892400,
+        "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+      }
+    ],
+    "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。",
+    "counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 56,
+      "PARTIAL": 26,
+      "NOT_RECONCILED": 15
+    }
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original08-1-horn-semantics-20261103",
+    "commit": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+    "tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb",
+    "parent": "6ee19c74af15efb898f1f245fd9e98b840e782c4"
+  },
+  "source_attempts": [
+    {
+      "run_id": 41497387863,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "head_branch": "formal/close-original08-1-horn-semantics-20261103",
+      "job_id": 125455798434,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13166827418,
+      "artifact_name": "changed-module-only-41497387863-1",
+      "artifact_bytes": 14676,
+      "artifact_api_digest": "sha256:329a5d923b1a8f0620bc070524ef2903dc1097739b9a7f99cc43c2bb1134951a",
+      "artifact_zip_sha256": "329a5d923b1a8f0620bc070524ef2903dc1097739b9a7f99cc43c2bb1134951a",
+      "module_plan_path": "module-plan.json",
+      "module_plan_bytes": 269,
+      "module_plan_sha256": "13816c93f7deb198db0d775e74e620423fbb4115a74bc37e567c66415992b514",
+      "raw_log_path": "changed-module.log",
+      "raw_log_bytes": 136914,
+      "raw_log_sha256": "b77c51b6fb8fa78e15c0302af741aa206ddfdd4f339deaa4ebffcbc85c79c093",
+      "requested_module": "JurisLean.Candidates.SourceHornBoundaryAudit20261103",
+      "new_target_count": 2,
+      "explicit_check_axiom_pairs": 25,
+      "errors": 0,
+      "sorryAx_hits": 0,
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41497387863",
+      "workflow_id": 301490129,
+      "run_number": 1929
+    }
+  ],
+  "api_snapshots": [
+    {
+      "path": "D:/tmp/original08-1-source-r1/run-api.json",
+      "bytes": 14126,
+      "sha256": "35b414fde5e2af6e5b4087ee0910913896462d5208d9f10f0032722012b75ef4"
+    },
+    {
+      "path": "D:/tmp/original08-1-source-r1/jobs-api.json",
+      "bytes": 10369,
+      "sha256": "36fade2121d0ed1cc03b5da1a1f96d55168d284793e85adcf419d3647a5c55d8"
+    },
+    {
+      "path": "D:/tmp/original08-1-source-r1/artifacts-api.json",
+      "bytes": 807,
+      "sha256": "da0ebfa3759330f228281e168cb0f6e79e1c3111cf53af2147243061f0fd641f"
+    }
+  ],
+  "artifact": {
+    "id": 13166827418,
+    "name": "changed-module-only-41497387863-1",
+    "bytes": 14676,
+    "api_sha256": "sha256:329a5d923b1a8f0620bc070524ef2903dc1097739b9a7f99cc43c2bb1134951a",
+    "zip_path": "D:/tmp/original08-1-source-r1/artifacts/13166827418/artifact.zip",
+    "zip_sha256": "329a5d923b1a8f0620bc070524ef2903dc1097739b9a7f99cc43c2bb1134951a",
+    "package_log": "changed-module.log",
+    "log_bytes": 136914,
+    "log_sha256": "b77c51b6fb8fa78e15c0302af741aa206ddfdd4f339deaa4ebffcbc85c79c093",
+    "package_plan": "module-plan.json",
+    "plan_bytes": 269,
+    "plan_sha256": "13816c93f7deb198db0d775e74e620423fbb4115a74bc37e567c66415992b514"
+  },
+  "module_plan": {
+    "include": [
+      {
+        "module": "JurisLean.Candidates.SourceHornBoundaryAudit20261103",
+        "target": "JurisLean.Candidates.SourceHornBoundaryAudit20261103"
+      }
+    ],
+    "removed_modules": [],
+    "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 15879,
+      "sha256": "b02ef29ae42c193593f32de486c545d6feea733320efc4ebdecf65739ba2e1d5",
+      "git_blob": "b1fa2166998bcf58ee57f7bf390c931fa32c6185",
+      "expected_blob": "b1fa2166998bcf58ee57f7bf390c931fa32c6185",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceHornBoundaryAudit20261103.lean",
+      "bytes": 12332,
+      "sha256": "2a17229ece90d4c0d1dc779e47095f5e752911c7f9bb5f63436aae28f2ebc0ac",
+      "git_blob": "4646028d2d4bc6c27569a85061132d507ec624d4",
+      "expected_blob": "4646028d2d4bc6c27569a85061132d507ec624d4",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U03DebtClosureAudit20261027.lean",
+      "bytes": 2915,
+      "sha256": "9bef3d0fa9f04491c1dd9861ec6df4a73e609ab11e66ca24cb84af7ca52a623a",
+      "git_blob": "07ebfc7c0933b077a272406e9f6e6f65f36c0c83",
+      "expected_blob": "07ebfc7c0933b077a272406e9f6e6f65f36c0c83",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "bytes": 8241,
+      "sha256": "9d38f530ffb9fb3078ac92f9a646e4181b0268e55da7fc3b8b9282a71f53e6fa",
+      "git_blob": "818f7fa0b342ffa98fccc36de57b6d57e8506c74",
+      "expected_blob": "818f7fa0b342ffa98fccc36de57b6d57e8506c74",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "bytes": 15083,
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+      "git_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "expected_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+      "bytes": 19515,
+      "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2",
+      "git_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a",
+      "expected_blob": "297d4fc111a9fd0720bdd28b57b95e002a32af7a",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
+      "bytes": 11140,
+      "sha256": "13c5bfede9c69121c21505e4687f0fbc6dff3b1294e09a0a2a5584ae547c7520",
+      "git_blob": "5c08ccb106cec36e9dbdd3bd56d42b6b5866bfd7",
+      "expected_blob": "5c08ccb106cec36e9dbdd3bd56d42b6b5866bfd7",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "bytes": 29160,
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "expected_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "bytes": 12941,
+      "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
+      "git_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "expected_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFiniteStageAudit20261102.lean",
+      "bytes": 2462,
+      "sha256": "cf2cf9cf6e4355502bcd853ae15af2d1fcd916488b9f71985f8f49fe3abe76b8",
+      "git_blob": "66e9e54b41e23ee0cc9b674277ba72381db00f8c",
+      "expected_blob": "66e9e54b41e23ee0cc9b674277ba72381db00f8c",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceFinalBridgeAudit20261102.lean",
+      "bytes": 6444,
+      "sha256": "2b891ab0c933591dc409873427654bd5e65c5239d9f6717c2599d33640e3d070",
+      "git_blob": "b0072ee5f97ed616bc050687036b392b7c7ad747",
+      "expected_blob": "b0072ee5f97ed616bc050687036b392b7c7ad747",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentation20261027.lean",
+      "bytes": 8582,
+      "sha256": "40607d55d0912d6f5b135c13efc874c1f432a2899db5060a85c7f132a6d2c207",
+      "git_blob": "8663aeeabd8d97542af8a36da92058b369e59418",
+      "expected_blob": "8663aeeabd8d97542af8a36da92058b369e59418",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceRepresentationAudit20261027.lean",
+      "bytes": 5345,
+      "sha256": "a53fa4dd305a0e5999437eaf1f184957426f926fb24b015a675a4789ed1a53af",
+      "git_blob": "d0adba4ec93f4b8388772adc196deaee3d26f4c4",
+      "expected_blob": "d0adba4ec93f4b8388772adc196deaee3d26f4c4",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "bytes": 6542,
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adaf74eb7cffca9ae275c8db0f",
+      "git_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "expected_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+      "bytes": 6847,
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
+      "git_blob": "5068dc7b66c8eefbdba821830e873ff9ebc2774a",
+      "expected_blob": "5068dc7b66c8eefbdba821830e873ff9ebc2774a",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "bytes": 20327,
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "expected_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "expected_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a",
+      "source_subject": "592906d2178a83a3d897e2f6c4b841b3882dd7d1",
+      "source_tree": "84ec16ee751c73b5094c38273c0b7ca3021c02eb"
+    }
+  ],
+  "actual_output_counts": {
+    "requested_modules": 1,
+    "new_named_theorems": 2,
+    "selected_named_outputs": 25,
+    "selected_reused_outputs": 23,
+    "explicit_check_axiom_pairs": 25,
+    "source_plan_removed_modules": 0,
+    "raw_build": "success",
+    "error_count": 0,
+    "sorryAx_count": 0,
+    "new_theorem_standard_axioms": true
+  },
+  "selected_named_target_count": 25,
+  "selected_named_targets": [
+    {
+      "target": "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+      "check_source_line": 142,
+      "check_log_line": 1334,
+      "axiom_source_line": 143,
+      "axiom_log_line": 1348,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+      "check_source_line": 144,
+      "check_log_line": 1350,
+      "axiom_source_line": 145,
+      "axiom_log_line": 1362,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+      "check_source_line": 146,
+      "check_log_line": 1365,
+      "axiom_source_line": 147,
+      "axiom_log_line": 1377,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+      "check_source_line": 148,
+      "check_log_line": 1380,
+      "axiom_source_line": 149,
+      "axiom_log_line": 1398,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_1_common_facts_closure_subset_robust",
+      "check_source_line": 150,
+      "check_log_line": 1400,
+      "axiom_source_line": 151,
+      "axiom_log_line": 1408,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts",
+      "check_source_line": 152,
+      "check_log_line": 1409,
+      "axiom_source_line": 153,
+      "axiom_log_line": 1416,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.exists_closed_fuel_le_carrier",
+      "check_source_line": 154,
+      "check_log_line": 1419,
+      "axiom_source_line": 155,
+      "axiom_log_line": 1425,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel",
+      "check_source_line": 156,
+      "check_log_line": 1428,
+      "axiom_source_line": 157,
+      "axiom_log_line": 1434,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete",
+      "check_source_line": 158,
+      "check_log_line": 1437,
+      "axiom_source_line": 159,
+      "axiom_log_line": 1445,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_2_computed_at_carrier_iff",
+      "check_source_line": 160,
+      "check_log_line": 1448,
+      "axiom_source_line": 161,
+      "axiom_log_line": 1454,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact",
+      "check_source_line": 162,
+      "check_log_line": 1457,
+      "axiom_source_line": 163,
+      "axiom_log_line": 1469,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_2_empty_interpretations_rejected",
+      "check_source_line": 164,
+      "check_log_line": 1472,
+      "axiom_source_line": 165,
+      "axiom_log_line": 1476,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceCompilation20261027.compiler_reads_actual_extracted_output",
+      "check_source_line": 166,
+      "check_log_line": 1479,
+      "axiom_source_line": 167,
+      "axiom_log_line": 1497,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceCompilation20261027.actual_compilation_enters_finite_closure",
+      "check_source_line": 168,
+      "check_log_line": 1500,
+      "axiom_source_line": 169,
+      "axiom_log_line": 1511,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+      "check_source_line": 170,
+      "check_log_line": 1514,
+      "axiom_source_line": 171,
+      "axiom_log_line": 1536,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+      "check_source_line": 173,
+      "check_log_line": 1539,
+      "axiom_source_line": 174,
+      "axiom_log_line": 1559,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+      "check_source_line": 175,
+      "check_log_line": 1562,
+      "axiom_source_line": 176,
+      "axiom_log_line": 1573,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable",
+      "check_source_line": 177,
+      "check_log_line": 1575,
+      "axiom_source_line": 178,
+      "axiom_log_line": 1585,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness",
+      "check_source_line": 180,
+      "check_log_line": 1588,
+      "axiom_source_line": 181,
+      "axiom_log_line": 1592,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.SourceHornBoundary20261103.same_source_completed_countermodels",
+      "check_source_line": 182,
+      "check_log_line": 1593,
+      "axiom_source_line": 183,
+      "axiom_log_line": 1651,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceHornBoundary20261103.positive_exception_witness_is_not_absence",
+      "check_source_line": 184,
+      "check_log_line": 1654,
+      "axiom_source_line": 185,
+      "axiom_log_line": 1683,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+      "check_source_line": 186,
+      "check_log_line": 1685,
+      "axiom_source_line": 187,
+      "axiom_log_line": 1689,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceStages20261027.finite_stage_compatible_counterexample",
+      "check_source_line": 189,
+      "check_log_line": 1691,
+      "axiom_source_line": 190,
+      "axiom_log_line": 1702,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity",
+      "check_source_line": 191,
+      "check_log_line": 1705,
+      "axiom_source_line": 192,
+      "axiom_log_line": 1750,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+      "check_source_line": 193,
+      "check_log_line": 1753,
+      "axiom_source_line": 194,
+      "axiom_log_line": 1776,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axioms_standard_subset": true,
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "The finite source fixture and legal meanings are synthetic; no real statute, payment, source truth, or legal decision is asserted.",
+    "Internal derivability and closure do not establish that the coded rule matches law, that its version is applicable, or that a payment fact is true.",
+    "The explicit exception witness is a positive finite input; absence of exception evidence is not treated as evidence that no exception applies.",
+    "The historical broad verifier/paragraph engineering/U00 note is retained and reattributed to those scopes; it is not a new premise of original 08.1.",
+    "Source-only build passed; full-record PR acceptance remains pending."
+  ],
+  "u00_producer_mapping": {
+    "document": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
+    "section": "2026-11-03 original 08.1 L101/L103 producer-side finite Horn boundary",
+    "related_edges": [
+      1,
+      2
+    ],
+    "new_module": "JurisLean.Candidates.SourceHornBoundary20261103",
+    "relationship": "One synthetic accepted sourceModel output and a successful compileView share the selected source; finite provenance/active-rule/closure and countermodel results are producer-side evidence only.",
+    "runtime_contract_changed": false,
+    "caller_changed": false,
+    "edge_status_upgraded": false
+  }
+}

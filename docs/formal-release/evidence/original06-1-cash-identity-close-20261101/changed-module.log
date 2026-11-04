@@ -1,0 +1,158 @@
+⚠ [8481/8490] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8489/8490] Built JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101 (5.0s)
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:210:5: unused variable `leftSelected`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:211:5: unused variable `rightSelected`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:212:5: unused variable `cashIdsNodup`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean:296:5: unused variable `sameUnit`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8490/8490] Built JurisLean.Candidates.U06_1OriginalCashIdentityAudit20261101 (3.6s)
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:7:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.payloadCash (p : PaymentPayload) : CashEvent
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:8:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.RealCashEvent : Type
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:9:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQCash (date : LawDate) (e : CashEvent) :
+  RealCashEvent
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:10:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQPayload (p : PaymentPayload) : RealCashEvent
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:11:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cashFlow (e : RealCashEvent) (party : PartyId) : ℝ
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:12:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.netCash (events : Finset RealCashEvent)
+  (party : PartyId) : ℝ
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:13:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.labelCash (labels : Finset String)
+  (resolve : String → RealCashEvent) (party : PartyId) : ℝ
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:14:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.qCashFlow (e : CashEvent) (party : PartyId) : ℚ
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:15:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.qCashAccounts (events : List CashEvent) : Finset PartyId
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:16:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.realCashAccounts (events : Finset RealCashEvent) :
+  Finset PartyId
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:17:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQPayload_preserves_fields' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:18:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.performance_appends_payload_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:19:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.commit_payment_appends_payload_cash
+  (prev : Ledger.Handle) (req : PaymentRequest) :
+  (Ledger.commitPayment prev req).2.state.cash = prev.state.cash ++ [payloadCash req.payload] ∧
+    (Ledger.commitPayment prev req).1.payload.factDate = req.payload.factDate
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:20:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.commit_payment_appends_payload_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:21:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.validated_commit_preserves_cash_ids
+  (prev previous_output_ref : Ledger.Handle) (req : PaymentRequest) (permission : Bool)
+  (ready : Ledger.validationError prev previous_output_ref req permission = none)
+  (oldNodup : (List.map CashEvent.id prev.state.cash).Nodup) :
+  req.payload.cashId ∉ List.map CashEvent.id prev.state.cash ∧
+    (List.map CashEvent.id (Ledger.commitPayment prev req).2.state.cash).Nodup
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:22:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.validated_commit_preserves_cash_ids' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:23:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id (entries : List RealCashEvent)
+  (events : Finset RealCashEvent) (party : PartyId) (selected : ∀ e ∈ events, e ∈ entries)
+  (cashIdsNodup : (List.map RealCashEvent.id entries).Nodup) :
+  ∃ valueById,
+    (∀ e ∈ events, valueById e.id = cashFlow e party) ∧
+      netCash events party = ∑ id ∈ Finset.image RealCashEvent.id events, valueById id
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:24:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:25:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.rename_preserves_cash (labels : Finset String)
+  (resolve : String → RealCashEvent) (rename : String ≃ String) (party : PartyId) :
+  labelCash (Finset.image (⇑rename) labels) (resolve ∘ ⇑rename.symm) party = labelCash labels resolve party
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:26:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.rename_preserves_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:27:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.event_id_renaming_preserves_cash
+  (entries : List RealCashEvent) (events : Finset RealCashEvent) (party : PartyId)
+  (selected : ∀ e ∈ events, e ∈ entries) (cashIdsNodup : (List.map RealCashEvent.id entries).Nodup)
+  (rename : EventId → EventId) (renameInjective : Set.InjOn rename ↑(Finset.image RealCashEvent.id events)) :
+  netCash
+      (Finset.image
+        (fun e =>
+          { id := rename e.id, source := e.source, payer := e.payer, payee := e.payee, amount := e.amount, tag := e.tag,
+            factDate := e.factDate })
+        events)
+      party =
+    netCash events party
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:28:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.event_id_renaming_preserves_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:29:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.alias_preserves_cash (entries : List RealCashEvent)
+  (labels : Finset String) (resolve : String → RealCashEvent) (oldLabel newLabel : String) (party : PartyId)
+  (cashIdsNodup : (List.map RealCashEvent.id entries).Nodup)
+  (resolvedLabelsInCash : ∀ label ∈ labels, resolve label ∈ entries) (oldLabelInLabels : oldLabel ∈ labels)
+  (newAliasInCash : resolve newLabel ∈ entries) (sameEventId : (resolve newLabel).id = (resolve oldLabel).id) :
+  labelCash (insert newLabel labels) resolve party = labelCash labels resolve party
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:30:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.alias_preserves_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:31:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive (entries : List RealCashEvent)
+  (left right : Finset RealCashEvent) (party : PartyId) (leftSelected : ∀ e ∈ left, e ∈ entries)
+  (rightSelected : ∀ e ∈ right, e ∈ entries) (cashIdsNodup : (List.map RealCashEvent.id entries).Nodup)
+  (disjointIds : Disjoint (Finset.image RealCashEvent.id left) (Finset.image RealCashEvent.id right)) :
+  netCash (left ∪ right) party = netCash left party + netCash right party
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:32:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:33:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.actual_cash_accounts_conserve
+  (events : Finset RealCashEvent) (unitTag : AmountTag) (sameUnit : ∀ e ∈ events, e.tag = unitTag) :
+  ∑ party, netCash events ↑party = 0
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:34:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.actual_cash_accounts_conserve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:35:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_accounts_conserve
+  (events : List CashEvent) :
+  ∑ party, Ledger.cashVector (List.map (fun e account => qCashFlow e ↑account) events) party = 0
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:36:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_accounts_conserve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:37:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_vector_matches_real_cash
+  (events : List CashEvent) (idsNodup : (List.map CashEvent.id events).Nodup) (dateOf : CashEvent → LawDate)
+  (party : PartyId) :
+  netCash (Finset.image (fun e => fromQCash (dateOf e) e) events.toFinset) party =
+    ↑(Ledger.cashVector (List.map (fun e a => qCashFlow e a) events) party)
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:38:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_vector_matches_real_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:39:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.three_labels_one_six :
+  labelCash threeLabels resolveThreeLabels { value := 2 } = 6 ∧
+    ∑ label ∈ threeLabels, cashFlow (resolveThreeLabels label) { value := 2 } = 18
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:40:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.three_labels_one_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:41:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payments_keep_debt :
+  cashOpening.state.cash = [] ∧
+    Ledger.balance cashOpening.state = 6 ∧
+      (sixPaymentPayload 1).cashId ≠ (sixPaymentPayload 2).cashId ∧
+        List.map CashEvent.id afterTwoSixPayments.cash = [{ value := 1 }, { value := 2 }] ∧
+          Ledger.cashTotal afterTwoSixPayments = 12 ∧
+            afterTwoSixPayments.initialDebt = 6 ∧
+              afterTwoSixPayments.debt.relation = sixDebt.relation ∧
+                Ledger.balance afterTwoSixPayments = 0 ∧
+                  afterTwoSixPayments.allocated = 6 ∧ afterTwoSixPayments.surplus = 6
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:42:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payments_keep_debt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:43:0: JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payment_account_cash :
+  netCash (Finset.image (fun e => fromQCash cashGamma.lawDate e) afterTwoSixPayments.cash.toFinset) { value := 2 } =
+      12 ∧
+    netCash (Finset.image (fun e => fromQCash cashGamma.lawDate e) afterTwoSixPayments.cash.toFinset) { value := 1 } =
+      -12
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:44:0: 'JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payment_account_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:50:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean:51:0: 'JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8490 jobs).

@@ -1,0 +1,420 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "DRAFT_EXISTING_ACCEPTED_BUILD_OUTPUTS_MAPPED",
+  "original_question": "07.2",
+  "proposed_disposition": {
+    "path": "本行数学映射 COVERED；canonical 候选 C 待完整记录 PR 验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "frozen_source": {
+    "path": "D:/Codex/1.法律工作区/legal-math-modeling工作区/20261021挺进统一法律数学模型/理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965/题单/07_法律对象共同模型与表示.md",
+    "lines": [
+      273,
+      276
+    ],
+    "clause_ids": [
+      "U07.3",
+      "U00"
+    ],
+    "quoted_obligation_line": 275,
+    "physical_bytes": 32221,
+    "sha256": "1bf38abdd67bbacde464bc47814a672220a223d4a553f3cebf8812b066b3458a"
+  },
+  "canonical_before": {
+    "handoff_path": "docs/handoff/原题97_工程105_证据对照进度_20261027.json",
+    "row_id": "07.2",
+    "row_status": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "source_lines": [
+      273,
+      276
+    ],
+    "clauses": [
+      "U07.3",
+      "U00"
+    ],
+    "top_counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 49,
+      "PARTIAL": 33,
+      "NOT_RECONCILED": 15
+    },
+    "existing_evidence": [
+      {
+        "package": "docs/formal-release/evidence/source-compilation-20261027",
+        "job_id": 122048554976,
+        "subject": "31ad63a9d5cbf8740cf68a922a4e3fafb5761484",
+        "run_id": 40462004036,
+        "scope": "9个准确目标和16次执行；固定快照目录选择及编译读取边界。"
+      },
+      {
+        "package": "C:/Users/being/legal-math-modeling-cand8-audit-20261027/docs/formal-release/evidence/source-stages-20261027",
+        "job_id": 122068840408,
+        "subject": "6d2c873824692e750fa929855fb2587c0d009cda",
+        "run_id": 40468260025,
+        "scope": "28个准确目标和22次执行；typed付款绑定、四阶段与固定背景条件。"
+      }
+    ]
+  },
+  "authority_binding": {
+    "repository": "laubeing-droid/legal-math-modeling",
+    "workflow": ".github/workflows/lean-build.yml",
+    "event": "pull_request",
+    "run_id": 41364107892,
+    "attempt": 1,
+    "job": "lean-full-clean-build",
+    "job_id": 125020511901,
+    "job_conclusion": "success",
+    "api_head": "9de1037a28c7e201b994889bf2bc1bf0faab1e50",
+    "accepted_pr_merge_subject": "223bf1529e1f11d05187b2f3723d4552d83befcd",
+    "tree": "31c197b7819c48146b93f0abfa549399c9fd31eb",
+    "ordered_parents": [
+      "10049e40f3a73dda559ad3b0b0d97f8f0b313371",
+      "9de1037a28c7e201b994889bf2bc1bf0faab1e50"
+    ],
+    "api_roster_path": "D:/tmp/original06-7-pr98-r2/api-snapshots/authority-artifacts-11.json",
+    "api_roster_sha256": "9190ccd3a463f7ad628591860d04cc6a3d487933d6d535d173f5494ebd118976"
+  },
+  "artifact": {
+    "id": 13107276983,
+    "name": "lean-full-build-run41364107892-attempt1",
+    "zip_path": "D:\\tmp\\original06-7-pr98-r2\\artifacts\\13107276983\\artifact.zip",
+    "zip_bytes": 699759,
+    "zip_sha256": "4CB1BD5192C000BC5E93BFAAA7D14F7978B3207DAEEDE382E7B5CD821406DC06",
+    "api_digest": "sha256:4CB1BD5192C000BC5E93BFAAA7D14F7978B3207DAEEDE382E7B5CD821406DC06",
+    "source_member": "lake-clean-build.log",
+    "source_member_path": "D:\\tmp\\original06-7-pr98-r2\\artifacts\\13107276983\\expanded\\lake-clean-build.log",
+    "source_member_bytes": 5216301,
+    "source_member_sha256": "663AF0A0B4256D0D8C97B53C30A08F55FA878A33D587C433C558550AFCF898BF",
+    "package_copy": "../original07-1-source-identity-close-20261102/lake-clean-build.log",
+    "package_copy_bytes": 5216301,
+    "package_copy_sha256": "663af0a0b4256d0d8c97b53c30a08f55fa878a33d587c433c558550afcf898bf",
+    "byte_identical_to_source_member": true
+  },
+  "source_pins": [
+    {
+      "bytes": 15083,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "git_blob": "4d12fbf0a0c9682383a1a20d2bc98641df76416c",
+      "sha256": "01b03d23594708f4d36a80c7d74ed3d214ed46e01fe76c6715b57146adc0b63b",
+      "name": "SourceCompilation20261027"
+    },
+    {
+      "bytes": 8241,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "git_blob": "818f7fa0b342ffa98fccc36de57b6d57e8506c74",
+      "sha256": "9d38f530ffb9fb3078ac92f9a646e4181b0268e55da7fc3b8b9282a71f53e6fa",
+      "name": "SourceCompilationAudit20261027"
+    },
+    {
+      "bytes": 29160,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "git_blob": "dbfde3641b97f64dbc119292abbac99b30596207",
+      "sha256": "318b9b67b5d7d35ee47ec6daf33720f1ad3bb914bb6a05250a85a97e12002ed0",
+      "name": "SourceStages20261027"
+    },
+    {
+      "bytes": 12941,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "git_blob": "31832cc272b5d80657113d2fc759bf543f4c4836",
+      "sha256": "f0e527139c7d02110a8eae1ef722977116b871dab165f840c585e25cbfc8e495",
+      "name": "SourceStagesAudit20261027"
+    },
+    {
+      "bytes": 6542,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "git_blob": "2d595c0978adb0c1f8c9ae64e093081e213e4b5d",
+      "sha256": "50b08919d2ac804f5a15d83b1ba8c6ef2252e3adfa74eb7cffca9ae275c8db0f",
+      "name": "U07_2JointObject20261029"
+    },
+    {
+      "bytes": 20285,
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "git_blob": "a879591dc7c67d8bd22caeae9c62dc08a5dedf4a",
+      "sha256": "5aa5ed96cbf9062826c6997a7045649fc81525b895c51cdf4463b8776cb29b96",
+      "name": "U07_3FixedBindingAudit20261029"
+    }
+  ],
+  "fixed_context": {
+    "material": "s : MaterialSnapshot",
+    "branch": "b : Nat",
+    "catalog": "K : List InterpretationRow",
+    "source_model": "background : UnifiedModel V R",
+    "payment_indices": [
+      1,
+      2
+    ],
+    "compiler_context": [
+      "rules",
+      "ruleGate",
+      "nodes",
+      "root",
+      "query"
+    ],
+    "semantic_context": [
+      "objectMeaning",
+      "paymentMeaning",
+      "catalogInterpreted"
+    ],
+    "static_bridge_context": [
+      "mu",
+      "resolveFaithful"
+    ],
+    "truth_bridge_context": [
+      "Interpret",
+      "truth",
+      "catalogFaithful",
+      "primitiveMeaning",
+      "rulesSound"
+    ],
+    "observation_family_formalized_in_Lean": false,
+    "actual_consumer_inputs": [
+      "material",
+      "branch",
+      "finite catalog",
+      "background",
+      "mu",
+      "objectMeaning",
+      "paymentMeaning",
+      "payment bind indices 1 and 2",
+      "rules",
+      "ruleGate",
+      "nodes",
+      "root",
+      "query",
+      "Interpret",
+      "truth",
+      "catalogFaithful",
+      "primitiveMeaning",
+      "rulesSound",
+      "resolveFaithful"
+    ]
+  },
+  "consumed_view_fields": [
+    "record",
+    "relations",
+    "ledger",
+    "payments",
+    "initialHistory",
+    "historyEvents",
+    "objects",
+    "observed",
+    "atoms"
+  ],
+  "external_responsibility": [
+    "Source truth is not established by extractView or catalog membership.",
+    "Catalog interpretation fidelity is an explicit premise where semantic conclusions are requested.",
+    "primitiveMeaning and rulesSound are explicit premises of interpreted_material_to_query.",
+    "resolveFaithful and mu are explicit inputs to static_source_semantic_and_quantity_bridge.",
+    "No AmountTag is carried by Gamma; no FX conversion or external unit truth follows from typed equality."
+  ],
+  "selected_named_target_count": 12,
+  "selected_named_targets": [
+    {
+      "name": "JurisLean.Candidates.SourceCompilation20261027.extracted_view_is_exact_selected_payload",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "declaration_line": 130,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "audit_check_line": 3,
+      "audit_print_line": 4,
+      "raw_check_log_line": 7623,
+      "raw_print_log_line": 7634,
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceCompilation20261027.actual_record_observations",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "declaration_line": 157,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "audit_check_line": 5,
+      "audit_print_line": 6,
+      "raw_check_log_line": 7635,
+      "raw_print_log_line": 7640,
+      "axioms": []
+    },
+    {
+      "name": "JurisLean.Candidates.SourceCompilation20261027.extracted_observed_reference_resolves",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "declaration_line": 163,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "audit_check_line": 7,
+      "audit_print_line": 8,
+      "raw_check_log_line": 7641,
+      "raw_print_log_line": 7651,
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceCompilation20261027.interpreted_material_to_query",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilation20261027.lean",
+      "declaration_line": 245,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceCompilationAudit20261027.lean",
+      "audit_check_line": 15,
+      "audit_print_line": 16,
+      "raw_check_log_line": 7694,
+      "raw_print_log_line": 7716,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.successful_binding_reads_actual_rows",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 109,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 13,
+      "audit_print_line": 14,
+      "raw_check_log_line": 19222,
+      "raw_print_log_line": 19230,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.accepted_view_binds_both_actual_payments",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 124,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 31,
+      "audit_print_line": 32,
+      "raw_check_log_line": 19341,
+      "raw_print_log_line": 19355,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.public_consumer_reads_actual_extraction",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 134,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 33,
+      "audit_print_line": 34,
+      "raw_check_log_line": 19358,
+      "raw_print_log_line": 19369,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.static_source_semantic_and_quantity_bridge",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStages20261027.lean",
+      "declaration_line": 509,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 55,
+      "audit_print_line": 56,
+      "raw_check_log_line": 19458,
+      "raw_print_log_line": 19485,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.SourceStages20261027.nonempty_source_stage_fixture",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "declaration_line": 190,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/SourceStagesAudit20261027.lean",
+      "audit_check_line": 204,
+      "audit_print_line": 205,
+      "raw_check_log_line": 19488,
+      "raw_print_log_line": 19490,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U07_2JointObject20261029.actual_source_has_joint_object",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "declaration_line": 63,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_2JointObject20261029.lean",
+      "audit_check_line": 97,
+      "audit_print_line": 98,
+      "raw_check_log_line": 19113,
+      "raw_print_log_line": 19126,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U07_3FixedBindingAudit20261029.actual_record_and_binding_interpretation",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "declaration_line": 89,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "audit_check_line": 328,
+      "audit_print_line": 329,
+      "raw_check_log_line": 19763,
+      "raw_print_log_line": 19805,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U07_3FixedBindingAudit20261029.same_material_record_do_not_determine_semantics",
+      "declaration_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "declaration_line": 237,
+      "audit_file": "proofs/lean/juris_lean/JurisLean/Candidates/U07_3FixedBindingAudit20261029.lean",
+      "audit_check_line": 332,
+      "audit_print_line": 333,
+      "raw_check_log_line": 19824,
+      "raw_print_log_line": 19848,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "prior_row_objects_preserved": true,
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "Selected outputs are a subset of the accepted Authority full-build log, not the 43-target SourceRepresentation/SourceStages inventory and not a complete 07.2 or U00 closure.",
+    "SourceCompilation20261027 was separately recorded as outside the 43-target map in the accepted 07.1 package; this verification maps only its actual selected outputs visible in the current full-build log.",
+    "No raw log copy is included in this draft package; the artifact/member bytes remain bound by the recorded Dtmp path, API digest, size and SHA256.",
+    "The two prior canonical evidence objects are preserved verbatim; this package is a proposed additional mapping only."
+  ],
+  "view_representation": {
+    "view": "Existing ExtractedView(s,b,decoded)",
+    "fixed_material_projection": "out.material=s",
+    "fixed_branch_projection": "out.branch=b",
+    "fixed_payload_projection": "row.decoded=out.decoded",
+    "payload_projection_fields": [
+      "record",
+      "relations",
+      "ledger",
+      "payments",
+      "initialHistory",
+      "historyEvents",
+      "objects",
+      "observed",
+      "atoms"
+    ],
+    "observation_family_name": "README-local finite family F_07.2",
+    "lean_observation_adequacy_declaration": false,
+    "gamma_observationFamily": "Nat-valued field only; no denotation for this family is asserted"
+  },
+  "observed_context_fields": [
+    "ExtractedView.material",
+    "ExtractedView.branch"
+  ]
+}

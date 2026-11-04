@@ -388,7 +388,11 @@ def step_event(
     if kind is LegalEventKind.EVIDENCE_WITHDRAWN:
         # withdrawal removes the record; derived items are recomputed by
         # the evaluation pass, not silently kept
-        removed = f"ev:{ev.event.object_ref}"
+        removed = ev.event.object_ref
+        if not removed.startswith("ev:"):
+            removed = f"ev:{removed}"
+        if not any(e.evidence_id == removed for e in state.evidence):
+            raise ValueError(f"evidence withdrawal submission key not found: {removed}")
         new_state = replace(
             state,
             evidence=tuple(e for e in state.evidence if e.evidence_id != removed),

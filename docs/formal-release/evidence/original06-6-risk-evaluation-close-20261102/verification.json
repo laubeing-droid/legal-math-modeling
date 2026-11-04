@@ -1,0 +1,653 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "3e707e428287a82a8c5b93bea87bbdcb4d499c83",
+  "subject_tree": "4494eadaf2be33054ff6e35fe87047761a116318",
+  "run_id": 41342605262,
+  "job_id": 124955610069,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41342605262",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41342605262/job/124955610069",
+  "artifact_name": "changed-module-only-41342605262-1",
+  "artifact_id": 13097507489,
+  "artifact_sha256": "7c644785ea6c2d179dfd4813fa38d411d8e12f5729076d9996a7830875a6b31e",
+  "artifact_size_bytes": 5375,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 44473,
+      "sha256": "aee5a77927c7c09c8a06b7729ed35e37b508a84b39228de03b33165f3a62b7e8"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 287,
+      "sha256": "fba42820cb22846ea2a43d2cb8359f4af71a705f9bc20a5c6aa216cca94ddf58"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "fba42820cb22846ea2a43d2cb8359f4af71a705f9bc20a5c6aa216cca94ddf58",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluationAudit20261102.lean",
+  "named_count": 35,
+  "names_by_clause": {
+    "L129": [
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.lossMean",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.worstExpectedLoss",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskModelInputsWellFormed",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.RiskFeasible",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_iff",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_subset_candidates",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_commonPolicies_subset",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_model_inputs_well_formed",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_each_expected_loss_le",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_some_spec",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.RiskDemoPolicy",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoRealize",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCoreAction",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_realization_matches_existing_policy",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_induced_law_is_fixed",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies_eq_univ",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoLaw",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoOutcome",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoLoss",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_utility_values",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_loss_values",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_loss_nonnegative",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_unconstrained_original_optimum",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_two_is_singleton",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_risk_picker_selects_one",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec"
+    ],
+    "L133": [
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.ConditionalModelRiskReport",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.conditionalModelRiskEvaluation",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_zero_is_empty",
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_zero_limit_picker_returns_none",
+      "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff"
+    ]
+  },
+  "object_checks": [
+    "Expected-loss feasibility includes a probability measure and integrable loss for each listed branch.",
+    "Risk filtering applies to a supplied finite candidate class and preserves existing Core.commonPolicies feasibility.",
+    "Each filtered candidate has expected loss at most the risk limit under every listed branch law.",
+    "The existing finite max-min picker is reused on the risk-filtered set.",
+    "No-choice means the supplied class has no member satisfying well-formedness and the risk bound.",
+    "Finite example: unconstrained optimum excluded at limit 2; limit 0 yields an empty filter and no choice.",
+    "L131 retains the existing conditional U11.1 identification scope."
+  ],
+  "axiom_audit": {
+    "audited_targets": 35,
+    "axiom_vocabulary": {
+      "propext": 34,
+      "Classical.choice": 32,
+      "Quot.sound": 34
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {},
+    "no_axiom_targets": [
+      "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.RiskDemoPolicy"
+    ]
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "bytes": 20065,
+      "sha256": "ba60a8084e534c3873a2cafabce50095ad89fa61e23963de429acd39b92aa25e",
+      "git_blob": "93749f53a981d096670eeee2532cb53684c7f00d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluationAudit20261102.lean",
+      "bytes": 3013,
+      "sha256": "1f6056b96667c091394db16a2644422b7590f68338e6b86ff7b38271f9492552",
+      "git_blob": "6557a43c618800f96464b2b55a042c2197007ca9"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "bytes": 25910,
+      "sha256": "79e0b7e71bd261e590d5ae2820e6fd546982f262afe9c6b3856733c1235823b2",
+      "git_blob": "bc33026b38402ebcf134f1c22ddab8e944879ab0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1FiniteBellman20261030.lean",
+      "bytes": 17710,
+      "sha256": "230d5492821f6f5762da2d550894ebcd5f40a5866163852718d5c2c33b35698d",
+      "git_blob": "56d9895cd8bb9aacb9868185fb86561939f2ee45"
+    }
+  ],
+  "original_residuals": {
+    "L129": "Actual branch-law expected-loss filter and finite example excluding the unconstrained optimum on the stated fixed class.",
+    "L131": "Earlier U11.1 conditional finite-stratified identification evidence is retained under its own premises; no generalized risk identification.",
+    "L133": "Conditional-only report interface and honest empty-selection result for the supplied finite class."
+  },
+  "closed_ids": {
+    "path": "原题06.6数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题06.6数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待完整记录PR验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original06-6-risk-evaluation-close-20261102/changed-module.log",
+    "sha256": "aee5a77927c7c09c8a06b7729ed35e37b508a84b39228de03b33165f3a62b7e8",
+    "blocks": 35
+  },
+  "source_module_status": "SUCCESS; requested changed-module Audit target; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate/reference verification, authorized merge, and post-merge checks remain separate.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41341079538,
+      "attempt": 1,
+      "head_sha": "b0b506d2819f48c68572c8fb19f6243fbbbad675",
+      "head_tree": "9c9da5c25997911b1b6f145d118844945b66b27d",
+      "job_id": 124951029949,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341079538",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341079538/job/124951029949",
+      "artifact_id": 13097735281,
+      "artifact_name": "changed-module-only-41341079538-1",
+      "artifact_size_bytes": 5347,
+      "artifact_sha256": "ae9b84a9f2b4d7fe4d7defe335bd7d9c96fb1668234354031f744026b8662cff",
+      "log_size_bytes": 40854,
+      "log_sha256": "cf008005ac5268f9c82b60e1f0e3593025fe5af5f669743ab1b208715aa745b3",
+      "plan_size_bytes": 277,
+      "plan_sha256": "007753825b4ebbebba31ef8390dd3b0593574a98d46740d73573aafb5b3e4288",
+      "audit_targets_printed": 0,
+      "error_count": 37,
+      "note": "First run requested only the Instances module. The invalid namespace alias led to cascading unresolved Core names and filter-instance errors; no Audit output was produced. Retained as failure, not pass."
+    },
+    {
+      "run_id": 41341699568,
+      "attempt": 1,
+      "head_sha": "b4fdafb3013b77b2de2b2876445297d2536fd636",
+      "head_tree": "f2283cd6bbaa03dd87e7da764aca9ec17ef7921a",
+      "job_id": 124952909430,
+      "job_conclusion": "failure",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341699568",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41341699568/job/124952909430",
+      "artifact_id": 13097486346,
+      "artifact_name": "changed-module-only-41341699568-1",
+      "artifact_size_bytes": 5479,
+      "artifact_sha256": "1965fd2360d207ebd7a0a4644820346b1e8486e6fb7aea3b0bab576681d21e7b",
+      "log_size_bytes": 40567,
+      "log_sha256": "e15cc51555b4271c408e88d266e8e5c017b7d43145b1ce66ccc21442ef1ba30f",
+      "plan_size_bytes": 287,
+      "plan_sha256": "fba42820cb22846ea2a43d2cb8359f4af71a705f9bc20a5c6aa216cca94ddf58",
+      "audit_targets_printed": 0,
+      "error_count": 7,
+      "note": "Second run requested the Audit module and failed on History name resolution, riskDemoLaw probability/finite-measure instances, and filter proof terms including unavailable Finset.not_mem_empty; no Audit output was produced. Retained as failure, not pass."
+    }
+  ],
+  "scope_note": "This package records only original 06.6 mathematical producer evidence. U11.1 retains its stated conditional finite-stratified identification premises. It does not establish runtime consumer wiring, actual/deployed risk, general causal identification, legal authorization, or a new legal rule. Risk filtering applies to the supplied finite candidate class.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.lossMean",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 22,
+      "audit_source_line": 9,
+      "audit_log_line": 315,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.worstExpectedLoss",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 27,
+      "audit_source_line": 11,
+      "audit_log_line": 321,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskModelInputsWellFormed",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 34,
+      "audit_source_line": 13,
+      "audit_log_line": 326,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.RiskFeasible",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 42,
+      "audit_source_line": 15,
+      "audit_log_line": 332,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 49,
+      "audit_source_line": 17,
+      "audit_log_line": 338,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 56,
+      "audit_source_line": 19,
+      "audit_log_line": 346,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_subset_candidates",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 63,
+      "audit_source_line": 21,
+      "audit_log_line": 353,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_commonPolicies_subset",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 71,
+      "audit_source_line": 23,
+      "audit_log_line": 366,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 89,
+      "audit_source_line": 25,
+      "audit_log_line": 382,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_model_inputs_well_formed",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 109,
+      "audit_source_line": 27,
+      "audit_log_line": 389,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_each_expected_loss_le",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 117,
+      "audit_source_line": 29,
+      "audit_log_line": 397,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_some_spec",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 130,
+      "audit_source_line": 31,
+      "audit_log_line": 407,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPickMaxMin_none_iff_empty",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 144,
+      "audit_source_line": 33,
+      "audit_log_line": 416,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.ConditionalModelRiskReport",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 157,
+      "audit_source_line": 35,
+      "audit_log_line": 420,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.conditionalModelRiskEvaluation",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 167,
+      "audit_source_line": 37,
+      "audit_log_line": 428,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.RiskDemoPolicy",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 198,
+      "audit_source_line": 39,
+      "audit_log_line": 432,
+      "original_clause": "L129",
+      "axioms": []
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoRealize",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 203,
+      "audit_source_line": 41,
+      "audit_log_line": 435,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCoreAction",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 200,
+      "audit_source_line": 43,
+      "audit_log_line": 437,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_realization_matches_existing_policy",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 206,
+      "audit_source_line": 45,
+      "audit_log_line": 442,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_induced_law_is_fixed",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 214,
+      "audit_source_line": 47,
+      "audit_log_line": 447,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 218,
+      "audit_source_line": 49,
+      "audit_log_line": 451,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoCommonPolicies_eq_univ",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 222,
+      "audit_source_line": 51,
+      "audit_log_line": 456,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoLaw",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 237,
+      "audit_source_line": 53,
+      "audit_log_line": 460,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoOutcome",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 243,
+      "audit_source_line": 55,
+      "audit_log_line": 464,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemoLoss",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 246,
+      "audit_source_line": 57,
+      "audit_log_line": 468,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_utility_values",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 265,
+      "audit_source_line": 59,
+      "audit_log_line": 473,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_expected_loss_values",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 272,
+      "audit_source_line": 61,
+      "audit_log_line": 480,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_loss_nonnegative",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 293,
+      "audit_source_line": 63,
+      "audit_log_line": 485,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_unconstrained_original_optimum",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 307,
+      "audit_source_line": 65,
+      "audit_log_line": 497,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_two_is_singleton",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 336,
+      "audit_source_line": 67,
+      "audit_log_line": 502,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_risk_picker_selects_one",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 362,
+      "audit_source_line": 69,
+      "audit_log_line": 510,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_filter_at_zero_is_empty",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 383,
+      "audit_source_line": 71,
+      "audit_log_line": 515,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskDemo_zero_limit_picker_returns_none",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_6OriginalRiskEvaluation20261102.lean",
+      "source_line": 407,
+      "audit_source_line": 73,
+      "audit_log_line": 523,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_spec",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 136,
+      "audit_source_line": 75,
+      "audit_log_line": 526,
+      "original_clause": "L129",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.U06_3OriginalCommonRobustStrategy20261102.pickMaxMin_none_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_3OriginalCommonRobustStrategy20261102.lean",
+      "source_line": 152,
+      "audit_source_line": 76,
+      "audit_log_line": 529,
+      "original_clause": "L133",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ]
+}

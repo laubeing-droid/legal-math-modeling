@@ -1,0 +1,155 @@
+ℹ [8478/8478] Replayed JurisLean.Candidates.EvidenceWorldsAudit20261027
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:3:0: JurisLean.Candidates.EvidenceWorlds20261027.constrained_membership {W : Type} (modelWorlds : List W)
+  (truth : W → ℕ → Bool) (items : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) (w : W) :
+  w ∈ JurisLean.Candidates.EvidenceWorlds20261027.constrained modelWorlds truth items ↔
+    w ∈ modelWorlds ∧
+      ∀ e ∈ items,
+        JurisLean.Candidates.Final20261021.EvidenceProcedure.usable e.query e = true → truth w e.query = e.supports
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:4:0: 'JurisLean.Candidates.EvidenceWorlds20261027.constrained_membership' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:5:0: JurisLean.Candidates.EvidenceWorlds20261027.additional_constraints_only_remove_worlds {W : Type} (modelWorlds : List W)
+  (truth : W → ℕ → Bool) (old next : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (includesOld : ∀ e ∈ old, e ∈ next) (w : W) :
+  w ∈ JurisLean.Candidates.EvidenceWorlds20261027.constrained modelWorlds truth next →
+    w ∈ JurisLean.Candidates.EvidenceWorlds20261027.constrained modelWorlds truth old
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:6:0: 'JurisLean.Candidates.EvidenceWorlds20261027.additional_constraints_only_remove_worlds' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:7:0: JurisLean.Candidates.EvidenceWorlds20261027.faithful_evidence_retains_actual_world {W : Type} (modelWorlds : List W)
+  (truth : W → ℕ → Bool) (items : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) (actual : W)
+  (covered : actual ∈ modelWorlds)
+  (faithful :
+    ∀ e ∈ items,
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.usable e.query e = true →
+        truth actual e.query = e.supports) :
+  actual ∈ JurisLean.Candidates.EvidenceWorlds20261027.constrained modelWorlds truth items
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:8:0: 'JurisLean.Candidates.EvidenceWorlds20261027.faithful_evidence_retains_actual_world' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:9:0: JurisLean.Candidates.EvidenceWorlds20261027.all_positive_and_negative_iff_empty {W : Type} (worlds : List W)
+  (truth : W → ℕ → Bool) (query : ℕ) :
+  (worlds.all fun w => truth w query) = true ∧ (worlds.all fun w => !truth w query) = true ↔ worlds = []
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:10:0: 'JurisLean.Candidates.EvidenceWorlds20261027.all_positive_and_negative_iff_empty' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:11:0: JurisLean.Candidates.EvidenceWorlds20261027.world_incompatible_iff_empty {W : Type} (worlds : List W)
+  (truth : W → ℕ → Bool) (query : ℕ) :
+  JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment worlds truth query =
+      JurisLean.Candidates.Final20261021.Judgment.incompatible ↔
+    worlds = []
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:12:0: 'JurisLean.Candidates.EvidenceWorlds20261027.world_incompatible_iff_empty' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:13:0: JurisLean.Candidates.EvidenceWorlds20261027.world_supported_iff_nonempty_universal {W : Type} (worlds : List W)
+  (truth : W → ℕ → Bool) (query : ℕ) :
+  JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment worlds truth query =
+      JurisLean.Candidates.Final20261021.Judgment.supported ↔
+    worlds ≠ [] ∧ ∀ w ∈ worlds, truth w query = true
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:14:0: 'JurisLean.Candidates.EvidenceWorlds20261027.world_supported_iff_nonempty_universal' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:15:0: JurisLean.Candidates.EvidenceWorlds20261027.world_opposed_iff_nonempty_universal {W : Type} (worlds : List W)
+  (truth : W → ℕ → Bool) (query : ℕ) :
+  JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment worlds truth query =
+      JurisLean.Candidates.Final20261021.Judgment.opposed ↔
+    worlds ≠ [] ∧ ∀ w ∈ worlds, truth w query = false
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:16:0: 'JurisLean.Candidates.EvidenceWorlds20261027.world_opposed_iff_nonempty_universal' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:17:0: JurisLean.Candidates.EvidenceWorlds20261027.world_insufficient_iff_both_possibilities {W : Type} (worlds : List W)
+  (truth : W → ℕ → Bool) (query : ℕ) :
+  JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment worlds truth query =
+      JurisLean.Candidates.Final20261021.Judgment.insufficient ↔
+    (∃ w ∈ worlds, truth w query = true) ∧ ∃ w ∈ worlds, truth w query = false
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:18:0: 'JurisLean.Candidates.EvidenceWorlds20261027.world_insufficient_iff_both_possibilities' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:19:0: JurisLean.Candidates.EvidenceWorlds20261027.supported_world_judgment_needs_actual_membership {W : Type}
+  (worlds : List W) (truth : W → ℕ → Bool) (query : ℕ) (actual : W) (belongs : actual ∈ worlds)
+  (supported :
+    JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment worlds truth query =
+      JurisLean.Candidates.Final20261021.Judgment.supported) :
+  truth actual query = true
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:20:0: 'JurisLean.Candidates.EvidenceWorlds20261027.supported_world_judgment_needs_actual_membership' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:21:0: JurisLean.Candidates.EvidenceWorlds20261027.source_to_world_truth_is_conditional {W : Type} (modelWorlds : List W)
+  (truth : W → ℕ → Bool) (items : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) (query : ℕ)
+  (actual : W) (covered : actual ∈ modelWorlds)
+  (faithful :
+    ∀ e ∈ items,
+      JurisLean.Candidates.Final20261021.EvidenceProcedure.usable e.query e = true → truth actual e.query = e.supports)
+  (supported :
+    JurisLean.Candidates.EvidenceWorlds20261027.worldJudgment
+        (JurisLean.Candidates.EvidenceWorlds20261027.constrained modelWorlds truth items) truth query =
+      JurisLean.Candidates.Final20261021.Judgment.supported) :
+  truth actual query = true
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:22:0: 'JurisLean.Candidates.EvidenceWorlds20261027.source_to_world_truth_is_conditional' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:23:0: JurisLean.Candidates.EvidenceWorlds20261027.output_world_label_reads_actual_filtered_worlds {W : Type}
+  (modelWorlds : List W) (truth : W → ℕ → Bool) (query : ℕ)
+  (items : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) :
+  (JurisLean.Candidates.EvidenceWorlds20261027.viewEvidence modelWorlds truth query items).possibleWorldJudgment =
+      JurisLean.Candidates.Final20261021.Judgment.supported ↔
+    (JurisLean.Candidates.EvidenceWorlds20261027.viewEvidence modelWorlds truth query items).possibleWorlds ≠ [] ∧
+      ∀ w ∈ (JurisLean.Candidates.EvidenceWorlds20261027.viewEvidence modelWorlds truth query items).possibleWorlds,
+        truth w query = true
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:24:0: 'JurisLean.Candidates.EvidenceWorlds20261027.output_world_label_reads_actual_filtered_worlds' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:25:0: JurisLean.Candidates.EvidenceWorlds20261027.adding_evidence_is_monotone_in_information_bits (query : ℕ)
+  (old extra : List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) :
+  JurisLean.Candidates.EvidenceWorlds20261027.KnowledgeLe
+    (JurisLean.Candidates.EvidenceWorlds20261027.evidenceBits query old)
+    (JurisLean.Candidates.EvidenceWorlds20261027.evidenceBits query (old ++ extra))
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:26:0: 'JurisLean.Candidates.EvidenceWorlds20261027.adding_evidence_is_monotone_in_information_bits' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:27:0: JurisLean.Candidates.EvidenceWorlds20261027.compatible_pair_membership {L W : Type} (allowed : List (L × W))
+  (truth : L → W → ℕ → Bool) (items : L → List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem)
+  (pair : L × W) :
+  pair ∈ JurisLean.Candidates.EvidenceWorlds20261027.compatibleWorlds allowed truth items ↔
+    pair ∈ allowed ∧
+      ∀ e ∈ items pair.1,
+        JurisLean.Candidates.Final20261021.EvidenceProcedure.usable e.query e = true →
+          truth pair.1 pair.2 e.query = e.supports
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:28:0: 'JurisLean.Candidates.EvidenceWorlds20261027.compatible_pair_membership' depends on axioms: [propext, Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:29:0: JurisLean.Candidates.EvidenceWorlds20261027.filtering_never_invents_legal_world_pair {L W : Type}
+  (allowed : List (L × W)) (truth : L → W → ℕ → Bool)
+  (items : L → List JurisLean.Candidates.Final20261021.EvidenceProcedure.EvidenceItem) (pair : L × W)
+  (retained : pair ∈ JurisLean.Candidates.EvidenceWorlds20261027.compatibleWorlds allowed truth items) : pair ∈ allowed
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:30:0: 'JurisLean.Candidates.EvidenceWorlds20261027.filtering_never_invents_legal_world_pair' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:161:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.credible_but_inadmissible_has_no_constraint :
+  judgment 0
+        [have __src := Audit.positive;
+          { source := __src.source, query := __src.query, admissibility := Applicable.no,
+            credibleUnderPolicy := __src.credibleUnderPolicy, supports := __src.supports }] =
+      Judgment.insufficient ∧
+    constrained Audit.modelWorlds Audit.valuation
+        [have __src := Audit.positive;
+          { source := __src.source, query := __src.query, admissibility := Applicable.no,
+            credibleUnderPolicy := __src.credibleUnderPolicy, supports := __src.supports }] =
+      Audit.modelWorlds
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:162:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.credible_but_inadmissible_has_no_constraint' does not depend on any axioms
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:163:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.opposing_usable_directions_empty_classical_worlds :
+  judgment 0 [Audit.positive, Audit.negative] = Judgment.incompatible ∧
+    constrained Audit.modelWorlds Audit.valuation [Audit.positive, Audit.negative] = [] ∧
+      worldJudgment (constrained Audit.modelWorlds Audit.valuation [Audit.positive, Audit.negative]) Audit.valuation 0 =
+        Judgment.incompatible
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:164:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.opposing_usable_directions_empty_classical_worlds' does not depend on any axioms
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:165:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.adding_credible_evidence_can_destroy_determinacy :
+  judgment 0 [Audit.positive] = Judgment.supported ∧
+    judgment 0 [Audit.positive, Audit.negative] = Judgment.incompatible ∧
+      worldJudgment (constrained Audit.modelWorlds Audit.valuation [Audit.positive]) Audit.valuation 0 =
+          Judgment.supported ∧
+        worldJudgment (constrained Audit.modelWorlds Audit.valuation [Audit.positive, Audit.negative]) Audit.valuation
+            0 =
+          Judgment.incompatible
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:166:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.adding_credible_evidence_can_destroy_determinacy' does not depend on any axioms
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:167:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.admissible_is_not_source_truth :
+  false ∈ Audit.modelWorlds ∧
+    judgment 0 [Audit.positive] = Judgment.supported ∧
+      worldJudgment (constrained Audit.modelWorlds Audit.valuation [Audit.positive]) Audit.valuation 0 =
+          Judgment.supported ∧
+        Audit.valuation false 0 = false
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:168:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.admissible_is_not_source_truth' depends on axioms: [propext]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:169:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.actual_world_coverage_is_necessary :
+  worldJudgment [true] Audit.valuation 0 = Judgment.supported ∧
+    (∀ e ∈ [], usable e.query e = true → Audit.valuation false e.query = e.supports) ∧
+      false ∉ [true] ∧ Audit.valuation false 0 = false
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:170:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.actual_world_coverage_is_necessary' depends on axioms: [propext]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:171:0: JurisLean.Candidates.EvidenceWorlds20261027.Audit.marginal_coordinates_do_not_justify_cartesian_completion :
+  0 ∈ [0, 1] ∧ false ∈ [true, false] ∧ (0, false) ∉ [(0, true), (1, false)]
+info: JurisLean/Candidates/EvidenceWorldsAudit20261027.lean:172:0: 'JurisLean.Candidates.EvidenceWorlds20261027.Audit.marginal_coordinates_do_not_justify_cartesian_completion' depends on axioms: [propext,
+ Quot.sound]
+Build completed successfully (8478 jobs).

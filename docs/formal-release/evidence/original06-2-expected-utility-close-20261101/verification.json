@@ -1,0 +1,254 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "e1a653254ebc13e96e055c34dd3c517040093833",
+  "subject_tree": "4fb1ec0c8c60690bef335a85df2c7fe78066d33d",
+  "run_id": 41320744414,
+  "job_id": 124890202577,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41320744414",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41320744414/job/124890202577",
+  "artifact_name": "changed-module-only-41320744414-1",
+  "artifact_id": 13089407323,
+  "artifact_sha256": "b34c833ce3e6fea087cd7a8cc6ba1be9b5c8f5d86c7420605cd8b169abd4d3c7",
+  "artifact_size_bytes": 2979,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 18726,
+      "sha256": "48947ae7aa3d388a1dd1f27952e512fdd2c99b37e609bcc1bcd8a52aa238e911"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 289,
+      "sha256": "d8d65f4b39c10c714d88339312831926fae91c34005d111df351dceff2cae192"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "d8d65f4b39c10c714d88339312831926fae91c34005d111df351dceff2cae192",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean",
+  "named_count": 12,
+  "names_by_clause": {
+    "L97": [
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_value",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_cash",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.expected_cash_from_event_sets",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive"
+    ],
+    "L99": [
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.higher_win_probability_lower_expected_cash",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility"
+    ],
+    "L101": [
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_utility_two_branch",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_expected_utility",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff",
+      "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_threshold_iff",
+      "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing"
+    ]
+  },
+  "object_checks": [
+    "bernoulliMeasure",
+    "PMF.integral_eq_sum",
+    "Decision.net",
+    "cashOutcome",
+    "RealCashEvent",
+    "netCash",
+    "disjoint_id_cash_additive",
+    "AmountTag",
+    "utility",
+    "noncash",
+    "linear risk-neutral ordering",
+    "sqrt strict-concavity instance"
+  ],
+  "axiom_audit": {
+    "audited_targets": 12,
+    "axiom_vocabulary": {
+      "propext": 12,
+      "Classical.choice": 12,
+      "Quot.sound": 12
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "sha256": "5d546537660976476d07109c25f6bbef5dba0e6d11df131a371d92cec3b6a599",
+      "git_blob_sha1": "f28391db575a975440b545911d49c6334242e78c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityAudit20261101.lean",
+      "sha256": "7c1c415e9023409719bf8fe7bd63feeb6e410538adced464a74f6aea0eb552c0",
+      "git_blob_sha1": "e56228790b639baf135bf0332a1235b3d881e028"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "sha256": "124d06faf08b1d1be41aedd1fcd47c77363f5cc35eac682ccd1a1727358efa7d",
+      "git_blob_sha1": "e51614b5095d8ba4acc764bbf1829e41620ad3a7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
+      "sha256": "fd467e6186f7ac91a94f795dfb1f9d29e5802e0c5e808b7291235e2ea2f15f83",
+      "git_blob_sha1": "f15cbdb6328d63b3ae68fcbe58a493cabaa51ef7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88",
+      "git_blob_sha1": "698e40b8cb26c4880f81c0d4018e5d539d3efb82"
+    }
+  ],
+  "original_residuals": {
+    "06.2": "冻结原题06 L97/L99/L101：实际Bernoulli概率律到实数净现金和分支成本的连接；胜率与期望现金、同一期望现金与严格凹效用的有限反例；线性风险中性比较、零基线阈值及AmountTag/共同估值上下文边界。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题06.2数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original06-2-expected-utility-close-20261101/changed-module.log",
+    "sha256": "48947ae7aa3d388a1dd1f27952e512fdd2c99b37e609bcc1bcd8a52aa238e911",
+    "blocks": 12
+  },
+  "source_module_status": "SUCCESS; changed-module only; 10 new original-question theorems and two reused targets were audited; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate and referenced-byte reconciliation, independent verification, authorized merge and post-merge checks remain separate.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41320145239,
+      "attempt": 1,
+      "head_sha": "3dfb25ec4e9a754a05082db2ffff70ab7c8bc04d",
+      "job_id": 124888397533,
+      "job_conclusion": "failure",
+      "artifact_id": 13088782061,
+      "artifact_name": "changed-module-only-41320145239-1",
+      "artifact_size_bytes": 3625,
+      "artifact_sha256": "77549fa07ea506ecdd409aa118bc84ccefa011fb55d80337b99f830bcd65bb27",
+      "log_size_bytes": 19843,
+      "log_sha256": "0e884361f1a6573f6b3f819d65f4b1370d39b06dce04ee429dd05c4c82403735",
+      "plan_size_bytes": 289,
+      "plan_sha256": "d8d65f4b39c10c714d88339312831926fae91c34005d111df351dceff2cae192",
+      "audit_targets_printed": 0,
+      "note": "First module attempt failed on Finset union DecidableEq synthesis and the malformed explicit arguments to the strict-concavity theorem application; it produced no Audit target output. The later proof-only correction retained the original theorem statements and added the local event equality instance.",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41320145239",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41320145239/job/124888397533"
+    }
+  ],
+  "scope_note": "Only original math row 06.2 is mapped. The theorem uses the actual Bernoulli probability measure and real-valued cash denotation; the existing rational ExactExpr interface is not treated as the full real domain. Success/failure branch costs are included in branch net amounts, and the common amount is charged once. Linear expected-utility comparison requires a shared positive slope, wealth, offset, and noncash consequence; the nonlinear square-root example is a finite counterexample. No actual consumer caller, pipeline parameter-flow change, legal authority decision, permission, or deployment is claimed. U50 remains 50 wiring / 0 narrow / 0 open, distinct from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_value",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 31,
+      "audit_log_line": 259,
+      "original_clause": "L97",
+      "audit_source_line": 5
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_expected_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 48,
+      "audit_log_line": 262,
+      "original_clause": "L97",
+      "audit_source_line": 6
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.branch_costs_paid_once",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 57,
+      "audit_log_line": 265,
+      "original_clause": "L97",
+      "audit_source_line": 7
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.expected_cash_from_event_sets",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 68,
+      "audit_log_line": 268,
+      "original_clause": "L97",
+      "audit_source_line": 8
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.bernoulli_utility_two_branch",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 106,
+      "audit_log_line": 271,
+      "original_clause": "L101",
+      "audit_source_line": 9
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_expected_utility",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 120,
+      "audit_log_line": 274,
+      "original_clause": "L101",
+      "audit_source_line": 10
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_action_order_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 132,
+      "audit_log_line": 277,
+      "original_clause": "L101",
+      "audit_source_line": 11
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.linear_risk_neutral_threshold_iff",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 161,
+      "audit_log_line": 280,
+      "original_clause": "L101",
+      "audit_source_line": 12
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.higher_win_probability_lower_expected_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 176,
+      "audit_log_line": 283,
+      "original_clause": "L99",
+      "audit_source_line": 13
+    },
+    {
+      "name": "JurisLean.Candidates.U06_2OriginalExpectedUtilityInstances20261101.same_expected_cash_different_concave_utility",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_2OriginalExpectedUtilityInstances20261101.lean",
+      "source_line": 190,
+      "audit_log_line": 286,
+      "original_clause": "L99",
+      "audit_source_line": 14
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "source_line": 190,
+      "audit_log_line": 289,
+      "original_clause": "L101",
+      "audit_source_line": 16
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 208,
+      "audit_log_line": 292,
+      "original_clause": "L97",
+      "audit_source_line": 17
+    }
+  ]
+}

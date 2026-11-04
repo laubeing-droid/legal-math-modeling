@@ -72,9 +72,10 @@
       "U04.4",
       "U04.1",
       "U05.1",
-      "U06.5"
+      "U06.5",
+      "U00"
     ],
-    "independent_closed_total": 27,
+    "independent_closed_total": 28,
     "independent_receipts": [
       "docs/formal-release/evidence/u03-debt-close-20261027/verification.json",
       "docs/formal-release/evidence/u01-debt-close-20261027/verification.json",
@@ -99,15 +100,14 @@
       "docs/formal-release/evidence/u04-4-original-close-20261031/verification.json",
       "docs/formal-release/evidence/u04-1-original-close-20261031/verification.json",
       "docs/formal-release/evidence/u05-1-original-close-20261031/verification.json",
-      "docs/formal-release/evidence/u06-5-original-close-20261031/verification.json"
+      "docs/formal-release/evidence/u06-5-original-close-20261031/verification.json",
+      "docs/formal-release/evidence/u00-original-close-20261031/verification.json"
     ],
-    "independent_receipt": "docs/formal-release/evidence/u06-5-original-close-20261031/verification.json",
-    "close_pack": "docs/formal-release/evidence/u06-5-original-close-20261031",
+    "independent_receipt": "docs/formal-release/evidence/u00-original-close-20261031/verification.json",
+    "close_pack": "docs/formal-release/evidence/u00-original-close-20261031",
     "candidate_rows": 0,
     "blocked_rows": 0,
-    "narrow_not_reopened": [
-      "U00"
-    ],
+    "narrow_not_reopened": [],
     "wiring_not_reopened": [
       "U13.3",
       "U12.4",
@@ -146,6 +146,7 @@
       "U04.2",
       "U06.1",
       "U06.2",
+      "U06.5",
       "U12.3",
       "U13.4",
       "U11.1",
@@ -168,7 +169,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=49; the historical CAND8 and tip-pin receipts are unchanged.",
+    "candidate_module_quarantine": "CAND5+CAND5bis+CAND6+CAND7 named in expand-audit evidence/ci-tip-21862d9b (named_count=61). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5 historical). CAND6 U08.3/U15.3/U13.2/U09.1/U10.2 closed by wiring under pack formal_tail_关≥1_CAND6_20261026 (closed_this_round=5 historical). CAND7 U07.1/U02.3/U04.3/U05.2/U06.3 closed by wiring under pack formal_tail_关≥1_CAND7_20261026 (closed_this_round=5 historical; OPEN_FORMAL_TAIL=20; CLOSED_BY_WIRING=22). Historical ci-tip-1c72e444 stays named_count=49; ci-tip-dc7b7430 stays 37. FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin retarget to 21862d9b / 40274167574 / 121413235107 does not close debt. The later independent U03 package closes U03.1/U03.2 using new exact residual proofs (20 to 18). The subsequent independent U01 package closes U01.1/U01.2/U01.3 against the original residuals (18 to 15). The later independent U04.5 package proves general likelihood and copy information (15 to 14). The later independent U14.1 package names the existing independent statistical validation, adaptive conditional budgets and service-load proofs against its original residual (14 to 13). CAND8 still retains both U07.2 negative boundary declarations and they remain outside PROVE_CANDIDATES; a separate positive successful-source joint-object package closes only the current U07.2 residual. The later U07.3 package closes only its fixed-history selected-row semantic/projection residual under explicit interpretation inputs; source truth/O05 and old Pipeline consumption remain outside that proof. The later independent U04.2 package closes only its frozen probability residual and leaves original-question 04.4 identification obligations and U00 edge 6 numeric consumption open. The later U11.1 package supplies the two original-question 04.4 compatible missing-outcome endpoints and MCAR recovery; U00 edge 6 remains numerically unconnected in the legacy Pipeline snapshot. The U12.1 package now closes its finite-action causal-policy interpretation and original 12.3/12.6 examples; old Pipeline numeric consumption remains unwired. The U10.1 package closes the archived refresh-to-Step protocol residual while retaining external authority and full-world checkBranch limits. The U02.4 source package audits the finite/countable P_H conditional-risk bounds, H/Hᶜ α+ε partition, H=B witness, and the single global-attempt cumulative-budget prefix/suffix identity. It does not assert runtime execution. The U01.4 package audits the archived finite fit-label, point-mass deployment, dependence, and within-domain grouping witnesses without a real-data claim. The U04.1 source package audits the positive-real Beta posterior/prediction premises, the exchangeable finite counterexample, fixed-parameter IID Bernoulli bound, and actual Beta-integral enclosure. The U04.4 package audits the stated equicorrelated mean-variance formula, positive effective-count and zero-denominator branches, and finite dependence boundaries without claiming independence restoration. The U05.1 package constructs the independent continuous auxiliary, proves uniform actual rank prefixes and fixed-measurable-score marginal split-conformal coverage, and audits the finite group/deployment boundary examples. The U00 package audits the frozen §13 conditional composition with actual source/protocol/measurement/assessment/feedback evidence while retaining explicit sampling-law and external semantic premises. Current OPEN_FORMAL_TAIL=0; CLOSED_BY_WIRING=50; the historical CAND8 and tip-pin receipts are unchanged.",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -201,12 +202,12 @@
     "local_lean_is_not_closure": true
   },
   "counts": {
-    "证": 49,
-    "缩": 1,
+    "证": 50,
+    "缩": 0,
     "放弃": 0,
     "未决": 0,
-    "CLOSED_BY_NARROW": 1,
-    "CLOSED_BY_WIRING": 49,
+    "CLOSED_BY_NARROW": 0,
+    "CLOSED_BY_WIRING": 50,
     "OPEN_FORMAL_TAIL": 0
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
@@ -4239,11 +4240,11 @@
     },
     {
       "clause": "U00",
-      "suggested_close_path": "缩",
-      "archive_gap_status": "CLOSED_BY_NARROW",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed.",
-      "claimed_scope": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
+      "claimed_scope": "Frozen §13 conditional composition: compatible same-case Γ/S, nonempty shared interface, named layer premises, and actual outputs consumed by the next stage. Reuse accepted U10.2 finite induction and U07/U03 representation/source results; keep probability inside declared Q_Γ with marginal guarantees retained and do not assign probability to legal branches λ. New 19-target source/protocol/measurement/decision/post/feedback path supplies actual finite composition under the stated history-conditioned sampling and finite/countable budget premises. The old remaining_obligations string is preserved as an archive snapshot and interpreted against exact_scope plus this new named proof; the 49 previously accepted clauses remain the accepted main baseline.",
       "companion_scope_notes": "",
       "wired_declarations": [
         {
@@ -4298,14 +4299,10 @@
         "Acceptance.lean:276",
         "Acceptance.lean:281"
       ],
-      "non_goals": [
-        "All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths.",
-        "A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed.",
-        "This narrow is not an abandonment of the other forty-nine clauses."
-      ],
+      "non_goals": [],
       "unwired_formal_obligations": [],
-      "scope_review": "",
-      "remaining_after_close": "NON_GOAL_POINTER: All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths. | A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed. | This narrow is not an abandonment of the other forty-nine clauses.",
+      "scope_review": "Independent U00 conditional composition: source failure is retained and successful joint source output becomes the actual current rule input; actual sample packet/blocks, actual round activation/post, personal continuation, full measured observation, and assessment/next action are tied through named targets. Reuse accepted U10.2 finite deterministic composition, U07/U03 source and representation results, and the existing U14/U15 conditional sampling/budget declarations. Under fixed visible past h and current Γ, the stated measurability, iIndepFun, IdentDistrib, bounded-loss, positive-sample and predeclared-family premises apply under Q_Γ conditioned on a measurable positive-mass history cell. For finite predeclared T covering every claimed experiment, externally allocate protocol.failureBudget_t and plan.failureBudget_t with Σ(protocol.failureBudget_t + plan.failureBudget_t)≤Δ_joint; c_t/v_t are only shorthand for those two inputs. Native roundCost is only Σ actual validation block.delta and its limit constrains validation charges only, not Δ_joint. The existing nonnegative summable-δ result supplies the countable form. No independence across streams or rounds, real-source truth, unique legal interpretation, domain transfer, or production deployment is claimed. This closes frozen §13's conditional finite composition alongside the 49 prior accepted clauses; it does not rewrite the legacy Pipeline snapshot or claim every one of the 15 consumer edges has been migrated.",
+      "remaining_after_close": "WIRED_TO_INDEPENDENT_U00_PROOFS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -4321,10 +4318,34 @@
       "formal_tail_prove": {
         "in_this_round": false,
         "not_reopened": true,
-        "archive_gap_status": "CLOSED_BY_NARROW",
-        "close_admitted": false,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false
+      },
+      "independent_closure": {
+        "receipt": "docs/formal-release/evidence/u00-original-close-20261031/verification.json",
+        "named_theorems_full": [
+          "JurisLean.Candidates.U00ActualSourceProtocol20261031.source_failure_is_retained",
+          "JurisLean.Candidates.U00ActualSourceProtocol20261031.successful_joint_source_is_actual_current_rule_input",
+          "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column",
+          "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks",
+          "JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence",
+          "JurisLean.Candidates.U00RoundPostBridge20261031.fresh_round_post_service_is_actual_activation",
+          "JurisLean.Candidates.U00RoundPostBridge20261031.actual_round_choice_transports_to_activation_projection",
+          "JurisLean.Candidates.U00RSICandidateBridge20261031.personal_producer_preserves_actual_frame",
+          "JurisLean.Candidates.U00RSICandidateBridge20261031.actual_personal_round_uses_native_entry",
+          "JurisLean.Candidates.U00RSICandidateBridge20261031.native_pending_binds_actual_parent_and_sample",
+          "JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_policy_log_recovers_full_observation",
+          "JurisLean.Candidates.U00MeasuredRSIEntry20261031.actual_continuation_binds_accepted_row_and_native_entry",
+          "JurisLean.Candidates.U00MeasuredRSIEntry20261031.personal_continuation_observes_without_reexecuting",
+          "JurisLean.Candidates.U00SourcePersonalEpisode20261031.accepted_query_checks_every_retained_branch",
+          "JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_head_enters_personal_continuation",
+          "JurisLean.Candidates.U00SourcePersonalEpisode20261031.selected_personal_source_plan_reuses_actual_source_validation",
+          "JurisLean.Candidates.U00SourcePersonalEpisode20261031.reported_refresh_retains_actual_business_result",
+          "JurisLean.Candidates.U00SourcePersonalEpisode20261031.actual_source_action_refresh_then_personal_continuation",
+          "JurisLean.Candidates.U00ActualAssessmentChoice20261031.actual_assessment_and_next_action_joint_confidence"
+        ]
       }
     }
   ]

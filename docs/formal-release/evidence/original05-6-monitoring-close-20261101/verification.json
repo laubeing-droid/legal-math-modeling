@@ -1,0 +1,146 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "9bc3d64c4930567e67439a752b2902a28e2e89cf",
+  "subject_tree": "fd063c0235e810339e579dc2483129ba4ae0039f",
+  "run_id": 41299753560,
+  "job_id": 124828226437,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41299753560",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41299753560/job/124828226437",
+  "artifact_name": "changed-module-only-41299753560-1",
+  "artifact_id": 13080763029,
+  "artifact_sha256": "8b40c44e7c65dec90b90d55682b2efdc5c7fb10f647a34381ee4fef7544b05e1",
+  "artifact_size_bytes": 2995,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 16693,
+      "sha256": "6231abb57b3230ddcbac27e0c4d18bd1fe8fcafe069b4951db479d10b6f162c2"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 279,
+      "sha256": "ff7ab5936e6473a7d6589650df61c6f5573e81043ba45cc280edb63d370b8b05"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "ff7ab5936e6473a7d6589650df61c6f5573e81043ba45cc280edb63d370b8b05",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_6OriginalMonitoringAudit20261101.lean",
+  "named_count": 6,
+  "names_by_clause": {
+    "L127": [
+      "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal",
+      "JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget"
+    ],
+    "L129": [
+      "JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound",
+      "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound"
+    ],
+    "L131": [
+      "JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates",
+      "JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 6,
+    "axiom_vocabulary": {
+      "propext": 6,
+      "Classical.choice": 6,
+      "Quot.sound": 6
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_6OriginalMonitoringAudit20261101.lean",
+      "sha256": "486546bb1b47f632584c9e59d626ac3b18c826bc851a3a210abea4f20512b825",
+      "git_blob_sha1": "9db0b6cbc20c35130d795697f0762384001b6d32"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/HarnessRisk20261027.lean",
+      "sha256": "b42842573e4d3edd29d611dc7505f46335d147d262ee7e35b10acc7762597b4d",
+      "git_blob_sha1": "1d7ca00ccd03fe8d0d23c9b790b734d89d063643"
+    }
+  ],
+  "original_residuals": {
+    "05.6": "冻结L127实际历史条件误报预算；L129有限期/自适应条件界；L131重复边际错误率不等同于无限期保证。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题05.6数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待完整原题记录验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original05-6-monitoring-close-20261101/changed-module.log",
+    "sha256": "6231abb57b3230ddcbac27e0c4d18bd1fe8fcafe069b4951db479d10b6f162c2",
+    "blocks": 6
+  },
+  "source_module_status": "SUCCESS; changed-module target only; anonymous original-question instance compiled and six existing theorem axiom outputs audited; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate/reference reconciliation, independent verifier, authorized merge and post-merge checks remain separate.",
+  "historical_diagnostics": [],
+  "scope_note": "Only original math row 05.6 L127/L129/L131 is mapped. The anonymous instance supplies actual measurable events, a deterministic summable alpha schedule, and almost-everywhere conditional bounds given each actual history sigma-field, then applies the existing countable conditional risk budget theorem. The six audited declarations are existing finite or marginal counterexample/results. No new named theorem, production monitor, data provenance, legal duty, independence assumption, or stopping-time framework is claimed. U50 remains 50 wiring / 0 narrow / 0 open, distinct from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.conditional_risk_implies_constant_marginal",
+      "source_line": 67,
+      "audit_log_line": 246,
+      "original_clause": "L127",
+      "audit_source_line": 23
+    },
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.finite_conditional_union_bound",
+      "source_line": 78,
+      "audit_log_line": 249,
+      "original_clause": "L129",
+      "audit_source_line": 24
+    },
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.finite_adaptive_union_bound",
+      "source_line": 90,
+      "audit_log_line": 252,
+      "original_clause": "L129",
+      "audit_source_line": 25
+    },
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.countable_conditional_risk_budget",
+      "source_line": 116,
+      "audit_log_line": 255,
+      "original_clause": "L127",
+      "audit_source_line": 26
+    },
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.independent_constant_risk_accumulates",
+      "source_line": 171,
+      "audit_log_line": 258,
+      "original_clause": "L131",
+      "audit_source_line": 27
+    },
+    {
+      "name": "JurisLean.Candidates.HarnessRisk20261027.positive_constant_risk_has_no_fixed_subunit_horizon_limit",
+      "source_line": 191,
+      "audit_log_line": 261,
+      "original_clause": "L131",
+      "audit_source_line": 28
+    }
+  ]
+}

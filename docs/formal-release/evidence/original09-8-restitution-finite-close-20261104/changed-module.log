@@ -1,0 +1,388 @@
+⚠ [8481/8516] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8516] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8495/8516] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8496/8516] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8497/8516] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8498/8516] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8500/8516] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8501/8516] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8508/8516] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8510/8516] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8515/8516] Built JurisLean.Candidates.W6JudgmentCashAudit20261104 (4.9s)
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:283:39: This simp argument is unused:
+  stage1
+
+Hint: Omit it from the simp argument list.
+  simp [ModelsTheta, toyWorld, stage2, stage1̵,̵ ̵s̵t̵a̵g̵e̵0, mkW6, scopedBool]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:283:47: This simp argument is unused:
+  stage0
+
+Hint: Omit it from the simp argument list.
+  simp [ModelsTheta, toyWorld, stage2, stage1, s̵t̵a̵g̵e̵0̵,̵ ̵mkW6, scopedBool]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:335:29: This simp argument is unused:
+  stage1
+
+Hint: Omit it from the simp argument list.
+  simp [X, toyWorld, stage2, stage1̵,̵ ̵s̵t̵a̵g̵e̵0, mkW6, firstTimedCash,
+  ̵  ̵ ̵ ̵firstPayment, cashFromPayload, ledger0,
+  ̲  ̲ ̲ ̲ledger1, toyDebt, amountSix,
+  ̵  ̵ ̵ ̵toyTag, Trace.initial, Ledger.performance, hsecond]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:335:37: This simp argument is unused:
+  stage0
+
+Hint: Omit it from the simp argument list.
+  simp [X, toyWorld, stage2, stage1, s̵t̵a̵g̵e̵0̵,̵ ̵mkW6, firstTimedCash,
+  ̵  ̵ ̵ ̵firstPayment, cashFromPayload, ledger0,
+  ̲  ̲ ̲ ̲ledger1, toyDebt, amountSix,
+  ̵  ̵ ̵ ̵toyTag, Trace.initial, Ledger.performance, hsecond]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:403:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness (c : ToyContext)
+  (physical norm ready : Bool) (hids : c.firstId ≠ c.secondId) :
+  Ledger.balance (stage0 c physical norm ready).ledger = 6 ∧
+    Ledger.quantity (stage0 c physical norm ready).ledger c.relation = some 6 ∧
+      Ledger.cashTotal (stage0 c physical norm ready).ledger = 0 ∧
+        Ledger.balance (stage1 c physical norm ready).ledger = 0 ∧
+          Ledger.quantity (stage1 c physical norm ready).ledger c.relation = some 0 ∧
+            Ledger.cashTotal (stage1 c physical norm ready).ledger = 6 ∧
+              (stage2 c physical norm ready).ledger = (stage1 c physical norm ready).ledger ∧
+                (stage2 c physical norm ready).J = some (paymentSixDocument c) ∧
+                  Ledger.balance (stage2 c physical norm ready).ledger = 0 ∧
+                    Ledger.cashTotal (stage2 c physical norm ready).ledger = 6 ∧
+                      (stage2 c physical norm ready).V.status = Judgment.insufficient ∧
+                        Ledger.balance (stage3 c physical norm ready).ledger = 0 ∧
+                          Ledger.quantity (stage3 c physical norm ready).ledger c.relation = some 0 ∧
+                            Ledger.cashTotal (stage3 c physical norm ready).ledger = 12 ∧
+                              (stage3 c physical norm ready).ledger.paid = 12 ∧
+                                (stage3 c physical norm ready).ledger.allocated = 6 ∧
+                                  (stage3 c physical norm ready).ledger.surplus = 6 ∧
+                                    (stage3 c physical norm ready).ledger.newDebt = 0 ∧
+                                      (stage3 c physical norm ready).ledger.debt.relation = c.relation ∧
+                                        (stage3 c physical norm ready).ledger.formations = [c.relation] ∧
+                                          (stage3 c physical norm ready).V.status = Judgment.insufficient ∧
+                                            List.map (fun x => x.event.id) (stage3 c physical norm ready).X =
+                                                [c.firstId, c.secondId] ∧
+                                              c.firstId ≠ c.secondId
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:404:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.four_stage_numeric_and_cash_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:405:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.timed_X_is_actual_cash_projection (c : ToyContext)
+  (physical norm ready : Bool) :
+  cashProjection (stage0 c physical norm ready) = (stage0 c physical norm ready).ledger.cash ∧
+    cashProjection (stage1 c physical norm ready) = (stage1 c physical norm ready).ledger.cash ∧
+      cashProjection (stage2 c physical norm ready) = (stage2 c physical norm ready).ledger.cash ∧
+        cashProjection (stage3 c physical norm ready) = (stage3 c physical norm ready).ledger.cash
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:406:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.timed_X_is_actual_cash_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:407:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.raw_stages_reuse_existing_invariants (c : ToyContext)
+  (physical norm ready : Bool) :
+  Ledger.Conserves (stage0 c physical norm ready).ledger ∧
+    Ledger.CashConsistent (stage0 c physical norm ready).ledger ∧
+      Ledger.Conserves (stage1 c physical norm ready).ledger ∧
+        Ledger.CashConsistent (stage1 c physical norm ready).ledger ∧
+          Ledger.Conserves (stage2 c physical norm ready).ledger ∧
+            Ledger.CashConsistent (stage2 c physical norm ready).ledger ∧
+              Ledger.Conserves (stage3 c physical norm ready).ledger ∧
+                Ledger.CashConsistent (stage3 c physical norm ready).ledger
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:408:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.raw_stages_reuse_existing_invariants' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:409:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_satisfy_one_Theta (c : ToyContext) :
+  ModelsTheta c (toyWorld c true false false) ∧
+    ModelsTheta c (toyWorld c false true false) ∧ ModelsTheta c (toyWorld c true true true)
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:410:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_satisfy_one_Theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:411:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_share_same_observed_W6 (c : ToyContext) :
+  observe (toyWorld c true false false).state = observe (toyWorld c false true false).state ∧
+    observe (toyWorld c false true false).state = observe (toyWorld c true true true).state
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:412:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.toyWorlds_share_same_observed_W6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:413:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.Bp_does_not_semantically_entail_Bn (c : ToyContext) :
+  ¬semanticEntails c Bp Bn
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:414:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.Bp_does_not_semantically_entail_Bn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:415:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.Bn_does_not_semantically_entail_E (c : ToyContext) :
+  ¬semanticEntails c Bn E
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:416:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.Bn_does_not_semantically_entail_E' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:417:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.E_does_not_semantically_entail_X (c : ToyContext)
+  (hids : c.firstId ≠ c.secondId) : ¬semanticEntails c E X
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:418:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.E_does_not_semantically_entail_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:419:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.conditional_rJ_branch_is_separate_and_source_bound (c : ToyContext)
+  (amount : Amount) :
+  (separateRjRecord c amount).relation = toyJudgmentRelation c ∧
+    (separateRjRecord c amount).subject = c.payer ∧
+      (separateRjRecord c amount).object = ObjectId.relation (toyJudgmentRelation c) ∧
+        (separateRjRecord c amount).atTime = c.documentAt ∧
+          (separateRjRecord c amount).source = c.documentSource ∧ toyJudgmentRelation c ≠ c.relation
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:420:0: 'JurisLean.Candidates.W6JudgmentCashAudit20261104.conditional_rJ_branch_is_separate_and_source_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:421:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.ModelsTheta (c : ToyContext) (w : ToyWorld) : Prop
+info: JurisLean/Candidates/W6JudgmentCashAudit20261104.lean:422:0: JurisLean.Candidates.W6JudgmentCashAudit20261104.X (w : ToyWorld) : Bool
+ℹ [8516/8516] Built JurisLean.Candidates.RestitutionFiniteClosureAudit20261104 (5.1s)
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:522:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.RefundRule : Type
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:523:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.Ready (g : Gamma) (extract : Extractor) (s : Ledger.State)
+  (decision : Option RefundRule) (r : RefundRule) : Prop
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:524:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.first_two_stages_no_cash {g : Gamma} {extract : Extractor}
+  {s : Ledger.State} {decision : Option RefundRule} {r : RefundRule} (h : Ready g extract s decision r) : Stages s r
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:525:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.first_two_stages_no_cash' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:526:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.q_receipt_is_actual_event_and_history {g : Gamma}
+  {extract : Extractor} {s : Ledger.State} {decision : Option RefundRule} {r : RefundRule}
+  (h : Ready g extract s decision r) :
+  (effectPair s r).2.q = r.payment.key ∧
+    (effectPair s r).2.originalPayment = r.original.key ∧
+      (effectPair s r).2.q ≠ (effectPair s r).2.originalPayment ∧
+        (effectPair s r).2.payload = r.payment.payload ∧
+          (effectPair s r).2.normEvidence = r.claim.evidence ∧
+            (effectPair s r).2.eligibilityEvidence = r.eligibilityEvidence ∧
+              (effectPair s r).2.payload.relation = r.claim.relation ∧
+                (effectPair s r).1.refundCash = s.refundCash ++ [cashFromPayload (effectPair s r).2.payload] ∧
+                  (effectPair s r).1.cash = s.cash ∧
+                    (effectPair s r).1.debt = s.debt ∧
+                      (effectPair s r).1.formations = s.formations ++ [r.claim.relation] ∧
+                        Ledger.quantity (effectPair s r).1 s.debt.relation = Ledger.quantity s s.debt.relation ∧
+                          r.original.interpretedPayment = some r.original.key ∧
+                            cashFromPayload r.original.payload ∈ s.cash
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:527:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.q_receipt_is_actual_event_and_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:528:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.separated_quantity_and_cash_components {g : Gamma}
+  {extract : Extractor} {s : Ledger.State} {decision : Option RefundRule} {r : RefundRule}
+  (h : Ready g extract s decision r) (hs : Ledger.Conserves s) (hc : Ledger.CashConsistent s) : QuantityConclusion s r
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:529:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.separated_quantity_and_cash_components' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:530:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.actual_closed_account_conservation {A : Type} [Fintype A]
+  [DecidableEq A] {party : A → PartyId} (hinj : Function.Injective party) (s : Ledger.State) (r : RefundRule)
+  (events : List (BookedCash A party)) (fresh : BookedCash A party)
+  (hcomplete : List.map (fun x => x.event) events = s.cash ++ s.refundCash)
+  (hfresh : fresh.event = cashFromPayload r.payment.payload)
+  (hunit : ∀ e ∈ events, e.event.amount.tag = r.payment.payload.amount.tag) :
+  List.map (fun x => x.event) (events ++ [fresh]) = (refundPost s r).cash ++ (refundPost s r).refundCash ∧
+    (∀ e ∈ events ++ [fresh], e.event.amount.tag = r.payment.payload.amount.tag) ∧
+      (∀ e ∈ events ++ [fresh],
+          ∀ (a : A),
+            delta e a =
+              (if party a = e.event.payee then e.event.amount.value else 0) -
+                if party a = e.event.payer then e.event.amount.value else 0) ∧
+        ∑ a, Ledger.cashVector (List.map delta (events ++ [fresh])) a = 0
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:531:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.actual_closed_account_conservation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:532:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.joint_from_actual_trace {A : Type} [Fintype A]
+  [DecidableEq A] {party : A → PartyId} (hinj : Function.Injective party) (start base : Ledger.Handle)
+  (initial : Trace.Invariant start) (path : Trace.Path start base) (extract : Extractor) (decision : Option RefundRule)
+  (r : RefundRule) (h : Ready base.gamma extract base.state decision r) (events : List (BookedCash A party))
+  (fresh : BookedCash A party)
+  (hcomplete : List.map (fun x => x.event) events = base.state.cash ++ base.state.refundCash)
+  (hfresh : fresh.event = cashFromPayload r.payment.payload)
+  (hunit : ∀ e ∈ events, e.event.amount.tag = r.payment.payload.amount.tag) :
+  Stages base.state r ∧
+    checkedEffect base.gamma extract base.state decision r = some (effectPair base.state r) ∧
+      QuantityConclusion base.state r ∧
+        List.map (fun x => x.event) (events ++ [fresh]) =
+            (refundPost base.state r).cash ++ (refundPost base.state r).refundCash ∧
+          ∑ a, Ledger.cashVector (List.map delta (events ++ [fresh])) a = 0
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:533:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.joint_from_actual_trace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:534:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.legacy_RestPay_is_min_branch {g : Gamma}
+  {extract : Extractor} {s : Ledger.State} {decision : Option RefundRule} {r : RefundRule}
+  (h : Ready g extract s decision r) (hk : r.credit = min r.payment.payload.amount.value r.claim.amount.value)
+  (hpaid : r.payment.payload.amount.value ≠ s.paid) :
+  Ledger.RestPay (eligiblePost s r) (cashFromPayload r.payment.payload) = Result.known (refundPost s r)
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:535:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.legacy_RestPay_is_min_branch' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:536:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.cash_balance_does_not_supply_admission {A : Type} [Fintype A]
+  [DecidableEq A] {party : A → PartyId} (g : Gamma) (extract : Extractor) (s : Ledger.State)
+  (decision : Option RefundRule) (r : RefundRule) (e : BookedCash A party)
+  (he : e.event = cashFromPayload r.payment.payload) :
+  e.event = cashFromPayload r.payment.payload ∧
+    ∑ a, delta e a = 0 ∧
+      checkedEffect g extract s none r = none ∧
+        (r.payment.applicable ≠ Applicable.yes → checkedEffect g extract s decision r = none) ∧
+          (min r.payment.payload.amount.value r.claim.amount.value < r.credit →
+            checkedEffect g extract s decision r = none)
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:537:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.cash_balance_does_not_supply_admission' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:538:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.ten_seven_seven_nonempty_witness :
+  Ready Acceptance.gamma tenExtractor Acceptance.post2.state (some tenRule) tenRule ∧
+    Stages Acceptance.post2.state tenRule ∧
+      checkedEffect Acceptance.gamma tenExtractor Acceptance.post2.state (some tenRule) tenRule =
+          some (effectPair Acceptance.post2.state tenRule) ∧
+        QuantityConclusion Acceptance.post2.state tenRule ∧
+          List.map (fun x => x.event) (tenEvents ++ [tenFresh]) =
+              (refundPost Acceptance.post2.state tenRule).cash ++
+                (refundPost Acceptance.post2.state tenRule).refundCash ∧
+            ∑ a, Ledger.cashVector (List.map delta (tenEvents ++ [tenFresh])) a = 0 ∧
+              (Ledger.balance Acceptance.post1.state = 3 ∧
+                  Ledger.balance Acceptance.post2.state = 0 ∧
+                    Acceptance.post2.state.allocated = 10 ∧
+                      Acceptance.post2.state.paid = 14 ∧ Acceptance.post2.state.surplus = 4) ∧
+                TenNumbers ∧
+                  Ledger.RestPay (eligiblePost Acceptance.post2.state tenRule)
+                      (cashFromPayload tenRule.payment.payload) =
+                    Result.known (refundPost Acceptance.post2.state tenRule)
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:539:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.ten_seven_seven_nonempty_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:540:0: JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.w6_nonempty_witness :
+  Ready refundW6Base.gamma refundW6Extractor refundW6Base.state (some refundW6Rule) refundW6Rule ∧
+    Stages refundW6Base.state refundW6Rule ∧
+      checkedEffect refundW6Base.gamma refundW6Extractor refundW6Base.state (some refundW6Rule) refundW6Rule =
+          some (effectPair refundW6Base.state refundW6Rule) ∧
+        QuantityConclusion refundW6Base.state refundW6Rule ∧
+          List.map (fun x => x.event) (refundW6Events ++ [refundW6Fresh]) =
+              (refundPost refundW6Base.state refundW6Rule).cash ++
+                (refundPost refundW6Base.state refundW6Rule).refundCash ∧
+            ∑ a, Ledger.cashVector (List.map delta (refundW6Events ++ [refundW6Fresh])) a = 0 ∧
+              (Ledger.balance refundW6Base.state = 0 ∧
+                  Ledger.cashTotal refundW6Base.state = 12 ∧
+                    refundW6Base.state.paid = 12 ∧ refundW6Base.state.allocated = 6 ∧ refundW6Base.state.surplus = 6) ∧
+                W6RefundNumbers ∧
+                  cashProjection refundW6After = refundW6After.ledger.cash ∧
+                    Ledger.RestPay (eligiblePost refundW6Base.state refundW6Rule)
+                        (cashFromPayload refundW6Rule.payment.payload) =
+                      Result.known (refundPost refundW6Base.state refundW6Rule)
+info: JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean:541:0: 'JurisLean.Candidates.RestitutionFiniteClosureAudit20261104.w6_nonempty_witness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8516 jobs).

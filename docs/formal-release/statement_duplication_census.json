@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 6303,
-  "duplicated_statement_types": 62,
+  "distinct_statement_types": 6609,
+  "duplicated_statement_types": 63,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -112,6 +112,18 @@
         "carrier": "root/other/u04_1_integer_shape_conjugacy",
         "line": 146,
         "path": "Candidates/Final20261021/Probability.lean"
+      }
+    ],
+    "(b : Bool) : fairBoolLaw {b} = (1 / 2 : ENNReal)": [
+      {
+        "carrier": "root/other/fairBool_atom",
+        "line": 105,
+        "path": "Candidates/U04_1OriginalProbabilityInstances20261101.lean"
+      },
+      {
+        "carrier": "root/other/fair_atom",
+        "line": 23,
+        "path": "Candidates/U05_2OriginalGroupCalibrationInstances20261101.lean"
       }
     ],
     "(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept": [
@@ -371,6 +383,11 @@
         "carrier": "root/other/boundary_pair_univ",
         "line": 845,
         "path": "Candidates/ExchangeableRank20261031.lean"
+      },
+      {
+        "carrier": "root/other/pair_univ",
+        "line": 34,
+        "path": "Candidates/U06_5FiniteObservationInstance20261031.lean"
       },
       {
         "carrier": "root/other/pair_univ",
@@ -787,12 +804,12 @@
       }
     ]
   },
-  "files_scanned": 509,
+  "files_scanned": 572,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 121,
-  "inventory_package_theorems": 6241,
-  "private_protected_headers_read": 245,
+  "headers_missed_by_scanner": 125,
+  "inventory_package_theorems": 6496,
+  "private_protected_headers_read": 302,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 6365
+  "statements_read": 6673
 }

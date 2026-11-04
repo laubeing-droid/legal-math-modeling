@@ -1,0 +1,337 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.1",
+    "09.2"
+  ],
+  "proposed_disposition": {
+    "09.1": "COVERED",
+    "09.2": "COVERED",
+    "note": "Source-module evidence mapped to the frozen clauses; PR/full-record acceptance is pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      143,
+      154
+    ],
+    "subparagraph_lines": {
+      "09.1": [
+        [
+          145,
+          145
+        ],
+        [
+          147,
+          147
+        ]
+      ],
+      "09.2": [
+        [
+          151,
+          151
+        ],
+        [
+          153,
+          153
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.1"
+    ],
+    "sha256": "4bd373e6653aa1b637b5d3642c7792b650d7b68e0e99429a06859b140ea9471f"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-1-2-single-debt-20261103",
+    "base_main": "870ec3e4f8ca8b52d90731c2d3924b18b09daad6",
+    "commit": "b84d28bf173e80649489a65b39b26cce77a30e36",
+    "tree": "b494b9a253b87c4207aa7d042a07aa806bf83e71",
+    "parent": "71417760c2521ea5f6fc4d5bdcf5368d6e74b755"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41620019146,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "attempt": 1,
+    "job_id": 125863088295,
+    "sorryAx": 0,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "build": "Build completed successfully (8513 jobs)",
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "module": "JurisLean.Candidates.SingleDebtStreamAudit20261103"
+  },
+  "artifact": {
+    "raw": {
+      "bytes": 30158,
+      "sha256": "82dddc12bbcf4eff87ec0adc5efc63cb06177b44eaf0e0084653068b2027b2a4",
+      "path": "D:\\tmp\\original09-1-2-source-r2\\expanded\\changed-module.log"
+    },
+    "members": [
+      {
+        "bytes": 265,
+        "expanded_bytes_match": true,
+        "sha256": "2428b5f8b2a3c53a3df88b343ef6d5bfe6c5a973bf7ee388b0c5e6f866113d10",
+        "name": "module-plan.json"
+      },
+      {
+        "bytes": 30158,
+        "expanded_bytes_match": true,
+        "sha256": "82dddc12bbcf4eff87ec0adc5efc63cb06177b44eaf0e0084653068b2027b2a4",
+        "name": "changed-module.log"
+      }
+    ],
+    "api_snapshot_path": "D:\\tmp\\original09-1-2-source-r2\\artifact-api-snapshot.json",
+    "zip_path": "D:\\tmp\\original09-1-2-source-r2\\changed-module-only-41620019146-1.zip",
+    "api_snapshot_sha256": "17fa998995b6d884aed39579ff11cc97c26c11b5087a5998a2ebad95148e1ce5",
+    "zip_bytes": 4252,
+    "plan": {
+      "bytes": 265,
+      "sha256": "2428b5f8b2a3c53a3df88b343ef6d5bfe6c5a973bf7ee388b0c5e6f866113d10",
+      "path": "D:\\tmp\\original09-1-2-source-r2\\expanded\\module-plan.json"
+    },
+    "zip_sha256": "72995f43e176af7f771c7e2e1411771311cfc55bdcc4498ce71caa472409f546"
+  },
+  "outputs": {
+    "reused_theorem_pairs": 14,
+    "check_commands": 27,
+    "all_axiom_outputs_standard_only": true,
+    "extra_def_only_checks": [
+      "finitePaymentStepLaw",
+      "streamUnusedPayments"
+    ],
+    "axiom_print_commands": 25,
+    "new_theorem_pairs": 11,
+    "reused_names": [
+      "Acceptance.a_u09_continuous_10_7_7",
+      "Acceptance.n_non_continuous_consume",
+      "Ledger.u09_1_quantity_conservation",
+      "Ledger.u09_1_scalar_vector_stream_refinement",
+      "Acceptance.n09_2_state_conservation_mismatch",
+      "Ledger.u09_1_afterPayments_clamp",
+      "UnifiedQuantities.waterfall_conservation",
+      "UnifiedQuantities.remainingAfter_nonneg",
+      "UnifiedQuantities.waterfall_sum_le",
+      "UnifiedQuantLedger.waterfall_sum_eq_min",
+      "UnifiedQuantLedger.afterPay_idents",
+      "UnifiedQuantLedger.afterPay_amounts_nonneg",
+      "UnifiedQuantLedger.outstanding_afterStream",
+      "UnifiedQuantLedger.streamAllocs_rows_legal"
+    ],
+    "new_theorem_names": [
+      "min_payment_step_nine_laws",
+      "afterPay_preserves_full_frame_and_pointwise_order",
+      "negative_payment_breaks_the_one_step_bounds",
+      "sameItemFrameLe_is_partial_order",
+      "finite_payment_steps_follow_actual_prefix",
+      "finite_stream_payments_equal_allocations_plus_unused",
+      "finite_stream_debt_conservation",
+      "single_item_final_balance_invariant_under_payment_permutation",
+      "continuous_ten_seven_seven_matches_quantity_stream",
+      "seven_three_allocation_report_cannot_keep_old_debt",
+      "final_balance_order_independent_but_payment_identity_allocation_is_not"
+    ],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "bytes": 20310,
+      "git_blob": "f54859db839ef138a2a14aa84a7b024c17e28fe5",
+      "sha256": "4b096dba3892ea1fe4fa3d5a52e1412de2e23dbc042d9eb9f2a16b2c09fe02a0",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean"
+    },
+    {
+      "bytes": 16137,
+      "git_blob": "27c1725acb38f99e30d91cb6e4243f98c76fb3c3",
+      "sha256": "f7e75e66e8de6b605637d52daf898a32c7a09072cc2e74b5576790a4f6e7ac4b",
+      "path": "proofs/lean/juris_lean/JurisLean.lean"
+    },
+    {
+      "bytes": 55542,
+      "git_blob": "a2c095c717114e7d7d710307063e3af80b923bd0",
+      "sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean"
+    },
+    {
+      "bytes": 9376,
+      "git_blob": "0243b713c91f980229c1e73d5bcab602a8152fb6",
+      "sha256": "7b101c85219c7204af7a481fb4cef3b250e6e903dbbf425572c3f99b62718130",
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean"
+    },
+    {
+      "bytes": 30850,
+      "git_blob": "1a2632047bf0ee7f8f6fc8c32a85e601514f2d64",
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean"
+    },
+    {
+      "bytes": 20327,
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198"
+    },
+    {
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean"
+    },
+    {
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "path": "proofs/lean/juris_lean/lake-manifest.json"
+    },
+    {
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "path": "proofs/lean/juris_lean/lean-toolchain"
+    },
+    {
+      "rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "inputRev": "v4.30.0",
+      "path": "lake-manifest mathlib package"
+    }
+  ],
+  "source_change_scope": [
+    "proofs/lean/juris_lean/JurisLean.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean"
+  ],
+  "mathlib_rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+  "r1_history": {
+    "description": "R1 branch failure was the diagnosed sub_self/min branch leftovers and misqualified acceptance theorem name; retained as history, not overwritten",
+    "conclusion": "failure",
+    "run_id": 41618723262
+  },
+  "scope_mapping": {
+    "09.1_L145": [
+      "min_payment_step_nine_laws",
+      "negative_payment_breaks_the_one_step_bounds"
+    ],
+    "09.1_L147": [
+      "afterPay_preserves_full_frame_and_pointwise_order",
+      "sameItemFrameLe_is_partial_order"
+    ],
+    "09.2_L151": [
+      "finite_payment_steps_follow_actual_prefix",
+      "finite_stream_payments_equal_allocations_plus_unused",
+      "finite_stream_debt_conservation",
+      "single_item_final_balance_invariant_under_payment_permutation"
+    ],
+    "09.2_L153": [
+      "continuous_ten_seven_seven_matches_quantity_stream",
+      "seven_three_allocation_report_cannot_keep_old_debt",
+      "final_balance_order_independent_but_payment_identity_allocation_is_not"
+    ],
+    "reused_support": [
+      "Acceptance.a_u09_continuous_10_7_7",
+      "Acceptance.n_non_continuous_consume",
+      "Ledger.u09_1_quantity_conservation",
+      "Ledger.u09_1_scalar_vector_stream_refinement",
+      "Acceptance.n09_2_state_conservation_mismatch",
+      "Ledger.u09_1_afterPayments_clamp",
+      "UnifiedQuantities.waterfall_conservation",
+      "UnifiedQuantities.remainingAfter_nonneg",
+      "UnifiedQuantities.waterfall_sum_le",
+      "UnifiedQuantLedger.waterfall_sum_eq_min",
+      "UnifiedQuantLedger.afterPay_idents",
+      "UnifiedQuantLedger.afterPay_amounts_nonneg",
+      "UnifiedQuantLedger.outstanding_afterStream",
+      "UnifiedQuantLedger.streamAllocs_rows_legal"
+    ],
+    "boundaries": [
+      "same-unit meaning is external to rational arithmetic",
+      "preserved status is a frame field, not a legal-effect conclusion",
+      "no legal discharge, cash uniqueness, arbitrary-history equivalence, or signed-payment theorem is claimed"
+    ]
+  },
+  "consumer_edge": {
+    "u00_edge": 8,
+    "label": "事务→账本",
+    "current_row_path": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
+    "current_row_line": 256,
+    "existing_callers": [
+      "Pipeline.executePayments",
+      "finishPayment"
+    ],
+    "existing_refinement": [
+      "Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+      "Final20261021.Ledger.u09_1_afterPayments_clamp"
+    ],
+    "change": "producer evidence appended only; caller, runtime, and rating unchanged"
+  },
+  "acceptance_boundary": "Changed-module evidence only; full PR and post-merge acceptance are pending.",
+  "generated_audit_surface": {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "generator": "scripts/ci/generate_probability_audit_surface.py --write",
+    "generator_exit": 0,
+    "target_count": 3471,
+    "check_command": "python scripts/ci/generate_probability_audit_surface.py --check",
+    "check_exit": 0,
+    "change": "Eight duplicate #print axioms commands removed; no declarations or proof bodies changed.",
+    "removed_targets": [
+      "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg",
+      "JurisLean.Seams.UnifiedQuantLedger.afterPay_idents",
+      "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream",
+      "JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal",
+      "JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min",
+      "JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg",
+      "JurisLean.Seams.UnifiedQuantities.waterfall_conservation",
+      "JurisLean.Seams.UnifiedQuantities.waterfall_sum_le"
+    ],
+    "metadata_checkpoint": {
+      "commit": "332c6ea1e41df0878023a20d7c02e83d8c02b926",
+      "tree": "5cc94945e241e013ec5ff6d7b4af169e779c2642",
+      "parent": "b84d28bf173e80649489a65b39b26cce77a30e36",
+      "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+      "bytes": 312841,
+      "sha256": "6c048b4f15570ab456f2a22b41c47f079a66f4bc53f16d4a2e51db041b21baff",
+      "git_blob": "88026d6b10b9b63c6da6f9cde2d330e63c6bc7c2"
+    },
+    "frozen_audit_unchanged_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198"
+  },
+  "manifest_binding": {
+    "path": "docs/formal-release/theorem_inventory_v3.json",
+    "subject": "332c6ea1e41df0878023a20d7c02e83d8c02b926",
+    "tree": "5cc94945e241e013ec5ff6d7b4af169e779c2642",
+    "all_tracked_lean": {
+      "counted_declaration_count": 6430,
+      "file_count": 580,
+      "lemma_count": 146,
+      "print_axioms_command_count": 5863,
+      "print_axioms_distinct_targets": 5266,
+      "theorem_count": 6284,
+      "theorem_count_bol_convention": 6184
+    },
+    "juris_lean_package": {
+      "counted_declaration_count": 6411,
+      "file_count": 565,
+      "lemma_count": 139,
+      "print_axioms_command_count": 5863,
+      "print_axioms_distinct_targets": 5266,
+      "theorem_count": 6272,
+      "theorem_count_bol_convention": 6172
+    },
+    "audit_targets_without_declarations": 0
+  }
+}

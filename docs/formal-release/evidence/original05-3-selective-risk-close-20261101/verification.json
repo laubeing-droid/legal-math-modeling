@@ -1,0 +1,185 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "70139671e4fb0b90abddee17162282c20cbf3443",
+  "subject_tree": "aa2f6c3a2a566cce09b45811559e9557141f0bd5",
+  "run_id": 41285660208,
+  "job_id": 124786318123,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41285660208",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41285660208/job/124786318123",
+  "artifact_name": "changed-module-only-41285660208-1",
+  "artifact_id": 13075117064,
+  "artifact_sha256": "060eb1627bcf6f17a1c90ad3d9fb2d7c13aa1db1c3e9f16a5d0386e1c359fbe6",
+  "artifact_size_bytes": 3402,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 19589,
+      "sha256": "85b91ca0c52eeccfe3c14d1bced6b05b880c1998199a51fd8e5233ca1798c5d6"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 285,
+      "sha256": "1060f1474ea5cfe98455ee4954cd0e3a97d84730a361b2aa2081bb9a9350130a"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "1060f1474ea5cfe98455ee4954cd0e3a97d84730a361b2aa2081bb9a9350130a",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
+  "named_count": 8,
+  "names_by_clause": {
+    "L103": [
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.threshold_population_quantities",
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff",
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_no_valid_coverage",
+      "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate"
+    ],
+    "L105": [
+      "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk",
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.true_conditional_error_ordering"
+    ],
+    "L107": [
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff",
+      "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.finite_threshold_interval_certificate",
+      "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate",
+      "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound"
+    ]
+  },
+  "object_checks": [],
+  "axiom_audit": {
+    "audited_targets": 8,
+    "axiom_vocabulary": {
+      "propext": 8,
+      "Classical.choice": 8,
+      "Quot.sound": 8
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskInstances20261101.lean",
+      "sha256": "24ebb9947d6f8f87fd1ac3d9c2a39944401eda07111d40511026bf0a6d04b03f",
+      "git_blob_sha1": "366c30071e2d466a3717a833a07787b1f24f6621"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U05_3OriginalSelectiveRiskAudit20261101.lean",
+      "sha256": "d2c30b8d261b336648cda543261f5b446627f00959e2b16c3fdbc11621f63765",
+      "git_blob_sha1": "1c4143bb113c1dbb4749622534ce73aaf1862492"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
+      "sha256": "e577b732003f5cb6555b37bed8c18031bd7ade7ddac911d87fbc6e8f869fe0d3",
+      "git_blob_sha1": "45d0e08c6f153a302e9c9a023224a97c94640dda"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
+      "sha256": "7ee8ba6e521ae85fc9dd61e3fa718acc81b46789d0e51391a46b09b258b6b3c1",
+      "git_blob_sha1": "100a13a2ac6ae1e9b373e56e91a8451059a7c785"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+      "sha256": "7e58a4329ef7dc1bc450572a691e650ba9cd678820a1dd9acec7985102379e2d",
+      "git_blob_sha1": "61fd14d9a69cadb2dac803f056b97a7fc0dd2fbc"
+    }
+  ],
+  "original_residuals": {
+    "05.3": "冻结L103/L105/L107：接受概率、阈值风险次序的条件命题、有限阈值族上的实值有界loss区间保证与选择证书。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题05.3数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original05-3-selective-risk-close-20261101/changed-module.log",
+    "sha256": "85b91ca0c52eeccfe3c14d1bced6b05b880c1998199a51fd8e5233ca1798c5d6",
+    "blocks": 8
+  },
+  "source_module_status": "SUCCESS; changed-module target only; five new declarations and three reused declarations audited; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING; full-record PR exact-subject chain, certificate/reference reconciliation, independent verifier, merge and post-merge checks have not run.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41285182239,
+      "status": "failure",
+      "note": "Initial changed-module run failed during measurable-space elaboration. The follow-up source commit corrected the diagnosed ambient-measurability elaboration. This failed run remains historical failure provenance, not a pass."
+    }
+  ],
+  "scope_note": "Only original math row 05.3 L103/L105/L107 is mapped. L105 uses an explicit antitone condition on the actual conditional error; L107 is for a fixed finite threshold family, shared IID validation law, bounded real loss and checked rational enclosures. No actual consumer caller, deployment, arbitrary-real comparison termination, or legal-source conclusion is claimed. U50 remains 50 wiring / 0 narrow / 0 open; distinct from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk",
+      "source_line": 147,
+      "audit_log_line": 274,
+      "original_clause": "L105",
+      "audit_source_line": 6
+    },
+    {
+      "name": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.threshold_population_quantities",
+      "source_line": 36,
+      "audit_log_line": 277,
+      "original_clause": "L103",
+      "audit_source_line": 7
+    },
+    {
+      "name": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.true_conditional_error_ordering",
+      "source_line": 51,
+      "audit_log_line": 280,
+      "original_clause": "L105",
+      "audit_source_line": 8
+    },
+    {
+      "name": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_none_iff",
+      "source_line": 170,
+      "audit_log_line": 283,
+      "original_clause": "L103/L107",
+      "audit_source_line": 9
+    },
+    {
+      "name": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.certificateChoice_no_valid_coverage",
+      "source_line": 182,
+      "audit_log_line": 286,
+      "original_clause": "L103",
+      "audit_source_line": 10
+    },
+    {
+      "name": "JurisLean.Candidates.U05_3OriginalSelectiveRiskInstances20261101.finite_threshold_interval_certificate",
+      "source_line": 216,
+      "audit_log_line": 289,
+      "original_clause": "L107",
+      "audit_source_line": 11
+    },
+    {
+      "name": "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_reject_all_has_no_certificate",
+      "source_line": 90,
+      "audit_log_line": 292,
+      "original_clause": "L103/L107",
+      "audit_source_line": 12
+    },
+    {
+      "name": "JurisLean.Candidates.SelectiveCalibration20261027.q05_3_selected_threshold_has_population_risk_bound",
+      "source_line": 200,
+      "audit_log_line": 295,
+      "original_clause": "L107",
+      "audit_source_line": 13
+    }
+  ]
+}

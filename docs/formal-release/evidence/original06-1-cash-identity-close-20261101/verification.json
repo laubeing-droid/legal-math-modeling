@@ -1,0 +1,333 @@
+{
+  "schema": "independent-original-residual-close-v1",
+  "subject": "594f95786ff7cc061905ddb359ef3d15ebb72abe",
+  "subject_tree": "7db860e25c6124e36944402962eac177808e34b4",
+  "run_id": 41311622159,
+  "job_id": 124863028757,
+  "attempt": 1,
+  "job_conclusion": "success",
+  "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41311622159",
+  "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41311622159/job/124863028757",
+  "artifact_name": "changed-module-only-41311622159-1",
+  "artifact_id": 13086115538,
+  "artifact_sha256": "a95e11ebe0dd85daef61cc4c8f7e0452d9029d63d1a7d22ab58887d13d2a7f31",
+  "artifact_size_bytes": 2628,
+  "artifact_files": [
+    {
+      "path": "changed-module.log",
+      "size_bytes": 13776,
+      "sha256": "9f7ec1ad2407571a6e26096b141a526cd0d2d6902119dfee87338a41eb90ba2f"
+    },
+    {
+      "path": "module-plan.json",
+      "size_bytes": 283,
+      "sha256": "f17950f961e712afbbf84a50a6319b3729b556c413d3b2135dfdff61a8e609b4"
+    }
+  ],
+  "module_plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+  "module_plan_sha256": "f17950f961e712afbbf84a50a6319b3729b556c413d3b2135dfdff61a8e609b4",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
+  "named_count": 17,
+  "names_by_clause": {
+    "L83": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQPayload_preserves_fields",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_vector_matches_real_cash"
+    ],
+    "L87": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.performance_appends_payload_cash",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.commit_payment_appends_payload_cash",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.validated_commit_preserves_cash_ids"
+    ],
+    "L89": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.rename_preserves_cash",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.event_id_renaming_preserves_cash",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.alias_preserves_cash",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.three_labels_one_six"
+    ],
+    "L91": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.actual_cash_accounts_conserve",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_accounts_conserve",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account"
+    ],
+    "L93": [
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payments_keep_debt",
+      "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payment_account_cash"
+    ]
+  },
+  "object_checks": [
+    "payloadCash",
+    "RealCashEvent",
+    "fromQCash",
+    "fromQPayload",
+    "cashFlow",
+    "netCash",
+    "labelCash",
+    "qCashFlow",
+    "qCashAccounts",
+    "realCashAccounts"
+  ],
+  "axiom_audit": {
+    "audited_targets": 17,
+    "axiom_vocabulary": {
+      "propext": 17,
+      "Classical.choice": 17,
+      "Quot.sound": 17
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "sha256": "124d06faf08b1d1be41aedd1fcd47c77363f5cc35eac682ccd1a1727358efa7d",
+      "git_blob_sha1": "e51614b5095d8ba4acc764bbf1829e41620ad3a7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityAudit20261101.lean",
+      "sha256": "2a6ad4263569b3475f00f01c0f747c911a1321568161b1dfbcb77b52726ad789",
+      "git_blob_sha1": "7a14983a4e33a4408ba1e86255141d1ed627a024"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d",
+      "git_blob_sha1": "1a2632047bf0ee7f8f6fc8c32a85e601514f2d64"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e",
+      "git_blob_sha1": "8e7c3b357a4aacbe0d3ba2d1af6fcac717857839"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f",
+      "git_blob_sha1": "4fe47a0b6e0364dc1753da5aed252718580d817e"
+    }
+  ],
+  "original_residuals": {
+    "06.1": "冻结原题06 L83/L85/L87-L94：实数金额现金事件及明示Q实现的单向适配；事件身份/重复提交、标签与ID重命名和别名、按唯一ID重索引及互不重叠ID可加性；封闭账户收付守恒与具体三标签/双真实支付实例。"
+  },
+  "closed_ids": [],
+  "closed_this_round": 0,
+  "closes_debt": false,
+  "open_before": 0,
+  "open_after": 0,
+  "narrow_before": 0,
+  "narrow_after": 0,
+  "wiring_before": 50,
+  "wiring_after": 50,
+  "prior_disposition": {
+    "path": "原题06.1数学行",
+    "archive_gap_status": "NOT_RECONCILED"
+  },
+  "proposed_disposition": {
+    "path": "候选C；待本记录PR完整验收",
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "step_2_closed": false,
+  "tip_pin": null,
+  "audit_raw": {
+    "path": "docs/formal-release/evidence/original06-1-cash-identity-close-20261101/changed-module.log",
+    "sha256": "9f7ec1ad2407571a6e26096b141a526cd0d2d6902119dfee87338a41eb90ba2f",
+    "blocks": 17
+  },
+  "source_module_status": "SUCCESS; the requested changed-module audit compiled 15 new results and printed two reused Ledger targets; the other seven workflow jobs were skipped.",
+  "full_record_status": "PENDING at package creation; exact-subject full-record PR acceptance, certificate/reference reconciliation, independent verifier, authorized merge and post-merge checks remain separate.",
+  "historical_diagnostics": [
+    {
+      "run_id": 41307466967,
+      "attempt": 1,
+      "head_sha": "8621880af5a95e002d1fd1256e88024cc4f62f82",
+      "job_id": 124850697285,
+      "job_conclusion": "failure",
+      "artifact_id": 13084350281,
+      "artifact_name": "changed-module-only-41307466967-1",
+      "artifact_size_bytes": 2140,
+      "artifact_sha256": "285f33e076fc240cec46379be18c4e93ff513459c9ac2e93b74da624a70a4e58",
+      "log_size_bytes": 6639,
+      "log_sha256": "f1bd8e03119229b625ced6983cc0b24cb009cfaa98779d1db17120092ef71e83",
+      "audit_targets_printed": 0,
+      "note": "Initial draft used only the rational ledger amount and did not satisfy the frozen original real-valued amount domain at L83; it failed before any Audit target output. It was replaced by an explicit real-valued denotation and one-way Q embedding.",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41307466967",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41307466967/job/124850697285"
+    },
+    {
+      "run_id": 41310172820,
+      "attempt": 1,
+      "head_sha": "16a0aabbf663dfd57a1235ebdfc690356f891f00",
+      "job_id": 124858700169,
+      "job_conclusion": "failure",
+      "artifact_id": 13084952992,
+      "artifact_name": "changed-module-only-41310172820-1",
+      "artifact_size_bytes": 2495,
+      "artifact_sha256": "c18a80e4404dcebedabaef673d8076bde43c4b4440abd4183863264fa697586a",
+      "log_size_bytes": 10912,
+      "log_sha256": "3fa3f7a9fbd54140268d5e0e54d52194d6bd0db36aa410e115f7252a4dbfd337",
+      "audit_targets_printed": 0,
+      "note": "First real-domain draft had eight compiler errors in proof terms; no Audit target output. The subsequent proof-only correction retained the real-valued statements and hypotheses.",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41310172820",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41310172820/job/124858700169"
+    },
+    {
+      "run_id": 41311118139,
+      "attempt": 1,
+      "head_sha": "3a698cba99751ade80ac4531054e94c5b81ad454",
+      "job_id": 124861529406,
+      "job_conclusion": "failure",
+      "artifact_id": 13085910062,
+      "artifact_name": "changed-module-only-41311118139-1",
+      "artifact_size_bytes": 1832,
+      "artifact_sha256": "6208fa85d7753083cfc2e2110b58319abe0103c704b02033aa922f4d5772f04b",
+      "log_size_bytes": 7289,
+      "log_sha256": "4120948c5abed21e6a46f014ade9c3b12f3f61337331f309beb60abd308a526a",
+      "audit_targets_printed": 0,
+      "note": "The two remaining failures were simplification of the empty cash prefix in the concrete two-payment account examples; they were repaired using the already-proved empty initial cash fact. No Audit target output.",
+      "run_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41311118139",
+      "job_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41311118139/job/124861529406"
+    }
+  ],
+  "scope_note": "Only original math row 06.1 is mapped. The original denotation uses real-valued cash amounts; existing rational Ledger cash is connected by the stated one-way embedding and adequacy equation, not treated as representing arbitrary real cash exactly. Event identity, rather than labels or duplicate records, controls the sum. The examples establish arithmetic and proof-level cash invariants only: the performance examples are not validated/authorized admissions, and no actual consumer caller, legal permission, statutory cap, valuation-time rule, or deployment is claimed. U50 remains 50 wiring / 0 narrow / 0 open, distinct from the 97 math rows.",
+  "named_declaration_map": [
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.fromQPayload_preserves_fields",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 42,
+      "audit_log_line": 17,
+      "original_clause": "L83",
+      "audit_source_line": 17
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.performance_appends_payload_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 52,
+      "audit_log_line": 18,
+      "original_clause": "L87",
+      "audit_source_line": 18
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.commit_payment_appends_payload_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 55,
+      "audit_log_line": 20,
+      "original_clause": "L87",
+      "audit_source_line": 20
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.validated_commit_preserves_cash_ids",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 81,
+      "audit_log_line": 22,
+      "original_clause": "L87",
+      "audit_source_line": 22
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.cash_sum_reindexed_by_id",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 114,
+      "audit_log_line": 24,
+      "original_clause": "L89",
+      "audit_source_line": 24
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.rename_preserves_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 154,
+      "audit_log_line": 26,
+      "original_clause": "L89",
+      "audit_source_line": 26
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.event_id_renaming_preserves_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 163,
+      "audit_log_line": 28,
+      "original_clause": "L89",
+      "audit_source_line": 28
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.alias_preserves_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 191,
+      "audit_log_line": 30,
+      "original_clause": "L89",
+      "audit_source_line": 30
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.disjoint_id_cash_additive",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 208,
+      "audit_log_line": 32,
+      "original_clause": "L89",
+      "audit_source_line": 32
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.actual_cash_accounts_conserve",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 295,
+      "audit_log_line": 34,
+      "original_clause": "L91",
+      "audit_source_line": 34
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_accounts_conserve",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 229,
+      "audit_log_line": 36,
+      "original_clause": "L91",
+      "audit_source_line": 36
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.q_ledger_cash_vector_matches_real_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 355,
+      "audit_log_line": 38,
+      "original_clause": "L83",
+      "audit_source_line": 38
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.three_labels_one_six",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 388,
+      "audit_log_line": 40,
+      "original_clause": "L89",
+      "audit_source_line": 40
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payments_keep_debt",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 424,
+      "audit_log_line": 42,
+      "original_clause": "L93",
+      "audit_source_line": 42
+    },
+    {
+      "name": "JurisLean.Candidates.U06_1OriginalCashIdentityInstances20261101.two_real_six_payment_account_cash",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/U06_1OriginalCashIdentityInstances20261101.lean",
+      "source_line": 439,
+      "audit_log_line": 44,
+      "original_clause": "L93",
+      "audit_source_line": 44
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "source_line": 168,
+      "audit_log_line": 50,
+      "original_clause": "L91",
+      "audit_source_line": 50
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account",
+      "source_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "source_line": 181,
+      "audit_log_line": 51,
+      "original_clause": "L91",
+      "audit_source_line": 51
+    }
+  ]
+}

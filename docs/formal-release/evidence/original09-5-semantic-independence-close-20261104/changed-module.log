@@ -1,0 +1,90 @@
+ℹ [2942/2942] Built JurisLean.Candidates.SemanticIndependenceAudit20261104 (2.2s)
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:200:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.three_complete_witness_models :
+  SemanticIndependenceAudit20261104.ModelsTheta SemanticIndependenceAudit20261104.toyContext
+      SemanticIndependenceAudit20261104.model100 ∧
+    SemanticIndependenceAudit20261104.ModelsTheta SemanticIndependenceAudit20261104.toyContext
+        SemanticIndependenceAudit20261104.model110 ∧
+      SemanticIndependenceAudit20261104.ModelsTheta SemanticIndependenceAudit20261104.toyContext
+          SemanticIndependenceAudit20261104.model001 ∧
+        (SemanticIndependenceAudit20261104.model100.l = true ∧
+            SemanticIndependenceAudit20261104.model100.g = false ∧
+              SemanticIndependenceAudit20261104.model100.competentIssuer =
+                  SemanticIndependenceAudit20261104.model100.g ∧
+                SemanticIndependenceAudit20261104.model100.b = false ∧
+                  SemanticIndependenceAudit20261104.Power SemanticIndependenceAudit20261104.model100 = true ∧
+                    SemanticIndependenceAudit20261104.Obligation SemanticIndependenceAudit20261104.model100 = false ∧
+                      SemanticIndependenceAudit20261104.Occurred SemanticIndependenceAudit20261104.model100 = false) ∧
+          (SemanticIndependenceAudit20261104.model110.l = true ∧
+              SemanticIndependenceAudit20261104.model110.g = true ∧
+                SemanticIndependenceAudit20261104.model110.competentIssuer =
+                    SemanticIndependenceAudit20261104.model110.g ∧
+                  SemanticIndependenceAudit20261104.model110.b = false ∧
+                    SemanticIndependenceAudit20261104.Power SemanticIndependenceAudit20261104.model110 = true ∧
+                      SemanticIndependenceAudit20261104.Obligation SemanticIndependenceAudit20261104.model110 = true ∧
+                        SemanticIndependenceAudit20261104.Occurred SemanticIndependenceAudit20261104.model110 = false) ∧
+            SemanticIndependenceAudit20261104.model001.l = false ∧
+              SemanticIndependenceAudit20261104.model001.g = false ∧
+                SemanticIndependenceAudit20261104.model001.competentIssuer =
+                    SemanticIndependenceAudit20261104.model001.g ∧
+                  SemanticIndependenceAudit20261104.model001.b = true ∧
+                    SemanticIndependenceAudit20261104.Power SemanticIndependenceAudit20261104.model001 = false ∧
+                      SemanticIndependenceAudit20261104.Obligation SemanticIndependenceAudit20261104.model001 = false ∧
+                        SemanticIndependenceAudit20261104.Occurred SemanticIndependenceAudit20261104.model001 = true
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:201:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.three_complete_witness_models' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:202:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_semantically_entails_power :
+  SemanticIndependenceAudit20261104.semanticEntails SemanticIndependenceAudit20261104.hasObligation
+    SemanticIndependenceAudit20261104.hasPower
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:203:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_semantically_entails_power' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:204:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.power_does_not_semantically_entail_obligation :
+  ¬SemanticIndependenceAudit20261104.semanticEntails SemanticIndependenceAudit20261104.hasPower
+      SemanticIndependenceAudit20261104.hasObligation
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:205:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.power_does_not_semantically_entail_obligation' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:206:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_does_not_semantically_entail_occurred :
+  ¬SemanticIndependenceAudit20261104.semanticEntails SemanticIndependenceAudit20261104.hasObligation
+      SemanticIndependenceAudit20261104.hasOccurred
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:207:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.obligation_does_not_semantically_entail_occurred' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:208:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.occurred_does_not_semantically_entail_power :
+  ¬SemanticIndependenceAudit20261104.semanticEntails SemanticIndependenceAudit20261104.hasOccurred
+      SemanticIndependenceAudit20261104.hasPower
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:209:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.occurred_does_not_semantically_entail_power' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:210:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation :
+  SemanticIndependenceAudit20261104.ModelsTheta SemanticIndependenceAudit20261104.toyContext
+      SemanticIndependenceAudit20261104.model100 ∧
+    SemanticIndependenceAudit20261104.ModelsTheta SemanticIndependenceAudit20261104.toyContext
+        SemanticIndependenceAudit20261104.model110 ∧
+      SemanticIndependenceAudit20261104.model100.context = SemanticIndependenceAudit20261104.model110.context ∧
+        SemanticIndependenceAudit20261104.model100.context.actor = 1 ∧
+          SemanticIndependenceAudit20261104.model100.context.action =
+              SemanticIndependenceAudit20261104.ToyAction.pay 6 ∧
+            SemanticIndependenceAudit20261104.model100.context.object = 2 ∧
+              SemanticIndependenceAudit20261104.model100.context.time = 3 ∧
+                SemanticIndependenceAudit20261104.model100.context.document = 4 ∧
+                  SemanticIndependenceAudit20261104.model100.context.source = 5 ∧
+                    SemanticIndependenceAudit20261104.model100.context.content =
+                        SemanticIndependenceAudit20261104.ToyContent.paymentDue 6 ∧
+                      SemanticIndependenceAudit20261104.model100.context.received = true ∧
+                        SemanticIndependenceAudit20261104.model100.context.authentic = true ∧
+                          SemanticIndependenceAudit20261104.model100.context.effective = true ∧
+                            SemanticIndependenceAudit20261104.model100.context.objectMatches = true ∧
+                              SemanticIndependenceAudit20261104.model100.context.scopeMatches = true ∧
+                                SemanticIndependenceAudit20261104.model100.competentIssuer = false ∧
+                                  SemanticIndependenceAudit20261104.model110.competentIssuer = true ∧
+                                    SemanticIndependenceAudit20261104.Obligation
+                                          SemanticIndependenceAudit20261104.model100 =
+                                        false ∧
+                                      SemanticIndependenceAudit20261104.Obligation
+                                          SemanticIndependenceAudit20261104.model110 =
+                                        true
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:211:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation' depends on axioms: [propext]
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:212:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.received_content_and_permission_entail_obligation :
+  SemanticIndependenceAudit20261104.semanticEntails
+    (fun m =>
+      SemanticIndependenceAudit20261104.Power m = true ∧
+        SemanticIndependenceAudit20261104.documentTrigger m.context m = true)
+    fun m => SemanticIndependenceAudit20261104.Obligation m = true
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:213:0: 'JurisLean.Candidates.SemanticIndependenceAudit20261104.received_content_and_permission_entail_obligation' does not depend on any axioms
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:214:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.ModelsTheta (c : SemanticIndependenceAudit20261104.ToyContext)
+  (m : SemanticIndependenceAudit20261104.ToyModel) : Prop
+info: JurisLean/Candidates/SemanticIndependenceAudit20261104.lean:215:0: JurisLean.Candidates.SemanticIndependenceAudit20261104.semanticEntails
+  (premise conclusion : SemanticIndependenceAudit20261104.ToyModel → Prop) : Prop
+Build completed successfully (2942 jobs).

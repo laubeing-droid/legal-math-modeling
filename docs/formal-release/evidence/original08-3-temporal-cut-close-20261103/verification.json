@@ -1,0 +1,488 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_question": "08.3",
+  "proposed_disposition": {
+    "archive_gap_status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+    "path": "Frozen 08.3 L113/L115/L117 mathematical mapping is COVERED; full-record PR acceptance is pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "lines": [
+      111,
+      118
+    ],
+    "subparagraph_lines": [
+      [
+        113,
+        113
+      ],
+      [
+        115,
+        115
+      ],
+      [
+        117,
+        117
+      ]
+    ],
+    "clause_ids": [
+      "U08.1",
+      "U08.2"
+    ],
+    "sha256": "eeaa6e20a4a475ff81dd25b77b36ffa28a27cdcf0e2b554f31b5710da9f6db0c"
+  },
+  "canonical_before": {
+    "id": "08.3",
+    "heading": "## 08.3 时间截面、迟到材料与输入置换",
+    "original_manifest_row": "08.3",
+    "source_file": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\08_规范时间证据与程序终局.md",
+    "source_lines": [
+      111,
+      118
+    ],
+    "clauses": [
+      "U08.1",
+      "U08.2"
+    ],
+    "subparagraph_lines": [
+      [
+        113,
+        113
+      ],
+      [
+        115,
+        115
+      ],
+      [
+        117,
+        117
+      ]
+    ],
+    "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+    "evidence": [
+      {
+        "package": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\temporal-interpretation-20261027",
+        "subject": "7d4e77a12bb86adfa719267f3a44e3e331c85e9a",
+        "run_id": 40472856489,
+        "job_id": 122083892400,
+        "scope": "24目标22执行：逐事件可见App/未知时间/局部性/受限最大起点/压缩/实际版本门控来源编译；完整PR/全部段落/独立证据程序组合尚待"
+      }
+    ],
+    "remaining": "Temporal PR52及合后main40476502528/final122101285843全PASS。实际source/time/evidence/process有限联合验证器、逐段工程核对和U00继续。"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original08-3-temporal-cut-20261103",
+    "commit": "53f9e635d1209ad1b1b6a6e84fff18d1e2eae63d",
+    "tree": "1cc25a41daf017f90882d3c714400bbb507304cd",
+    "parent": "280f249d4a4d4e28d4988802b0282476de7b9788"
+  },
+  "source_attempts": [
+    {
+      "run_id": 41529170635,
+      "attempt": 1,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "53f9e635d1209ad1b1b6a6e84fff18d1e2eae63d",
+      "head_branch": "formal/close-original08-3-temporal-cut-20261103",
+      "job_id": 125564632836,
+      "job_name": "changed-modules",
+      "job_conclusion": "success",
+      "artifact_id": 13181481502,
+      "artifact_name": "changed-module-only-41529170635-1",
+      "artifact_bytes": 6699,
+      "artifact_api_digest": "sha256:ef7cb1c6d78a9205c2bc37510570dc3b1470abc6c7250c992d95e58b17f31434",
+      "artifact_zip_sha256": "ef7cb1c6d78a9205c2bc37510570dc3b1470abc6c7250c992d95e58b17f31434",
+      "requested_module": "JurisLean.Candidates.SourceTemporalIdentityAudit20261103",
+      "new_target_count": 1,
+      "explicit_check_axiom_pairs": 27,
+      "errors": 0,
+      "sorryAx_hits": 0
+    }
+  ],
+  "artifact": {
+    "id": 13181481502,
+    "name": "changed-module-only-41529170635-1",
+    "bytes": 6699,
+    "api_sha256": "sha256:ef7cb1c6d78a9205c2bc37510570dc3b1470abc6c7250c992d95e58b17f31434",
+    "zip_path": "D:\\tmp\\original08-3-source-r1\\artifacts\\13181481502\\13181481502.zip",
+    "zip_sha256": "ef7cb1c6d78a9205c2bc37510570dc3b1470abc6c7250c992d95e58b17f31434",
+    "package_log": "changed-module.log",
+    "log_bytes": 71735,
+    "log_sha256": "2c64be932b9b40381d7bc7185562fa32c0f6f2a91eae0b85b972b568c8fa8b07",
+    "package_plan": "module-plan.json",
+    "plan_bytes": 277,
+    "plan_sha256": "163c1eea4381a11813c05601c6a18ef8d0d7b223240853c10344eb3b82f34eb7"
+  },
+  "module_plan": {
+    "include": [
+      {
+        "module": "JurisLean.Candidates.SourceTemporalIdentityAudit20261103",
+        "target": "JurisLean.Candidates.SourceTemporalIdentityAudit20261103"
+      }
+    ],
+    "removed_modules": [],
+    "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SourceTemporalIdentityAudit20261103.lean",
+      "bytes": 6994,
+      "sha256": "37937be58a89e492fad40f448141e1cc07203fa2356ffca71faeaaeabcd9ea29",
+      "git_blob": "79c14ad2cd719c7df73d5793037c88d0b1dab005"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16007,
+      "sha256": "aabe4dcd178e5a02fdc8222ec6fe35ec1ae5dad40d7f7ca85c403ff423997abd",
+      "git_blob": "57ccd9fdcccfb1060251a285492874cc3f8cf950",
+      "physical_bytes": 16007,
+      "physical_sha256": "aabe4dcd178e5a02fdc8222ec6fe35ec1ae5dad40d7f7ca85c403ff423997abd",
+      "commit_git_blob": "57ccd9fdcccfb1060251a285492874cc3f8cf950"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretation20261027.lean",
+      "bytes": 19018,
+      "sha256": "b94c3c4f51fc05d0cecb380e4b24e2da21a634a13d756b5ffb4c27dfd9e68c8c",
+      "git_blob": "2d2104073a7c6c85cf6408080bdf3a866167c45a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/TemporalInterpretationAudit20261027.lean",
+      "bytes": 14711,
+      "sha256": "daeed74a372a1e090f3b6ba0c0fe6d5f82b3c2c0d83884b51af54a7f4ead92c0",
+      "git_blob": "b68b39006af4701a371f80c0641dcee68b2e4059"
+    }
+  ],
+  "actual_output_counts": {
+    "requested_modules": 1,
+    "new_named_theorems": 1,
+    "selected_named_outputs": 27,
+    "selected_reused_outputs": 26,
+    "explicit_check_axiom_pairs": 27,
+    "source_plan_removed_modules": 0,
+    "raw_build": "success",
+    "error_count": 0,
+    "sorryAx_count": 0,
+    "new_theorem_standard_axioms": true
+  },
+  "selected_named_target_count": 27,
+  "selected_named_targets": [
+    {
+      "target": "JurisLean.Candidates.TemporalIdentity20261103.visible_cut_preserves_distinct_stable_ids",
+      "check_source_line": 28,
+      "axiom_source_line": 29,
+      "check_raw_log_line": 492,
+      "axiom_raw_log_line": 501,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.legal_applicability_requires_faithful_interpretation",
+      "check_source_line": 31,
+      "axiom_source_line": 32,
+      "check_raw_log_line": 504,
+      "axiom_raw_log_line": 524,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.visible_records_preserve_key_consistency",
+      "check_source_line": 33,
+      "axiom_source_line": 34,
+      "check_raw_log_line": 527,
+      "axiom_raw_log_line": 533,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.cut_and_selection_commute_under_locality",
+      "check_source_line": 35,
+      "axiom_source_line": 36,
+      "check_raw_log_line": 536,
+      "axiom_raw_log_line": 551,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.latest_start_is_correct_in_ordered_interval_model",
+      "check_source_line": 37,
+      "axiom_source_line": 38,
+      "check_raw_log_line": 554,
+      "axiom_raw_log_line": 568,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.single_success_is_exact",
+      "check_source_line": 39,
+      "axiom_source_line": 40,
+      "check_raw_log_line": 571,
+      "axiom_raw_log_line": 575,
+      "axioms": [
+        "propext"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_success_contract",
+      "check_source_line": 41,
+      "axiom_source_line": 42,
+      "check_raw_log_line": 576,
+      "axiom_raw_log_line": 587,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.successful_version_is_applicable",
+      "check_source_line": 43,
+      "axiom_source_line": 44,
+      "check_raw_log_line": 589,
+      "axiom_raw_log_line": 599,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.visible_set_is_permutation_invariant",
+      "check_source_line": 45,
+      "axiom_source_line": 46,
+      "check_raw_log_line": 602,
+      "axiom_raw_log_line": 607,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_is_permutation_invariant",
+      "check_source_line": 47,
+      "axiom_source_line": 48,
+      "check_raw_log_line": 610,
+      "axiom_raw_log_line": 615,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append",
+      "check_source_line": 49,
+      "axiom_source_line": 50,
+      "check_raw_log_line": 618,
+      "axiom_raw_log_line": 625,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.unknown_time_retains_each_completion",
+      "check_source_line": 51,
+      "axiom_source_line": 52,
+      "check_raw_log_line": 628,
+      "axiom_raw_log_line": 638,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.nonempty_constraint_refinement_preserves_must",
+      "check_source_line": 53,
+      "axiom_source_line": 54,
+      "check_raw_log_line": 641,
+      "axiom_raw_log_line": 645,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.must_truth_requires_actual_world_membership",
+      "check_source_line": 55,
+      "axiom_source_line": 56,
+      "check_raw_log_line": 646,
+      "axiom_raw_log_line": 649,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.finite_lossless_reflection",
+      "check_source_line": 57,
+      "axiom_source_line": 58,
+      "check_raw_log_line": 650,
+      "axiom_raw_log_line": 654,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.labels_preserved_implies_all_answers",
+      "check_source_line": 59,
+      "axiom_source_line": 60,
+      "check_raw_log_line": 656,
+      "axiom_raw_log_line": 660,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version",
+      "check_source_line": 61,
+      "axiom_source_line": 62,
+      "check_raw_log_line": 661,
+      "axiom_raw_log_line": 681,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.timed_compilation_has_actual_app_and_closure",
+      "check_source_line": 63,
+      "axiom_source_line": 64,
+      "check_raw_log_line": 684,
+      "axiom_raw_log_line": 700,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.temporal_source_rule_semantic_composition",
+      "check_source_line": 65,
+      "axiom_source_line": 66,
+      "check_raw_log_line": 703,
+      "axiom_raw_log_line": 734,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.publication_does_not_identify_applicable_version",
+      "check_source_line": 67,
+      "axiom_source_line": 68,
+      "check_raw_log_line": 737,
+      "axiom_raw_log_line": 764,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.global_latest_version_loses_first_event",
+      "check_source_line": 69,
+      "axiom_source_line": 70,
+      "check_raw_log_line": 767,
+      "axiom_raw_log_line": 776,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.cut_and_selection_need_not_commute",
+      "check_source_line": 71,
+      "axiom_source_line": 72,
+      "check_raw_log_line": 779,
+      "axiom_raw_log_line": 789,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.raising_cut_need_not_narrow_candidates",
+      "check_source_line": 73,
+      "axiom_source_line": 74,
+      "check_raw_log_line": 792,
+      "axiom_raw_log_line": 822,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.time_cut_alone_does_not_choose_law",
+      "check_source_line": 75,
+      "axiom_source_line": 76,
+      "check_raw_log_line": 825,
+      "axiom_raw_log_line": 838,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.TemporalInterpretation20261027.Audit.preserving_one_answer_need_not_preserve_labels_or_all_answers",
+      "check_source_line": 77,
+      "axiom_source_line": 78,
+      "check_raw_log_line": 841,
+      "axiom_raw_log_line": 852,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.Compiler.derives_mono_facts",
+      "check_source_line": 80,
+      "axiom_source_line": 81,
+      "check_raw_log_line": 854,
+      "axiom_raw_log_line": 858,
+      "axioms": []
+    },
+    {
+      "target": "JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted",
+      "check_source_line": 82,
+      "axiom_source_line": 83,
+      "check_raw_log_line": 859,
+      "axiom_raw_log_line": 864,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "axioms_standard_subset": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "runtime_consumer_changed": false,
+  "notes": [
+    "The new theorem establishes only membership and record inequality for visible input records with distinct IDs.",
+    "The existing temporal contracts retain their explicit locality, fixed-rule, nonempty refinement, and actual-world premises.",
+    "No runtime caller, legal application predicate, retroactivity rule, real-world truth, or engineering-wide obligation is upgraded."
+  ],
+  "diagnostics": []
+}

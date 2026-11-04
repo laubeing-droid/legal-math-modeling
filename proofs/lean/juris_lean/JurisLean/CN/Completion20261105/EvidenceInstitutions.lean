@@ -64,11 +64,18 @@ def offenseEvidence (s : Situation) (c : Law.Call)
   else if !hasJoint s.participations person event commonScope then quiet s (.rejected .prerequisites)
   else if ability.scope != c.request.scope || elements.scope != c.request.scope then
     quiet s (.rejected .unsupported)
-  else match combineAnd (proofAt s c (.atom ability)) (proofAt s c (.atom elements)) with
-    | .known .established => quiet s (.success c.request.scope.question)
-    | .known .notEstablished => quiet s (.rejected .prerequisites)
-    | .known .undetermined => quiet s (.unknown .systemNotJudge)
-    | .unknown k => quiet s (.unknown k)
+  else match s.offenseSlots.filter (fun slot => slot.source.id == c.request.rule &&
+      slot.source.version == c.request.version && slot.scope == c.request.scope) with
+    | [] => quiet s (.unknown .inputUnchecked)
+    | [slot] =>
+      if slot.person != person || slot.event != event || slot.commonScope != commonScope then
+        quiet s (.unknown .inputUnchecked)
+      else match combineAnd (proofAt s c (.atom ability)) (proofAt s c (.atom elements)) with
+      | .known .established => quiet s (.success slot.charge)
+      | .known .notEstablished => quiet s (.rejected .prerequisites)
+      | .known .undetermined => quiet s (.unknown .systemNotJudge)
+      | .unknown k => quiet s (.unknown k)
+    | _ :: _ :: _ => quiet s (.conflict .competentReview)
 
 def storedResJudicata (s : Situation) (document : Ref .document)
     (person : Ref .actor) (scope : Scope) (time : Nat) : Reply Bool :=
@@ -114,15 +121,7 @@ theorem offense_evidence_never_changes_reality (s : Situation) (c : Law.Call)
     (commonScope : Ref .query) (ability elements : Atom) :
     (offenseEvidence s c person event commonScope ability elements).after = s := by
   unfold offenseEvidence
-  split
-  · rfl
-  · split
-    · rfl
-    · split
-      · rfl
-      · split
-        · rfl
-        · split <;> rfl
+  repeat' first | rfl | split
 
 #print axioms interpretation_lookup_current
 #print axioms proofAt_unknown_reaches_query

@@ -23,13 +23,22 @@ def gate (s : Situation) (c : Call) (grounds : Formula) : Reply Unit :=
   else match selectedRules s.core c.request with
   | [law] =>
     if law.guard == grounds then
-      quiet s (legalDispatch s c.request c.policy c.mode c.world).answer
+      quiet s (permissionDispatch s c.request c.policy c.mode c.world).answer
     else quiet s (.rejected .unsupported)
-  | _ => quiet s (legalDispatch s c.request c.policy c.mode c.world).answer
+  | _ => quiet s (permissionDispatch s c.request c.policy c.mode c.world).answer
+
+def expectedEffect : InstitutionKind → EffectType
+  | .lifecycle | .agency => .constitutive
+  | .bankruptcy | .rights => .proceduralBinding
+  | _ => .confirmatory
 
 def gateFor (s : Situation) (c : Call) (grounds : Formula) (kind : InstitutionKind) : Reply Unit :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
-  else if institutionAllowed s c.request kind then gate s c grounds
+  else if institutionAllowed s c.request kind then
+    match selectedRules s.core c.request with
+    | [law] => if law.effect == expectedEffect kind then gate s c grounds
+        else quiet s (.rejected .unsupported)
+    | _ => gate s c grounds
   else quiet s (.rejected .unsupported)
 
 def continueWith {α : Type} (permission : Reply Unit)

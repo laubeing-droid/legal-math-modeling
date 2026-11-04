@@ -23,9 +23,14 @@ def call (act : Act) : Law.Call := ⟨request act, policy, .human, toyWorld⟩
 def faithAtom : Atom := ⟨toyScope,⟨90⟩⟩
 def priceAtom : Atom := ⟨toyScope,⟨91⟩⟩
 def publicityAtom : Atom := ⟨toyScope,⟨92⟩⟩
+def arrestAtom : Atom := ⟨toyScope,⟨96⟩⟩
+def terminationAtom : Atom := ⟨toyScope,⟨97⟩⟩
+def exclusion19Atom : Atom := ⟨toyScope,⟨98⟩⟩
 def template : ProofTemplate :=
   ⟨toyNorm, toyScope, .civil, .claimant, [(toyAtom, .support toyAtom),(faithAtom,.support faithAtom),
-      (priceAtom,.support priceAtom),(publicityAtom,.support publicityAtom)], ⟨12⟩, ⟨50⟩⟩
+      (priceAtom,.support priceAtom),(publicityAtom,.support publicityAtom),
+      (arrestAtom,.support arrestAtom),(terminationAtom,.support terminationAtom),
+      (exclusion19Atom,.support exclusion19Atom)], ⟨12⟩, ⟨50⟩⟩
 
 def configured (law : Rule) (kind : InstitutionKind) : Situation :=
   let st := {initial with N := ⟨1, [law], grants⟩}
@@ -156,7 +161,9 @@ theorem actual_nonmonotone_withdrawal :
 def offenseStart (actor : Ref .actor) : Situation :=
   let s := readyCase confirmation .offense
   let st := {s.core.state with F := [⟨ev1,actor,toyAtom,0⟩]}
-  {s.withCore (s.core.putState st rfl) with participations := jiaParts ++ yiParts}
+  {s.withCore (s.core.putState st rfl) with
+    participations := jiaParts ++ yiParts
+    offenseSlots := [⟨toyNorm,toyScope,actor,ev1,q1,toyScope.question⟩]}
 /- 6: actual actor/event projection blocks copying the other's excess. The
    general differing-charge theorem uses two norm-element queries, not scores. -/
 theorem offense_actual :
@@ -165,8 +172,9 @@ theorem offense_actual :
     (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) aYi ev2 q1
       toyAtom toyAtom)).answer = .unknown .inputUnchecked := by decide
 
+def bankruptcyLaw : Rule := {confirmation with effect := .proceduralBinding}
 def bankruptcyStart : Situation :=
-  {readyCase confirmation .bankruptcy with
+  {readyCase bankruptcyLaw .bankruptcy with
     executions := [procD,procO]
     interest := fun id => if id = ⟨21⟩ then some ⟨⟨7⟩,⟨3⟩⟩ else none}
 def accepted : Situation := advance bankruptcyStart
@@ -182,13 +190,25 @@ theorem bankruptcy_actual :
     (executeCommand accepted (.institution (.interest (call .decide) (.atom toyAtom)
       {interestClaim with in46 := false} 20))).answer = .unknown .systemNotJudge := by decide
 
-/- 8: representative art17 personal-restraint route writes only track4. -/
-def compensated : Reply Judgment := executeCommand (readyCase confirmation (.compensation .criminal))
-  (.institution (.compensation (call .decide) (.atom toyAtom) .criminal ⟨62⟩))
+/- 8: art17(2) arrest + termination and no art19 exclusion. Art18 is
+   the property route; it is not silently identified with art19. -/
+def compensationLaw : Rule := {confirmation with
+  guard := .both (.atom arrestAtom) (.both (.atom terminationAtom) (.neg (.atom exclusion19Atom)))
+  materials := [⟨96⟩,⟨97⟩,⟨98⟩]}
+def compensationStart : Situation :=
+  admitOne (admitOne (admitOne (readyCase compensationLaw (.compensation .criminal))
+    ⟨96⟩ arrestAtom true) ⟨97⟩ terminationAtom true) ⟨98⟩ exclusion19Atom false
+def compensated : Reply Judgment := executeCommand compensationStart
+  (.institution (.compensation (call .decide) compensationLaw.guard .criminal ⟨62⟩))
 theorem compensation_actual :
     compensated.after.tracks.stateCompensation = [(.criminal,⟨62⟩)] ∧
     compensated.after.tracks.civil = [] ∧ compensated.after.tracks.criminal = [] ∧
     compensated.after.tracks.administrative = [] := by decide
+
+def noTermination : Situation := advance compensationStart (.withdraw (request .admitEvidence) ⟨97⟩ ⟨99⟩)
+theorem compensation_missing_prerequisite_not_automatic :
+    (executeCommand noTermination (.institution (.compensation (call .decide)
+      compensationLaw.guard .criminal ⟨62⟩))).answer = .unknown .inputUnchecked := by decide
 
 /- 9: automatic elimination is absent; the actual conflict result is retained. -/
 theorem rights_actual :
@@ -247,6 +267,7 @@ theorem refused_actual :
 #print axioms offense_actual
 #print axioms bankruptcy_actual
 #print axioms compensation_actual
+#print axioms compensation_missing_prerequisite_not_automatic
 #print axioms rights_actual
 #print axioms interpretation_actual
 #print axioms resJudicata_actual

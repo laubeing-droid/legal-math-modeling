@@ -59,12 +59,14 @@ def qtemplate (n : Nat) : ProofTemplate :=
      (qatom n 5,.document ⟨10*n+1⟩ ⟨10*n+1⟩ (qatom n 5))],⟨12⟩,⟨n⟩⟩
 def dualBase : Situation :=
   let st := {initial with
-    N := ⟨1,[qrule 100,qrule 101],qgrants 100 ++ qgrants 101⟩
+    N := ⟨1,[qrule 100,qrule 101,qrule 102],qgrants 100 ++ qgrants 101 ++ qgrants 102⟩
     F := [⟨ev1,aJia,toyAtom,0⟩,⟨ev2,aJia,toyAtom,0⟩]}
   {Situation.initial with
     core := initialCase.putState st rfl
     participations := jiaParts ++ yiParts
-    uses := [⟨qnorm 100,qscope 100,.offense⟩,⟨qnorm 101,qscope 101,.offense⟩]}
+    uses := [⟨qnorm 100,qscope 100,.offense⟩,⟨qnorm 101,qscope 101,.offense⟩,⟨qnorm 102,qscope 102,.offense⟩]
+    offenseSlots := [⟨qnorm 100,qscope 100,aJia,ev1,q1,⟨100⟩⟩,
+      ⟨qnorm 101,qscope 101,aYi,ev1,q1,⟨101⟩⟩,⟨qnorm 102,qscope 102,aYi,ev2,q1,⟨101⟩⟩]}
 def qAdmit (s : Situation) (n offset pred : Nat) : Situation :=
   let id : Ref .material := ⟨10*n+offset⟩
   let raw : Raw id := ⟨qatom n pred,true,⟨id.value⟩,0⟩
@@ -72,14 +74,14 @@ def qAdmit (s : Situation) (n offset pred : Nat) : Situation :=
   advance (advance s (.record id raw)) (.admitEvidence (qrequest n .admitEvidence) .human id raw rc)
 def qPrepare (s : Situation) (n : Nat) : Situation :=
   qAdmit (qAdmit (advance s (.addTemplate (qrequest n .addTemplate) (qtemplate n))) n 0 4) n 1 5
-def dualCase : Situation := qPrepare (qPrepare dualBase 100) 101
+def dualCase : Situation := qPrepare (qPrepare (qPrepare dualBase 100) 101) 102
 
 theorem actual_shared_event_different_charges :
     (executeCommand dualCase (.offenseEvidence (qcall 100) aJia ev1 q1 (qatom 100 4) (qatom 100 5))).answer =
       .success ⟨100⟩ ∧
     (executeCommand dualCase (.offenseEvidence (qcall 101) aYi ev1 q1 (qatom 101 4) (qatom 101 5))).answer =
       .success ⟨101⟩ ∧
-    (executeCommand dualCase (.offenseEvidence (qcall 101) aYi ev2 q1 (qatom 101 4) (qatom 101 5))).answer =
+    (executeCommand dualCase (.offenseEvidence (qcall 102) aYi ev2 q1 (qatom 102 4) (qatom 102 5))).answer =
       .rejected .prerequisites := by decide
 
 def bScope : Scope := {toyScope with object := ⟨300⟩}
@@ -110,7 +112,7 @@ theorem three_unknown_exits_are_actual (k : UnknownKind) :
 
 theorem actual_conflict_is_suspended (kind : ConflictKind) :
     (executeCommand {normal with disputes := [(toyScope,kind)]} (.legal (call .decide))).answer =
-      .conflict (reviewRoute kind) := by cases kind <;> decide
+      .conflict (pendingRoute kind) := by cases kind <;> decide
 
 theorem actual_hohfeld_projection :
     legalPositions formedCase toyScope = hohfeld toyRelation := by decide

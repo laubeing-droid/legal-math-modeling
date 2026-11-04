@@ -103,7 +103,7 @@ def rsiCheck : Bool :=
     let result := runBoundEngine s context ⟨9⟩
     match result.native with
     | some ⟨.rsi _ _ _ _ _ _,actual⟩ =>
-      _root_.decide (kindOf result.legal = some .rsi ∧ actual.status = .evaluated ∧
+      decide (kindOf result.legal = some .rsi ∧ actual.status = .evaluated ∧
         Native.RSI.roundSpent actual.post = 1/10 ∧
         actual.post.service.loaded.fitted.table = [0,1] ∧
         (actual.receipt.bind (fun record => record.load)).map (fun load => load.status) = some .loaded ∧
@@ -114,22 +114,22 @@ def rsiCheck : Bool :=
   | _ => false
 
 def checkIO : IO Unit := do
-  unless _root_.decide (kindOf (run fit) = some .fit) do throw (IO.userError "fit_actual_call failed")
-  unless _root_.decide (kindOf (run prob) = some .prob) do throw (IO.userError "prob_actual_call failed")
-  unless _root_.decide (kindOf (run causal) = some .causal) do throw (IO.userError "causal_actual_call failed")
-  unless _root_.decide (kindOf (run bargain) = some .bargain) do throw (IO.userError "bargain_actual_call failed")
-  unless _root_.decide (kindOf (run cash) = some .cash) do throw (IO.userError "cash_actual_call failed")
-  unless _root_.decide (exactScalar (run exact) = some (5/6)) do throw (IO.userError "exact_actual_call failed")
-  unless _root_.decide (kindOf (run behavior) = some .behave) do throw (IO.userError "behavior_actual_call failed")
-  unless _root_.decide (paid.answer = .success () ∧
+  unless decide (kindOf (run fit) = some .fit) do throw (IO.userError "fit_actual_call failed")
+  unless decide (kindOf (run prob) = some .prob) do throw (IO.userError "prob_actual_call failed")
+  unless decide (kindOf (run causal) = some .causal) do throw (IO.userError "causal_actual_call failed")
+  unless decide (kindOf (run bargain) = some .bargain) do throw (IO.userError "bargain_actual_call failed")
+  unless decide (kindOf (run cash) = some .cash) do throw (IO.userError "cash_actual_call failed")
+  unless decide (exactScalar (run exact) = some (5/6)) do throw (IO.userError "exact_actual_call failed")
+  unless decide (kindOf (run behavior) = some .behave) do throw (IO.userError "behavior_actual_call failed")
+  unless decide (paid.answer = .success () ∧
     (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
     paid.after.core.state.ledger.length = 1 ∧
     paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L) do throw (IO.userError "actual_performance_consumes_native_cash failed")
-  unless _root_.decide ((executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
+  unless decide ((executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
 
   let fitted := run fit
   let learned := executeCommand fitted.after (.learnReport (request .learnModel) ⟨9⟩)
-  unless _root_.decide (learned.after.core.state.A.theta = [1] ∧ learned.after.core.state.N.version = 1 ∧
+  unless decide (learned.after.core.state.A.theta = [1] ∧ learned.after.core.state.N.version = 1 ∧
       learned.after.core.state.L.isEmpty = true) do
     throw (IO.userError "Learn did not consume the retained actual fitted table")
   unless rsiCheck do throw (IO.userError "actual admitted RSI consumer/load/round budget failed")

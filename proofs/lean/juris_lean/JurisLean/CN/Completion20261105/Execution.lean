@@ -264,7 +264,7 @@ def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .storedResJudicata doc person scope time => storedResJudicata s doc person scope time
   | .contractQuery c obj => contractQuery s c obj
   | .addTemplate r t => registerTemplate s r t
-  | .decide c document => decide s c document
+  | .decide c document => recordDecision s c document
   | .bindDecided b mode => bindDecided s b mode
   | .bindOther b mode => bindOtherSource s b mode
   | .learn r theta i raw => learnMaterial s r theta i raw

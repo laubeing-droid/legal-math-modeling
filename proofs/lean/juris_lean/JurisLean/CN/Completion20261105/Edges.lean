@@ -35,7 +35,7 @@ def assessDispatch (s : Situation) (c : Law.Call) : Reply Judgment :=
     | [] => quiet s (.unknown .inputUnchecked)
     | _ :: _ :: _ => quiet s (.conflict .competentReview)
 
-def decide (s : Situation) (c : Law.Call) (document : Ref .document) : Reply DecisionRecord :=
+def recordDecision (s : Situation) (c : Law.Call) (document : Ref .document) : Reply DecisionRecord :=
   match (assessDispatch s c).answer with
   | .success j =>
     let d : DecisionRecord := ⟨document, c.request, j, true⟩
@@ -190,8 +190,8 @@ theorem learning_frame (s : Situation) (r : Request) (theta : List Rat)
   · split <;> exact ⟨rfl,rfl,rfl,rfl⟩
 
 theorem decision_assessment_preserves_relations (s : Situation) (c : Law.Call)
-    (document : Ref .document) : (decide s c document).after.core.state.L = s.core.state.L := by
-  unfold decide
+    (document : Ref .document) : (recordDecision s c document).after.core.state.L = s.core.state.L := by
+  unfold recordDecision
   cases he : (assessDispatch s c).answer with
   | success j =>
     cases hf : s.core.state.decisions.find? (fun old => old.document == document) with

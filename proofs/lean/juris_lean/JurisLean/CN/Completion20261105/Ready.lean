@@ -121,6 +121,65 @@ def legalDispatch (s : Situation) (r : Request) (p : ProofPolicy)
       | _ :: _ :: _ => quiet s (.conflict .competentReview)
     | _ :: _ :: _ => quiet s (.conflict .competentReview)
 
+/- Institutional effects may delete/re-attribute R or freeze a proceeding.
+   Their permission check must not demand a fictitious positive `formed`
+   relation, and must not execute a staged append. Source/effect checking and
+   the very same registered assessment remain mandatory. -/
+def permissionRequestGate (s : Situation) (r : Request) (law : Rule) (p : ProofPolicy) : Bool :=
+  s.core.state.N.version == r.version && law.source.id == r.rule &&
+  law.source.version == r.version && law.scope == r.scope &&
+  r.act == effectAction law.effect && p.scope == law.scope &&
+  p.source.id == law.source.id && p.source.version == law.source.version
+
+def permissionLaw (s : Situation) (r : Request) (law : Rule) (p : ProofPolicy)
+    (w : PossibleWorld) (t : IssuedTemplate) : Reply Unit :=
+  if permissionRequestGate s r law p = false then quiet s (.rejected .unsupported)
+  else if legalWorldCheck s w = false then quiet s (.unknown .inputUnchecked)
+  else match assessed s law t.body with
+    | .unknown k => quiet s (.unknown k)
+    | .known .undetermined => quiet s (.unknown .systemNotJudge)
+    | .known .notEstablished => quiet s (.rejected .prerequisites)
+    | .known .established =>
+      if policyAgreement s law p .established then quiet s (.success ())
+      else quiet s (.rejected .unsupported)
+
+def permissionDispatch (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld) : Reply Unit :=
+  if automationAllowed s.core.state r.scope m = false then quiet s .blockedHuman
+  else if authorized s.core.state.N r = false then quiet s (.rejected .unauthorized)
+  else if (activeConflict s r.scope).isSome then
+    quiet s (.conflict ((activeConflict s r.scope).getD .competentReview))
+  else match selectedRules s.core r with
+    | [] => quiet s (.unknown .inputUnchecked)
+    | [law] => match selectedTemplates s law with
+      | [] => quiet s (.unknown .inputUnchecked)
+      | [t] => permissionLaw s r law p w t
+      | _ :: _ :: _ => quiet s (.conflict .competentReview)
+    | _ :: _ :: _ => quiet s (.conflict .competentReview)
+
+theorem permissionLaw_ready (s : Situation) (r : Request) (law : Rule) (p : ProofPolicy)
+    (w : PossibleWorld) (t : IssuedTemplate) (ht : t ∈ selectedTemplates s law)
+    (h : (permissionLaw s r law p w t).answer = .success ()) : Ready s law t p := by
+  unfold permissionLaw at h
+  split at h
+  · cases h
+  · split at h
+    · cases h
+    · rename_i hw
+      have hc : legalWorldCheck s w = true := by cases hh : legalWorldCheck s w <;> simp_all
+      cases ha : assessed s law t.body with
+      | unknown k => simp [ha,quiet] at h
+      | known j =>
+        cases j with
+        | notEstablished => simp [ha,quiet] at h
+        | undetermined => simp [ha,quiet] at h
+        | established =>
+          simp only [ha] at h
+          split at h
+          · rename_i hp
+            exact ⟨⟨w,legalWorldCheck_sound s w hc⟩,ht,ha,hp⟩
+          · cases h
+
 /- A10: actual successful checkedLaw execution entails the separately defined
    Ready. The only premise about the call is its returned success branch. -/
 theorem checkedLaw_ready (s : Situation) (r : Request) (law : Rule) (p : ProofPolicy)
@@ -217,4 +276,5 @@ theorem selected_exclusive_empty (s : Situation) (a b : LegalRelation)
 #print axioms legalDispatch_refused
 #print axioms admitted_not_natural_truth
 #print axioms selected_exclusive_empty
+#print axioms permissionLaw_ready
 end JurisLean.CN.Completion20261105

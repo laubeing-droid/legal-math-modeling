@@ -47,6 +47,14 @@ structure CausalClause where
   statistic : Ref .query
   element : Atom
 
+structure OffenseSlot where
+  source : NormRef
+  scope : Scope
+  person : Ref .actor
+  event : Ref .event
+  commonScope : Ref .query
+  charge : Ref .query
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -69,14 +77,19 @@ structure Situation where
   participations : List IR.Participation
   engineResults : List EngineReport
   causalClauses : List CausalClause
+  offenseSlots : List OffenseSlot
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], []⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], [], []⟩
+
+def pendingRoute : ConflictKind → ReviewRoute
+  | .localDepartment106 => .stateCouncil
+  | other => reviewRoute other
 
 def activeConflict (s : Situation) (scope : Scope) : Option ReviewRoute :=
-  match ((s.disputes.filter (fun d => d.1 == scope)).map (fun d => reviewRoute d.2)).eraseDups with
+  match ((s.disputes.filter (fun d => d.1 == scope)).map (fun d => pendingRoute d.2)).eraseDups with
   | [] => none
   | [route] => some route
   | _ :: _ :: _ => some .competentReview

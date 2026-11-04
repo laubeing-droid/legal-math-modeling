@@ -160,7 +160,7 @@ theorem q_receipt_is_actual_event_and_history
   refine ⟨rfl, rfl, h.newPayment, rfl, rfl, rfl, h.refundRelation,
     rfl, rfl, rfl, rfl, ?_, h.originalIdentified, h.originalCash⟩
   have hne : s.debt.relation ≠ r.claim.relation := Ne.symm h.newRelation
-  simp [effectPair, refundPost, eligiblePost, claimPost, Ledger.quantity, hne]
+  simp [effectPair, refundPost, eligiblePost, claimPost, Ledger.quantity, Ledger.balance, hne]
 
 def QuantityConclusion (s : Ledger.State) (r : RefundRule) : Prop :=
   Ledger.Conserves (refundPost s r) ∧ Ledger.CashConsistent (refundPost s r) ∧

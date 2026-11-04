@@ -280,7 +280,7 @@ def semanticEntails (c : ToyContext) (premise conclusion : ToyWorld → Bool) : 
 
 theorem toyWorld_is_a_Theta_model (c : ToyContext) (physical norm ready : Bool) :
     ModelsTheta c (toyWorld c physical norm ready) := by
-  simp [ModelsTheta, toyWorld, stage2, stage1, stage0, mkW6]
+  simp [ModelsTheta, toyWorld, stage2, stage1, stage0, mkW6, scopedBool]
 
 theorem toyWorlds_satisfy_one_Theta (c : ToyContext) :
     ModelsTheta c (toyWorld c true false false) ∧

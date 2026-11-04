@@ -171,9 +171,9 @@ def checkIO : IO Unit := do
   unless decide (exactScalar (run exact) = some (5/6)) do throw (IO.userError "exact_actual_call failed")
   let exactReply := run exact
   match exactReply.answer with
-  | .success first =>
+  | .success _ =>
     let alternatives := advance exactReply.after (.institution (.propose
-      {first with payload := ⟨.scalar,⟨2⟩⟩}))
+      (engineOutput exactReply.after context .exact "synthetic alternative proposal" ⟨.scalar,⟨2⟩⟩)))
     unless decide ((executeCommand alternatives (.operator ⟨[],[],[]⟩ (.measure .scalar toyScope))).answer =
         .conflict .competentReview) do
       throw (IO.userError "measure selected a head from incompatible exact proposals")

@@ -163,12 +163,14 @@ theorem delegation_actual_capacity (s : Situation) (obj : Ref .object)
       result.principalCapacity = a.principalCapacity := by
   unfold delegateLocal at hs ⊢
   rw [ha] at hs ⊢
+  dsimp only at hs ⊢
   split at hs
   · cases hs
   · rename_i guard
     split at hs
     · cases hs
     · rename_i parent found
+      dsimp only at hs
       cases hs
       simp [guard, found, assign, delegate]
 

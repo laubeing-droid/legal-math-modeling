@@ -1,0 +1,687 @@
+⚠ [8484/8543] Replayed JurisLean.Genealogy.Part1
+warning: JurisLean/Genealogy/Part1.lean:119:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part1.lean:214:14: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Genealogy/Part1.lean:288:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8485/8543] Replayed JurisLean.Genealogy.Part2
+warning: JurisLean/Genealogy/Part2.lean:48:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8486/8543] Replayed JurisLean.Genealogy.Part3
+warning: JurisLean/Genealogy/Part3.lean:166:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:203:9: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:237:9: unused variable `h1`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Genealogy/Part3.lean:238:11: unused variable `h2`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8488/8543] Replayed JurisLean.Seams.PrecedentFlow
+warning: JurisLean/Seams/PrecedentFlow.lean:927:16: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/PrecedentFlow.lean:928:17: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8490/8543] Replayed JurisLean.Seams.UnifiedNeedlesS0S1
+warning: JurisLean/Seams/UnifiedNeedlesS0S1.lean:420:57: unused variable `a`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8491/8543] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8496/8543] Replayed JurisLean.Candidates.CompilerClosure20261026
+info: JurisLean/Candidates/CompilerClosure20261026.lean:235:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_closed_at_finite_fuel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:236:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_bounded_executable_closure_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:237:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_2_robust_queries_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerClosure20261026.lean:238:0: 'JurisLean.Candidates.Final20261021.Compiler.u03_1_robust_query_strictly_beyond_common_facts' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8497/8543] Replayed JurisLean.Candidates.CompilerProvenance20261027
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:371:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.atom = query ∧
+    JurisLean.Candidates.CompilerProvenance20261027.Certified ctx catalog leafCheck ruleGate out ∧
+      JurisLean.Candidates.CompilerProvenance20261027.BackwardFrom 0 nodes
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:372:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:373:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:374:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:375:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence) (truth : ℕ → Prop)
+  (sourceSound :
+    ∀ (leaf : JurisLean.Candidates.CompilerProvenance20261027.Leaf),
+      leaf.interpretationVersion = ctx.interpretation → leafCheck ctx leaf = true → truth leaf.atom)
+  (rulesSound :
+    ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, truth a) → truth r.conclusion)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  truth query
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:376:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:377:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : ℕ)
+  (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (accepted :
+    JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input ctx catalog leafCheck ruleGate nodes root
+        query =
+      JurisLean.Candidates.Final20261021.Result.known out)
+  (i : ℕ) : ¬Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:378:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:379:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ) (i : ℕ) (member : i ∈ parents)
+  (notEarlier : known.length ≤ i) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:380:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:381:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (mismatch :
+    List.map JurisLean.Candidates.CompilerProvenance20261027.Evidence.atom
+        (List.filterMap (fun i => known[i]?) parents) ≠
+      use.rule.premises) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:382:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:383:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (claim : JurisLean.Candidates.CompilerProvenance20261027.Leaf) (unsupported : leafCheck ctx claim = false) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.leaf claim) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:384:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:385:0: JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version
+  (ctx : JurisLean.Candidates.Final20261021.Gamma)
+  (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+  (leafCheck : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+  (ruleGate : JurisLean.Candidates.Final20261021.Gamma → JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+  (known : List JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+  (use : JurisLean.Candidates.CompilerProvenance20261027.RuleUse) (parents : List ℕ)
+  (wrongVersion : use.normVersion ≠ ctx.normVersion) :
+  JurisLean.Candidates.CompilerProvenance20261027.evalNode ctx catalog leafCheck ruleGate known
+      (JurisLean.Candidates.CompilerProvenance20261027.Node.fire use parents) =
+    none
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:386:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version' depends on axioms: [propext]
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:387:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact.{u_1, u_2} {Concrete : Type u_1}
+  {Abstract : Type u_2} (relation : Concrete → Abstract → Prop) (concreteQuery : Concrete → Prop)
+  (abstractQuery : Abstract → Prop) (coverage : ∀ (c : Concrete), ∃ a, relation c a)
+  (reverseCoverage : ∀ (a : Abstract), ∃ c, relation c a)
+  (sameAnswer : ∀ (c : Concrete) (a : Abstract), relation c a → (abstractQuery a ↔ concreteQuery c)) :
+  (∀ (a : Abstract), abstractQuery a) ↔ ∀ (c : Concrete), concreteQuery c
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:388:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact' does not depend on any axioms
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:389:0: JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries.{u_1, u_2, u_3}
+  {Left : Type u_1} {Right : Type u_2} {Query : Type u_3} (correspondence : Left ≃ Right)
+  (leftEval : Left → Query → Bool) (rightEval : Right → Query → Bool)
+  (sameAnswer : ∀ (c : Left) (q : Query), rightEval (correspondence c) q = leftEval c q) (q : Query) :
+  (∀ (r : Right), rightEval r q = true) ↔ ∀ (l : Left), leftEval l q = true
+info: JurisLean/Candidates/CompilerProvenance20261027.lean:390:0: 'JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries' depends on axioms: [Quot.sound]
+⚠ [8499/8543] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8507/8543] Replayed JurisLean.Candidates.ProcedureClosure20261027
+warning: JurisLean/Candidates/ProcedureClosure20261027.lean:40:24: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [checkProcess, binding, lawful_closed_iff_local_checks, validPolicy,
+  ̵  ̵ ̵ ̵ ̵ ̵Bool.and_eq_true,
+  ̲ a̵n̵d̵_̵a̵s̵s̵o̵c̵,̵  ̲ ̲and_left_comm, and_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8508/8543] Replayed JurisLean.Candidates.FiniteLegalValidation20261027
+warning: JurisLean/Candidates/FiniteLegalValidation20261027.lean:507:20: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8509/8543] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8510/8543] Replayed JurisLean.Candidates.LearningRisk20261027
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/LearningRisk20261027.lean:157:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:158:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:159:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:160:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:161:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8511/8543] Replayed JurisLean.Candidates.LearningFiniteClass20261027
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:135:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:211:0: 'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:212:0: 'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:213:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:214:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8512/8543] Replayed JurisLean.Candidates.LearningERM20261027
+info: JurisLean/Candidates/LearningERM20261027.lean:174:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  {n : ℕ} (loss : H → Z → ℚ) (first : H) (rest : List H) (data : Fin n → Z) (hn : 0 < n) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss (first :: rest) data =
+      some (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ∧
+    JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data ∈ first :: rest ∧
+      ∀ h ∈ first :: rest,
+        JurisLean.Candidates.LearningERM20261027.empiricalScore loss data
+            (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ≤
+          JurisLean.Candidates.LearningERM20261027.empiricalScore loss data h
+info: JurisLean/Candidates/LearningERM20261027.lean:175:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:176:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] [DecidableEq H] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (first : H) (rest : List H) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ first :: rest, Measurable fun z => ↑(loss h z))
+  (lossRange : ∀ h ∈ first :: rest, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z),
+            ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+              ↑(first :: rest).toFinset +
+            2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z),
+              ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+                ↑(first :: rest).toFinset +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ}
+info: JurisLean/Candidates/LearningERM20261027.lean:177:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:178:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2} {n : ℕ}
+  (loss : H → Z → ℚ) (data : Fin n → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [] data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:179:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:180:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  (loss : H → Z → ℚ) (models : List H) (data : Fin 0 → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss models data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:181:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:182:0: JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample :
+  have loss := fun h z => if h = z then 0 else 1;
+  (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => false) = some false ∧
+    (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => true) = some true
+info: JurisLean/Candidates/LearningERM20261027.lean:183:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8513/8543] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8515/8543] Replayed JurisLean.Candidates.SelectiveCalibration20261027
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8517/8543] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8518/8543] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8519/8543] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8521/8543] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8522/8543] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8526/8543] Replayed JurisLean.Candidates.IntervalDecisionConsumer20261027
+warning: JurisLean/Candidates/IntervalDecisionConsumer20261027.lean:227:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/IntervalDecisionConsumer20261027.lean:227:6: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [8534/8543] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8542/8543] Built JurisLean.Candidates.U10_1RefreshRuleProtocol20261030 (4.0s)
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:208:28: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:209:23: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:210:21: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:263:20: Local variable 'unit' resembles constructor 'PUnit.unit' - write '.unit' (with a dot) or 'PUnit.unit' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:320:14: Local variable 'unit' resembles constructor 'PUnit.unit' - write '.unit' (with a dot) or 'PUnit.unit' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+warning: JurisLean/Candidates/U10_1RefreshRuleProtocol20261030.lean:339:14: Local variable 'unit' resembles constructor 'PUnit.unit' - write '.unit' (with a dot) or 'PUnit.unit' to use the constructor.
+
+Note: This linter can be disabled with `set_option linter.constructorNameAsVariable false`
+⚠ [8543/8543] Built JurisLean.Candidates.AuthorizationClosureAudit20261104 (5.3s)
+warning: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:386:6: Try `simp at ha` instead of `simpa using ha`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:573:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.Draft : Type
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:574:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.TrustedSeeds (node : ℕ → AuthorityNode)
+  (trusted : AuthorityNode → Prop) : Type
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:575:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.four_binding_erasure_witnesses :
+  check baseQuery baseGrant = true ∧
+    weakCheck Erasure.object wrongObject baseGrant = true ∧
+      check wrongObject baseGrant = false ∧
+        weakCheck Erasure.subject wrongSubject baseGrant = true ∧
+          check wrongSubject baseGrant = false ∧
+            weakCheck Erasure.version wrongVersion baseGrant = true ∧
+              check wrongVersion baseGrant = false ∧
+                weakCheck Erasure.time wrongTime baseGrant = true ∧
+                  check wrongTime baseGrant = false ∧
+                    baseGrant.object ≠ wrongObject.object ∧
+                      baseGrant.subject ≠ wrongSubject.subject ∧
+                        baseGrant.contentVersion ≠ wrongVersion.version ∧
+                          ¬wrongTime.gamma.lawDate.ordinal < baseGrant.untilDate.ordinal
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:576:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.four_binding_erasure_witnesses' does not depend on any axioms
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:577:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.explicit_binding_blockers (q : Query) (a : Authorization.Grant) :
+  (a.object ≠ q.object → check q a = false) ∧
+    (a.subject ≠ q.subject → check q a = false) ∧
+      (a.contentVersion ≠ q.version → check q a = false) ∧
+        (¬(a.fromDate.ordinal ≤ q.gamma.lawDate.ordinal ∧ q.gamma.lawDate.ordinal < a.untilDate.ordinal) →
+          check q a = false)
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:578:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.explicit_binding_blockers' depends on axioms: [propext]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:579:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.draft_markers_do_not_authorize (before : Ledger.Handle)
+  (change : Pipeline.RefreshInput) (hcase : change.gamma.caseId = before.gamma.caseId) :
+  submitDraft [] before { change := change, improved := true, finalized := true } =
+      Result.unknown Error.authorityUnresolved ∧
+    ¬Usable [] before { change := change, improved := true, finalized := true } ∧
+      submitDraft [] before { change := change, improved := false, finalized := false } =
+        submitDraft [] before { change := change, improved := true, finalized := true }
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:580:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.draft_markers_do_not_authorize' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:581:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.three_stages_have_actual_distinct_witnesses :
+  Granted approvedCatalog phaseBefore approvedDraft ∧
+    submitDraft approvedCatalog phaseBefore approvedDraft = Result.known (phasePost approvedDraft) ∧
+      ¬Usable approvedCatalog phaseBefore approvedDraft ∧ Usable enabledCatalog phaseBefore enabledDraft
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:582:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.three_stages_have_actual_distinct_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:583:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.new_rule_check_does_not_authorize_its_installation :
+  permits [candidateSelfGrant]
+        (have __src := queryForRefresh phaseBefore enabledDraft;
+        { gamma := phaseNextGamma, subject := __src.subject, action := __src.action, version := __src.version,
+          object := __src.object, payload := __src.payload, nextContext := __src.nextContext }) =
+      true ∧
+    permits [candidateSelfGrant] (queryForRefresh phaseBefore enabledDraft) = false ∧
+      submitDraft [candidateSelfGrant] phaseBefore enabledDraft = Result.unknown Error.authorityUnresolved
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:584:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.new_rule_check_does_not_authorize_its_installation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:585:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.rooted_refresh_is_actual_authorized_step
+  {trusted : AuthorityNode → Prop} (node : ℕ → AuthorityNode) (issued : Issued) (roots : TrustedSeeds node trusted)
+  (edges : List Delegation) (fuel : ℕ) (before after : Ledger.Handle) (d : Draft)
+  (h : submitDraft (derivedCatalog before.gamma node issued roots edges fuel) before d = Result.known after) :
+  Granted (derivedCatalog before.gamma node issued roots edges fuel) before d ∧
+    (∃ i ∈ computedPermissions before.gamma node issued roots edges fuel,
+        Rooted before.gamma node issued trusted roots edges i ∧
+          check (queryForRefresh before d) (node i).grant = true) ∧
+      Trace.Step before after
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:586:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.rooted_refresh_is_actual_authorized_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:587:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.rooted_cycle_is_authorized :
+  edge12 ∈ cycleEdges ∧
+    edge21 ∈ cycleEdges ∧
+      edge12.parent = edge21.child ∧
+        edge12.child = edge21.parent ∧
+          edge12.parent ≠ edge12.child ∧
+            admitted baseGamma cycleNode cycleIssued edge12 = true ∧
+              admitted baseGamma cycleNode cycleIssued edge21 = true ∧
+                checkedPermissions baseGamma cycleNode cycleIssued cycleRoots cycleEdges 2 = Result.known [1, 2, 2, 1] ∧
+                  permits (derivedCatalog baseGamma cycleNode cycleIssued cycleRoots cycleEdges 2)
+                      (have __src := baseQuery;
+                      { gamma := __src.gamma, subject := { value := 2 }, action := __src.action,
+                        version := __src.version, object := __src.object, payload := __src.payload,
+                        nextContext := __src.nextContext }) =
+                    true
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:588:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.rooted_cycle_is_authorized' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:589:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.checked_permissions_exact_positive_semantics
+  {trusted : AuthorityNode → Prop} (g : Gamma) (node : ℕ → AuthorityNode) (issued : Issued)
+  (roots : TrustedSeeds node trusted) (edges : List Delegation) (fuel : ℕ) (known : List ℕ)
+  (h : checkedPermissions g node issued roots edges fuel = Result.known known) (i : ℕ) :
+  i ∈ known ↔
+    Compiler.Derives (fun x => x ∈ activeRoots g node roots) (fun x => x ∈ delegationRules g node issued edges) i
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:590:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.checked_permissions_exact_positive_semantics' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:591:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.unrooted_cycles_create_no_permission (g : Gamma)
+  (node : ℕ → AuthorityNode) (issued : Issued) (edges : List Delegation) (fuel i : ℕ) :
+  i ∉ Authorization.rootedPermissions [] (delegationRules g node issued edges) fuel
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:592:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.unrooted_cycles_create_no_permission' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:593:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.scope_and_time_are_independent_edge_gates :
+  scopeCovers (wrongScopeNode 1) (wrongScopeNode 2) = false ∧
+    admitted baseGamma wrongScopeNode (fun x x_1 x_2 => true) edge12 = false ∧
+      scopeCovers (expiredNode 1) (expiredNode 2) = true ∧
+        nodeActive baseGamma (expiredNode 2) = false ∧
+          admitted baseGamma expiredNode (fun x x_1 x_2 => true) edge12 = false
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:594:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.scope_and_time_are_independent_edge_gates' does not depend on any axioms
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:595:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.evidence_reuse_exact_current_condition
+  (current : List Authorization.Grant) (oldQuery nowQuery : Query) (a : Authorization.Grant)
+  (historical : check oldQuery a = true) :
+  check oldQuery a = true ∧
+    (reusable current nowQuery a ↔
+      a ∈ current ∧
+        a.subject = nowQuery.subject ∧
+          a.caseId = nowQuery.gamma.caseId ∧
+            a.action = nowQuery.action ∧
+              a.context = nowQuery.gamma ∧
+                a.object = nowQuery.object ∧
+                  a.payload = nowQuery.payload ∧
+                    a.nextContext = nowQuery.nextContext ∧
+                      a.contentVersion = nowQuery.version ∧
+                        a.authorityRuleVersion = nowQuery.gamma.normVersion ∧
+                          a.fromDate.ordinal ≤ nowQuery.gamma.lawDate.ordinal ∧
+                            nowQuery.gamma.lawDate.ordinal < a.untilDate.ordinal)
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:596:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.evidence_reuse_exact_current_condition' depends on axioms: [propext]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:597:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.historical_validity_is_not_current_authority :
+  permits [baseGrant] baseQuery = true ∧
+    permits [] baseQuery = false ∧ check baseQuery baseGrant = true ∧ check wrongTime baseGrant = false
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:598:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.historical_validity_is_not_current_authority' does not depend on any axioms
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:599:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.unavailable_or_conflicting_evidence_never_enables
+  (before : Ledger.Handle) (d : Draft) (why : Error) (left right : ℕ) (after : Ledger.Handle) :
+  refreshWithEvidence (Result.unknown why) before d ≠ Result.known after ∧
+    refreshWithEvidence (Result.conflict left right) before d ≠ Result.known after
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:600:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.unavailable_or_conflicting_evidence_never_enables' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:601:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.incomplete_graph_check_keeps_refresh_unknown
+  {trusted : AuthorityNode → Prop} (g : Gamma) (node : ℕ → AuthorityNode) (issued : Issued)
+  (roots : TrustedSeeds node trusted) (edges : List Delegation) (fuel : ℕ) (why : Error) (before : Ledger.Handle)
+  (d : Draft) (h : checkedPermissions g node issued roots edges fuel = Result.unknown why) :
+  refreshWithEvidence (checkedCatalog g node issued roots edges fuel) before d = Result.unknown why
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:602:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.incomplete_graph_check_keeps_refresh_unknown' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:603:0: JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment {W : Type}
+  (current : Ledger.Handle) (input : LegalActionDomain20261027.LegalInput W) (branch : ℕ)
+  (bound : FiniteLegalValidation20261027.BoundData) (out : FiniteLegalValidation20261027.HornReport)
+  (accepted : U10_1RefreshRuleProtocol20261030.evaluateCurrentRules current input branch = Result.known (bound, out)) :
+  input.anchor.gamma = current.gamma ∧
+    input.history = current.state.normHistory ∧
+      (∃ view,
+          SourceCompilation20261027.extractView input.anchor branch input.catalog = Result.known view ∧
+            FiniteLegalValidation20261027.bindAdditional view input.supplements input.policies = Result.known bound) ∧
+        bound.source.material.gamma = current.gamma ∧
+          FiniteLegalValidation20261027.selectedHorn bound.source current.state.env input.rules input.ruleGate
+                (FiniteLegalValidation20261027.eligibleFacts bound) =
+              Result.known out ∧
+            current.state.env = Result.known out.selectedVersion ∧
+              out.selectedVersion = current.gamma.normVersion ∧
+                out =
+                  FiniteLegalValidation20261027.fullHorn bound.source out.selectedVersion input.rules input.ruleGate
+                    (FiniteLegalValidation20261027.eligibleFacts bound)
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:604:0: 'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:605:0: JurisLean.Candidates.AuthorizationClosureAudit20261104.grounded_graph_has_actual_usable_refresh :
+  submitDraft groundedEnabledCatalog phaseBefore enabledDraft = Result.known (phasePost enabledDraft) ∧
+    Usable groundedEnabledCatalog phaseBefore enabledDraft
+info: JurisLean/Candidates/AuthorizationClosureAudit20261104.lean:606:0: 'JurisLean.Candidates.AuthorizationClosureAudit20261104.grounded_graph_has_actual_usable_refresh' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8543 jobs).

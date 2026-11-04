@@ -6631,6 +6631,370 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "Query"
+    },
+    {
+     "kind": "def",
+     "name": "check"
+    },
+    {
+     "kind": "def",
+     "name": "permits"
+    },
+    {
+     "kind": "theorem",
+     "name": "permits_exact_current_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "check_full_bindings"
+    },
+    {
+     "kind": "inductive",
+     "name": "Erasure"
+    },
+    {
+     "kind": "def",
+     "name": "eraseGrant"
+    },
+    {
+     "kind": "def",
+     "name": "weakCheck"
+    },
+    {
+     "kind": "def",
+     "name": "baseGamma"
+    },
+    {
+     "kind": "def",
+     "name": "baseQuery"
+    },
+    {
+     "kind": "def",
+     "name": "grantFor"
+    },
+    {
+     "kind": "def",
+     "name": "baseGrant"
+    },
+    {
+     "kind": "def",
+     "name": "wrongObject"
+    },
+    {
+     "kind": "def",
+     "name": "wrongSubject"
+    },
+    {
+     "kind": "def",
+     "name": "wrongVersion"
+    },
+    {
+     "kind": "def",
+     "name": "wrongTime"
+    },
+    {
+     "kind": "theorem",
+     "name": "four_binding_erasure_witnesses"
+    },
+    {
+     "kind": "theorem",
+     "name": "time_binding_also_occurs_in_full_context"
+    },
+    {
+     "kind": "theorem",
+     "name": "explicit_binding_blockers"
+    },
+    {
+     "kind": "structure",
+     "name": "Draft"
+    },
+    {
+     "kind": "def",
+     "name": "submitDraft"
+    },
+    {
+     "kind": "def",
+     "name": "Granted"
+    },
+    {
+     "kind": "def",
+     "name": "Usable"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_refresh_requires_old_authority"
+    },
+    {
+     "kind": "theorem",
+     "name": "usable_requires_granted"
+    },
+    {
+     "kind": "theorem",
+     "name": "draft_markers_do_not_authorize"
+    },
+    {
+     "kind": "def",
+     "name": "refreshWithEvidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "unavailable_or_conflicting_evidence_never_enables"
+    },
+    {
+     "kind": "def",
+     "name": "reusable"
+    },
+    {
+     "kind": "theorem",
+     "name": "evidence_reuse_exact_current_condition"
+    },
+    {
+     "kind": "theorem",
+     "name": "catalog_restriction_is_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "historical_validity_is_not_current_authority"
+    },
+    {
+     "kind": "structure",
+     "name": "AuthorityNode"
+    },
+    {
+     "kind": "def",
+     "name": "scopeCovers"
+    },
+    {
+     "kind": "def",
+     "name": "nodeActive"
+    },
+    {
+     "kind": "structure",
+     "name": "Delegation"
+    },
+    {
+     "kind": "structure",
+     "name": "TrustedSeeds"
+    },
+    {
+     "kind": "def",
+     "name": "activeRoots"
+    },
+    {
+     "kind": "def",
+     "name": "admitted"
+    },
+    {
+     "kind": "def",
+     "name": "edgeRule"
+    },
+    {
+     "kind": "def",
+     "name": "delegationRules"
+    },
+    {
+     "kind": "def",
+     "name": "computedPermissions"
+    },
+    {
+     "kind": "def",
+     "name": "checkedPermissions"
+    },
+    {
+     "kind": "inductive",
+     "name": "Rooted"
+    },
+    {
+     "kind": "theorem",
+     "name": "admitted_has_real_scope_and_time"
+    },
+    {
+     "kind": "theorem",
+     "name": "scopeCovers_actual_grant_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "rooted_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "computed_permissions_have_grounded_derivations"
+    },
+    {
+     "kind": "theorem",
+     "name": "rooted_nodes_are_active"
+    },
+    {
+     "kind": "def",
+     "name": "derivedCatalog"
+    },
+    {
+     "kind": "theorem",
+     "name": "computed_authorization_has_actual_grant"
+    },
+    {
+     "kind": "theorem",
+     "name": "checked_permissions_exact_positive_semantics"
+    },
+    {
+     "kind": "theorem",
+     "name": "unrooted_cycles_create_no_permission"
+    },
+    {
+     "kind": "def",
+     "name": "queryForRefresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "rooted_refresh_is_actual_authorized_step"
+    },
+    {
+     "kind": "def",
+     "name": "checkedCatalog"
+    },
+    {
+     "kind": "theorem",
+     "name": "incomplete_graph_check_keeps_refresh_unknown"
+    },
+    {
+     "kind": "def",
+     "name": "cycleNode"
+    },
+    {
+     "kind": "def",
+     "name": "edge12"
+    },
+    {
+     "kind": "def",
+     "name": "edge21"
+    },
+    {
+     "kind": "def",
+     "name": "cycleEdges"
+    },
+    {
+     "kind": "def",
+     "name": "cycleIssued"
+    },
+    {
+     "kind": "def",
+     "name": "cycleTrusted"
+    },
+    {
+     "kind": "def",
+     "name": "cycleRoots"
+    },
+    {
+     "kind": "theorem",
+     "name": "rooted_cycle_is_authorized"
+    },
+    {
+     "kind": "def",
+     "name": "wrongScopeNode"
+    },
+    {
+     "kind": "def",
+     "name": "expiredNode"
+    },
+    {
+     "kind": "theorem",
+     "name": "scope_and_time_are_independent_edge_gates"
+    },
+    {
+     "kind": "def",
+     "name": "phaseBefore"
+    },
+    {
+     "kind": "def",
+     "name": "phaseNextGamma"
+    },
+    {
+     "kind": "def",
+     "name": "approvedDraft"
+    },
+    {
+     "kind": "def",
+     "name": "approvedCatalog"
+    },
+    {
+     "kind": "def",
+     "name": "phasePost"
+    },
+    {
+     "kind": "def",
+     "name": "enabledDraft"
+    },
+    {
+     "kind": "def",
+     "name": "enabledCatalog"
+    },
+    {
+     "kind": "theorem",
+     "name": "three_stages_have_actual_distinct_witnesses"
+    },
+    {
+     "kind": "def",
+     "name": "candidateSelfGrant"
+    },
+    {
+     "kind": "theorem",
+     "name": "new_rule_check_does_not_authorize_its_installation"
+    },
+    {
+     "kind": "def",
+     "name": "refreshRootNode"
+    },
+    {
+     "kind": "def",
+     "name": "refreshRootTrusted"
+    },
+    {
+     "kind": "def",
+     "name": "refreshRoots"
+    },
+    {
+     "kind": "def",
+     "name": "groundedEnabledCatalog"
+    },
+    {
+     "kind": "theorem",
+     "name": "grounded_graph_has_actual_usable_refresh"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/AuthorizationClosureAudit20261104.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment",
+    "checked_permissions_exact_positive_semantics",
+    "draft_markers_do_not_authorize",
+    "evidence_reuse_exact_current_condition",
+    "explicit_binding_blockers",
+    "four_binding_erasure_witnesses",
+    "grounded_graph_has_actual_usable_refresh",
+    "historical_validity_is_not_current_authority",
+    "incomplete_graph_check_keeps_refresh_unknown",
+    "new_rule_check_does_not_authorize_its_installation",
+    "rooted_cycle_is_authorized",
+    "rooted_refresh_is_actual_authorized_step",
+    "scope_and_time_are_independent_edge_gates",
+    "three_stages_have_actual_distinct_witnesses",
+    "unavailable_or_conflicting_evidence_never_enables",
+    "unrooted_cycles_create_no_permission"
+   ],
+   "sha256": "be740b3b5ef8296b7c6364430ce34d0c926337f07684d4ffed531e956c3c3e3a",
+   "size_bytes": 30990,
+   "theorem_count": 27,
+   "theorem_count_bol_convention": 27
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "bernoulliMeasure"
     },
@@ -63086,6 +63450,7 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
+    "JurisLean.Candidates.AuthorizationClosureAudit20261104",
     "JurisLean.Candidates.BernoulliMeanInstance20261031",
     "JurisLean.Candidates.BetaEnclosureInstance20261031",
     "JurisLean.Candidates.BetaFutureSampling20261031",
@@ -63392,8 +63757,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "bf289a64aa655fe0b1b84b5f6c5ac90fbea9f83398d348a7ddb92a83cde2e46e",
-   "size_bytes": 16511,
+   "sha256": "fb0faedc0aed2e2a31d204eb8ec4325c1879380920e5dc768c4ec2eb95edd779",
+   "size_bytes": 16573,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -63565,22 +63930,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6488,
-   "file_count": 586,
+   "counted_declaration_count": 6515,
+   "file_count": 587,
    "lemma_count": 146,
-   "print_axioms_command_count": 5920,
-   "print_axioms_distinct_targets": 5304,
-   "theorem_count": 6342,
-   "theorem_count_bol_convention": 6242
+   "print_axioms_command_count": 5936,
+   "print_axioms_distinct_targets": 5319,
+   "theorem_count": 6369,
+   "theorem_count_bol_convention": 6269
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6469,
-   "file_count": 571,
+   "counted_declaration_count": 6496,
+   "file_count": 572,
    "lemma_count": 139,
-   "print_axioms_command_count": 5920,
-   "print_axioms_distinct_targets": 5304,
-   "theorem_count": 6330,
-   "theorem_count_bol_convention": 6230
+   "print_axioms_command_count": 5936,
+   "print_axioms_distinct_targets": 5319,
+   "theorem_count": 6357,
+   "theorem_count_bol_convention": 6257
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -63641,6 +64006,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AuthorizationClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BetaEnclosureInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BetaFutureSampling20261031.lean",
@@ -64225,6 +64591,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/AuthorizationClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BernoulliMeanInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BetaEnclosureInstance20261031.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/BetaFutureSampling20261031.lean",
@@ -64794,17 +65161,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "66d879e10a3fc0160613d49a17075c914d1bbcb4483075fa618ffef7458b04dd",
+ "source_inventory_digest": "22d2bba58a340923d3608b53ee102d809aac85df84f7532f5f57401c934ad537",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original09-8-restitution-20261104",
-  "commit": "88f29a6a029de736607650ea01cf738419e3adc1",
-  "tree": "71f3562ce57842bb1dd2faef71519bcb4ebd09cb"
+  "branch": "formal/close-original10-1-authorization-20261104",
+  "commit": "df00067f251b4725e17dffc79c39c3fe6c34eb28",
+  "tree": "d8005b78145891981acdc1c94a0cdb47c27a479b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 586,
+  "files_total": 587,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

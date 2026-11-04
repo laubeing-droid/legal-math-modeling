@@ -524,7 +524,8 @@ theorem three_stages_have_actual_distinct_witnesses :
   have hbad : (phasePost approvedDraft).state.env ≠
       .known (phasePost approvedDraft).gamma.normVersion := by decide +kernel
   refine ⟨?_, ha, ?_, ?_⟩
-  · decide +kernel
+  · unfold Granted
+    decide +kernel
   · rintro ⟨after, hafter, henv⟩
     have he : after = phasePost approvedDraft := Result.known.inj (hafter.symm.trans ha)
     subst after
@@ -542,22 +543,6 @@ theorem new_rule_check_does_not_authorize_its_installation :
     permits [candidateSelfGrant] (queryForRefresh phaseBefore enabledDraft) = false ∧
     submitDraft [candidateSelfGrant] phaseBefore enabledDraft = .unknown .authorityUnresolved := by
   decide +kernel
-
-/-- 阻断10.1 L101：可启用版本与既有实际evaluator相接；直接复用已关闭U10.1，
-不另写规则选择或刷新续行证明。 -/
-theorem actual_rule_evaluation_keeps_usable_version {W : Type} (current : Ledger.Handle)
-    (input : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W) (branch : Nat)
-    (bound : JurisLean.Candidates.FiniteLegalValidation20261027.BoundData)
-    (out : JurisLean.Candidates.FiniteLegalValidation20261027.HornReport)
-    (usable : current.state.env = .known current.gamma.normVersion)
-    (accepted : JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluateCurrentRules
-      current input branch = .known (bound, out)) :
-    input.anchor.gamma = current.gamma ∧ input.history = current.state.normHistory ∧
-      out.selectedVersion = current.gamma.normVersion := by
-  have hs := JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment
-    current input branch bound out accepted
-  have hselected := hs.2.2.2.2.2
-  exact ⟨hs.1, hs.2.1, Result.known.inj (hselected.symm.trans usable)⟩
 
 /-- 阻断10.1 L103：根图到实际刷新连接的非空实例。合成根明示外部给定，
 不从程序或经验改善生成现实根授权，也不需要可再委托权限。 -/
@@ -615,8 +600,8 @@ theorem grounded_graph_has_actual_usable_refresh :
 #print axioms unavailable_or_conflicting_evidence_never_enables
 #check incomplete_graph_check_keeps_refresh_unknown
 #print axioms incomplete_graph_check_keeps_refresh_unknown
-#check actual_rule_evaluation_keeps_usable_version
-#print axioms actual_rule_evaluation_keeps_usable_version
+#check JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment
+#print axioms JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.evaluated_rules_use_actual_environment
 #check grounded_graph_has_actual_usable_refresh
 #print axioms grounded_graph_has_actual_usable_refresh
 

@@ -119,6 +119,7 @@ import JurisLean.Candidates.EquicorrelatedMean20261030
 import JurisLean.Candidates.EvidenceWorldsAudit20261027
 import JurisLean.Candidates.ExchangeableRank20261031
 import JurisLean.Candidates.FeedbackLabelSemantics20261027
+import JurisLean.Candidates.FinalizeReadClosureAudit20261105
 import JurisLean.Candidates.GroupedConformalInstance20261031
 import JurisLean.Candidates.HarnessOriginalInstances20261031
 import JurisLean.Candidates.HarnessOriginalInstancesAudit20261031

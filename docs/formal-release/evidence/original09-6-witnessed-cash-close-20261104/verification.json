@@ -1,0 +1,811 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.6"
+  ],
+  "proposed_disposition": {
+    "09.6": "COVERED",
+    "note": "Frozen L179/L181/L183 mapped to conditional actual State quantity/cash updates and finite Toy inputs; all required local record checks pass, independent record review and full PR acceptance pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      177,
+      184
+    ],
+    "subparagraph_lines": {
+      "09.6": [
+        [
+          179,
+          179
+        ],
+        [
+          181,
+          181
+        ],
+        [
+          183,
+          183
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.3",
+      "U09.2"
+    ],
+    "sha256": "4bd373e6653aa1b637b5d3642c7792b650d7b68e0e99429a06859b140ea9471f"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-6-witnessed-cash-20261104",
+    "base_main": "8282b648addfb75adec065e8bb8088f77f7091ac",
+    "commit": "a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce",
+    "tree": "6ab85fb1afb541f28bbd49e30656407ab96c04f4",
+    "parent": "8059e33665749bef069e746bb835864389ecb3e3"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41787704361,
+    "attempt": 1,
+    "job_id": 126433553869,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.WitnessedCashAllocationAudit20261104",
+    "build": "Build completed successfully (8493 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "axiom_sets_by_target": {
+      "performance_is_min_allocation": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "allocationPost_record_frame": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "allocationPost_cash_consistent": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "arbitrary_k_same_state_update": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "unformed_option_none_cash_six": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "formed_four_cash_six_allocates_four": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "local_prechecks": "17 structural tests passed in 5.21s on source candidate CP 8059e33665749bef069e746bb835864389ecb3e3 before proof-only R2 tactic changes; not rerun."
+  },
+  "artifact": {
+    "artifact_id": 13302241704,
+    "name": "changed-module-only-41787704361-1",
+    "api_digest": "sha256:4c124af5ab90578864820cdfb28d554323d17aadfef7a6a69e4445ee577cf119",
+    "zip_path": "D:\\tmp\\original09-6-source-r2\\artifact-13302241704.zip",
+    "zip_bytes": 2368,
+    "zip_sha256": "4c124af5ab90578864820cdfb28d554323d17aadfef7a6a69e4445ee577cf119",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-6-witnessed-cash-close-20261104/changed-module.log",
+      "bytes": 14673,
+      "sha256": "c189bd41130f58175c2bdaef4bd41eb9afb84074a20059fe187860f82c228567"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-6-witnessed-cash-close-20261104/module-plan.json",
+      "bytes": 279,
+      "sha256": "447426d4247df0ae6dc21473c3ff378cb5ac3602c944154eb54ac7d6c0d45357",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 279,
+        "sha256": "447426d4247df0ae6dc21473c3ff378cb5ac3602c944154eb54ac7d6c0d45357"
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 14673,
+        "sha256": "c189bd41130f58175c2bdaef4bd41eb9afb84074a20059fe187860f82c228567"
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 6,
+    "new_theorem_pairs": 6,
+    "reused_theorem_pairs": 0,
+    "definition_only_checks": 2,
+    "new_targets": [
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.performance_is_min_allocation",
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_record_frame",
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_cash_consistent",
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.arbitrary_k_same_state_update",
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformed_option_none_cash_six",
+      "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formed_four_cash_six_allocates_four"
+    ],
+    "reused_targets": [],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/WitnessedCashAllocationAudit20261104.lean",
+      "bytes": 14084,
+      "sha256": "865235663d8479fa2cd34a1c292fff3578411385dbcfdb97c51a688aa2280afd",
+      "git_blob": "25241033f8e5a02af5551cf973fa3931556c57d1",
+      "role": "new source module; direct source CI subject"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16389,
+      "sha256": "2fe0a284d488537986bd87ba297a688c89727a86e813bce9ba6596ba983b7ae0",
+      "git_blob": "09990b6b926587cb451bf408eeafcd476df83fe2",
+      "role": "single generated root import"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "role": "Lean toolchain pin"
+    },
+    {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "role": "dependency manifest; Mathlib rev c5ea00351c28e24afc9f0f84379aa41082b1188f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "role": "frozen Final20261021 audit source; unchanged"
+    }
+  ],
+  "failed_history": [
+    {
+      "run_id": 41786834570,
+      "attempt": 1,
+      "subject": "8059e33665749bef069e746bb835864389ecb3e3",
+      "tree": "9f409ac89b8eca241907fa8f185faa1cd2095c7c",
+      "artifact_id": 13301587538,
+      "artifact_name": "changed-module-only-41786834570-1",
+      "zip_path": "D:\\tmp\\original09-6-source-r1\\artifact-13301587538.zip",
+      "zip_bytes": 3479,
+      "zip_sha256": "aa49612d49ca885e37fa1f519b7c72c6cfd961cecb90ae29a4553d3be3a383fa",
+      "success_binding": false,
+      "diagnosis": "Three Lean elaboration errors in hqFacts tuple projection, post-balance rewrite, and post-quantity unfolding. Failed-run recovery output had sorryAx; source had no explicit sorry/admit/axiom. R2 changes only these proof bodies."
+    }
+  ],
+  "subparagraph_mapping": {
+    "09.6.179": "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.arbitrary_k_same_state_update proves the actual allocationPost quantity, nonnegative remainder, balance decomposition and cash/paid/allocated/surplus update from an existing quantity witness and numeric allocation bounds; JurisLean.Candidates.WitnessedCashAllocationAudit20261104.performance_is_min_allocation proves the existing V2 performance minimum instance only.",
+    "09.6.181": "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.unformed_option_none_cash_six gives a raw cash-six event with quantity none and changed state without validated-protocol acceptance; JurisLean.Candidates.WitnessedCashAllocationAudit20261104.formed_four_cash_six_allocates_four gives the formed toy cash-six/four-allocation/two-surplus calculation.",
+    "09.6.183": "JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_record_frame proves actual record-field frame and JurisLean.Candidates.WitnessedCashAllocationAudit20261104.allocationPost_cash_consistent preserves the existing cash-consistency invariant; these do not establish real-world legal discharge or an actual caller."
+  },
+  "semantic_scope": {
+    "external_parameters": "The original problem supplies Theta/facts and the legal basis for k; this arithmetic source does not derive them.",
+    "cash_semantics": "State-level cash append is a formal update; it does not establish that a real payment occurred or passed validated protocol.",
+    "general_claim": "No claim that V2 is a general-theta multi-debt legal allocation or cash protocol."
+  },
+  "consumer_wiring": {
+    "current_edge_count": 15,
+    "affected_edges": [],
+    "basis": "No actual caller among current U00 consumer edges consumes this witness; the edge table and ratings are unchanged."
+  },
+  "same_c_verifier": "NOT_RUN",
+  "full_pr_acceptance": "PENDING",
+  "record_checks11": {
+    "required_count": 11,
+    "status": "PASS",
+    "all_exit_0": true,
+    "checks": [
+      {
+        "name": "manifest-verify",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_theorem_manifest.py",
+          "--verify",
+          "docs/formal-release/theorem_inventory_v3.json",
+          "--require-bound"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\manifest-verify.stdout.bin",
+          "bytes": 31,
+          "sha256": "8e825c39f743a584da38b8a442bb05196be9c167f1b791f6812cab06e14ef0cb"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\manifest-verify.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\manifest-verify.exit.txt"
+      },
+      {
+        "name": "probability-audit-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_probability_audit_surface.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\probability-audit-check.stdout.bin",
+          "bytes": 55,
+          "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\probability-audit-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\probability-audit-check.exit.txt"
+      },
+      {
+        "name": "trivial-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_trivial_proof_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\trivial-census-check.stdout.bin",
+          "bytes": 95,
+          "sha256": "31ae31bb62ac42e461296667511630a463d07432bca94b07ff297d226a050b33"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\trivial-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\trivial-census-check.exit.txt"
+      },
+      {
+        "name": "structure-volume-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_structure_and_volume_reports.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\structure-volume-check.stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\structure-volume-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\structure-volume-check.exit.txt"
+      },
+      {
+        "name": "reachability",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_import_reachability.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\reachability.stdout.bin",
+          "bytes": 76,
+          "sha256": "1c637998d03f3b3f73cf1ff0aece34590a7fffda44ce9d70f35ceb6cb32916ff"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\reachability.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\reachability.exit.txt"
+      },
+      {
+        "name": "paper-single-count",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_paper_single_count.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-single-count.stdout.bin",
+          "bytes": 126,
+          "sha256": "17f04739e5a97dc0802a2f87d6aa98e2b6bcd39e9159c891d341d0694c5b8814"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-single-count.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-single-count.exit.txt"
+      },
+      {
+        "name": "paper-derived-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/rebind_paper_derived_accounting.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-derived-check.stdout.bin",
+          "bytes": 494,
+          "sha256": "f1d53f0a812ee199087aa6792d3cda0aa0eccb492a61e90b509c8d5249159cd5"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-derived-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\paper-derived-check.exit.txt"
+      },
+      {
+        "name": "duplication-census-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\duplication-census-check.stdout.bin",
+          "bytes": 75,
+          "sha256": "5f3e1b5d34694a7857a0adb995376912ba7e676104491de95bbd27296cb99d7f"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\duplication-census-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\duplication-census-check.exit.txt"
+      },
+      {
+        "name": "declaration-shape-check",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/generate_declaration_shape_report.py",
+          "--check"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\declaration-shape-check.stdout.bin",
+          "bytes": 29,
+          "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\declaration-shape-check.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\declaration-shape-check.exit.txt"
+      },
+      {
+        "name": "clause-binding",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_clause_declaration_binding.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\clause-binding.stdout.bin",
+          "bytes": 310,
+          "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\clause-binding.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\clause-binding.exit.txt"
+      },
+      {
+        "name": "archive-gap",
+        "argv": [
+          "python",
+          "-X",
+          "utf8",
+          "scripts/ci/check_archive_gap_close.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\archive-gap.stdout.bin",
+          "bytes": 228,
+          "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\checks\\archive-gap.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\archive-gap.exit.txt"
+      }
+    ]
+  },
+  "extra_checks": [
+    {
+      "name": "gap-status-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\checks\\gap-status-extra.stdout.bin",
+        "bytes": 26,
+        "sha256": "28bf703de509d7ee6e3f125fb0eb9253b04162eb05012784bfeb4bd22fa067a6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\checks\\gap-status-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\gap-status-extra.exit.txt"
+    },
+    {
+      "name": "ci-index-check-extra",
+      "argv": [
+        "python",
+        "-X",
+        "utf8",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-check-extra.stdout.bin",
+        "bytes": 40,
+        "sha256": "d52cef328c7da49424c90c56121b08d875f3c25203ee31b1abe5ca13241bbbde"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-check-extra.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-check-extra.exit.txt"
+    }
+  ],
+  "ci_run_index_tests": {
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "tests/test_ci_run_index.py",
+      "-q"
+    ],
+    "exit": 0,
+    "summary": "12 passed in 5.77s",
+    "stdout": {
+      "path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-12tests.stdout.bin",
+      "bytes": 101,
+      "sha256": "5b7640e5d920d819a30b995d82b382954e63834d48abbdfa2253da2564577e0d"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-12tests.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\ci-index-12tests.exit.txt"
+  },
+  "staged_diff_check": {
+    "argv": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 0,
+    "stdout": {
+      "path": "D:\\tmp\\original09-6-records-20261104\\checks\\cached-diff-cr-at-eol.stdout.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-6-records-20261104\\checks\\cached-diff-cr-at-eol.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-6-records-20261104\\checks\\cached-diff-cr-at-eol.exit.txt",
+    "scope": "The captured staged check ran before the final index summary field was added to this verification record; that later change was only JSON evidence metadata, with no generated source, canonical, or README quote input changed."
+  },
+  "structural_tests17": {
+    "argv": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/spec/test_import_reachability.py",
+      "tests/test_declaration_collisions.py"
+    ],
+    "exit": 0,
+    "summary": "17 passed in 5.21s",
+    "subject_content": "8059e33665749bef069e746bb835864389ecb3e3 source candidate bytes; subsequent R2 changes proof bodies only.",
+    "stdout": {
+      "path": "D:\\tmp\\original09-6-source-r1\\reachability-collision-17.stdout.bin",
+      "bytes": 101,
+      "sha256": "b11baaeb3f69e410f48847785c2d6a85977fb2b03f353d69caeb96f5fb5d09b9"
+    },
+    "stderr": {
+      "path": "D:\\tmp\\original09-6-source-r1\\reachability-collision-17.stderr.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exit_path": "D:\\tmp\\original09-6-source-r1\\reachability-collision-17.exit.txt"
+  },
+  "record_generation": {
+    "probability_audit_write": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--write"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\probability-audit-write.stdout.bin",
+        "bytes": 55,
+        "sha256": "e264063ad37e6871fa808007763ddea626458fe3f97ce2be17e673ef0dded2ba"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\probability-audit-write.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\probability-audit-write.exit.txt",
+      "diff": "0 diff; no metadata checkpoint"
+    },
+    "theorem_manifest_generate": {
+      "argv": [
+        "python",
+        "scripts/ci/generate_theorem_manifest.py",
+        "--require-bound"
+      ],
+      "exit": 0,
+      "subject": "a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce",
+      "tree": "6ab85fb1afb541f28bbd49e30656407ab96c04f4",
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\theorem-manifest-write.stdout.bin",
+        "bytes": 576,
+        "sha256": "6928cd1b0f66dbe20486d2a76f2fb0847adcc4607d23f833f0ab73b7ea280058"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\theorem-manifest-write.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\theorem-manifest-write.exit.txt"
+    },
+    "derived_writes": {
+      "duplication-census-write": {
+        "argv": [
+          "python",
+          "scripts/ci/build_statement_duplication_census.py",
+          "--write"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\duplication-census-write.stdout.bin",
+          "bytes": 168,
+          "sha256": "a97f3c19bdf09ca6817c924cca32569df8ee5d3116c0ec69c314c6e8d94265b0"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\duplication-census-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\duplication-census-write.exit.txt"
+      },
+      "trivial-census-write": {
+        "argv": [
+          "python",
+          "scripts/ci/generate_trivial_proof_census.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\trivial-census-write.stdout.bin",
+          "bytes": 129,
+          "sha256": "3c5c5c7f83fabce5afa048d5ace7eb03962833653f7972245fbd54a47f3eb18c"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\trivial-census-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\trivial-census-write.exit.txt"
+      },
+      "structure-volume-write": {
+        "argv": [
+          "python",
+          "scripts/ci/generate_structure_and_volume_reports.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\structure-volume-write.stdout.bin",
+          "bytes": 806,
+          "sha256": "5b111c3d9068fd0c54cf8854a94c7b4f5868f0f96b0a12bc7b5877509b5165b1"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\structure-volume-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\structure-volume-write.exit.txt"
+      },
+      "declaration-shape-write": {
+        "argv": [
+          "python",
+          "scripts/ci/generate_declaration_shape_report.py"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\declaration-shape-write.stdout.bin",
+          "bytes": 118,
+          "sha256": "10d0513b7643147eb875d8992cbba9ab1e55273110407c7965a9e68a798159a5"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\declaration-shape-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\declaration-shape-write.exit.txt"
+      },
+      "gap-status-write": {
+        "argv": [
+          "python",
+          "scripts/ci/generate_gap_status.py",
+          "--write"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\gap-status-write.stdout.bin",
+          "bytes": 551,
+          "sha256": "403d387ec864449f8e1cd5837b39587c8c5765f3e5933cf814ffd52520cb4d06"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\gap-status-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\gap-status-write.exit.txt"
+      },
+      "paper-derived-write": {
+        "argv": [
+          "python",
+          "scripts/rebind_paper_derived_accounting.py",
+          "--write"
+        ],
+        "exit": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\paper-derived-write.stdout.bin",
+          "bytes": 482,
+          "sha256": "f3c7112fe3cedeef00fcf2549edb8786cd5026b0683dad1df22a8776db3ddc4d"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-6-records-20261104\\paper-derived-write.stderr.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_path": "D:\\tmp\\original09-6-records-20261104\\paper-derived-write.exit.txt"
+      }
+    },
+    "summary_capture_boundary": "Outer batch summary printing ended with a GBK UnicodeEncodeError after each of the six child commands had completed and their individual stdout/stderr/exit files had been written. Each child exit is recorded separately; no writer was rerun.",
+    "ci-index-describe": {
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\ci-index-describe.stdout.bin",
+        "bytes": 474,
+        "sha256": "a80823705b863d4027960b1f8025b01bf5cbb2e94ee6f90207b500d727002988"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\ci-index-describe.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\ci-index-describe.exit.txt"
+    },
+    "ci-index-quotes-only": {
+      "exit": 0,
+      "stdout": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\ci-index-quotes-only.stdout.bin",
+        "bytes": 109,
+        "sha256": "12cb18dcc3a11c9cde08fe0ca323a469cbeee01d253f6e1965cd867ccb15810f"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-6-records-20261104\\ci-index-quotes-only.stderr.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_path": "D:\\tmp\\original09-6-records-20261104\\ci-index-quotes-only.exit.txt"
+    },
+    "ci-index-metadata-method": {
+      "method": "Imported scripts/ci/build_ci_run_index.py and used its run_ids_in_markdown and describe functions only for newly quoted run IDs 41786834570 and 41787704361; no older metadata refresh or full-evidence fetch.",
+      "old_cached_runs_retained": 594,
+      "new_runs": [
+        {
+          "run_id": 41786834570,
+          "head_sha": "8059e33665749bef069e746bb835864389ecb3e3",
+          "conclusion": "failure",
+          "artifact_id": 13301587538
+        },
+        {
+          "run_id": 41787704361,
+          "head_sha": "a9a65abcd6576f32e1bc5cd60d1e48ffaeb749ce",
+          "conclusion": "success",
+          "artifact_id": 13302241704
+        }
+      ],
+      "index_counts_after_quotes_only": {
+        "runs": 596,
+        "quotes": 1450
+      },
+      "failed_initial_attempt": {
+        "exit": 1,
+        "capture": "TOOL_RETURN_ONLY",
+        "reason": "expected current README run quote missing because the new README had not yet been explicitly staged and was absent from git ls-files markdown scan. The packet four files were then explicitly staged before successful metadata collection. The original transient sidecar paths were reused by the successful attempt and are not represented as this failed attempt physical streams.",
+        "stdout_bytes": 0,
+        "stderr_bytes": 43,
+        "stderr_sha256": "5dfd3b1865f98b660b5baeb8b55e7e4b21b2af8411aadaa38f368a93a90999f5",
+        "stderr_text": "expected current README run quote missing"
+      }
+    }
+  },
+  "ci_run_index": {
+    "runs": 596,
+    "quotes": 1450,
+    "baseline_runs": 594,
+    "baseline_quotes": 1448,
+    "newly_added_run_ids": [
+      41786834570,
+      41787704361
+    ],
+    "old_metadata_refreshed": false,
+    "full_evidence_fetched": false
+  }
+}

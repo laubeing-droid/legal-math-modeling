@@ -15876,6 +15876,259 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "RefundRule"
+    },
+    {
+     "kind": "structure",
+     "name": "Ready"
+    },
+    {
+     "kind": "def",
+     "name": "activeDebt"
+    },
+    {
+     "kind": "def",
+     "name": "claimPost"
+    },
+    {
+     "kind": "def",
+     "name": "eligiblePost"
+    },
+    {
+     "kind": "def",
+     "name": "refundPost"
+    },
+    {
+     "kind": "structure",
+     "name": "RefundReceipt"
+    },
+    {
+     "kind": "def",
+     "name": "refundReceipt"
+    },
+    {
+     "kind": "def",
+     "name": "effectPair"
+    },
+    {
+     "kind": "def",
+     "name": "checkedEffect"
+    },
+    {
+     "kind": "def",
+     "name": "restitutionQuantity"
+    },
+    {
+     "kind": "def",
+     "name": "refundTotal"
+    },
+    {
+     "kind": "def",
+     "name": "Stages"
+    },
+    {
+     "kind": "theorem",
+     "name": "first_two_stages_no_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkedEffect_of_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "q_receipt_is_actual_event_and_history"
+    },
+    {
+     "kind": "def",
+     "name": "QuantityConclusion"
+    },
+    {
+     "kind": "theorem",
+     "name": "separated_quantity_and_cash_components"
+    },
+    {
+     "kind": "structure",
+     "name": "BookedCash"
+    },
+    {
+     "kind": "def",
+     "name": "delta"
+    },
+    {
+     "kind": "theorem",
+     "name": "delta_balanced"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordinates_are_actual_event"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_closed_account_conservation"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_from_actual_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_RestPay_is_min_branch"
+    },
+    {
+     "kind": "theorem",
+     "name": "cash_balance_does_not_supply_admission"
+    },
+    {
+     "kind": "def",
+     "name": "twoPaymentExtractor"
+    },
+    {
+     "kind": "def",
+     "name": "twoAccountParty"
+    },
+    {
+     "kind": "theorem",
+     "name": "twoAccountParty_injective"
+    },
+    {
+     "kind": "def",
+     "name": "tenPayload"
+    },
+    {
+     "kind": "def",
+     "name": "tenPayment"
+    },
+    {
+     "kind": "def",
+     "name": "tenRule"
+    },
+    {
+     "kind": "def",
+     "name": "tenExtractor"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_actual_path"
+    },
+    {
+     "kind": "def",
+     "name": "tenEvents"
+    },
+    {
+     "kind": "def",
+     "name": "tenFresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_complete"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_units"
+    },
+    {
+     "kind": "def",
+     "name": "TenNumbers"
+    },
+    {
+     "kind": "theorem",
+     "name": "ten_seven_seven_nonempty_witness"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Context"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Base"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Original"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Payload"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Payment"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Rule"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Extractor"
+    },
+    {
+     "kind": "theorem",
+     "name": "refundW6_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "refundW6_initial"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Events"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6Fresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "refundW6_complete"
+    },
+    {
+     "kind": "theorem",
+     "name": "refundW6_units"
+    },
+    {
+     "kind": "def",
+     "name": "refundW6After"
+    },
+    {
+     "kind": "def",
+     "name": "W6RefundNumbers"
+    },
+    {
+     "kind": "theorem",
+     "name": "w6_nonempty_witness"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.W6JudgmentCashAudit20261104"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
+   "print_axioms_targets": [
+    "actual_closed_account_conservation",
+    "cash_balance_does_not_supply_admission",
+    "first_two_stages_no_cash",
+    "joint_from_actual_trace",
+    "legacy_RestPay_is_min_branch",
+    "q_receipt_is_actual_event_and_history",
+    "separated_quantity_and_cash_components",
+    "ten_seven_seven_nonempty_witness",
+    "w6_nonempty_witness"
+   ],
+   "sha256": "9ebf32570fed030fa7822f49dbdb739d0785e4f66944bbec8edc4516da74b77f",
+   "size_bytes": 27323,
+   "theorem_count": 21,
+   "theorem_count_bol_convention": 21
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "radiusVerified"
     },
@@ -62866,6 +63119,7 @@
     "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
     "JurisLean.Candidates.ParametricAllocationAudit20261104",
     "JurisLean.Candidates.PendingCommit20261027",
+    "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104",
     "JurisLean.Candidates.SemanticIndependenceAudit20261104",
     "JurisLean.Candidates.SingleDebtStreamAudit20261103",
     "JurisLean.Candidates.SourceAction20261027",
@@ -63138,8 +63392,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "63364fc3d419bc68516e605a8cd129fe84a5fe3b8a14a0522b213c85fcae9aff",
-   "size_bytes": 16445,
+   "sha256": "bf289a64aa655fe0b1b84b5f6c5ac90fbea9f83398d348a7ddb92a83cde2e46e",
+   "size_bytes": 16511,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -63311,22 +63565,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6467,
-   "file_count": 585,
+   "counted_declaration_count": 6488,
+   "file_count": 586,
    "lemma_count": 146,
-   "print_axioms_command_count": 5911,
-   "print_axioms_distinct_targets": 5295,
-   "theorem_count": 6321,
-   "theorem_count_bol_convention": 6221
+   "print_axioms_command_count": 5920,
+   "print_axioms_distinct_targets": 5304,
+   "theorem_count": 6342,
+   "theorem_count_bol_convention": 6242
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6448,
-   "file_count": 570,
+   "counted_declaration_count": 6469,
+   "file_count": 571,
    "lemma_count": 139,
-   "print_axioms_command_count": 5911,
-   "print_axioms_distinct_targets": 5295,
-   "theorem_count": 6309,
-   "theorem_count_bol_convention": 6209
+   "print_axioms_command_count": 5920,
+   "print_axioms_distinct_targets": 5304,
+   "theorem_count": 6330,
+   "theorem_count_bol_convention": 6230
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -63492,6 +63746,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
@@ -64075,6 +64330,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
@@ -64538,17 +64794,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e97e1920206634518d07541d2ed08ff2bf91d25e91dd67ed74665330240a471a",
+ "source_inventory_digest": "66d879e10a3fc0160613d49a17075c914d1bbcb4483075fa618ffef7458b04dd",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original09-7-w6-judgment-cash-20261104",
-  "commit": "87b7fe1b1054d610c70bef76055fb8074b92c8ea",
-  "tree": "fc074202bf6f02de6c7b86ba7d6bdcfffa02c84e"
+  "branch": "formal/close-original09-8-restitution-20261104",
+  "commit": "88f29a6a029de736607650ea01cf738419e3adc1",
+  "tree": "71f3562ce57842bb1dd2faef71519bcb4ebd09cb"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 585,
+  "files_total": 586,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

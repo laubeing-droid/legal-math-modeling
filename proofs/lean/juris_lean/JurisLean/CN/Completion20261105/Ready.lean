@@ -51,14 +51,14 @@ theorem effect_uses_legal_projection (s : Situation)
 def templateGate (s : Situation) (issued : IssuedTemplate) : Bool :=
   let r := issued.request
   let t := issued.body
-  authorized s.core.state.N r && r.act == .addTemplate &&
+  authorized s.core.state.N r && r.act == .addTemplate && t.scoped &&
   s.core.state.N.version == r.version && r.actor == t.issuer &&
   r.rule == t.source.id && r.version == t.source.version && r.scope == t.scope &&
   !(selectedRules s.core r).isEmpty
 
 def templateMatches (law : Rule) (issued : IssuedTemplate) : Bool :=
   issued.body.scope == law.scope && issued.body.source.id == law.source.id &&
-  issued.body.source.version == law.source.version
+  issued.body.source.version == law.source.version && issued.body.source.source == law.source.source
 
 def selectedTemplates (s : Situation) (law : Rule) : List IssuedTemplate :=
   s.templates.filter (fun t => templateMatches law t && templateGate s t)

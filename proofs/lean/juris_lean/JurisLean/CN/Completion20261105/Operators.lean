@@ -207,9 +207,8 @@ theorem actual_assignments_commute (s : Situation) (a b : MeaningAssignment)
     simpa only [automationAllowed, preserve] using ma
   have pmb : automationAllowed (assignLocal s a).after.core.state rb.scope .automated = true := by
     simpa only [automationAllowed, preserve] using mb
-  simp only [assignmentQuery, ma, mb, Bool.true_eq_false, ↓reduceIte,
-    ga, gb, Bool.true_eq, gba, gab, pma, pmb]
-  exact assignment_two_defined s a b fa fb h ha hb
+  simpa [assignmentQuery, ma, mb, ga, gb, gba, gab, pma, pmb] using
+    assignment_two_defined s a b fa fb h ha hb
 
 def commuteQuery (s : Situation) (a b : MeaningAssignment) (ra rb : Request) : Reply Bool :=
   if assignmentAllowed s a ra && assignmentAllowed s b rb then

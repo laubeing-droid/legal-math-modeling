@@ -26,6 +26,11 @@ def gate (s : Situation) (c : Call) (grounds : Formula) : Reply Unit :=
     else quiet s (.rejected .unsupported)
   | _ => legalDispatch s c.request c.policy c.mode c.world
 
+def gateFor (s : Situation) (c : Call) (grounds : Formula) (kind : InstitutionKind) : Reply Unit :=
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else if institutionAllowed s c.request kind then gate s c grounds
+  else quiet s (.rejected .unsupported)
+
 def continueWith {α : Type} (permission : Reply Unit)
     (next : Situation → Reply α) : Reply α :=
   match permission.answer with
@@ -72,8 +77,9 @@ def revokeLocal (s : Situation) (obj : Ref .object) (g : RevokeGuard) : Reply Ci
 
 def revoke (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (g : RevokeGuard) : Reply CivilActLife :=
-  atomic s (if c.request.actor == g.holder && c.request.scope.object == obj then
-    continueWith (gate s c grounds) (fun z => revokeLocal z obj g)
+  if c.request.actor != g.holder || c.request.time != g.atTime then quiet s (.rejected .unauthorized)
+  else atomic s (if c.request.actor == g.holder && c.request.scope.object == obj then
+    continueWith (gateFor s c grounds .lifecycle) (fun z => revokeLocal z obj g)
   else quiet s (.rejected .unauthorized))
 
 /- The lifecycle is read from the actual common object. Scope/frame are
@@ -141,7 +147,8 @@ def delegateLocal (s : Situation) (obj : Ref .object)
 
 def delegateCall (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (child : Grant) : Reply Agency :=
-  atomic s (continueWith (gate s c grounds) (fun z => delegateLocal z obj c.request child))
+  if c.request.act != .constitute || child.role != .party then quiet s (.rejected .unauthorized)
+  else atomic s (continueWith (gateFor s c grounds .agency) (fun z => delegateLocal z obj c.request child))
 
 /- Norm text/version are unchanged; the derived authority registry changes.
    Delegation never removes the principal's capacity. -/
@@ -194,7 +201,7 @@ def apparentLocal (s : Situation) (scope : Scope) (agent principal : Ref .actor)
 
 def apparentCall (s : Situation) (c : Call) (grounds : Formula)
     (agent principal : Ref .actor) (g : ApparentGuard) : Reply Judgment :=
-  atomic s (continueWith (gate s c grounds)
+  atomic s (continueWith (gateFor s c grounds .agency)
     (fun z => apparentLocal z c.request.scope agent principal g))
 
 theorem apparent_preserves_F (s : Situation) (scope : Scope)
@@ -252,11 +259,14 @@ def acceptBankruptcyLocal (s : Situation) (d : CaseDates) (debtor : Ref .actor) 
   | .known false => quiet s (.rejected .prerequisites)
   | .known true =>
     let ids := (staySelected debtor s.executions).map (fun e => e.id)
-    ⟨{s with stayed := ids ++ s.stayed}, .success ids⟩
+    ⟨{s with
+      stayed := ids ++ s.stayed
+      bankruptcyCases := fun who => if who = debtor then d.acceptedAt else s.bankruptcyCases who},
+      .success ids⟩
 
 def acceptBankruptcy (s : Situation) (c : Call) (grounds : Formula)
     (d : CaseDates) (debtor : Ref .actor) : Reply (List (Ref .event)) :=
-  atomic s (continueWith (gate s c grounds) (fun z => acceptBankruptcyLocal z d debtor))
+  atomic s (continueWith (gateFor s c grounds .bankruptcy) (fun z => acceptBankruptcyLocal z d debtor))
 
 def interestLocal (s : Situation) (accepted : Check Bool) (atTime : Nat)
     (claim : InterestClaim) (t : Nat) : Reply Nat :=
@@ -268,6 +278,11 @@ def interestLocal (s : Situation) (accepted : Check Bool) (atTime : Nat)
     ⟨{s with
       cutoffs := (fun id => if id = claim.id then some cutoff else s.cutoffs id)
       interest := (fun id => if id = claim.id then next else s.interest id)}, .success cutoff⟩
+
+def interestFromCase (s : Situation) (claim : InterestClaim) (time : Nat) : Reply Nat :=
+  match s.bankruptcyCases claim.debtor with
+  | none => quiet s (.unknown .inputUnchecked)
+  | some day => interestLocal s (.known true) day claim time
 
 /- Equality at acceptance was the failed old proof step. min-cut is proved on
    both branches, and unrelated debtors are not inserted into the stay list. -/
@@ -341,7 +356,7 @@ def interpret (s : Situation) (c : Call) (grounds : Formula)
   | .unknown k => quiet s (.unknown k)
   | .known meaning =>
     if c.request.scope.object == obj then
-      continueWith (gate s c grounds) (fun z => interpretLocal z obj meaning)
+      continueWith (gateFor s c grounds .interpretation) (fun z => interpretLocal z obj meaning)
     else quiet s (.rejected .unauthorized))
 
 theorem interpretation_other_contract (s : Situation) (a b : Ref .object) (f : Formula)

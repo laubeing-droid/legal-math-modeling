@@ -37,6 +37,15 @@ structure ProofTemplate where
   issuer : Ref .actor
   document : Ref .document
 
+def ProofCriterion.scoped (scope : Scope) : ProofCriterion → Bool
+  | .support a | .document _ _ a => a.scope == scope
+  | .both a b | .either a b => a.scoped scope && b.scoped scope
+  | .neg a => a.scoped scope
+  | .unresolved _ => true
+
+def ProofTemplate.scoped (t : ProofTemplate) : Bool :=
+  t.clauses.all (fun entry => entry.1.scope == t.scope && entry.2.scoped t.scope)
+
 def combineAnd : Check Judgment → Check Judgment → Check Judgment
   | .known .notEstablished, _ => .known .notEstablished
   | _, .known .notEstablished => .known .notEstablished

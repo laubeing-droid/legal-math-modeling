@@ -16,42 +16,6 @@ The connection theorems invoke accepted declarations without reproving U.
 -/
 namespace JurisLean.CN.Completion20261105
 open JurisLean.CN.Revision20261101
-namespace Native
-export JurisLean.Candidates.Final20261021
-  (Result Error PaymentPayload AmountTag PartyId)
-namespace Fit
-export JurisLean.Candidates.LearningConsumer20261027
-  (LearningProtocol FittedTable fitTable u01_6_fit_card_minimizes_actual_sample tableLoss)
-end Fit
-namespace Prob
-export JurisLean.Candidates.Final20261021.Probability
-  (FiniteLaw proposed_probability_model posterior_mass expectation)
-end Prob
-namespace Causal
-export JurisLean.Candidates.CausalSelection20261027
-  (selectionRecoveryValue interventionValue selected_weight_recovery)
-end Causal
-namespace Decision
-export JurisLean.Candidates.Final20261021.Decision
-  (best best_mem best_dominates legalBest legal_best_sound TypedValue addValues evalExact
-    Evaluates u06_3_eval_exists u06_3_eval_unique)
-end Decision
-namespace Cash
-export JurisLean.Candidates.Final20261021.Ledger
-  (State Conserves CashConsistent performance balance u09_1_quantity_conservation
-    performance_cash_consistent)
-end Cash
-namespace Response
-export JurisLean.Candidates.PolicyResponse20261027 (preparationUtility finite_response_payoffs)
-end Response
-namespace RSI
-export JurisLean.Candidates.AdaptiveRoundLedger20261027
-  (RoundState RoundRequest RoundOutcome finishAdaptiveRound roundSpent
-    finish_round_preserves_budget assessed_load_comes_from_actual_activation
-    recorded_load_is_actual_next_service)
-export JurisLean.Candidates.ValidatedFeedbackLoad20261027 (SamplingReceipt LoadPermit)
-end RSI
-end Native
 
 structure EngineContext where
   scope : Scope
@@ -117,12 +81,6 @@ def consumeProb {n : Nat} (s : Situation) (c : EngineContext)
         (List.ofFn (fun w : Fin n => (event w, ⟨post.mass w⟩))))
   else ⟨quiet s (.rejected .unsupported), probabilitySource prior likelihood⟩
 
-structure CausalInput (n k : Nat) where
-  mass : Native.Prob.FiniteLaw (Fin n)
-  latent : Fin n → Native.Prob.FiniteLaw (Fin k)
-  assignment : Fin n → Native.Prob.FiniteLaw Bool
-  recording : Fin n → Bool → ℚ
-  response : Fin n → Fin k → Bool → ℚ
 
 def CausalInput.supported {n k : Nat} (x : CausalInput n k) : Bool :=
   decide (∀ i, x.mass.mass i ≠ 0 →

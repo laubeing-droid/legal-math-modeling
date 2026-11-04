@@ -1,7 +1,7 @@
 import JurisLean.CN.Completion20261105.Foundation
 import JurisLean.CN.Completion20261105.InstitutionRules
 import JurisLean.CN.Completion20261105.PolicyIR
-import JurisLean.Candidates.Final20261021.Ledger
+import JurisLean.CN.Completion20261105.EngineTypes
 
 /-!
 Common object used by institution commands, operator programs and runtime.
@@ -31,6 +31,16 @@ structure IssuedTemplate where
   request : Request
   body : ProofTemplate
 
+inductive InstitutionKind
+  | lifecycle | agency | jurisdiction | evidence | acquisition | offense | bankruptcy
+  | compensation (kind : CompensationKind) | rights | interpretation | resJudicata | proposal
+  deriving DecidableEq, Repr
+
+structure InstitutionPermit where
+  source : NormRef
+  scope : Scope
+  kind : InstitutionKind
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -47,11 +57,20 @@ structure Situation where
   choices : Scope → Option (Ref .relation)
   templates : List IssuedTemplate
   accounts : Ref .relation → Option JurisLean.Candidates.Final20261021.Ledger.State
+  engineInputs : List EngineMaterial
+  uses : List InstitutionPermit
+  bankruptcyCases : Ref .actor → Option Nat
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none⟩
+
+def institutionAllowed (s : Situation) (r : Request) (kind : InstitutionKind) : Bool :=
+  s.uses.any (fun u => u.kind == kind && u.source.id == r.rule &&
+    u.source.version == r.version && u.scope == r.scope &&
+    s.core.state.N.rules.any (fun law => law.source.id == u.source.id &&
+      law.source.version == u.source.version && law.source.source == u.source.source && law.scope == u.scope))
 
 def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
 

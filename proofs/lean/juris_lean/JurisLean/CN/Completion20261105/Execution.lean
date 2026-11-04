@@ -11,30 +11,6 @@ open JurisLean.KernelV3
 open JurisLean.CN.Revision20261101
 open InstitutionRules
 
-inductive EngineCall
-  | fit (m n : Nat) (protocol : Native.Fit.LearningProtocol)
-      (loss : ℚ → Bool → ℚ) (models : List (List ℚ)) (data : Fin n → Fin m × Bool)
-  | prob (n : Nat) (prior : Native.Prob.FiniteLaw (Fin n))
-      (likelihood : Fin n → ℚ) (event : Fin n → Ref .event)
-  | causal (n k : Nat) (model : CausalInput n k) (permit : Option CausalPermit)
-  | bargain (n : Nat) (score : Fin n → ℚ) (permitted : Fin n → Bool)
-      (options : List (Fin n)) (offers : Fin n → List (Ref .actor × Quantity .money))
-  | cash (before : Native.Cash.State) (payment : Native.PaymentPayload)
-  | exact (unit : UnitKind) (left right : Native.Decision.TypedValue)
-  | behavior (threshold : ℚ) (actor : Ref .actor) (action : Fin 3 → Ref .query)
-  | rsi (m : Nat) (before : Native.RSI.RoundState m) (request : Native.RSI.RoundRequest m)
-      (samples : List (Native.RSI.SamplingReceipt m)) (permits : List (Native.RSI.LoadPermit m))
-      (proposal : Ref .model)
-
-def EngineCall.NativeType : EngineCall → Type
-  | .fit _ _ _ _ _ _ => Native.Result Native.Fit.FittedTable
-  | .prob n _ _ _ => Native.Result (Native.Prob.FiniteLaw (Fin n))
-  | .causal _ _ _ _ => Native.Result ℚ
-  | .bargain n _ _ _ _ => Native.Result (Fin n)
-  | .cash _ _ => Native.Result Native.Cash.State
-  | .exact _ _ _ => Native.Result Native.Decision.TypedValue
-  | .behavior _ _ _ => Native.Result (Fin 3)
-  | .rsi m _ _ _ _ _ => Native.RSI.RoundOutcome m
 
 def callEngine (s : Situation) (c : EngineContext) :
     (call : EngineCall) → NativeReply call.NativeType
@@ -47,6 +23,56 @@ def callEngine (s : Situation) (c : EngineContext) :
   | .behavior threshold actor action => consumeBehavior s c threshold actor action
   | .rsi _ before request samples permits proposal =>
       consumeRSI s c before request samples permits proposal
+
+structure BoundEngineReply where
+  legal : Reply EngineOutput
+  native : Option (Sigma EngineCall.NativeType)
+
+def engineMaterialAllowed (s : Situation) (c : EngineContext) (input : EngineMaterial) : Bool :=
+  input.scope == c.scope && input.target == c.target &&
+  input.version == s.core.state.N.version &&
+  (match s.core.state.E input.id with
+   | .accepted raw receipt => raw.source == input.source && raw.atom.scope == input.scope &&
+       receipt.norm.version == input.version
+   | _ => false)
+
+def runBoundEngine (s : Situation) (c : EngineContext) (i : Ref .material) : BoundEngineReply :=
+  match s.engineInputs.filter (fun input => input.id == i) with
+  | [input] =>
+    if engineMaterialAllowed s c input then
+      let actual := callEngine s c input.input
+      ⟨actual.legal, some ⟨input.input, actual.native⟩⟩
+    else ⟨quiet s (.unknown .inputUnchecked), none⟩
+  | [] => ⟨quiet s (.unknown .inputUnchecked), none⟩
+  | _ :: _ :: _ => ⟨quiet s (.conflict .competentReview), none⟩
+
+def registerEngineMaterial (s : Situation) (r : Request) (input : EngineMaterial) : Reply Unit :=
+  if !freshRequest s r || r.act != .learnModel || input.scope != r.scope ||
+      input.version != r.version then quiet s (.rejected .unauthorized)
+  else if s.engineInputs.any (fun old => old.id == input.id) then
+    quiet s (.conflict .competentReview)
+  else match rawOf (s.core.state.E input.id) with
+    | none => quiet s (.unknown .inputUnchecked)
+    | some raw =>
+      if raw.source == input.source && raw.atom.scope == input.scope then
+        ⟨{s with engineInputs := input :: s.engineInputs}, .success ()⟩
+      else quiet s (.rejected .unsupported)
+
+/- C4: the public graph fetches the native input from the admitted keyed
+   material; it cannot attach provenance to an unrelated supplied calculation.
+   A raw/source decoder is an external input contract, not legal fact truth. -/
+theorem bound_engine_calls_stored_input (s : Situation) (c : EngineContext)
+    (i : Ref .material) (input : EngineMaterial)
+    (h : s.engineInputs.filter (fun record => record.id == i) = [input])
+    (ha : engineMaterialAllowed s c input = true) :
+    (runBoundEngine s c i).legal = (callEngine s c input.input).legal ∧
+    (runBoundEngine s c i).native = some ⟨input.input, (callEngine s c input.input).native⟩ := by
+  simp [runBoundEngine, h, ha]
+
+theorem unadmitted_engine_material_blocks (s : Situation) (c : EngineContext)
+    (input : EngineMaterial) (h : isAdmitted (s.core.state.E input.id) = false) :
+    engineMaterialAllowed s c input = false := by
+  cases he : s.core.state.E input.id <;> simp_all [isAdmitted, engineMaterialAllowed]
 
 inductive InstitutionCall : Type → Type
   | revoke (c : Law.Call) (grounds : Formula) (obj : Ref .object) (g : RevokeGuard) :
@@ -64,7 +90,7 @@ inductive InstitutionCall : Type → Type
       InstitutionCall (Ref .query)
   | bankruptcy (c : Law.Call) (grounds : Formula) (dates : CaseDates) (debtor : Ref .actor) :
       InstitutionCall (List (Ref .event))
-  | interest (c : Law.Call) (grounds : Formula) (accepted : Check Bool) (atTime : Nat)
+  | interest (c : Law.Call) (grounds : Formula)
       (claim : InterestClaim) (time : Nat) : InstitutionCall Nat
   | compensation (c : Law.Call) (grounds : Formula) (kind : CompensationKind)
       (relation : Ref .relation) (custody : Bool) (conditions1719 : Judgment) :
@@ -86,11 +112,11 @@ def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply �
   | .offense ps known ability elements who event scope charge =>
       Law.offenseQuery s ps known ability elements who event scope charge
   | .bankruptcy c ground dates debtor => Law.acceptBankruptcy s c ground dates debtor
-  | .interest c ground accepted atTime claim time =>
-      Law.atomic s (Law.continueWith (Law.gate s c ground)
-        (fun z => Law.interestLocal z accepted atTime claim time))
+  | .interest c ground claim time =>
+      Law.atomic s (Law.continueWith (Law.gateFor s c ground .bankruptcy)
+        (fun z => Law.interestFromCase z claim time))
   | .compensation c ground kind rel custody conditions =>
-      Law.atomic s (Law.continueWith (Law.gate s c ground)
+      Law.atomic s (Law.continueWith (Law.gateFor s c ground (.compensation kind))
         (fun z => Law.stateCompensationLocal z kind rel custody conditions))
   | .rightsConflict => Law.rightsConflict s
   | .interpret c ground obj meaning => Law.interpret s c ground obj meaning
@@ -149,7 +175,8 @@ def selectClaim (s : Situation) (r : Request) (mode : Mode) (rel : LegalRelation
 inductive Command : Type → Type 1
   | operator (params : OperatorParams) {α : Type} (op : OpRequest α) : Command α
   | institution {α : Type} (call : InstitutionCall α) : Command α
-  | engine (context : EngineContext) (call : EngineCall) : Command EngineOutput
+  | engine (context : EngineContext) (material : Ref .material) : Command EngineOutput
+  | registerEngine (r : Request) (input : EngineMaterial) : Command Unit
   | legal (call : Law.Call) : Command Unit
   | burdenEvidence (c : Law.Call) (body : Formula) : Command Judgment
   | acquisitionEvidence (c : Law.Call) (parties : AcquisitionParties) (route : AcqRoute)
@@ -175,7 +202,8 @@ inductive Command : Type → Type 1
 def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .operator params op => runOperator params s op
   | .institution call => callInstitution s call
-  | .engine context call => (callEngine s context call).legal
+  | .engine context material => (runBoundEngine s context material).legal
+  | .registerEngine r input => registerEngineMaterial s r input
   | .legal call => legalDispatch s call.request call.policy call.mode call.world
   | .perform r mode relation p => performPayment s r mode relation p
   | .assignment a r => assignmentQuery s a r
@@ -236,5 +264,7 @@ theorem choice_not_model_score (s : Situation) (r : Request) (mode : Mode)
 #print axioms recorded_replay_keeps_exclusion
 #print axioms admission_missing_authority
 #print axioms choice_not_model_score
+#print axioms bound_engine_calls_stored_input
+#print axioms unadmitted_engine_material_blocks
 end JurisLean.CN.Completion20261105
 

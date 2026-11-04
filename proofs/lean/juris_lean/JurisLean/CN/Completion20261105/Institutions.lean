@@ -22,9 +22,10 @@ def gate (s : Situation) (c : Call) (grounds : Formula) : Reply Unit :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
   else match selectedRules s.core c.request with
   | [law] =>
-    if law.guard == grounds then legalDispatch s c.request c.policy c.mode c.world
+    if law.guard == grounds then
+      quiet s (legalDispatch s c.request c.policy c.mode c.world).answer
     else quiet s (.rejected .unsupported)
-  | _ => legalDispatch s c.request c.policy c.mode c.world
+  | _ => quiet s (legalDispatch s c.request c.policy c.mode c.world).answer
 
 def gateFor (s : Situation) (c : Call) (grounds : Formula) (kind : InstitutionKind) : Reply Unit :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
@@ -261,7 +262,7 @@ def acceptBankruptcyLocal (s : Situation) (d : CaseDates) (debtor : Ref .actor) 
     let ids := (staySelected debtor s.executions).map (fun e => e.id)
     ⟨{s with
       stayed := ids ++ s.stayed
-      bankruptcyCases := fun who => if who = debtor then d.acceptedAt else s.bankruptcyCases who},
+      bankruptcyCases := fun who => if who = debtor then d.accepted else s.bankruptcyCases who},
       .success ids⟩
 
 def acceptBankruptcy (s : Situation) (c : Call) (grounds : Formula)

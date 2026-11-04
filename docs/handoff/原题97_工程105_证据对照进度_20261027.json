@@ -51,9 +51,9 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 74,
+    "COVERED": 75,
     "PARTIAL": 15,
-    "NOT_RECONCILED": 8
+    "NOT_RECONCILED": 7
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
   "status_meanings": {
@@ -5300,7 +5300,7 @@
       ],
       "remaining": "The mapped finite L117/L119/L121 obligations are covered by this source subject and named targets. General retroactivity rules, runtime cache correctness, existing U00 caller wiring, real-world legal facts and PR acceptance remain outside this record."
     },
-    {
+        {
       "id": "10.4",
       "heading": "## 10.4 部分步骤的门控与失败路径边界",
       "original_manifest_row": "10.4",
@@ -5327,9 +5327,55 @@
           129
         ]
       ],
-      "reconciliation": "NOT_RECONCILED",
-      "evidence": [],
-      "remaining": "逐段核精确前提/量词/结论、实现、实际消费者和同提交权威证据；未对照不等于仓内没有实现。"
+      "reconciliation": "COVERED",
+      "evidence": [
+        {
+          "package": "docs/formal-release/evidence/original10-4-partial-step-close-20261105",
+          "subject": "3aab453192b76b0aa66a3448b571ffe97e4fb8ac",
+          "tree": "a6931ccaa637326fb5f1feb0beade23cd997d102",
+          "run_id": 41928458830,
+          "attempt": 1,
+          "job_id": 126918981036,
+          "artifact_id": 13370308358,
+          "artifact_name": "changed-module-only-41928458830-1",
+          "artifact_size_bytes": 27475,
+          "artifact_sha256": "1978b36963d421c5604655b6319d7f2b6696cebea36aeb9fe81cfcb593f2fc3a",
+          "manuscript_lines": [
+            125,
+            127,
+            129
+          ],
+          "readme_lines": [
+            7,
+            8,
+            9,
+            13
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.PartialStepGateAudit20261105.actual_committed_step_satisfies_local_contract",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.noncommit_returned_state_has_full_frame",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.unknown_negative_and_conflict_are_distinct_framed_outcomes",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.unknown_commit_has_no_returned_post",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.retry_matches_current_context_and_consumes_the_given_key_once",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.checked_payment_commit_exposes_a_current_grant",
+            "JurisLean.Candidates.PartialStepGateAudit20261105.actual_pipeline_retry_rechecks_witness_and_prevents_double_effect",
+            "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+            "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+            "JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output",
+            "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+            "JurisLean.Candidates.Final20261021.Ledger.consume_committed_receipts",
+            "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+            "JurisLean.Candidates.SourcePaymentIdentity20261103.finite_payment_identity_and_retry_outcomes",
+            "JurisLean.Candidates.FinalizeReadClosureAudit20261105.mismatched_request_is_rejected",
+            "JurisLean.Candidates.AuthorizationClosureAudit20261104.evidence_reuse_exact_current_condition",
+            "JurisLean.Candidates.AuthorizationClosureAudit20261104.permits_exact_current_witness",
+            "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
+            "JurisLean.Candidates.Final20261021.Pipeline.finishPayment_current"
+          ],
+          "scope": "Source CI verifies exactly 7 new module targets and 12 reused proof targets. The finite step/frame and current-context retry evidence records conditional inputs; it does not prove external authorization or real-world source identity."
+        }
+      ],
+      "remaining": "The frozen L125/L127/L129 proof obligations are covered at the stated Ledger.consume_ext and actual Pipeline boundaries. External authorization-catalog authenticity and source identity remain inputs; this record does not establish legal correctness, production deployment, or PR full-chain acceptance."
     },
     {
       "id": "10.5",

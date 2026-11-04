@@ -1,0 +1,828 @@
+{
+  "schema": "original-question-closure-evidence-v1",
+  "status": "CANDIDATE_PENDING_FULL_RECORD_ACCEPTANCE",
+  "original_questions": [
+    "09.4"
+  ],
+  "proposed_disposition": {
+    "09.4": "COVERED",
+    "note": "Mathematical mapping from source/module evidence; PR/full-record acceptance is pending."
+  },
+  "frozen_source": {
+    "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\题单\\09_关系效果数量账本与履行.md",
+    "lines": [
+      161,
+      168
+    ],
+    "subparagraph_lines": {
+      "09.4": [
+        [
+          163,
+          163
+        ],
+        [
+          165,
+          165
+        ],
+        [
+          167,
+          167
+        ]
+      ]
+    },
+    "clauses": [
+      "U09.3"
+    ],
+    "sha256": "4bd373e6653aa1b637b5d3642c7792b650d7b68e0e99429a06859b140ea9471f"
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original09-4-allocation-accrual-20261104",
+    "base_main": "7f67096ecd0e6cfc9c89d2ed1db61ecfe9f1a699",
+    "commit": "4a1156c7d19081d0f67dfee8633b82d5a6f3fed7",
+    "tree": "b3c5c2eb92b4fa4da706d95515399157fe1409ef",
+    "parent": "407037f03ce2d2cf9efe513cc1984afb9a832ecc"
+  },
+  "workflow": {
+    "run_conclusion": "success",
+    "job_conclusion": "success",
+    "errors": 0,
+    "run_id": 41761045186,
+    "attempt": 1,
+    "job_id": 126348571018,
+    "job": "changed-modules",
+    "event": "workflow_dispatch",
+    "module": "JurisLean.Candidates.ParametricAllocationAudit20261104",
+    "build": "Build completed successfully (8514 jobs)",
+    "sorryAx": 0,
+    "axiom_set": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "local_prechecks": "TOOL_RETURN_ONLY"
+  },
+  "artifact": {
+    "artifact_id": 13291075352,
+    "name": "changed-module-only-41761045186-1",
+    "api_digest": "sha256:743033ba00617068a73bf9d73341b5578211ce7daf33c565e6c2101c1dc85785",
+    "zip_path": "D:\\tmp\\original09-4-source-r3\\r3_success\\artifact-13291075352.zip",
+    "zip_bytes": 5707,
+    "zip_sha256": "743033ba00617068a73bf9d73341b5578211ce7daf33c565e6c2101c1dc85785",
+    "raw": {
+      "path": "docs/formal-release/evidence/original09-4-allocation-accrual-close-20261104/changed-module.log",
+      "bytes": 43457,
+      "sha256": "1a6ee8f9fbb64899040aa4f42dacc0d2fede49d1bc58910a57d0d5a99efc15e1"
+    },
+    "plan": {
+      "path": "docs/formal-release/evidence/original09-4-allocation-accrual-close-20261104/module-plan.json",
+      "bytes": 273,
+      "sha256": "c67ed39f8274233bc6aeed3b098f403504fae0069a626ae52a006a51f693bba6",
+      "exact_requested_module_only": true
+    },
+    "members": [
+      {
+        "path": "module-plan.json",
+        "bytes": 273,
+        "sha256": "c67ed39f8274233bc6aeed3b098f403504fae0069a626ae52a006a51f693bba6"
+      },
+      {
+        "path": "changed-module.log",
+        "bytes": 43457,
+        "sha256": "1a6ee8f9fbb64899040aa4f42dacc0d2fede49d1bc58910a57d0d5a99efc15e1"
+      }
+    ]
+  },
+  "outputs": {
+    "check_print_axiom_pairs": 12,
+    "new_theorem_pairs": 5,
+    "reused_theorem_pairs": 7,
+    "definition_only_checks": 2,
+    "new_targets": [
+      "JurisLean.Candidates.ParametricAllocationAudit20261104.certified_allocation_updates_actual_list",
+      "JurisLean.Candidates.ParametricAllocationAudit20261104.accrue_theta_output_is_actual_accrual",
+      "JurisLean.Candidates.ParametricAllocationAudit20261104.actual_accrual_balance_and_non_cash",
+      "JurisLean.Candidates.ParametricAllocationAudit20261104.synthetic_accrual_increases_balance_without_payment",
+      "JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity"
+    ],
+    "reused_targets": [
+      "JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation",
+      "JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash",
+      "JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order",
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+      "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay",
+      "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg"
+    ],
+    "errors": 0,
+    "sorryAx": 0,
+    "standard_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean.lean",
+      "bytes": 16262,
+      "sha256": "86a57a636e18e4df19eeff4481921e96fb68eb1e7f295a322663f061f54e0afa",
+      "git_blob": "c645639505a8a9603d2287dab3a01e5e10ee0618",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean",
+      "bytes": 13539,
+      "sha256": "9d5bc3e594572205d433b0dec6ddf3a5bbbf31e754493502990ac6aa3b7d54eb",
+      "git_blob": "3a59d16acd3e8c79cb4a3f5efeb1a54d309fe725",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "bytes": 20327,
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784",
+      "git_blob": "52c751a746e8a08c67f22f035abe28366f2a40a8",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "bytes": 5158,
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e",
+      "git_blob": "8e7c3b357a4aacbe0d3ba2d1af6fcac717857839",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "bytes": 30850,
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d",
+      "git_blob": "1a2632047bf0ee7f8f6fc8c32a85e601514f2d64",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "bytes": 8889,
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f",
+      "git_blob": "4fe47a0b6e0364dc1753da5aed252718580d817e",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "bytes": 43514,
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+      "git_blob": "6c8afdec64c2e1a37baba22b18b2c757cfa17198",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SingleDebtStreamAudit20261103.lean",
+      "bytes": 20310,
+      "sha256": "4b096dba3892ea1fe4fa3d5a52e1412de2e23dbc042d9eb9f2a16b2c09fe02a0",
+      "git_blob": "f54859db839ef138a2a14aa84a7b024c17e28fe5",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
+      "bytes": 55542,
+      "sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+      "git_blob": "a2c095c717114e7d7d710307063e3af80b923bd0",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
+      "bytes": 9376,
+      "sha256": "7b101c85219c7204af7a481fb4cef3b250e6e903dbbf425572c3f99b62718130",
+      "git_blob": "0243b713c91f980229c1e73d5bcab602a8152fb6",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean",
+      "bytes": 5527,
+      "sha256": "6c5132b33cfc4d1d1085cce6a7d57b0b0f0bb5e981d895b6b69c9f4fb981bce3",
+      "git_blob": "a2d3fe7a19564005cf0fe4e718d6321fdbc2929d",
+      "physical_matches_source_commit": true
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean",
+      "bytes": 6554,
+      "sha256": "1f97268a5149a6f0c26c02b4e0d70c64c2e9e49e75ac645230be681f3fe5a196",
+      "git_blob": "165dfc45fb10880e3e6aa59de36d0c6c1f0b8cd2",
+      "physical_matches_source_commit": true
+    }
+  ],
+  "toolchain": {
+    "lean_toolchain": {
+      "path": "proofs/lean/juris_lean/lean-toolchain",
+      "bytes": 26,
+      "sha256": "8b5db2d1b1d33453d63409fd86f5899c7918380553a90b70f09ed56028768cb6",
+      "git_blob": "af9e5d339aeb37e4e6ba2603fb873e637678e304",
+      "physical_matches_source_commit": true
+    },
+    "lake_manifest": {
+      "path": "proofs/lean/juris_lean/lake-manifest.json",
+      "bytes": 3225,
+      "sha256": "256293fa14fb2b8551cc0c92d8022f2069b90c4990f30bd5f582a2ed1c57c491",
+      "git_blob": "5aa22a2c216598c1827e9e86b6242110152af9af",
+      "physical_matches_source_commit": true
+    },
+    "mathlib_package": {
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "type": "git",
+      "subDir": null,
+      "scope": "",
+      "rev": "c5ea00351c28e24afc9f0f84379aa41082b1188f",
+      "name": "mathlib",
+      "manifestFile": "lake-manifest.json",
+      "inputRev": "v4.30.0",
+      "inherited": false,
+      "configFile": "lakefile.lean"
+    }
+  },
+  "failed_source_history": [
+    {
+      "run_id": 41759899549,
+      "attempt": 1,
+      "job_id": 126344859791,
+      "head_sha": "ac155fc4025bb28f3f3ee47085a70e411e660eb7",
+      "tree": "322c11cc2b41e5c35b40318abcd5b6c121e7da39",
+      "conclusion": "failure",
+      "artifact": {
+        "name": "changed-module-only-41759899549-1",
+        "id": 13289389530,
+        "bytes": 6424,
+        "sha256": "de279fcb6c0d59a0199fe55e53e41e3c86206bf4fa910158a6a190dc757855be"
+      },
+      "success_binding": false,
+      "role": "failure history only"
+    },
+    {
+      "run_id": 41760546379,
+      "attempt": 1,
+      "job_id": 126346970499,
+      "head_sha": "407037f03ce2d2cf9efe513cc1984afb9a832ecc",
+      "tree": "a2e93f31050db8ed26394367ed737064fb05099c",
+      "conclusion": "failure",
+      "artifact": {
+        "name": "changed-module-only-41760546379-1",
+        "id": 13290342081,
+        "bytes": 6520,
+        "sha256": "0dc6507c880495773f11c0499e92b5d226f50fad2851a8b2d245aee339fc06a2"
+      },
+      "success_binding": false,
+      "role": "failure history only"
+    }
+  ],
+  "clause_evidence": {
+    "09.4.163": {
+      "promise": "Fixed ordered list of nonnegative debt amounts, aggregate conservation, per-item nonnegativity and full-record frame; ordering itself is not asserted to be legally preferred.",
+      "evidence": [
+        "reused SingleDebtStreamAudit20261103.afterPay_preserves_full_frame_and_pointwise_order and UnifiedQuantLedger.afterPay_amounts_nonneg",
+        "new l163_equal_total_does_not_fix_identity: actual afterPay 5 on [id1=5,id2=5] versus the reversed input; projected outputs [(1,0),(2,5)] and [(2,0),(1,5)], both outstanding 5"
+      ],
+      "remaining": "No legal priority is inferred from list order."
+    },
+    "09.4.165": {
+      "promise": "AllocTheta is conditional on actual items/payment/row identity binding and source identity; per-index bounds, total allocation within payment, explicit same-unit and lawful-target/fact evidence; actual amount updater keeps list length/order and all nonamount fields.",
+      "evidence": [
+        "certified_allocation_updates_actual_list proves the certified Option output connects to actual map-based allocation updater, item bounds/nonnegativity/full nonamount frame, outstanding-list conservation and payment unused split under the certificate conditions",
+        "reuses Ledger.u09_3_general_allocation for the finite amount core"
+      ],
+      "remaining": "Opaque theta/fact predicates record supplied conditions; they do not instantiate or prove a real-world legal allocation rule. Cash payment and legal discharge are not updated."
+    },
+    "09.4.167": {
+      "promise": "AccrueTheta requires explicit state, t0/t1, formula, rounding function, effectiveness and fact conditions; absent terms produce no transition; actual output is Ledger.accrue.",
+      "evidence": [
+        "accrue_theta_output_is_actual_accrual",
+        "actual_accrual_balance_and_non_cash reuses Ledger.u09_3_accrual_not_cash",
+        "synthetic_accrual_increases_balance_without_payment is a calculation-level counterexample only"
+      ],
+      "remaining": "No single/compound formula, base=current-balance, fee-unit equality, nonnegative accrual for every input, or real legal approval is assumed or claimed."
+    }
+  },
+  "fixed_v2_unproved_extensions": [
+    "The existing V2 surface remains scalar/greedy; this conditional producer interface is not wired as a general multi-debt legal allocation caller.",
+    "Concrete jurisdictional ordering rules and factual-rule instances remain unproved; abstract theta predicates are not proof of those external rules.",
+    "The source does not add a general cash-payment protocol or claim legal discharge/status changes; no broader agreement/effect transition is asserted."
+  ],
+  "canonical_state": {
+    "math_counts": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 67,
+      "PARTIAL": 19,
+      "NOT_RECONCILED": 11
+    },
+    "consumer_edges": {
+      "rows": 50,
+      "closed": 50,
+      "open": 0,
+      "bindings": 124
+    },
+    "global_discharge_step2_math_flip": false,
+    "D5N_changed": false
+  },
+  "interpretation_boundaries": [
+    "Changed-module source evidence is not full PR or post-merge acceptance.",
+    "09.3 remains a previously closed row and is not reopened by this record.",
+    "No unit conversion obligation is introduced; same-unit and identity/bounds conditions stated in this source result remain proved conditionally."
+  ],
+  "metadata_checkpoint": {
+    "commit": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5",
+    "tree": "547ae90809ef2490e54abd45fd0c80a45cf5cdf5",
+    "parent": "4a1156c7d19081d0f67dfee8633b82d5a6f3fed7",
+    "change": "Official generator removed three duplicate prints now audited by the source module; no proof/source CI ran on this metadata checkpoint.",
+    "generator": "python scripts/ci/generate_probability_audit_surface.py --write",
+    "generator_exit": 0,
+    "generated_targets": 3468,
+    "deduplicated_targets": [
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+      "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay"
+    ],
+    "new_audit_location": "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean footer #print axioms"
+  },
+  "generated_audit_surface": {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "generator": "python scripts/ci/generate_probability_audit_surface.py --write",
+    "generator_exit": 0,
+    "target_count": 3468,
+    "tracked_diff": true,
+    "metadata_checkpoint": {
+      "commit": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5",
+      "tree": "547ae90809ef2490e54abd45fd0c80a45cf5cdf5",
+      "parent": "4a1156c7d19081d0f67dfee8633b82d5a6f3fed7",
+      "change": "Official generator removed three duplicate prints now audited by the source module; no proof/source CI ran on this metadata checkpoint.",
+      "generator": "python scripts/ci/generate_probability_audit_surface.py --write",
+      "generator_exit": 0,
+      "generated_targets": 3468,
+      "deduplicated_targets": [
+        "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+        "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+        "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay"
+      ],
+      "new_audit_location": "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean footer #print axioms"
+    },
+    "check_command": "python scripts/ci/generate_probability_audit_surface.py --check",
+    "check_exit": 0,
+    "deduplicated_targets": [
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+      "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+      "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay"
+    ],
+    "deduplication_reason": "Official audited_elsewhere() drops a target printed by another Lean source file; all three declarations remain in UnifiedQuantLedger and are each #check/#print axioms targets in ParametricAllocationAudit20261104.lean footer.",
+    "frozen_audit_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+    "frozen_audit_sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099",
+    "frozen_audit_unchanged": true
+  },
+  "manifest_binding": {
+    "path": "docs/formal-release/theorem_inventory_v3.json",
+    "subject": {
+      "branch": "formal/close-original09-4-allocation-accrual-20261104",
+      "commit": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5",
+      "tree": "547ae90809ef2490e54abd45fd0c80a45cf5cdf5"
+    },
+    "bytes": 1709502,
+    "sha256": "cc30a097a797e791e79a293b1fccdb004ba1cc51a0c5266e42239e264dacb7ac",
+    "source_inventory_digest": "3703763d8a86bf111fb78402f2d1a064a4410e97c28546d456f14e4ed535b69e",
+    "subject_binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 582,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "all_tracked_lean": {
+      "counted_declaration_count": 6437,
+      "file_count": 582,
+      "lemma_count": 146,
+      "print_axioms_command_count": 5889,
+      "print_axioms_distinct_targets": 5273,
+      "theorem_count": 6291,
+      "theorem_count_bol_convention": 6191
+    },
+    "juris_lean_package": {
+      "counted_declaration_count": 6418,
+      "file_count": 567,
+      "lemma_count": 139,
+      "print_axioms_command_count": 5889,
+      "print_axioms_distinct_targets": 5273,
+      "theorem_count": 6279,
+      "theorem_count_bol_convention": 6179
+    },
+    "audit_targets_without_declarations": 0,
+    "generation_command": "python scripts/ci/generate_theorem_manifest.py --require-bound",
+    "generation_exit": 0,
+    "verification_command": "python scripts/ci/generate_theorem_manifest.py --verify docs/formal-release/theorem_inventory_v3.json",
+    "verification_exit": 0,
+    "bound_to_metadata_checkpoint": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5",
+    "proof_source_ci_subject_remains": "4a1156c7d19081d0f67dfee8633b82d5a6f3fed7"
+  },
+  "derived_outputs": [
+    {
+      "path": "docs/formal-release/theorem_inventory_v3.json",
+      "bytes": 1709502,
+      "sha256": "cc30a097a797e791e79a293b1fccdb004ba1cc51a0c5266e42239e264dacb7ac"
+    },
+    {
+      "path": "docs/formal-release/trivial_proof_census.json",
+      "bytes": 557030,
+      "sha256": "8e17980b4a06450bfc1bc9989b1e9149beb651248dca1e27095fa6a4252e4d5a"
+    },
+    {
+      "path": "docs/formal-release/gap_status.json",
+      "bytes": 2300,
+      "sha256": "938fb42d024e5300825c91fabb81e6ab63e7a905b26d7240f0d00bcd394d1d36"
+    },
+    {
+      "path": "docs/formal-release/statement_duplication_census.json",
+      "bytes": 30677,
+      "sha256": "1c6ffded37047ce2c335b79f037a0258daff49ef50fcbf6a89f9934f1220665a"
+    },
+    {
+      "path": "docs/formal-release/statement_duplication_census.md",
+      "bytes": 12181,
+      "sha256": "d80fe837fb1bfbf7940bc76442f8c5e123aa1db67776a2fcc1d73f6c570da731"
+    },
+    {
+      "path": "docs/formal-release/kernel_reuse_report.json",
+      "bytes": 7050,
+      "sha256": "5cc4f1a31b20461e7f597a005e44ecbd7424dde77233269e621710ba0cc7f96f"
+    },
+    {
+      "path": "docs/formal-release/declaration_shape_report.json",
+      "bytes": 1920,
+      "sha256": "a6957d99a91333b0ca32f92b82666a5bd4e921d966d97cbe580b280c1ef16704"
+    },
+    {
+      "path": "docs/master-plan/基线/T谱/卷覆盖账.jsonl",
+      "bytes": 12082,
+      "sha256": "f61f08d34a72f6e9e56945c497546ad61b8b81d8ccb09824cda25e39e2496280"
+    },
+    {
+      "path": "docs/paper-rewrite/paper_cn.md",
+      "bytes": 41256,
+      "sha256": "aa497bed314a24f9e7b1249807f0a7572f7122fbcb3bb9940b121d9c8b5a0ba5"
+    },
+    {
+      "path": "docs/paper-rewrite/paper_en.md",
+      "bytes": 45947,
+      "sha256": "a2e3099b8b9be73bf57bfd22d4b283bf3b2f56362c8617e0b05718597994d477"
+    },
+    {
+      "path": "docs/formal-release/ci_run_index.json",
+      "bytes": 1145272,
+      "sha256": "c0517f1b79b947cda541f723c8c38d260fc327973e8e2a4d4163bd7e31d6dbd0"
+    },
+    {
+      "path": "docs/formal-release/ci_run_index.md",
+      "bytes": 98103,
+      "sha256": "6c93fe15b39ca4f73069c6fec198d0ac8a1f2ba1f2d189487d03b67350f3523b"
+    }
+  ],
+  "record_checks": [
+    {
+      "name": "manifest-verify",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\manifest-verify.stdout.txt",
+        "bytes": 31,
+        "sha256": "89eaf214b18b8f42d8ef5c8d071070e240de0af79bd93d540dd461a0bab16923"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\manifest-verify.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\manifest-verify.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "probability-audit-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\probability-audit-check.stdout.txt",
+        "bytes": 55,
+        "sha256": "eb6466e78fb94aced160e8bef3f45e8998bcf439b4266034d17d1f0a4fbd1e87"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\probability-audit-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\probability-audit-check.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "trivial-census-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\trivial-census-check.stdout.txt",
+        "bytes": 95,
+        "sha256": "ea8f97226958250206d58a5e71d1376ef616dd54e9039ccd971f3c52c52e999c"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\trivial-census-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\trivial-census-check.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "structure-volume-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\structure-volume-check.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\structure-volume-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\structure-volume-check.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "reachability",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\reachability.stdout.txt",
+        "bytes": 76,
+        "sha256": "66e20e5d9029597b01d5b4e0a41e9affc1922b352c442c7fcc44a1a58a66bec8"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\reachability.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\reachability.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "paper-single-count",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-single-count.stdout.txt",
+        "bytes": 126,
+        "sha256": "8072436340e5c2456920ef0235ce8b4e100348b0ab688811e8413d06ed58db1a"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-single-count.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-single-count.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "paper-derived-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-derived-check.stdout.txt",
+        "bytes": 494,
+        "sha256": "7d0e953c1f5468ed14466707df61058d603f643e9aa164e0eb791fd8f124ae59"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-derived-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\paper-derived-check.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "duplication-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "initial_attempt": {
+        "status": "FAIL",
+        "exit_code": 1,
+        "stdout": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check.stdout.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check.stderr.txt",
+          "bytes": 80,
+          "sha256": "e22161d916798275e5c14c83bb8c7358b510cddf1e0637dcbd6065c77cf61504"
+        },
+        "exit_receipt": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check.exit.txt",
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        "diagnostic": "inventory_package_theorems drift: committed 6413, source says 6418; census regenerated after bound inventory."
+      },
+      "final_attempt": {
+        "status": "PASS",
+        "exit_code": 0,
+        "stdout": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check-r2.stdout.txt",
+          "bytes": 75,
+          "sha256": "78bed3fdbd75c5f2fe5d1b88bbaa558c19932cf87ebd8d593484d7dee70fe1ce"
+        },
+        "stderr": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check-r2.stderr.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_receipt": {
+          "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\duplication-check-r2.exit.txt",
+          "bytes": 2,
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+        }
+      }
+    },
+    {
+      "name": "declaration-shape-check",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\declaration-shape-check.stdout.txt",
+        "bytes": 29,
+        "sha256": "05f42e42d7331a312b4a0523a8a40ba59f4b1f332886e3d68a38925c6f43ea69"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\declaration-shape-check.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\declaration-shape-check.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "clause-binding",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\clause-binding.stdout.txt",
+        "bytes": 310,
+        "sha256": "79d54658409109b4791cafde2a670ebbc7f9ca1ca5854bece5f2d5442c22e45a"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\clause-binding.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\clause-binding.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    },
+    {
+      "name": "archive-gap",
+      "status": "PASS",
+      "exit_code": 0,
+      "capture_mode": "physical-streams",
+      "stdout": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\archive-gap.stdout.txt",
+        "bytes": 228,
+        "sha256": "02731558a7cb605146cba801ed4a5cd3719c8f55b0a63fa1d6bf608cbf35acb6"
+      },
+      "stderr": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\archive-gap.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exit_receipt": {
+        "path": "D:\\tmp\\original09-4-records-41761045186\\commands\\archive-gap.exit.txt",
+        "bytes": 2,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      }
+    }
+  ],
+  "index_update": {
+    "path": "docs/formal-release/ci_run_index.json",
+    "runs_before": 589,
+    "quotes_before": 1440,
+    "runs_after": 592,
+    "quotes_after": 1446,
+    "old_589_rows_unchanged": true,
+    "metadata_describe_scope": "Only the three absent run records were queried via build_ci_run_index.describe; no module-only full evidence was fetched.",
+    "runs": [
+      {
+        "run_id": 41759899549,
+        "conclusion": "failure",
+        "head_sha": "ac155fc4025bb28f3f3ee47085a70e411e660eb7",
+        "artifact_id": 13289389530
+      },
+      {
+        "run_id": 41760546379,
+        "conclusion": "failure",
+        "head_sha": "407037f03ce2d2cf9efe513cc1984afb9a832ecc",
+        "artifact_id": 13290342081
+      },
+      {
+        "run_id": 41761045186,
+        "conclusion": "success",
+        "head_sha": "4a1156c7d19081d0f67dfee8633b82d5a6f3fed7",
+        "artifact_id": 13291075352
+      }
+    ],
+    "quotes_only_exit": 0,
+    "check_exit": 0,
+    "test_command": "python -m pytest -q tests/test_ci_run_index.py",
+    "tests": 12,
+    "test_exit": 0,
+    "test_elapsed": "5.46s",
+    "test_capture": "TOOL_RETURN_ONLY"
+  },
+  "record_generation": {
+    "generator_results": [
+      {
+        "command": "python scripts/ci/generate_probability_audit_surface.py --write",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY",
+        "targets": 3468
+      },
+      {
+        "command": "python scripts/ci/generate_theorem_manifest.py --require-bound",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY",
+        "subject": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5"
+      },
+      {
+        "command": "python scripts/ci/generate_trivial_proof_census.py",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY"
+      },
+      {
+        "command": "python scripts/ci/generate_declaration_shape_report.py",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY"
+      },
+      {
+        "command": "python scripts/ci/generate_gap_status.py --write",
+        "first_exit": 1,
+        "first_capture": "TOOL_RETURN_ONLY",
+        "first_failure": "UnicodeEncodeError on GBK console after artifact write; rerun same generator with UTF-8 stdout",
+        "final_exit": 0,
+        "final_capture": "TOOL_RETURN_ONLY"
+      },
+      {
+        "command": "python scripts/ci/generate_structure_and_volume_reports.py",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY"
+      },
+      {
+        "command": "python scripts/ci/build_statement_duplication_census.py --write",
+        "first_exit": 0,
+        "first_output_stale_against_later_inventory": true,
+        "final_exit": 0,
+        "capture": "TOOL_RETURN_ONLY"
+      },
+      {
+        "command": "python scripts/rebind_paper_derived_accounting.py --write",
+        "exit": 0,
+        "capture": "TOOL_RETURN_ONLY"
+      }
+    ]
+  },
+  "same_c_verifier": "NOT_RUN",
+  "full_pr_acceptance": "PENDING"
+}

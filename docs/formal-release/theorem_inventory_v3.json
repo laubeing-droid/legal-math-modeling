@@ -3795,8 +3795,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg",
-    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
-    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
     "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_le",
     "JurisLean.Seams.UnifiedQuantLedger.causeTimesLoss_sound",
     "JurisLean.Seams.UnifiedQuantLedger.clamp_clamp",
@@ -3827,7 +3825,6 @@
     "JurisLean.Seams.UnifiedQuantLedger.no_blanket_invalidation",
     "JurisLean.Seams.UnifiedQuantLedger.no_resp_zero_share",
     "JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount",
-    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger",
     "JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg",
@@ -4664,8 +4661,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "6c048b4f15570ab456f2a22b41c47f079a66f4bc53f16d4a2e51db041b21baff",
-   "size_bytes": 312841,
+   "sha256": "7d90e978a85e2225003d8b3a4337279cc33725e6049041366ad11de74ab2c1e9",
+   "size_bytes": 312626,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14868,6 +14865,96 @@
    "size_bytes": 2782,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "AllocationCertificate"
+    },
+    {
+     "kind": "def",
+     "name": "applyAllocationVector"
+    },
+    {
+     "kind": "def",
+     "name": "allocatedRow"
+    },
+    {
+     "kind": "def",
+     "name": "applyAllocTheta"
+    },
+    {
+     "kind": "structure",
+     "name": "AccrualTerms"
+    },
+    {
+     "kind": "structure",
+     "name": "AccrualCertificate"
+    },
+    {
+     "kind": "def",
+     "name": "applyAccrueTheta"
+    },
+    {
+     "kind": "theorem",
+     "name": "certified_allocation_updates_actual_list"
+    },
+    {
+     "kind": "theorem",
+     "name": "accrue_theta_output_is_actual_accrual"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_accrual_balance_and_non_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "synthetic_accrual_increases_balance_without_payment"
+    },
+    {
+     "kind": "def",
+     "name": "twoEqualItems"
+    },
+    {
+     "kind": "def",
+     "name": "forwardAfterPay"
+    },
+    {
+     "kind": "def",
+     "name": "reversedAfterPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "l163_equal_total_does_not_fix_identity"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.SingleDebtStreamAudit20261103",
+    "Mathlib.Algebra.BigOperators.Fin",
+    "Mathlib.Data.List.OfFn"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.accrue_theta_output_is_actual_accrual",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.actual_accrual_balance_and_non_cash",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.certified_allocation_updates_actual_list",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.synthetic_accrual_increases_balance_without_payment",
+    "JurisLean.Candidates.SingleDebtStream20261103.afterPay_preserves_full_frame_and_pointwise_order",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay"
+   ],
+   "sha256": "9d5bc3e594572205d433b0dec6ddf3a5bbbf31e754493502990ac6aa3b7d54eb",
+   "size_bytes": 13539,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
   },
   {
    "declarations": [
@@ -62320,6 +62407,7 @@
     "JurisLean.Candidates.MeasurementLikelihoodAudit20261027",
     "JurisLean.Candidates.Original07_3RowInterpretationAudit20261102",
     "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104",
     "JurisLean.Candidates.PendingCommit20261027",
     "JurisLean.Candidates.SingleDebtStreamAudit20261103",
     "JurisLean.Candidates.SourceAction20261027",
@@ -62590,8 +62678,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0bfeafb09738ff0b4f8d4636f7bfdfbc560f355c89c41e849b57b7dca8bc2a5f",
-   "size_bytes": 16200,
+   "sha256": "86a57a636e18e4df19eeff4481921e96fb68eb1e7f295a322663f061f54e0afa",
+   "size_bytes": 16262,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -62763,22 +62851,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6432,
-   "file_count": 581,
+   "counted_declaration_count": 6437,
+   "file_count": 582,
    "lemma_count": 146,
-   "print_axioms_command_count": 5880,
-   "print_axioms_distinct_targets": 5268,
-   "theorem_count": 6286,
-   "theorem_count_bol_convention": 6186
+   "print_axioms_command_count": 5889,
+   "print_axioms_distinct_targets": 5273,
+   "theorem_count": 6291,
+   "theorem_count_bol_convention": 6191
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6413,
-   "file_count": 566,
+   "counted_declaration_count": 6418,
+   "file_count": 567,
    "lemma_count": 139,
-   "print_axioms_command_count": 5880,
-   "print_axioms_distinct_targets": 5268,
-   "theorem_count": 6274,
-   "theorem_count_bol_convention": 6174
+   "print_axioms_command_count": 5889,
+   "print_axioms_distinct_targets": 5273,
+   "theorem_count": 6279,
+   "theorem_count_bol_convention": 6179
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -62932,6 +63020,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretationAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstance20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
@@ -63511,6 +63600,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_3RowInterpretationAudit20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstance20261102.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Original07_4ObservationInstanceAudit20261102.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ParametricAllocationAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PendingCommit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluationAudit20261027.lean",
@@ -63982,17 +64072,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5442f0833389b1ecad5e848ca8fbf1841a7c4b8645e119ed7698af0b5561b5d5",
+ "source_inventory_digest": "3703763d8a86bf111fb78402f2d1a064a4410e97c28546d456f14e4ed535b69e",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original09-3-payment-identity-20261103",
-  "commit": "2c07cdb41bd317bed458589265e2a30a5e747597",
-  "tree": "ce5ae4c3043c60f5f371fc934b94d9b465074937"
+  "branch": "formal/close-original09-4-allocation-accrual-20261104",
+  "commit": "c19c7fef45e7b9f613a869c06c9a63bad482e3f5",
+  "tree": "547ae90809ef2490e54abd45fd0c80a45cf5cdf5"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 581,
+  "files_total": 582,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

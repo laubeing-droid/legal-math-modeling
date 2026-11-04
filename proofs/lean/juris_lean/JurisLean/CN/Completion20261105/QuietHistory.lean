@@ -76,13 +76,14 @@ inductive FiveHistory : Situation → Situation → Type 1
   | snoc {a b : Situation} (h : FiveHistory a b) (c : FiveCommand) :
       FiveHistory a (executeCommand b c.toCommand).after
 
-def FiveHistory.toHistory {a b : Situation} : FiveHistory a b → History a b
-  | .nil s => .nil s
-  | .snoc h c => h.toHistory.snoc c.toCommand
+def FiveHistory.toHistory {a b : Situation} (h : FiveHistory a b) : History a b := by
+  induction h with
+  | nil => exact History.nil _
+  | snoc h c ih => exact History.snoc ih c.toCommand
 
 theorem FiveHistory.frame {a b : Situation} (h : FiveHistory a b) : Frame5 a b := by
   induction h with
-  | nil s => exact ⟨rfl,rfl,rfl,rfl,rfl⟩
+  | nil => exact ⟨rfl,rfl,rfl,rfl,rfl⟩
   | snoc h c ih => exact ih.trans (five_actual_frame _ c)
 
 theorem FiveHistory.no_new_decision_binding {a b : Situation} (h : FiveHistory a b)

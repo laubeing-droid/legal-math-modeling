@@ -186,7 +186,7 @@ inductive Command : Type → Type 1
   | burdenEvidence (c : Law.Call) (body : Formula) : Command Judgment
   | acquisitionEvidence (c : Law.Call) (parties : AcquisitionParties) (route : AcqRoute)
       (faith price publicity : Atom) : Command Judgment
-  | offenseEvidence (c : Law.Call) (ps : List Participation) (person : Ref .actor)
+  | offenseEvidence (c : Law.Call) (person : Ref .actor)
       (event : Ref .event) (commonScope : Ref .query) (ability elements : Atom) : Command (Ref .query)
   | storedResJudicata (doc : Ref .document) (person : Ref .actor) (scope : Scope) (time : Nat) : Command Bool
   | contractQuery (c : Law.Call) (obj : Ref .object) : Command Judgment
@@ -216,8 +216,8 @@ def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .assignment a r => assignmentQuery s a r
   | .burdenEvidence c body => burdenEvidence s c body
   | .acquisitionEvidence c ps route faith price pub => acquisitionEvidence s c ps route faith price pub
-  | .offenseEvidence c ps person event commonScope ability elements =>
-      offenseEvidence s c ps person event commonScope ability elements
+  | .offenseEvidence c person event commonScope ability elements =>
+      offenseEvidence s c person event commonScope ability elements
   | .storedResJudicata doc person scope time => storedResJudicata s doc person scope time
   | .contractQuery c obj => contractQuery s c obj
   | .addTemplate r t => registerTemplate s r t

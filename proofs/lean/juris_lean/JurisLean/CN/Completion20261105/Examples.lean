@@ -153,13 +153,13 @@ theorem actual_nonmonotone_withdrawal :
 def offenseStart (actor : Ref .actor) : Situation :=
   let s := readyCase confirmation .offense
   let st := {s.core.state with F := [⟨ev1,actor,toyAtom,0⟩]}
-  s.withCore (s.core.putState st rfl)
+  {s.withCore (s.core.putState st rfl) with participations := jiaParts ++ yiParts}
 /- 6: actual actor/event projection blocks copying the other's excess. The
    general differing-charge theorem uses two norm-element queries, not scores. -/
 theorem offense_actual :
-    (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) yiParts aYi ev1 q1
+    (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) aYi ev1 q1
       toyAtom toyAtom)).answer = .success toyScope.question ∧
-    (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) yiParts aYi ev2 q1
+    (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) aYi ev2 q1
       toyAtom toyAtom)).answer = .unknown .inputUnchecked := by decide
 
 def bankruptcyStart : Situation :=

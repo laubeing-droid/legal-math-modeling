@@ -29,7 +29,7 @@ theorem successful_join (r : Reply Unit) (q : Program Unit) (b : Situation) :
   cases r with
   | mk s answer =>
     cases answer with
-    | success v => cases v; rfl
+    | success v => cases v; simp [joinReply,Success]
     | rejected k => simp [joinReply]
     | unknown k => simp [joinReply]
     | conflict k => simp [joinReply]
@@ -78,7 +78,7 @@ theorem plus_assoc (r s t : Rel) : plusR (plusR r s) t = plusR r (plusR s t) := 
 theorem plus_comm (r s : Rel) : plusR r s = plusR s r := by
   funext a b; exact propext or_comm
 theorem plus_idempotent (r : Rel) : plusR r r = r := by
-  funext a b; exact propext or_self
+  funext a b; simp [plusR]
 theorem plus_zero (r : Rel) : plusR r zeroR = r := by
   funext a b; simp [plusR,zeroR]
 theorem sequence_assoc (r s t : Rel) : seqR (seqR r s) t = seqR r (seqR s t) :=
@@ -154,7 +154,14 @@ theorem successful_star_is_actual_finite_iteration (p : Program Unit) (a b : Sit
 theorem tests_compose (p q : Situation → Bool) :
     seqR (testR p) (testR q) = testR (fun s => p s && q s) := by
   funext a b; apply propext
-  simp [seqR,Relation.Comp,testR,Bool.and_eq_true,and_assoc,eq_comm]
+  constructor
+  · rintro ⟨mid,⟨ham,hp⟩,hmb,hq⟩
+    subst mid
+    exact ⟨hmb,by simpa only [Bool.and_eq_true] using And.intro hp hq⟩
+  · rintro ⟨hab,hpq⟩
+    subst b
+    have h : p a = true ∧ q a = true := by simpa only [Bool.and_eq_true] using hpq
+    exact ⟨a,⟨rfl,h.1⟩,rfl,h.2⟩
 theorem tests_complement (p : Situation → Bool) :
     plusR (testR p) (testR (fun s => !p s)) = oneR ∧
     seqR (testR p) (testR (fun s => !p s)) = zeroR := by

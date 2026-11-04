@@ -55,13 +55,13 @@ def acquisitionEvidence (s : Situation) (c : Law.Call) (parties : AcquisitionPar
 /- The participation source is a legal-assessment atom for this person/event;
    a group member is not an automatic premise about an excess event. The
    elements/charge query is tied to the selected norm's scope.question. -/
-def offenseEvidence (s : Situation) (c : Law.Call) (ps : List Participation)
+def offenseEvidence (s : Situation) (c : Law.Call)
     (person : Ref .actor) (event : Ref .event) (commonScope : Ref .query)
     (ability elements : Atom) : Reply (Ref .query) :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
-  else if !s.core.state.F.any (fun o => o.id == event && o.actor == person) then
+  else if !s.core.state.F.any (fun o => o.id == event) then
     quiet s (.unknown .inputUnchecked)
-  else if !hasJoint ps person event commonScope then quiet s (.rejected .prerequisites)
+  else if !hasJoint s.participations person event commonScope then quiet s (.rejected .prerequisites)
   else if ability.scope != c.request.scope || elements.scope != c.request.scope then
     quiet s (.rejected .unsupported)
   else match combineAnd (proofAt s c (.atom ability)) (proofAt s c (.atom elements)) with
@@ -109,9 +109,9 @@ theorem proofAt_unknown_reaches_query (s : Situation) (c : Law.Call)
   simp [burdenEvidence, hg, h, judgmentReply, quiet]
 
 theorem offense_evidence_never_changes_reality (s : Situation) (c : Law.Call)
-    (ps : List Participation) (person : Ref .actor) (event : Ref .event)
+    (person : Ref .actor) (event : Ref .event)
     (commonScope : Ref .query) (ability elements : Atom) :
-    (offenseEvidence s c ps person event commonScope ability elements).after = s := by
+    (offenseEvidence s c person event commonScope ability elements).after = s := by
   unfold offenseEvidence
   split
   · rfl

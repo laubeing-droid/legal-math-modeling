@@ -21,7 +21,7 @@ def commandTag {α : Type} : Command α → Tag
   | .operator _ _ | .check _ => .operator
   | .positions _ => .institution
   | .institution _ | .burdenEvidence _ _ | .acquisitionEvidence _ _ _ _ _ _ |
-      .offenseEvidence _ _ _ _ _ _ _ | .storedResJudicata _ _ _ _ | .contractQuery _ _ => .institution
+      .offenseEvidence _ _ _ _ _ _ | .storedResJudicata _ _ _ _ | .contractQuery _ _ => .institution
   | .engine _ _ | .registerEngine _ _ => .engine
   | .legal _ => .legal
   | .assignment _ _ => .assignment
@@ -88,7 +88,7 @@ structure PackedReply where
    This is an executed projection, not a second computation of the answer. -/
 inductive Value
   | unit | boolean (value : Bool) | natural (value : Nat)
-  | reference (kind : IdKind) (id : Nat)
+  | reference (kind : JurisLean.CN.Revision20261101.IdKind) (id : Nat)
   | judgment (value : Judgment) | formula (value : Formula)
   | events (ids : List (Ref .event)) | times (values : List Nat)
   | quantity (u : UnitKind) (value : Quantity u) | clock (value : Clock)
@@ -120,7 +120,7 @@ def commandValue {α : Type} : Command α → α → Value
   | .engine _ _,v => .engine v | .registerEngine _ _,_ => .unit
   | .legal _,_ => .unit | .burdenEvidence _ _,v => .judgment v
   | .acquisitionEvidence _ _ _ _ _ _,v => .judgment v
-  | .offenseEvidence _ _ _ _ _ _ _,v => .reference .query v.value
+  | .offenseEvidence _ _ _ _ _ _,v => .reference .query v.value
   | .storedResJudicata _ _ _ _,v => .boolean v | .contractQuery _ _,v => .judgment v
   | .assignment _ _,v => .formula v | .perform _ _ _ _,_ => .unit
   | .addTemplate _ _,v => .reference .document v.value | .decide _ _,v => .decision v

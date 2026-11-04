@@ -50,7 +50,6 @@ structure Situation where
   stayed : List (Ref .event)
   interest : Ref .relation → Option IR.InterestLedger
   cutoffs : Ref .relation → Option Nat
-  responsibility : Ref .actor → Ref .event → Ref .query → Judgment
   tracks : LiabilityTracks
   paused : List Scope
   actRelations : Ref .object → List (Ref .relation)
@@ -61,11 +60,12 @@ structure Situation where
   uses : List InstitutionPermit
   bankruptcyCases : Ref .actor → Option Nat
   disputes : List (Scope × ConflictKind)
+  participations : List IR.Participation
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
-    fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, []⟩
+    fun _ => none, fun _ => none, ⟨[], [], [], []⟩, [],
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], []⟩
 
 def activeConflict (s : Situation) (scope : Scope) : Option ReviewRoute :=
   match ((s.disputes.filter (fun d => d.1 == scope)).map (fun d => reviewRoute d.2)).eraseDups with

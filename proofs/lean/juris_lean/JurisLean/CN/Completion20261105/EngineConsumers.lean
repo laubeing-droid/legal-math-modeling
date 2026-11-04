@@ -66,13 +66,17 @@ def engineOutput (s : Situation) (c : EngineContext) (kind : UEng)
   ⟨kind, c.scope, c.target, s.core.state.F.map (fun e => e.id),
     theoremName, [], payload⟩
 
+def sourceUnknown : Native.Error → UnknownKind
+  | .notIdentified | .unsupported | .authorityUnresolved | .incompatibleFiber => .systemNotJudge
+  | _ => .inputUnchecked
+
 def relayNative {α : Type} (s : Situation) (result : Native.Result α)
     (pack : α → EngineOutput) : NativeReply (Native.Result α) :=
   ⟨match result with
     | .known value =>
       let output := pack value
       ⟨(Law.proposeEngine s output).after, .success output⟩
-    | .unknown _ => quiet s (.unknown .inputUnchecked)
+    | .unknown reason => quiet s (.unknown (sourceUnknown reason))
     | .rejected _ => quiet s (.rejected .unsupported)
     | .conflict _ _ => quiet s (.conflict .competentReview),
    result⟩
@@ -106,10 +110,12 @@ def consumeProb {n : Nat} (s : Situation) (c : EngineContext)
     (prior : Native.Prob.FiniteLaw (Fin n)) (likelihood : Fin n → ℚ)
     (event : Fin n → Ref .event) :
     NativeReply (Native.Result (Native.Prob.FiniteLaw (Fin n))) :=
-  relayNative s (probabilitySource prior likelihood) (fun post =>
-    engineOutput s c .prob
+  if decide (Function.Injective event) then
+    relayNative s (probabilitySource prior likelihood) (fun post =>
+      engineOutput s c .prob
       "JurisLean.Candidates.Final20261021.Probability.posterior_mass"
-      (List.ofFn (fun w : Fin n => (event w, ⟨post.mass w⟩))))
+        (List.ofFn (fun w : Fin n => (event w, ⟨post.mass w⟩))))
+  else ⟨quiet s (.rejected .unsupported), probabilitySource prior likelihood⟩
 
 structure CausalInput (n k : Nat) where
   mass : Native.Prob.FiniteLaw (Fin n)
@@ -182,13 +188,25 @@ def consumeCash (s : Situation) (c : EngineContext) (before : Native.Cash.State)
 
 /- Native retains the actual typed expression and its currency/unit metadata;
    the legal view only adds a declared quantity-unit projection. -/
+def exactUnitMatches (unit : UnitKind) : Option Native.AmountTag → Bool
+  | none => unit == .scalar
+  | some tag =>
+    match unit with
+    | .money => !tag.currency.isEmpty && (tag.unit == "yuan" || tag.unit == "money")
+    | .day => tag.currency.isEmpty && tag.unit == "day"
+    | .count => tag.currency.isEmpty && tag.unit == "count"
+    | .information => tag.currency.isEmpty && tag.unit == "bit"
+    | .scalar => tag.currency.isEmpty && tag.unit == "scalar"
+
 def consumeExact (s : Situation) (c : EngineContext) (unit : UnitKind)
     (left right : Native.Decision.TypedValue) :
     NativeReply (Native.Result Native.Decision.TypedValue) :=
-  relayNative s (Native.Decision.addValues left right) (fun actual =>
-    engineOutput s c .exact
+  if exactUnitMatches unit left.dimension then
+    relayNative s (Native.Decision.addValues left right) (fun actual =>
+      engineOutput s c .exact
       "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique"
-      ⟨unit, ⟨Native.Decision.evalExact actual.expr⟩⟩)
+        ⟨unit, ⟨Native.Decision.evalExact actual.expr⟩⟩)
+  else ⟨quiet s (.rejected .unsupported), Native.Decision.addValues left right⟩
 
 def behaviorSource (threshold : ℚ) : Native.Result (Fin 3) :=
   if 0 < threshold ∧ threshold ≤ 1 then
@@ -246,7 +264,10 @@ theorem probability_uses_actual_posterior {n : Nat} (s : Situation) (c : EngineC
     (event : Fin n → Ref .event) (post : Native.Prob.FiniteLaw (Fin n))
     (h : (consumeProb s c prior likelihood event).native = .known post) :
     ∀ w, post.mass w = prior.mass w * likelihood w / Native.Prob.expectation prior likelihood := by
-  change probabilitySource prior likelihood = .known post at h
+  have hn : (consumeProb s c prior likelihood event).native = probabilitySource prior likelihood := by
+    unfold consumeProb
+    split <;> rfl
+  rw [hn] at h
   unfold probabilitySource at h
   cases hs : Native.Prob.proposed_probability_model prior likelihood with
   | none => simp [hs] at h

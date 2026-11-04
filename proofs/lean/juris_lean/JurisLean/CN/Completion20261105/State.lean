@@ -1,6 +1,7 @@
 import JurisLean.CN.Completion20261105.Foundation
 import JurisLean.CN.Completion20261105.InstitutionRules
 import JurisLean.CN.Completion20261105.PolicyIR
+import JurisLean.Candidates.Final20261021.Ledger
 
 /-!
 Common object used by institution commands, operator programs and runtime.
@@ -45,11 +46,12 @@ structure Situation where
   actRelations : Ref .object → List (Ref .relation)
   choices : Scope → Option (Ref .relation)
   templates : List IssuedTemplate
+  accounts : Ref .relation → Option JurisLean.Candidates.Final20261021.Ledger.State
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, []⟩
+    fun _ => [], fun _ => none, [], fun _ => none⟩
 
 def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
 

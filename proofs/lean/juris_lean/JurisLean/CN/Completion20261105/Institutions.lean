@@ -19,7 +19,8 @@ structure Call where
   world : PossibleWorld
 
 def gate (s : Situation) (c : Call) (grounds : Formula) : Reply Unit :=
-  match selectedRules s.core c.request with
+  if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
+  else match selectedRules s.core c.request with
   | [law] =>
     if law.guard == grounds then legalDispatch s c.request c.policy c.mode c.world
     else quiet s (.rejected .unsupported)

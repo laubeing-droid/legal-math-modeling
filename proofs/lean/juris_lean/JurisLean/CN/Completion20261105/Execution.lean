@@ -1,4 +1,4 @@
-import JurisLean.CN.Completion20261105.EngineConsumers
+import JurisLean.CN.Completion20261105.Edges
 
 /-!
 One executable command graph: observations, admitted evidence, legal steps,
@@ -151,6 +151,12 @@ inductive Command : Type → Type 1
   | institution {α : Type} (call : InstitutionCall α) : Command α
   | engine (context : EngineContext) (call : EngineCall) : Command EngineOutput
   | legal (call : Law.Call) : Command Unit
+  | perform (r : Request) (mode : Mode) (relation : Ref .relation) (p : Native.PaymentPayload) : Command Unit
+  | addTemplate (r : Request) (t : ProofTemplate) : Command (Ref .document)
+  | decide (c : Law.Call) (document : Ref .document) : Command DecisionRecord
+  | bindDecided (b : DecideBinding) (mode : Mode) : Command Unit
+  | bindOther (b : OtherBinding) (mode : Mode) : Command Unit
+  | learn (r : Request) (theta : List Rat) (i : Ref .material) (raw : Raw i) : Command Unit
   | record (i : Ref .material) (raw : Raw i) : Command (Ref .material)
   | admitEvidence (r : Request) (mode : Mode) (i : Ref .material)
       (raw : Raw i) (receipt : Receipt raw) : Command (Ref .material)
@@ -163,6 +169,12 @@ def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .institution call => callInstitution s call
   | .engine context call => (callEngine s context call).legal
   | .legal call => legalDispatch s call.request call.policy call.mode call.world
+  | .perform r mode relation p => performPayment s r mode relation p
+  | .addTemplate r t => registerTemplate s r t
+  | .decide c document => decide s c document
+  | .bindDecided b mode => bindDecided s b mode
+  | .bindOther b mode => bindOtherSource s b mode
+  | .learn r theta i raw => learnMaterial s r theta i raw
   | .record i raw => recordMaterial s i raw
   | .admitEvidence r mode i raw receipt => admission s r mode i raw receipt
   | .withdraw r i why => withdrawal s r i why

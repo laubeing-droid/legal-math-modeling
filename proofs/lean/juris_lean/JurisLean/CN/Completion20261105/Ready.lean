@@ -172,7 +172,9 @@ theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPoli
 theorem legalDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
     (w : PossibleWorld) (h : s.core.state.refusals.contains r.scope = true) :
     (legalDispatch s r p .automated w).answer = .blockedHuman := by
-  simp [legalDispatch, automationAllowed, h, quiet]
+  have hg : automationAllowed s.core.state r.scope .automated = false := by
+    simp only [automationAllowed, h, Bool.not_true]
+  simp [legalDispatch, hg, quiet]
 
 /- No-fact assertion and a qualified admitted assertion may coexist. This
    disproves the old public-entry inference Admit -> natural Truth. -/
@@ -180,7 +182,7 @@ def testimonySituation : Situation :=
   { Situation.initial with core := ⟨prepared, [⟨9⟩], by
       intro i hi
       have hn : i ≠ ⟨9⟩ := by simpa using hi
-      simp [prepared, admitEvidence, setEvidence, hn, initial]⟩ }
+      simp [prepared, admitEvidence, recorded, setEvidence, hn, initial]⟩ }
 
 def dissentingWorld : PossibleWorld :=
   ⟨fun _ => false, fun _ => false, fun _ => ⟨0⟩, fun _ => ⟨0⟩⟩
@@ -190,7 +192,7 @@ theorem admitted_not_natural_truth :
     evalCriterion (admittedView testimonySituation.core.state.E [⟨9⟩]) qualifiedExample =
       .known .established ∧ dissentingWorld.fact toyAtom = false := by
   constructor
-  · simp [legalCompatible, testimonySituation, prepared, admitEvidence, initial]
+  · simp [legalCompatible, testimonySituation, prepared, admitEvidence, recorded, initial]
   · exact ⟨qualified_admitted_is_assessed, rfl⟩
 
 theorem selected_exclusive_empty (s : Situation) (a b : LegalRelation)

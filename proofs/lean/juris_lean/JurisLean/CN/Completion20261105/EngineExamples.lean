@@ -86,10 +86,11 @@ theorem withdrawal_blocks_actual_engine :
       (.engine context ⟨9⟩)) = none := by decide
 
 def cashStart : Situation :=
-  let st := {formedCase.core.state with F := [⟨⟨81⟩,⟨8⟩,toyAtom,0⟩]}
-  {formedCase.withCore (formedCase.core.putState st rfl) with
+  let s := readyCase {confirmation with effect := .performance} .evidence
+  let st := {s.core.state with F := [⟨⟨81⟩,⟨8⟩,toyAtom,0⟩],L := [toyRelation]}
+  {s.withCore (s.core.putState st rfl) with
     accounts := fun id => if id = ⟨6⟩ then some cashBefore else none}
-def paid : Reply Unit := executeCommand cashStart (.perform (request .perform) .human ⟨6⟩ payment)
+def paid : Reply Unit := executeCommand cashStart (.perform (call .perform) ⟨6⟩ payment)
 
 
 
@@ -125,7 +126,7 @@ def checkIO : IO Unit := do
     (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧
     paid.after.core.state.ledger.length = 1 ∧
     paid.after.core.state.F = cashStart.core.state.F ∧ paid.after.core.state.L = cashStart.core.state.L) do throw (IO.userError "actual_performance_consumes_native_cash failed")
-  unless decide ((executeCommand paid.after (.perform (request .perform) .human ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
+  unless decide ((executeCommand paid.after (.perform (call .perform) ⟨6⟩ payment)).after.core.state.ledger.length = 1) do throw (IO.userError "performance_duplicate_is_no_commit failed")
 
   let fitted := run fit
   let learned := executeCommand fitted.after (.learnReport (request .learnModel) ⟨9⟩)

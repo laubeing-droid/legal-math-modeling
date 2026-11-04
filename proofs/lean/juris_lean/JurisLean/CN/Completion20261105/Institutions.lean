@@ -57,6 +57,9 @@ def atomic {α : Type} (before : Situation) (staged : Reply α) : Reply α :=
   | .success _ => staged
   | other => quiet before other
 
+def grounded {α : Type} (before : Situation) (c : Call) (staged : Reply α) : Reply α :=
+  checkPost before c.world (atomic before staged)
+
 theorem atomic_failure_preserves {α : Type} (s : Situation) (r : Reply α)
     (h : ∀ v, r.answer ≠ .success v) : (atomic s r).after = s := by
   cases ha : r.answer <;> simp [atomic, ha, quiet]
@@ -89,7 +92,7 @@ def revoke (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (g : RevokeGuard) : Reply CivilActLife :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
   else if c.request.actor != g.holder || c.request.time != g.atTime then quiet s (.rejected .unauthorized)
-  else atomic s (if c.request.actor == g.holder && c.request.scope.object == obj then
+  else grounded s c (if c.request.actor == g.holder && c.request.scope.object == obj then
     continueWith (gateFor s c grounds .lifecycle) (fun z => revokeLocal z obj g)
   else quiet s (.rejected .unauthorized))
 
@@ -160,7 +163,7 @@ def delegateCall (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (child : Grant) : Reply Agency :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
   else if c.request.act != .constitute || child.role != .party then quiet s (.rejected .unauthorized)
-  else atomic s (continueWith (gateFor s c grounds .agency) (fun z => delegateLocal z obj c.request child))
+  else grounded s c (continueWith (gateFor s c grounds .agency) (fun z => delegateLocal z obj c.request child))
 
 /- Norm text/version are unchanged; the derived authority registry changes.
    Delegation never removes the principal's capacity. -/
@@ -202,18 +205,33 @@ def attributeRelation (agent principal : Ref .actor) (scope : Scope)
       counterparty := (if r.counterparty == agent then principal else r.counterparty)}
   else r
 
+def attributeConstraint (f : LegalRelation → LegalRelation) :
+    JurisLean.CN.Revision20261101.SharedConstraint → JurisLean.CN.Revision20261101.SharedConstraint
+  | .exclusive a b => .exclusive (f a) (f b)
+  | .sameLoss a b => .sameLoss (f a) (f b)
+  | .equalReduction a b => .equalReduction (f a) (f b)
+
 def apparentLocal (s : Situation) (scope : Scope) (agent principal : Ref .actor)
     (g : ApparentGuard) : Reply Judgment :=
   match apparentAttribution g with
   | .undetermined => quiet s (.unknown .inputUnchecked)
   | .notEstablished => quiet s (.rejected .prerequisites)
   | .established =>
-    let st := {s.core.state with L := s.core.state.L.map (attributeRelation agent principal scope)}
-    ⟨{s with core := {s.core with state := st}}, .success .established⟩
+    let f := attributeRelation agent principal scope
+    let st := {s.core.state with
+      L := s.core.state.L.map f
+      constraints := s.core.state.constraints.map (attributeConstraint f)}
+    let accounts := fun id => (s.accounts id).map (fun account =>
+      if s.core.state.L.any (fun rel => rel.id == id && rel.scope == scope) then
+        {account with debt := {account.debt with
+          obligor := if account.debt.obligor.value == agent.value then ⟨principal.value⟩ else account.debt.obligor
+          creditor := if account.debt.creditor.value == agent.value then ⟨principal.value⟩ else account.debt.creditor}}
+      else account)
+    ⟨{s.withCore (s.core.putState st rfl) with accounts := accounts}, .success .established⟩
 
 def apparentCall (s : Situation) (c : Call) (grounds : Formula)
     (agent principal : Ref .actor) (g : ApparentGuard) : Reply Judgment :=
-  atomic s (continueWith (gateFor s c grounds .agency)
+  grounded s c (continueWith (gateFor s c grounds .agency)
     (fun z => apparentLocal z c.request.scope agent principal g))
 
 theorem apparent_preserves_F (s : Situation) (scope : Scope)
@@ -278,7 +296,7 @@ def acceptBankruptcyLocal (s : Situation) (d : CaseDates) (debtor : Ref .actor) 
 
 def acceptBankruptcy (s : Situation) (c : Call) (grounds : Formula)
     (d : CaseDates) (debtor : Ref .actor) : Reply (List (Ref .event)) :=
-  atomic s (continueWith (gateFor s c grounds .bankruptcy) (fun z => acceptBankruptcyLocal z d debtor))
+  grounded s c (continueWith (gateFor s c grounds .bankruptcy) (fun z => acceptBankruptcyLocal z d debtor))
 
 def interestLocal (s : Situation) (accepted : Check Bool) (atTime : Nat)
     (claim : InterestClaim) (t : Nat) : Reply Nat :=
@@ -365,7 +383,7 @@ def interpretLocal (s : Situation) (obj : Ref .object) (f : Formula) : Reply For
 def interpret (s : Situation) (c : Call) (grounds : Formula)
     (obj : Ref .object) (f : Check Formula) : Reply Formula :=
   if automationAllowed s.core.state c.request.scope c.mode = false then quiet s .blockedHuman
-  else atomic s (match f with
+  else grounded s c (match f with
   | .unknown k => quiet s (.unknown k)
   | .known meaning =>
     if c.request.scope.object == obj then

@@ -1,4 +1,5 @@
 import JurisLean.CN.Completion20261105.EvidenceInstitutions
+import JurisLean.CN.Completion20261105.FinancialMerge
 
 /-!
 One executable command graph: observations, admitted evidence, legal steps,
@@ -153,10 +154,10 @@ def callInstitution (s : Situation) {α : Type} : InstitutionCall α → Reply �
       Law.offenseQuery s ps known ability elements who event scope charge
   | .bankruptcy c ground dates debtor => Law.acceptBankruptcy s c ground dates debtor
   | .interest c ground claim time =>
-      Law.atomic s (Law.continueWith (Law.gateFor s c ground .bankruptcy)
+      Law.grounded s c (Law.continueWith (Law.gateFor s c ground .bankruptcy)
         (fun z => Law.interestFromCase z claim time))
   | .compensation c ground kind rel =>
-      Law.atomic s (Law.continueWith (Law.gateFor s c ground (.compensation kind))
+      Law.grounded s c (Law.continueWith (Law.gateFor s c ground (.compensation kind))
         (fun z => ⟨{z with tracks := {z.tracks with
             stateCompensation := (kind,rel) :: z.tracks.stateCompensation}}, .success .established⟩))
   | .rightsConflict => Law.rightsConflict s
@@ -255,7 +256,7 @@ inductive Command : Type → Type 1
   | storedResJudicata (doc : Ref .document) (person : Ref .actor) (scope : Scope) (time : Nat) : Command Bool
   | contractQuery (c : Law.Call) (obj : Ref .object) : Command Judgment
   | assignment (a : MeaningAssignment) (r : Request) : Command Formula
-  | perform (r : Request) (mode : Mode) (relation : Ref .relation) (p : Native.PaymentPayload) : Command Unit
+  | perform (call : Law.Call) (relation : Ref .relation) (p : Native.PaymentPayload) : Command Unit
   | addTemplate (r : Request) (t : ProofTemplate) : Command (Ref .document)
   | decide (c : Law.Call) (document : Ref .document) : Command DecisionRecord
   | bindDecided (b : DecideBinding) (mode : Mode) : Command Unit
@@ -279,7 +280,7 @@ def executeCommand (s : Situation) {α : Type} : Command α → Reply α
   | .engine context material => (runBoundEngine s context material).legal
   | .registerEngine r input => registerEngineMaterial s r input
   | .legal call => legalDispatch s call.request call.policy call.mode call.world
-  | .perform r mode relation p => performPayment s r mode relation p
+  | .perform call relation p => performCall s call relation p
   | .assignment a r => assignmentQuery s a r
   | .burdenEvidence c body => burdenEvidence s c body
   | .acquisitionEvidence c ps route faith price pub => acquisitionEvidence s c ps route faith price pub

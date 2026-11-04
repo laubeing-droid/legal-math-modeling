@@ -70,6 +70,11 @@ structure DecisionSource where
 def DecisionSource.record (d : DecisionSource) : DecisionRecord :=
   ⟨d.document,d.request,d.judgment,d.valid⟩
 
+structure EqualReductionRule where
+  source : NormRef
+  scope : Scope
+  group : List (Ref .relation)
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -94,11 +99,12 @@ structure Situation where
   causalClauses : List CausalClause
   offenseSlots : List OffenseSlot
   decisionSources : List DecisionSource
+  equalReductionRules : List EqualReductionRule
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], [], [], []⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], [], [], [], []⟩
 
 def pendingRoute : ConflictKind → ReviewRoute
   | .localDepartment106 => .stateCouncil
@@ -117,6 +123,12 @@ def institutionAllowed (s : Situation) (r : Request) (kind : InstitutionKind) : 
       law.source.version == u.source.version && law.source.source == u.source.source && law.scope == u.scope))
 
 def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
+
+/- Actual cumulative legal reduction, not a freely supplied world number.
+   Payment allocation and non-cash reduction remain separate in the native
+   account; this projection is their total for the equal-reduction subclass. -/
+def knownReduction (s : Situation) (r : LegalRelation) : Option (Quantity .money) :=
+  (s.accounts r.id).map (fun account => ⟨account.allocated + account.writtenOff⟩)
 
 def assign {α : Type} (m : Ref .object → α) (key : Ref .object) (value : α) :
     Ref .object → α :=

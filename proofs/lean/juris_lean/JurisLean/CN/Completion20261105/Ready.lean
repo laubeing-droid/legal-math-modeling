@@ -12,16 +12,26 @@ namespace JurisLean.CN.Completion20261105
 open JurisLean.KernelV3
 open JurisLean.CN.Revision20261101
 
+def unitsAgree (s : Situation) : JurisLean.CN.Revision20261101.SharedConstraint → Bool
+  | .equalReduction a b =>
+    match s.accounts a.id,s.accounts b.id with
+    | some x,some y => x.debt.amount.tag == y.debt.amount.tag
+    | _,_ => true
+  | _ => true
+
 def legalCompatible (s : Situation) (w : PossibleWorld) : Prop :=
   (∀ o ∈ s.core.state.F, w.fact o.atom = true) ∧
-  (∀ c ∈ s.core.state.constraints, satisfies w c) ∧
-  (∀ r ∈ s.core.state.L, s.choices r.scope = some r.id → w.active r = true)
+  (∀ c ∈ s.core.state.constraints, satisfies w c ∧ unitsAgree s c = true) ∧
+  (∀ r ∈ s.core.state.L, s.choices r.scope = some r.id → w.active r = true) ∧
+  (∀ r ∈ s.core.state.L, ∀ q, knownReduction s r = some q → w.reduction r = q)
 
 def legalWorldCheck (s : Situation) (w : PossibleWorld) : Bool :=
   s.core.state.F.all (fun o => w.fact o.atom) &&
-  s.core.state.constraints.all (constraintCheck w) &&
+  s.core.state.constraints.all (fun c => constraintCheck w c && unitsAgree s c) &&
   s.core.state.L.all (fun r =>
-    s.choices r.scope != some r.id || w.active r)
+    s.choices r.scope != some r.id || w.active r) &&
+  s.core.state.L.all (fun r => match knownReduction s r with
+    | none => true | some q => w.reduction r == q)
 
 /- C1/P3: one projection is actually used by the legal transition. Evidence
    and the proof criterion are deliberately absent from natural truth here. -/
@@ -31,17 +41,64 @@ def legalKernel (s : Situation) : KernelState (List LegalRelation) PossibleWorld
 theorem legalWorldCheck_sound (s : Situation) (w : PossibleWorld)
     (h : legalWorldCheck s w = true) : legalCompatible s w := by
   have hc : s.core.state.F.all (fun o => w.fact o.atom) = true ∧
-      s.core.state.constraints.all (constraintCheck w) = true ∧
-      s.core.state.L.all (fun r => s.choices r.scope != some r.id || w.active r) = true := by
+      s.core.state.constraints.all (fun c => constraintCheck w c && unitsAgree s c) = true ∧
+      s.core.state.L.all (fun r => s.choices r.scope != some r.id || w.active r) = true ∧
+      s.core.state.L.all (fun r => match knownReduction s r with
+        | none => true | some q => w.reduction r == q) = true := by
     simpa only [legalWorldCheck, Bool.and_eq_true, and_assoc] using h
-  refine ⟨?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_, ?_⟩
   · intro o ho
     exact List.all_eq_true.mp hc.1 o ho
   · intro c hc'
-    exact constraintCheck_sound w c (List.all_eq_true.mp hc.2.1 c hc')
+    have hp : constraintCheck w c = true ∧ unitsAgree s c = true := by
+      simpa only [Bool.and_eq_true] using List.all_eq_true.mp hc.2.1 c hc'
+    exact ⟨constraintCheck_sound w c hp.1,hp.2⟩
   · intro r hr hs
-    have ha := List.all_eq_true.mp hc.2.2 r hr
+    have ha := List.all_eq_true.mp hc.2.2.1 r hr
     simpa [hs] using ha
+  · intro r hr q hq
+    have ha := List.all_eq_true.mp hc.2.2.2 r hr
+    simpa [hq] using ha
+
+/- C1: successful finite checks link shared equality to actual native accounts.
+   Neither the desired equality nor an arbitrary quantity vector is a ticket. -/
+theorem shared_actual_reduction (s : Situation) (w : PossibleWorld)
+    (a b : LegalRelation) (qa qb : Quantity .money)
+    (hw : legalCompatible s w) (ha : a ∈ s.core.state.L) (hb : b ∈ s.core.state.L)
+    (hc : SharedConstraint.equalReduction a b ∈ s.core.state.constraints)
+    (hqa : knownReduction s a = some qa) (hqb : knownReduction s b = some qb) : qa = qb := by
+  have eq := (hw.2.1 _ hc).1
+  exact (hw.2.2.2 a ha qa hqa).symm.trans (eq.trans (hw.2.2.2 b hb qb hqb))
+
+def rebasedWorld (s : Situation) (w : PossibleWorld) : PossibleWorld :=
+  {w with
+    reduction := fun r => (knownReduction s r).getD (w.reduction r)
+    active := fun r => w.active r && s.core.state.L.any (fun live => live.id == r.id)}
+
+def checkPost {α : Type} (before : Situation) (w : PossibleWorld) (reply : Reply α) : Reply α :=
+  match reply.answer with
+  | .success _ =>
+    if legalWorldCheck reply.after (rebasedWorld reply.after w) then reply
+    else quiet before (.conflict .competentReview)
+  | other => quiet before other
+
+ theorem checkPost_success_nonempty {α : Type} (before : Situation) (w : PossibleWorld)
+    (reply : Reply α) (value : α)
+    (h : (checkPost before w reply).answer = .success value) :
+    ∃ z, legalCompatible (checkPost before w reply).after z := by
+  unfold checkPost at h ⊢
+  cases ha : reply.answer with
+  | success v =>
+    simp only [ha] at h ⊢
+    split at h
+    · rename_i hc
+      simp only [hc, ↓reduceIte]
+      exact ⟨rebasedWorld reply.after w,legalWorldCheck_sound _ _ hc⟩
+    · cases h
+  | rejected k => simp [ha,quiet] at h
+  | unknown k => simp [ha,quiet] at h
+  | conflict k => simp [ha,quiet] at h
+  | blockedHuman => simp [ha,quiet] at h
 
 theorem effect_uses_legal_projection (s : Situation)
     (event : JudgmentEvent (List LegalRelation)) :
@@ -99,7 +156,7 @@ def checkedLaw (s : Situation) (r : Request) (law : Rule) (p : ProofPolicy)
     | .known .established =>
       if policyAgreement s law p .established then
         let st := applyEffect s.core.state (effectEvent s.core.state law .established)
-        ⟨s.withCore (s.core.putState st rfl), .success ()⟩
+        checkPost s w ⟨s.withCore (s.core.putState st rfl), .success ()⟩
       else quiet s (.rejected .unsupported)
 
 /- Success here is permission for the particular triggered effect, not a
@@ -266,8 +323,10 @@ theorem selected_exclusive_empty (s : Situation) (a b : LegalRelation)
     (sa : s.choices a.scope = some a.id) (sb : s.choices b.scope = some b.id) :
     ∀ w, ¬ legalCompatible s w := by
   intro w hw
-  exact hw.2.1 _ hc ⟨hw.2.2 a ha sa, hw.2.2 b hb sb⟩
+  exact (hw.2.1 _ hc).1 ⟨hw.2.2.1 a ha sa, hw.2.2.1 b hb sb⟩
 
+#print axioms shared_actual_reduction
+#print axioms checkPost_success_nonempty
 #print axioms legalWorldCheck_sound
 #print axioms effect_uses_legal_projection
 #print axioms no_template_authority_no_registration

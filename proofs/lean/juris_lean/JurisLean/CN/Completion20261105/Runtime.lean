@@ -25,7 +25,7 @@ def commandTag {α : Type} : Command α → Tag
   | .engine _ _ | .registerEngine _ _ => .engine
   | .legal _ => .legal
   | .assignment _ _ => .assignment
-  | .perform _ _ _ _ => .perform
+  | .perform _ _ _ => .perform
   | .addTemplate _ _ => .template
   | .decide _ _ => .decide
   | .bindDecided _ _ => .bindDecision
@@ -125,7 +125,7 @@ def commandValue {α : Type} : Command α → α → Value
   | .acquisitionEvidence _ _ _ _ _ _,v => .judgment v
   | .offenseEvidence _ _ _ _ _ _,v => .reference .query v.value
   | .storedResJudicata _ _ _ _,v => .boolean v | .contractQuery _ _,v => .judgment v
-  | .assignment _ _,v => .formula v | .perform _ _ _ _,_ => .unit
+  | .assignment _ _,v => .formula v | .perform _ _ _,_ => .unit
   | .addTemplate _ _,v => .reference .document v.value | .decide _ _,v => .decision v
   | .bindDecided _ _,_ => .unit | .bindOther _ _,_ => .unit | .learn _ _ _ _,_ => .unit
   | .record _ _,v => .reference .material v.value

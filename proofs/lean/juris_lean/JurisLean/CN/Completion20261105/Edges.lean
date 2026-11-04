@@ -236,6 +236,8 @@ theorem decision_assessment_preserves_relations (s : Situation) (c : Law.Call)
     (document : Ref .document) : (recordDecision s c document).after.core.state.L = s.core.state.L := by
   unfold recordDecision
   repeat' first | rfl | split
+  all_goals dsimp only
+  all_goals split <;> rfl
 
 #print axioms no_decision_no_binding
 #print axioms learning_frame

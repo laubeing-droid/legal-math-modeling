@@ -1,4 +1,5 @@
 import JurisLean.CN.Completion20261105.Checkpoint2
+import JurisLean.CN.Completion20261105.WorldSemantics
 
 /-!
 Remaining concrete obligations: C2 executes all nine operators; C3 proves

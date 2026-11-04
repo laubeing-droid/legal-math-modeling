@@ -32,7 +32,7 @@ end Decision
 namespace Cash
 export JurisLean.Candidates.Final20261021.Ledger
   (State Conserves CashConsistent performance balance u09_1_quantity_conservation
-    performance_cash_consistent)
+    performance_cash_consistent writeOff writeoff_conserves)
 end Cash
 namespace Response
 export JurisLean.Candidates.PolicyResponse20261027 (preparationUtility finite_response_payoffs)

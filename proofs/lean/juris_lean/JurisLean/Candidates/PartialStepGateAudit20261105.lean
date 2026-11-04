@@ -172,7 +172,8 @@ theorem checked_payment_commit_exposes_a_current_grant
     | false =>
         simp only [permissionCase] at ready
         unfold Ledger.validationError at ready
-        split_ifs at ready <;> simp_all
+        simp only [if_pos (show (false : Bool) = false from rfl)] at ready
+        split_ifs at ready <;> cases ready
   exact (permits_exact_current_witness catalog (paymentQuery before req)).mp granted
 
 -- Both grants below are explicitly synthetic catalog inputs. The fresh

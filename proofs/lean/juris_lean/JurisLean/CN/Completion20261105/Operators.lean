@@ -100,9 +100,10 @@ def measureQuery (s : Situation) (u : UnitKind) (scope : Scope) : Reply (Quantit
   | unit =>
     let outs := (s.core.state.candidates.flatMap (fun c => c.basis)).filter
       (fun o => o.scope == scope)
-    match (outs.filterMap (exactDatum unit)).head? with
-    | none => quiet s (.unknown .inputUnchecked)
-    | some q => quiet s (.success q)
+    match (outs.filterMap (exactDatum unit)).eraseDups with
+    | [] => quiet s (.unknown .inputUnchecked)
+    | [q] => quiet s (.success q)
+    | _ :: _ :: _ => quiet s (.conflict .competentReview)
 
 theorem money_measure_has_matching_tags (s : Situation) (scope : Scope) (q : Quantity .money)
     (h : (measureQuery s .money scope).answer = .success q) :

@@ -169,6 +169,15 @@ def checkIO : IO Unit := do
   unless decide (kindOf (run bargain) = some .bargain) do throw (IO.userError "bargain_actual_call failed")
   unless decide (kindOf (run cash) = some .cash) do throw (IO.userError "cash_actual_call failed")
   unless decide (exactScalar (run exact) = some (5/6)) do throw (IO.userError "exact_actual_call failed")
+  let exactReply := run exact
+  match exactReply.answer with
+  | .success first =>
+    let alternatives := advance exactReply.after (.institution (.propose
+      {first with payload := ⟨.scalar,⟨2⟩⟩}))
+    unless decide ((executeCommand alternatives (.operator ⟨[],[],[]⟩ (.measure .scalar toyScope))).answer =
+        .conflict .competentReview) do
+      throw (IO.userError "measure selected a head from incompatible exact proposals")
+  | _ => throw (IO.userError "exact example failed before ambiguity check")
   unless decide (kindOf (run behavior) = some .behave) do throw (IO.userError "behavior_actual_call failed")
   unless decide (paid.answer = .success () ∧
     (paid.after.accounts ⟨6⟩).map Native.Cash.balance = some 7 ∧

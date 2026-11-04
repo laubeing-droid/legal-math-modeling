@@ -124,7 +124,7 @@ theorem unknown_retroactivity_preserves_different_past_outcomes :
 /- L119: three independent finite effects, using the actual authorization check
    and selector. Question 3 is the primary norm read; question 4 is a separate
    precedent-reference read. Replacing that reference creates no authorization. -/
-def currentQuery : Query := { baseQuery with gamma := at 2 2 }
+def currentQuery : Query := { baseQuery with gamma := gammaAt 2 2 }
 def liveGrant : Authorization.Grant := grantFor currentQuery
 def expiredGrant : Authorization.Grant := { liveGrant with untilDate := ⟨2⟩ }
 

@@ -1,7 +1,6 @@
 # 原题 10.1：授权绑定、经验建议与循环自证
 
-**状态：** Source R2 changed-module CI、原 11 项 required record checks、CI-index 检查及 12 项 index tests 已通过；PR121 H1 的 Python gate 发现文稿计数滞后，现已按 shape 报告重生成两篇稿件并通过两项定向回归测试。修复 commit 的新全链 CI 与独立复核待完成。
-
+**状态：** Source R2 changed-module CI、原 11 项 required record checks、CI-index 检查及 12 项 index tests 已通过；PR121 H1 的 Python gate 发现文稿计数滞后，现已按 shape 报告重生成两篇稿件并通过两项定向回归测试。修复 commit 的新全链 CI 与独立复核待完成。 R2 run [`41852112057:1`](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41852112057).
 ## 冻结条文与源证据
 
 冻结题单 `10_授权变更与多步法律轨迹.md` L99–106，子项 L101、L103、L105，关联 U10.1。旧 U10.1 的刷新续行协议与 Authorization/Compiler/Pipeline 定义直接复用，本轮不重开旧债务。
@@ -14,12 +13,12 @@
 
 ## 失败历史与源检查边界
 
+
 R1 run [`41851077228:1`](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41851077228)，job `126647246255`，Artifact `changed-module-only-41851077228-1`, ID `13336510940` 是失败历史：`three_stages_have_actual_distinct_witnesses` 处未展开 `Granted` 导致 `Decidable` 合成失败；`actual_rule_evaluation_keeps_usable_version` 的证明把合取型 `hselected` 当作等式使用，导致 `.trans` 字段错误。失败恢复日志曾在受影响目标输出 `sorryAx`，R1 不计通过。R2 仅展开 `Granted`、删除与既有 U10.1 theorem 同义的新 theorem，并把 footer 改为检查/打印既有 theorem；冻结定义、其他声明和前提未变。R1 ZIP、plan、raw 与 R2 ZIP、plan、raw 分别保留。
 
 17 项结构测试只在 R1 source 提交前运行一次：`python -X utf8 -m pytest -q tests/spec/test_import_reachability.py tests/test_declaration_collisions.py`，stdout `17 passed in 5.65s`；R2 仅改 proof body/footer，未重跑。物理收据见 `D:/tmp/original10-1-source-r1/pytest-receipt.json`。Changed-module success 不等于全链、records、PR 或现实授权验收。
 
 ## Source pins
-Source R2 run [41852112057:1](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41852112057) is the accepted source checkpoint CI referenced by this packet.
 
 - 新 Candidate：30990 bytes，SHA-256 `be740b3b5ef8296b7c6364430ce34d0c926337f07684d4ffed531e956c3c3e3a`，Git blob `83e3689d8dc80aef2c6ed2ec72f08d8783bd1741`。
 - `JurisLean.lean`：16573 bytes，SHA-256 `fb0faedc0aed2e2a31d204eb8ec4325c1879380920e5dc768c4ec2eb95edd779`，Git blob `4f9913459aa70aa088b3cffa5e676b498dc34960`；仅含本模块一个 generated root import。

@@ -74,3 +74,12 @@ PolicyIR.lean开始把证明方法与自然真值分开：ProofStandard三类、
 - **最近CI**：41925159962在recordDecision证明的let残留处失败，41927088558已越过该处，仅WorldSemantics:93未展开atomAssessment，已定点补展开。FinancialMerge、运行时、十二制度、八引擎及当前依赖在该失败流水中已构建；这不替代最终聚合绿。正在补充实际成对减记成功/缺规则/错币种三个分支及第一准入的语义K收缩证明，随后重跑Acceptance。
 
 精确剩余：当前源码聚合编译与实际IO验收；许可分发/制度门的Ready连接；表见代理与无formed撤销边界实例；最终理论、原承诺/具名证明/消费者/当前CI对应及合流复制件。此列表是同一原承诺的收尾，不扩大为全部中国法或所有B8任务。所有冻结及U源定义保持不变，未进入关债工作树或改其台账。
+
+### 后续流水与已完成连接
+
+- 41928677970 / 925a152fd5d9c42167fa4c29325a0437b95d1528：WorldSemantics新增的全支持世界、第一准入K收窄及制度许可/门Ready连接已构建；EngineExamples:146的局部函数表达式解析失败。按日志拆开账户函数，不降低数值断言。
+- 41929413181 / 1724663c：封闭EffectIR及实际六类写入接线已构建；performance_success_conserves须显式展开新的有限效果解释以回读同一次原生post，Edges:201失败。补展开，不改变命题。
+- 41930183176 / 542fc90a：当前Acceptance流水。旧42项及U源未改，所有失败subject仍在提交历史中；未使用eval!、sorry或新公理越过编译。
+- 新补 `checkedLaw_success_nonempty`/`legalDispatch_success_nonempty`：阻断C1实际后继承诺，从同一次实际成功分支引用checkPost_sound性，不增加调用前提。
+- `EffectIR`为原稿§3.3有限效果表达式的实际解释：指定字段写入+有限顺序，不接受任意目标Situation或任意状态变换；Propose/Learn/Admit/Bind/Occur/Perform实际分支使用它。原有程序组合与门控保持。
+- `THEORY-20261105.md`已形成完整理论、纸面证明、十二制度/八引擎具名对应及F/A/S/D处置；状态仍待最终聚合、精确元数据和合流复制，不能以该稿形成宣告完成。

@@ -263,6 +263,50 @@ theorem checkedLaw_ready (s : Situation) (r : Request) (law : Rule) (p : ProofPo
             exact ⟨⟨w, legalWorldCheck_sound s w hc⟩, ht, ha, hp⟩
           · cases h
 
+theorem checkedLaw_success_nonempty (s : Situation) (r : Request) (law : Rule)
+    (p : ProofPolicy) (w : PossibleWorld) (t : IssuedTemplate) :
+    (checkedLaw s r law p w t).answer = .success () →
+      ∃ z, legalCompatible (checkedLaw s r law p w t).after z := by
+  unfold checkedLaw
+  split
+  · intro h; cases h
+  · split
+    · intro h; cases h
+    · cases ha : assessed s law t.body with
+      | unknown k => intro h; cases h
+      | known j =>
+        cases j with
+        | notEstablished => intro h; cases h
+        | undetermined => intro h; cases h
+        | established =>
+          split
+          · exact checkPost_success_nonempty s w _ ()
+          · intro h; cases h
+
+theorem legalDispatch_success_nonempty (s : Situation) (r : Request) (p : ProofPolicy)
+    (m : Mode) (w : PossibleWorld) :
+    (legalDispatch s r p m w).answer = .success () →
+      ∃ z, legalCompatible (legalDispatch s r p m w).after z := by
+  unfold legalDispatch
+  split
+  · intro h; cases h
+  · split
+    · intro h; cases h
+    · split
+      · intro h; cases h
+      · cases hs : selectedRules s.core r with
+        | nil => intro h; cases h
+        | cons law rest =>
+          cases rest with
+          | cons other tail => intro h; cases h
+          | nil =>
+            cases ht : selectedTemplates s law with
+            | nil => intro h; cases h
+            | cons t rest =>
+              cases rest with
+              | cons other tail => intro h; cases h
+              | nil => exact checkedLaw_success_nonempty s r law p w t
+
 theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld)
     (h : (legalDispatch s r p m w).answer = .success ()) :
@@ -359,6 +403,8 @@ theorem selected_exclusive_empty (s : Situation) (a b : LegalRelation)
 #print axioms effect_uses_legal_projection
 #print axioms no_template_authority_no_registration
 #print axioms checkedLaw_ready
+#print axioms checkedLaw_success_nonempty
+#print axioms legalDispatch_success_nonempty
 #print axioms legalDispatch_success_ready
 #print axioms permissionDispatch_success_ready
 #print axioms legalDispatch_refused

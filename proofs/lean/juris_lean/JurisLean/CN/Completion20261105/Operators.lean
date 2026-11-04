@@ -108,7 +108,7 @@ def measureQuery (s : Situation) (u : UnitKind) (scope : Scope) : Reply (Quantit
 theorem money_measure_has_matching_tags (s : Situation) (scope : Scope) (q : Quantity .money)
     (h : (measureQuery s .money scope).answer = .success q) :
     moneyLedgerOK s (s.core.state.ledger.filter (fun p => p.request.scope == scope)) = true := by
-  unfold measureQuery at h
+  simp only [measureQuery] at h
   split at h
   · assumption
   · cases h

@@ -32,7 +32,7 @@ structure ToyBoolFact where
   value : Bool
   subject : PartyId
   object : ObjectId
-  at : Instant
+  atTime : Instant
   source : SourceRef
   deriving DecidableEq
 
@@ -41,7 +41,7 @@ structure ToyDischargeAssessment where
   status : Judgment
   subject : PartyId
   object : ObjectId
-  at : Instant
+  atTime : Instant
   source : SourceRef
   deriving DecidableEq
 
@@ -49,7 +49,7 @@ structure ToyDischargeAssessment where
 structure ToyPaymentDocument where
   subject : PartyId
   object : ObjectId
-  at : Instant
+  atTime : Instant
   source : SourceRef
   contentAmount : Amount
   contentText : String
@@ -59,7 +59,7 @@ structure ToyPaymentDocument where
 structure TimedCash where
   subject : PartyId
   object : ObjectId
-  at : Instant
+  atTime : Instant
   source : SourceRef
   event : CashEvent
 
@@ -221,17 +221,17 @@ theorem raw_stages_reuse_existing_invariants (c : ToyContext)
 theorem payment_and_document_metadata_are_explicit (c : ToyContext) :
     (paymentSixDocument c).subject = c.payer ∧
     (paymentSixDocument c).object = .relation c.relation ∧
-    (paymentSixDocument c).at = c.documentAt ∧
+    (paymentSixDocument c).atTime = c.documentAt ∧
     (paymentSixDocument c).source = c.documentSource ∧
     (paymentSixDocument c).contentAmount = amountSix ∧
     (firstTimedCash c).subject = c.payer ∧
     (firstTimedCash c).object = .relation c.relation ∧
-    (firstTimedCash c).at = c.firstAt ∧
+    (firstTimedCash c).atTime = c.firstAt ∧
     (firstTimedCash c).source = c.firstSource ∧
     (firstTimedCash c).event.id = c.firstId ∧
     (secondTimedCash c).subject = c.payer ∧
     (secondTimedCash c).object = .relation c.relation ∧
-    (secondTimedCash c).at = c.secondAt ∧
+    (secondTimedCash c).atTime = c.secondAt ∧
     (secondTimedCash c).source = c.secondSource ∧
     (secondTimedCash c).event.id = c.secondId := by
   exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
@@ -369,7 +369,7 @@ structure ToyRjRecord where
   relation : RelationId
   subject : PartyId
   object : ObjectId
-  at : Instant
+  atTime : Instant
   source : SourceRef
   amount : Amount
 
@@ -386,7 +386,7 @@ theorem conditional_rJ_branch_is_separate_and_source_bound
     (separateRjRecord c amount).relation = toyJudgmentRelation c ∧
     (separateRjRecord c amount).subject = c.payer ∧
     (separateRjRecord c amount).object = .relation (toyJudgmentRelation c) ∧
-    (separateRjRecord c amount).at = c.documentAt ∧
+    (separateRjRecord c amount).atTime = c.documentAt ∧
     (separateRjRecord c amount).source = c.documentSource ∧
     toyJudgmentRelation c ≠ c.relation := by
   refine ⟨rfl, rfl, rfl, rfl, rfl, ?_⟩

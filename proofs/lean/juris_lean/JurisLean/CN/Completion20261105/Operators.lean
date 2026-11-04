@@ -124,8 +124,8 @@ def adjustQuery (p : OperatorParams) (s : Situation) (r : Request) (mode : Mode)
         quiet s (.unknown .inputUnchecked)
       else
         let next := changedClock clock d
-        let st := {s.core.state with clocks :=
-          s.core.state.clocks.map (fun c => if c.scope == r.scope then next else c)}
+        let clocks := s.core.state.clocks.map (fun c => if c.scope == r.scope then next else c)
+        let st := {s.core.state with clocks := clocks}
         let paused := match d.kind with
           | .suspend => r.scope :: s.paused
           | .resume => s.paused.filter (fun scope => scope != r.scope)
@@ -228,7 +228,8 @@ theorem commute_true_sound (s : Situation) (a b : MeaningAssignment) (ra rb : Re
         cases hb : b.expression.eval s.meanings with
         | none => simp [hb] at defined
         | some fb => exact assignment_two_defined s a b fa fb hi ha hb
-    · split at h <;> cases h
+    · dsimp only at h
+      split at h <;> cases h
   · cases h
 
 theorem adjustment_no_authority (p : OperatorParams) (s : Situation) (r : Request)

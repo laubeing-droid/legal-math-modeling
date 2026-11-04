@@ -94,7 +94,7 @@ def consumeFit {m n : Nat} {Y : Type} (s : Situation) (c : EngineContext)
   relayNative s (Native.Fit.fitTable protocol loss models data) (fun out =>
     engineOutput s c .fit
       "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample"
-      (⟨out.empiricalRisk⟩, ⟨protocol.fit.failureBudget⟩))
+      (⟨out.empiricalRisk⟩, ⟨protocol.failureBudget⟩))
 
 def probabilitySource {n : Nat} (prior : Native.Prob.FiniteLaw (Fin n))
     (likelihood : Fin n → ℚ) : Native.Result (Native.Prob.FiniteLaw (Fin n)) :=
@@ -109,7 +109,7 @@ def consumeProb {n : Nat} (s : Situation) (c : EngineContext)
   relayNative s (probabilitySource prior likelihood) (fun post =>
     engineOutput s c .prob
       "JurisLean.Candidates.Final20261021.Probability.posterior_mass"
-      (Finset.univ.toList.map (fun w => (event w, ⟨post.mass w⟩))))
+      (List.ofFn (fun w : Fin n => (event w, ⟨post.mass w⟩))))
 
 structure CausalInput (n k : Nat) where
   mass : Native.Prob.FiniteLaw (Fin n)
@@ -157,6 +157,14 @@ def consumeBargain {n : Nat} (s : Situation) (c : EngineContext)
   relayNative s (bargainSource score permitted options) (fun selected =>
     engineOutput s c .bargain
       "JurisLean.Candidates.Final20261021.Decision.legal_best_sound" (offer selected))
+
+private instance (s : Native.Cash.State) : Decidable (Native.Cash.Conserves s) := by
+  unfold JurisLean.Candidates.Final20261021.Ledger.Conserves
+  infer_instance
+
+private instance (s : Native.Cash.State) : Decidable (Native.Cash.CashConsistent s) := by
+  unfold JurisLean.Candidates.Final20261021.Ledger.CashConsistent
+  infer_instance
 
 def cashSource (before : Native.Cash.State) (payment : Native.PaymentPayload) :
     Native.Result Native.Cash.State :=
@@ -245,7 +253,7 @@ theorem probability_uses_actual_posterior {n : Nat} (s : Situation) (c : EngineC
   | some out =>
     rw [hs] at h
     cases h
-    exact Native.Prob.posterior_mass prior likelihood out hs
+    exact Native.Prob.posterior_mass prior likelihood post hs
 
 theorem causal_actual_identified_value {n k : Nat} (x : CausalInput n k)
     (h : x.supported = true) :
@@ -276,7 +284,7 @@ theorem bargain_actual_allowed_maximum {n : Nat} (s : Situation) (c : EngineCont
   | some out =>
     rw [hs] at h
     cases h
-    exact Native.Decision.legal_best_sound score permitted options out hs
+    exact Native.Decision.legal_best_sound score permitted options a hs
 
 theorem cash_actual_post_conserves (s : Situation) (c : EngineContext)
     (before : Native.Cash.State) (payment : Native.PaymentPayload) (out : Native.Cash.State)

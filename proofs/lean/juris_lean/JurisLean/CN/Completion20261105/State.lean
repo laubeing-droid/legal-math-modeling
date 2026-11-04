@@ -88,6 +88,8 @@ def statusAnswer : StepStatus → Answer Unit
    unregistered rule or assume a unique applicable norm in a ticket. -/
 def legalDispatch (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) : Reply Unit :=
+  if automationAllowed s.core.state r.scope m = false then ⟨s, .blockedHuman⟩
+  else
   match selectedRules s.core r with
   | [] => ⟨s, .unknown .inputUnchecked⟩
   | [law] =>
@@ -107,13 +109,28 @@ theorem legalDispatch_conflict (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) (a b : Rule) (rest : List Rule)
     (h : selectedRules s.core r = a :: b :: rest) :
     (legalDispatch s r p m w).after = s ∧
-      (legalDispatch s r p m w).answer = .conflict .competentReview := by
-  simp [legalDispatch, h]
+      (legalDispatch s r p m w).answer =
+        (if automationAllowed s.core.state r.scope m = false then .blockedHuman
+          else .conflict .competentReview) := by
+  by_cases hm : automationAllowed s.core.state r.scope m = false <;>
+    simp [legalDispatch, h, hm]
 
 theorem legalDispatch_missing (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) (h : selectedRules s.core r = []) :
-    (legalDispatch s r p m w).answer = .unknown .inputUnchecked := by
-  simp [legalDispatch, h]
+    (legalDispatch s r p m w).answer =
+      (if automationAllowed s.core.state r.scope m = false then .blockedHuman
+        else .unknown .inputUnchecked) := by
+  by_cases hm : automationAllowed s.core.state r.scope m = false <;>
+    simp [legalDispatch, h, hm]
+
+/- S4 has priority even when no rule or several rules are selected. This
+   corrects the initial local dispatcher's ordering, not a frozen theorem. -/
+theorem legalDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
+    (w : PossibleWorld) (h : s.core.state.refusals.contains r.scope = true) :
+    (legalDispatch s r p .automated w).answer = .blockedHuman := by
+  have hg : automationAllowed s.core.state r.scope .automated = false := by
+    simp only [automationAllowed, h, Bool.not_true]
+  simp [legalDispatch, hg]
 
 def quiet (s : Situation) {α : Type} (a : Answer α) : Reply α := ⟨s, a⟩
 
@@ -128,23 +145,27 @@ theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPoli
     (m : Mode) (w : PossibleWorld)
     (h : (legalDispatch s r p m w).answer = .success ()) :
     ∃ law, law ∈ s.core.state.N.rules ∧ SemanticReady s.core law := by
-  cases hs : selectedRules s.core r with
-  | nil => simp [legalDispatch, hs] at h
-  | cons law rest =>
-    cases rest with
-    | nil =>
-      have ha : (executeChecked s.core r law p m w).status = .applied := by
-        cases he : (executeChecked s.core r law p m w).status <;>
-          simp_all [legalDispatch, statusAnswer]
-      exact ⟨law, selected_rule_member s.core r law hs,
-        executeChecked_ready s.core r law p m w ha⟩
-    | cons b tail => simp [legalDispatch, hs] at h
+  by_cases hg : automationAllowed s.core.state r.scope m = false
+  · simp [legalDispatch, hg] at h
+  ·
+   cases hs : selectedRules s.core r with
+   | nil => simp [legalDispatch, hs, hg] at h
+   | cons law rest =>
+     cases rest with
+     | nil =>
+       have ha : (executeChecked s.core r law p m w).status = .applied := by
+         cases he : (executeChecked s.core r law p m w).status <;>
+           simp_all [legalDispatch, statusAnswer]
+       exact ⟨law, selected_rule_member s.core r law hs,
+         executeChecked_ready s.core r law p m w ha⟩
+     | cons b tail => simp [legalDispatch, hs, hg] at h
 
 #print axioms assign_self
 #print axioms assign_other
 #print axioms selected_rule_member
 #print axioms legalDispatch_conflict
 #print axioms legalDispatch_missing
+#print axioms legalDispatch_refused
 #print axioms setCell_closed
 #print axioms legalDispatch_success_ready
 

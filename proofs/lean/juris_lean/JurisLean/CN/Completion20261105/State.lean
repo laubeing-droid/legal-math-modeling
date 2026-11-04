@@ -55,6 +55,21 @@ structure OffenseSlot where
   commonScope : Ref .query
   charge : Ref .query
 
+/- Parsed operative contents of an externally issued decision. This is
+   source data; its authentication is checked against an admitted material. -/
+structure DecisionSource where
+  material : Ref .material
+  document : Ref .document
+  request : Request
+  judgment : Judgment
+  valid : Bool
+  kinds : List DecideKind
+  index : BindingIndex
+  deriving DecidableEq, Repr
+
+def DecisionSource.record (d : DecisionSource) : DecisionRecord :=
+  ⟨d.document,d.request,d.judgment,d.valid⟩
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -78,11 +93,12 @@ structure Situation where
   engineResults : List EngineReport
   causalClauses : List CausalClause
   offenseSlots : List OffenseSlot
+  decisionSources : List DecisionSource
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], [], []⟩
+    fun _ => [], fun _ => none, [], fun _ => none, [], [], fun _ => none, [], [], [], [], [], []⟩
 
 def pendingRoute : ConflictKind → ReviewRoute
   | .localDepartment106 => .stateCouncil

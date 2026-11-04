@@ -30,10 +30,7 @@ theorem actual_measure :
     (executeCommand opStart (.operator opParams (.measure .day toyScope))).answer = .success ⟨2⟩ := by decide
 theorem actual_exclude :
     (executeCommand opStart (.operator opParams (.exclude [1,2,2,3] [2]))).answer = .success [1,3] := by decide
-theorem actual_adjust_and_expire :
-    (clockAt advanced toyScope).map (fun c => c.elapsed.value) = some 3 ∧
-    (executeCommand advanced (.operator opParams (.expire toyScope))).answer = .success true ∧
-    advanced.core.state.L = opStart.core.state.L := by decide
+
 theorem actual_witness :
     (executeCommand opStart (.operator opParams (.witness ⟨⟨9⟩,toyScope,⟨5⟩⟩))).answer = .success ⟨11⟩ := by decide
 theorem actual_count :
@@ -76,6 +73,7 @@ def qPrepare (s : Situation) (n : Nat) : Situation :=
   qAdmit (qAdmit (advance s (.addTemplate (qrequest n .addTemplate) (qtemplate n))) n 0 4) n 1 5
 def dualCase : Situation := qPrepare (qPrepare (qPrepare dualBase 100) 101) 102
 
+set_option maxRecDepth 4096 in
 theorem actual_shared_event_different_charges :
     (executeCommand dualCase (.offenseEvidence (qcall 100) aJia ev1 q1 (qatom 100 4) (qatom 100 5))).answer =
       .success ⟨100⟩ ∧
@@ -117,7 +115,43 @@ theorem actual_conflict_is_suspended (kind : ConflictKind) :
 theorem actual_hohfeld_projection :
     legalPositions formedCase toyScope = hohfeld toyRelation := by decide
 
+inductive OtherTag
+  | persuasive | referential | credit | publicValidity
+  deriving DecidableEq
+
+def bindingTags (s : Situation) : List (Option OtherTag) := s.core.state.bindings.map (fun b =>
+  match b with
+  | .decide _ => none
+  | .other other => some (match other.source with
+      | .persuasive _ => .persuasive | .referential _ _ => .referential
+      | .credit _ _ => .credit | .publicValidity _ _ => .publicValidity))
+
+def otherIndex : BindingIndex := ⟨[⟨12⟩],toyScope,0,10⟩
+def otherB (source : OtherSource) : OtherBinding := ⟨source,otherIndex,request .otherBind,rfl⟩
+def otherStart : Situation := admitOne normal ⟨71⟩ toyAtom true
+
+theorem three_other_sources_stay_separate :
+    bindingTags (advance otherStart (.bindOther (otherB (.publicValidity ⟨71⟩ toyNorm)) .human)) =
+      [some .publicValidity] ∧
+    bindingTags (advance otherStart (.bindOther (otherB (.referential ⟨71⟩ toyNorm)) .human)) =
+      [some .referential] ∧
+    bindingTags (advance otherStart (.bindOther (otherB (.credit ⟨71⟩ toyNorm)) .human)) =
+      [some .credit] := by decide
+
+theorem missing_other_document_not_created :
+    (executeCommand normal (.bindOther (otherB (.credit ⟨71⟩ toyNorm)) .human)).answer =
+      .unknown .inputUnchecked := by decide
+
+
+def newlyFound : ExecProc := ⟨⟨900⟩,aD,⟨901⟩⟩
+theorem newly_observed_execution_uses_stay_gate :
+    (advance accepted (.observeExecution (request .admitEvidence) ⟨9⟩ newlyFound)).stayed.contains newlyFound.id = true ∧
+    (advance accepted (.observeExecution (request .admitEvidence) ⟨9⟩ {newlyFound with debtor := aO})).stayed.contains newlyFound.id = false := by decide
+
 def ioChecks : IO Unit := do
+  unless decide ((clockAt advanced toyScope).map (fun c => c.elapsed.value) = some 3 ∧
+    (executeCommand advanced (.operator opParams (.expire toyScope))).answer = .success true ∧
+    advanced.core.state.L = opStart.core.state.L) do throw (IO.userError "actual clock adjustment/expiry failed")
   let actual ← Runtime.serveLine Runtime.testCatalog opStart "operator:2"
   match actual.value with
   | some (.natural 1) => pure ()
@@ -125,10 +159,12 @@ def ioChecks : IO Unit := do
   IO.println "CN_SCOPE_ACCEPTANCE_PASS"
 
 #eval ioChecks
+#print axioms newly_observed_execution_uses_stay_gate
+#print axioms three_other_sources_stay_separate
+#print axioms missing_other_document_not_created
 #print axioms actual_anchor
 #print axioms actual_measure
 #print axioms actual_exclude
-#print axioms actual_adjust_and_expire
 #print axioms actual_witness
 #print axioms actual_count
 #print axioms actual_project

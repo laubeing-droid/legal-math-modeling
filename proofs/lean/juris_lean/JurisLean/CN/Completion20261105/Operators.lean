@@ -105,6 +105,11 @@ def changedClock (c : Clock) (d : Change) : Clock :=
   | .cap => {c with threshold := ⟨min c.threshold.value d.amount.value⟩}
   | .suspend | .resume => c
 
+/- C2: exact arithmetic schema, separately from its concrete IO instance. -/
+theorem advance_clock_exact (c : Clock) (q : Quantity .day) (anchor : Ref .event) :
+    (changedClock c ⟨.advance,q,anchor⟩).elapsed.value = c.elapsed.value + q.value ∧
+    (changedClock c ⟨.advance,q,anchor⟩).threshold = c.threshold := ⟨rfl,rfl⟩
+
 def adjustQuery (p : OperatorParams) (s : Situation) (r : Request) (mode : Mode)
     (d : Change) : Reply Clock :=
   if automationAllowed s.core.state r.scope mode = false then quiet s .blockedHuman
@@ -300,6 +305,7 @@ theorem witness_pending (s : Situation) (r : WitnessRequest) (raw : Raw r.materi
     (witnessQuery s r).answer = .unknown .inputUnchecked := by
   simp [witnessQuery, h, quiet]
 
+#print axioms advance_clock_exact
 #print axioms commute_true_sound
 #print axioms assignment_gate_stable
 #print axioms actual_assignments_commute

@@ -224,7 +224,14 @@ theorem interpretation_actual :
     (executeCommand interpreted (.contractQuery (call .decide) toyScope.object)).answer = .success .established ∧
     interpreted.core.state.N.version = 1 ∧ interpreted.meanings ⟨999⟩ = none := by decide
 
-def decisionCase : Situation := advance normal (.decide (call .decide) ⟨70⟩)
+def decisionSource : DecisionSource :=
+  ⟨⟨70⟩,⟨70⟩,request .decide,.established,true,[.resJudicata],⟨[⟨12⟩],toyScope,0,10⟩⟩
+def sourcedDecisionCase : Situation := advance (admitOne normal ⟨70⟩ toyAtom true)
+  (.admitDecisionSource (request .admitEvidence) decisionSource)
+def decisionCase : Situation := advance sourcedDecisionCase (.decide (call .decide) ⟨70⟩)
+theorem no_source_no_model_judgment :
+    (executeCommand normal (.decide (call .decide) ⟨70⟩)).answer = .unknown .inputUnchecked := by decide
+
 def decisionRecord : DecisionRecord := ⟨⟨70⟩,request .decide,.established,true⟩
 def decisionBinding : DecideBinding :=
   ⟨decisionRecord,.resJudicata,⟨[⟨12⟩],toyScope,0,10⟩,rfl,rfl⟩
@@ -270,6 +277,7 @@ theorem refused_actual :
 #print axioms compensation_missing_prerequisite_not_automatic
 #print axioms rights_actual
 #print axioms interpretation_actual
+#print axioms no_source_no_model_judgment
 #print axioms resJudicata_actual
 #print axioms proposal_actual
 #print axioms unauthorized_actual

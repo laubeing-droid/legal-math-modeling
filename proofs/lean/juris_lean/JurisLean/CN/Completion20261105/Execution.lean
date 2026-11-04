@@ -216,7 +216,29 @@ def selectClaim (s : Situation) (r : Request) (mode : Mode) (rel : LegalRelation
 def legalPositions (s : Situation) (scope : Scope) : List HohfeldPosition :=
   (s.core.state.L.filter (fun rel => rel.scope == scope)).flatMap hohfeld
 
+/- An execution descriptor is the checked projection of a source document:
+   debtor denotes the estate to which this property execution is related.
+   Observation is not a command to an external enforcement system. A newly
+   discovered related execution passes the same bankruptcy shared gate. -/
+def observeExecution (s : Situation) (r : Request) (material : Ref .material)
+    (proc : ExecProc) : Reply (Ref .event) :=
+  if !freshRequest s r || r.act != .admitEvidence then quiet s (.rejected .unauthorized)
+  else match s.core.state.E material with
+    | .accepted raw receipt =>
+      if raw.atom.scope != r.scope || receipt.norm.version != r.version then quiet s (.unknown .inputUnchecked)
+      else if s.executions.any (fun old => old.id == proc.id && old != proc) then
+        quiet s (.conflict .competentReview)
+      else
+        let executions := if s.executions.contains proc then s.executions else s.executions ++ [proc]
+        let stayed := if (s.bankruptcyCases proc.debtor).isSome then
+            if s.stayed.contains proc.id then s.stayed else s.stayed ++ [proc.id]
+          else s.stayed
+        ⟨{s with executions := executions,stayed := stayed},.success proc.id⟩
+    | _ => quiet s (.unknown .inputUnchecked)
+
 inductive Command : Type → Type 1
+  | observeExecution (r : Request) (material : Ref .material) (p : ExecProc) : Command (Ref .event)
+  | admitDecisionSource (r : Request) (d : DecisionSource) : Command Unit
   | learnReport (r : Request) (material : Ref .material) : Command Unit
   | check (predicate : Situation → Bool) : Command Unit
   | positions (scope : Scope) : Command (List HohfeldPosition)
@@ -247,6 +269,8 @@ inductive Command : Type → Type 1
   | choose (r : Request) (mode : Mode) (relation : LegalRelation) : Command (Ref .relation)
 
 def executeCommand (s : Situation) {α : Type} : Command α → Reply α
+  | .observeExecution r i p => observeExecution s r i p
+  | .admitDecisionSource r d => admitDecisionSource s r d
   | .learnReport r i => learnReport s r i
   | .check predicate => if predicate s then quiet s (.success ()) else quiet s (.rejected .prerequisites)
   | .positions scope => quiet s (.success (legalPositions s scope))

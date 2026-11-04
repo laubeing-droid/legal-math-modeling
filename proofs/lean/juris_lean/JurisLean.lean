@@ -106,6 +106,7 @@ import JurisLean.BanachContraction
 import JurisLean.BanachFixedPoint
 import JurisLean.BanachScratch
 import JurisLean.BanachWeightedNorm
+import JurisLean.Candidates.AuthorizationClosureAudit20261104
 import JurisLean.Candidates.BernoulliMeanInstance20261031
 import JurisLean.Candidates.BetaEnclosureInstance20261031
 import JurisLean.Candidates.BetaFutureSampling20261031

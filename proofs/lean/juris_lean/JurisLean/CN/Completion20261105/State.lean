@@ -36,10 +36,11 @@ structure Situation where
   cutoffs : Ref .relation → Option Nat
   responsibility : Ref .actor → Ref .event → Ref .query → Judgment
   tracks : LiabilityTracks
+  paused : List Scope
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
-    fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩⟩
+    fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, []⟩
 
 def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
 

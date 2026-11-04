@@ -67,14 +67,16 @@ theorem assignments_commute (a b : MeaningAssignment)
     b.apply (a.apply m) = a.apply (b.apply m) := by
   have ha := expression_after_unread_write a.expression b m h.2.2
   have hb := expression_after_unread_write b.expression a m h.2.1
+  simp only [MeaningAssignment.apply] at ha hb ⊢
+  rw [ha, hb]
   funext k
   by_cases hka : k = a.target
   · subst k
-    simp [MeaningAssignment.apply, assign, Ne.symm h.1, ha, hb]
+    simp [assign, h.1, Ne.symm h.1]
   · by_cases hkb : k = b.target
     · subst k
-      simp [MeaningAssignment.apply, assign, h.1, ha, hb]
-    · simp [MeaningAssignment.apply, assign, hka, hkb]
+      simp [assign, h.1, Ne.symm h.1]
+    · simp [assign, hka, hkb]
 
 def assignLocal (s : Situation) (a : MeaningAssignment) : Reply Formula :=
   match a.expression.eval s.meanings with

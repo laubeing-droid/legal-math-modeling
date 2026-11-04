@@ -51,8 +51,8 @@
     "math_subparagraphs": 266,
     "engineering_requirements": 105,
     "designated_cuts": 6,
-    "COVERED": 73,
-    "PARTIAL": 16,
+    "COVERED": 74,
+    "PARTIAL": 15,
     "NOT_RECONCILED": 8
   },
   "consumer_edge_audit": "docs/handoff/U00_十五条实际消费边复核_20261027.md",
@@ -5233,7 +5233,7 @@
           121
         ]
       ],
-      "reconciliation": "PARTIAL_SOURCE_AND_MODULE_EVIDENCE_MAPPED",
+      "reconciliation": "COVERED",
       "evidence": [
         {
           "package": "docs/formal-release/evidence/u10-1-debt-close-20261030",
@@ -5255,9 +5255,50 @@
             "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable"
           ],
           "scope": "The package reuses fixed-history selection stability and checks the actual full history before protocol continuation. It does not close general revocation or all double-time-history obligations."
+        },
+        {
+          "package": "docs/formal-release/evidence/original10-3-history-close-20261105",
+          "subject": "0d660ec522b9250056399401e9dd682e36fceaac",
+          "tree": "2f7d37b4987e10f51d4f649e546519a3f9292f37",
+          "run_id": 41904164860,
+          "attempt": 1,
+          "job_id": 126834234100,
+          "artifact_id": 13358909538,
+          "artifact_name": "changed-module-only-41904164860-1",
+          "artifact_size_bytes": 24468,
+          "artifact_sha256": "da293ab030a27f43dc3390558eb3cc29ad3b05aa485c81c74645acdc4953fedb",
+          "manuscript_lines": [
+            117,
+            119,
+            121
+          ],
+          "readme_lines": [
+            9,
+            10,
+            11,
+            19,
+            21,
+            23
+          ],
+          "named_targets": [
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.append_replay_enable_replace_revoke",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.overwritten_status_pollutes_fixed_historical_query",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.fixed_cut_replay_uses_invisible_append_stability",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.past_knowledge_and_current_material_are_distinct",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.late_old_event_is_not_past_knowledge",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.unknown_retroactivity_preserves_different_past_outcomes",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.expiry_revocation_and_precedent_replacement_have_distinct_effects",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.same_bound_receipt_requires_five_cache_dimensions",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.five_cache_dimension_erasure_witnesses",
+            "JurisLean.Candidates.HistoricalRevocationClosureAudit20261105.historical_environment_is_not_current_cache",
+            "JurisLean.Candidates.TemporalInterpretation20261027.selection_stable_after_invisible_append",
+            "JurisLean.Candidates.AuthorizationClosureAudit20261104.check_full_bindings",
+            "JurisLean.Candidates.TemporalInterpretation20261027.timed_compiler_consumes_selected_version"
+          ],
+          "scope": "Finite L117/L119/L121 evidence: enable/replace/revoke replay, fixed-cut and late-old-event distinctions, the two explicit retroactivity branches and finite effect separation, five necessary cache bindings with per-dimension erasure witnesses, and historical environment versus current cache. Edges 3 and 9 are adjacent only; no old caller, parameter flow, public callee, interface or consumer rating changed, so affected_edges=[]. This is not runtime cache implementation, general retroactivity completeness, real-world legal truth, or PR acceptance."
         }
       ],
-      "remaining": "其余原题义务本轮尚未逐项绑定；先复用既有证据并继续逐段核对。未对照不表示仓内没有实现。"
+      "remaining": "The mapped finite L117/L119/L121 obligations are covered by this source subject and named targets. General retroactivity rules, runtime cache correctness, existing U00 caller wiring, real-world legal facts and PR acceptance remain outside this record."
     },
     {
       "id": "10.4",

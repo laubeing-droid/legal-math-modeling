@@ -79,9 +79,10 @@ theorem arbitrary_k_same_state_update
   have hqFacts : r = s.debt.relation ∧ r ∈ s.formations ∧ Ledger.balance s = d := by
     unfold Ledger.quantity at hq
     by_cases hcond : r = s.debt.relation ∧ r ∈ s.formations
-    · simp [hcond] at hq
-      exact ⟨hcond.1, hcond.2, hq⟩
-    · simp [hcond] at hq
+    · rw [if_pos hcond] at hq
+      exact ⟨hcond.1, hcond.2, Option.some.inj hq⟩
+    · rw [if_neg hcond] at hq
+      cases hq
   have hkDebt : k ≤ d := le_trans hkMin (min_le_right _ _)
   have hkPaid : k ≤ p.amount.value := le_trans hkMin (min_le_left _ _)
   have hgeneral := Ledger.u09_3_general_allocation
@@ -97,10 +98,13 @@ theorem arbitrary_k_same_state_update
   have hdecomp : d = (d - k) + k := by simpa using hgeneral.2.1
   have hunused : 0 ≤ p.amount.value - k := by simpa using hgeneral.2.2
   have hpostBalance : Ledger.balance (allocationPost s p k) = d - k := by
-    simp [Ledger.balance, allocationPost, hqFacts.2.2]
+    change Ledger.balance s - k = d - k
+    rw [hqFacts.2.2]
   have hpostQuantity : Ledger.quantity (allocationPost s p k) r = some (d - k) := by
-    simp [Ledger.quantity, allocationPost, Ledger.balance, hqFacts.1,
-      hqFacts.2.1, hqFacts.2.2]
+    unfold Ledger.quantity
+    have hf : r = (allocationPost s p k).debt.relation ∧
+        r ∈ (allocationPost s p k).formations := ⟨hqFacts.1, hqFacts.2.1⟩
+    rw [if_pos hf, hpostBalance]
   refine ⟨hpostQuantity, ?_, ?_⟩
   · constructor
     · rw [hpostBalance]

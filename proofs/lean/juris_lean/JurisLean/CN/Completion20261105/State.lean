@@ -1,5 +1,6 @@
 import JurisLean.CN.Completion20261105.Foundation
 import JurisLean.CN.Completion20261105.InstitutionRules
+import JurisLean.CN.Completion20261105.PolicyIR
 
 /-!
 Common object used by institution commands, operator programs and runtime.
@@ -25,6 +26,10 @@ def CaseState.setCell (x : CaseState) (i : Ref .material) (cell : EvidenceCell i
     simp only [setEvidence, hn.1, dite_false]
     exact x.closed j hn.2⟩
 
+structure IssuedTemplate where
+  request : Request
+  body : ProofTemplate
+
 structure Situation where
   core : CaseState
   life : Ref .object → Option CivilActLife
@@ -39,11 +44,12 @@ structure Situation where
   paused : List Scope
   actRelations : Ref .object → List (Ref .relation)
   choices : Scope → Option (Ref .relation)
+  templates : List IssuedTemplate
 
 def Situation.initial : Situation :=
   ⟨initialCase, fun _ => none, fun _ => none, fun _ => none, [], [],
     fun _ => none, fun _ => none, fun _ _ _ => .undetermined, ⟨[], [], [], []⟩, [],
-    fun _ => [], fun _ => none⟩
+    fun _ => [], fun _ => none, []⟩
 
 def Situation.withCore (s : Situation) (x : CaseState) : Situation := {s with core := x}
 
@@ -89,7 +95,7 @@ def statusAnswer : StepStatus → Answer Unit
 
 /- The public legal dispatcher obtains its law from N. No caller can pass an
    unregistered rule or assume a unique applicable norm in a ticket. -/
-def legalDispatch (s : Situation) (r : Request) (p : ProofPolicy)
+def fragmentDispatch (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) : Reply Unit :=
   if automationAllowed s.core.state r.scope m = false then ⟨s, .blockedHuman⟩
   else
@@ -108,32 +114,32 @@ theorem selected_rule_member (x : CaseState) (r : Request) (law : Rule)
   have hm : law ∈ selectedRules x r := by rw [h]; simp
   exact (List.mem_filter.mp hm).1
 
-theorem legalDispatch_conflict (s : Situation) (r : Request) (p : ProofPolicy)
+theorem fragmentDispatch_conflict (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) (a b : Rule) (rest : List Rule)
     (h : selectedRules s.core r = a :: b :: rest) :
-    (legalDispatch s r p m w).after = s ∧
-      (legalDispatch s r p m w).answer =
+    (fragmentDispatch s r p m w).after = s ∧
+      (fragmentDispatch s r p m w).answer =
         (if automationAllowed s.core.state r.scope m = false then .blockedHuman
           else .conflict .competentReview) := by
   by_cases hm : automationAllowed s.core.state r.scope m = false <;>
-    simp [legalDispatch, h, hm]
+    simp [fragmentDispatch, h, hm]
 
-theorem legalDispatch_missing (s : Situation) (r : Request) (p : ProofPolicy)
+theorem fragmentDispatch_missing (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld) (h : selectedRules s.core r = []) :
-    (legalDispatch s r p m w).answer =
+    (fragmentDispatch s r p m w).answer =
       (if automationAllowed s.core.state r.scope m = false then .blockedHuman
         else .unknown .inputUnchecked) := by
   by_cases hm : automationAllowed s.core.state r.scope m = false <;>
-    simp [legalDispatch, h, hm]
+    simp [fragmentDispatch, h, hm]
 
 /- S4 has priority even when no rule or several rules are selected. This
    corrects the initial local dispatcher's ordering, not a frozen theorem. -/
-theorem legalDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
+theorem fragmentDispatch_refused (s : Situation) (r : Request) (p : ProofPolicy)
     (w : PossibleWorld) (h : s.core.state.refusals.contains r.scope = true) :
-    (legalDispatch s r p .automated w).answer = .blockedHuman := by
+    (fragmentDispatch s r p .automated w).answer = .blockedHuman := by
   have hg : automationAllowed s.core.state r.scope .automated = false := by
     simp only [automationAllowed, h, Bool.not_true]
-  simp [legalDispatch, hg]
+  simp [fragmentDispatch, hg]
 
 def quiet (s : Situation) {α : Type} (a : Answer α) : Reply α := ⟨s, a⟩
 
@@ -144,33 +150,33 @@ theorem setCell_closed (x : CaseState) (i j : Ref .material) (c : EvidenceCell i
     (x.setCell i c).state.E j = .absent :=
   (x.setCell i c).closed j h
 
-theorem legalDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
+theorem fragmentDispatch_success_ready (s : Situation) (r : Request) (p : ProofPolicy)
     (m : Mode) (w : PossibleWorld)
-    (h : (legalDispatch s r p m w).answer = .success ()) :
+    (h : (fragmentDispatch s r p m w).answer = .success ()) :
     ∃ law, law ∈ s.core.state.N.rules ∧ SemanticReady s.core law := by
   by_cases hg : automationAllowed s.core.state r.scope m = false
-  · simp [legalDispatch, hg] at h
+  · simp [fragmentDispatch, hg] at h
   ·
    cases hs : selectedRules s.core r with
-   | nil => simp [legalDispatch, hs, hg] at h
+   | nil => simp [fragmentDispatch, hs, hg] at h
    | cons law rest =>
      cases rest with
      | nil =>
        have ha : (executeChecked s.core r law p m w).status = .applied := by
          cases he : (executeChecked s.core r law p m w).status <;>
-           simp_all [legalDispatch, statusAnswer]
+           simp_all [fragmentDispatch, statusAnswer]
        exact ⟨law, selected_rule_member s.core r law hs,
          executeChecked_ready s.core r law p m w ha⟩
-     | cons b tail => simp [legalDispatch, hs, hg] at h
+     | cons b tail => simp [fragmentDispatch, hs, hg] at h
 
 #print axioms assign_self
 #print axioms assign_other
 #print axioms selected_rule_member
-#print axioms legalDispatch_conflict
-#print axioms legalDispatch_missing
-#print axioms legalDispatch_refused
+#print axioms fragmentDispatch_conflict
+#print axioms fragmentDispatch_missing
+#print axioms fragmentDispatch_refused
 #print axioms setCell_closed
-#print axioms legalDispatch_success_ready
+#print axioms fragmentDispatch_success_ready
 
 end JurisLean.CN.Completion20261105
 

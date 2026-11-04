@@ -1,4 +1,4 @@
-import JurisLean.CN.Completion20261105.State
+import JurisLean.CN.Completion20261105.Ready
 
 /-!
 V4 section 6: actual institutional calls over the shared Situation.

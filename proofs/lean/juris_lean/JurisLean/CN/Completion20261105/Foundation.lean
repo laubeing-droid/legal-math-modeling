@@ -21,7 +21,7 @@ structure CaseState where
 def initialCase : CaseState :=
   ⟨initial, [], by intro i _; rfl⟩
 
-def constraintCheck (w : PossibleWorld) : SharedConstraint → Bool
+def constraintCheck (w : PossibleWorld) : JurisLean.CN.Revision20261101.SharedConstraint → Bool
   | .exclusive a b => !(w.active a && w.active b)
   | .sameLoss a b => w.lossIdentity a == w.lossIdentity b
   | .equalReduction a b => w.reduction a == w.reduction b
@@ -36,7 +36,8 @@ def worldCheck (x : CaseState) (w : PossibleWorld) : Bool :=
 
 /- Obligation: derive nonempty K from executed finite checks, rather than
    placing nonemptiness/Ready into RuleTicket. -/
-theorem constraintCheck_sound (w : PossibleWorld) (c : SharedConstraint)
+theorem constraintCheck_sound (w : PossibleWorld)
+    (c : JurisLean.CN.Revision20261101.SharedConstraint)
     (h : constraintCheck w c = true) : satisfies w c := by
   cases c with
   | exclusive a b =>
@@ -47,7 +48,9 @@ theorem constraintCheck_sound (w : PossibleWorld) (c : SharedConstraint)
 
 theorem worldCheck_sound (x : CaseState) (w : PossibleWorld)
     (h : worldCheck x w = true) : compatible x.state w := by
-  have hh := Bool.and_eq_true.mp h
+  have hh : x.keys.all (fun i => cellCheck w (x.state.E i)) = true ∧
+      x.state.constraints.all (constraintCheck w) = true := by
+    simpa only [worldCheck, Bool.and_eq_true] using h
   constructor
   · intro i raw rc he
     by_cases hi : i ∈ x.keys
@@ -213,7 +216,9 @@ theorem executeChecked_refused (x : CaseState) (r : Request) (law : Rule)
     (p : ProofPolicy) (w : PossibleWorld)
     (h : x.state.refusals.contains r.scope = true) :
     (executeChecked x r law p .automated w).status = .blockedHuman := by
-  simp [executeChecked, automationAllowed, h]
+  have hb : automationAllowed x.state r.scope .automated = false := by
+    simp only [automationAllowed, h, Bool.not_true]
+  simp [executeChecked, hb]
 
 theorem executeChecked_frame (x : CaseState) (r : Request) (law : Rule)
     (p : ProofPolicy) (m : Mode) (w : PossibleWorld) :

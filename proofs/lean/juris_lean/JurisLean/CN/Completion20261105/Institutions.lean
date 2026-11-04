@@ -107,7 +107,8 @@ def delegateLocal (s : Situation) (obj : Ref .object)
         let next := delegate a child
         let st := {s.core.state with
           N := {s.core.state.N with grants := child :: s.core.state.N.grants}}
-        ⟨{s with agencies := assign s.agencies obj (some next),
+        ⟨{s with
+          agencies := assign s.agencies obj (some next)
           core := {s.core with state := st}}, .success next⟩
 
 def delegateCall (s : Situation) (c : Call) (grounds : Formula)
@@ -130,8 +131,9 @@ theorem delegation_norms_unchanged (s : Situation) (obj : Ref .object)
 def attributeRelation (agent principal : Ref .actor) (scope : Scope)
     (r : LegalRelation) : LegalRelation :=
   if r.scope == scope then
-    {r with holder := if r.holder == agent then principal else r.holder,
-      counterparty := if r.counterparty == agent then principal else r.counterparty}
+    {r with
+      holder := (if r.holder == agent then principal else r.holder)
+      counterparty := (if r.counterparty == agent then principal else r.counterparty)}
   else r
 
 def apparentLocal (s : Situation) (scope : Scope) (agent principal : Ref .actor)
@@ -216,8 +218,9 @@ def interestLocal (s : Situation) (accepted : Check Bool) (atTime : Nat)
   | .known cutoff =>
     let old := s.interest claim.id
     let next := old.map (fun x => onAcceptance x.preAccrued)
-    ⟨{s with cutoffs := fun id => if id = claim.id then some cutoff else s.cutoffs id,
-      interest := fun id => if id = claim.id then next else s.interest id}, .success cutoff⟩
+    ⟨{s with
+      cutoffs := (fun id => if id = claim.id then some cutoff else s.cutoffs id)
+      interest := (fun id => if id = claim.id then next else s.interest id)}, .success cutoff⟩
 
 /- Equality at acceptance was the failed old proof step. min-cut is proved on
    both branches, and unrelated debtors are not inserted into the stay list. -/
@@ -281,7 +284,8 @@ theorem rights_conflict_preserves_L (s : Situation) :
 def interpretLocal (s : Situation) (obj : Ref .object) (f : Formula) : Reply Formula :=
   let st := {s.core.state with interpretations :=
     (obj, f) :: s.core.state.interpretations.filter (fun e => e.1 != obj)}
-  ⟨{s with core := {s.core with state := st},
+  ⟨{s with
+    core := {s.core with state := st}
     meanings := assign s.meanings obj (some f)}, .success f⟩
 
 def interpret (s : Situation) (c : Call) (grounds : Formula)

@@ -83,3 +83,12 @@ PolicyIR.lean开始把证明方法与自然真值分开：ProofStandard三类、
 - 新补 `checkedLaw_success_nonempty`/`legalDispatch_success_nonempty`：阻断C1实际后继承诺，从同一次实际成功分支引用checkPost_sound性，不增加调用前提。
 - `EffectIR`为原稿§3.3有限效果表达式的实际解释：指定字段写入+有限顺序，不接受任意目标Situation或任意状态变换；Propose/Learn/Admit/Bind/Occur/Perform实际分支使用它。原有程序组合与门控保持。
 - `THEORY-20261105.md`已形成完整理论、纸面证明、十二制度/八引擎具名对应及F/A/S/D处置；状态仍待最终聚合、精确元数据和合流复制，不能以该稿形成宣告完成。
+
+### 最终验收前的定点修复
+
+- 41930183176 / 542fc90a：撤销样例不应要求CivilActLife的DecidableEq，改用实际构造等式；表见样例记录字段换行缺失已修。
+- 41930999322 / b354d495：实际后继证明在多模式match后缺显式化简；按日志补ha/hs/ht化简，未改任何前提或结论。
+- 41931546814 / 49a02c61：上述后继、实际commute门控及公共图收束均已构建；表见样例把指定本人12误写成旧债权人7的整个toyRelation预期，改为明确holder12的预期，实际归属规则不变。
+- 41932216251 / 0798e587：Acceptance继续验证。随后金额汇总增加原生币种/单位/倍率一致检查，实际成功推出moneyLedgerOK；多个不一致精确候选不再取head，保留冲突。正负IO均经实际operator入口，不把数字当法律判断。
+- 公共InstitutionCall不再接受四种自填Judgment/索引的低层查询；它们作为局部数学函数保留，实际公共路径改为共同证据/法定罪名槽/已存裁判的四个rich入口，未删题或缩制度内容。
+- 比较三基线blob：Walls=10e9753ba22feae8223689019bea354ffe8d884c，Ops=5bbac252840287d3acc827c8a876dab0d8e1dad9，World=561da330968039678876f3c7a1e536933bc97ed6，均与ZCode分支8a367135相同。U源目录相对固定main提交差异为0。

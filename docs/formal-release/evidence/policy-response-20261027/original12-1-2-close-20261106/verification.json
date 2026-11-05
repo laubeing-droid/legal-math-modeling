@@ -1,0 +1,396 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_questions": [
+    "12.1",
+    "12.2"
+  ],
+  "original_question": "12.2",
+  "record_only_question": "12.1",
+  "clauses": [
+    "U12.4",
+    "U12.2"
+  ],
+  "frozen_paragraphs": {
+    "12.1": [
+      {
+        "line": 95,
+        "text": "某程序性筛查政策只看分数 z，并按 π_θ(z)=1{z≥θ} 决定是否通过。通过奖励为 1，参与人可选三种行为：不投入 b₀，真实准备 b_E，形式性迎合 b_G。它们的“分数、真实结果、成本”分别为 (0,0,0)、(1,1,0.6)、(1,0,0.1)。净收益 u(b)=π_θ(z(b))−c(b)。这里“真实结果”仅指题设的可测准备完成度，不是对案件实体结论的判断。"
+      },
+      {
+        "line": 97,
+        "text": "1. 对 θ=0.5 和 θ=1 分别列出收益并求最优响应。说明提高到题设中的较高阈值，是否必然提高真实结果。证明仅依赖 z 的任何随机通过规则，都不能在 z 相同的两种行为之间直接区分质量。"
+      },
+      {
+        "line": 98,
+        "text": "2. 将完全最优响应替换为本题定义的有限理性响应 q_β(b｜θ)=exp(βu(b))/Σ_b′exp(βu(b′))，β≥0。计算 β=0 及 β→∞ 时的真实结果期望、平均分数，并判断它们是否同向变化。该式只是一个候选行为模型，不得把它当作已验证的人类心理定律。"
+      },
+      {
+        "line": 99,
+        "text": "3. 若要识别真实准备与迎合，提出一个最小额外观测变量或干预，并写明需要的数据与区分条件。只改模型复杂度却不增加区分信息，是否足够？"
+      },
+      {
+        "line": 100,
+        "text": "4. 分别说明“允许律师根据公开程序要求准备材料”与“让系统把迎合当作法律正确”的差别。不得把全部策略响应笼统称为作弊，也不得因响应提升分数就认定它改善制度目标。"
+      },
+      {
+        "line": 102,
+        "text": "要求交付一张有限收益表与一个信息不可区分性结论，不要求设计现实中的反规避系统。"
+      }
+    ],
+    "12.2": [
+      {
+        "line": 106,
+        "text": "把一次“部署政策—参与人响应—重新估计参数”的复合过程抽象为 θ_{k+1}=T(θ_k)，θ∈[0,1]。比较两个给定映射：T₁(θ)=1/4+θ/2；T₂(θ)=1−θ。"
+      },
+      {
+        "line": 108,
+        "text": "1. 求两个映射的固定点，并给出从任意初值出发的迭代公式。证明具有相同唯一固定点，并不保证相同的收敛行为；须明确 T₂ 从哪些初值不会收敛。"
+      },
+      {
+        "line": 109,
+        "text": "2. 对 T₂ 使用阻尼 θ_{k+1}=(1−λ)θ_k+λT₂(θ_k)，求全部保证全区间收敛的 λ∈[0,1]，并处理端点，不得把“步长较小”当作证明。"
+      },
+      {
+        "line": 110,
+        "text": "3. 若声称一般系统满足收缩条件，请写出使用的度量、闭合定义域、Lipschitz 常数及条件来源。只有局部导数、一次实验曲线或单次训练损失下降，能否证明全局收缩？给出一个有限反例或缺口说明。"
+      },
+      {
+        "line": 111,
+        "text": "4. 区分三个命题：π 在 D_π 上预测准确；π 是所给更新算子的固定点；π 满足外生法律约束。构造一个稳定固定点违反给定约束的例子，证明前两个命题不推出第三个。"
+      },
+      {
+        "line": 113,
+        "text": "不得从本题线性例子外推真实制度必然稳定。均衡是否存在、是否唯一、算法是否到达、到达后是否合法，应分别记账。"
+      }
+    ]
+  },
+  "source_checkpoint": {
+    "branch": "formal/close-original12-1-2-policy-response-20261106",
+    "base_main": "6cf2c5bb83ba2c6b01ae3743f9be99891abaea2a",
+    "base_tree": "201eae8012d398e3ee4f40e22726be876e157c87",
+    "commit": "7b5bc93414f8786f9baecebc8bb8a5709e32d88e",
+    "tree": "2be03c6df685a3170e468fe11a7998e7b441cac0",
+    "parent": "6cf2c5bb83ba2c6b01ae3743f9be99891abaea2a",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyPredictionBoundary20261106.lean",
+    "source_bytes": 1482,
+    "source_sha256": "b2cebb05a2707ed2ee0f13d3ca828801cb902f77c8b76c9911a2b320043940b5",
+    "source_git_blob": "bc78e3320b2f2a697f9050beed03e041909c80c7",
+    "root_import_at_source_blob": "11698181c7e6aaf38424884ecc7b26c7e126c964",
+    "role": "One new L111 connection: same deployment policy/law has zero prediction loss, stable update, and independent constraint violation. Source CI precedes root import."
+  },
+  "root_checkpoint": {
+    "commit": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a",
+    "tree": "858a766ae51511915a6fb281bcfedc30371a5a58",
+    "parent": "7b5bc93414f8786f9baecebc8bb8a5709e32d88e",
+    "root_import_git_blob": "df7b506084f73ccd1a22268ad25b08fe8134b4ce",
+    "role": "Sole root import after source CI; also clean manifest subject."
+  },
+  "metadata_checkpoint": {
+    "commit": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a",
+    "tree": "858a766ae51511915a6fb281bcfedc30371a5a58",
+    "parent": "7b5bc93414f8786f9baecebc8bb8a5709e32d88e",
+    "aa_git_blob": "8a2fd26f305836567732051fcf4528dd8654c96f",
+    "root_import_git_blob": "df7b506084f73ccd1a22268ad25b08fe8134b4ce",
+    "source_git_blob": "bc78e3320b2f2a697f9050beed03e041909c80c7",
+    "separate_aa_checkpoint": false,
+    "role": "Same root checkpoint; AA writer made no Git content change."
+  },
+  "manifest_binding": {
+    "checkpoint": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a",
+    "tree": "858a766ae51511915a6fb281bcfedc30371a5a58",
+    "parent": "7b5bc93414f8786f9baecebc8bb8a5709e32d88e",
+    "subject": {
+      "branch": "formal/close-original12-1-2-policy-response-20261106",
+      "commit": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a",
+      "tree": "858a766ae51511915a6fb281bcfedc30371a5a58"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 595,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Bound to clean root checkpoint; not the independent source CI subject."
+  },
+  "workflow": {
+    "run_id": 42072666500,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127404500057,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.PolicyPredictionBoundary20261106"
+  },
+  "artifact": {
+    "id": 13437615683,
+    "name": "changed-module-only-42072666500-1",
+    "zip_bytes": 1037,
+    "zip_sha256": "25dbd503d9bbf13e5a9453b9249e3f0484e20780313b569755ae8c3aa56fb98f",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 271,
+        "sha256": "a54b734c463ad7d9ca9cd42e614fd270da202b1b9a17daaf464b9f36fe56c5d7",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 1618,
+        "sha256": "6bb54f2c7b30ac3f872089d6bd619ef05c1fba0cbc1a66e82fc80fdbe1237337",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.PolicyPredictionBoundary20261106.accurate_stable_policy_can_be_outside_legal_constraint",
+      "ownership": "module_owned",
+      "check_source_line": 34,
+      "axiom_source_line": 35,
+      "check_log_line": 15,
+      "axiom_log_line": 21,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.PolicyPredictionBoundary20261106.accurate_stable_policy_can_be_outside_legal_constraint' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 1,
+    "reused": 0,
+    "pairs": 1,
+    "message_count": 2,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "failed_history": [],
+  "records_history": [],
+  "reused_evidence": {
+    "metadata_pins": [
+      {
+        "path": "docs/formal-release/evidence/policy-response-20261027/verification.json",
+        "bytes": 2920,
+        "sha256": "994fc8af6a4fec2696b9829bec389f303b9bcf6ffe1fb50266e62e89640f057c",
+        "subject": "c77fd50a8e6c0b937b0315ea1a6647387d7ba561",
+        "run_id": 40451401604,
+        "job_id": 122014729609,
+        "named_targets": [
+          "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+          "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+          "JurisLean.Candidates.PolicyResponse20261027.logit_is_original_softmax",
+          "JurisLean.Candidates.PolicyResponse20261027.logit_is_probability",
+          "JurisLean.Candidates.PolicyResponse20261027.logit_actual_means",
+          "JurisLean.Candidates.PolicyResponse20261027.logit_zero_means",
+          "JurisLean.Candidates.PolicyResponse20261027.logit_high_rationality_limits",
+          "JurisLean.Candidates.PolicyResponse20261027.affine_iterate_formula",
+          "JurisLean.Candidates.PolicyResponse20261027.original_maps_and_unique_fixed_points",
+          "JurisLean.Candidates.PolicyResponse20261027.affine_converges_to_center",
+          "JurisLean.Candidates.PolicyResponse20261027.reflection_has_no_limit_except_center",
+          "JurisLean.Candidates.PolicyResponse20261027.damped_as_affine",
+          "JurisLean.Candidates.PolicyResponse20261027.damped_preserves_unit_interval",
+          "JurisLean.Candidates.PolicyResponse20261027.damping_converges_for_all_iff",
+          "JurisLean.Candidates.PolicyResponse20261027.local_affine_behavior_does_not_give_global_contraction",
+          "JurisLean.Candidates.PolicyResponse20261027.stable_fixed_point_can_be_outside_legal_constraint",
+          "JurisLean.Candidates.PolicyResponse20261027.behavior_only_cannot_recover_admissible_sets"
+        ]
+      },
+      {
+        "path": "docs/formal-release/evidence/u12-4-debt-close-20261029/verification.json",
+        "bytes": 2466,
+        "sha256": "981c6d73cce39c044fcc721e94c55059d2d8523706bc0efd7c53ad4acd3b02e2",
+        "subject": "845163f918573c17d89be3def6eff2bfd316a18f",
+        "run_id": 40728881795,
+        "job_id": 122959474942,
+        "named_targets": [
+          "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+          "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+          "JurisLean.Candidates.PolicyResponse20261027.finite_response_payoffs",
+          "JurisLean.Candidates.PolicyResponse20261027.score_only_cannot_distinguish_preparation",
+          "JurisLean.Candidates.U12_4FrozenAuditModel20261029.frozen_audit_model_acceptance"
+        ]
+      }
+    ],
+    "source_pins": [
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+        "sha256": "43ad3c70bc0cba072980805fa66e55fd9293fbd8158c8b5f1e0d022bd1b481ef",
+        "physical_bytes": 10696,
+        "physical_sha256": "43ad3c70bc0cba072980805fa66e55fd9293fbd8158c8b5f1e0d022bd1b481ef"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponseAudit20261027.lean",
+        "sha256": "6333195fa02b461c049295dfed672b587bd55abe669e2b112a90f6e82966e9de",
+        "physical_bytes": 3965,
+        "physical_sha256": "6333195fa02b461c049295dfed672b587bd55abe669e2b112a90f6e82966e9de"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+        "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4",
+        "physical_bytes": 3091,
+        "physical_sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/U12_4FrozenAuditModel20261029.lean",
+        "sha256": "9908d8daea6e8f9af9225732a07bf5a821a8ea4077958c32d65ba44e15172c8b",
+        "physical_bytes": 4942,
+        "physical_sha256": "9908d8daea6e8f9af9225732a07bf5a821a8ea4077958c32d65ba44e15172c8b"
+      }
+    ],
+    "accepted_prs": [
+      46,
+      64
+    ],
+    "new_source_ci_for_reused_proofs": false,
+    "old_raw_and_metadata_unchanged": true
+  },
+  "proof_boundary": {
+    "12.1": "Original finite three-action payoffs and score-only indistinguishability, actual softmax means/limits, binary audit distribution/incentive contract under independent audit semantics; fixed legal and factual premises are external.",
+    "12.2": "Exact original maps, iteration, full damping parameter distinctions, contraction/local-global counterexample, and the new same-policy/same-law zero-loss stable illegal instance. Independent allowed set is not inferred from prediction.",
+    "causal_and_support_obligations": "Frozen L119/L121 belong to existing COVERED 12.3; all of that row and its evidence remain unchanged.",
+    "external": "Actual deployment response, audit validity, source truth, authorization and legal applicability need independent evidence; none is supplied by a finite arithmetic counterexample."
+  },
+  "consumer_wiring": {
+    "affected_edges": [],
+    "adjacent_unchanged_edges": [
+      11,
+      12
+    ],
+    "note": "No new actual consumer. U00 callers, histories, ratings and consumer files are byte-unchanged."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 82,
+      "PARTIAL": 11,
+      "NOT_RECONCILED": 4
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original12-1-2-records-20261106\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original12-1-2-records-20261106\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 6,
+      "manifest_checkpoint": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original12-1-2-records-20261106\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 616,
+      "previous_quotes": 1498,
+      "new_runs": [
+        42072666500
+      ],
+      "status": "PASS",
+      "method": "Preserve all old metadata; describe only the new successful source run; official quotes-only scanner/render.",
+      "current_runs": 617,
+      "current_quotes": 1500,
+      "old_metadata_rows_preserved": 616,
+      "receipt": "D:\\tmp\\original12-1-2-records-20261106\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 5.37s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 617 runs, 1500 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original12-1-2-records-20261106\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 0.94s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original12-1-2-source-r1\\changed-module-only-42072666500-1.zip",
+    "raw_directory": "D:\\tmp\\original12-1-2-source-r1\\raw",
+    "copied_byte_exact": true,
+    "old_evidence_files_unchanged_except_readme_append": true
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 15,
+    "pathspec_source": "D:\\tmp\\original12-1-2-records-20261106\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original12-1-2-records-20261106\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original12-1-2-records-20261106\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/policy-response-20261027/original12-1-2-close-20261106/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

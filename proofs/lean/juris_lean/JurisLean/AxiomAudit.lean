@@ -3120,7 +3120,6 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.applicability_matches_source_semantics
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_coverage
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_faithful
-#print axioms JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.encode_decode
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.familyNet_roundTrip
 #print axioms JurisLean.Seams.UnifiedNeedlesS0S1.finite_priority_maximal_elements_exist

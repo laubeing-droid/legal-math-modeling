@@ -1,0 +1,201 @@
+✔ [913/1238] Built JurisLean.FailureStatus (397ms)
+✔ [5502/5766] Built JurisLean.LegalIds (1.7s)
+⚠ [8476/8505] Built JurisLean.ExactNumericContract (1.4s)
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8477/8506] Built JurisLean.LegalModelV2 (3.1s)
+✔ [8479/8515] Built JurisLean.Seams.InstitutionalEffects (2.2s)
+✔ [8480/8515] Built JurisLean.FiniteMonotoneIteration (3.8s)
+✔ [8481/8515] Built JurisLean.HornDefinitions (2.8s)
+✔ [8482/8515] Built JurisLean.FullMath.Core.Foundations (5.5s)
+✔ [8483/8515] Built JurisLean.Candidates.Final20261021.Interfaces (7.1s)
+✔ [8484/8515] Built JurisLean.HornFixedPoint (2.8s)
+✔ [8485/8515] Built JurisLean.FullMath.Probability.BetaInterval (5.5s)
+⚠ [8486/8515] Built JurisLean.FullMath.Probability.DirichletPosterior (5.7s)
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8487/8515] Built JurisLean.FullMath.Probability.FiniteBN (5.6s)
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8488/8515] Built JurisLean.FullMath.Numeric.Intervals (6.0s)
+⚠ [8489/8515] Built JurisLean.FullMath.Numeric.Quantities (5.6s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8490/8515] Built JurisLean.Candidates.Final20261021.Transactions (5.8s)
+✔ [8491/8515] Built JurisLean.Candidates.Final20261021.Representation (5.7s)
+⚠ [8492/8515] Built JurisLean.Candidates.Final20261021.Policy (5.0s)
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8493/8515] Built JurisLean.Candidates.Final20261021.Harness (5.6s)
+✔ [8494/8515] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (6.0s)
+⚠ [8495/8515] Built JurisLean.Candidates.Final20261021.Learning (6.8s)
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8496/8515] Built JurisLean.Candidates.Final20261021.Behavior (5.7s)
+✔ [8497/8515] Built JurisLean.Candidates.Final20261021.Temporal (5.7s)
+✔ [8498/8515] Built JurisLean.Candidates.Final20261021.Compiler (5.7s)
+⚠ [8499/8515] Built JurisLean.FullMath.Probability.Conditioning (5.5s)
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8500/8515] Built JurisLean.Seams.UnifiedQuantities (5.7s)
+⚠ [8501/8515] Built JurisLean.Candidates.Final20261021.Calibration (6.5s)
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8502/8515] Built JurisLean.Candidates.Final20261021.RSI (6.1s)
+✔ [8503/8515] Built JurisLean.Candidates.Final20261021.Authorization (5.8s)
+⚠ [8504/8515] Built JurisLean.Seams.Probability (6.7s)
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+✔ [8505/8515] Built JurisLean.Candidates.Final20261021.Feedback (6.3s)
+✔ [8506/8515] Built JurisLean.Seams.UnifiedQuantLedger (8.5s)
+⚠ [8507/8515] Built JurisLean.Seams.UnifiedNeedlesS3a (9.8s)
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+✔ [8508/8515] Built JurisLean.Candidates.Final20261021.Ledger (6.7s)
+✔ [8509/8515] Built JurisLean.Candidates.Final20261021.Probability (4.9s)
+✔ [8510/8515] Built JurisLean.Candidates.Final20261021.Trace (4.2s)
+✔ [8511/8515] Built JurisLean.Candidates.Final20261021.Iteration (3.0s)
+✔ [8512/8515] Built JurisLean.Candidates.Final20261021.Decision (5.7s)
+✔ [8513/8515] Built JurisLean.Candidates.Final20261021.Pipeline (4.2s)
+✔ [8514/8515] Built JurisLean.Candidates.Final20261021.Acceptance (4.6s)
+ℹ [8515/8515] Built JurisLean.Candidates.FixedDriverSeparationAudit20261105 (3.5s)
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:67:0: JurisLean.Candidates.FixedDriverSeparationAudit20261105.q_only_two_posts_do_not_certify_forms {Rel : Type}
+  [DecidableEq Rel] (q1 q2 : List UnifiedQuantLedger.LedgerItem) (r : Rel) :
+  ¬∀ (posts : TwoPosts Rel),
+      posts.1.2 = q1 → posts.2.2 = q2 → InstitutionalEffects.forms posts.1.1 r ∧ InstitutionalEffects.forms posts.2.1 r
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:68:0: 'JurisLean.Candidates.FixedDriverSeparationAudit20261105.q_only_two_posts_do_not_certify_forms' does not depend on any axioms
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:69:0: JurisLean.Candidates.FixedDriverSeparationAudit20261105.fixed_given_two_steps_preserve_forms {Rel : Type}
+  [DecidableEq Rel] (s0 : JointState Rel) (p1 p2 : GivenPayment Rel) (r : Rel) :
+  (InstitutionalEffects.forms (fixedStepGiven s0 p1 p2).1.1 r ↔ InstitutionalEffects.forms s0.1 r) ∧
+    (InstitutionalEffects.forms (fixedStepGiven s0 p1 p2).2.1 r ↔
+      InstitutionalEffects.forms (fixedStepGiven s0 p1 p2).1.1 r)
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:70:0: 'JurisLean.Candidates.FixedDriverSeparationAudit20261105.fixed_given_two_steps_preserve_forms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:71:0: JurisLean.Seams.InstitutionalEffects.performance_not_creation {Rel : Type} [DecidableEq Rel]
+  (L : InstitutionalEffects.Ledger Rel) (eventId obligor : String) (rel : Rel) (amount : ℕ) (r : Rel) :
+  InstitutionalEffects.forms
+      (InstitutionalEffects.next L (InstitutionalEffects.SeamEvent.performance eventId obligor rel amount)) r ↔
+    InstitutionalEffects.forms L r
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:72:0: 'JurisLean.Seams.InstitutionalEffects.performance_not_creation' does not depend on any axioms
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:73:0: JurisLean.Seams.InstitutionalEffects.projection_append_form {Rel : Type} [DecidableEq Rel]
+  (L : InstitutionalEffects.Ledger Rel) (eventId : String) (r : Rel) :
+  InstitutionalEffects.formsB (L ++ [InstitutionalEffects.formedRecord eventId r]) r = true
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:74:0: 'JurisLean.Seams.InstitutionalEffects.projection_append_form' depends on axioms: [propext]
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:75:0: JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7 :
+  Final20261021.Ledger.balance Final20261021.Acceptance.post1.state = 3 ∧
+    Final20261021.Ledger.balance Final20261021.Acceptance.post2.state = 0 ∧
+      Final20261021.Acceptance.post2.state.allocated = 10 ∧
+        Final20261021.Acceptance.post2.state.paid = 14 ∧ Final20261021.Acceptance.post2.state.surplus = 4
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:76:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:77:0: JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations :
+  Final20261021.Ledger.forms Final20261021.Acceptance.post2.state Final20261021.Acceptance.debt.relation = true ∧
+    Final20261021.Ledger.balance Final20261021.Acceptance.post2.state = 0 ∧
+      Final20261021.Acceptance.post2.state.claim = Final20261021.Applicable.unknown ∧
+        Final20261021.Acceptance.post2.state.procedure = Final20261021.Procedure.open
+info: JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean:78:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8515 jobs).

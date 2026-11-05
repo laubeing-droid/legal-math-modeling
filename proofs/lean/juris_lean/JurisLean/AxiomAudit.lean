@@ -1824,13 +1824,11 @@ open HornSystem
 #print axioms JurisLean.Seams.InstitutionalEffects.performance_appends_no_record
 #print axioms JurisLean.Seams.InstitutionalEffects.performance_channels_are_disjoint
 #print axioms JurisLean.Seams.InstitutionalEffects.performance_effectKind_ne_formative
-#print axioms JurisLean.Seams.InstitutionalEffects.performance_not_creation
 #print axioms JurisLean.Seams.InstitutionalEffects.performance_not_creation_bool
 #print axioms JurisLean.Seams.InstitutionalEffects.performance_witness_10_3
 #print axioms JurisLean.Seams.InstitutionalEffects.priorityTableDemo_has_maximal
 #print axioms JurisLean.Seams.InstitutionalEffects.priorityTableDemo_nonempty
 #print axioms JurisLean.Seams.InstitutionalEffects.priority_route_keeps_projected
-#print axioms JurisLean.Seams.InstitutionalEffects.projection_append_form
 #print axioms JurisLean.Seams.InstitutionalEffects.projection_append_terminated
 #print axioms JurisLean.Seams.InstitutionalEffects.projection_append_unrelated
 #print axioms JurisLean.Seams.InstitutionalEffects.projection_of_append_matches_step

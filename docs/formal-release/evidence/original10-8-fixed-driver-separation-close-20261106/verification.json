@@ -1,0 +1,444 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "10.8",
+  "clauses": [
+    "U07.3",
+    "U10.2"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 157,
+      "text": "以内部只验 Q 为已知事实，构造保留正确 Q₁、Q₂ 但篡改 L₁、L₂ 的推进器，否定“任意推进器量化通过就保证全联合状态正确”。另写一条针对固定 correctStep 的较窄定理，使用其定义和给定 forms 保持结果；不能因泛化接口存在反例就宣称固定实现错误。外部 TS、SVB 仍只作显式条件，不改签名、不宣称内部计算证明了它们。"
+    },
+    {
+      "line": 159,
+      "text": "在本题有限域上设计验证器，检查授权绑定、日志可见性、环境读取、局部前后条件与轨迹对应，并输出具体失败见证。给输入规模下的复杂度上界及有限反例轨迹；不要求真实代码、部署、测试或组件迁移。量化部分直接用给定 10、7、7 轨迹作非空实例，其外部法律与来源假设仍须标注。"
+    },
+    {
+      "line": 161,
+      "text": "最终交付八项：授权反例；桥接定理；历史查询手算；失败路径 frame 定理；有限轨迹不变量证明；逐边合同及扩展边界；精化与可交换图；固定／任意推进器的分离结论。每项明确适用域和外部假设。完成这些有界数学成果即结束，不承担其他专题整合或验收，不把所有未来法律机制都变成本次必须补全的任务。"
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original10-8-fixed-driver-separation-20261105",
+    "base_main": "7df87d6c33538dbc9d51b45038e07ed40474d077",
+    "base_tree": "adb974dcf9bc4cd2cc0eeaf6eba40f549f0e5df4",
+    "commit": "c8e579e3f8bc04331e81fd8659bfe935434e20cf",
+    "tree": "67bdd1e9e2aef0a94659897270554ab0c2e79b8e",
+    "parent": "7df87d6c33538dbc9d51b45038e07ed40474d077",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/FixedDriverSeparationAudit20261105.lean",
+    "source_bytes": 3799,
+    "source_sha256": "6f897e3d21d113b94dab2ead353fcb6bf893dbeb03b8d35dd3030308c4ddba96",
+    "source_git_blob": "f731e5f25a935ba3f1550e97b086a60bd0b2013c",
+    "root_import_at_source_blob": "cc698728c47f6ba1ae707317cf8d51014894d98b",
+    "role": "Successful independent source proof before root integration. Dispatch retry is not a new source revision."
+  },
+  "root_checkpoint": {
+    "commit": "d18b3fc23a85841bd292824b2c27c352ee51d3a5",
+    "tree": "dfc4eee3f99e23011235ee58e6a6fe76b2642e34",
+    "parent": "c8e579e3f8bc04331e81fd8659bfe935434e20cf",
+    "root_import_git_blob": "11698181c7e6aaf38424884ecc7b26c7e126c964",
+    "role": "Sole root import after source CI; separate from later AA/manifest metadata."
+  },
+  "metadata_checkpoint": {
+    "commit": "96e1bde0abbdc3cb44d419d21d77427497690aeb",
+    "tree": "6ebba11abbf1eb58341f6d2674397f84a86112f6",
+    "parent": "d18b3fc23a85841bd292824b2c27c352ee51d3a5",
+    "aa_git_blob": "8a2fd26f305836567732051fcf4528dd8654c96f",
+    "root_import_git_blob": "11698181c7e6aaf38424884ecc7b26c7e126c964",
+    "source_git_blob": "f731e5f25a935ba3f1550e97b086a60bd0b2013c",
+    "separate_aa_checkpoint": true,
+    "role": "Exactly two redundant print registrations removed after successful source outputs; no theorem or premise changes."
+  },
+  "manifest_binding": {
+    "checkpoint": "96e1bde0abbdc3cb44d419d21d77427497690aeb",
+    "tree": "6ebba11abbf1eb58341f6d2674397f84a86112f6",
+    "parent": "d18b3fc23a85841bd292824b2c27c352ee51d3a5",
+    "subject": {
+      "branch": "formal/close-original10-8-fixed-driver-separation-20261105",
+      "commit": "96e1bde0abbdc3cb44d419d21d77427497690aeb",
+      "tree": "6ebba11abbf1eb58341f6d2674397f84a86112f6"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 594,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Generated require-bound from clean AA metadata checkpoint, not the source CI head."
+  },
+  "workflow": {
+    "run_id": 42062621684,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127368163315,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.FixedDriverSeparationAudit20261105"
+  },
+  "artifact": {
+    "id": 13431214307,
+    "name": "changed-module-only-42062621684-1",
+    "zip_bytes": 2884,
+    "zip_sha256": "e75fd984a3ddf83cdd1ccf9430a69ad88e4ae36830ed2e6c84e059992c65d009",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 275,
+        "sha256": "8ece6669c27a86a8f3a43e3dc68b8606f54a3f45efb6dc75745b968d3b12796a",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 13773,
+        "sha256": "6b2c61397c2578c062e5507661be571899270441e1ef48a6bd767751dbcbae1b",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.FixedDriverSeparationAudit20261105.q_only_two_posts_do_not_certify_forms",
+      "ownership": "module_owned",
+      "check_source_line": 67,
+      "axiom_source_line": 68,
+      "check_log_line": 162,
+      "axiom_log_line": 166,
+      "axioms": [],
+      "raw_axiom_output": "'JurisLean.Candidates.FixedDriverSeparationAudit20261105.q_only_two_posts_do_not_certify_forms' does not depend on any axioms"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FixedDriverSeparationAudit20261105.fixed_given_two_steps_preserve_forms",
+      "ownership": "module_owned",
+      "check_source_line": 69,
+      "axiom_source_line": 70,
+      "check_log_line": 167,
+      "axiom_log_line": 172,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.FixedDriverSeparationAudit20261105.fixed_given_two_steps_preserve_forms' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Seams.InstitutionalEffects.performance_not_creation",
+      "ownership": "reused",
+      "check_source_line": 71,
+      "axiom_source_line": 72,
+      "check_log_line": 175,
+      "axiom_log_line": 180,
+      "axioms": [],
+      "raw_axiom_output": "'JurisLean.Seams.InstitutionalEffects.performance_not_creation' does not depend on any axioms"
+    },
+    {
+      "fqn": "JurisLean.Seams.InstitutionalEffects.projection_append_form",
+      "ownership": "reused",
+      "check_source_line": 73,
+      "axiom_source_line": 74,
+      "check_log_line": 181,
+      "axiom_log_line": 184,
+      "axioms": [
+        "propext"
+      ],
+      "raw_axiom_output": "'JurisLean.Seams.InstitutionalEffects.projection_append_form' depends on axioms: [propext]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+      "ownership": "reused",
+      "check_source_line": 75,
+      "axiom_source_line": 76,
+      "check_log_line": 185,
+      "axiom_log_line": 190,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations",
+      "ownership": "reused",
+      "check_source_line": 77,
+      "axiom_source_line": 78,
+      "check_log_line": 193,
+      "axiom_log_line": 198,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 2,
+    "reused": 4,
+    "pairs": 6,
+    "message_count": 12,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "failed_history": [],
+  "dispatch_history": [
+    {
+      "attempt": 1,
+      "receipt": "D:\\tmp\\original10-8-source-r1\\dispatch-r1-receipt.json",
+      "receipt_bytes": 1401,
+      "receipt_sha256": "7ff234e8a4fe997297ecf62051e2ecefba92bfd2e1e9fcaadb00f3d2887d33ae",
+      "actual_process": {
+        "schema": "original10-8-source-dispatch-r1",
+        "status": "FAILED",
+        "argv": [
+          "gh",
+          "workflow",
+          "run",
+          "lean-build.yml",
+          "--repo",
+          "laubeing-droid/legal-math-modeling",
+          "--ref",
+          "formal/close-original10-8-fixed-driver-separation-20261105",
+          "-f",
+          "mode=changed-module",
+          "-f",
+          "module=JurisLean.Candidates.FixedDriverSeparationAudit20261105"
+        ],
+        "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+        "started_utc": "2026-11-05T16:13:29.715577+00:00",
+        "pid": 1280,
+        "ended_utc": "2026-11-05T16:13:31.673661+00:00",
+        "exit_code": 1,
+        "stdout_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r1.stdout.bin",
+        "stdout_bytes": 0,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r1.stderr.bin",
+        "stderr_bytes": 156,
+        "stderr_sha256": "6a5d6a13e418b2cf0bd38a37ba434aa13ad1773c7fa7c9d147daa2fa0c130dc3",
+        "exit_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r1.exit.txt",
+        "exit_bytes": 2,
+        "exit_sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "executable": "C:\\Program Files\\GitHub CLI\\gh.EXE",
+        "stdout_text": "",
+        "stderr_text": "could not create workflow dispatch event: HTTP 500 (https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/workflows/301490129/dispatches)\n"
+      },
+      "interpretation": "HTTP 500 dispatch failure; no attributable failed source CI run."
+    },
+    {
+      "attempt": 2,
+      "receipt": "D:\\tmp\\original10-8-source-r1\\dispatch-r2-receipt.json",
+      "receipt_bytes": 1350,
+      "receipt_sha256": "b8a2b585fa8df4758d119c598b18db16cf1ed5cdf375c0272aca421613ec4586",
+      "actual_process": {
+        "schema": "original10-8-source-dispatch-r2",
+        "status": "COMPLETED",
+        "argv": [
+          "gh",
+          "workflow",
+          "run",
+          "lean-build.yml",
+          "--repo",
+          "laubeing-droid/legal-math-modeling",
+          "--ref",
+          "formal/close-original10-8-fixed-driver-separation-20261105",
+          "-f",
+          "mode=changed-module",
+          "-f",
+          "module=JurisLean.Candidates.FixedDriverSeparationAudit20261105"
+        ],
+        "cwd": "C:\\Users\\being\\legal-math-modeling-u03-20261026",
+        "started_utc": "2026-11-05T16:16:09.428085+00:00",
+        "pid": 32900,
+        "ended_utc": "2026-11-05T16:16:12.981933+00:00",
+        "exit_code": 0,
+        "stdout_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r2.stdout.bin",
+        "stdout_bytes": 79,
+        "stdout_sha256": "8550f9eee4fe088ecc54d156be462df7508a7abfba4454cb9a63f4579ab7c9d6",
+        "stderr_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r2.stderr.bin",
+        "stderr_bytes": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exit_path": "D:\\tmp\\original10-8-source-r1\\dispatch-r2.exit.txt",
+        "exit_bytes": 2,
+        "exit_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "executable": "C:\\Program Files\\GitHub CLI\\gh.EXE",
+        "stdout_text": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42062621684",
+        "stderr_text": "",
+        "run_id": 42062621684
+      },
+      "interpretation": "Successful dispatch, bound to the sole observed source run."
+    }
+  ],
+  "records_history": [
+    {
+      "action": "aa-writer",
+      "receipt": "D:\\tmp\\original10-8-records-20261106\\derived-writers-r1-receipt.json",
+      "exit_code": 0,
+      "delta": "Two duplicate print registrations only; paused before remaining writers, then authorized metadata checkpoint. Writer not rerun.",
+      "metadata_receipt": "D:\\tmp\\original10-8-records-20261106\\aa-metadata-checkpoint-r1-receipt.json",
+      "covered_targets": [
+        {
+          "fqn": "JurisLean.Seams.InstitutionalEffects.performance_not_creation",
+          "axioms": [],
+          "source_line": 72
+        },
+        {
+          "fqn": "JurisLean.Seams.InstitutionalEffects.projection_append_form",
+          "axioms": [
+            "propext"
+          ],
+          "source_line": 74
+        }
+      ]
+    }
+  ],
+  "proof_boundary": {
+    "given_facts": "Frozen L93/L95 define the fixed continuous consume facts and Q-only read set. They support mathematical deduction without asserting recovery/compilation of original V2.",
+    "historical_implementation": "Original FixedOneCaseTwoPaymentsV2 and runStates source/build artifacts remain UNKNOWN. No aliases redefine TS/SVB/runStates to imitate the original interface.",
+    "counterexample": "Arbitrary complete Q1/Q2 are retained verbatim while both L outputs are empty; complete record fields and order, not just balance. Not a claim that a lawful fixed executor erases L.",
+    "fixed_driver": "Declared nonnegative-integer payment representation includes fixed 10/7/7; actual continuous local consume outputs and performance forms equivalences, without joint-correctness premise.",
+    "finite_algorithm": "L159 finite table/Boolean contract design, explicit failure/unknown witnesses and bound O(L+(n*g^2+K*g)*C_cmp(B)+C_cert) plus S08.3 cost; not runtime implementation or termination of all future business.",
+    "chapter_index": "Eight bounded named results, with 10.6 accepted PR126/S126 and 10.7 accepted PR127/S127. Dependencies retain their exact assumptions and types.",
+    "external_conditions": "TS(sourceId), SVB(sourceId,kappa,record), independent legal/source/identity premises keep original roles. No new SVB history parameter or current-world legality claim.",
+    "numeric_examples": "Existing Acceptance 10/7/7 and three_observations are four-reuse roster members; their own types remain distinct from new JointState and unknown original V2."
+  },
+  "consumer_wiring": {
+    "affected_edges": [
+      8,
+      9
+    ],
+    "note": "Current conditional-chain evidence only; callers, parameter flows and ratings unchanged. No runtime Q-only upgrade or source truth discharged."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 80,
+      "PARTIAL": 13,
+      "NOT_RECONCILED": 4
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original10-8-records-20261106\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original10-8-records-20261106\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 6,
+      "manifest_checkpoint": "96e1bde0abbdc3cb44d419d21d77427497690aeb"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original10-8-records-20261106\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 615,
+      "previous_quotes": 1495,
+      "new_runs": [
+        42062621684
+      ],
+      "status": "PASS",
+      "method": "Preserve all old metadata; describe only the successful new source run, then official quotes-only scanner/render.",
+      "current_runs": 616,
+      "current_quotes": 1498,
+      "old_metadata_rows_preserved": 615,
+      "receipt": "D:\\tmp\\original10-8-records-20261106\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 5.36s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 616 runs, 1498 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original10-8-records-20261106\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 1.02s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original10-8-source-r1\\changed-module-only-42062621684-1.zip",
+    "raw_directory": "D:\\tmp\\original10-8-source-r1\\raw",
+    "copied_byte_exact": true
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 17,
+    "pathspec_source": "D:\\tmp\\original10-8-records-20261106\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original10-8-records-20261106\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original10-8-records-20261106\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original10-8-fixed-driver-separation-close-20261106/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

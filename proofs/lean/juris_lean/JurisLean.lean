@@ -129,6 +129,7 @@ import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.ParametricAllocationAudit20261104
 import JurisLean.Candidates.PartialStepGateAudit20261105
+import JurisLean.Candidates.ProtocolDependencyAudit20261105
 import JurisLean.Candidates.RestitutionFiniteClosureAudit20261104
 import JurisLean.Candidates.SemanticIndependenceAudit20261104
 import JurisLean.Candidates.SingleDebtStreamAudit20261103

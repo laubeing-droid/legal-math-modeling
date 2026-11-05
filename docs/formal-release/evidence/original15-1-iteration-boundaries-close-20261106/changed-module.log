@@ -1,0 +1,234 @@
+⚠ [8476/8489] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8477/8489] Replayed JurisLean.Candidates.LearningRisk20261027
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/LearningRisk20261027.lean:157:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:158:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:159:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:160:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningRisk20261027.lean:161:0: 'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8478/8489] Replayed JurisLean.Candidates.LearningFiniteClass20261027
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:135:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:211:0: 'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:212:0: 'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:213:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningFiniteClass20261027.lean:214:0: 'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8479/8489] Replayed JurisLean.Candidates.LearningERM20261027
+info: JurisLean/Candidates/LearningERM20261027.lean:174:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  {n : ℕ} (loss : H → Z → ℚ) (first : H) (rest : List H) (data : Fin n → Z) (hn : 0 < n) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss (first :: rest) data =
+      some (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ∧
+    JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data ∈ first :: rest ∧
+      ∀ h ∈ first :: rest,
+        JurisLean.Candidates.LearningERM20261027.empiricalScore loss data
+            (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ≤
+          JurisLean.Candidates.LearningERM20261027.empiricalScore loss data h
+info: JurisLean/Candidates/LearningERM20261027.lean:175:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:176:0: JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] [DecidableEq H] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (first : H) (rest : List H) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ first :: rest, Measurable fun z => ↑(loss h z))
+  (lossRange : ∀ h ∈ first :: rest, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z),
+            ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+              ↑(first :: rest).toFinset +
+            2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z),
+              ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+                ↑(first :: rest).toFinset +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ}
+info: JurisLean/Candidates/LearningERM20261027.lean:177:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:178:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2} {n : ℕ}
+  (loss : H → Z → ℚ) (data : Fin n → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [] data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:179:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:180:0: JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  (loss : H → Z → ℚ) (models : List H) (data : Fin 0 → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss models data = none
+info: JurisLean/Candidates/LearningERM20261027.lean:181:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/LearningERM20261027.lean:182:0: JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample :
+  have loss := fun h z => if h = z then 0 else 1;
+  (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => false) = some false ∧
+    (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => true) = some true
+info: JurisLean/Candidates/LearningERM20261027.lean:183:0: 'JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8481/8489] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8483/8489] Replayed JurisLean.Candidates.SelectiveCalibration20261027
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8486/8489] Replayed JurisLean.Candidates.ProtectedFeedback20261027
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:33: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8487/8489] Replayed JurisLean.Candidates.AdaptiveValidation20261027
+warning: JurisLean/Candidates/AdaptiveValidation20261027.lean:93:35: This simp argument is unused:
+  Set.indicator
+
+Hint: Omit it from the simp argument list.
+  simp [term, historyCell, S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵,̵ ̵reversed]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveValidation20261027.lean:96:43: This simp argument is unused:
+  Set.indicator
+
+Hint: Omit it from the simp argument list.
+  simp [term, historyCell,̵ ̵S̵e̵t̵.̵i̵n̵d̵i̵c̵a̵t̵o̵r̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveValidation20261027.lean:114:23: This simp argument is unused:
+  setIntegral_const
+
+Hint: Omit it from the simp argument list.
+  simp [enabled, se̵t̵I̵n̵t̵e̵g̵r̵a̵l̵_̵c̵o̵n̵s̵t̵,̵ ̵s̵mul_eq_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveValidation20261027.lean:253:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/AdaptiveValidation20261027.lean:253:6: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8488/8489] Replayed JurisLean.Candidates.ProcedureClosure20261027
+warning: JurisLean/Candidates/ProcedureClosure20261027.lean:40:24: This simp argument is unused:
+  and_assoc
+
+Hint: Omit it from the simp argument list.
+  simp [checkProcess, binding, lawful_closed_iff_local_checks, validPolicy,
+  ̵  ̵ ̵ ̵ ̵ ̵Bool.and_eq_true,
+  ̲ a̵n̵d̵_̵a̵s̵s̵o̵c̵,̵  ̲ ̲and_left_comm, and_comm]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8489/8489] Built JurisLean.Candidates.U15_1IterationBoundaries20261106 (3.0s)
+info: JurisLean/Candidates/U15_1IterationBoundaries20261106.lean:68:0: JurisLean.Candidates.U15_1IterationBoundaries20261106.validation_score_rises_while_target_risk_increases :
+  have sample := {0, 1};
+  have baseline := fun x => decide (x = 0);
+  have selected := fromProbeScores (probeScores sample);
+  1 - zeroLabelValidationScore sample baseline < 1 - zeroLabelValidationScore sample selected ∧
+    uniformZeroRisk baseline < uniformZeroRisk selected
+info: JurisLean/Candidates/U15_1IterationBoundaries20261106.lean:69:0: 'JurisLean.Candidates.U15_1IterationBoundaries20261106.validation_score_rises_while_target_risk_increases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/U15_1IterationBoundaries20261106.lean:70:0: JurisLean.Candidates.U15_1IterationBoundaries20261106.finite_class_excludes_infinite_strict_risk_decrease {Model : Type}
+  (models : Finset Model) (risk : Model → ℝ) : ¬∃ path, ∀ (k : ℕ), risk ↑(path (k + 1)) < risk ↑(path k)
+info: JurisLean/Candidates/U15_1IterationBoundaries20261106.lean:71:0: 'JurisLean.Candidates.U15_1IterationBoundaries20261106.finite_class_excludes_infinite_strict_risk_decrease' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8489 jobs).

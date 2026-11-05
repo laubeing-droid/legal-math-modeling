@@ -1,0 +1,1094 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "15.1",
+  "related_record_only_questions": [
+    "15.2",
+    "15.3"
+  ],
+  "clauses": [
+    "U15.1",
+    "U15.2"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 89,
+      "text": "区分训练损失下降、验证集分数上升、目标分布真实风险下降、对所有合法输入都不退化、以及所有未来版本持续改进。给出至少三个严格不蕴含的有限反例。"
+    },
+    {
+      "line": 91,
+      "text": "在固定有限模型类和固定目标风险下，给出带容忍ε的单次接纳合同。证明哪些额外条件能推出有限T轮的累计退化界或单调性；若每轮只允许最多ε_t退化，写出实际可得的Σ ε_t界，而不是声称零退化。严格改进在有限可达状态空间中能否无限持续？阐明收敛、停止、达到全局最优不是同一个结论。"
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original15-1-3-iteration-20261106",
+    "base_main": "cbd059aec61f1697e4da974a8c12fea2871b4269",
+    "base_tree": "f0ecf2e02fe8793a15f9d2edd7e0d8184bce7796",
+    "commit": "94a4de8b9dce276603714249d576c2cb7ec1a781",
+    "tree": "e0ebf8e00bb93b00a5fb28e862584831df835460",
+    "parent": "cbd059aec61f1697e4da974a8c12fea2871b4269",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/U15_1IterationBoundaries20261106.lean",
+    "source_bytes": 3463,
+    "source_sha256": "f765c792aad0bc7d9fc19a5e3d035d9fe1c50ffcb87e5711aaeb0f4c1da6d19c",
+    "source_git_blob": "fa19cfd35d2f71c2cbce91071ec91cfd88db2485",
+    "root_import_at_source_blob": "ea60a9a15c9d8bbdc3217459a5534644e027d28a",
+    "role": "Two finite iteration-boundary connections; independent source CI precedes root import. No actual sampling or global optimality asserted."
+  },
+  "root_checkpoint": {
+    "commit": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5",
+    "tree": "ef2e8d1e00f63e98b8a5e68c56ad597318d4c063",
+    "parent": "94a4de8b9dce276603714249d576c2cb7ec1a781",
+    "root_import_git_blob": "f3d3170d770a6515dd4d8e5afa40fc0d13d7ebe6",
+    "role": "Only root import after source success; also clean manifest checkpoint."
+  },
+  "metadata_checkpoint": {
+    "commit": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5",
+    "tree": "ef2e8d1e00f63e98b8a5e68c56ad597318d4c063",
+    "parent": "94a4de8b9dce276603714249d576c2cb7ec1a781",
+    "root_import_git_blob": "f3d3170d770a6515dd4d8e5afa40fc0d13d7ebe6",
+    "role": "Same clean root checkpoint; AA writer exit 0 with no Git delta.",
+    "source_git_blob": "fa19cfd35d2f71c2cbce91071ec91cfd88db2485",
+    "aa_git_blob": "8a2fd26f305836567732051fcf4528dd8654c96f",
+    "fullmath_all_git_blob": "3acbf32f253a281ffde9c76f477640783a090422",
+    "separate_aa_checkpoint": false
+  },
+  "manifest_binding": {
+    "checkpoint": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5",
+    "tree": "ef2e8d1e00f63e98b8a5e68c56ad597318d4c063",
+    "parent": "94a4de8b9dce276603714249d576c2cb7ec1a781",
+    "subject": {
+      "branch": "formal/close-original15-1-3-iteration-20261106",
+      "commit": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5",
+      "tree": "ef2e8d1e00f63e98b8a5e68c56ad597318d4c063"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 599,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Clean root identity distinct from independently compiled source CP."
+  },
+  "workflow": {
+    "run_id": 42114888158,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127551793229,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.U15_1IterationBoundaries20261106"
+  },
+  "artifact": {
+    "id": 13454354956,
+    "name": "changed-module-only-42114888158-1",
+    "zip_bytes": 3123,
+    "zip_sha256": "51e076095fd73e79ac7295b112c9e3b9bd085a60132ff0513dbaaedb568b79b3",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 271,
+        "sha256": "f59ff0a5b0ca6c5fa6cd0bfbc02822a243e7857cfbe8b5e918678d9e8a689ed9",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 15378,
+        "sha256": "e3aef73092f18ba07b4381c883e3a28fbe3c2c706397e04940ae745d448301a6",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.U15_1IterationBoundaries20261106.validation_score_rises_while_target_risk_increases",
+      "ownership": "module_owned",
+      "check_source_line": 68,
+      "axiom_source_line": 69,
+      "check_log_line": 220,
+      "axiom_log_line": 226,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.U15_1IterationBoundaries20261106.validation_score_rises_while_target_risk_increases' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.U15_1IterationBoundaries20261106.finite_class_excludes_infinite_strict_risk_decrease",
+      "ownership": "module_owned",
+      "check_source_line": 70,
+      "axiom_source_line": 71,
+      "check_log_line": 229,
+      "axiom_log_line": 231,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.U15_1IterationBoundaries20261106.finite_class_excludes_infinite_strict_risk_decrease' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 2,
+    "reused": 0,
+    "pairs": 2,
+    "message_count": 4,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "warnings": {
+    "authored": 0,
+    "dependencies": 29,
+    "by_dependency": {
+      "Learning": 3,
+      "LearningRisk": 6,
+      "LearningFiniteClass": 9,
+      "Calibration": 1,
+      "SelectiveCalibration": 2,
+      "ProtectedFeedback": 2,
+      "AdaptiveValidation": 5,
+      "ProcedureClosure": 1
+    },
+    "raw_preserved": true
+  },
+  "failed_history": [],
+  "records_history": [],
+  "reused_evidence": {
+    "accepted_pr": 131,
+    "workflow": "Authority",
+    "subject": "4c686359bcf9f3caefce33abe391b7cada467f37",
+    "tree": "7d8d6c043039779e8f6f4c4519073e60fcfb7304",
+    "run_id": 42093407875,
+    "attempt": 1,
+    "job_id": 127477076489,
+    "artifact_id": 13446968722,
+    "log": {
+      "path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+      "bytes": 5612507,
+      "sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c"
+    },
+    "sources": [
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveValidation20261027.lean",
+        "bytes": 13862,
+        "sha256": "3e80ddbfcd40858660bc36660e60664fccb6e817728a6e6cef613ab3570e2d45",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidation20261027.lean",
+        "git_blob": "d9a4211c36d139f6a2dd3765cc462120682b4915"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveValidationAudit20261027.lean",
+        "bytes": 3208,
+        "sha256": "9750d99d766ef40f207dbbad2abeef27aa89086ef96f98a191d4e3b67b29ebb7",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveValidationAudit20261027.lean",
+        "git_blob": "987d7ff96f229a2feef877bd34e6039095ccdfd2"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedger20261027.lean",
+        "bytes": 18250,
+        "sha256": "8137187be49e0589cffbadb8e5d0acb73bd017a1e06fbf1166a39b0ec7c8b84c",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+        "git_blob": "2c166e51169957e1ec65f16c39ca4bec7ed8ae30"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\AdaptiveRoundLedgerAudit20261027.lean",
+        "bytes": 13165,
+        "sha256": "149ee3caee93281b93b8851aebee6cbed4de1563af9c6e58d2375b4087e79301",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean",
+        "git_blob": "813bae8f408bfaba8ddaaac135deac128c531b03"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\U00ActualStatisticalJoin20261031.lean",
+        "bytes": 14795,
+        "sha256": "6d4f08998bb534b21c91b126cea6023ec5082147031d51c97700eb6108abca8d",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualStatisticalJoin20261031.lean",
+        "git_blob": "1f76509e04ba52c5d11e6d2de654b8a1313f13d8"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\U00ActualStatisticalJoinAudit20261031.lean",
+        "bytes": 899,
+        "sha256": "e4ca88151d5451907224ac6edb03cec0b7fcfcc89ed6a27591426044ff0f4742",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean",
+        "git_blob": "4322c2e4c6d95eeef501baa8f46eabfe2d9f562d"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\FeedbackLabelSemantics20261027.lean",
+        "bytes": 13081,
+        "sha256": "da14d595d4d98547f8f6b5b9e725d51f515ef01299c9643e98cb583795382609",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/FeedbackLabelSemantics20261027.lean",
+        "git_blob": "aeda89c70181043fbe3a90f4b567014917a39d5b"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProtectedFeedback20261027.lean",
+        "bytes": 23383,
+        "sha256": "1afa83764d1ec0231028c6c628b53347a3d6d6543d160d25c4eb40ef4e672851",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
+        "git_blob": "f1792782e9617947ab714eb9baf0b4a621d5b560"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ValidatedFeedbackLoad20261027.lean",
+        "bytes": 13591,
+        "sha256": "728eef1cb18bbe0073719fde7b0c5ebcf33fc4b340ef32c4fcba07ce03bc56f0",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
+        "git_blob": "748ceaebfb5b119bf8b9c70056df9cdad7dcbb5d"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\ProcedureClosure20261027.lean",
+        "bytes": 8470,
+        "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+        "git_blob": "df075e11163f7ae8b09fc09ea464832a2f14e078"
+      },
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\Iteration.lean",
+        "bytes": 2066,
+        "sha256": "48e5d7ecc1ef78752a67dff73e307f3ded58c1d8cab742e9ffbf7ddf2bfb11ea",
+        "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+        "git_blob": "7668283ed14b3f8db7929f300c2eb287f5b80ca1"
+      }
+    ],
+    "targets": [
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14016,
+        "line_end": 14021,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:4:0: 'JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:3:0: JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]\n  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsFiniteMeasure μ] (cell bad : Set Ω) (measurable : MeasurableSet cell) :\n  μ.real (cell ∩ bad) = μ.real cell * μ[|cell].real bad\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:4:0: 'JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14022,
+        "line_end": 14039,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:6:0: 'JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:5:0: JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget.{u_1, u_2, u_3} {Ω : Type u_1} {H : Type u_2}\n  {T : Type u_3} [MeasurableSpace Ω] [Fintype H] [Fintype T] (μ : MeasureTheory.Measure Ω)\n  [MeasureTheory.IsProbabilityMeasure μ] (history : T → Ω → H)\n  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))\n  (active : T → H → Bool) (bad : T → H → Set Ω) (delta : T → H → ℝ)\n  (conditional :\n    ∀ (t : T) (h : H),\n      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →\n        μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h].real (bad t h) ≤ delta t h) :\n  μ.real {w | ∃ t, active t (history t w) = true ∧ w ∈ bad t (history t w)} ≤\n    ∑ t,\n      ∑ h,\n        if active t h = true then\n          μ.real (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) * delta t h\n        else 0\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:6:0: 'JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14040,
+        "line_end": 14053,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:8:0: 'JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:7:0: JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend.{u_1, u_2, u_3} {Ω : Type u_1}\n  {H : Type u_2} {T : Type u_3} [MeasurableSpace Ω] [Fintype H] [Fintype T] (μ : MeasureTheory.Measure Ω)\n  [MeasureTheory.IsProbabilityMeasure μ] (history : T → Ω → H)\n  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))\n  (active : T → H → Bool) (delta : T → H → ℝ) :\n  ∫ (w : Ω), ∑ t, if active t (history t w) = true then delta t (history t w) else 0 ∂μ =\n    ∑ t,\n      ∑ h,\n        if active t h = true then\n          μ.real (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) * delta t h\n        else 0\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:8:0: 'JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14054,
+        "line_end": 14067,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:10:0: 'JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:9:0: JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget.{u_1, u_2, u_3} {Ω : Type u_1}\n  {H : Type u_2} {T : Type u_3} [MeasurableSpace Ω] [Fintype H] [Fintype T] (μ : MeasureTheory.Measure Ω)\n  [MeasureTheory.IsProbabilityMeasure μ] (history : T → Ω → H)\n  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))\n  (active : T → H → Bool) (bad : T → H → Set Ω) (delta : T → H → ℝ)\n  (conditional :\n    ∀ (t : T) (h : H),\n      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →\n        μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h].real (bad t h) ≤ delta t h) :\n  μ.real {w | ∃ t, active t (history t w) = true ∧ w ∈ bad t (history t w)} ≤\n    ∫ (w : Ω), ∑ t, if active t (history t w) = true then delta t (history t w) else 0 ∂μ\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:10:0: 'JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14068,
+        "line_end": 14103,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:12:0: 'JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:11:0: JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget.{u_1, u_2, u_3, u_4, u_5} {Ω : Type u_1}\n  {Z : Type u_2} {H : Type u_3} {K : Type u_4} {T : Type u_5} [MeasurableSpace Ω] [MeasurableSpace Z] [Fintype H]\n  [Fintype T] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)\n  [MeasureTheory.IsProbabilityMeasure P] (history : T → Ω → H)\n  (cells : ∀ (t : T) (h : H), MeasurableSet (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h))\n  (active : T → H → Bool) (n : T → H → ℕ) (positive : ∀ (t : T) (h : H), 0 < n t h) (models : T → H → Finset K)\n  (nonempty : ∀ (t : T) (h : H), (models t h).Nonempty) (sample : (t : T) → (h : H) → Fin (n t h) → Ω → Z)\n  (measurable : ∀ (t : T) (h : H) (i : Fin (n t h)), Measurable (sample t h i))\n  (independent :\n    ∀ (t : T) (h : H),\n      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →\n        ProbabilityTheory.iIndepFun (sample t h)\n          μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h])\n  (law :\n    ∀ (t : T) (h : H),\n      μ (JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h) ≠ 0 →\n        ∀ (i : Fin (n t h)),\n          ProbabilityTheory.IdentDistrib (sample t h i) id\n            μ[|JurisLean.Candidates.AdaptiveValidation20261027.historyCell (history t) h] P)\n  (loss : K → Z → ℚ) (lossMeasurable : ∀ (t : T) (h : H), ∀ k ∈ models t h, Measurable fun z => ↑(loss k z))\n  (bounded : ∀ (t : T) (h : H), ∀ k ∈ models t h, ∀ (z : Z), ↑(loss k z) ∈ Set.Icc 0 1) (delta : T → H → ℝ)\n  (deltaPositive : ∀ (t : T) (h : H), 0 < delta t h) (deltaBelowOne : ∀ (t : T) (h : H), delta t h < 1) :\n  μ.real\n      {w |\n        ∃ t,\n          active t (history t w) = true ∧\n            ¬∀ k ∈ models t (history t w),\n                |↑(JurisLean.Candidates.LearningERM20261027.empiricalScore loss (fun i => sample t (history t w) i w)\n                          k) -\n                      ∫ (z : Z), ↑(loss k z) ∂P| ≤\n                  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius (n t (history t w))\n                    (models t (history t w)).card (delta t (history t w))} ≤\n    ∫ (w : Ω), ∑ t, if active t (history t w) = true then delta t (history t w) else 0 ∂μ\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:12:0: 'JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14104,
+        "line_end": 14109,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:14:0: 'JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:13:0: JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius (n M : ℕ) (positive : 0 < n)\n  (delta epsilon : ℝ) (epsilonPositive : 0 < epsilon) (enough : Real.log (2 * ↑M / delta) / (2 * epsilon ^ 2) ≤ ↑n) :\n  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n M delta ≤ epsilon\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:14:0: 'JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14110,
+        "line_end": 14115,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:16:0: 'JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:15:0: JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership {N : ℕ} (points : Finset (Fin N))\n  (x : Fin N) :\n  JurisLean.Candidates.AdaptiveValidation20261027.probeScores points x = if x ∈ points then 1 / ↑points.card else 0\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:16:0: 'JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14116,
+        "line_end": 14123,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:18:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:17:0: JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen {N : ℕ} (points : Finset (Fin N))\n  (nonempty : points.Nonempty) (x : Fin N) :\n  JurisLean.Candidates.AdaptiveValidation20261027.fromProbeScores\n      (JurisLean.Candidates.AdaptiveValidation20261027.probeScores points) x =\n    decide (x ∉ points)\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:18:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14124,
+        "line_end": 14132,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:20:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:19:0: JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation {N : ℕ} (points : Finset (Fin N))\n  (nonempty : points.Nonempty) :\n  JurisLean.Candidates.AdaptiveValidation20261027.zeroLabelValidationScore points\n      (JurisLean.Candidates.AdaptiveValidation20261027.fromProbeScores\n        (JurisLean.Candidates.AdaptiveValidation20261027.probeScores points)) =\n    0\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:20:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14133,
+        "line_end": 14141,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:22:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:21:0: JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk {N : ℕ} (positive : 0 < N)\n  (points : Finset (Fin N)) (nonempty : points.Nonempty) :\n  JurisLean.Candidates.AdaptiveValidation20261027.uniformZeroRisk\n      (JurisLean.Candidates.AdaptiveValidation20261027.fromProbeScores\n        (JurisLean.Candidates.AdaptiveValidation20261027.probeScores points)) =\n    1 - ↑points.card / ↑N\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:22:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14142,
+        "line_end": 14150,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:24:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:23:0: JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk {N n : ℕ} (positive : 0 < N)\n  (points : Finset (Fin N)) (nonempty : points.Nonempty) (atMost : points.card ≤ n) :\n  1 - ↑n / ↑N ≤\n    JurisLean.Candidates.AdaptiveValidation20261027.uniformZeroRisk\n      (JurisLean.Candidates.AdaptiveValidation20261027.fromProbeScores\n        (JurisLean.Candidates.AdaptiveValidation20261027.probeScores points))\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:24:0: 'JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14151,
+        "line_end": 14158,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:26:0: 'JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:25:0: JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula :\n  (∀ (i : Fin 3),\n      (JurisLean.Candidates.AdaptiveValidation20261027.fourPointFailureMass fun w => decide (↑w = ↑i)) = 1 / 4) ∧\n    (JurisLean.Candidates.AdaptiveValidation20261027.fourPointFailureMass fun w => decide (↑w < 3)) = 3 / 4 ∧\n      1 - (1 - 1 / 4) ^ 3 = 37 / 64 ∧ 37 / 64 < 3 / 4\ninfo: JurisLean/Candidates/AdaptiveValidationAudit20261027.lean:26:0: 'JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 16929,
+        "line_end": 16955,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:5:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:4:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (now : JurisLean.Candidates.Final20261021.Instant)\n  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))\n  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)\n  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (free : s.pending = none)\n  (room : s.records.length < s.horizon) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).pending =\n      some\n        { learner := s.learner, generatedAt := now, visiblePrefix := s.records.length,\n          prepared :=\n            JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now permits change protocol\n              s.learner.proposals,\n          plan :=\n            { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,\n              models :=\n                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table ::\n                  s.learner.proposals,\n              failureBudget := plan.failureBudget } } ∧\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol\n              plan).service.journal =\n        (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s.service.journal change).post ∧\n      (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).records =\n        s.records\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:5:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 16956,
+        "line_end": 16969,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:7:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:6:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m) :\n  List.take s.records.length (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records =\n      s.records ∧\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records.length =\n        s.records.length + 1 ∧\n      (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).pending = none ∧\n        JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent\n            (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record) =\n          JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s + record.charge\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:7:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 16970,
+        "line_end": 16983,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:9:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:8:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (computed :\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =\n      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge =\n    (List.map JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock.delta r.blocks).sum\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:9:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 16984,
+        "line_end": 16997,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:11:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:10:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :\n  0 ≤ (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ∧\n    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s +\n        (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ≤\n      s.limit\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:11:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 16998,
+        "line_end": 17009,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:13:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:12:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :\n  JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent\n      (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits).post ≤\n    s.limit\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:13:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17010,
+        "line_end": 17021,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:15:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:14:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (same : old.request = r) :\n  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =\n    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.replayed, post := s, receipt := some old }\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:15:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17022,
+        "line_end": 17033,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:17:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:16:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (changed : old.request ≠ r) :\n  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =\n    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.keyConflict, post := s, receipt := none }\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:17:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17034,
+        "line_end": 17050,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:19:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:18:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (computed :\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =\n      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :\n  r.checker = s.checker ∧\n    r.claim = JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundClaim.currentFiniteRound ∧\n      d.plan.domains = s.protectedDomains ∧\n        ∀ event ∈ JurisLean.Candidates.AdaptiveRoundLedger20261027.requestedEvents r,\n          event ∉ JurisLean.Candidates.AdaptiveRoundLedger20261027.exposedRoundEvents s\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:19:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17051,
+        "line_end": 17066,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:21:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root' depends on axioms: [propext,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:20:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)\n  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)\n  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).service = s.service ∧\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).checker = s.checker ∧\n      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records = s.records ∧\n        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).limit = s.limit ∧\n          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon =\n              s.horizon ∧\n            (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog\n                  permit).protectedDomains =\n              s.protectedDomains\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:21:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root' depends on axioms: [propext,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17067,
+        "line_end": 17075,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:23:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner' depends on axioms: [propext,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:22:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)\n  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)\n  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)\n  (untrusted : permit ∉ catalog ∨ permit.checker ≠ s.checker) :\n  JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit = s\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:23:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner' depends on axioms: [propext,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17076,
+        "line_end": 17108,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:25:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:24:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)\n  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)\n  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)\n  (changed : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).learner = next)\n  (now : JurisLean.Candidates.Final20261021.Instant)\n  (corrections : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))\n  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)\n  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)\n  (free : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).pending = none)\n  (room :\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length <\n      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound\n        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit) now corrections\n        change protocol plan).pending =\n    some\n      { learner := next, generatedAt := now,\n        visiblePrefix :=\n          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length,\n        prepared :=\n          JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now corrections change protocol\n            next.proposals,\n        plan :=\n          { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,\n            models :=\n              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table :: next.proposals,\n            failureBudget := plan.failureBudget } }\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:25:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17109,
+        "line_end": 17126,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:27:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:26:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)\n  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)\n  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)\n  (actualEvaluation :\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =\n      some (JurisLean.Candidates.Final20261021.Result.known evaluation))\n  (actualLoad :\n    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded) :\n  loaded =\n    JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits r.permit\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:27:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service",
+        "axioms": [
+          "propext"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17127,
+        "line_end": 17132,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:29:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service' depends on axioms: [propext]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:28:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)\n  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m) (actual : record.load = some loaded) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).service = loaded.post\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:29:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service' depends on axioms: [propext]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17133,
+        "line_end": 17143,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:31:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:30:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound {m : ℕ}\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (action : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m)\n  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :\n  (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action).limit = s.limit ∧\n    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent\n        (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action) ≤\n      s.limit\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:31:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 17144,
+        "line_end": 17154,
+        "raw_axiom_output": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:33:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:32:0: JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget {m : ℕ}\n  (actions : List (JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m))\n  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :\n  (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions).limit = s.limit ∧\n    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent\n        (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions) ≤\n      s.limit\ninfo: JurisLean/Candidates/AdaptiveRoundLedgerAudit20261027.lean:33:0: 'JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column",
+        "axioms": [
+          "propext"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 20137,
+        "line_end": 20147,
+        "raw_axiom_output": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:4:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column' depends on axioms: [propext]",
+        "exact_excerpt": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:3:0: JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column {m n : ℕ}\n  (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m) (models : List (List ℚ))\n  (events : Fin n → JurisLean.Candidates.Final20261021.EventId) (data : Fin n → Fin m × Bool) :\n  ∃ (size :\n    (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template models events data).rows.length = n),\n    ∀ (i : Fin n),\n      JurisLean.Candidates.LoadedLegalConsumer20261027.calibrationData\n          (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template models events data)\n          (Fin.cast ⋯ i) =\n        data i\ninfo: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:4:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column' depends on axioms: [propext]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks",
+        "axioms": [],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 20148,
+        "line_end": 20165,
+        "raw_axiom_output": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:6:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks' does not depend on any axioms",
+        "exact_excerpt": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:5:0: JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks {m G : ℕ}\n  (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (n domain snapshot : Fin G → ℕ)\n  (delta radius : Fin G → ℚ) (exponent : Fin G → ℕ) (tolerance : Fin G → ℚ)\n  (events : (g : Fin G) → Fin (n g) → JurisLean.Candidates.Final20261021.EventId)\n  (data : (g : Fin G) → Fin (n g) → Fin m × Bool) :\n  ((JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius\n          exponent tolerance events data).blocks =\n      List.ofFn fun g =>\n        JurisLean.Candidates.ProtectedFeedback20261027.sampledBlock plan (domain g) (snapshot g) (delta g) (radius g)\n          (exponent g) (tolerance g) (events g) (data g)) ∧\n    (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius\n            exponent tolerance events data).sampling =\n        base.sampling ∧\n      (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan n domain snapshot delta radius\n            exponent tolerance events data).permit =\n        base.permit\ninfo: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:6:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks' does not depend on any axioms"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 20166,
+        "line_end": 20284,
+        "raw_axiom_output": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:8:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:7:0: JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence.{u_1} {Ω : Type u_1}\n  {m nc G : ℕ} [MeasurableSpace Ω] [MeasurableSpace (Fin m × Bool)] [MeasurableSingletonClass (Fin m × Bool)]\n  (QΓ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure QΓ] (Pc : MeasureTheory.Measure (Fin m × Bool))\n  [MeasureTheory.IsProbabilityMeasure Pc] (Pv : Fin G → MeasureTheory.Measure (Fin m × Bool))\n  [∀ (g : Fin G), MeasureTheory.IsProbabilityMeasure (Pv g)] (hm : 0 < m) (hnc : 0 < nc)\n  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (first : List ℚ) (rest : List (List ℚ))\n  (calSample : Fin nc → Ω → Fin m × Bool) (calMeasurable : ∀ (i : Fin nc), Measurable (calSample i))\n  (calIndependent : ProbabilityTheory.iIndepFun calSample QΓ)\n  (calLaw : ∀ (i : Fin nc), ProbabilityTheory.IdentDistrib (calSample i) id QΓ Pc)\n  (calDeltaPositive : 0 < protocol.failureBudget) (calDeltaBelowOne : protocol.failureBudget < 1)\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (planNonempty : plan.models.toFinset.Nonempty)\n  (nv : Fin G → ℕ) (nvPositive : ∀ (g : Fin G), 0 < nv g) (valSample : (g : Fin G) → Fin (nv g) → Ω → Fin m × Bool)\n  (valMeasurable : ∀ (g : Fin G) (i : Fin (nv g)), Measurable (valSample g i))\n  (valIndependent : ∀ (g : Fin G), ProbabilityTheory.iIndepFun (valSample g) QΓ)\n  (valLaw : ∀ (g : Fin G) (i : Fin (nv g)), ProbabilityTheory.IdentDistrib (valSample g i) id QΓ (Pv g))\n  (bounded :\n    ∀ table ∈ plan.models,\n      ∀ (z : Fin m × Bool),\n        ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss\n              JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss table z) ∈\n          Set.Icc 0 1)\n  (delta : Fin G → ℚ) (deltaPositive : ∀ (g : Fin G), 0 < delta g) (deltaBelowOne : ∀ (g : Fin G), delta g < 1)\n  (budget : ∑ g, delta g ≤ plan.failureBudget) :\n  ∃ good,\n    MeasurableSet good ∧\n      1 - (↑protocol.failureBudget + ↑plan.failureBudget) ≤ QΓ.real good ∧\n        ∀ w ∈ good,\n          ∀ (state : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)\n            (base : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)\n            (candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m)\n            (domain snapshot : Fin G → ℕ) (radius tolerance : Fin G → ℚ) (exponent : Fin G → ℕ)\n            (events : (g : Fin G) → Fin (nv g) → JurisLean.Candidates.Final20261021.EventId)\n            (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)\n            (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n            (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)),\n            JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan\n                  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded state.service) candidate\n                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss\n                  (JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampledRequest base plan nv domain snapshot\n                      delta radius exponent tolerance events fun g i => valSample g i w).blocks =\n                JurisLean.Candidates.Final20261021.Result.known evaluation →\n              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate state.service evaluation samples\n                      base.sampling permits base.permit).status =\n                  JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded →\n                ∀ (template : JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m)\n                  (calEvents : Fin nc → JurisLean.Candidates.Final20261021.EventId)\n                  (request : JurisLean.Candidates.IntervalDecisionConsumer20261027.DecisionRequest m),\n                  request.protocol = protocol →\n                    ∀ (W : Type) (legal : JurisLean.Candidates.LegalActionDomain20261027.LegalInput W)\n                      (model :\n                        JurisLean.Candidates.LegalActionDomain20261027.ActionModel W\n                          JurisLean.Candidates.Final20261021.Ledger.Handle)\n                      (proposals : List JurisLean.Candidates.LegalActionDomain20261027.Proposal)\n                      (catalog : List (JurisLean.Candidates.LoadedLegalConsumer20261027.CalibrationPacket m))\n                      (calRadius : ℚ) (calExponent : ℕ) (utility : ℚ → ℚ)\n                      (grants : List JurisLean.Candidates.Final20261021.Authorization.Grant)\n                      (initial : JurisLean.Candidates.Final20261021.Ledger.Handle)\n                      (selected : JurisLean.Candidates.IntervalDecisionConsumer20261027.IntervalDecision m),\n                      (JurisLean.Candidates.LoadedLegalConsumer20261027.runLoaded legal model proposals\n                              (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state evaluation\n                                samples base.sampling permits base.permit)\n                              request\n                              (JurisLean.Candidates.U00ActualStatisticalJoin20261031.samplePacket template\n                                (first :: rest) calEvents fun i => calSample i w)\n                              catalog calRadius calExponent utility grants initial).decision =\n                          JurisLean.Candidates.Final20261021.Result.known selected →\n                        selected.probability.fitted =\n                            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded\n                                (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state evaluation\n                                    samples base.sampling permits base.permit).service).fitted ∧\n                          (0 <\n                                Pc.real\n                                  {z |\n                                    JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin\n                                        (selected.probability.fitted.table, selected.probability.query) z =\n                                      true} ∧\n                              ↑selected.probability.lower ≤\n                                  Pc.real\n                                      {z |\n                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin\n                                              (selected.probability.fitted.table, selected.probability.query) z =\n                                            true ∧\n                                          z.2 = true} /\n                                    Pc.real\n                                      {z |\n                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin\n                                            (selected.probability.fitted.table, selected.probability.query) z =\n                                          true} ∧\n                                Pc.real\n                                      {z |\n                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin\n                                              (selected.probability.fitted.table, selected.probability.query) z =\n                                            true ∧\n                                          z.2 = true} /\n                                    Pc.real\n                                      {z |\n                                        JurisLean.Candidates.ProbabilityIntervalConsumer20261027.scoreBin\n                                            (selected.probability.fitted.table, selected.probability.query) z =\n                                          true} ≤\n                                  ↑selected.probability.upper) ∧\n                            ∀ (g : Fin G),\n                              ∫ (z : Fin m × Bool),\n                                  ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss\n                                      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss\n                                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded\n                                            (JurisLean.Candidates.U00ActualStatisticalJoin20261031.activatedRound state\n                                                evaluation samples base.sampling permits\n                                                base.permit).service).fitted.table\n                                      z) ∂Pv g ≤\n                                ∫ (z : Fin m × Bool),\n                                    ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss\n                                        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss\n                                        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded\n                                              state.service).fitted.table\n                                        z) ∂Pv g +\n                                  ↑(tolerance g)\ninfo: JurisLean/Candidates/U00ActualStatisticalJoinAudit20261031.lean:8:0: 'JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 11760,
+        "line_end": 11787,
+        "raw_axiom_output": "info: JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean:28:0: 'JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean:27:0: JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens :\n  JurisLean.Candidates.FeedbackLabelSemantics20261027.fittedOnSuggestions =\n      JurisLean.Candidates.Final20261021.Result.known\n        { protocol := JurisLean.Candidates.FeedbackLabelSemantics20261027.twoPointProtocol, table := [1, 0],\n          sampleSize := 2, empiricalRisk := 0 } ∧\n    JurisLean.Candidates.LearningERM20261027.empiricalScore\n          (JurisLean.Candidates.LearningConsumer20261027.tableLoss\n            JurisLean.Candidates.FeedbackLabelSemantics20261027.binaryLoss)\n          JurisLean.Candidates.FeedbackLabelSemantics20261027.pseudoData [0, 0] =\n        1 / 2 ∧\n      JurisLean.Candidates.LearningERM20261027.empiricalScore\n            (JurisLean.Candidates.LearningConsumer20261027.tableLoss\n              JurisLean.Candidates.FeedbackLabelSemantics20261027.binaryLoss)\n            JurisLean.Candidates.FeedbackLabelSemantics20261027.pseudoData [1, 0] =\n          0 ∧\n        JurisLean.Candidates.LearningERM20261027.empiricalScore\n              (JurisLean.Candidates.LearningConsumer20261027.tableLoss\n                JurisLean.Candidates.FeedbackLabelSemantics20261027.binaryLoss)\n              JurisLean.Candidates.FeedbackLabelSemantics20261027.trueData [0, 0] =\n            1 / 2 ∧\n          JurisLean.Candidates.LearningERM20261027.empiricalScore\n              (JurisLean.Candidates.LearningConsumer20261027.tableLoss\n                JurisLean.Candidates.FeedbackLabelSemantics20261027.binaryLoss)\n              JurisLean.Candidates.FeedbackLabelSemantics20261027.trueData [1, 0] =\n            1\ninfo: JurisLean/Candidates/FeedbackLabelSemanticsAudit20261027.lean:28:0: 'JurisLean.Candidates.FeedbackLabelSemantics20261027.suggestions_fit_better_but_true_risk_worsens' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 11983,
+        "line_end": 11994,
+        "raw_axiom_output": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:26:0: 'JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:25:0: JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point :\n  9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false +\n        1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false =\n      9 / 10 ∧\n    9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false +\n          1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false =\n        1 / 10 ∧\n      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false = 0 ∧\n        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false = 1 ∧ 1 / 10 < 9 / 10\ninfo: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:26:0: 'JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 11880,
+        "line_end": 11899,
+        "raw_axiom_output": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:16:0: 'JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:15:0: JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk {m : ℕ}\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)\n  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)\n  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))\n  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)\n  (produced :\n    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =\n      JurisLean.Candidates.Final20261021.Result.known out)\n  (accepted : out.passesBounds = true) (risk : ℕ → List ℚ → ℝ)\n  (confidence :\n    ∀ block ∈ blocks,\n      ∀ model ∈ plan.models,\n        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk block.domain model| ≤\n          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card\n            ↑block.delta)\n  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :\n  block ∈ blocks → risk block.domain candidate.fitted.table ≤ risk block.domain parent.fitted.table + ↑block.tolerance\ninfo: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:16:0: 'JurisLean.Candidates.ProtectedFeedback20261027.bounds_gate_on_joint_event_preserves_each_risk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 11900,
+        "line_end": 11921,
+        "raw_axiom_output": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:18:0: 'JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:17:0: JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement {m : ℕ}\n  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)\n  (parent candidate : JurisLean.Candidates.EventFeedbackConsumer20261027.TrainingCandidate m) (loss : ℚ → Bool → ℚ)\n  (blocks : List (JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m))\n  (out : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)\n  (produced :\n    JurisLean.Candidates.ProtectedFeedback20261027.evaluate plan parent candidate loss blocks =\n      JurisLean.Candidates.Final20261021.Result.known out)\n  (passed : out.passesBounds = true) (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m)\n  (member : block ∈ blocks) (risk : List ℚ → ℝ)\n  (confidence :\n    ∀ model ∈ plan.models,\n      |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block model) - risk model| ≤\n        JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length plan.models.toFinset.card\n          ↑block.delta)\n  (strict :\n    JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block candidate.fitted.table + block.radius <\n      JurisLean.Candidates.ProtectedFeedback20261027.blockRisk loss block parent.fitted.table - block.radius) :\n  risk candidate.fitted.table < risk parent.fitted.table\ninfo: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:18:0: 'JurisLean.Candidates.ProtectedFeedback20261027.strict_bounds_prove_strict_improvement' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 14390,
+        "line_end": 14420,
+        "raw_axiom_output": "info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:14:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:13:0: JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds {m : ℕ}\n  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)\n  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)\n  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))\n  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)\n  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))\n  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)\n  (loaded :\n    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog\n          permit).status =\n      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)\n  (risk : ℕ → List ℚ → ℝ)\n  (confidence :\n    ∀ block ∈ evaluation.blocks,\n      ∀ model ∈ evaluation.plan.models,\n        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk\n                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss block model) -\n              risk block.domain model| ≤\n          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length\n            evaluation.plan.models.toFinset.card ↑block.delta)\n  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :\n  block ∈ evaluation.blocks →\n    risk block.domain\n        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded\n              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt\n                  authorityCatalog permit).post).fitted.table ≤\n      risk block.domain (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table +\n        ↑block.tolerance\ninfo: JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean:14:0: 'JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 9382,
+        "line_end": 9386,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:344:0: 'JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:343:0: JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement {first last : ℝ} {budgets : List ℝ}\n  (h : JurisLean.Candidates.Final20261021.Iteration.RiskTrace first budgets last) : last ≤ first + budgets.sum\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:344:0: 'JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-4-5-pr131-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "060c462b5d579e904c1253da6d20ab5d6b858ebb48ba2313ac69032b0747150c",
+        "line_start": 1979,
+        "line_end": 1983,
+        "raw_axiom_output": "info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:28:0: 'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution' depends on axioms: [propext,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:27:0: JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution {S : Type} (rank : S → ℕ)\n  (step : S → S → Prop) (decreases : ∀ (s t : S), step s t → rank t < rank s) :\n  ¬∃ path, ∀ (k : ℕ), step (path k) (path (k + 1))\ninfo: JurisLean/Candidates/ProcedureClosureAudit20261027.lean:28:0: 'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution' depends on axioms: [propext,\n Quot.sound]"
+      }
+    ],
+    "not_current_source_target_roster": true
+  },
+  "related_record_only": {
+    "15.2": {
+      "record_only": true,
+      "new_source_or_module_ci": false,
+      "readme": "docs/formal-release/evidence/adaptive-validation-20261027/README.md",
+      "readme_prefix": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\README.md",
+        "bytes": 5139,
+        "sha256": "bf2a714070ca82517777bb56533336464b4c988871afe309f0df862960dfe82f"
+      },
+      "existing_metadata": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\verification.json",
+        "bytes": 2542,
+        "sha256": "1860af77054524e5b64b386ffd7258a856abc1d48f334b974f8a1165bf03a7fd"
+      },
+      "existing_raw": [
+        {
+          "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\axiom-audit.raw.txt",
+          "bytes": 11493,
+          "sha256": "f51fa9e8fe372a82155b593ab2f7a96ac4a4f18059b9cf3bc41846d91842ceb9"
+        }
+      ],
+      "source_checkpoint": "149dee0f69c9158f43af3c26e61a5bcfce1632be",
+      "run_id": 40439612934,
+      "job_id": 121976530560,
+      "named_targets": [
+        "JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass",
+        "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend",
+        "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+        "JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk",
+        "JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula"
+      ],
+      "frozen_paragraphs": [
+        {
+          "line": 95,
+          "text": "构造一个模型根据验证集反馈反复搜索、最终验证分数很高但目标风险很差的有限例子。即使训练样本从未直接包含验证标签，反馈足够多也可能泄漏选择信息。请指出候选独立于验证集、条件于历史的有效检验、独立新样本、可复用验证机制等不同办法各自需要什么假设。"
+        },
+        {
+          "line": 97,
+          "text": "选择一个可独立证明的有限方案：例如预先固定m个候选并联合控制，或每轮使用新验证块并分配δ_t。给出精确样本量／概率界、停止时刻限制与代价，不必同时解决所有自适应数据分析理论。"
+        }
+      ],
+      "append_provenance": {
+        "checked": {
+          "path": "D:\\tmp\\original15-2-3-prep-20261106\\README-append-checked.md",
+          "bytes": 12428,
+          "sha256": "48986c02faaa044241f83079404f16d4260e4ecc51ffad5fb2285c97a65bfaaa"
+        },
+        "ready": {
+          "path": "D:\\tmp\\original15-1-2-3-records-20261106\\README-append-ready.md",
+          "bytes": 12463,
+          "sha256": "b92422e670894be44af825e758150c78b44808c9a2d56015ef4d4f4f41116b10"
+        },
+        "diff": {
+          "path": "D:\\tmp\\original15-1-2-3-records-20261106\\README-append-ready.diff",
+          "bytes": 3929,
+          "sha256": "6e498ec4f81547a052a4031eb7b6c68e4a6b4c7a7ff49b20c47130dc1440e61e"
+        },
+        "allowed_delta": "Preparation header/status and PR131 numeric identity reference only; mathematics unchanged."
+      }
+    },
+    "15.3": {
+      "record_only": true,
+      "new_source_or_module_ci": false,
+      "readme": "docs/formal-release/evidence/adaptive-validation-20261027/README.md",
+      "readme_prefix": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\README.md",
+        "bytes": 5139,
+        "sha256": "bf2a714070ca82517777bb56533336464b4c988871afe309f0df862960dfe82f"
+      },
+      "existing_metadata": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\verification.json",
+        "bytes": 2542,
+        "sha256": "1860af77054524e5b64b386ffd7258a856abc1d48f334b974f8a1165bf03a7fd"
+      },
+      "existing_raw": [
+        {
+          "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-validation-20261027\\axiom-audit.raw.txt",
+          "bytes": 11493,
+          "sha256": "f51fa9e8fe372a82155b593ab2f7a96ac4a4f18059b9cf3bc41846d91842ceb9"
+        }
+      ],
+      "source_checkpoint": "149dee0f69c9158f43af3c26e61a5bcfce1632be",
+      "run_id": 40439612934,
+      "job_id": 121976530560,
+      "named_targets": [
+        "JurisLean.Candidates.AdaptiveValidation20261027.conditional_event_mass",
+        "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.history_budget_is_expected_spend",
+        "JurisLean.Candidates.AdaptiveValidation20261027.predictable_failure_expected_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.fresh_iid_history_budget",
+        "JurisLean.Candidates.AdaptiveValidation20261027.sample_count_covers_radius",
+        "JurisLean.Candidates.AdaptiveValidation20261027.probe_score_reveals_membership",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_eq_unseen",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_zero_validation",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_population_risk",
+        "JurisLean.Candidates.AdaptiveValidation20261027.feedback_model_large_population_risk",
+        "JurisLean.Candidates.AdaptiveValidation20261027.three_failure_events_not_independent_formula"
+      ],
+      "frozen_paragraphs": [
+        {
+          "line": 101,
+          "text": "在同一有限概率表上定义三个失败事件，手算各δ_i*与并集概率，展示并集界无需独立而乘法界需要额外条件。再说明把某一候选自己的置信输出当其失败率上界为什么不构成证明。"
+        },
+        {
+          "line": 103,
+          "text": "将“模型内部概率预算”“统计估计置信保证”“对所有允许轨迹的确定性不变量”分别给出类型和证明责任。若风险界因漂移、样本不独立或选择偏差失效，应返回何种状态？不得把UNKNOWN解释成零风险。"
+        }
+      ]
+    },
+    "round_ledger_reuse": {
+      "record_only": true,
+      "new_source_or_module_ci": false,
+      "readme": "docs/formal-release/evidence/adaptive-round-ledger-20261027/README.md",
+      "readme_prefix": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027\\README.md",
+        "bytes": 6425,
+        "sha256": "65a7782c258cae03ab4dcb19c57cbd1df02a7f757570fdfa419610d381a46dbc"
+      },
+      "existing_metadata": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027\\verification.json",
+        "bytes": 3203,
+        "sha256": "04b3462746d4fcaefa769e98d97fe959c46ae4a8e70833870ad886274936bce5"
+      },
+      "existing_raw": [
+        {
+          "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\adaptive-round-ledger-20261027\\axiom-audit.raw.txt",
+          "bytes": 16944,
+          "sha256": "49671ca3c1cc711c6edbedfb01983f8ac3272137c7162e42c8bc05e7ca7e05b5"
+        }
+      ],
+      "source_checkpoint": "5da99fc8cee319bdfb55d46cdcda2cd48df3a293",
+      "run_id": 40446553400,
+      "job_id": 121999119450,
+      "named_targets": [
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound",
+        "JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget"
+      ],
+      "frozen_paragraphs": []
+    },
+    "actual_join_reuse": {
+      "record_only": true,
+      "new_source_or_module_ci": false,
+      "readme": "docs/formal-release/evidence/u00-original-close-20261031/README.md",
+      "readme_prefix": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u00-original-close-20261031\\README.md",
+        "bytes": 5745,
+        "sha256": "648af3cfd7539ddc8bc2bb6170f3508a37e7e5dce515b20be2254220c979feaa"
+      },
+      "existing_metadata": {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u00-original-close-20261031\\verification.json",
+        "bytes": 10905,
+        "sha256": "7c1ec9228a9577bc1f8c2d4a2b57fe10e2624e38b4e73f5ed54cad92ff09c763"
+      },
+      "existing_raw": [
+        {
+          "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u00-original-close-20261031\\axiom-audit.raw.txt",
+          "bytes": 66111,
+          "sha256": "13af542de7118c831bfc1d94f921d30c7d40788d5afee969f5b5e1bdb33eb20b"
+        }
+      ],
+      "source_checkpoint": "eba3880d57f9da974508123e7cc6fc689db5ebe5",
+      "run_id": 41178784116,
+      "job_id": 124471736816,
+      "named_targets": [
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sample_packet_reads_actual_column",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.sampled_request_reads_actual_blocks",
+        "JurisLean.Candidates.U00ActualStatisticalJoin20261031.actual_chosen_and_loaded_joint_confidence"
+      ],
+      "frozen_paragraphs": []
+    }
+  },
+  "proof_boundary": {
+    "L89": "Three distinct finite non-implications: training proxy versus true target; average versus protected point; same validation sample accuracy rises while fixed uniform target risk worsens. Synthetic finite mathematics only.",
+    "L91": "Existing actual bounds gate and exact loading are conditional; actual per-step RiskTrace premise gives finite sum epsilon bound. New fixed finite class/fixed risk rank excludes infinite strict descent, not unconditional service termination or global optimum.",
+    "L95_L97": "Finite conditional-history sampling on one probability experiment; predictable class/n/delta/active, positive-cell conditional iid and fixed target, explicit sample/loss-call cost. No blanket guarantee for arbitrary reuse or actual trajectories.",
+    "L101_L103": "Same four-atom three-event counterexample; candidate confidence is not a probability proof. Configuration budget, statistical theorem and deterministic charge invariant have different types. UNKNOWN is not zero risk.",
+    "external": "No new consumers; complete U00/engineering, external legal authority, labels/source truth and actual sampling obligations remain separately scoped."
+  },
+  "consumer_wiring": {
+    "affected_edges": [],
+    "note": "No new actual caller; U00 entire file/callers/history/ratings unchanged."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 94,
+      "PARTIAL": 3,
+      "NOT_RECONCILED": 0
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original15-1-2-3-records-20261106\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original15-1-2-3-records-20261106\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "manifest_checkpoint": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original15-1-2-3-records-20261106\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 621,
+      "previous_quotes": 1507,
+      "new_runs": [
+        42114888158
+      ],
+      "status": "PASS",
+      "method": "Preserve old metadata; use only exact current source native snapshots and official quotes-only scanner/render.",
+      "current_runs": 622,
+      "current_quotes": 1511,
+      "old_metadata_rows_preserved": 621,
+      "receipt": "D:\\tmp\\original15-1-2-3-records-20261106\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 6.56s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 622 runs, 1511 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original15-1-2-3-records-20261106\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 0.95s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original15-1-source-r1\\changed-module-only-42114888158-1.zip",
+    "raw_directory": "D:\\tmp\\original15-1-source-r1\\raw",
+    "copied_byte_exact": true
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 16,
+    "pathspec_source": "D:\\tmp\\original15-1-2-3-records-20261106\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original15-1-2-3-records-20261106\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original15-1-2-3-records-20261106\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original15-1-iteration-boundaries-close-20261106/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

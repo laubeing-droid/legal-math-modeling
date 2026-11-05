@@ -1,0 +1,586 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "10.7",
+  "related_record_only_question": "08.8",
+  "clauses": [
+    "U10.3"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 149,
+      "text": "令 C 为实现状态，S 为抽象状态，Ref⊆C×S 为对应关系，Obs 为明确声明的观察族。给出前向模拟：Ref(c,s) 且实现合法一步 c→c′，则存在抽象允许的有限步 s→*s′，满足 Ref(c′,s′) 及相应观察一致。若允许零步停顿，只能用于不改变业务观察的内部动作；不能让成功付款被模拟成空动作而隐藏效果。"
+    },
+    {
+      "line": 151,
+      "text": "证明有限实现轨迹可提升为抽象轨迹，说明存在性前向模拟保证“不超出规格”，不自动保证覆盖全部抽象合法行为。对于规范更新前后的环境转换，写出表示映射与更新操作可交换的准确等式或关系包含，检验撤销及历史请求是否需要不同参数。"
+    },
+    {
+      "line": 153,
+      "text": "给两个反例：只观察总余额会遗漏付款归属；CaseRecord 编解码保持却不约束独立历史字段。再给一个只保持最终状态却破坏中间授权的轨迹反例。若要求更强的双模拟或完备性，必须说明本题哪项需求非它不可，否则保持最小前向模拟即可。观察等价不等于现实事实完全相同。"
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original10-7-representation-refinement-20261105",
+    "base_main": "b849cae8661745a22b0c0917d33f9feb1716c6fa",
+    "base_tree": "9c20436a16a6daf505a5f92bc78a949419d6b921",
+    "commit": "d9a06696449238581ddecaa5227256a4f6ebebd9",
+    "tree": "16cd55d4f41b038430eba21434fd5bc11aa92c71",
+    "parent": "3dfe8389c43ab5f342fa524fb9300b0df8747d71",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
+    "source_bytes": 18986,
+    "source_sha256": "ca411d6061ea5d95903c4cf3106b1597521f5a7c71702e3a94bc5292deb79c24",
+    "source_git_blob": "9f1a62e7db5a7cc6640bbc789fbe1cf0c69c1b5b",
+    "root_import_at_source_blob": "c435164c3cd99aab4e1b4aa4d58307f8263ba9c5",
+    "role": "Successful independent R2 source proof before root integration; R1 is failed history, root/records H/M are separate subjects."
+  },
+  "root_checkpoint": {
+    "commit": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4",
+    "tree": "554a2f3c21bb6cd3dac02658c86142cb8eed7b89",
+    "parent": "d9a06696449238581ddecaa5227256a4f6ebebd9",
+    "root_import_git_blob": "cc698728c47f6ba1ae707317cf8d51014894d98b",
+    "role": "Sole root import after R2 source CI; also clean manifest subject, not the source CI head."
+  },
+  "metadata_checkpoint": {
+    "commit": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4",
+    "tree": "554a2f3c21bb6cd3dac02658c86142cb8eed7b89",
+    "parent": "d9a06696449238581ddecaa5227256a4f6ebebd9",
+    "aa_git_blob": "30e0241db3ff84d5dabc8d49911676476a4ebcf1",
+    "root_import_git_blob": "cc698728c47f6ba1ae707317cf8d51014894d98b",
+    "source_git_blob": "9f1a62e7db5a7cc6640bbc789fbe1cf0c69c1b5b",
+    "separate_aa_checkpoint": false,
+    "role": "Same existing root checkpoint; single AA writer made no Git content change."
+  },
+  "manifest_binding": {
+    "checkpoint": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4",
+    "tree": "554a2f3c21bb6cd3dac02658c86142cb8eed7b89",
+    "parent": "d9a06696449238581ddecaa5227256a4f6ebebd9",
+    "subject": {
+      "branch": "formal/close-original10-7-representation-refinement-20261105",
+      "commit": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4",
+      "tree": "554a2f3c21bb6cd3dac02658c86142cb8eed7b89"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 593,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Generated require-bound from clean root checkpoint; successful source proof stays R2."
+  },
+  "workflow": {
+    "run_id": 42052361175,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127331532518,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.RepresentationRefinementAudit20261105"
+  },
+  "artifact": {
+    "id": 13426778384,
+    "name": "changed-module-only-42052361175-1",
+    "zip_bytes": 9049,
+    "zip_sha256": "8bd6b4f76c008112ec33048ec31ac03d42a575b7f2e9ac468fca859019ad25fc",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 281,
+        "sha256": "b66de2dee56a7057a8fe96137b49365a7c3e65098df7c0e224bcd5678ed480fd",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 73787,
+        "sha256": "ea56abc6ca8ba28d4cca80a4c67436d88fd20e166d4dc9033291ac8528d5f65e",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.project_commit",
+      "ownership": "module_owned",
+      "check_source_line": 313,
+      "axiom_source_line": 314,
+      "check_log_line": 772,
+      "axiom_log_line": 779,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.project_commit' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_projects",
+      "ownership": "module_owned",
+      "check_source_line": 315,
+      "axiom_source_line": 316,
+      "check_log_line": 782,
+      "axiom_log_line": 798,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_projects' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_receipt_length",
+      "ownership": "module_owned",
+      "check_source_line": 317,
+      "axiom_source_line": 318,
+      "check_log_line": 801,
+      "axiom_log_line": 805,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_receipt_length' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_not_stutter",
+      "ownership": "module_owned",
+      "check_source_line": 319,
+      "axiom_source_line": 320,
+      "check_log_line": 808,
+      "axiom_log_line": 812,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_not_stutter' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_projects",
+      "ownership": "module_owned",
+      "check_source_line": 321,
+      "axiom_source_line": 322,
+      "check_log_line": 815,
+      "axiom_log_line": 825,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_projects' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.historical_query_parameter",
+      "ownership": "module_owned",
+      "check_source_line": 323,
+      "axiom_source_line": 324,
+      "check_log_line": 827,
+      "axiom_log_line": 834,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.historical_query_parameter' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_observation_projection",
+      "ownership": "module_owned",
+      "check_source_line": 325,
+      "axiom_source_line": 326,
+      "check_log_line": 836,
+      "axiom_log_line": 844,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_observation_projection' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_legal",
+      "ownership": "module_owned",
+      "check_source_line": 327,
+      "axiom_source_line": 328,
+      "check_log_line": 846,
+      "axiom_log_line": 861,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_legal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_legal",
+      "ownership": "module_owned",
+      "check_source_line": 329,
+      "axiom_source_line": 330,
+      "check_log_line": 864,
+      "axiom_log_line": 874,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_legal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_finite_trace_projects",
+      "ownership": "module_owned",
+      "check_source_line": 331,
+      "axiom_source_line": 332,
+      "check_log_line": 877,
+      "axiom_log_line": 886,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_finite_trace_projects' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.unknown_commit_has_no_reported_post",
+      "ownership": "module_owned",
+      "check_source_line": 333,
+      "axiom_source_line": 334,
+      "check_log_line": 889,
+      "axiom_log_line": 904,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.unknown_commit_has_no_reported_post' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.same_terminal_misses_intermediate_authority",
+      "ownership": "module_owned",
+      "check_source_line": 335,
+      "axiom_source_line": 336,
+      "check_log_line": 907,
+      "axiom_log_line": 935,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.same_terminal_misses_intermediate_authority' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.RepresentationRefinementAudit20261105.codec_does_not_constrain_independent_history",
+      "ownership": "module_owned",
+      "check_source_line": 337,
+      "axiom_source_line": 338,
+      "check_log_line": 938,
+      "axiom_log_line": 943,
+      "axioms": [
+        "propext"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RepresentationRefinementAudit20261105.codec_does_not_constrain_independent_history' depends on axioms: [propext]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity",
+      "ownership": "reused",
+      "check_source_line": 339,
+      "axiom_source_line": 340,
+      "check_log_line": 944,
+      "axiom_log_line": 957,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip",
+      "ownership": "reused",
+      "check_source_line": 341,
+      "axiom_source_line": 342,
+      "check_log_line": 960,
+      "axiom_log_line": 962,
+      "axioms": [],
+      "raw_axiom_output": "'JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip' does not depend on any axioms"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+      "ownership": "reused",
+      "check_source_line": 343,
+      "axiom_source_line": 344,
+      "check_log_line": 963,
+      "axiom_log_line": 976,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 13,
+    "reused": 3,
+    "pairs": 16,
+    "message_count": 32,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "failed_history": [
+    {
+      "status": "FAILED",
+      "source_commit": "3dfe8389c43ab5f342fa524fb9300b0df8747d71",
+      "source_tree": "54478b6f187b926aee4b21f19f5c70f0e97f56a9",
+      "source_parent": "b849cae8661745a22b0c0917d33f9feb1716c6fa",
+      "source_sha256": "210127971e306ccc47ff24e0d36ba7e0cc6f279b5561f6273be337afdad07b0a",
+      "run_id": 42051222352,
+      "attempt": 1,
+      "job_id": 127327533778,
+      "artifact_id": 13426762120,
+      "artifact_name": "changed-module-only-42051222352-1",
+      "artifact_zip_bytes": 10435,
+      "artifact_zip_sha256": "3d2c04897979c1dbe784dcb5ae8152c6580dddd5d497df42b9c928dd85cb3179",
+      "raw_pins": [
+        {
+          "path": "D:\\tmp\\original10-7-source-r1\\raw\\module-plan.json",
+          "bytes": 281,
+          "sha256": "b66de2dee56a7057a8fe96137b49365a7c3e65098df7c0e224bcd5678ed480fd"
+        },
+        {
+          "path": "D:\\tmp\\original10-7-source-r1\\raw\\changed-module.log",
+          "bytes": 80314,
+          "sha256": "7b5bbfdfe008e981380cbb8119876a003aa86b43e0da581ec30cc86d4bcf1e30"
+        }
+      ],
+      "source_diagnostics": [
+        {
+          "raw_line": 773,
+          "message": "error: JurisLean/Candidates/RepresentationRefinementAudit20261105.lean:92:6: Tactic `rewrite` failed: Did not find an occurrence of the pattern"
+        },
+        {
+          "raw_line": 783,
+          "message": "error: JurisLean/Candidates/RepresentationRefinementAudit20261105.lean:97:50: unexpected identifier; expected '}'"
+        },
+        {
+          "raw_line": 784,
+          "message": "error: JurisLean/Candidates/RepresentationRefinementAudit20261105.lean:111:6: Tactic `rfl` failed: The left-hand side"
+        },
+        {
+          "raw_line": 820,
+          "message": "error: JurisLean/Candidates/RepresentationRefinementAudit20261105.lean:118:0: Not a definitional equality: the left-hand side"
+        },
+        {
+          "raw_line": 824,
+          "message": "error: JurisLean/Candidates/RepresentationRefinementAudit20261105.lean:121:62: Type mismatch"
+        }
+      ],
+      "source_diagnostic_count": 5,
+      "compiler_generated_sorryAx_in_failed_output": true,
+      "source_contains_sorry": false,
+      "interpretation": "Failed elaboration only. Lambda projection needed explicit change; refresh record-update layout caused downstream definition/equality errors. Failed compiler placeholders are not successful proof evidence.",
+      "r2_changes": [
+        "Explicit receipt-length equality before rewrite/omega",
+        "Aligned refreshEffect record-update fields"
+      ],
+      "theorem_statements_and_premises_unchanged": true
+    }
+  ],
+  "records_history": [],
+  "proof_boundary": {
+    "projection": "Actual Handle to finite BusinessView; complete cash/receipts attribution and declared coordinates only; omitted unused fields carry no claim outside the pay/refresh fragment.",
+    "finite_trace": "Actual runTrajectory branches construct LegalPath nodes from project of actual posts with unchanged supplied grants. Known unchanged stops/replay may stutter; unknownCommit has no reported post. Successful payments cannot stutter even at zero amount.",
+    "query_gamma": "queryAt q after refresh keeps independent query q; no universal revocation/query commutation.",
+    "counterexamples": "Equal total need not fix attribution; codec does not constrain independent history; same terminal state can hide an unauthorized intermediate candidate write, not a lawful rollback.",
+    "legal": "External law, source/identity, actual-world coverage and trust/authority roots remain explicit independent premises.",
+    "fixed_examples": "Existing Acceptance.u00_pipeline_success and a_u09_continuous_10_7_7 retain existing evidence scope; neither is in this run target roster and no new runTrajectory example execution is claimed."
+  },
+  "consumer_wiring": {
+    "affected_edges": [
+      8,
+      9
+    ],
+    "note": "Only current conditional-chain evidence tails; callers, parameters, ratings unchanged. 08.8 reuses prior sources/root/callers and adds no redundant U00 tail."
+  },
+  "related_08_8": {
+    "record_only": true,
+    "source_runs": [
+      40476074285,
+      40482741482
+    ],
+    "new_module_ci": false,
+    "source_pins": [
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidation20261027.lean",
+        "sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d",
+        "physical_bytes": 34408,
+        "physical_sha256": "a56f219820e2617306c68581155972bb23a920d95505e9b6b7e406df04d89f7d",
+        "committed_text_sha256_matches": true
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteLegalValidationAudit20261027.lean",
+        "sha256": "65476152aa24f8cdc9297d1473d596fd1078022d51fd04e43e0a8bd2c251309a",
+        "physical_bytes": 21206,
+        "physical_sha256": "65476152aa24f8cdc9297d1473d596fd1078022d51fd04e43e0a8bd2c251309a",
+        "committed_text_sha256_matches": true
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosure20261027.lean",
+        "sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+        "physical_bytes": 8470,
+        "physical_sha256": "853376edfc8f305d0a10c0658d61a0d2eabe6d20e7199dead4dd7f4f32779e16",
+        "committed_text_sha256_matches": true
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
+        "sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a",
+        "physical_bytes": 9970,
+        "physical_sha256": "833c8e746bcc114af9ffe608883e1c596663fe1d56cc335c406630818ed13c9a",
+        "committed_text_sha256_matches": true
+      }
+    ],
+    "existing_acceptance": {
+      "pr": 54,
+      "subject": "9c1366de0f1e34d8ebc1210944ac950d1005ed9c",
+      "tree": "943e3690c5aef2b953792d6cac0ef2fd90c9ff50",
+      "ulm_run": 40485466352,
+      "authority_run": 40485467117,
+      "final_job": 122132576496,
+      "main": "fbe24457e946d4af8edeed07c9359c3f25e470b0",
+      "main_run": 40488021816,
+      "main_final_job": 122141376859,
+      "scope": "有限联合验证器与独立程序政策闭包完整发布链；原题全段和U00范围继续核对"
+    },
+    "readme_append_only": true,
+    "independent_denominators": "Seven engineering wiring answers and U00 contracts remain obligations where they carry overall frozen theory execution semantics or acceptance; this math row does not discharge them."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 79,
+      "PARTIAL": 13,
+      "NOT_RECONCILED": 5
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original10-7-records-20261105\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original10-7-records-20261105\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 6,
+      "manifest_checkpoint": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original10-7-records-20261105\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 613,
+      "previous_quotes": 1488,
+      "new_runs": [
+        42051222352,
+        42052361175
+      ],
+      "status": "PASS",
+      "method": "Preserve all old metadata; describe only two new R1/R2 runs, then official quotes-only scanner/render.",
+      "current_runs": 615,
+      "current_quotes": 1495,
+      "old_metadata_rows_preserved": 613,
+      "receipt": "D:\\tmp\\original10-7-records-20261105\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 6.01s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 615 runs, 1495 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original10-7-records-20261105\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 1.10s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original10-7-source-r2\\changed-module-only-42052361175-1.zip",
+    "raw_directory": "D:\\tmp\\original10-7-source-r2\\raw",
+    "copied_byte_exact": true,
+    "failed_raw_separate": "D:\\tmp\\original10-7-source-r1\\raw"
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 17,
+    "pathspec_source": "D:\\tmp\\original10-7-records-20261105\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original10-7-records-20261105\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original10-7-records-20261105\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original10-7-representation-refinement-close-20261105/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

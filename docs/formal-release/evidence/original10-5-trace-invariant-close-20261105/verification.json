@@ -1,0 +1,511 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "10.5",
+  "clauses": [
+    "U10.2",
+    "U09.1"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 133,
+      "text": "提出本固定轨迹实际需要的最小 I，至少包含上下文一致、身份单次消费、数量步骤所需单位与对象一致、给定数量守恒、债项非金额字段保持、关系观察不被无依据创设、规范启用授权有效、评价环境与选择器一致。无需为未使用的概率或博弈功能新增公理。"
+    },
+    {
+      "line": 135,
+      "text": "证明初始化与一步保持，再用归纳推出有限轨迹每个实际中间状态满足 I。给出第二步错误读取初态的有限反例：两次独立扣 7 都算得 3，但真实连续轨迹应为 10→3→0。证明局部函数分别正确不足以保证连线正确。"
+    },
+    {
+      "line": 137,
+      "text": "以给定 performance 保持 forms 为局部事实，论证它不阻止数量余额改变，也不允许推出‘当前未清偿请求权没有变化’。形成观察、实体清偿、程序效果与现金转移只能按各自合同解释。若某种履行依法引发新的关系，须另有明确规范与事件规则；不能把本固定步骤的无创设结论推广成任何履行永远无其他效果。"
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original10-5-trace-invariant-20261105",
+    "base_main": "a89fa1a0cb780bacac53510b02dbd475e983972e",
+    "base_tree": "8fab94c3a8f1a5aa0b9a52741dd93ec7a03fb264",
+    "commit": "bc4ede432a53d9080ce95453ff691ceb5a1672f0",
+    "tree": "430fec9eb6f21817926baeb571bb1193f80b311c",
+    "parent": "4c6f5eaccff867be8ad2b39d87ee38263db65656",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/FiniteTraceInvariantAudit20261105.lean",
+    "source_bytes": 9777,
+    "source_sha256": "c99afa735a5cd5562e5c45a54639783b46f68629813b0f4c2a59180d1960e220",
+    "source_git_blob": "ef95e20f35bd46417678ae05dced5cfd48bba174",
+    "root_import_unchanged_blob": "d59b5e17d6a45b52b6619005dc3d75ba2c965b0f"
+  },
+  "workflow": {
+    "run_id": 41946267173,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 126979129788,
+    "job_name": "changed-modules",
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module workflow condition",
+    "module": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105"
+  },
+  "artifact": {
+    "id": 13377984024,
+    "name": "changed-module-only-41946267173-1",
+    "zip_bytes": 29019,
+    "zip_sha256": "80f254f9495e0c9b1c376cdee3d9930a24fae92e23e1a69696941b212e6d8346",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 273,
+        "sha256": "6272f3fb4991adcf715a7b88f25a8738c281073dcdf8d93aa8f8dbb8e4a8006a",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 251669,
+        "sha256": "15a43aa28122b3561c7e1e7e0692c82af725a83a7d0e13b7da806da54e0e2854",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "failed_history": [
+    {
+      "run_id": 41944602129,
+      "attempt": 1,
+      "job_id": 126973574988,
+      "summary": "R1 failed: ready_binds_current_fields split_ifs simplification timed out at 200000 heartbeats, followed by dependent unknown-constant errors. Retained as failed history; R2 changes only that proof body to reuse Ledger.guard_none_iff; no declaration, premise, heartbeat limit or root import changed.",
+      "head_sha": "4c6f5eaccff867be8ad2b39d87ee38263db65656",
+      "conclusion": "failure"
+    }
+  ],
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.ready_binds_current_fields",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.step_preserves_fixed_fields",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.path_preserves_fixed_fields",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.local_executor_contracts",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.initial_i",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.step_preserves_i",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.finite_prefix_i",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.actual_reported_protocol_post_i",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.forms_do_not_determine_quantity",
+      "ownership": "module_owned",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Acceptance.a_opening_invariant",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Trace.step_preserves",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Trace.u10_2_finite_trace_composition",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Trace.u09_1_actual_trace_at_most_once",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "AuthorizationClosureAudit20261104.actual_refresh_requires_old_authority",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Ledger.forms_preserved_by_performance",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Ledger.performance_metadata",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Acceptance.a_u09_continuous_10_7_7",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Acceptance.n_non_continuous_consume",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "Acceptance.n_poststate_name_not_binding",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    },
+    {
+      "fqn": "SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+      "ownership": "reused",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "axiom_output_source": "official changed-module.log; axiom set retained per declaration"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 9,
+    "reused": 12,
+    "total_pairs": 21,
+    "errors": 0,
+    "sorryAx": 0,
+    "axioms_observed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "proof_boundary": {
+    "invariant": "initial_i and finite_prefix_i establish the full invariant for the fixed Acceptance.opening instance. step_preserves_i and finite_prefix_i use the explicitly stated local executor contracts; these are proved by local_executor_contracts and are not added as assumptions.",
+    "generic_scope": "The generic step_preserves_fixed_fields/path_preserves_fixed_fields and local executor contracts are reported only for the actual source preconditions; they do not establish that every sourceThenProtocol start state satisfies I.",
+    "identity": "SourcePaymentIdentity samePaymentId remains an explicit input condition; no real-world identity inference is made.",
+    "authorization": "Initial Gamma issuance in the real world is not established by this finite proof.",
+    "forms_and_claims": "forms preservation does not imply quantity preservation or unchanged unsatisfied legal claims. State.claim records Applicable/unknown and is not a legal-right determination.",
+    "no_creation": "The fixed Trace frame is not generalized to every possible legal effect of every performance."
+  },
+  "consumer_wiring": {
+    "affected_edges": [
+      8,
+      9
+    ],
+    "note": "Evidence registration only on existing U00 edges 8 and 9. No caller, parameter flow, consumer, rating or global completion flag changes. Edge 8 registers actual finite-prefix/frame evidence; edge 9 registers bounded authorization/trajectory frame evidence."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 76,
+      "PARTIAL": 15,
+      "NOT_RECONCILED": 6
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipt": "D:/tmp/original10-5-records-20261105/derived-writers-r1-receipt.json",
+      "all_completed_exit_zero": true,
+      "note": "Seven existing writers receipts retained; no rerun."
+    },
+    "required_checks": {
+      "receipt": "D:/tmp/original10-5-records-20261105/record-checks-r1-receipt.json",
+      "count": 12,
+      "all_exit_zero": true,
+      "reused_without_rerun": true
+    },
+    "archive_gap": {
+      "receipt_stdout": "D:/tmp/original10-5-records-20261105/archive-gap.stdout.bin",
+      "exit": 0,
+      "result": "rows 50; narrow 0; wiring 50; open_formal_tail 0; discharges false; formal_tail_closed_this_round 1; step_2_closed false"
+    },
+    "gap_status": {
+      "receipt_stdout": "D:/tmp/original10-5-records-20261105/gap-status-check.stdout.bin",
+      "exit": 0,
+      "result": "gap_status.json is fresh"
+    },
+    "paper_regressions": {
+      "receipt_stdout": "D:/tmp/original10-5-records-20261105/paper-regressions.stdout.bin",
+      "exit": 0,
+      "result": "2 passed in 0.93s"
+    },
+    "ci_index_generation": {
+      "metadata_method": "Accepted PR124 helper contract: import scripts/ci/build_ci_run_index.py; preserve cached old run records; call ci.describe only for newly cited runs; refresh all quote locations and render with ci.run_ids_in_markdown/evidence_index/render_markdown.",
+      "metadata_add_stdout": "{\"run_count\":612,\"quote_count\":1481,\"added\":[41944602129,41946267173]}",
+      "quotes_only_stdout": "wrote docs\\formal-release\\ci_run_index.json and docs\\formal-release\\ci_run_index.md (612 runs, 1484 quotes)",
+      "full_builder_attempt": "PID 4964 / exact command python -X utf8 scripts/ci/build_ci_run_index.py was the single process started by this turn. Ctrl-C was sent to its exec session before write; afterward the index was still 610 rows. stdout/stderr were not captured separately (UNKNOWN), and no completion exit code was retained. Exact PID and start identity are recorded in D:/tmp/original10-5-records-20261105/full-index-builder-attempt-terminal-receipt.json.",
+      "index_test_result": "12 passed in 5.41s; exit 0",
+      "index_check_result": "ci run index ok: 612 runs, 1484 quotes; exit 0"
+    }
+  },
+  "ci_run_index": {
+    "previous_runs": 610,
+    "previous_quotes": 1478,
+    "new_runs": [
+      41944602129,
+      41946267173
+    ],
+    "expected_current_runs": 612,
+    "current_quotes": 1484,
+    "metadata_source": "scripts/ci/build_ci_run_index.py reads GitHub Actions API",
+    "current_runs": 612,
+    "status": "PASS",
+    "metadata": "Old 610 accepted metadata rows were preserved; only the two newly cited run rows were fetched with the repository collector describe() API; quote locations and Markdown were regenerated by scripts/ci/build_ci_run_index.py --quotes-only.",
+    "records": [
+      {
+        "run_id": 41944602129,
+        "attempt": 1,
+        "conclusion": "failure",
+        "head_sha": "4c6f5eaccff867be8ad2b39d87ee38263db65656"
+      },
+      {
+        "run_id": 41946267173,
+        "attempt": 1,
+        "conclusion": "success",
+        "head_sha": "bc4ede432a53d9080ce95453ff691ceb5a1672f0"
+      }
+    ],
+    "metadata_collection_note": "The full normal builder was interrupted before write after it was observed requesting metadata for an already indexed historical run; no old snapshot was re-fetched or rewritten. The existing PR124 add-two helper contract was used for only the two new runs; official quote scanner and markdown renderer then refreshed derived quote fields.",
+    "quote_count_basis": "Final quote scan after the evidence README became tracked: 1484; --quotes-only, index tests, and --check were rerun against this staged path set."
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:/tmp/original10-5-source-r2/changed-module-only-41946267173-1.zip",
+    "raw_directory": "D:/tmp/original10-5-source-r2/raw/",
+    "copied_byte_exact": true
+  },
+  "ci_run_index_tests": {
+    "status": "PASS",
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_ci_run_index.py"
+    ],
+    "exit_code": 0,
+    "result": "12 passed in 5.41s"
+  },
+  "ci_run_index_check": {
+    "status": "PASS",
+    "argv": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/ci/build_ci_run_index.py",
+      "--check"
+    ],
+    "exit_code": 0,
+    "stdout": "ci run index ok: 612 runs, 1484 quotes"
+  },
+  "staged_diff_check": {
+    "status": "PASS_AUTHORED_PATHS_RAW_LOG_PRESERVED",
+    "command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original10-5-trace-invariant-close-20261105/changed-module.log"
+    ],
+    "full_cached_check": {
+      "status": "EXIT_2_OFFICIAL_RAW_LOG_ONLY",
+      "exit_code": 2,
+      "diagnostics": [
+        "changed-module.log:1935 trailing whitespace (line contains spaces only)",
+        "changed-module.log:1937 trailing whitespace (line contains spaces only)",
+        "changed-module.log:1941 trailing whitespace (line contains spaces only)",
+        "changed-module.log:1943 trailing whitespace (line contains spaces only)"
+      ],
+      "command": [
+        "git",
+        "-c",
+        "core.whitespace=cr-at-eol",
+        "diff",
+        "--cached",
+        "--check"
+      ]
+    },
+    "authored_paths_excluding_exact_raw": {
+      "exit_code": 0,
+      "stdout": ""
+    },
+    "excluded_raw_artifact": {
+      "path": "docs/formal-release/evidence/original10-5-trace-invariant-close-20261105/changed-module.log",
+      "bytes": 251669,
+      "sha256": "15a43aa28122b3561c7e1e7e0692c82af725a83a7d0e13b7da806da54e0e2854",
+      "official_zip_member_bytes": 251669,
+      "official_zip_member_sha256": "15a43aa28122b3561c7e1e7e0692c82af725a83a7d0e13b7da806da54e0e2854",
+      "byte_identical": true,
+      "only_diagnostic_source": true
+    },
+    "plain_full_cached_check_forward": {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 2,
+      "diagnostic_counts": {
+        "official_raw_log_space_only_lines": 4,
+        "declaration_shape_report_json_CRLF_lines": 4,
+        "theorem_inventory_v3_json_CRLF_lines": 118
+      },
+      "note": "Plain Git also diagnoses 122 existing CRLF line endings. The historical four-raw-lines result uses the per-command core.whitespace=cr-at-eol option; no global Git setting or original file bytes were changed.",
+      "receipt": "D:/tmp/original10-5-records-20261105/records-correction-r1-receipt.json"
+    }
+  },
+  "staging": {
+    "status": "STAGED_REVIEWABLE_CHECKPOINT",
+    "expected_path_count": 16,
+    "source_file_staged": false,
+    "root_import_changed": false,
+    "source_git_blob": "ef95e20f35bd46417678ae05dced5cfd48bba174",
+    "root_import_git_blob": "d59b5e17d6a45b52b6619005dc3d75ba2c965b0f",
+    "pathspec_source": "NUL-delimited exact path list at D:/tmp/original10-5-records-20261105/stage-paths.nul",
+    "tracked_status_wrapper": "D:/tmp/legal-math-tracked-status.ps1 returned 16 staged paths and exit 0 after staging. The empty stdout belonged to git diff --name-only (no unstaged changes).",
+    "historical_terminal_evidence": "The final index generation/check, 12 index tests, staging, full cached diffcheck and authored-only diffcheck using per-command core.whitespace=cr-at-eol (exit 2: four official raw-log whitespace diagnostics; exit 0: authored paths), and tracked/unstaged status were observed in terminal output. Complete PID, UTC and separately captured stdout/stderr receipts were not retained; process provenance is UNKNOWN.",
+    "correction_forward_receipt": "D:/tmp/original10-5-records-20261105/records-correction-r1-receipt.json; D:/tmp/original10-5-records-20261105/records-correction-r2-receipt.json (continuation; completed index check and tests are not rerun)"
+  }
+}

@@ -38837,6 +38837,136 @@
       "status": "completed",
       "updated_at": "2026-11-04T20:13:43Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-11-04T22:38:57Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original10-4-partial-step-20261105",
+      "head_sha": "5cb9564f9d825dd814cf20fdbd890050e7fc8bf9",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41927109528",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:23",
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:3"
+      ],
+      "run_id": 41927109528,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-04T22:41:43Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-04T22:48:28Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original10-4-partial-step-20261105",
+      "head_sha": "3aab453192b76b0aa66a3448b571ffe97e4fb8ac",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41928458830",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:13",
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:19",
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:21",
+        "docs/formal-release/evidence/original10-4-partial-step-close-20261105/README.md:3",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:256",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:257"
+      ],
+      "run_id": 41928458830,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-04T22:51:07Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

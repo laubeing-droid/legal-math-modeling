@@ -1,0 +1,15 @@
+⚠ [8478/8478] Built JurisLean.Candidates.RSIAdmittedStatistics20261106 (3.6s)
+warning: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:52:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+info: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:54:0: JurisLean.Candidates.RSIAdmittedStatistics20261106.admitted_statistics_change_case_value_under_fixed_rules :
+  updated.mechanism = initial.mechanism ∧
+    updated.rules = initial.rules ∧
+      proposed_rule_service caseValue initial (statisticalInput initial (some (2 / 5))) = some false ∧
+        proposed_rule_service caseValue updated (statisticalInput updated (some (3 / 5))) = some true ∧
+          proposed_rule_service caseValue initial (statisticalInput initial none) = none ∧
+            proposed_rule_service caseValue updated (statisticalInput updated none) = none
+info: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:55:0: 'JurisLean.Candidates.RSIAdmittedStatistics20261106.admitted_statistics_change_case_value_under_fixed_rules' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8478 jobs).

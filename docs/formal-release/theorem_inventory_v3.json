@@ -23538,6 +23538,32 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "validation_score_rises_while_target_risk_increases"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_class_excludes_infinite_strict_risk_decrease"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.AdaptiveValidation20261027",
+    "JurisLean.Candidates.ProcedureClosure20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/U15_1IterationBoundaries20261106.lean",
+   "print_axioms_targets": [
+    "finite_class_excludes_infinite_strict_risk_decrease",
+    "validation_score_rises_while_target_risk_increases"
+   ],
+   "sha256": "f765c792aad0bc7d9fc19a5e3d035d9fe1c50ffcb87e5711aaeb0f4c1da6d19c",
+   "size_bytes": 3463,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "SamplingReceipt"
     },
@@ -64507,6 +64533,7 @@
     "JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030",
     "JurisLean.Candidates.U14_1DebtClosureAudit20261028",
     "JurisLean.Candidates.U14_4LearnerProxyWitness20261106",
+    "JurisLean.Candidates.U15_1IterationBoundaries20261106",
     "JurisLean.Candidates.W6JudgmentCashAudit20261104",
     "JurisLean.Candidates.WitnessedCashAllocationAudit20261104",
     "JurisLean.CanonicalSerialization",
@@ -64688,8 +64715,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "19272da79932134d6b7d8d1c83183d5f72b65d991f17f4e1e9581fac8a50d6ad",
-   "size_bytes": 17246,
+   "sha256": "9e28ca563ead6134efb36c5e5364f1eddd3ac8edf0937b3f44917a5f33616b10",
+   "size_bytes": 17307,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -64861,22 +64888,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6574,
-   "file_count": 598,
+   "counted_declaration_count": 6576,
+   "file_count": 599,
    "lemma_count": 146,
-   "print_axioms_command_count": 6054,
-   "print_axioms_distinct_targets": 5426,
-   "theorem_count": 6428,
-   "theorem_count_bol_convention": 6328
+   "print_axioms_command_count": 6056,
+   "print_axioms_distinct_targets": 5428,
+   "theorem_count": 6430,
+   "theorem_count_bol_convention": 6330
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6555,
-   "file_count": 583,
+   "counted_declaration_count": 6557,
+   "file_count": 584,
    "lemma_count": 139,
-   "print_axioms_command_count": 6054,
-   "print_axioms_distinct_targets": 5426,
-   "theorem_count": 6416,
-   "theorem_count_bol_convention": 6316
+   "print_axioms_command_count": 6056,
+   "print_axioms_distinct_targets": 5428,
+   "theorem_count": 6418,
+   "theorem_count_bol_convention": 6318
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -65158,6 +65185,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_4LearnerProxyWitness20261106.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U15_1IterationBoundaries20261106.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/W6JudgmentCashAudit20261104.lean",
@@ -65754,6 +65782,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_1DebtClosureAudit20261028.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/U14_4LearnerProxyWitness20261106.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/U15_1IterationBoundaries20261106.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoad20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ValidatedFeedbackLoadAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/W6JudgmentCashAudit20261104.lean",
@@ -66114,17 +66143,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b97d1e2085c6382008550295627be2619479e788673b709118633d83f3e0e404",
+ "source_inventory_digest": "06127453016b60ed28e75e300df1b0e24cc9e7bed1deee62ed1f1ecf8e151ff8",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original14-3-5-feedback-20261106",
-  "commit": "e77e316de68e9a1655e8d1bfbeb28253cd436880",
-  "tree": "38a0801dec147e37bb2dcb935c979a64284831e7"
+  "branch": "formal/close-original15-1-3-iteration-20261106",
+  "commit": "e362e3138d650269dc73cd6ab4b7caa8a53da0b5",
+  "tree": "ef2e8d1e00f63e98b8a5e68c56ad597318d4c063"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 598,
+  "files_total": 599,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -33,9 +33,10 @@ theorem ready_binds_current_fields (before reference : Ledger.Handle)
     (ready : Ledger.validationError before reference req permission = none) :
     BoundRequest before reference req := by
   unfold Ledger.validationError at ready
-  split_ifs at ready with hprev hid hunknown hno hscope htag hversion henv
-    hformation hpermission hnegative hused hcash <;> try cases ready
-  simp only [not_or, not_not] at hprev hscope htag hversion henv
+  simp only [Ledger.guard_none_iff] at ready
+  rcases ready with ⟨hprev, hid, hunknown, hno, hscope, htag, hversion, henv,
+    hformation, hpermission, hnegative, hused, hcash, hdone⟩
+  simp only [not_or, not_ne_iff] at hprev hscope htag hversion henv
   exact ⟨hprev, hscope, htag, hversion, henv⟩
 
 theorem step_preserves_fixed_fields {before after : Ledger.Handle}

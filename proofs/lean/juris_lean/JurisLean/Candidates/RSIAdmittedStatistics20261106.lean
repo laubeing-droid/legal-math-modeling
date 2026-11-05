@@ -48,7 +48,8 @@ theorem admitted_statistics_change_case_value_under_fixed_rules :
     proposed_rule_service caseValue updated (statisticalInput updated none) = none := by
   have frame := u13_2_personal_frame initial owner (checkpoint 2 (3 / 5))
   refine ⟨frame.2.1, frame.1, ?_⟩
-  decide
+  simp [proposed_rule_service, caseValue, statisticalInput, initial, updated,
+    prepareUpdate, updatePersonal, checkpoint] <;> decide +kernel
 
 #check admitted_statistics_change_case_value_under_fixed_rules
 #print axioms admitted_statistics_change_case_value_under_fixed_rules

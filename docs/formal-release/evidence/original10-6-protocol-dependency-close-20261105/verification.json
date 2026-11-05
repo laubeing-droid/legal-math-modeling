@@ -1,0 +1,645 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "10.6",
+  "clauses": [
+    "U00",
+    "U10.3"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 141,
+      "text": "为实际使用的局部步骤画有限依赖图，并写出逐边义务：前一步后置条件、frame 条件及持续 Γ 必须推出后一步实际前提；不能推出的部分必须作为明确检查或证据输入。至少检验三种错配：结构绑定被当法律适用、余额归零被当程序终局、记录 round-trip 被当来源真实。每种给一个反例及最小阻断条件。"
+    },
+    {
+      "line": 143,
+      "text": "授权与环境刷新、环境与法律步骤、失败诊断与后续重试之间也应有逐边合同。若出现循环依赖，选择独立外部证据、分层或有根据的同时不动点解释，不得互相假设对方已正确。"
+    },
+    {
+      "line": 145,
+      "text": "沿用原有限 DAG/rank 定理，不重复证明其已封闭部分；精确写出它只覆盖哪些状态与事件。增加撤销、重试或规范更新后，给出保持原下降度量所需条件或一个形成新环的最小扩展反例。程序验证器终止、每条业务执行终止、现实证据搜集结束是不同命题，不得由四核心事件上的终止推出全部法律过程终止。"
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original10-6-protocol-dependency-20261105",
+    "base_main": "7b8e6fe25c5c04c34e2a9aed578fc1ddbc990d86",
+    "base_tree": "4c893ea592c5d2b337442e7b0688a5c4d1bd3532",
+    "commit": "ee3b319d188fe1444a1cadc267105abf3b68730e",
+    "tree": "479520e6051137a3dd06d5f5203dd200ee14115b",
+    "parent": "7b8e6fe25c5c04c34e2a9aed578fc1ddbc990d86",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+    "source_bytes": 6565,
+    "source_sha256": "2fb8f0d5ad2bff8073b1b00a1e7034b33bec729a0316cc03c11ca9fd0244d581",
+    "source_git_blob": "68d124df431e5391f3f601a97e345e703e3e1849",
+    "root_import_at_source_blob": "d59b5e17d6a45b52b6619005dc3d75ba2c965b0f",
+    "role": "C1: independent changed-module proof subject before root integration; not C2/C3 or final records H/M."
+  },
+  "root_checkpoint": {
+    "commit": "e0641770b4181f92e78df41e2403f42c891ed6b7",
+    "tree": "4b5a5ea5a3db9bad16a055f55bb69fd20a64349c",
+    "parent": "ee3b319d188fe1444a1cadc267105abf3b68730e",
+    "root_import_git_blob": "c435164c3cd99aab4e1b4aa4d58307f8263ba9c5",
+    "role": "C2: sole root import after source CI acceptance; not the source CI head or final manifest checkpoint."
+  },
+  "metadata_checkpoint": {
+    "commit": "b9a4e2711a43136b0cd3de7ad156636fc016c77f",
+    "tree": "58bff5ac4a0b41827e49e2ad17d52d925b111779",
+    "parent": "e0641770b4181f92e78df41e2403f42c891ed6b7",
+    "aa_git_blob": "30e0241db3ff84d5dabc8d49911676476a4ebcf1",
+    "root_import_git_blob": "c435164c3cd99aab4e1b4aa4d58307f8263ba9c5",
+    "source_git_blob": "68d124df431e5391f3f601a97e345e703e3e1849",
+    "role": "C3: one duplicate AA print removed by existing generator; clean manifest subject. No theorem/assumption change; no separate source CI claimed."
+  },
+  "manifest_binding": {
+    "checkpoint": "b9a4e2711a43136b0cd3de7ad156636fc016c77f",
+    "tree": "58bff5ac4a0b41827e49e2ad17d52d925b111779",
+    "parent": "e0641770b4181f92e78df41e2403f42c891ed6b7",
+    "subject": {
+      "branch": "formal/close-original10-6-protocol-dependency-20261105",
+      "commit": "b9a4e2711a43136b0cd3de7ad156636fc016c77f",
+      "tree": "58bff5ac4a0b41827e49e2ad17d52d925b111779"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 592,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Generated with --require-bound from clean C3; source proof remains C1."
+  },
+  "workflow": {
+    "run_id": 42037192897,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127278298284,
+    "job_name": "changed-modules",
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module workflow condition",
+    "module": "JurisLean.Candidates.ProtocolDependencyAudit20261105"
+  },
+  "artifact": {
+    "id": 13419985074,
+    "name": "changed-module-only-42037192897-1",
+    "zip_bytes": 40761,
+    "zip_sha256": "52491361026e68774e122a5f114a16f81b1883a61abc027a155c526ae187ef4d",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 269,
+        "sha256": "9c5b839db56cc672dd75991a0ed198a9313f6738db470a618dbcbbfb6ac1bbd0",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 353338,
+        "sha256": "76fba19d580243dee56589dc7e0a441ac724a11096f8888509fe8fe7de2a2f21",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.ProtocolDependencyAudit20261105.actual_record_roundtrip_does_not_supply_external_reference",
+      "ownership": "module_owned",
+      "check_source_line": 47,
+      "axiom_source_line": 48,
+      "check_log_line": 4018,
+      "axiom_log_line": 4027,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProtocolDependencyAudit20261105.actual_record_roundtrip_does_not_supply_external_reference' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProtocolDependencyAudit20261105.actual_rejection_blocks_unconditional_strict_rank",
+      "ownership": "module_owned",
+      "check_source_line": 49,
+      "axiom_source_line": 50,
+      "check_log_line": 4030,
+      "axiom_log_line": 4032,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProtocolDependencyAudit20261105.actual_rejection_blocks_unconditional_strict_rank' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip",
+      "ownership": "reused",
+      "check_source_line": 52,
+      "axiom_source_line": 53,
+      "check_log_line": 4035,
+      "axiom_log_line": 4037,
+      "axioms": [],
+      "raw_axiom_output": "'JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip' does not depend on any axioms"
+    },
+    {
+      "fqn": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity",
+      "ownership": "reused",
+      "check_source_line": 54,
+      "axiom_source_line": 55,
+      "check_log_line": 4038,
+      "axiom_log_line": 4060,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_semantic_quantity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+      "ownership": "reused",
+      "check_source_line": 56,
+      "axiom_source_line": 57,
+      "check_log_line": 4063,
+      "axiom_log_line": 4078,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation",
+      "ownership": "reused",
+      "check_source_line": 58,
+      "axiom_source_line": 59,
+      "check_log_line": 4081,
+      "axiom_log_line": 4109,
+      "axioms": [
+        "propext"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation' depends on axioms: [propext]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.forms_do_not_determine_quantity",
+      "ownership": "reused",
+      "check_source_line": 60,
+      "axiom_source_line": 61,
+      "check_log_line": 4110,
+      "axiom_log_line": 4121,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.FiniteTraceInvariantAudit20261105.forms_do_not_determine_quantity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.PartialStepGateAudit20261105.actual_committed_step_satisfies_local_contract",
+      "ownership": "reused",
+      "check_source_line": 62,
+      "axiom_source_line": 63,
+      "check_log_line": 4124,
+      "axiom_log_line": 4134,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.PartialStepGateAudit20261105.actual_committed_step_satisfies_local_contract' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.PartialStepGateAudit20261105.noncommit_returned_state_has_full_frame",
+      "ownership": "reused",
+      "check_source_line": 64,
+      "axiom_source_line": 65,
+      "check_log_line": 4137,
+      "axiom_log_line": 4141,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.PartialStepGateAudit20261105.noncommit_returned_state_has_full_frame' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.PartialStepGateAudit20261105.actual_pipeline_retry_rechecks_witness_and_prevents_double_effect",
+      "ownership": "reused",
+      "check_source_line": 66,
+      "axiom_source_line": 67,
+      "check_log_line": 4143,
+      "axiom_log_line": 4174,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.PartialStepGateAudit20261105.actual_pipeline_retry_rechecks_witness_and_prevents_double_effect' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.AuthorizationClosureAudit20261104.actual_refresh_requires_old_authority",
+      "ownership": "reused",
+      "check_source_line": 68,
+      "axiom_source_line": 69,
+      "check_log_line": 4177,
+      "axiom_log_line": 4184,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.AuthorizationClosureAudit20261104.actual_refresh_requires_old_authority' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+      "ownership": "reused",
+      "check_source_line": 70,
+      "axiom_source_line": 71,
+      "check_log_line": 4186,
+      "axiom_log_line": 4212,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+      "ownership": "reused",
+      "check_source_line": 72,
+      "axiom_source_line": 73,
+      "check_log_line": 4215,
+      "axiom_log_line": 4253,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+      "ownership": "reused",
+      "check_source_line": 74,
+      "axiom_source_line": 75,
+      "check_log_line": 4256,
+      "axiom_log_line": 4265,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.FiniteTraceInvariantAudit20261105.actual_reported_protocol_post_i",
+      "ownership": "reused",
+      "check_source_line": 76,
+      "axiom_source_line": 77,
+      "check_log_line": 4268,
+      "axiom_log_line": 4277,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.FiniteTraceInvariantAudit20261105.actual_reported_protocol_post_i' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+      "ownership": "reused",
+      "check_source_line": 78,
+      "axiom_source_line": 79,
+      "check_log_line": 4280,
+      "axiom_log_line": 4282,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count",
+      "ownership": "reused",
+      "check_source_line": 80,
+      "axiom_source_line": 81,
+      "check_log_line": 4285,
+      "axiom_log_line": 4288,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_bounds_finite_transition_count' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution",
+      "ownership": "reused",
+      "check_source_line": 82,
+      "axiom_source_line": 83,
+      "check_log_line": 4290,
+      "axiom_log_line": 4293,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.strict_rank_excludes_infinite_execution' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank",
+      "ownership": "reused",
+      "check_source_line": 84,
+      "axiom_source_line": 85,
+      "check_log_line": 4295,
+      "axiom_log_line": 4297,
+      "axioms": [],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.self_loop_has_no_strict_natural_rank' does not depend on any axioms"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution",
+      "ownership": "reused",
+      "check_source_line": 86,
+      "axiom_source_line": 87,
+      "check_log_line": 4298,
+      "axiom_log_line": 4303,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution' depends on axioms: [propext,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+      "ownership": "reused",
+      "check_source_line": 88,
+      "axiom_source_line": 89,
+      "check_log_line": 4305,
+      "axiom_log_line": 4318,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability",
+      "ownership": "reused",
+      "check_source_line": 90,
+      "axiom_source_line": 91,
+      "check_log_line": 4321,
+      "axiom_log_line": 4325,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps",
+      "ownership": "reused",
+      "check_source_line": 93,
+      "axiom_source_line": 94,
+      "check_log_line": 4328,
+      "axiom_log_line": 4330,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps' depends on axioms: [propext, Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length",
+      "ownership": "reused",
+      "check_source_line": 95,
+      "axiom_source_line": 96,
+      "check_log_line": 4331,
+      "axiom_log_line": 4333,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step",
+      "ownership": "reused",
+      "check_source_line": 97,
+      "axiom_source_line": 98,
+      "check_log_line": 4336,
+      "axiom_log_line": 4337,
+      "axioms": [
+        "propext"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step' depends on axioms: [propext]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank",
+      "ownership": "reused",
+      "check_source_line": 99,
+      "axiom_source_line": 100,
+      "check_log_line": 4338,
+      "axiom_log_line": 4340,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank' depends on axioms: [propext, Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks",
+      "ownership": "reused",
+      "check_source_line": 101,
+      "axiom_source_line": 102,
+      "check_log_line": 4341,
+      "axiom_log_line": 4347,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.lawful_closed_iff_local_checks' depends on axioms: [propext, Quot.sound]"
+    },
+    {
+      "fqn": "JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted",
+      "ownership": "reused",
+      "check_source_line": 103,
+      "axiom_source_line": 104,
+      "check_log_line": 4348,
+      "axiom_log_line": 4352,
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted' depends on axioms: [propext,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 2,
+    "reused": 26,
+    "pairs": 28,
+    "message_count": 56,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "proof_boundary": {
+    "edge_contracts": "Actual post/frame/Gamma dependencies are reused with explicit next-step checks and independent external inputs; no unconditional success of the next step is asserted.",
+    "source_reference": "Actual CaseRecord codec round-trip does not supply independent external mu or resolveFaithful and does not construct an arbitrary valid h0.",
+    "invariant": "The full invariant initialization and final protocol invariant are restricted to Acceptance.opening; generic frames and paths retain their actual premises.",
+    "termination": "Existing Progress rank bounds are conditional on every counted edge decreasing. Actual Trace.Step.reject opening is a self-loop and blocks unconditional strict natural rank for all Trace.Step. No general business/retry/evidence-collection termination is established.",
+    "unknown_commit": "No determined post is returned; external reconciliation is still required and is not implemented or proved terminating here.",
+    "legal": "Initial Gamma, external interpretation, actual authority and identity remain independent evidence; mathematical counters/models do not certify real legal validity."
+  },
+  "consumer_wiring": {
+    "affected_edges": [
+      8,
+      9
+    ],
+    "note": "Evidence registration only on existing conditional-chain rows. Caller, parameter flow, ratings and global flags unchanged; the codec counterexample does not upgrade all source edges."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 77,
+      "PARTIAL": 14,
+      "NOT_RECONCILED": 6
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records_history": [
+    {
+      "receipt": "D:\\tmp\\original10-6-records-20261105\\derived-writers-r1-receipt.json",
+      "status": "FAILED",
+      "command": "aa-writer",
+      "actual_command_exit": 0,
+      "cause": "Existing audited_elsewhere deduplication removed the one caseFragment_roundTrip print from AxiomAudit because the same complete FQN is printed at source line 53. No definition or assumption changed. Stopped before manifest, accepted the deletion as C3; no AA rerun.",
+      "interpretation": "Scope guard stopped after a successful AA writer; accepted one-line deduplication became C3."
+    },
+    {
+      "receipt": "D:\\tmp\\original10-6-records-20261105\\index-stage-r1-receipt.json",
+      "status": "FAILED",
+      "command": "add-one-source-metadata",
+      "actual_command_exit": 1,
+      "cause": "README artifact ID lacked the existing scanner Artifact/name/ID format and was misread as a run ID; helper stopped at KeyError before writing the index. Corrected only that README label, then retried only the incomplete index work. Old 612 metadata rows were not re-fetched."
+    }
+  ],
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original10-6-records-20261105\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original10-6-records-20261105\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 6,
+      "manifest_checkpoint": "b9a4e2711a43136b0cd3de7ad156636fc016c77f"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original10-6-records-20261105\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 612,
+      "previous_quotes": 1484,
+      "new_runs": [
+        42037192897
+      ],
+      "status": "PASS",
+      "method": "Preserve old metadata rows; repository collector describe only for the newly cited source run, then official --quotes-only scanner/render.",
+      "current_runs": 613,
+      "current_quotes": 1488,
+      "old_metadata_rows_preserved": 612,
+      "receipt": "D:\\tmp\\original10-6-records-20261105\\index-stage-r2-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 5.54s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 613 runs, 1488 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original10-6-records-20261105\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 1.14s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original10-6-source-r1\\changed-module-only-42037192897-1.zip",
+    "raw_directory": "D:\\tmp\\original10-6-source-r1\\raw",
+    "copied_byte_exact": true
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 16,
+    "pathspec_source": "D:\\tmp\\original10-6-records-20261105\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original10-6-records-20261105\\index-stage-r2-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original10-6-records-20261105\\index-stage-r2-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original10-6-protocol-dependency-close-20261105/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

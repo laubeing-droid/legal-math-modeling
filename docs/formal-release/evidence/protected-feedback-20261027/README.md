@@ -56,3 +56,29 @@ UNLOCATED at this module boundary: the whole U00 business-to-learning caller and
 | 局部改进损害其他能力 | `ProtectedFeedback20261027.average_improvement_can_harm_protected_point` 给出总体风险 9/10→1/10 且受保护点风险 0→1。现有审计的实际 evaluate 返回 `passesBounds=false`。 | 指定保护域需各自检查。概率保证依赖实际样本律、固定模型类及联合事件。 |
 
 本归引复用 event-feedback-consumer、learning-provenance、learning-boundary、learning-event-split 和 protected-feedback 的已验收源包及 PR39 的完整接受。上述有限证据保持其输入条件。现有 U00/business-to-feedback 消费链沿独立调用合同验收。
+
+## 原题 14.3 有限候选验证与接纳 · 2026-11-06
+
+冻结题单 L101、L103 与补正 S14 L230 分开规定同时风险界、接纳条件和保护域。以下 P 指 `JurisLean.Candidates.ProtectedFeedback20261027`。
+
+### L101 预固定候选与同时风险界
+
+先于查看验证数据确定有限模型类，且将实际父模型列入其中。令 M 为该类去重后的大小。对每个声明域 g，给定目标分布、域内独立同分布的正样本量 n_g、可测损失及 [0,1] 有界条件。各域失败预算须满足 0<δ_g<1。 `P.protected_iid_joint_event` 在联合事件上同时控制每个声明域、每个固定类模型的真实风险与经验风险之差，半径为 sqrt(log(2M/δ_g)/(2n_g))，联合事件概率至少 1−Σ_g δ_g。域间相关由联合并界处理。样本和预算的条件按实际声明的有限域给定。
+
+`P.evaluated_models_are_in_predeclared_class` 将实际参与比较的父表与候选表绑定到 `plan.models`。预固定发生在验证数据进入之前，属于外部统计前提。在同一固定类内按验证结果选择候选，由同时事件覆盖。加入事先未列的候选须对扩大的类重新控制预算。 `P.verified_radius_covers_fixed_class` 把实际通过的保守有理半径检查接到数学半径。
+
+`P.evaluation_is_actual_input_and_computation`、`P.bounds_gate_checks_every_actual_domain`、`P.sampled_block_uses_exact_losses` 证明实际评价读取同一计划、父表、候选表与逐域样本，并检查全部声明域。 `P.actual_protected_evaluation_confidence` 消费这些实际输入上的已知评价结果及 `passesBounds=true`。声明的域、各域 n_g 与失败预算都随合同固定，要求 0<plan.failureBudget<1，且 Σ_g δ_g≤plan.failureBudget。 `known out` 表示评价对象成功返回，界是否通过由 `passesBounds` 字段判定。
+
+### L101 三种比较
+
+| 判定 | 条件 | 所得结论 |
+|---|---|---|
+| 容忍 ε_g 的非劣 | 在相应联合置信事件上，实际 U_new,g ≤ L_old,g + ε_g。 | 由 `P.bounds_gate_on_joint_event_preserves_each_risk` 得 R_new,g ≤ R_old,g + ε_g。容忍范围内的退化仍在该结论内。 |
+| 观察改善 | 样本上的经验风险降低。 | `P.observed_improvement_is_not_certified_improvement` 给出经验风险 .50→.49 而界未通过的实例，也给出经验相等而 ε 门通过的实例。经验比较与真实风险证书分别登记。 |
+| 严格改善 | 在相应联合置信事件上，实际 U_new,g < L_old,g。 | 由 `P.strict_bounds_prove_strict_improvement` 得该检查域的真实风险严格下降。严格界直接比较 U_new,g 和 L_old,g。 |
+
+### L103 联合预算与平均掩盖退化
+
+所声称的全部保护域均需进入有限比较和总预算。 `P.average_improvement_can_harm_protected_point` 的两个点权重为 9/10、1/10，加权平均风险 .9→.1，而保护点的风险 0→1。既有 `ProtectedFeedbackAudit20261027.lean` L85–93 还给出实际拟合父表和候选表进入评价并返回 `passesBounds=false` 的例子。
+
+验收范围限于声明的有限模型类和有限保护域。真实采样、标签可靠性、候选预固定及外部授权分别由其输入承担。旧 U00 消费与 Loaded 接纳按各自合同验收。本段复用 protected-feedback 的已验收独立模块、PR39 和后续同源 Authority 的实际输出。

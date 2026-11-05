@@ -3459,7 +3459,6 @@
     "JurisLean.Seams.UnifiedNeedlesS0S1.applicability_matches_source_semantics",
     "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_coverage",
     "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_faithful",
-    "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip",
     "JurisLean.Seams.UnifiedNeedlesS0S1.encode_decode",
     "JurisLean.Seams.UnifiedNeedlesS0S1.familyNet_roundTrip",
     "JurisLean.Seams.UnifiedNeedlesS0S1.finite_priority_maximal_elements_exist",
@@ -4661,8 +4660,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "7d90e978a85e2225003d8b3a4337279cc33725e6049041366ad11de74ab2c1e9",
-   "size_bytes": 312626,
+   "sha256": "ea24042f51f4442d5bedc563657b9210f6dad660604d85649612e6f9675821cf",
+   "size_bytes": 312554,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16846,6 +16845,61 @@
    "size_bytes": 9913,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "actual_record_roundtrip_does_not_supply_external_reference"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_rejection_blocks_unconditional_strict_rank"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.FiniteTraceInvariantAudit20261105",
+    "JurisLean.Candidates.ProcedureClosureAudit20261027",
+    "JurisLean.Candidates.SemanticIndependenceAudit20261104",
+    "JurisLean.Candidates.SourceFinalBridgeAudit20261102"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+   "print_axioms_targets": [
+    "AuthorizationClosureAudit20261104.actual_refresh_requires_old_authority",
+    "FiniteTraceInvariantAudit20261105.actual_reported_protocol_post_i",
+    "FiniteTraceInvariantAudit20261105.forms_do_not_determine_quantity",
+    "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip",
+    "Ledger.ready_requires_identity_and_applicability",
+    "PartialStepGateAudit20261105.actual_committed_step_satisfies_local_contract",
+    "PartialStepGateAudit20261105.actual_pipeline_retry_rechecks_witness_and_prevents_double_effect",
+    "PartialStepGateAudit20261105.noncommit_returned_state_has_full_frame",
+    "ProcedureClosure20261027.Audit.finite_inspection_does_not_end_retry_execution",
+    "ProcedureClosure20261027.checked_closed_iff_valid_and_exhausted",
+    "ProcedureClosure20261027.lawful_closed_iff_local_checks",
+    "ProcedureClosure20261027.self_loop_has_no_strict_natural_rank",
+    "ProcedureClosure20261027.strict_rank_bounds_finite_transition_count",
+    "ProcedureClosure20261027.strict_rank_excludes_infinite_execution",
+    "Progress.multistep_simulation_not_one_step",
+    "Progress.two_cycle_has_no_strict_rank",
+    "Progress.u10_3_rank_bounds_steps",
+    "Progress.u10_3_simulation_length",
+    "SemanticIndependenceAudit20261104.same_received_pay6_document_different_obligation",
+    "SourceFinalBridge20261102.source_model_joint_bridge_nonempty_and_faithfulness_needed",
+    "SourceFinalBridge20261102.source_model_joint_semantic_quantity",
+    "SourcePaymentIdentity20261103.sourced_calls_with_same_payment_id_are_at_most_once",
+    "Trace.u10_2_finite_trace_composition",
+    "U10_1RefreshRuleProtocol20261030.continued_protocol_refines_actual_calls",
+    "U10_1RefreshRuleProtocol20261030.internal_refresh_rechecks_before_continuation",
+    "U10_1RefreshRuleProtocol20261030.reported_protocol_post_has_actual_path",
+    "actual_record_roundtrip_does_not_supply_external_reference",
+    "actual_rejection_blocks_unconditional_strict_rank"
+   ],
+   "sha256": "2fb8f0d5ad2bff8073b1b00a1e7034b33bec729a0316cc03c11ca9fd0244d581",
+   "size_bytes": 6565,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
   },
   {
    "declarations": [
@@ -64098,6 +64152,7 @@
     "JurisLean.Candidates.ParametricAllocationAudit20261104",
     "JurisLean.Candidates.PartialStepGateAudit20261105",
     "JurisLean.Candidates.PendingCommit20261027",
+    "JurisLean.Candidates.ProtocolDependencyAudit20261105",
     "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104",
     "JurisLean.Candidates.SemanticIndependenceAudit20261104",
     "JurisLean.Candidates.SingleDebtStreamAudit20261103",
@@ -64371,8 +64426,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "7b9e06b8bd3520e0c2e5f1be689eef389ed44cf680cba71f7b68f264b174b8e3",
-   "size_bytes": 16822,
+   "sha256": "07b72bfb46fdb031ab0697a6ff040bbc567c59e6113ce1d089df357e81218465",
+   "size_bytes": 16882,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -64544,22 +64599,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6553,
-   "file_count": 591,
+   "counted_declaration_count": 6555,
+   "file_count": 592,
    "lemma_count": 146,
-   "print_axioms_command_count": 6003,
-   "print_axioms_distinct_targets": 5381,
-   "theorem_count": 6407,
-   "theorem_count_bol_convention": 6307
+   "print_axioms_command_count": 6030,
+   "print_axioms_distinct_targets": 5407,
+   "theorem_count": 6409,
+   "theorem_count_bol_convention": 6309
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6534,
-   "file_count": 576,
+   "counted_declaration_count": 6536,
+   "file_count": 577,
    "lemma_count": 139,
-   "print_axioms_command_count": 6003,
-   "print_axioms_distinct_targets": 5381,
-   "theorem_count": 6395,
-   "theorem_count_bol_convention": 6295
+   "print_axioms_command_count": 6030,
+   "print_axioms_distinct_targets": 5407,
+   "theorem_count": 6397,
+   "theorem_count_bol_convention": 6297
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -64730,6 +64785,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
@@ -65319,6 +65375,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProcedureClosureAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
@@ -65783,17 +65840,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ce0c2e2a0e8db12079484d89239e95d368a07f1bb46a9481ddc8243a798928ca",
+ "source_inventory_digest": "defaed7c4b81c5d8456eecad4dcc8cfe70310590a6d289273723c3d2d21cae03",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original10-5-trace-invariant-20261105",
-  "commit": "bc4ede432a53d9080ce95453ff691ceb5a1672f0",
-  "tree": "430fec9eb6f21817926baeb571bb1193f80b311c"
+  "branch": "formal/close-original10-6-protocol-dependency-20261105",
+  "commit": "b9a4e2711a43136b0cd3de7ad156636fc016c77f",
+  "tree": "58bff5ac4a0b41827e49e2ad17d52d925b111779"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 591,
+  "files_total": 592,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

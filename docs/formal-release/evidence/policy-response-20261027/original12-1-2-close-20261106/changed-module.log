@@ -1,0 +1,24 @@
+⚠ [8476/8478] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ℹ [8478/8478] Built JurisLean.Candidates.PolicyPredictionBoundary20261106 (3.7s)
+info: JurisLean/Candidates/PolicyPredictionBoundary20261106.lean:34:0: JurisLean.Candidates.PolicyPredictionBoundary20261106.accurate_stable_policy_can_be_outside_legal_constraint :
+  have update := fun θ => (θ + ((1 - θ) * (1 / 2) + θ * (1 / 2))) / 2;
+  have loss := fun θ => (1 - θ) * (θ - 1 / 2) ^ 2 + θ * (θ - 1 / 2) ^ 2;
+  loss (1 / 2) = 0 ∧
+    update (1 / 2) = 1 / 2 ∧
+      (∀ x ∈ Set.Icc 0 1, Tendsto (fun n => update^[n] x) atTop (𝓝 (1 / 2))) ∧ 1 / 2 ∉ Set.Icc 0 (1 / 4)
+info: JurisLean/Candidates/PolicyPredictionBoundary20261106.lean:35:0: 'JurisLean.Candidates.PolicyPredictionBoundary20261106.accurate_stable_policy_can_be_outside_legal_constraint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8478 jobs).

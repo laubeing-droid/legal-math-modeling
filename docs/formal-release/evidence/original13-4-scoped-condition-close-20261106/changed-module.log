@@ -1,0 +1,13 @@
+ℹ [8478/8478] Built JurisLean.Candidates.RSIScopedCondition20261106 (4.6s)
+info: JurisLean/Candidates/RSIScopedCondition20261106.lean:60:0: JurisLean.Candidates.RSIScopedCondition20261106.scoped_estimates_differ_without_changing_persistent_state (s : State) :
+  (runCondition s false sample).1 =
+      { scope := false, selected := [{ scope := false, weight := 2, outcome := 1 }], estimate := Result.known 1,
+        weightEss := some 1, uncertainty := Result.unknown Error.missingEvidence } ∧
+    (runCondition s true sample).1 =
+        { scope := true, selected := [{ scope := true, weight := 3, outcome := 0 }], estimate := Result.known 0,
+          weightEss := some 1, uncertainty := Result.unknown Error.missingEvidence } ∧
+      (runCondition s false sample).2 = s ∧ (runCondition s true sample).2 = s
+info: JurisLean/Candidates/RSIScopedCondition20261106.lean:61:0: 'JurisLean.Candidates.RSIScopedCondition20261106.scoped_estimates_differ_without_changing_persistent_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8478 jobs).

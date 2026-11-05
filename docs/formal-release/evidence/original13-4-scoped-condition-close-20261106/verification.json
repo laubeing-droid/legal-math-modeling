@@ -1,0 +1,650 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "13.4",
+  "related_record_only_question": "13.5",
+  "clauses": [
+    "U13.2"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 113,
+      "text": "在有限样本 D 上定义按作用域 s 取样、加权的 Cond。展示同一 θ在两个作用域的条件预测不同，并不意味 θ已更新。再给只用作用域标签命名文件却仍共享同一可变张量的反例，说明文字标签不保证隔离。"
+    },
+    {
+      "line": 115,
+      "text": "证明个人更新对其他律师 θj 的状态非干扰，及它不保证对其他作用域预测能力不退化。将这两种非干扰区分：存储隔离与统计性能保持。有效样本量、范围和不确定性要进入返回合同，不能把本地局部改进直接推广成全域提升。"
+    }
+  ],
+  "frozen_paper_references": [
+    {
+      "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\01_统一法律数学模型总稿.md",
+      "bytes": 125771,
+      "sha256": "eee9afb07d164c2b26bf9270a34c5866b14de4533d9e7f80c5b1a05e148935b5",
+      "lines": [
+        {
+          "line": 643,
+          "text": "反例：实现让两律师条目引用同一可变张量，原地修改ℓ同时改变j；此实现不精化上述函数更新。目录名、文件标签或scope字符串不能证明独立存储。另令规范优先级直接读θ>1/2，则θ从.4变.6会改变规范结果，这违反规范函数读集前提，而不是非干扰定理失败。"
+        },
+        {
+          "line": 645,
+          "text": "固定θ时，Cond可对满足查询s的记录取非负权w_i，返回Σw_i y_i/Σw_i及数据/域/权重说明；Σw_i=0返回UNKNOWN。地区A只有y=1、地区B只有y=0，则相同θ下两次条件结果1和0，持久Θ仍相同。这是有限检索统计，不自动是校准个体预测。Kish量(Σw)²/Σw²仅是权重摘要，不能脱离依赖结构冒充独立样本数。"
+        }
+      ]
+    },
+    {
+      "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\13_原题逐问补正正文.md",
+      "bytes": 52398,
+      "sha256": "a6d03840173f58f4ad1822e100267472d1e78c7514b6c7d845da8a9e6a2cde71",
+      "lines": [
+        {
+          "line": 222,
+          "text": "无θ时规范金额查询若已给N:金额=2×3同单位，仍返回6；个体行为Bernoulli参数未知时存在θ=0和1两模型，不能返回无条件可信.5。若使用显式先验或人口模型，返回来源、范围和条件，不冒充个人已学模型。Cond在作用域s过滤D并加权，只读θ；如两个组全Y=0/全Y=1可得不同条件读数但θ未变。更新θℓ不改θj是存储frame；同一底层可变张量被两个标签别名共享时该frame失败。存储隔离不保证旧域统计风险，需U14多域验证。无域外支持时沿用两世界反例，规则查询可继续，经验预测返回具名缺支持；两类未知不合并。[原题](题单/13_RSI机制规则与个性权重.md)。"
+        }
+      ]
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original13-4-scoped-condition-20261106",
+    "base_main": "2227a1bc7aa4e39d9126b71977e2539d1def201d",
+    "base_tree": "8a3572c10f469ba1735edc45c3e1b91be2405eca",
+    "commit": "3c63d57b1cd3f418b42afdd511ac5c713823d7e8",
+    "tree": "cd5b06644018f112d1e36fc5d2f71254ee104447",
+    "parent": "2227a1bc7aa4e39d9126b71977e2539d1def201d",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/RSIScopedCondition20261106.lean",
+    "source_bytes": 2314,
+    "source_sha256": "afe08b1495985ea0da56d68b389659ed823c68799246d9d8396915de165b4586",
+    "source_git_blob": "59762d5a5e2110a02a7ec8dcf660457c49090547",
+    "root_import_at_source_blob": "1a8bf44c8a3aba8f1e4524ebe19a37113fa540cd",
+    "role": "One L113 scoped-estimator/full-return/persistent-state connection; source CI precedes root import."
+  },
+  "root_checkpoint": {
+    "commit": "7235e6aae33b3a91e95f677589c5d0b7033605db",
+    "tree": "c427628698e0c99f284744305f07345ddd061fe9",
+    "parent": "3c63d57b1cd3f418b42afdd511ac5c713823d7e8",
+    "root_import_git_blob": "16e2a7db7c1bb890ce46ba90472acf8570f68973",
+    "role": "Sole root import after source success; also clean manifest subject."
+  },
+  "metadata_checkpoint": {
+    "commit": "7235e6aae33b3a91e95f677589c5d0b7033605db",
+    "tree": "c427628698e0c99f284744305f07345ddd061fe9",
+    "parent": "3c63d57b1cd3f418b42afdd511ac5c713823d7e8",
+    "aa_git_blob": "8a2fd26f305836567732051fcf4528dd8654c96f",
+    "root_import_git_blob": "16e2a7db7c1bb890ce46ba90472acf8570f68973",
+    "source_git_blob": "59762d5a5e2110a02a7ec8dcf660457c49090547",
+    "separate_aa_checkpoint": false,
+    "role": "Same root checkpoint; AA writer made no Git content change."
+  },
+  "manifest_binding": {
+    "checkpoint": "7235e6aae33b3a91e95f677589c5d0b7033605db",
+    "tree": "c427628698e0c99f284744305f07345ddd061fe9",
+    "parent": "3c63d57b1cd3f418b42afdd511ac5c713823d7e8",
+    "subject": {
+      "branch": "formal/close-original13-4-scoped-condition-20261106",
+      "commit": "7235e6aae33b3a91e95f677589c5d0b7033605db",
+      "tree": "c427628698e0c99f284744305f07345ddd061fe9"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 597,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Clean root checkpoint, not independent source CI head."
+  },
+  "workflow": {
+    "run_id": 42090759153,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127467851347,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.RSIScopedCondition20261106"
+  },
+  "artifact": {
+    "id": 13445905788,
+    "name": "changed-module-only-42090759153-1",
+    "zip_bytes": 865,
+    "zip_sha256": "334aa24ff93e471635ea625b8fc775d19a1561b529308e957577a7c6651d1e10",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 259,
+        "sha256": "ec55a01b1b834e93898d6a4b9da2e546f29e7f0bbdf97e7661a911aea98c8ab6",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 1094,
+        "sha256": "1c6d400dd135e9778f1931f9d329eb8e0289a3a836aaff32e9ed3a7a6e1d2e86",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.RSIScopedCondition20261106.scoped_estimates_differ_without_changing_persistent_state",
+      "ownership": "module_owned",
+      "check_source_line": 60,
+      "axiom_source_line": 61,
+      "check_log_line": 2,
+      "axiom_log_line": 10,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RSIScopedCondition20261106.scoped_estimates_differ_without_changing_persistent_state' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 1,
+    "reused": 0,
+    "pairs": 1,
+    "message_count": 2,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "warnings": [],
+  "failed_history": [],
+  "records_history": [
+    {
+      "kind": "LOCAL_PACKAGE_PATH_DIAGNOSIS",
+      "receipt": "D:\\tmp\\original13-4-records-20261106\\record-checks-r1-receipt.json",
+      "command": "record-package-writer",
+      "command_exit_code": 1,
+      "cause": "Historical artifact_files are ZIP member pins, not files in the current evidence directory. Failed before any package/canonical/README write. Actual tracked axiom-audit.raw.txt is pinned separately; no old ZIP redownload.",
+      "continuation_receipt": "D:\\tmp\\original13-4-records-20261106\\record-checks-r2-receipt.json"
+    },
+    {
+      "kind": "LOCAL_DRIVER_DECODE_FAILURE",
+      "receipt": "D:\\tmp\\original13-4-records-20261106\\derived-writers-r2-receipt.json",
+      "command": "manifest-bound",
+      "command_exit_code": 0,
+      "cause": "Driver read_text default GBK rejected generated UTF-8 manifest after successful command. No mathematical/source failure.",
+      "continuation_receipt": "D:\\tmp\\original13-4-records-20261106\\derived-writers-r3-receipt.json",
+      "repeated_commands": []
+    }
+  ],
+  "reused_evidence": {
+    "accepted_pr": 130,
+    "workflow": "Authority",
+    "subject": "333aa2e34b58dc21fcae5d603343483a098d7d28",
+    "tree": "8a3572c10f469ba1735edc45c3e1b91be2405eca",
+    "run_id": 42086000825,
+    "attempt": 1,
+    "job_id": 127451132775,
+    "artifact_id": 13444925388,
+    "source": {
+      "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\RSI.lean",
+      "bytes": 4175,
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e",
+      "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "git_blob": "b0239a3cb86b91153dc1ec45f228e648f52e6aab"
+    },
+    "targets": [
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame",
+        "axioms": [
+          "propext"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "03be3f16e92f0ecd62bfde876c77570dbbcb64a6d1be9a35b9c74304ab39d0fe",
+        "line_start": 9394,
+        "line_end": 9401,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:322:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame' depends on axioms: [propext]",
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:321:0: JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame (s : JurisLean.Candidates.Final20261021.RSI.State)\n  (who : JurisLean.Candidates.Final20261021.PartyId) (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :\n  (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).rules = s.rules ∧\n    (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).mechanism = s.mechanism ∧\n      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).data = s.data ∧\n        ∀ (j : JurisLean.Candidates.Final20261021.PartyId),\n          j ≠ who → (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).personal j = s.personal j\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:322:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame' depends on axioms: [propext]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train",
+        "axioms": [],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "03be3f16e92f0ecd62bfde876c77570dbbcb64a6d1be9a35b9c74304ab39d0fe",
+        "line_start": 9402,
+        "line_end": 9405,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:324:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train' does not depend on any axioms",
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:323:0: JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train\n  (s : JurisLean.Candidates.Final20261021.RSI.State) :\n  JurisLean.Candidates.Final20261021.RSI.prepareUpdate s JurisLean.Candidates.Final20261021.RSI.Update.condition = s\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:324:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train' does not depend on any axioms"
+      },
+      {
+        "fqn": "JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "03be3f16e92f0ecd62bfde876c77570dbbcb64a6d1be9a35b9c74304ab39d0fe",
+        "line_start": 11975,
+        "line_end": 11986,
+        "raw_axiom_output": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:26:0: 'JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:25:0: JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point :\n  9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false +\n        1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false =\n      9 / 10 ∧\n    9 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false +\n          1 / 10 * JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false =\n        1 / 10 ∧\n      JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 0 false = 0 ∧\n        JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss 1 false = 1 ∧ 1 / 10 < 9 / 10\ninfo: JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean:26:0: 'JurisLean.Candidates.ProtectedFeedback20261027.average_improvement_can_harm_protected_point' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      }
+    ],
+    "not_current_source_target_roster": true
+  },
+  "proof_boundary": {
+    "L113": "Same explicit finite D filtered by scope into aligned weight/outcome lists; existing conditionalEstimate, complete scope/sample/estimate/Kish/unknown-uncertainty returns and exact same State. D is query data. Kish is weight concentration only; independent effective sample size/confidence requires external assumptions. Shared-address counterexample is frozen manuscript L643 attribution.",
+    "L115": "Existing personal frame protects other lawyers state; actual ProtectedFeedback two-point loss witness disproves general cross-scope risk preservation. No storage implementation or statistical support inferred from tags.",
+    "external": "Actual data truth, provenance, support, sampling assumptions, calibration and permissions retain their own contracts."
+  },
+  "consumer_wiring": {
+    "affected_edges": [],
+    "adjacent_unchanged_edges": [
+      12,
+      13
+    ],
+    "note": "No new actual consumer; U00 callers/history/ratings/files byte-unchanged."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 86,
+      "PARTIAL": 9,
+      "NOT_RECONCILED": 2
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original13-4-records-20261106\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original13-4-records-20261106\\derived-writers-r2-receipt.json",
+        "D:\\tmp\\original13-4-records-20261106\\derived-writers-r3-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 5,
+      "manifest_checkpoint": "7235e6aae33b3a91e95f677589c5d0b7033605db"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original13-4-records-20261106\\record-checks-r2-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 619,
+      "previous_quotes": 1503,
+      "new_runs": [
+        42090759153
+      ],
+      "status": "PASS",
+      "method": "Preserve existing metadata; describe only current successful source; official quotes-only scanner/render.",
+      "current_runs": 620,
+      "current_quotes": 1505,
+      "old_metadata_rows_preserved": 619,
+      "receipt": "D:\\tmp\\original13-4-records-20261106\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 5.24s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 620 runs, 1505 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original13-4-records-20261106\\record-checks-r2-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 0.92s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original13-4-source-r1\\changed-module-only-42090759153-1.zip",
+    "raw_directory": "D:\\tmp\\original13-4-source-r1\\raw",
+    "copied_byte_exact": true
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 16,
+    "pathspec_source": "D:\\tmp\\original13-4-records-20261106\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original13-4-records-20261106\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "related_13_5": {
+    "record_only": true,
+    "new_source_or_module_ci": false,
+    "readme": "docs/formal-release/evidence/u13-4-debt-close-20261030/README.md",
+    "existing_metadata": {
+      "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u13-4-debt-close-20261030\\verification.json",
+      "bytes": 9508,
+      "sha256": "b2a83f87872dd2220b69c59f15604186fef920e213bcac46661b45f6b3829d1f"
+    },
+    "existing_raw": [
+      {
+        "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u13-4-debt-close-20261030\\axiom-audit.raw.txt",
+        "bytes": 27671,
+        "sha256": "d6ae2c22703377cffa79fa21ba325511559614b2c4ddeaaa47217a3f2296fabe"
+      }
+    ],
+    "historical_zip_member_pins": [
+      {
+        "path": "changed-module.log",
+        "size_bytes": 51946,
+        "sha256": "5a1e1da5a5205aae8d8968b829094e62309e125b2cd01eb044fe29639884ef9e"
+      },
+      {
+        "path": "module-plan.json",
+        "size_bytes": 277,
+        "sha256": "ea77bbcf4385ca3cbee6f801fec0be85b56c2ff2bdec9adfb70084aa3cf92147"
+      }
+    ],
+    "historical_zip_members_not_asserted_as_repo_files": true,
+    "source_pins": [
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallback20261030.lean",
+        "sha256": "68c40e6c4c02d9d6782bdb1b4e4e48b02271994b43e72166816e77b778011aaf",
+        "physical_bytes": 26124,
+        "physical_sha256": "68c40e6c4c02d9d6782bdb1b4e4e48b02271994b43e72166816e77b778011aaf"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_4ColdStartFallbackAudit20261030.lean",
+        "sha256": "c8cce2d77a88b0486c37965cf626a808301eb000da1bbbc8151a99a851fa1d8b",
+        "physical_bytes": 5503,
+        "physical_sha256": "c8cce2d77a88b0486c37965cf626a808301eb000da1bbbc8151a99a851fa1d8b"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+        "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e",
+        "physical_bytes": 4175,
+        "physical_sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+        "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e",
+        "physical_bytes": 3998,
+        "physical_sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+        "sha256": "62907d2b98bcee2f4297e0009321530821ab38eb61f67863a1924e8d8c5642c5",
+        "physical_bytes": 29915,
+        "physical_sha256": "62907d2b98bcee2f4297e0009321530821ab38eb61f67863a1924e8d8c5642c5"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyEvaluation20261027.lean",
+        "sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e",
+        "physical_bytes": 16674,
+        "physical_sha256": "1c5bf8f55da205b3a2191b094d534d8b8b0e5e4bc2d7bf2c51e5acb32f6fb48e"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+        "sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6",
+        "physical_bytes": 2988,
+        "physical_sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6"
+      }
+    ],
+    "source_checkpoint": "ad4beec80456a8562a4c2a0dbf231000fb922e8d",
+    "run_id": 40976943681,
+    "attempt": 1,
+    "job_id": 123807204758,
+    "named_targets": [
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.missing_personal_preserves_fallbacks",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+      "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_unknown_win_rate_service_example",
+      "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+      "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+      "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+      "JurisLean.Candidates.PolicyEvaluation20261027.bounded_policy_score_uniform",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment"
+    ],
+    "frozen_paragraphs": [
+      {
+        "line": 119,
+        "text": "定义支持集判据 InScope(x,s,θ,D)，明确它是可检条件还是估计量。证明仅凭训练样本没有覆盖某区域，不可能无假设唯一识别该区域结果分布，给两个训练数据相同但域外标签相反的有限模型。"
+      },
+      {
+        "line": 121,
+        "text": "构造回退合同：规范查询依据 N，检索统计绑定母体、范围和来源；预测若未满足支持与误差条件则返回具名 UNKNOWN。说明回退不等于宣布法律结论未知，也不等于把检索频率升级为个案概率。"
+      }
+    ],
+    "S13_line222": "无θ时规范金额查询若已给N:金额=2×3同单位，仍返回6；个体行为Bernoulli参数未知时存在θ=0和1两模型，不能返回无条件可信.5。若使用显式先验或人口模型，返回来源、范围和条件，不冒充个人已学模型。Cond在作用域s过滤D并加权，只读θ；如两个组全Y=0/全Y=1可得不同条件读数但θ未变。更新θℓ不改θj是存储frame；同一底层可变张量被两个标签别名共享时该frame失败。存储隔离不保证旧域统计风险，需U14多域验证。无域外支持时沿用两世界反例，规则查询可继续，经验预测返回具名缺支持；两类未知不合并。[原题](题单/13_RSI机制规则与个性权重.md)。",
+    "accepted_pr130_targets": [
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1365,
+        "line_end": 1383,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (personal : Option JurisLean.Candidates.Final20261021.RSI.Checkpoint)\n  (a : JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m)\n  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)\n  (accepted :\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction q personal a =\n      JurisLean.Candidates.Final20261021.Result.known out) :\n  ∃ calibrated score,\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedReady q personal a ∧\n      JurisLean.Candidates.U13_4ColdStartFallback20261030.auditProduction q a =\n          JurisLean.Candidates.Final20261021.Result.known calibrated ∧\n        JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated q.protocol calibrated q.point\n              q.riskLimit (decide (a.basis.applicability = JurisLean.Candidates.Final20261021.Applicable.yes)) =\n            JurisLean.Candidates.Final20261021.Result.known score ∧\n          out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.audited personal a calibrated score\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_success_reads_actual_inputs' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1384,
+        "line_end": 1395,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared' depends on axioms: [propext, Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (p : JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m)\n  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)\n  (accepted :\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.priorPrediction q p =\n      JurisLean.Candidates.Final20261021.Result.known out) :\n  (JurisLean.Candidates.U13_4ColdStartFallback20261030.basisMatches q p.basis = true ∧\n      JurisLean.Candidates.U13_4ColdStartFallback20261030.queryCompatible q = true ∧\n        0 ≤ p.probability ∧ p.probability ≤ 1) ∧\n    out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.declaredPrior p\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.prior_success_is_declared' depends on axioms: [propext, Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1396,
+        "line_end": 1411,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)\n  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Description m)\n  (accepted :\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.descriptionService q d =\n      JurisLean.Candidates.Final20261021.Result.known out) :\n  JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady q d = true ∧\n    out.input = d ∧\n      JurisLean.Candidates.Final20261021.RSI.conditionalEstimate\n          (List.map (fun x => 1) (JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues d))\n          (JurisLean.Candidates.U13_4ColdStartFallback20261030.dataValues d) =\n        JurisLean.Candidates.Final20261021.Result.known out.frequency\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.description_success_reads_measurements' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1412,
+        "line_end": 1428,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)\n  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)\n  (accepted :\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction q d =\n      JurisLean.Candidates.Final20261021.Result.known out) :\n  ∃ value,\n    out = JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.sampled d value ∧\n      JurisLean.Candidates.U13_4ColdStartFallback20261030.dataReady q d = true ∧\n        JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified d.n 1 q.protocol.failureBudget d.radius\n              d.radiusExponent =\n            true ∧\n          value = (∑ i, JurisLean.Candidates.Final20261021.Behavior.indicator (d.labels i)) / ↑d.n\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_success_reads_actual_mean' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1429,
+        "line_end": 1446,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (personal :\n    Option\n      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×\n        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))\n  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m))\n  (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m)\n  (accepted :\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q personal population prior data =\n      JurisLean.Candidates.Final20261021.Result.known out) :\n  JurisLean.Candidates.Final20261021.Result.known out ∈\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts q personal population prior data\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.selected_prediction_has_executed_source' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1472,
+        "line_end": 1489,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (personal :\n    Option\n      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×\n        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))\n  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m))\n  (absent :\n    ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),\n      JurisLean.Candidates.Final20261021.Result.known out ∉\n        JurisLean.Candidates.U13_4ColdStartFallback20261030.sourceAttempts q personal population prior data) :\n  JurisLean.Candidates.U13_4ColdStartFallback20261030.forecastService q personal population prior data =\n    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.no_valid_source_unknown' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1490,
+        "line_end": 1503,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G {X : Type} {m : ℕ} (G : X → Option ℚ)\n  (x : X) (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (personal :\n    Option\n      (JurisLean.Candidates.Final20261021.RSI.Checkpoint ×\n        JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (population : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m))\n  (prior : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.PriorSource m))\n  (data : Option (JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m)) :\n  (JurisLean.Candidates.U13_4ColdStartFallback20261030.service G x q personal population prior data).normative =\n    JurisLean.Candidates.U13_4ColdStartFallback20261030.normativeService G x\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.normative_query_uses_only_G' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1504,
+        "line_end": 1574,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions.{u_1}\n  {Ω : Type u_1} [MeasurableSpace Ω] {m : ℕ} [MeasurableSpace (Fin m × Bool)] (μ : MeasureTheory.Measure Ω)\n  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Bool))\n  [MeasureTheory.IsProbabilityMeasure P] (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (personal : Option JurisLean.Candidates.Final20261021.RSI.Checkpoint)\n  (a : JurisLean.Candidates.U13_4ColdStartFallback20261030.ModelSource m) (hn : 0 < a.n)\n  (sample : Fin a.n → Ω → Fin m × Bool) (events : Fin a.n → Ω → JurisLean.Candidates.Final20261021.EventId)\n  (sampleMeasurable : ∀ (i : Fin a.n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)\n  (law : ∀ (i : Fin a.n), ProbabilityTheory.IdentDistrib (sample i) id μ P)\n  (numeratorMeasurable :\n    ∀ h ∈ a.firstCutoff :: a.otherCutoffs,\n      Measurable fun z =>\n        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss\n            (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss a.fitted.table z)\n            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance a.fitted) h z))\n  (coverageMeasurable :\n    ∀ h ∈ a.firstCutoff :: a.otherCutoffs,\n      Measurable fun z =>\n        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss\n            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance a.fitted) h z))\n  (lossRange :\n    ∀ (z : Fin m × Bool),\n      ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss a.fitted.table z) ∈ Set.Icc 0 1)\n  (hδ : 0 < ↑a.fitted.protocol.failureBudget) (hδ1 : ↑a.fitted.protocol.failureBudget < 1)\n  (conservative :\n    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius a.n\n        (2 * (a.firstCutoff :: a.otherCutoffs).toFinset.card) ↑a.fitted.protocol.failureBudget ≤\n      ↑a.radius) :\n  ∃ confidence,\n    MeasurableSet confidence ∧\n      1 - ↑a.fitted.protocol.failureBudget ≤ μ.real confidence ∧\n        ∀ w ∈ confidence,\n          ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),\n            JurisLean.Candidates.U13_4ColdStartFallback20261030.auditedPrediction q personal\n                  { basis := a.basis, samplingSource := a.samplingSource, measurementSource := a.measurementSource,\n                    sampleProtocol := a.sampleProtocol, fitted := a.fitted, n := a.n,\n                    rows := fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 },\n                    loss := a.loss, firstCutoff := a.firstCutoff, otherCutoffs := a.otherCutoffs, radius := a.radius,\n                    radiusExponent := a.radiusExponent, snapshot := a.snapshot,\n                    calibrationProtocol := a.calibrationProtocol } =\n                JurisLean.Candidates.Final20261021.Result.known out →\n              ∃ calibrated score,\n                out =\n                    JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.audited personal\n                      { basis := a.basis, samplingSource := a.samplingSource, measurementSource := a.measurementSource,\n                        sampleProtocol := a.sampleProtocol, fitted := a.fitted, n := a.n,\n                        rows := fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 },\n                        loss := a.loss, firstCutoff := a.firstCutoff, otherCutoffs := a.otherCutoffs,\n                        radius := a.radius, radiusExponent := a.radiusExponent, snapshot := a.snapshot,\n                        calibrationProtocol := a.calibrationProtocol }\n                      calibrated score ∧\n                  0 <\n                      ∫ (z : Fin m × Bool),\n                        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss\n                            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)\n                            calibrated.cutoff z) ∂P ∧\n                    (∫ (z : Fin m × Bool),\n                          ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss\n                              (fun x z =>\n                                JurisLean.Candidates.LearningConsumer20261027.tableLoss a.loss calibrated.fitted.table\n                                  z)\n                              (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)\n                              calibrated.cutoff z) ∂P) /\n                        ∫ (z : Fin m × Bool),\n                          ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss\n                              (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance calibrated.fitted)\n                              calibrated.cutoff z) ∂P ≤\n                      ↑q.riskLimit\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.audited_prediction_risk_under_existing_conditions' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1575,
+        "line_end": 1604,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions.{u_1}\n  {Ω : Type u_1} [MeasurableSpace Ω] {m : ℕ} [MeasurableSpace Bool] [MeasurableSingletonClass Bool]\n  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Bool)\n  [MeasureTheory.IsProbabilityMeasure P] (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m)\n  (d : JurisLean.Candidates.U13_4ColdStartFallback20261030.DataSource m) (hn : 0 < d.n) (sample : Fin d.n → Ω → Bool)\n  (rows : Fin d.n → Ω → JurisLean.Candidates.Final20261021.Behavior.MeasurementLog)\n  (sampleMeasurable : ∀ (i : Fin d.n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)\n  (law : ∀ (i : Fin d.n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (hδ : 0 < ↑q.protocol.failureBudget)\n  (hδ1 : ↑q.protocol.failureBudget < 1) :\n  ∃ confidence,\n    MeasurableSet confidence ∧\n      1 - ↑q.protocol.failureBudget ≤ μ.real confidence ∧\n        ∀ w ∈ confidence,\n          ∀ (out : JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction m),\n            JurisLean.Candidates.U13_4ColdStartFallback20261030.samplePrediction q\n                  { basis := d.basis, samplingSource := d.samplingSource, measurementSource := d.measurementSource,\n                    n := d.n, rows := fun i => rows i w, labels := fun i => sample i w, radius := d.radius,\n                    radiusExponent := d.radiusExponent } =\n                JurisLean.Candidates.Final20261021.Result.known out →\n              ∃ value,\n                out =\n                    JurisLean.Candidates.U13_4ColdStartFallback20261030.Prediction.sampled\n                      { basis := d.basis, samplingSource := d.samplingSource, measurementSource := d.measurementSource,\n                        n := d.n, rows := fun i => rows i w, labels := fun i => sample i w, radius := d.radius,\n                        radiusExponent := d.radiusExponent }\n                      value ∧\n                  |↑value - ∫ (y : Bool), ↑(JurisLean.Candidates.Final20261021.Behavior.indicator y) ∂P| ≤ ↑d.radius\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.sample_prediction_error_under_existing_conditions' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1605,
+        "line_end": 1617,
+        "raw_axiom_output": "'JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example {m : ℕ}\n  (q : JurisLean.Candidates.U13_4ColdStartFallback20261030.Query m) :\n  (JurisLean.Candidates.U13_4ColdStartFallback20261030.service\n          (fun principal => if 0 ≤ principal then some (principal + 20) else none) 100 q none none none\n          none).normative =\n      JurisLean.Candidates.Final20261021.Result.known 120 ∧\n    (JurisLean.Candidates.U13_4ColdStartFallback20261030.service\n          (fun principal => if 0 ≤ principal then some (principal + 20) else none) 100 q none none none\n          none).prediction =\n      JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.missingEvidence\n'JurisLean.Candidates.U13_4ColdStartFallback20261030.original_fee_service_example' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1712,
+        "line_end": 1725,
+        "raw_axiom_output": "'JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+        "exact_excerpt": "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment (n : ℕ)\n  (learner : (Fin n → Bool × Bool) → Bool → Bool) :\n  JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false =\n      JurisLean.Candidates.LearningBoundary20261027.visibleTraining n true ∧\n    JurisLean.Candidates.LearningBoundary20261027.worldTarget false ≠\n        JurisLean.Candidates.LearningBoundary20261027.worldTarget true ∧\n      ∃ hiddenLabel,\n        JurisLean.Candidates.LearningBoundary20261027.pointPopulationRisk true\n            (JurisLean.Candidates.LearningBoundary20261027.worldTarget hiddenLabel)\n            (learner (JurisLean.Candidates.LearningBoundary20261027.visibleTraining n false)) =\n          1\n'JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused",
+        "axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "log_path": "D:\\tmp\\original13-1-2-pr130-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "03be3f16e92f0ecd62bfde876c77570dbbcb64a6d1be9a35b9c74304ab39d0fe",
+        "line_start": 6255,
+        "line_end": 6262,
+        "raw_axiom_output": "info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:10:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused' depends on axioms: [propext,\n Quot.sound]",
+        "exact_excerpt": "info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:9:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused {m : ℕ}\n  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)\n  (calibrated : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration) (query : Fin m) (target : ℚ)\n  (supported : Bool) (outside : ¬calibrated.cutoff ≤ calibrated.fitted.table.getD (↑query) 0) :\n  JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated expected calibrated query target supported =\n    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.unsupported\ninfo: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:10:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused' depends on axioms: [propext,\n Quot.sound]"
+      }
+    ],
+    "scope": "Finite admission versus true support, two-world nonidentification, actual normative/description/prediction branches and four-source fallback; layer-specific UNKNOWN and explicit external probability/provenance conditions."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original13-4-records-20261106\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original13-4-scoped-condition-close-20261106/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

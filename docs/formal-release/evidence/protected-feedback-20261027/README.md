@@ -28,3 +28,31 @@ Construction-card G-PROPOSED correspondence (baseline 825792b83476a767152396d7f5
 | strict_bounds_prove_strict_improvement | 14.3 / 15.1, strict versus tolerated change | NEW | strict-risk audit and downstream validation contract | strict inequality theorem plus observed-only/noninferior counterexamples |
 
 UNLOCATED at this module boundary: the whole U00 business-to-learning caller and production refinement. The separate validated-loading module supplies a finite-store consumer; no production or whole-model acceptance is inferred here.
+
+## 原题 14.2 重放、污染与样本身份 · 2026-11-06
+
+冻结题单 L95、L97 与补正 S14 L228 分开规定计数反例、事件身份更新和五类风险。以下 E 指 `JurisLean.Candidates.EventFeedbackConsumer20261027`。
+
+### L95 同案与不同案件的精确 100 输入
+
+`ProtectedFeedbackAudit20261027.lean` L173–195 的两个已编译实际拟合检查使用相同 false 标签频率。第一批有 100 个不同 caseId/event，产生 100 cells 和样本数 100。第二批是同一 case/event 的 100 个不同 measurement/record/source 引用，产生 1 cell、样本数 1，历史保留 100 条。这里分别核对实际输入身份与拟合器读到的样本，引用数和样本数分列。
+
+在相应 fair Bernoulli 模型及其原前提下，`JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance` 给出 n 个独立观测之经验均值的方差 1/(4n)。`u01_4_copied_empirical_mean_variance` 给出 n 份同一观测之经验均值的方差 1/4。代入 n=100 得 1/400 与 1/4。 `u01_4_concrete_common_cause_counterexample` 另给 ID 不同而共享随机源的实际模型。独立性由抽样律及依赖结构承担，案件或事件标识只给计数单位。
+
+### L95 当前训练视图与原始历史
+
+按作用域和事件身份接收外部确认的记录。已见有效观测的原样重放只新增历史引用。尚未见过的有效输入若与当前事件 cell 的案件身份以及 active 的 feature、label 均匹配，也只新增引用，当前训练视图保持相等。直接复用 `E.replay_has_no_extra_training_row`。本题同案 100 次实例的当前计数为 1。尚未见过的冲突标签经实际 `E.observe` 使原 active cell 转为 conflicted，并保留记录。与当前 active cell 的案件身份或 feature 不匹配同样触发冲突。已冲突或已撤回的 cell 进入隔离分支。 `E.trainingRows` 只读取 active cells，所以冲突与撤回状态均与无争议训练样本隔离。
+
+迟到更正需匹配当前记录的 supersedes 身份、版本、事件与案件、有效时间及精确许可。 `E.approved_correction_replaces_exact_prior` 绑定实际更正后 cell，`E.historical_replay_cannot_revive_superseded_label` 排除重放复活旧标签。 `E.observed_history_is_append_only` 和 `E.corrected_history_is_append_only` 保留历史前缀。幂等适用于当前标签和训练计数，追加历史仍可增长。外部确认及目标版本继续按原标签合同验收。
+
+### L97 五类风险的位置和有限见证
+
+| 风险 | 现有具名证据 | 对应数学责任 |
+|---|---|---|
+| 单案异常或错标 | `LearningBoundary20261027.u01_1_actual_fit_label_risk_not_truth_risk` 给出同一实际拟合器的标签风险 0、真实目标风险 1。 | 标签确认和目标解释承担可靠性，拟合过程消费的是已给标签。 |
+| 同案重复 | 复用上面的精确 100 输入、两类方差和共享源反例。 | 事件身份控制训练计数。独立性与有效样本量依赖各自抽样模型。 |
+| 地域或案由抽样偏差 | `LearningBoundary20261027.u01_3_actual_fit_zero_train_one_deploy` 给出训练域风险 0、部署域风险 1，`u01_3_two_worlds_same_training_uncontrolled_deployment` 给出同训练样本而未见域标签相反。 | 两点可解释为两个地域或案由。部署母体、选择条件和支持由相应输入声明。 |
+| 答案泄漏 | `LearningEventSplit20261027.u01_3_event_split_does_not_certify_information` 给出实际 eventSplit 身份分离而各行仍读未来 feature、feature 等于 label、label 不等于目标的反例。 | 事件身份分割与信息可见性、独立标签目标分别验收。 |
+| 局部改进损害其他能力 | `ProtectedFeedback20261027.average_improvement_can_harm_protected_point` 给出总体风险 9/10→1/10 且受保护点风险 0→1。现有审计的实际 evaluate 返回 `passesBounds=false`。 | 指定保护域需各自检查。概率保证依赖实际样本律、固定模型类及联合事件。 |
+
+本归引复用 event-feedback-consumer、learning-provenance、learning-boundary、learning-event-split 和 protected-feedback 的已验收源包及 PR39 的完整接受。上述有限证据保持其输入条件。现有 U00/business-to-feedback 消费链沿独立调用合同验收。

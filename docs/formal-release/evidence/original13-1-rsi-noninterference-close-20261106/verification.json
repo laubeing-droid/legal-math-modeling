@@ -1,0 +1,553 @@
+{
+  "schema": "original-question-close-v1",
+  "status": "SOURCE_CHANGED_MODULE_AND_RECORD_CHECKS_AND_CI_INDEX_PASS_PR_ACCEPTANCE_PENDING",
+  "original_question": "13.1",
+  "related_record_only_question": "13.2",
+  "clauses": [
+    "U13.1",
+    "U13.2"
+  ],
+  "frozen_paragraphs": [
+    {
+      "line": 95,
+      "text": "建立状态 S=(E_mech,N,{θℓ},D,logs)，为数据追加、一次条件推断、个人权重更新、规则版本替换、机制替换分别给出状态变换类型和 frame 条件。给一个 θ更新不改 E_mech/N、且 B_N 不消费经验输出时，G_E_mech 的结果保持不变的严格定理。再给 B_N 合法消费统计证据时保持不变命题失败、但规则包未被修改的最小例子。不要把规范不变与案件判断值不变合并。"
+    },
+    {
+      "line": 97,
+      "text": "构造一个参数泄漏反例：名为“预测权重”的参数实际参与规则优先级或形成事件判定，导致 θ改变规范结果。指出如何用依赖切片、显式参数类型或非干扰关系排除该反例；仅把文件放在不同目录是否足够？"
+    }
+  ],
+  "frozen_paper_references": [
+    {
+      "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\01_统一法律数学模型总稿.md",
+      "bytes": 125771,
+      "sha256": "eee9afb07d164c2b26bf9270a34c5866b14de4533d9e7f80c5b1a05e148935b5",
+      "lines": [
+        {
+          "line": 622,
+          "text": "## 11. 13：机制、规则与个人checkpoint"
+        },
+        {
+          "line": 643,
+          "text": "反例：实现让两律师条目引用同一可变张量，原地修改ℓ同时改变j；此实现不精化上述函数更新。目录名、文件标签或scope字符串不能证明独立存储。另令规范优先级直接读θ>1/2，则θ从.4变.6会改变规范结果，这违反规范函数读集前提，而不是非干扰定理失败。"
+        }
+      ]
+    },
+    {
+      "path": "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\13_原题逐问补正正文.md",
+      "bytes": 52398,
+      "sha256": "a6d03840173f58f4ad1822e100267472d1e78c7514b6c7d845da8a9e6a2cde71",
+      "lines": [
+        {
+          "line": 218,
+          "text": "沿用总稿五类写集：数据追加只改D/logs；条件推断不改θ；个人更新只改选定θℓ；规则替换只在独立授权下改N；机制替换需独立合同改E_mech。对G(E,N,x)完全不读θ且x相同的规范函数，更新θ前后由参数相同直接得值相同。若案件输入合法包含统计证据s(θ)，规则函数F(N,s)可变化而N未变；故“规则包不变”不蕴含全部案件读数不变。把θ用作规则优先级却仍称纯预测参数是违反依赖合同的反例，目录分开放置不排除共享引用。"
+        }
+      ]
+    }
+  ],
+  "source_checkpoint": {
+    "branch": "formal/close-original13-1-rsi-noninterference-20261106",
+    "base_main": "cf495edb0fdc61ba10c1b666065484abdee9b085",
+    "base_tree": "6eb3436690e27dabd528366c6c64e4b1c939f1a3",
+    "commit": "202cf6e5dc68915d8c38fd03c5eb68a2cb7302e9",
+    "tree": "6f14b7de2ff6d0e6741ca2dcf03ec04381341870",
+    "parent": "b11d0d4aedf838451d301bf08bf2f01066cc87c7",
+    "source_file": "proofs/lean/juris_lean/JurisLean/Candidates/RSIAdmittedStatistics20261106.lean",
+    "source_bytes": 2506,
+    "source_sha256": "b94d720d3a18f9dacac1473424abc23107cd19e756e0d819464428b33133400a",
+    "source_git_blob": "e0268ccf9b1ef7c139d3905e89e9fb81d810811e",
+    "root_import_at_source_blob": "df7b506084f73ccd1a22268ad25b08fe8134b4ce",
+    "role": "Successful R2 proof-only repair of the L95 admitted-statistic instance. Source proof precedes root import; failed R1 separate."
+  },
+  "root_checkpoint": {
+    "commit": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1",
+    "tree": "cdc11bc68bf79414544a2f714fa7912a77e04ef1",
+    "parent": "202cf6e5dc68915d8c38fd03c5eb68a2cb7302e9",
+    "root_import_git_blob": "1a8bf44c8a3aba8f1e4524ebe19a37113fa540cd",
+    "role": "Sole root import after R2 source success; also clean manifest subject."
+  },
+  "metadata_checkpoint": {
+    "commit": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1",
+    "tree": "cdc11bc68bf79414544a2f714fa7912a77e04ef1",
+    "parent": "202cf6e5dc68915d8c38fd03c5eb68a2cb7302e9",
+    "aa_git_blob": "8a2fd26f305836567732051fcf4528dd8654c96f",
+    "root_import_git_blob": "1a8bf44c8a3aba8f1e4524ebe19a37113fa540cd",
+    "source_git_blob": "e0268ccf9b1ef7c139d3905e89e9fb81d810811e",
+    "separate_aa_checkpoint": false,
+    "role": "Same root checkpoint; AA writer made no Git content change."
+  },
+  "manifest_binding": {
+    "checkpoint": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1",
+    "tree": "cdc11bc68bf79414544a2f714fa7912a77e04ef1",
+    "parent": "202cf6e5dc68915d8c38fd03c5eb68a2cb7302e9",
+    "subject": {
+      "branch": "formal/close-original13-1-rsi-noninterference-20261106",
+      "commit": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1",
+      "tree": "cdc11bc68bf79414544a2f714fa7912a77e04ef1"
+    },
+    "binding": {
+      "binding": "BOUND_TO_SUBJECT",
+      "files_diverging_from_subject": [],
+      "files_total": 596,
+      "rule": "every recorded sha256 must equal git show <subject>:<path>",
+      "worktree_dirty_under_proofs": false
+    },
+    "role": "Bound to clean root checkpoint, not independent source CI head."
+  },
+  "workflow": {
+    "run_id": 42081631722,
+    "attempt": 1,
+    "event": "workflow_dispatch",
+    "job_id": 127435917108,
+    "job_conclusion": "success",
+    "other_jobs": "7 skipped by changed-module condition",
+    "module": "JurisLean.Candidates.RSIAdmittedStatistics20261106"
+  },
+  "artifact": {
+    "id": 13440732388,
+    "name": "changed-module-only-42081631722-1",
+    "zip_bytes": 916,
+    "zip_sha256": "47935448aa926e610deea72968983893e5d6caf03e2a0a67139aa5f31c291cce",
+    "members": [
+      {
+        "name": "module-plan.json",
+        "bytes": 265,
+        "sha256": "0ce83f1ffcf82e43d28215cd8af7c698f1c1e11873537f835d8048740499d243",
+        "byte_identical_to_zip_member": true
+      },
+      {
+        "name": "changed-module.log",
+        "bytes": 1228,
+        "sha256": "3fbb71135e09f3ede9149c3e591f8e40a233aebfe71562b3354ac1c545d5ade2",
+        "byte_identical_to_zip_member": true
+      }
+    ]
+  },
+  "targets": [
+    {
+      "fqn": "JurisLean.Candidates.RSIAdmittedStatistics20261106.admitted_statistics_change_case_value_under_fixed_rules",
+      "ownership": "module_owned",
+      "check_source_line": 54,
+      "axiom_source_line": 55,
+      "check_log_line": 5,
+      "axiom_log_line": 12,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "raw_axiom_output": "'JurisLean.Candidates.RSIAdmittedStatistics20261106.admitted_statistics_change_case_value_under_fixed_rules' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    }
+  ],
+  "target_counts": {
+    "module_owned": 1,
+    "reused": 0,
+    "pairs": 1,
+    "message_count": 2,
+    "errors": 0,
+    "sorryAx": 0,
+    "axiom_union": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "warnings": [
+    {
+      "raw_line": 2,
+      "text": "warning: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:52:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice"
+    }
+  ],
+  "failed_history": [
+    {
+      "status": "FAILED",
+      "source_commit": "b11d0d4aedf838451d301bf08bf2f01066cc87c7",
+      "source_tree": "2b89d9dfcec4aa5d193602aa50659aa407be2abb",
+      "source_parent": "cf495edb0fdc61ba10c1b666065484abdee9b085",
+      "source_sha256": "7168345acc5301820b4d15b981e2c8bce18b7a0414ee805d6946bee0d91960c9",
+      "run_id": 42080749208,
+      "attempt": 1,
+      "job_id": 127432839563,
+      "artifact_id": 13440636593,
+      "artifact_name": "changed-module-only-42080749208-1",
+      "artifact_zip_bytes": 1658,
+      "artifact_zip_sha256": "41797cd31eacbe57056dd8fe69b3328b76dd78ab03a561f6bfa9c9d7d73fd168",
+      "raw_pins": [
+        {
+          "path": "D:\\tmp\\original13-1-source-r1\\raw\\module-plan.json",
+          "bytes": 265,
+          "sha256": "0ce83f1ffcf82e43d28215cd8af7c698f1c1e11873537f835d8048740499d243"
+        },
+        {
+          "path": "D:\\tmp\\original13-1-source-r1\\raw\\changed-module.log",
+          "bytes": 5274,
+          "sha256": "8739cfbe53872c79cb7e74c5517bd88dd29f257cc13c94e0cea61a634423db42"
+        }
+      ],
+      "source_diagnostics": [
+        {
+          "raw_line": 3,
+          "message": "error: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:51:2: Tactic `decide` failed for proposition"
+        }
+      ],
+      "source_diagnostic_count": 1,
+      "exact_diagnostic_block": "error: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:51:2: Tactic `decide` failed for proposition\n  proposed_rule_service caseValue initial (statisticalInput initial (some (2 / 5))) = some false ∧\n    proposed_rule_service caseValue updated (statisticalInput updated (some (3 / 5))) = some true ∧\n      proposed_rule_service caseValue initial (statisticalInput initial none) = none ∧\n        proposed_rule_service caseValue updated (statisticalInput updated none) = none\nbecause its `Decidable` instance\n  instDecidableAnd\ndid not reduce to `isTrue` or `isFalse`.\n\nAfter unfolding the instances `instDecidableAnd`, `instDecidableEqNat`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, `Nat.decEq`, `Option.instDecidableEq`, `instDecidableEqRat.decEq`, `instDecidableEqPartyId`, and `instDecidableEqPartyId.decEq`, reduction got stuck at the `Decidable` instance\n  match proposed_rule_service caseValue initial (statisticalInput initial (some (2 / 5))) with\n  | none =>\n    match some false with\n    | none => isTrue ⋯\n    | some val => isFalse ⋯\n  | some a =>\n    match some false with\n    | none => isFalse ⋯\n    | some b =>\n      match instDecidableEqBool a b with\n      | isTrue h => isTrue ⋯\n      | isFalse n => isFalse ⋯",
+      "failed_axiom_output": "info: JurisLean/Candidates/RSIAdmittedStatistics20261106.lean:54:0: 'JurisLean.Candidates.RSIAdmittedStatistics20261106.admitted_statistics_change_case_value_under_fixed_rules' depends on axioms: [propext,\n sorryAx,\n Classical.choice,\n Quot.sound]",
+      "compiler_generated_sorryAx_in_failed_output": true,
+      "source_contains_sorry": false,
+      "interpretation": "The original decide tactic did not unfold proposed_rule_service sufficiently. Compiler error-recovery sorryAx is failed history, never successful proof evidence.",
+      "r2_changes": [
+        "Replace only the final decide line with explicit simp unfolding and decide +kernel."
+      ],
+      "definitions_statements_and_premises_unchanged": true
+    }
+  ],
+  "records_history": [],
+  "reused_evidence": {
+    "accepted_pr": 129,
+    "workflow": "Authority",
+    "subject": "d5d31e480d91470e3de2caf53eabe0c67a686073",
+    "tree": "6eb3436690e27dabd528366c6c64e4b1c939f1a3",
+    "run_id": 42075982949,
+    "attempt": 1,
+    "job_id": 127416163231,
+    "artifact_id": 13438998665,
+    "source": {
+      "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\RSI.lean",
+      "bytes": 4175,
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e",
+      "repo_path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "git_blob": "b0239a3cb86b91153dc1ec45f228e648f52e6aab"
+    },
+    "logs": [
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "bytes": 663691,
+        "sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 1625,
+        "line_end": 1631,
+        "exact_excerpt": "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference {X Y : Type} (eval : ℕ → ℕ → X → Y)\n  (s : JurisLean.Candidates.Final20261021.RSI.State) (x : X) (who : JurisLean.Candidates.Final20261021.PartyId)\n  (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :\n  JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval\n      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value) x =\n    JurisLean.Candidates.Final20261021.RSI.proposed_rule_service eval s x\n'JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference' does not depend on any axioms"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "bytes": 5610273,
+        "sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 9590,
+        "line_end": 9613,
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:321:0: JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame (s : JurisLean.Candidates.Final20261021.RSI.State)\n  (who : JurisLean.Candidates.Final20261021.PartyId) (value : JurisLean.Candidates.Final20261021.RSI.Checkpoint) :\n  (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).rules = s.rules ∧\n    (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).mechanism = s.mechanism ∧\n      (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).data = s.data ∧\n        ∀ (j : JurisLean.Candidates.Final20261021.PartyId),\n          j ≠ who → (JurisLean.Candidates.Final20261021.RSI.updatePersonal s who value).personal j = s.personal j\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:322:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame' depends on axioms: [propext]\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:323:0: JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train\n  (s : JurisLean.Candidates.Final20261021.RSI.State) :\n  JurisLean.Candidates.Final20261021.RSI.prepareUpdate s JurisLean.Candidates.Final20261021.RSI.Update.condition = s\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:324:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train' does not depend on any axioms\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:325:0: JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame (s : JurisLean.Candidates.Final20261021.RSI.State)\n  (row : JurisLean.Candidates.Final20261021.Behavior.MeasurementLog) :\n  (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s\n          (JurisLean.Candidates.Final20261021.RSI.Update.data row)).rules =\n      s.rules ∧\n    (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s\n            (JurisLean.Candidates.Final20261021.RSI.Update.data row)).mechanism =\n        s.mechanism ∧\n      (JurisLean.Candidates.Final20261021.RSI.prepareUpdate s\n            (JurisLean.Candidates.Final20261021.RSI.Update.data row)).personal =\n        s.personal\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:326:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame' does not depend on any axioms"
+      }
+    ],
+    "targets": [
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+        "axioms": [],
+        "log_path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "line_start": 1625,
+        "line_end": 1631,
+        "raw_axiom_output": "'JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference' does not depend on any axioms"
+      },
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame",
+        "axioms": [
+          "propext"
+        ],
+        "log_path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "line_start": 9590,
+        "line_end": 9597,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:322:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame' depends on axioms: [propext]"
+      },
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train",
+        "axioms": [],
+        "log_path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "line_start": 9598,
+        "line_end": 9601,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:324:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train' does not depend on any axioms"
+      },
+      {
+        "fqn": "JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame",
+        "axioms": [],
+        "log_path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "line_start": 9602,
+        "line_end": 9613,
+        "raw_axiom_output": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:326:0: 'JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame' does not depend on any axioms"
+      }
+    ],
+    "not_current_source_target_roster": true
+  },
+  "proof_boundary": {
+    "L95_five_frames": "Actual RSI pure prepareUpdate definitions and accepted frame targets; condition estimate is a return value, not training. Rule/mechanism authority and validation stay external.",
+    "L95_noninterference": "Same eval and same x=(c,e), preserved E/N; explicit read-set contract also controls x construction.",
+    "L95_positive_instance": "One actual personal prepareUpdate from prediction2/5 to3/5, fixed rules/mechanism, external admitted values checked against actual checkpoint, false/true case output; absent admitted input returns none at both states. Admission truth/effect is external.",
+    "L97": "Frozen manuscript L643 direct priority dependence on theta crosses1/2; paper counterexample and read-set exclusion only, no new L97 theorem. Shared mutable storage is not validated by directory names.",
+    "external": "No runtime consumer change, legal/source truth, automatic permission, general learning guarantee, or physical storage refinement is claimed."
+  },
+  "consumer_wiring": {
+    "affected_edges": [],
+    "adjacent_unchanged_edges": [
+      12,
+      13
+    ],
+    "note": "No new actual consumer; U00 callers/history/ratings/files byte-unchanged."
+  },
+  "counts": {
+    "canonical": {
+      "math_main_questions": 97,
+      "math_subparagraphs": 266,
+      "engineering_requirements": 105,
+      "designated_cuts": 6,
+      "COVERED": 84,
+      "PARTIAL": 10,
+      "NOT_RECONCILED": 3
+    },
+    "global_discharge": false,
+    "step_2_closed": false,
+    "math_flip": false,
+    "U00": {
+      "rows": 50,
+      "wiring": 50,
+      "narrow": 0,
+      "open": 0,
+      "declarations": 124,
+      "discharges": false,
+      "step_2_closed": false
+    }
+  },
+  "records": {
+    "derived_writers": {
+      "receipts": [
+        "D:\\tmp\\original13-1-records-20261106\\derived-writers-r1-receipt.json",
+        "D:\\tmp\\original13-1-records-20261106\\derived-writers-r2-receipt.json"
+      ],
+      "command_count": 7,
+      "all_writer_commands_exit_zero": true,
+      "continuation_writer_count": 6,
+      "manifest_checkpoint": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1"
+    },
+    "required_checks": {
+      "receipt": "D:\\tmp\\original13-1-records-20261106\\record-checks-r1-receipt.json",
+      "count": 12,
+      "status": "PASS",
+      "all_exit_zero": true,
+      "names": [
+        "manifest-verify",
+        "probability-audit-check",
+        "trivial-census-check",
+        "structure-volume-check",
+        "reachability",
+        "paper-single-count",
+        "paper-derived-dry-run",
+        "duplication-check",
+        "declaration-shape-check",
+        "clause-binding",
+        "archive-gap",
+        "gap-status-check"
+      ]
+    },
+    "ci_index": {
+      "previous_runs": 617,
+      "previous_quotes": 1500,
+      "new_runs": [
+        42080749208,
+        42081631722
+      ],
+      "status": "PASS",
+      "method": "Preserve existing metadata; describe only failed R1 and successful R2 source runs; official quotes-only scanner/render.",
+      "current_runs": 619,
+      "current_quotes": 1503,
+      "old_metadata_rows_preserved": 617,
+      "receipt": "D:\\tmp\\original13-1-records-20261106\\index-stage-r1-receipt.json",
+      "tests": {
+        "exit_code": 0,
+        "result": "............                                                             [100%]\r\n12 passed in 5.81s"
+      },
+      "check": {
+        "exit_code": 0,
+        "stdout": "ci run index ok: 619 runs, 1503 quotes"
+      }
+    },
+    "paper_regressions": {
+      "receipt": "D:\\tmp\\original13-1-records-20261106\\record-checks-r1-receipt.json",
+      "exit_code": 0,
+      "result": "..                                                                       [100%]\r\n2 passed in 0.98s",
+      "test_count": 2
+    }
+  },
+  "raw_preservation": {
+    "paths": [
+      "module-plan.json",
+      "changed-module.log"
+    ],
+    "source_zip": "D:\\tmp\\original13-1-source-r2\\changed-module-only-42081631722-1.zip",
+    "raw_directory": "D:\\tmp\\original13-1-source-r2\\raw",
+    "copied_byte_exact": true,
+    "failed_raw_separate": "D:\\tmp\\original13-1-source-r1\\raw"
+  },
+  "staging": {
+    "status": "PREPARED_FOR_PEER_REVIEW",
+    "records_commit": "NOT_CREATED",
+    "pr_acceptance": "PENDING",
+    "root_import_changed_this_record_stage": false,
+    "source_file_changed_this_record_stage": false,
+    "expected_path_count": 16,
+    "pathspec_source": "D:\\tmp\\original13-1-records-20261106\\records-stage-paths.nul",
+    "actual_stage_and_diffcheck_receipt": "D:\\tmp\\original13-1-records-20261106\\index-stage-r1-receipt.json",
+    "note": "Exact staged-path count, full/authored diffcheck exits and final tracked/unstaged observations are recorded by the separate real-process receipt. Official raw bytes are preserved; a nonzero full diffcheck is not represented as PASS."
+  },
+  "related_13_2": {
+    "record_only": true,
+    "new_source_or_module_ci": false,
+    "readme": "docs/formal-release/evidence/u13-3-debt-close-20261028/README.md",
+    "existing_metadata": {
+      "path": "C:\\Users\\being\\legal-math-modeling-u03-20261026\\docs\\formal-release\\evidence\\u13-3-debt-close-20261028\\verification.json",
+      "bytes": 2703,
+      "sha256": "2ecf0ee23c1bb824174971b98451607e3608c76a07103a80742f2e231fd80f27"
+    },
+    "source_pins": [
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+        "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e",
+        "physical_bytes": 4175,
+        "physical_sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
+        "sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e",
+        "physical_bytes": 3998,
+        "physical_sha256": "ee8de38c74f237f9e7be99e351431b41ba384a6da09f5c501f6d2da9e7bfaa0e"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+        "sha256": "57a39fad7695ab6ec04221062d25c32049d115adf9cc00725de448d002850ae9",
+        "physical_bytes": 9679,
+        "physical_sha256": "57a39fad7695ab6ec04221062d25c32049d115adf9cc00725de448d002850ae9"
+      },
+      {
+        "path": "proofs/lean/juris_lean/JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean",
+        "sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6",
+        "physical_bytes": 2988,
+        "physical_sha256": "bff363acbf8107d148b6b80efd56aad18d74dbb09e9d255da0550f1a7e7439f6"
+      }
+    ],
+    "source_checkpoint": "c4baf6d1dcf81a53cbf1e58abf87e18e4c500711",
+    "run_id": 40714963358,
+    "attempt": 1,
+    "job_id": 122910040136,
+    "named_targets": [
+      "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
+      "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+      "JurisLean.Candidates.LearningBoundary20261027.pointWeight_is_probability",
+      "JurisLean.Candidates.LearningBoundary20261027.u01_3_two_worlds_same_training_uncontrolled_deployment",
+      "JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse",
+      "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default"
+    ],
+    "frozen_paragraphs": [
+      {
+        "line": 101,
+        "text": "分别研究：A固定机制与规则，仅更新 θ；B更新材料→特征/概念映射 φ，但符号概念定义不变；C更新机制 E_mech 或概念形式定义。明确每类需要保持的观察集合 O 和交换关系。对 B，给出 φ前后特征值变化但语义目标不变的条件；对 C，不允许简单沿用 A 的预测验证证书。"
+      },
+      {
+        "line": 103,
+        "text": "请给一张有限类型表：更新对象、能改变的输出、不能改变的对象、必须重证的性质、所需外部授权。该表是提议合同，不是对现实代理的执行许可。以同一文本的标签重命名与真正改变法律类别的区别作反例。"
+      }
+    ],
+    "S13_line220": "φ变化的语义保持为声明观察o的解码d_o满足d_o(φ(x))=目标o(x)，新φ′也满足同式；特征值可以重编码而目标观察不变。仅重命名类别应携带双射和解码，改“已付款”为“已清偿”无这种语义等价。机制/概念定义变更须重证相应观察及授权，不复用单纯θ预测证书。",
+    "accepted_pr129_logs": [
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 4327,
+        "line_end": 4329,
+        "exact_excerpt": "info: JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean:39:0: JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer {X Z Z' Y : Type} (phi : X → Z) (b : Z ≃ Z')\n  (g : Z → Y) (x : X) : (fun z' => g (b.symm z')) (b (phi x)) = g (phi x)\ninfo: JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean:40:0: 'JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer' depends on axioms: [propext, Quot.sound]"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 4357,
+        "line_end": 4363,
+        "exact_excerpt": "info: JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean:51:0: JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse {Ω Z Z' Y : Type}\n  [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (phi : Ω → Z) (b : Z → Z')\n  (back : Z' → Z) (g : Z → Y) (inverse_on_used : ∀ (ω : Ω), back (b (phi ω)) = phi ω) (loss : Y → Ω → ℝ) :\n  ∫ (ω : Ω), loss (g (back (b (phi ω)))) ω ∂μ = ∫ (ω : Ω), loss (g (phi ω)) ω ∂μ\ninfo: JurisLean/Candidates/U13_3DebtClosureAudit20261028.lean:52:0: 'JurisLean.Candidates.U13_3DebtClosureAudit20261028.same_loss_risk_under_used_inverse' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 9614,
+        "line_end": 9616,
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:327:0: JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer {X Z Z' Y : Type} (phi : X → Z) (b : Z ≃ Z')\n  (g : Z → Y) (x : X) : (fun z' => g (b.symm z')) (b (phi x)) = g (phi x)\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:328:0: 'JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer' depends on axioms: [propext, Quot.sound]"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 9823,
+        "line_end": 9831,
+        "exact_excerpt": "info: JurisLean/Candidates/Final20261021/AxiomAudit.lean:377:0: JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7 :\n  JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.post1.state = 3 ∧\n    JurisLean.Candidates.Final20261021.Ledger.balance JurisLean.Candidates.Final20261021.Acceptance.post2.state = 0 ∧\n      JurisLean.Candidates.Final20261021.Acceptance.post2.state.allocated = 10 ∧\n        JurisLean.Candidates.Final20261021.Acceptance.post2.state.paid = 14 ∧\n          JurisLean.Candidates.Final20261021.Acceptance.post2.state.surplus = 4\ninfo: JurisLean/Candidates/Final20261021/AxiomAudit.lean:378:0: 'JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 30746,
+        "line_end": 30746,
+        "exact_excerpt": "info: JurisLean/AxiomAudit.lean:2111:0: 'JurisLean.Seams.Representation.obsModel_roundTrip' does not depend on any axioms"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 30750,
+        "line_end": 30750,
+        "exact_excerpt": "info: JurisLean/AxiomAudit.lean:2115:0: 'JurisLean.Seams.Representation.representation_observations_preserved' does not depend on any axioms"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\lake-clean-build.log",
+        "file_sha256": "67342e1e944327d9de03a818b6556b410025373a40c71d89e52f9436dd8a2b1b",
+        "line_start": 32784,
+        "line_end": 32786,
+        "exact_excerpt": "info: JurisLean/AxiomAudit.lean:3471:0: 'JurisLean.Seams.UnifiedQuantLedger.discharged_iff_paid_covered' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 5241,
+        "line_end": 5241,
+        "exact_excerpt": "'JurisLean.Seams.Representation.obsModel_roundTrip' does not depend on any axioms"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 5245,
+        "line_end": 5245,
+        "exact_excerpt": "'JurisLean.Seams.Representation.representation_observations_preserved' does not depend on any axioms"
+      },
+      {
+        "path": "D:\\tmp\\original12-1-2-pr129-r1\\independent-inputs\\axiom-audit.raw.txt",
+        "file_sha256": "809ccaf16be3011d03e326af104df01b40c1aa30f9a2508741a3537d49a4061f",
+        "line_start": 7279,
+        "line_end": 7281,
+        "exact_excerpt": "'JurisLean.Seams.UnifiedQuantLedger.discharged_iff_paid_covered' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+      }
+    ],
+    "scope": "Finite A/B/C proposal contracts, independently declared observations and commuting relations; used-domain inverse risk transport under same measure/loss/predictor, and same-material renaming/category-change counterexample. External authorization/validation remain explicit conditions."
+  },
+  "staged_diff_check": {
+    "receipt": "D:\\tmp\\original13-1-records-20261106\\index-stage-r1-receipt.json",
+    "full_command": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "authored_command_if_raw_whitespace": [
+      "git",
+      "-c",
+      "core.whitespace=cr-at-eol",
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      ".",
+      ":(exclude)docs/formal-release/evidence/original13-1-rsi-noninterference-close-20261106/changed-module.log"
+    ],
+    "raw_preserved": true,
+    "result_authority": "Actual process exits and diagnostic lines in the receipt; no pre-filled PASS."
+  }
+}

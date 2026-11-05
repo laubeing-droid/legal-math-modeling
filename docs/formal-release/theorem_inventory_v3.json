@@ -17352,6 +17352,26 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "admitted_statistics_change_case_value_under_fixed_rules"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.RSI"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/RSIAdmittedStatistics20261106.lean",
+   "print_axioms_targets": [
+    "admitted_statistics_change_case_value_under_fixed_rules"
+   ],
+   "sha256": "b94d720d3a18f9dacac1473424abc23107cd19e756e0d819464428b33133400a",
+   "size_bytes": 2506,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "radiusVerified"
     },
@@ -64350,6 +64370,7 @@
     "JurisLean.Candidates.PendingCommit20261027",
     "JurisLean.Candidates.PolicyPredictionBoundary20261106",
     "JurisLean.Candidates.ProtocolDependencyAudit20261105",
+    "JurisLean.Candidates.RSIAdmittedStatistics20261106",
     "JurisLean.Candidates.RepresentationRefinementAudit20261105",
     "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104",
     "JurisLean.Candidates.SemanticIndependenceAudit20261104",
@@ -64624,8 +64645,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "e7e5e9977a2dd50d0da869c54979677ebca4953b094ab43343433354ffa5391e",
-   "size_bytes": 17072,
+   "sha256": "3886cb82f9d237406371467194cc88c2e18118deec2ef71cfa93e3af2b7ca5f5",
+   "size_bytes": 17130,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -64797,22 +64818,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6571,
-   "file_count": 595,
+   "counted_declaration_count": 6572,
+   "file_count": 596,
    "lemma_count": 146,
-   "print_axioms_command_count": 6051,
-   "print_axioms_distinct_targets": 5423,
-   "theorem_count": 6425,
-   "theorem_count_bol_convention": 6325
+   "print_axioms_command_count": 6052,
+   "print_axioms_distinct_targets": 5424,
+   "theorem_count": 6426,
+   "theorem_count_bol_convention": 6326
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6552,
-   "file_count": 580,
+   "counted_declaration_count": 6553,
+   "file_count": 581,
    "lemma_count": 139,
-   "print_axioms_command_count": 6051,
-   "print_axioms_distinct_targets": 5423,
-   "theorem_count": 6413,
-   "theorem_count_bol_convention": 6313
+   "print_axioms_command_count": 6052,
+   "print_axioms_distinct_targets": 5424,
+   "theorem_count": 6414,
+   "theorem_count_bol_convention": 6314
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -64986,6 +65007,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RSIAdmittedStatistics20261106.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
@@ -65579,6 +65601,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RSIAdmittedStatistics20261106.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
@@ -66044,17 +66067,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "95d069527a4e4db3292cbfddc9c31f3c50b8130a04853143545e76dc57e86ab7",
+ "source_inventory_digest": "edf6d3aba52f8ff94f2bbae4eae19ed319a7cb2b53d3f42e220cc52e4cfd1983",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original12-1-2-policy-response-20261106",
-  "commit": "56e0a0ee2860423c1cf30f591faaf86b03d69c1a",
-  "tree": "858a766ae51511915a6fb281bcfedc30371a5a58"
+  "branch": "formal/close-original13-1-rsi-noninterference-20261106",
+  "commit": "f21d511dc837f42bd35d0b4a3b79090be55bb8c1",
+  "tree": "cdc11bc68bf79414544a2f714fa7912a77e04ef1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 595,
+  "files_total": 596,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

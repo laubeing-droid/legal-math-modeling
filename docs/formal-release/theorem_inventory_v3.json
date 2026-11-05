@@ -16905,6 +16905,140 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "BusinessView"
+    },
+    {
+     "kind": "def",
+     "name": "project"
+    },
+    {
+     "kind": "def",
+     "name": "Ref"
+    },
+    {
+     "kind": "def",
+     "name": "payEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "project_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_payment_projects"
+    },
+    {
+     "kind": "theorem",
+     "name": "pay_effect_receipt_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "pay_effect_not_stutter"
+    },
+    {
+     "kind": "def",
+     "name": "refreshEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_refresh_projects"
+    },
+    {
+     "kind": "def",
+     "name": "queryAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "historical_query_parameter"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_observation_projection"
+    },
+    {
+     "kind": "def",
+     "name": "payError"
+    },
+    {
+     "kind": "def",
+     "name": "permissionAt"
+    },
+    {
+     "kind": "inductive",
+     "name": "LegalStep"
+    },
+    {
+     "kind": "inductive",
+     "name": "LegalPath"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_payment_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_refresh_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_finite_trace_projects"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_commit_has_no_reported_post"
+    },
+    {
+     "kind": "def",
+     "name": "goodCandidate"
+    },
+    {
+     "kind": "def",
+     "name": "badCandidate"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_terminal_misses_intermediate_authority"
+    },
+    {
+     "kind": "theorem",
+     "name": "codec_does_not_constrain_independent_history"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.DecisionTrajectoryConsumer20261027",
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104",
+    "JurisLean.Seams.UnifiedNeedlesS0S1"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+    "JurisLean.Candidates.ParametricAllocationAudit20261104.l163_equal_total_does_not_fix_identity",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_finite_trace_projects",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_observation_projection",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_legal",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_payment_projects",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_legal",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.actual_refresh_projects",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.codec_does_not_constrain_independent_history",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.historical_query_parameter",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_not_stutter",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.pay_effect_receipt_length",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.project_commit",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.same_terminal_misses_intermediate_authority",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105.unknown_commit_has_no_reported_post",
+    "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_roundTrip"
+   ],
+   "sha256": "ca411d6061ea5d95903c4cf3106b1597521f5a7c71702e3a94bc5292deb79c24",
+   "size_bytes": 18986,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "RefundRule"
     },
     {
@@ -64153,6 +64287,7 @@
     "JurisLean.Candidates.PartialStepGateAudit20261105",
     "JurisLean.Candidates.PendingCommit20261027",
     "JurisLean.Candidates.ProtocolDependencyAudit20261105",
+    "JurisLean.Candidates.RepresentationRefinementAudit20261105",
     "JurisLean.Candidates.RestitutionFiniteClosureAudit20261104",
     "JurisLean.Candidates.SemanticIndependenceAudit20261104",
     "JurisLean.Candidates.SingleDebtStreamAudit20261103",
@@ -64426,8 +64561,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "07b72bfb46fdb031ab0697a6ff040bbc567c59e6113ce1d089df357e81218465",
-   "size_bytes": 16882,
+   "sha256": "804cb2096445e72f2ac298e3d2040fc102eb0e394442c9b3dbb0c432afd58b91",
+   "size_bytes": 16948,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -64599,22 +64734,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 6555,
-   "file_count": 592,
+   "counted_declaration_count": 6568,
+   "file_count": 593,
    "lemma_count": 146,
-   "print_axioms_command_count": 6030,
-   "print_axioms_distinct_targets": 5407,
-   "theorem_count": 6409,
-   "theorem_count_bol_convention": 6309
+   "print_axioms_command_count": 6046,
+   "print_axioms_distinct_targets": 5420,
+   "theorem_count": 6422,
+   "theorem_count_bol_convention": 6322
   },
   "juris_lean_package": {
-   "counted_declaration_count": 6536,
-   "file_count": 577,
+   "counted_declaration_count": 6549,
+   "file_count": 578,
    "lemma_count": 139,
-   "print_axioms_command_count": 6030,
-   "print_axioms_distinct_targets": 5407,
-   "theorem_count": 6397,
-   "theorem_count_bol_convention": 6297
+   "print_axioms_command_count": 6046,
+   "print_axioms_distinct_targets": 5420,
+   "theorem_count": 6410,
+   "theorem_count_bol_convention": 6310
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -64786,6 +64921,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
@@ -65376,6 +65512,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedback20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtectedFeedbackAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/ProtocolDependencyAudit20261105.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/RepresentationRefinementAudit20261105.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/RestitutionFiniteClosureAudit20261104.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
@@ -65840,17 +65977,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "defaed7c4b81c5d8456eecad4dcc8cfe70310590a6d289273723c3d2d21cae03",
+ "source_inventory_digest": "a8fbe69ddaa2da2b4baeaa1b65530110b7eda1b36f183162e8c762949994faa7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/close-original10-6-protocol-dependency-20261105",
-  "commit": "b9a4e2711a43136b0cd3de7ad156636fc016c77f",
-  "tree": "58bff5ac4a0b41827e49e2ad17d52d925b111779"
+  "branch": "formal/close-original10-7-representation-refinement-20261105",
+  "commit": "ab259fa967ac07db1afba4f12e9f3b2c428f4dc4",
+  "tree": "554a2f3c21bb6cd3dac02658c86142cb8eed7b89"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 592,
+  "files_total": 593,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -30768,6 +30768,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/formal-release/evidence/finite-legal-validation-20261027/README.md:47",
         "docs/formal-release/evidence/procedure-closure-20261027/README.md:6"
       ],
       "run_id": 40476074285,
@@ -30830,7 +30831,8 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/formal-release/evidence/finite-legal-validation-20261027/README.md:4"
+        "docs/formal-release/evidence/finite-legal-validation-20261027/README.md:4",
+        "docs/formal-release/evidence/finite-legal-validation-20261027/README.md:47"
       ],
       "run_id": 40482741482,
       "started": true,
@@ -39159,6 +39161,133 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-11-05T13:38:54Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-11-05T15:04:23Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original10-7-representation-refinement-20261105",
+      "head_sha": "3dfe8389c43ab5f342fa524fb9300b0df8747d71",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42051222352",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original10-7-representation-refinement-close-20261105/README.md:50"
+      ],
+      "run_id": 42051222352,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-05T15:07:04Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-05T15:11:04Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/close-original10-7-representation-refinement-20261105",
+      "head_sha": "d9a06696449238581ddecaa5227256a4f6ebebd9",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42052361175",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/original10-7-representation-refinement-close-20261105/README.md:46",
+        "docs/formal-release/evidence/original10-7-representation-refinement-close-20261105/README.md:48",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:256",
+        "docs/handoff/U00_十五条实际消费边复核_20261027.md:257"
+      ],
+      "run_id": 42052361175,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-05T15:13:56Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

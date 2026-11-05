@@ -89,13 +89,16 @@ theorem pay_effect_not_stutter (s : BusinessView) (req : PaymentRequest) :
     payEffect s req ≠ s := by
   intro same
   have lengths := congrArg (fun v : BusinessView => v.receipts.length) same
+  change (payEffect s req).receipts.length = s.receipts.length at lengths
   rw [pay_effect_receipt_length] at lengths
   omega
 
 def refreshEffect (s : BusinessView) (g : Gamma)
     (e : Temporal.VersionRecord) : BusinessView :=
-  { s with gamma := g, revision := s.revision + 1,
-    history := s.history ++ [e],
+  { s with
+    gamma := g
+    revision := s.revision + 1
+    history := s.history ++ [e]
     env := Temporal.proposed_applicability g (s.history ++ [e]) }
 
 theorem actual_refresh_projects (grants : List Authorization.Grant)

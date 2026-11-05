@@ -200,6 +200,7 @@ import JurisLean.Candidates.U11_1NamedCausalBridge20261030
 import JurisLean.Candidates.U12_3PolicyLearningAudit20261030
 import JurisLean.Candidates.U13_4ColdStartFallback20261030
 import JurisLean.Candidates.U13_4ColdStartFallbackAudit20261030
+import JurisLean.Candidates.U14_4LearnerProxyWitness20261106
 import JurisLean.Candidates.W6JudgmentCashAudit20261104
 import JurisLean.Candidates.WitnessedCashAllocationAudit20261104
 import JurisLean.CanonicalSerialization

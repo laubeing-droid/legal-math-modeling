@@ -10,11 +10,11 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "dd6a0c252b0da4d23dfa04fb008612457626c47db3fd76007d36fae4ccf453ed",
-      "bytes": 981
+      "sha256": "bbc254ce7803fc9cd17d1d81b3e315d20452e328ffc1a295de2064007240ec64",
+      "bytes": 1175
     },
     {
-      "path": "axiom-audit/axiom-audit.raw.txt",
+      "path": "changed-module-audit/axiom-audit.extracted.txt",
       "sha256": "1d747f737dd22f2f64237f23ea11e9711b09e2f9e1ec84ddba2e0b52e4f25dac",
       "bytes": 97152
     },
@@ -28,5 +28,9 @@
       "sha256": "4fe90dd87a06f4adc579ad7acb522324952e38fc8f0403306518d02b9d6eb2a3",
       "bytes": 249
     }
-  ]
+  ],
+  "scope": {
+    "kind": "changed-module",
+    "module": "JurisLean.CN.Completion20261105.Acceptance"
+  }
 }

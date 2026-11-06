@@ -23,6 +23,7 @@ theorem count that spans 216 files cannot be certified by scanning 201 of them.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -92,6 +93,31 @@ def strip_comments(line: str, block_depth: int) -> tuple[str, int]:
     return "".join(result), block_depth
 
 
+def reviewed_admission_identifier_lines(path: Path, source_bytes: bytes) -> frozenset[int]:
+    """Four reviewed identifier lines, bound to exact unchanged source bytes.
+
+    Do not infer a Lean syntactic context: interpolation and multiline tactics
+    make lexical masking unsafe. These two frozen CN files use admit only as
+    an admission function, enum name or wire label. Any byte change, different
+    file, or other line falls back to the original fail-closed token scan.
+    The exception is not a Lean proof or a substitute for the CI axiom audit.
+    """
+    reviewed = {
+        "proofs/lean/juris_lean/JurisLean/CN/World.lean": (
+            "178afb9d0cfcf9a3b00d3e283acafa55df4e0524a507048ef53f57ede3c68006", frozenset({65})),
+        "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean": (
+            "1f54cca37ed039bcde7588bb0852ac433ad3196914a9bd647d8c1c0e440d4c62", frozenset({17, 35, 47})),
+    }
+    try:
+        rel = path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return frozenset()
+    expected = reviewed.get(rel)
+    if expected is None or hashlib.sha256(source_bytes).hexdigest() != expected[0]:
+        return frozenset()
+    return expected[1]
+
+
 def tracked_lean_files() -> list[Path]:
     out = subprocess.run(
         ["git", "ls-files", "*.lean"],
@@ -112,13 +138,17 @@ def scan_file(path: Path) -> tuple[list[str], dict[str, int]]:
     issues: list[str] = []
     census: dict[str, int] = {}
     block_depth = 0
+    source_bytes = path.read_bytes()
+    reviewed_admission = reviewed_admission_identifier_lines(path, source_bytes)
     for lineno, raw_line in enumerate(
-        path.read_text(encoding="utf-8").splitlines(), start=1
+        source_bytes.decode("utf-8").splitlines(), start=1
     ):
         code, block_depth = strip_comments(raw_line, block_depth)
         if not code.strip():
             continue
         for label, pattern in FORBIDDEN_PATTERNS:
+            if label == "admit tactic" and lineno in reviewed_admission:
+                continue
             if pattern.search(code):
                 issues.append(f"{path}:{lineno}: {label}: {code.strip()}")
         for tactic in TACTIC_VOCAB:

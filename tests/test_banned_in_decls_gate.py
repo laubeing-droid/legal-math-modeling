@@ -116,3 +116,55 @@ def test_the_working_tree_passes_and_covers_files_git_has_never_seen():
         f"{tracked_count}; the scan scope has narrowed"
     )
     assert "0 violations" in proc.stdout
+
+
+def test_reviewed_admission_identifiers_are_byte_bound(tmp_path):
+    from scripts.scan_lean_guards import scan_file as guard_scan
+    from scripts.scan_lean_guards import reviewed_admission_identifier_lines
+    for rel, expected in [("CN/World.lean", {65}), ("CN/Completion20261105/Runtime.lean", {17, 35, 47})]:
+        source = ROOT / "proofs/lean/juris_lean/JurisLean" / rel
+        assert reviewed_admission_identifier_lines(source, source.read_bytes()) == expected
+        assert scan_file(source)[0] == []
+        assert guard_scan(source)[0] == []
+        copy = tmp_path / source.name
+        copy.write_bytes(source.read_bytes())
+        assert reviewed_admission_identifier_lines(copy, copy.read_bytes()) == set()
+        assert any("admit tactic" in v for v in scan_file(copy)[0])
+        assert any("admit tactic" in v for v in guard_scan(copy)[0])
+
+
+def test_admit_tactics_remain_forbidden_in_identifier_contexts(tmp_path):
+    from scripts.scan_lean_guards import scan_file as guard_scan
+    samples = [
+        "def admit : Nat := by admit",
+        "theorem hole : 1 = 2 := by admit",
+        "inductive X\n  | mk : (by admit : Type) -> X",
+        "inductive X\n  | admit\ntheorem hole : 1 = 2 := by\n  admit",
+        'def f : String := by\n  let s := "admit"\n  admit',
+        "theorem hole : 1 = 2 := by first | admit | rfl",
+        "inductive X\n | mk : (by first\n | admit\n : Type) -> X",
+        "inductive X (n : Nat := by first\n | admit\n) where\n | mk : X n",
+        'def hole : String := s!"{(by admit : Nat)}"',
+        "inductive X\n  | mk\nprivate theorem hole : 1 = 2 := by\n  first\n  | admit\n  | rfl",
+        "inductive X\n  | mk\n@[simp] theorem hole : 1 = 2 := by\n  first\n  | admit\n  | rfl",
+    ]
+    for i, sample in enumerate(samples):
+        path = write(tmp_path, f"Hole{i}.lean", sample.splitlines())
+        assert any("admit tactic" in v for v in scan_file(path)[0]), sample
+        assert any("admit tactic" in v for v in guard_scan(path)[0]), sample
+
+
+def test_guard_hash_and_scan_share_one_byte_snapshot():
+    from unittest.mock import patch
+    from scripts.scan_lean_guards import scan_file as guard_scan
+    source = ROOT / "proofs/lean/juris_lean/JurisLean/CN/World.lean"
+    original = source.read_bytes()
+    changed = original.replace(b"def admit (s : Sit) : Sit :=", b"def admit (s : Sit) : Sit := by admit --")
+    for scanner in (scan_file, guard_scan):
+        with patch.object(Path, "read_bytes", side_effect=[original, changed]) as read:
+            with patch.object(Path, "read_text", side_effect=AssertionError("second source read")):
+                assert scanner(source)[0] == []
+            assert read.call_count == 1
+        with patch.object(Path, "read_bytes", return_value=changed) as read:
+            assert any("admit tactic" in v for v in scanner(source)[0])
+            assert read.call_count == 1

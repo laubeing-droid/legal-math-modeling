@@ -2,6 +2,10 @@
 
 `legal-math-modeling` 是一个证据范围受限的法律推理形式化规范仓库。Lean 证明的是仓库中明确写出的数学命题，不等于证明整个法律系统、生产运行时或具体法律结论正确。
 
+## 统一法律数学理论入口
+
+从[统一理论阅读入口](docs/UNIFIED_THEORY.md)开始：依次阅读统一数学问题、ULM01–ULM16 主论文、中国法有限表达域构造、具名 Lean 源码和准确提交的证据。main 统一呈现成果，不把整合完成等同于全部数学目标或法律适用性已经证明。
+
 ## 已验证快照
 
 本文档所指向的最新不可变 full-release 证据是 GitHub Actions [run 34669383636](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/34669383636)，attempt 1；subject commit 为 `013aadbf289b6f331f625b2aeacdba591fae0a0b`，tree 为 `52add31192dbfd0e3c093bca5c2a6b754528e880`。详见[落地报告](docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md)。

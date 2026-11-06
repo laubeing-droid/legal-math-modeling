@@ -1,5 +1,8 @@
--- JurisLean root module
+﻿-- JurisLean root module
 import JurisLean.Basic
+import JurisLean.CN.Walls
+import JurisLean.CN.World
+import JurisLean.CN.Ops
 import JurisLean.Candidates.MeasurementLikelihoodAudit20261027
 import JurisLean.Candidates.LearningTheoryAudit20261027
 import JurisLean.Candidates.U03DebtClosureAudit20261027
@@ -106,6 +109,37 @@ import JurisLean.BanachContraction
 import JurisLean.BanachFixedPoint
 import JurisLean.BanachScratch
 import JurisLean.BanachWeightedNorm
+import JurisLean.CN.Completion20261105
+import JurisLean.CN.Completion20261105.Acceptance
+import JurisLean.CN.Completion20261105.Algebra
+import JurisLean.CN.Completion20261105.Checkpoint1
+import JurisLean.CN.Completion20261105.Checkpoint2
+import JurisLean.CN.Completion20261105.Edges
+import JurisLean.CN.Completion20261105.EffectIR
+import JurisLean.CN.Completion20261105.EngineConsumers
+import JurisLean.CN.Completion20261105.EngineExamples
+import JurisLean.CN.Completion20261105.EngineTypes
+import JurisLean.CN.Completion20261105.EvidenceInstitutions
+import JurisLean.CN.Completion20261105.Examples
+import JurisLean.CN.Completion20261105.Exchange
+import JurisLean.CN.Completion20261105.Execution
+import JurisLean.CN.Completion20261105.FinancialMerge
+import JurisLean.CN.Completion20261105.Foundation
+import JurisLean.CN.Completion20261105.InstitutionRules
+import JurisLean.CN.Completion20261105.Institutions
+import JurisLean.CN.Completion20261105.OperationalReady
+import JurisLean.CN.Completion20261105.Operators
+import JurisLean.CN.Completion20261105.Payloads
+import JurisLean.CN.Completion20261105.PolicyIR
+import JurisLean.CN.Completion20261105.Program
+import JurisLean.CN.Completion20261105.QuietHistory
+import JurisLean.CN.Completion20261105.Ready
+import JurisLean.CN.Completion20261105.Runtime
+import JurisLean.CN.Completion20261105.State
+import JurisLean.CN.Completion20261105.WorldSemantics
+import JurisLean.CN.Revision20261101.Ops
+import JurisLean.CN.Revision20261101.Rights
+import JurisLean.CN.Revision20261101.World
 import JurisLean.Candidates.AuthorizationClosureAudit20261104
 import JurisLean.Candidates.BernoulliMeanInstance20261031
 import JurisLean.Candidates.BetaEnclosureInstance20261031

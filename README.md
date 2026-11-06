@@ -2,6 +2,10 @@
 
 `legal-math-modeling` is a source-bounded formal specification repository for selected legal-reasoning structures. Lean proves statements about the models written here; it does not prove that an entire legal system, production runtime, or legal conclusion is correct.
 
+## Unified theory: start here
+
+Read the [unified theory guide](docs/UNIFIED_THEORY.md) for the mathematical structure, ULM01–ULM16 manuscripts, bounded Chinese-law construction, source entry points, and exact evidence boundaries. This is the single reading route through the integrated main, not a claim that every mathematical or legal target is complete.
+
 ## Verified snapshot
 
 The latest immutable full-release evidence described by this documentation is GitHub Actions run [34669383636](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/34669383636), attempt 1, for subject commit `013aadbf289b6f331f625b2aeacdba591fae0a0b` and tree `52add31192dbfd0e3c093bca5c2a6b754528e880`. See the [landing report](docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md).

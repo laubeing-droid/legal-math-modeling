@@ -16,6 +16,10 @@ No narrative document can upgrade `UNKNOWN`, `SKIP`, `TIMEOUT`, stale evidence, 
 
 The `master-plan/` construction ledger organizes work and freezes design baselines at the narrative level. It does not override the authority order above: source code, machine-readable schemas, and CI artifacts remain authoritative over it.
 
+## Unified theory
+
+[统一法律数学理论阅读入口](UNIFIED_THEORY.md) connects the general theory, manuscripts, bounded Chinese-law construction, formal sources, and evidence boundaries without upgrading historical claims.
+
 ## Start here
 
 | Reader | Documents |
@@ -34,7 +38,7 @@ The `master-plan/` construction ledger organizes work and freezes design baselin
 
 | Path | Role | Evidence class |
 |---|---|---|
-| `formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md` | Exact snapshot for run 34669383636 (current head) | Immutable-run report |
+| `formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md` | Exact snapshot for run 34669383636 (historical subject) | Immutable-run report |
 | `formal-release/FINAL_FORMAL_RELEASE_REPORT.md` | Exact snapshot for run 33946211096 (prior subject) | Immutable-run report |
 | `formal-release/FORMAL_RELEASE_REPORT.md` | Stable release pipeline and interpretation | Process contract |
 | `formal-release/CERTIFICATE_SCHEMA_V2.md` | Certificate fields and gate rule | Schema contract |

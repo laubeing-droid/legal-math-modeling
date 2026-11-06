@@ -1,0 +1,860 @@
+{
+  "status": "PASS",
+  "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+  "branch": "paper/codex-cn-ops-v4-20261101",
+  "obligations": [
+    {
+      "id": "C1",
+      "original_promise": "v4 sections 2-5; P1/P3/P5/P12",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.legalWorldCheck_sound",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 41,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L41"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.shared_actual_reduction",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 65,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L65"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.legalDispatch_success_nonempty",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 287,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L287"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.ready_refines_all_supported_worlds",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean",
+          "line": 84,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean#L84"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.first_admission_narrows_semantic_K",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean",
+          "line": 166,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean#L166"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.executeCommand",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 259,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L259"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.legalDispatch",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 165,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L165"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.checkPost",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 78,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L78"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.runBoundEngine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 40,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L40"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "C2",
+      "original_promise": "v3 sections 1-3; v4 sections 3/8 P6/P7",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.EffectIR.adjust_append",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EffectIR.lean",
+          "line": 55,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EffectIR.lean#L55"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.actual_assignments_commute",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+          "line": 213,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean#L213"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.commute_true_actual_calls",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+          "line": 310,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean#L310"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.cross_read_counterexample",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Exchange.lean",
+          "line": 115,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Exchange.lean#L115"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.program_bind_assoc",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean",
+          "line": 60,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean#L60"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.program_has_actual_history",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean",
+          "line": 81,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean#L81"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.money_measure_has_matching_tags",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+          "line": 108,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean#L108"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.runOperator",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+          "line": 265,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean#L265"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.assignmentQuery",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+          "line": 194,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean#L194"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.runProgram",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean",
+          "line": 26,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean#L26"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "C3",
+      "original_promise": "v4 section 6, twelve representative institutions",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.lifecycle_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 75,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L75"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.revoke_without_fictitious_formed",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 97,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L97"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.agency_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 112,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L112"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.apparent_actual_attribution",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 133,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L133"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.jurisdiction_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 147,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L147"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.evidence_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 156,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L156"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.acquisition_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 187,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L187"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Acceptance.actual_shared_event_different_charges",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean",
+          "line": 78,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean#L78"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.bankruptcy_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 227,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L227"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.compensation_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 244,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L244"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.rights_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 255,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L255"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.interpretation_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 264,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L264"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.resJudicata_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 281,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L281"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.proposal_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 289,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L289"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.callInstitution",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 139,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L139"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.burdenEvidence",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean",
+          "line": 35,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean#L35"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.acquisitionEvidence",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean",
+          "line": 39,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean#L39"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.offenseEvidence",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean",
+          "line": 58,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean#L58"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.storedResJudicata",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean",
+          "line": 80,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean#L80"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "C4",
+      "original_promise": "v4 section 7.2, eight named native consumers",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.fit_uses_actual_sample",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 214,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L214"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.probability_uses_actual_posterior",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 229,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L229"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.causal_actual_identified_value",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 246,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L246"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.bargain_actual_allowed_maximum",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 262,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L262"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.performance_success_conserves",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Edges.lean",
+          "line": 175,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Edges.lean#L175"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.exact_native_meaning",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 290,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L290"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.behavior_model_does_not_filter_illegal_action",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 294,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L294"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.rsi_actual_post_budget",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+          "line": 301,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean#L301"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.reduction_source_conserves",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/FinancialMerge.lean",
+          "line": 61,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/FinancialMerge.lean#L61"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.callEngine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 16,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L16"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.runBoundEngine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 40,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L40"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.learnReport",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 73,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L73"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.performCall",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/FinancialMerge.lean",
+          "line": 110,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/FinancialMerge.lean#L110"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "C5",
+      "original_promise": "B8 scoped runtime and v4/A10 readiness connection",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.legal_success_operational_pre",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean",
+          "line": 36,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean#L36"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.legal_success_ready_contract",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean",
+          "line": 70,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean#L70"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.permissionDispatch_success_ready",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+          "line": 340,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean#L340"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Law.gateFor_success_ready",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Institutions.lean",
+          "line": 58,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Institutions.lean#L58"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.actual_legal_step_semantic_ready",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean",
+          "line": 103,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean#L103"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.decoded_call_refines",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 165,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L165"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.decoded_value_is_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 197,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L197"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.malformed_keeps_state",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 175,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L175"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.serveLine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 200,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L200"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.runLine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 153,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L153"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.invoke",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 148,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L148"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.executeCommand",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+          "line": 259,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean#L259"
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "C6",
+      "original_promise": "F01-F14 and A01-A12; owner S1-S6/D1-D7",
+      "proofs": [
+        {
+          "name": "JurisLean.CN.Completion20261105.Acceptance.three_unknown_exits_are_actual",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean",
+          "line": 107,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean#L107"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Acceptance.actual_conflict_is_suspended",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean",
+          "line": 112,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean#L112"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Acceptance.three_other_sources_stay_separate",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean",
+          "line": 134,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean#L134"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Examples.no_source_no_model_judgment",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+          "line": 273,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean#L273"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.no_authority_no_legal_change",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean",
+          "line": 78,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean#L78"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.FiveHistory.no_new_decision_binding",
+          "kind": "theorem",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/QuietHistory.lean",
+          "line": 88,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/QuietHistory.lean#L88"
+        }
+      ],
+      "actual_consumers": [
+        {
+          "name": "JurisLean.CN.Completion20261105.runProgram",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean",
+          "line": 26,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean#L26"
+        },
+        {
+          "name": "JurisLean.CN.Completion20261105.Runtime.runLine",
+          "kind": "def",
+          "file": "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+          "line": 153,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/218050693a8c87e4b80cbe01f00b81b1005e2321/proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean#L153"
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "ci": {
+    "status": "PASS",
+    "mode": "changed-module",
+    "run": 41934457964,
+    "attempt": 1,
+    "job": 126939305754,
+    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/41934457964",
+    "subject": "218050693a8c87e4b80cbe01f00b81b1005e2321",
+    "tree": "cba667a34343496c1be1ced94ed19d49bce66475",
+    "target": "JurisLean.CN.Completion20261105",
+    "plan_scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE",
+    "artifact": {
+      "id": 13373651719,
+      "node_id": "MDg6QXJ0aWZhY3QxMzM3MzY1MTcxOQ==",
+      "name": "changed-module-only-41934457964-1",
+      "size_in_bytes": 15376,
+      "url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/artifacts/13373651719",
+      "archive_download_url": "https://api.github.com/repos/laubeing-droid/legal-math-modeling/actions/artifacts/13373651719/zip",
+      "expired": false,
+      "digest": "sha256:24e702f6098b90f055ddb7f27e6360807779fa29e0a5f518bf615cf201e5375a",
+      "created_at": "2026-11-04T23:36:54Z",
+      "updated_at": "2026-11-04T23:36:54Z",
+      "expires_at": "2027-02-02T23:32:03Z",
+      "workflow_run": {
+        "id": 41934457964,
+        "repository_id": 1270411018,
+        "head_repository_id": 1270411018,
+        "head_branch": "paper/codex-cn-ops-v4-20261101",
+        "head_sha": "218050693a8c87e4b80cbe01f00b81b1005e2321"
+      }
+    },
+    "axiom_targets": 104,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sorryAx": 0,
+    "error_count": 0,
+    "IO_markers": [
+      "CN_EIGHT_NATIVE_CONSUMERS_PASS; RSI_ACTUAL_POST_RETAINED",
+      "CN_SHARED_REDUCTION_ONE_CASH_PASS",
+      "CN_SCOPE_ACCEPTANCE_PASS",
+      "CN_FINAL_SCOPE_ACCEPTANCE_PASS"
+    ],
+    "skipped_jobs": [
+      "runtime-refinement",
+      "python-gates",
+      "mathematics-completion",
+      "seven-axis-acceptance",
+      "release-certificate",
+      "lean-full-clean-build",
+      "final-gate"
+    ],
+    "raw_evidence_directory": "D:/tmp/cn-unification-20261105-evidence/41934457964"
+  },
+  "merge": "MERGE_PENDING_D1",
+  "preserved_v4_theorem_count": 42,
+  "source_files": [
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Acceptance.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Algebra.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Checkpoint1.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Checkpoint2.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Edges.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EffectIR.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineConsumers.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineExamples.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EngineTypes.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/EvidenceInstitutions.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Examples.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Exchange.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Execution.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/FinancialMerge.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Foundation.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/InstitutionRules.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Institutions.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/OperationalReady.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Operators.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Payloads.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/PolicyIR.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Program.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/QuietHistory.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Ready.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/Runtime.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/State.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105/WorldSemantics.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Completion20261105.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Ops.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Revision20261101/Ops.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Revision20261101/Rights.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Revision20261101/World.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/Walls.lean",
+    "proofs/lean/juris_lean/JurisLean/CN/World.lean"
+  ],
+  "intermediate_acceptance": {
+    "source": "0798e587",
+    "run": 41932216251,
+    "module": "JurisLean.CN.Completion20261105.Acceptance",
+    "status": "PASS_INTERMEDIATE_ONLY"
+  },
+  "baseline_alignment": {
+    "zcode_branch": "paper/cn-walls-20261031",
+    "zcode_commit": "8a367135",
+    "identical_blobs": {
+      "Walls.lean": "10e9753ba22feae8223689019bea354ffe8d884c",
+      "Ops.lean": "5bbac252840287d3acc827c8a876dab0d8e1dad9",
+      "World.lean": "561da330968039678876f3c7a1e536933bc97ed6"
+    },
+    "revision_42_theorems_unchanged": true,
+    "native_and_KernelV3_diff_from_base": []
+  },
+  "outside_scope": [
+    "all Chinese-law coverage",
+    "97 original mainline obligations",
+    "full-release",
+    "DeepInfer/workbench deployment",
+    "automatic merge into main"
+  ],
+  "native_origins": [
+    {
+      "engine": "fit",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean",
+      "declarations": [
+        {
+          "declaration": "fitTable",
+          "line": 56,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean#L56"
+        },
+        {
+          "declaration": "u01_6_fit_card_minimizes_actual_sample",
+          "line": 97,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean#L97"
+        }
+      ]
+    },
+    {
+      "engine": "prob",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "declarations": [
+        {
+          "declaration": "proposed_probability_model",
+          "line": 45,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean#L45"
+        },
+        {
+          "declaration": "posterior_mass",
+          "line": 49,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean#L49"
+        }
+      ]
+    },
+    {
+      "engine": "causal",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean",
+      "declarations": [
+        {
+          "declaration": "selectionRecoveryValue",
+          "line": 51,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean#L51"
+        },
+        {
+          "declaration": "selected_weight_recovery",
+          "line": 129,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/CausalSelection20261027.lean#L129"
+        }
+      ]
+    },
+    {
+      "engine": "bargain",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "declarations": [
+        {
+          "declaration": "legalBest",
+          "line": 66,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L66"
+        },
+        {
+          "declaration": "legal_best_sound",
+          "line": 69,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L69"
+        }
+      ]
+    },
+    {
+      "engine": "cash",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "declarations": [
+        {
+          "declaration": "performance",
+          "line": 69,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean#L69"
+        },
+        {
+          "declaration": "u09_1_quantity_conservation",
+          "line": 96,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean#L96"
+        },
+        {
+          "declaration": "performance_cash_consistent",
+          "line": 91,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean#L91"
+        },
+        {
+          "declaration": "writeOff",
+          "line": 126,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean#L126"
+        },
+        {
+          "declaration": "writeoff_conserves",
+          "line": 142,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean#L142"
+        }
+      ]
+    },
+    {
+      "engine": "exact",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "declarations": [
+        {
+          "declaration": "addValues",
+          "line": 114,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L114"
+        },
+        {
+          "declaration": "evalExact",
+          "line": 84,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L84"
+        },
+        {
+          "declaration": "u06_3_eval_exists",
+          "line": 96,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L96"
+        },
+        {
+          "declaration": "u06_3_eval_unique",
+          "line": 102,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean#L102"
+        }
+      ]
+    },
+    {
+      "engine": "behave",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean",
+      "declarations": [
+        {
+          "declaration": "preparationUtility",
+          "line": 19,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean#L19"
+        },
+        {
+          "declaration": "finite_response_payoffs",
+          "line": 22,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/PolicyResponse20261027.lean#L22"
+        }
+      ]
+    },
+    {
+      "engine": "rsi",
+      "source_base": "b3bdaed60c59907260b74fbf9d5aea01ab4c7854",
+      "file": "proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean",
+      "declarations": [
+        {
+          "declaration": "finishAdaptiveRound",
+          "line": 150,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean#L150"
+        },
+        {
+          "declaration": "finish_round_preserves_budget",
+          "line": 224,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean#L224"
+        },
+        {
+          "declaration": "assessed_load_comes_from_actual_activation",
+          "line": 303,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean#L303"
+        },
+        {
+          "declaration": "recorded_load_is_actual_next_service",
+          "line": 315,
+          "url": "https://github.com/laubeing-droid/legal-math-modeling/blob/b3bdaed60c59907260b74fbf9d5aea01ab4c7854/proofs/lean/juris_lean/JurisLean/Candidates/AdaptiveRoundLedger20261027.lean#L315"
+        }
+      ]
+    }
+  ],
+  "scope": "Original represented CN operator-unification commitments C1-C6",
+  "source_subject": "218050693a8c87e4b80cbe01f00b81b1005e2321",
+  "source_tree": "cba667a34343496c1be1ced94ed19d49bce66475",
+  "remaining_current_scope_obligations": [],
+  "retained_input_or_owner_boundaries": [
+    "Actual source/authority/receipt authenticity is an original external input contract, not established by CI.",
+    "lawNotWritten/inputUnchecked/systemNotJudge are distinct legal outputs.",
+    "Historical ZCode CI exception authorization remains UNKNOWN.",
+    "D1 merge choice and post-integration subject validation are pending owner action; no main merge executed."
+  ],
+  "handoff_directory": "D:/Codex/1.法律工作区/legal-math-modeling工作区/20261025_法律模型三轨_Qoder交接/03_法律运行系统/20261105_Codex施工_算子统一"
+}

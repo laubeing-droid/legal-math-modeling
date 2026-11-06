@@ -34,6 +34,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from lean_grammar import strip_comments  # noqa: E402
+from scan_lean_guards import reviewed_admission_identifier_lines  # noqa: E402
 
 BANNED = (
     ("sorry tactic", re.compile(r"\bsorry\b")),
@@ -80,7 +81,8 @@ def display(path: Path) -> str:
 def scan_file(path: Path) -> tuple[list[str], int]:
     """Return (violations, declarations inspected) for one file."""
 
-    text = path.read_text(encoding="utf-8")
+    source_bytes = path.read_bytes()
+    text = source_bytes.decode("utf-8")
     lines = text.splitlines()
     starts = declaration_starts(lines)
     boundaries = sorted(starts) + [len(lines) + 1]
@@ -89,6 +91,7 @@ def scan_file(path: Path) -> tuple[list[str], int]:
     owner = OWNER
     depth = 0
     index = 0
+    reviewed_admission = reviewed_admission_identifier_lines(path, source_bytes)
     for lineno, raw_line in enumerate(lines, start=1):
         code, depth = strip_comments(raw_line, depth)
         stripped = code.strip()
@@ -98,6 +101,8 @@ def scan_file(path: Path) -> tuple[list[str], int]:
         if not stripped:
             continue
         for label, pattern in BANNED:
+            if label == "admit tactic" and lineno in reviewed_admission:
+                continue
             if pattern.search(stripped):
                 violations.append(
                     f"{display(path)}:{lineno}: "

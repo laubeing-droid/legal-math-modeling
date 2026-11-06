@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 6670,
-  "duplicated_statement_types": 63,
+  "distinct_statement_types": 7101,
+  "duplicated_statement_types": 69,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -479,6 +479,18 @@
         "path": "Seams/StatuteChain.lean"
       }
     ],
+    ": jurisdiction ⟨true, true, false, false, false, false, true, true⟩ = none": [
+      {
+        "carrier": "root/other/appearance_cannot_override_exclusive",
+        "line": 122,
+        "path": "CN/Revision20261101/Rights.lean"
+      },
+      {
+        "carrier": "root/other/twelve_appearance_cannot_override_exclusive",
+        "line": 204,
+        "path": "CN/Completion20261105/InstitutionRules.lean"
+      }
+    ],
     ": pArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDerivable cycle2Policy pArg ∧ ¬ finalUndetermined cycle2Policy pArg ∧ qArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDefeated cycle2Policy qArg ∧ ¬ finalUndetermined cycle2Policy qArg ∧ ¬ FinalDerivable cycle2Policy qArg": [
       {
         "carrier": "root/other/argument_undec_not_final_undetermined",
@@ -489,6 +501,66 @@
         "carrier": "root/other/argument_undec_not_final_undetermined",
         "line": 114,
         "path": "Seams/UnifiedNeedlesS2.lean"
+      }
+    ],
+    ": reviewRoute .law105 ≠ reviewRoute .admin105": [
+      {
+        "carrier": "root/other/article105_routes_differ",
+        "line": 261,
+        "path": "CN/Revision20261101/Ops.lean"
+      },
+      {
+        "carrier": "root/other/twelve_routes_differ",
+        "line": 487,
+        "path": "CN/Completion20261105/InstitutionRules.lean"
+      }
+    ],
+    ": support (admittedView withdrawn.E [⟨9⟩]) toyAtom = .undetermined": [
+      {
+        "carrier": "root/other/twelve_withdraw_support_gone",
+        "line": 241,
+        "path": "CN/Completion20261105/InstitutionRules.lean"
+      },
+      {
+        "carrier": "root/other/withdrawal_removes_support",
+        "line": 428,
+        "path": "CN/Revision20261101/World.lean"
+      }
+    ],
+    ": ∀ a : AIGCWork, a = AIGCWork.undetermined": [
+      {
+        "carrier": "root/other/aigc_undet",
+        "line": 141,
+        "path": "CN/Ops.lean"
+      },
+      {
+        "carrier": "root/other/aigc_work_undetermined",
+        "line": 538,
+        "path": "CN/Walls.lean"
+      }
+    ],
+    ": ∃ a : AdminAct, a.publicValidity = true ∧ a.factTrue = false ∧ a.substantiallyLegal = false": [
+      {
+        "carrier": "root/other/gongding_not_truth",
+        "line": 235,
+        "path": "CN/Walls.lean"
+      },
+      {
+        "carrier": "root/other/gongding_still",
+        "line": 136,
+        "path": "CN/World.lean"
+      }
+    ],
+    ": ∃ s : SameFact, s.criminalGuilty = false ∧ s.civilLiable = true": [
+      {
+        "carrier": "root/other/criminal_not_cover_civil",
+        "line": 378,
+        "path": "CN/Walls.lean"
+      },
+      {
+        "carrier": "root/other/criminal_not_cover_civil",
+        "line": 146,
+        "path": "CN/World.lean"
       }
     ],
     "[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) (fun s => E (s j)) (by simpa [pmfMass_pmfPi_coord (A := A) (σ := σ) (j := j) (E := E)] using hE)) (fun s => s q) = σ q": [
@@ -804,12 +876,12 @@
       }
     ]
   },
-  "files_scanned": 584,
+  "files_scanned": 618,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 125,
-  "inventory_package_theorems": 6557,
+  "headers_missed_by_scanner": 133,
+  "inventory_package_theorems": 7002,
   "private_protected_headers_read": 302,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 6734
+  "statements_read": 7171
 }

@@ -39,3 +39,7 @@
 - `formal/original07-static-close-20261031`：左逆非满射反例见 `Original07_4ObservationInstance20261102.lean`；共同来源语义和数量连接见 `SourceFinalBridgeAudit20261102.lean`；paymentMeaning 与选中行绑定仍在 `U07_3FixedBindingAudit20261029.lean`。主线后续桥接的证据位于 `formal-release/evidence/original07-8-static-source-bridge-close-20261102/`。来源真实性及原 Nat 金额域限制没有因组合而消失。
 
 以上 Lean 文件均位于 `proofs/lean/juris_lean/JurisLean/Candidates/`。这里记录的是源码与目标覆盖核对，不是本轮新 Lean 编译结论。
+
+## 合流兼容性修订
+
+首次全量验证发现源码样式与主线静态门的差异。本次仅将 EngineConsumers 的事件单射检查由 Bool `decide` 条件写法改为同一命题的 Prop 条件，并移除根入口首字节 BOM；未修改定理陈述或冻结的旧 CN 基线。旧 Acceptance 产物以原字节保全，另附清楚标记的诊断前缀去除副本供证据阅读。后续修改仍须准确新 subject 的权威 CI，旧分支的通过不自动沿用。

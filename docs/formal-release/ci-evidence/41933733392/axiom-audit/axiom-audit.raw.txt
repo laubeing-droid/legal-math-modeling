@@ -1,0 +1,1425 @@
+⚠ [4005/4254] Built JurisLean.CN.Walls (1.9s)
+warning: JurisLean/CN/Walls.lean:405:6: unused variable `p`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6925/7104] Built JurisLean.CN.Ops (1.4s)
+warning: JurisLean/CN/Ops.lean:111:33: unused variable `p`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/CN/Ops.lean:111:45: unused variable `v`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8481/8551] Replayed JurisLean.ExactNumericContract
+warning: JurisLean/ExactNumericContract.lean:35:5: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8487/8551] Replayed JurisLean.Candidates.Final20261021.Learning
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:171:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/Final20261021/Learning.lean:177:19: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8488/8551] Replayed JurisLean.Candidates.LearningRisk20261027
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:41: This simp argument is unused:
+  Function.comp_def
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, F̵u̵n̵c̵t̵i̵o̵n̵.̵c̵o̵m̵p̵_̵d̵e̵f̵,̵ ̵hq', hx]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:65: This simp argument is unused:
+  hx
+
+Hint: Omit it from the simp argument list.
+  simp [fiberBayes, Function.comp_def, hq',̵ ̵h̵x̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:108:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningRisk20261027.lean:110:69: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8489/8551] Replayed JurisLean.Candidates.LearningFiniteClass20261027
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:44:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:54:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:135:4: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:128:32: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/LearningFiniteClass20261027.lean:109:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8490/8551] Replayed JurisLean.Candidates.LearningERM20261027
+JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  {n : ℕ} (loss : H → Z → ℚ) (first : H) (rest : List H) (data : Fin n → Z) (hn : 0 < n) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss (first :: rest) data =
+      some (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ∧
+    JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data ∈ first :: rest ∧
+      ∀ h ∈ first :: rest,
+        JurisLean.Candidates.LearningERM20261027.empiricalScore loss data
+            (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest data) ≤
+          JurisLean.Candidates.LearningERM20261027.empiricalScore loss data h
+'JurisLean.Candidates.LearningERM20261027.u01_1_actual_empirical_fit_minimizes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] [DecidableEq H] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z)
+  [MeasureTheory.IsProbabilityMeasure P] (hn : 0 < n) (first : H) (rest : List H) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℚ)
+  (lossMeasurable : ∀ h ∈ first :: rest, Measurable fun z => ↑(loss h z))
+  (lossRange : ∀ h ∈ first :: rest, ∀ (z : Z), ↑(loss h z) ∈ Set.Icc 0 1) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z),
+            ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+              ↑(first :: rest).toFinset +
+            2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z),
+              ↑(loss (JurisLean.Candidates.LearningERM20261027.fitNonempty loss first rest fun i => sample i w) z) ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), ↑(loss h z) ∂P)
+                ↑(first :: rest).toFinset +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (first :: rest).toFinset.card δ}
+'JurisLean.Candidates.LearningERM20261027.u01_1_actual_fit_consumes_iid_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2} {n : ℕ}
+  (loss : H → Z → ℚ) (data : Fin n → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [] data = none
+'JurisLean.Candidates.LearningERM20261027.u01_1_empty_class_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected.{u_1, u_2} {H : Type u_1} {Z : Type u_2}
+  (loss : H → Z → ℚ) (models : List H) (data : Fin 0 → Z) :
+  JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss models data = none
+'JurisLean.Candidates.LearningERM20261027.u01_1_empty_sample_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample :
+  have loss := fun h z => if h = z then 0 else 1;
+  (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => false) = some false ∧
+    (JurisLean.Candidates.LearningERM20261027.proposed_empirical_fit loss [false, true] fun x => true) = some true
+'JurisLean.Candidates.LearningERM20261027.u01_1_fit_reads_actual_sample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8492/8551] Replayed JurisLean.Candidates.Final20261021.Calibration
+warning: JurisLean/Candidates/Final20261021/Calibration.lean:74:5: unused variable `hα0`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8495/8551] Replayed JurisLean.Candidates.Final20261021.Policy
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8496/8551] Replayed JurisLean.Candidates.CausalSelection20261027
+warning: JurisLean/Candidates/CausalSelection20261027.lean:21:8: This simp argument is unused:
+  Fintype.sum_bool
+
+Hint: Omit it from the simp argument list.
+  simp [F̵i̵n̵t̵y̵p̵e̵.̵s̵u̵m̵_̵b̵o̵o̵l̵,̵ ̵retentionMass]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/CausalSelection20261027.lean:146:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/CausalSelection20261027.lean:146:8: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8498/8551] Replayed JurisLean.FullMath.Probability.FiniteBN
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:26:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:32:9: unused variable `ih`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/FiniteBN.lean:50:4: unused variable `n`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8499/8551] Replayed JurisLean.FullMath.Probability.Conditioning
+warning: JurisLean/FullMath/Probability/Conditioning.lean:35:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.condition_incompatible_iff`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:49:42: unused variable `hZ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:53:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_nonneg`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:0: automatically included section variable(s) unused in theorem `JurisLean.FullMath.Probability.posterior_normalizes`:
+  [DecidableEq S]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq S] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: JurisLean/FullMath/Probability/Conditioning.lean:62:42: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8500/8551] Replayed JurisLean.FullMath.Probability.DirichletPosterior
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:68:18: This simp argument is unused:
+  Nat.cast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵N̵a̵t̵.̵c̵a̵s̵t̵_̵z̵e̵r̵o̵,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵,̵[̲a̲d̲d̲_̲z̲e̲r̲o̲,̲ rising]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:33: unused variable `hπ`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Probability/DirichletPosterior.lean:105:53: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8502/8551] Replayed JurisLean.Seams.Probability
+warning: JurisLean/Seams/Probability.lean:731:67: This simp argument is unused:
+  List.sum_nil
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, L̵i̵s̵t̵.̵s̵u̵m̵_̵n̵i̵l̵,̵ ̵add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Seams/Probability.lean:731:81: This simp argument is unused:
+  add_zero
+
+Hint: Omit it from the simp argument list.
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil,̵ ̵a̵d̵d̵_̵z̵e̵r̵o̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [8503/8551] Replayed JurisLean.Seams.UnifiedNeedlesS3a
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:325:61: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:341:42: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:357:53: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:428:15: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:478:31: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Seams/UnifiedNeedlesS3a.lean:541:19: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+⚠ [8507/8551] Replayed JurisLean.FullMath.Numeric.Quantities
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [8513/8551] Replayed JurisLean.Candidates.SelectiveCalibration20261027
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/SelectiveCalibration20261027.lean:140:39: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8516/8551] Replayed JurisLean.Candidates.ProtectedFeedback20261027
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: JurisLean/Candidates/ProtectedFeedback20261027.lean:63:33: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8520/8551] Replayed JurisLean.Candidates.AdaptiveRoundLedger20261027
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:210:48: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all [̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]̵[̲r̲o̲u̲n̲d̲C̲o̲s̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:210:66: This simp argument is unused:
+  roundCost
+
+Hint: Omit it from the simp argument list.
+  simp_all [emptyRoundRecord,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:211:44: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all [̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]̵[̲r̲o̲u̲n̲d̲C̲o̲s̲t̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:211:62: This simp argument is unused:
+  roundCost
+
+Hint: Omit it from the simp argument list.
+  simp_all [emptyRoundRecord,̵ ̵r̵o̵u̵n̵d̵C̵o̵s̵t̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:222:54: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:261:12: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:261:2: 'all_goals split at computed <;> simp_all [emptyRoundRecord]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:312:56: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/Candidates/AdaptiveRoundLedger20261027.lean:313:52: This simp argument is unused:
+  emptyRoundRecord
+
+Hint: Omit it from the simp argument list.
+  simp_all ̵[̵e̵m̵p̵t̵y̵R̵o̵u̵n̵d̵R̵e̵c̵o̵r̵d̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ℹ [8521/8551] Replayed JurisLean.Candidates.ValidatedFeedbackLoadAudit20261027
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).post.gamma =
+      s.gamma ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+              permit).post.principal =
+        s.principal ∧
+      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+                permit).post.lossVersion =
+          s.lossVersion ∧
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                authorityCatalog permit).post.journal =
+          s.journal
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.activation_keeps_rules_mechanism_and_training' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.every_activation_attempt_retains_history {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m) :
+  ∃ entry,
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).post.history =
+      s.history ++ [entry]
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.every_activation_attempt_retains_history' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.refusal_keeps_actual_prediction {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (refused :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status ≠
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+            authorityCatalog permit).post =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+            permit).readback =
+        none ∧
+      ∀ (query : Fin m),
+        JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded
+            (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                authorityCatalog permit).post
+            query =
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.predictLoaded s query
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.refusal_keeps_actual_prediction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded) :
+  evaluation.parent = JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    evaluation.candidate.snapshot = s.journal ∧
+      JurisLean.Candidates.ProtectedFeedback20261027.evaluate evaluation.plan evaluation.parent evaluation.candidate
+            JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss evaluation.blocks =
+          JurisLean.Candidates.Final20261021.Result.known evaluation ∧
+        evaluation.passesBounds = true ∧
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.samplingMatches samplingCatalog evaluation receipt = true ∧
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.loadAllowed authorityCatalog s evaluation permit = true ∧
+              JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                        authorityCatalog permit).post =
+                  evaluation.candidate ∧
+                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                      authorityCatalog permit).readback =
+                  some
+                    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+                      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                          authorityCatalog permit).post)
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.loaded_package_is_actual_written_readback' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.replaced_candidate_does_not_reuse_old_permit {m : ℕ}
+  (catalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (changed : permit.evaluation ≠ evaluation) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.loadAllowed catalog s evaluation permit = false
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.replaced_candidate_does_not_reuse_old_permit' depends on axioms: [propext]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (risk : ℕ → List ℚ → ℝ)
+  (confidence :
+    ∀ block ∈ evaluation.blocks,
+      ∀ model ∈ evaluation.plan.models,
+        |↑(JurisLean.Candidates.ProtectedFeedback20261027.blockRisk
+                  JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss block model) -
+              risk block.domain model| ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius block.rows.length
+            evaluation.plan.models.toFinset.card ↑block.delta)
+  (block : JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock m) :
+  block ∈ evaluation.blocks →
+    risk block.domain
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+                  authorityCatalog permit).post).fitted.table ≤
+      risk block.domain (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table +
+        ↑block.tolerance
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.actual_loaded_risk_follows_computed_domain_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.changed_validation_snapshot_does_not_reuse_sampling_receipt {m : ℕ}
+  (catalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (changed : receipt.blocks ≠ evaluation.blocks) :
+  JurisLean.Candidates.ValidatedFeedbackLoad20261027.samplingMatches catalog evaluation receipt = false
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.changed_validation_snapshot_does_not_reuse_sampling_receipt' depends on axioms: [propext]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.next_candidate_consumes_current_loaded_and_actual_post {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (correctionPermits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (proposals : List (List ℚ))
+  (lossSame : protocol.lossVersion = s.lossVersion) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+          proposals).parent =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+            proposals).models =
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table :: proposals ∧
+      (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+              proposals).candidate =
+          (JurisLean.Candidates.EventFeedbackConsumer20261027.processAndFit now correctionPermits s.journal change
+              protocol JurisLean.Candidates.ProtectedFeedback20261027.binaryLoss
+              ((JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s).fitted.table :: proposals)).candidate ∧
+        (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+                  proposals).post.journal =
+            (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now correctionPermits s.journal
+                change).post ∧
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s now correctionPermits change protocol
+                  proposals).post =
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.next_candidate_consumes_current_loaded_and_actual_post' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent {m : ℕ}
+  (s : JurisLean.Candidates.ValidatedFeedbackLoad20261027.Service m)
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (samplingCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (receipt : JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m)
+  (authorityCatalog : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (permit : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m)
+  (loaded :
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt authorityCatalog
+          permit).status =
+      JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadStatus.loaded)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (correctionPermits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (proposals : List (List ℚ)) :
+  (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).parent =
+      evaluation.candidate ∧
+    (JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext
+          (JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s evaluation samplingCatalog receipt
+              authorityCatalog permit).post
+          now correctionPermits change protocol proposals).models =
+      evaluation.candidate.fitted.table :: proposals
+'JurisLean.Candidates.ValidatedFeedbackLoad20261027.newly_loaded_model_is_next_actual_parent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8522/8551] Replayed JurisLean.Candidates.AdaptiveRoundLedgerAudit20261027
+JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m) (now : JurisLean.Candidates.Final20261021.Instant)
+  (permits : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan) (free : s.pending = none)
+  (room : s.records.length < s.horizon) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).pending =
+      some
+        { learner := s.learner, generatedAt := now, visiblePrefix := s.records.length,
+          prepared :=
+            JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now permits change protocol
+              s.learner.proposals,
+          plan :=
+            { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,
+              models :=
+                (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table ::
+                  s.learner.proposals,
+              failureBudget := plan.failureBudget } } ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol
+              plan).service.journal =
+        (JurisLean.Candidates.EventFeedbackConsumer20261027.applyChange now permits s.service.journal change).post ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound s now permits change protocol plan).records =
+        s.records
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.generation_uses_actual_loaded_and_learner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m) :
+  List.take s.records.length (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records =
+      s.records ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).records.length =
+        s.records.length + 1 ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).pending = none ∧
+        JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+            (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record) =
+          JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s + record.charge
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_prefix_and_next_round' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (computed :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge =
+    (List.map JurisLean.Candidates.ProtectedFeedback20261027.DomainBlock.delta r.blocks).sum
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_spends_its_actual_block_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  0 ≤ (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s +
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).charge ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_round_stays_within_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits).post ≤
+    s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.finish_round_preserves_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (same : old.request = r) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =
+    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.replayed, post := s, receipt := some old }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.exact_round_replay_retains_current_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (old : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (found : List.find? (fun entry => entry.request.round == r.round) s.records = some old) (changed : old.request ≠ r) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.finishAdaptiveRound s r samples permits =
+    { status := JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.keyConflict, post := s, receipt := none }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_round_key_does_not_spend_or_load' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (computed :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).status =
+      JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundStatus.evaluated) :
+  r.checker = s.checker ∧
+    r.claim = JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundClaim.currentFiniteRound ∧
+      d.plan.domains = s.protectedDomains ∧
+        ∀ event ∈ JurisLean.Candidates.AdaptiveRoundLedger20261027.requestedEvents r,
+          event ∉ JurisLean.Candidates.AdaptiveRoundLedger20261027.exposedRoundEvents s
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.evaluated_round_has_fresh_events_and_current_checker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).service = s.service ∧
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).checker = s.checker ∧
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records = s.records ∧
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).limit = s.limit ∧
+          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon =
+              s.horizon ∧
+            (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog
+                  permit).protectedDomains =
+              s.protectedDomains
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.learner_change_keeps_service_budget_and_trusted_root' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (untrusted : permit ∉ catalog ∨ permit.checker ≠ s.checker) :
+  JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit = s
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.self_issued_or_new_checker_permission_cannot_change_learner' depends on axioms: [propext,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (next : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundLearner)
+  (catalog : List JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (permit : JurisLean.Candidates.AdaptiveRoundLedger20261027.LearnerPermit)
+  (changed : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).learner = next)
+  (now : JurisLean.Candidates.Final20261021.Instant)
+  (corrections : List (JurisLean.Candidates.EventFeedbackConsumer20261027.CorrectionPermit m))
+  (change : JurisLean.Candidates.EventFeedbackConsumer20261027.Change m)
+  (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (plan : JurisLean.Candidates.ProtectedFeedback20261027.ValidationPlan)
+  (free : (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).pending = none)
+  (room :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length <
+      (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).horizon) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.beginAdaptiveRound
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit) now corrections
+        change protocol plan).pending =
+    some
+      { learner := next, generatedAt := now,
+        visiblePrefix :=
+          (JurisLean.Candidates.AdaptiveRoundLedger20261027.changeRoundLearner s next catalog permit).records.length,
+        prepared :=
+          JurisLean.Candidates.ValidatedFeedbackLoad20261027.prepareNext s.service now corrections change protocol
+            next.proposals,
+        plan :=
+          { scope := plan.scope, protocol := plan.protocol, domains := plan.domains,
+            models :=
+              (JurisLean.Candidates.ValidatedFeedbackLoad20261027.readLoaded s.service).fitted.table :: next.proposals,
+            failureBudget := plan.failureBudget } }
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.changed_learner_is_actual_next_generator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (d : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundDeclaration m)
+  (r : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRequest m)
+  (samples : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.SamplingReceipt m))
+  (permits : List (JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadPermit m))
+  (evaluation : JurisLean.Candidates.ProtectedFeedback20261027.Evaluation m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m)
+  (actualEvaluation :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).evaluation =
+      some (JurisLean.Candidates.Final20261021.Result.known evaluation))
+  (actualLoad :
+    (JurisLean.Candidates.AdaptiveRoundLedger20261027.assessAdaptiveRound s d r samples permits).load = some loaded) :
+  loaded =
+    JurisLean.Candidates.ValidatedFeedbackLoad20261027.activate s.service evaluation samples r.sampling permits r.permit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.assessed_load_comes_from_actual_activation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (record : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundRecord m)
+  (loaded : JurisLean.Candidates.ValidatedFeedbackLoad20261027.LoadOutcome m) (actual : record.load = some loaded) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.appendRoundRecord s record).service = loaded.post
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.recorded_load_is_actual_next_service' depends on axioms: [propext]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound {m : ℕ}
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (action : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action).limit = s.limit ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+        (JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s action) ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.every_round_action_keeps_budget_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget {m : ℕ}
+  (actions : List (JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundAction m))
+  (s : JurisLean.Candidates.AdaptiveRoundLedger20261027.RoundState m)
+  (bounded : JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent s ≤ s.limit) :
+  (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions).limit = s.limit ∧
+    JurisLean.Candidates.AdaptiveRoundLedger20261027.roundSpent
+        (List.foldl JurisLean.Candidates.AdaptiveRoundLedger20261027.applyRoundAction s actions) ≤
+      s.limit
+'JurisLean.Candidates.AdaptiveRoundLedger20261027.arbitrary_finite_round_actions_keep_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8523/8551] Built JurisLean.CN.Revision20261101.Ops (1.9s)
+✔ [8524/8551] Built JurisLean.CN.Revision20261101.Rights (1.2s)
+ℹ [8525/8551] Built JurisLean.CN.Revision20261101.World (1.5s)
+'JurisLean.CN.Revision20261101.no_grants_no_authority' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.lawyer_cannot_add_template' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.court_name_alone_insufficient' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.false_conjunct_decisive' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.unknown_not_false' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.unresolved_ne_selected' does not depend on any axioms
+'JurisLean.CN.Revision20261101.article105_routes_differ' does not depend on any axioms
+'JurisLean.CN.Revision20261101.no_causal_permit_no_bridge' does not depend on any axioms
+'JurisLean.CN.Revision20261101.request_maps_to_claim' does not depend on any axioms
+'JurisLean.CN.Revision20261101.formation_maps_to_power' does not depend on any axioms
+'JurisLean.CN.Revision20261101.defense_not_noRight' does not depend on any axioms
+'JurisLean.CN.Revision20261101.domination_contains_privilege' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.counterpart_preserves_scope' does not depend on any axioms
+'JurisLean.CN.Revision20261101.counterpart_twice' does not depend on any axioms
+'JurisLean.CN.Revision20261101.revocable_and_effective' does not depend on any axioms
+'JurisLean.CN.Revision20261101.revocation_keeps_establishment' does not depend on any axioms
+'JurisLean.CN.Revision20261101.delegation_keeps_principal_capacity' does not depend on any axioms
+'JurisLean.CN.Revision20261101.proven_bad_faith_fails' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.unchecked_good_faith_stays_unknown' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.ordinary_needs_no_agreement' does not depend on any axioms
+'JurisLean.CN.Revision20261101.appearance_cannot_override_exclusive' does not depend on any axioms
+'JurisLean.CN.Revision20261101.limitation_preserves_claim' does not depend on any axioms
+'JurisLean.CN.Revision20261101.limitation_does_not_raise' does not depend on any axioms
+'JurisLean.CN.Revision20261101.buckets_disjoint' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.admitted_implies_raw' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.absent_not_admitted' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.excluded_keeps_raw' does not depend on any axioms
+'JurisLean.CN.Revision20261101.no_authority_no_creation' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.confirmatory_preserves_relations' does not depend on any axioms
+'JurisLean.CN.Revision20261101.refused_automated_step' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.propose_frame' does not depend on any axioms
+'JurisLean.CN.Revision20261101.learn_frame' does not depend on any axioms
+'JurisLean.CN.Revision20261101.admission_frame' does not depend on any axioms
+'JurisLean.CN.Revision20261101.withdrawal_preserves_reality' does not depend on any axioms
+'JurisLean.CN.Revision20261101.append_keeps_history_length' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.prepared_has_compatible_world' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Revision20261101.nonjudicial_formation_exists' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Revision20261101.no_receipt_no_guard_support' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.admitted_guard_has_support' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.withdrawal_removes_support' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.withdrawal_keeps_excluded_and_raw' depends on axioms: [propext]
+'JurisLean.CN.Revision20261101.proposal_is_not_learning' depends on axioms: [propext, Quot.sound]
+ℹ [8526/8551] Built JurisLean.CN.Completion20261105.Payloads (1.0s)
+'JurisLean.CN.Completion20261105.Payloads.consume_ne_judgment' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.consume_ne_decideBind' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.fit_is_fitP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeFit_mkFit' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.namedConsume_not_judgment' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsume_not_decideBind' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.candidateFromEngine_propose_frame' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.candidate_propose_bindings' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.bargain_is_bargainP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeBargain_mkBargain' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeCausal_none' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeCausal_wrong_engine' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.cash_unconserved_unknown' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.cash_conserved_known' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.cash_two_way_known' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeCash_known_conserves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.prob_is_probP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeProb_mkProb' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.exact_is_exactP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeExact_mkExact' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.behave_is_behaveP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeBehave_mkBehave' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.rsi_is_rsiP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.namedConsumeRsi_mkRsi' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Payloads.fitP_ne_bargainP' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Payloads.cashTotal_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.cashTotal_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Payloads.cashTotal_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8527/8551] Built JurisLean.CN.Completion20261105.Foundation (2.1s)
+warning: JurisLean/CN/Completion20261105/Foundation.lean:99:34: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  simp_all [admittedVote, h̵e̵,̵ ̵Refines, factJudge]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'JurisLean.CN.Completion20261105.worldCheck_sound' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.admittedVote_refines' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.formula_refines' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.readyCheck_sound' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.empty_worlds_not_ready' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.empty_materials_not_ready' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.executeChecked_ready' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.executeChecked_no_authority' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.executeChecked_refused' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.executeChecked_frame' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.registration_checked_success' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.registration_checked_relations' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.checked_registration_is_ready' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.constant_policy_no_receipt' depends on axioms: [propext, Quot.sound]
+ℹ [8528/8551] Built JurisLean.CN.Completion20261105.InstitutionRules (2.5s)
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_history_shared' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_success_effective' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_success_keeps_established' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_success_status' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_out_of_window' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_fail_keeps_effective' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_revoke_fail_keeps_revocation_power' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_neverEstablished_not_invalid' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_neverEstablished_not_effective' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_confirmatory_preserves' depends on axioms: [propext,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_apparent_success' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_apparent_unknown' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_apparent_bad_faith' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_apparent_no_name' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_delegate_keeps_capacity' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_unauthorized_not_no_liability' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_jur_ordinary' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_jur_exclusive_fail' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_jur_unknown_not_false' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_arbitration_preservation_open' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_arbitration_merits_blocked' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_appearance_cannot_override_exclusive' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_pending_not_admitted' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_excluded_not_admitted' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_fixable_not_fixed' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_withdraw_support_gone' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_withdraw_keeps_raw' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acq_success' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acq_bad_faith' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acq_unchecked' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acq_312_not_ordinary' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acq_fail_keeps_transaction' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_three_parties_distinct' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_jia_e1' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_yi_e2_not_copied' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_yi_e1_ok' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_same_event_can_differ' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_unknown_ability' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_liable_unknown_gate' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_pre_interest_kept' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_cut_day' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_cut_day_cap' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_cut_not46_unknown' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_filing_not_acceptance' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_accepted_stay' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_other_debtor_not_stayed' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_unknown_acc_no_freeze' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_four_tracks_distinct' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_comp_kinds_distinct' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_acquittal_insufficient' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_custody_with_1719' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_four_out_no_collapse' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_s1_unresolved_not_selected' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_law105_route' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_admin105_route' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_same_maker_route' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_local_dept_route' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_routes_differ' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_route_not_selected' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_interpret_self' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_interpret_other' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_disputed_unknown' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_res_hit' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_res_miss_person' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_res_miss_time' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_res_miss_subject' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_res_missing_index' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_outsider_not_auto_remedy' does not depend on any axioms
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_candidate_basis' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_candidate_scope' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_theorem_ref_is_string' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_consume_unknown' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_no_permit_no_bridge' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.InstitutionRules.twelve_candidate_not_decision' depends on axioms: [propext,
+ Quot.sound]
+ℹ [8529/8551] Built JurisLean.CN.Completion20261105.PolicyIR (1.3s)
+'JurisLean.CN.Completion20261105.criterion_no_admission' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.criterion_document_no_admission' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.criterion_unknown_propagates' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.known_bad_faith_decisive' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.three_methods_separate' does not depend on any axioms
+'JurisLean.CN.Completion20261105.qualified_pending_is_unchecked' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.qualified_admitted_is_assessed' depends on axioms: [propext]
+✔ [8530/8551] Built JurisLean.CN.Completion20261105.EngineTypes (4.4s)
+ℹ [8531/8551] Built JurisLean.CN.Completion20261105.State (3.6s)
+'JurisLean.CN.Completion20261105.assign_self' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.assign_other' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.selected_rule_member' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.fragmentDispatch_conflict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.fragmentDispatch_missing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.fragmentDispatch_refused' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.setCell_closed' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.fragmentDispatch_success_ready' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8532/8551] Built JurisLean.CN.Completion20261105.EffectIR (3.2s)
+'JurisLean.CN.Completion20261105.EffectIR.adjust_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.EffectIR.proposal_lowering' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.EffectIR.learning_lowering' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.EffectIR.admission_lowering' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.EffectIR.proposal_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.EffectIR.learning_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8533/8551] Built JurisLean.CN.Completion20261105.Ready (3.6s)
+warning: JurisLean/CN/Completion20261105/Ready.lean:276:27: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  simp [h̵a̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:279:34: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  simp [h̵a̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:280:32: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  simp [h̵a̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:282:21: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵h̵a̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:299:23: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp [h̵s̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:302:37: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp [h̵s̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:304:23: This simp argument is unused:
+  hs
+
+Hint: Omit it from the simp argument list.
+  simp only ̵[̵h̵s̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:306:27: This simp argument is unused:
+  ht
+
+Hint: Omit it from the simp argument list.
+  simp [h̵t̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Ready.lean:309:41: This simp argument is unused:
+  ht
+
+Hint: Omit it from the simp argument list.
+  simp [h̵t̵,̵quiet]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'JurisLean.CN.Completion20261105.shared_actual_reduction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.checkPost_success_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.legalWorldCheck_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.effect_uses_legal_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.no_template_authority_no_registration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.checkedLaw_ready' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.checkedLaw_success_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.legalDispatch_success_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.legalDispatch_success_ready' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.permissionDispatch_success_ready' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.legalDispatch_refused' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.admitted_not_natural_truth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.selected_exclusive_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.permissionLaw_ready' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8534/8551] Built JurisLean.CN.Completion20261105.OperationalReady (3.4s)
+'JurisLean.CN.Completion20261105.checkedLaw_request_passes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.legal_success_operational_pre' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.legal_success_ready_contract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.no_authority_no_legal_change' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+⚠ [8535/8551] Built JurisLean.CN.Completion20261105.Institutions (3.9s)
+warning: JurisLean/CN/Completion20261105/Institutions.lean:170:2: Try `simp at hn` instead of `simpa using hn`
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: JurisLean/CN/Completion20261105/Institutions.lean:233:19: This simp argument is unused:
+  found
+
+Hint: Omit it from the simp argument list.
+  simp [guard, f̵o̵u̵n̵d̵,̵ ̵assign, delegate]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'JurisLean.CN.Completion20261105.Law.unknown_propagates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.grounded_success_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.atomic_failure_preserves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.conflict_propagates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.revoke_effective_and_power' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.revoke_other_object' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.revoke_natural_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.revocation_removes_tracked_relations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.delegation_norms_unchanged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.delegation_actual_capacity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.apparent_preserves_F' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.attribution_other_scope' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Law.same_event_different_charges' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.excess_not_copied' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.cut_at_acceptance' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Law.cut_after_acceptance' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.Law.filing_no_stay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Law.other_interest_unchanged' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.compensation_other_tracks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.constitution_top' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Law.rights_conflict_preserves_L' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.interpretation_other_contract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.interpretation_preserves_N' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Law.engine_proposal_only' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8536/8551] Built JurisLean.CN.Completion20261105.Exchange (3.2s)
+warning: JurisLean/CN/Completion20261105/Exchange.lean:75:23: This simp argument is unused:
+  Ne.symm h.1
+
+Hint: Omit it from the simp argument list.
+  simp [assign, h.1,̵ ̵N̵e̵.̵s̵y̵m̵m̵ ̵h̵.̵1̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: JurisLean/CN/Completion20261105/Exchange.lean:78:20: This simp argument is unused:
+  h.1
+
+Hint: Omit it from the simp argument list.
+  simp [assign, h̵.̵1̵,̵ ̵Ne.symm h.1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'JurisLean.CN.Completion20261105.expression_local' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.expression_after_unread_write' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.assignments_commute' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.assignLocal_view' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.assignment_two_defined' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.cross_read_counterexample' does not depend on any axioms
+'JurisLean.CN.Completion20261105.assignments_preserve_norm_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8537/8551] Built JurisLean.CN.Completion20261105.Operators (3.7s)
+'JurisLean.CN.Completion20261105.advance_clock_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.money_measure_has_matching_tags' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.commute_true_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.commute_true_actual_calls' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.assignment_gate_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.actual_assignments_commute' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.adjustment_no_authority' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.expiry_not_extinction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.project_denied' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.witness_pending' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8538/8551] Built JurisLean.CN.Completion20261105.EngineConsumers (3.5s)
+'JurisLean.CN.Completion20261105.relay_is_candidate_only' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.fit_uses_actual_sample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.probability_uses_actual_posterior' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.causal_actual_identified_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.causal_no_legal_permit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.bargain_actual_allowed_maximum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.cash_actual_post_conserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.exact_native_meaning' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.behavior_model_does_not_filter_illegal_action' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.rsi_actual_post_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [8539/8551] Built JurisLean.CN.Completion20261105.Edges (3.6s)
+warning: JurisLean/CN/Completion20261105/Edges.lean:201:34: This simp argument is unused:
+  hc
+
+Hint: Omit it from the simp argument list.
+  simp [hm, ̲ha, ̲hp, ̲hd,h̵c̵,̵ ̲EffectIR.adjust, ̲EffectIR.payment, ̲EffectIR.write]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'JurisLean.CN.Completion20261105.no_decision_no_binding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.learning_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.decision_assessment_preserves_relations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.performance_preserves_F_L' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.performance_success_conserves' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8540/8551] Built JurisLean.CN.Completion20261105.FinancialMerge (3.6s)
+'JurisLean.CN.Completion20261105.reduction_source_conserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.performCall_success_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.performCall_shared_reduction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8541/8551] Built JurisLean.CN.Completion20261105.EvidenceInstitutions (3.7s)
+'JurisLean.CN.Completion20261105.interpretation_lookup_current' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.proofAt_unknown_reaches_query' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.offense_evidence_never_changes_reality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8542/8551] Built JurisLean.CN.Completion20261105.Execution (3.8s)
+'JurisLean.CN.Completion20261105.history_keeps_ordered_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.recorded_replay_keeps_exclusion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.admission_missing_authority' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.choice_not_model_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.bound_engine_calls_stored_input' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.unadmitted_engine_material_blocks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.learnReport_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8543/8551] Built JurisLean.CN.Completion20261105.Program (3.6s)
+'JurisLean.CN.Completion20261105.program_pure_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.joinReply_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.program_bind_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.program_unknown_stops' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.program_conflict_stops' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.program_has_actual_history' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.finite_star_has_history' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.replay_preserves_current' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.replay_reads_full_snapshot' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8544/8551] Built JurisLean.CN.Completion20261105.WorldSemantics (6.9s)
+'JurisLean.CN.Completion20261105.collapse_formula' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.canonicalWorld_compatible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.ready_refines_all_supported_worlds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.actual_legal_step_semantic_ready' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.trusted_constraint_narrows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.admission_preserves_natural_K' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.criterion_empty_assessment' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.template_empty_assessment' depends on axioms: [propext]
+'JurisLean.CN.Completion20261105.no_admitted_view' depends on axioms: [propext, Quot.sound]
+'JurisLean.CN.Completion20261105.first_admission_narrows_semantic_K' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8545/8551] Built JurisLean.CN.Completion20261105.QuietHistory (5.5s)
+'JurisLean.CN.Completion20261105.five_actual_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.FiveHistory.frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.FiveHistory.no_new_decision_binding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8546/8551] Built JurisLean.CN.Completion20261105.Algebra (5.7s)
+'JurisLean.CN.Completion20261105.Algebra.success_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.success_choice' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.success_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.success_test' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.star_induction_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.star_induction_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.successful_star_is_actual_finite_iteration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.tests_compose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Algebra.tests_complement' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8547/8551] Built JurisLean.CN.Completion20261105.Examples (6.5s)
+'JurisLean.CN.Completion20261105.Examples.actual_nonjudicial_formation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.formation_history_has_three_ordered_calls' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.lifecycle_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.lifecycle_failure_preserves_effect' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.agency_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.agency_over_scope_rejected' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.jurisdiction_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.evidence_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.acquisition_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.actual_nonmonotone_withdrawal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.offense_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.bankruptcy_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.compensation_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.compensation_missing_prerequisite_not_automatic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.rights_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.interpretation_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.no_source_no_model_judgment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.resJudicata_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.proposal_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.unauthorized_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Examples.refused_actual' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [8548/8551] Built JurisLean.CN.Completion20261105.Runtime (3.6s)
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.success|F=0|L=0|steps=1
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.unknown (JurisLean.CN.Revision20261101.UnknownKind.inputUnchecked)|F=0|L=0|steps=0
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.blockedHuman|F=0|L=0|steps=1
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.conflict (JurisLean.CN.Revision20261101.ReviewRoute.competentReview)|F=0|L=0|steps=1
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.rejected (JurisLean.CN.Completion20261105.Refusal.unauthorized)|F=0|L=0|steps=1
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.rejected (JurisLean.CN.Completion20261105.Refusal.unsupported)|F=0|L=0|steps=0
+'JurisLean.CN.Completion20261105.Runtime.decoded_call_refines' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Runtime.malformed_keeps_state' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Runtime.unknown_kind_preserved' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Runtime.unknown_labels_distinct' does not depend on any axioms
+'JurisLean.CN.Completion20261105.Runtime.decoded_value_is_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [8549/8551] Built JurisLean.CN.Completion20261105.EngineExamples (3.8s)
+CN_EIGHT_NATIVE_CONSUMERS_PASS; RSI_ACTUAL_POST_RETAINED
+CN_SHARED_REDUCTION_ONE_CASH_PASS
+'JurisLean.CN.Completion20261105.EngineExamples.exact_cannot_relabel_money_as_day' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.EngineExamples.probability_labels_cannot_collide' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.EngineExamples.withdrawal_blocks_actual_engine' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✔ [8550/8551] Built JurisLean.CN.Completion20261105.Checkpoint2 (3.0s)
+ℹ [8551/8551] Built JurisLean.CN.Completion20261105.Acceptance (3.6s)
+REFERENCE|JurisLean.CN.Completion20261105.Runtime.Status.success|F=1|L=0|steps=1
+CN_SCOPE_ACCEPTANCE_PASS
+'JurisLean.CN.Completion20261105.Acceptance.newly_observed_execution_uses_stay_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.three_other_sources_stay_separate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.missing_other_document_not_created' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_exclude' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_project' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_commute' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_shared_event_different_charges' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.three_unknown_exits_are_actual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_conflict_is_suspended' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.CN.Completion20261105.Acceptance.actual_hohfeld_projection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8551 jobs).

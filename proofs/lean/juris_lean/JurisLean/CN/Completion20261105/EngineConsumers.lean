@@ -74,7 +74,7 @@ def consumeProb {n : Nat} (s : Situation) (c : EngineContext)
     (prior : Native.Prob.FiniteLaw (Fin n)) (likelihood : Fin n → ℚ)
     (event : Fin n → Ref .event) :
     NativeReply (Native.Result (Native.Prob.FiniteLaw (Fin n))) :=
-  if decide (Function.Injective event) then
+  if Function.Injective event then
     relayNative s (probabilitySource prior likelihood) (fun post =>
       engineOutput s c .prob
       "JurisLean.Candidates.Final20261021.Probability.posterior_mass"

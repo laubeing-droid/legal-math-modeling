@@ -1,4 +1,4 @@
-﻿-- JurisLean root module
+-- JurisLean root module
 import JurisLean.Basic
 import JurisLean.CN.Walls
 import JurisLean.CN.World

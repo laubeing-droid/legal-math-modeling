@@ -1,0 +1,32 @@
+{
+  "schema_version": "ci-run-evidence-v1",
+  "run_id": "41933733392",
+  "subject": "1f2f03b77f9dbe46332f3ab3406c7cd1ef32dfd5",
+  "artifact_id": 13373097032,
+  "zip_sha256": "5363f7fa3d6168ef95470d6c5ac28b6900c60c6afa017ba66f8295ba174c930f",
+  "normalization_regex": "^info: [^\\n]*?:\\d+:\\d+: ",
+  "normalization_replacement": "",
+  "normalization_flags": "MULTILINE",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "dd6a0c252b0da4d23dfa04fb008612457626c47db3fd76007d36fae4ccf453ed",
+      "bytes": 981
+    },
+    {
+      "path": "axiom-audit/axiom-audit.raw.txt",
+      "sha256": "1d747f737dd22f2f64237f23ea11e9711b09e2f9e1ec84ddba2e0b52e4f25dac",
+      "bytes": 97152
+    },
+    {
+      "path": "changed-module.log",
+      "sha256": "9820685676137b87edfba538bcd0e7b79cec4e314e2af5481819d79dbca8806e",
+      "bytes": 122665
+    },
+    {
+      "path": "module-plan.json",
+      "sha256": "4fe90dd87a06f4adc579ad7acb522324952e38fc8f0403306518d02b9d6eb2a3",
+      "bytes": 249
+    }
+  ]
+}

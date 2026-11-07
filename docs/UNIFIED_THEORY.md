@@ -32,10 +32,12 @@
 
 ## 其他分支的成果核对
 
-核对 main 底座后，下列旧分支不作整枝合并，历史继续保留：
+2026-11-07 对剩余分支进行收束，逐项承接关系见[分支收束记录](handoff/BRANCH_CONVERGENCE_20261107.md)。原有关债模块保持原样，新增结果通过其现有类型、实际测度和策略模型接入：
 
-- `formal/grouped-split-20261027`：分支自己的撤回说明明确“不合并”；measurement 分组不保证真实 event 不跨组。主线使用 `Candidates/LearningEventSplit20261027.lean` 的 event 分区及泄漏反例。
-- `formal/original06-finite-examples-20261031`：现金身份例已由 `U06_1OriginalCashIdentityInstances20261101.lean` 连接真实现金账本；期望现金/凹效用例由 `U06_2OriginalExpectedUtilityInstances20261101.lean` 的测度积分实例承接；共同鲁棒策略由 `U06_3OriginalCommonRobustStrategy20261102.lean` 承接。旧二次效用及唯一最优 iff 的措辞不是逐字迁入，保留为历史可选示例，不冒称逐字等价。
+- `formal/grouped-split-20261027`：原题继续使用 `LearningEventSplit20261027`。保留的 `LearningSplit20261027` 复用同一观测类型，证明 measurement 到 event 解析一致时两个实际分区相等，并用反例明确任意 measurement 分组可能拆开同一 event。旧撤回记录保留其当时含义。
+- `formal/original06-finite-examples-20261031`：`U06_OriginalFiniteExamples20261031` 保留二次效用和唯一最优 iff；新增具名连接证明其有限表等于主线 `demoUtilities`，最坏分支值等于主线有限下确界，二次效用的 75/50 由主线 Bernoulli 测度和 cashOutcome 实际算得。现金身份、一般期望效用和共同策略仍使用原有主线模块。
+- `paper/cn-walls-20261031`：旧十二制度由当前 CN 的 Rights、InstitutionRules、Institutions 和 EngineConsumers 承接。旧截止证明的相等边界已有 `cut_at_acceptance`、`cut_after_acceptance`；两处 True 占位由实际个别责任投影和分轨保持命题替代。来源提交保留在合并历史。
+- `paper/codex-cn-ops-v4-20261101`：全部提交早已合入 main；后续 CN 工作集中在主线。完整九算子生成语义及保义覆盖仍需具名定理，分支收束本身不改变该数学问题的状态。
 - `formal/original07-static-close-20261031`：左逆非满射反例见 `Original07_4ObservationInstance20261102.lean`；共同来源语义和数量连接见 `SourceFinalBridgeAudit20261102.lean`；paymentMeaning 与选中行绑定仍在 `U07_3FixedBindingAudit20261029.lean`。主线后续桥接的证据位于 `formal-release/evidence/original07-8-static-source-bridge-close-20261102/`。来源真实性及原 Nat 金额域限制没有因组合而消失。
 
 以上 Lean 文件均位于 `proofs/lean/juris_lean/JurisLean/Candidates/`。这里记录的是源码与目标覆盖核对，不是本轮新 Lean 编译结论。

@@ -7,10 +7,14 @@ Exit codes: 0 clean, 1 regression against a baseline, 2 usage error.
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import re
 import sys
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.parse import quote
+from urllib.request import Request, urlopen
 
 LABEL_WORDS = {"FORMALIZED", "DERIVED", "CONJECTURE"}
 TEX_LABEL_RE = re.compile(r"\\(formalized|derived|conjectured)\{\}")
@@ -111,6 +115,152 @@ def bib_keys(paper_dir: Path) -> set[str]:
     return set(BIBKEY_RE.findall(read(path))) if path.exists() else set()
 
 
+def bib_entries(text: str) -> dict[str, dict[str, str]]:
+    """Read literal BibTeX fields, including nested braces and the first entry.
+
+    String macros/concatenation and malformed entries are explicit errors;
+    they cannot silently disappear from the DOI check denominator.
+    """
+    entries = {}
+    pos = 0
+    while pos < len(text):
+        space = re.match(r"(?:\s|%[^\n]*)*", text[pos:])
+        pos += space.end()
+        if pos == len(text):
+            break
+        header = re.match(r"@(\w+)\s*([({])\s*([^,\s{}()]+)\s*,", text[pos:])
+        if not header or header[1].lower() in {"string", "preamble", "comment"}:
+            raise ValueError(f"unsupported BibTeX entry at offset {pos}")
+        key, end = header[3], "}" if header[2] == "{" else ")"
+        if key in entries:
+            raise ValueError(f"duplicate BibTeX key: {key}")
+        pos += header.end()
+        fields = {}
+        while True:
+            space = re.match(r"(?:\s|%[^\n]*)*", text[pos:])
+            pos += space.end()
+            if pos < len(text) and text[pos] == end:
+                pos += 1
+                break
+            field = re.match(r"(\w+)\s*=\s*", text[pos:])
+            if not field:
+                raise ValueError(f"malformed BibTeX field in {key} at offset {pos}")
+            name = field[1].lower()
+            if name in fields:
+                raise ValueError(f"duplicate BibTeX field: {key}.{name}")
+            pos += field.end()
+            start = pos
+            if pos < len(text) and text[pos] in '{"':
+                opener = text[pos]
+                pos += 1
+                start = pos
+                depth = 1 if opener == "{" else 0
+                while pos < len(text):
+                    char = text[pos]
+                    if char == "\\":
+                        pos += 2
+                        continue
+                    if char == "{":
+                        depth += 1
+                    elif char == "}":
+                        depth -= 1
+                    if (opener == "{" and depth == 0) or (opener == '"' and char == '"' and depth == 0):
+                        break
+                    pos += 1
+                if pos >= len(text) or depth < 0:
+                    raise ValueError(f"unterminated BibTeX value: {key}.{name}")
+                value = text[start:pos]
+                pos += 1
+            else:
+                number = re.match(r"\d+", text[pos:])
+                if not number:
+                    raise ValueError(f"unsupported BibTeX macro: {key}.{name}")
+                value = number[0]
+                pos += number.end()
+            fields[name] = value
+            space = re.match(r"(?:\s|%[^\n]*)*", text[pos:])
+            pos += space.end()
+            if pos < len(text) and text[pos] == ",":
+                pos += 1
+            elif pos >= len(text) or text[pos] != end:
+                raise ValueError(f"unsupported BibTeX value suffix: {key}.{name}")
+        entries[key] = fields
+    return entries
+
+
+def doi_identity(value: str) -> str:
+    # DOI equality folds ASCII A-Z only, not Unicode case or normalization.
+    return value.strip().translate(str.maketrans("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"))
+
+
+def bibliographic_text(value: str) -> tuple[str, ...]:
+    return tuple(re.findall(r"[^\W_]+", html.unescape(value).replace("{", "").replace("}", "").casefold()))
+
+
+def compare_doi_metadata(fields: dict, metadata: dict) -> list[str]:
+    """Exact normalized field comparisons; differing fields require review.
+
+    Initials, abbreviations and partial token overlap never produce a match.
+    Online/print/issued years are alternatives explicitly supplied by Crossref.
+    """
+    issues = []
+    if doi_identity(metadata.get("DOI", "")) != doi_identity(fields["doi"]):
+        issues.append("DOI_IDENTITY_MISMATCH")
+    for field, remote in (("title", "title"), ("journal" if "journal" in fields else "booktitle", "container-title")):
+        if field != "title" and field not in fields:
+            continue
+        values = metadata.get(remote, [])
+        if not fields.get(field) or not values:
+            issues.append(f"{field.upper()}_MISSING")
+        elif bibliographic_text(fields[field]) not in [bibliographic_text(v) for v in values]:
+            issues.append(f"{field.upper()}_DIFFERS")
+    years = {str(parts[0]) for date in ("issued", "published-print", "published-online")
+             for parts in metadata.get(date, {}).get("date-parts", []) if parts}
+    if not years or not fields.get("year"):
+        issues.append("YEAR_MISSING")
+    elif fields["year"].strip() not in years:
+        issues.append("YEAR_DIFFERS")
+    local_authors = []
+    for author in fields.get("author", "").split(" and "):
+        parts = [p.strip() for p in author.split(",")]
+        local_authors.append(bibliographic_text(" ".join(reversed(parts))))
+    remote_authors = [bibliographic_text(a.get("name") or " ".join((a.get("given", ""), a.get("family", ""))))
+                      for a in metadata.get("author", [])]
+    if not fields.get("author") or not remote_authors or not all(remote_authors):
+        issues.append("AUTHOR_MISSING")
+    elif local_authors != remote_authors:
+        issues.append("AUTHOR_DIFFERS")
+    return issues
+
+
+def fetch_doi_metadata(doi: str) -> dict:
+    request = Request(
+        "https://api.crossref.org/works/" + quote(doi, safe=""),
+        headers={"Accept": "application/json", "User-Agent": "legal-math-modeling/doi-check"},
+    )
+    with urlopen(request, timeout=20) as response:
+        return json.load(response)["message"]
+
+
+def check_dois(paper_dir: Path, supplied: dict | None = None) -> dict:
+    entries = bib_entries(read(paper_dir / "references.bib"))
+    results = []
+    for key, fields in entries.items():
+        if not fields.get("doi"):
+            continue
+        doi = fields["doi"].strip()
+        try:
+            metadata = fetch_doi_metadata(doi) if supplied is None else supplied[doi_identity(doi)]
+            issues = compare_doi_metadata(fields, metadata)
+            status = "REVIEW_REQUIRED" if issues else "MATCH"
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError, KeyError, TypeError) as exc:
+            # Crossref absence/failure is unresolved, not proof of an invalid DOI.
+            issues, status = [f"{type(exc).__name__}: {exc}"], "UNVERIFIED"
+        results.append({"key": key, "doi": doi, "status": status, "issues": issues})
+    return {"entries": len(entries), "doi_entries": len(results),
+            "without_doi": len(entries) - len(results), "results": results}
+
+
 def compare(baseline: dict, current: dict) -> list[str]:
     problems: list[str] = []
     for key, value in sorted(baseline["labels"].items()):
@@ -131,12 +281,33 @@ def main() -> int:
     ap.add_argument("--json-out")
     ap.add_argument("--baseline")
     ap.add_argument("--allow-missing-anchors", default="")
+    doi_mode = ap.add_mutually_exclusive_group()
+    doi_mode.add_argument("--check-dois", action="store_true", help="DOI-only mode: fetch Crossref metadata")
+    doi_mode.add_argument("--doi-metadata", help="DOI-only mode: JSON mapping canonical DOI to Crossref work metadata")
     args = ap.parse_args()
 
     paper_dir = Path(args.paper_dir)
     if not paper_dir.is_dir():
         print(f"FAIL no paper dir: {paper_dir}", file=sys.stderr)
         return 2
+
+    if args.check_dois or args.doi_metadata:
+        try:
+            supplied = json.loads(read(Path(args.doi_metadata))) if args.doi_metadata else None
+            report = check_dois(paper_dir, supplied)
+        except (OSError, ValueError) as exc:
+            print(f"FAIL DOI input error: {exc}", file=sys.stderr)
+            return 1
+        if args.json_out:
+            out = Path(args.json_out)
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+        failures = [r for r in report["results"] if r["status"] != "MATCH"]
+        print(f"DOI entries={report['entries']} checked={report['doi_entries']} "
+              f"without_doi={report['without_doi']} unresolved={len(failures)}")
+        for result in failures:
+            print(f"DOI {result['key']}: {result['status']} {', '.join(result['issues'])}")
+        return 1 if failures else 0
 
     current = collect(paper_dir)
     waiver = {w for w in args.allow_missing_anchors.split(",") if w}

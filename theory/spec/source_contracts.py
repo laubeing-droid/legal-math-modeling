@@ -12,11 +12,15 @@ return UNKNOWN, never a fabricated source decision.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import json
+from dataclasses import dataclass, replace
 from enum import Enum
-from typing import Any, Dict, FrozenSet, Mapping, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Dict, FrozenSet, Mapping, Optional, Sequence, Tuple
 
 from theory.spec.temporal_applicability import effective_at
+
+if TYPE_CHECKING:
+    from theory.spec.canonical_v2.case import LegalRuleRecord
 
 
 class SourceKind(str, Enum):
@@ -253,6 +257,45 @@ def select_indexed_source(
     if len(eligible) != 1:
         return None, "AMBIGUOUS_SOURCE_VERSION"
     return eligible[0], ""
+
+
+def bind_indexed_rule(
+    rule: "LegalRuleRecord", records: Sequence[Mapping[str, Any]], *,
+    rank: HierarchyRank, title: str, at_day: int, provision_id: str,
+    version_id: Optional[str] = None,
+) -> "LegalRuleRecord":
+    """Bind an already modeled rule to an indexed provision for run_case.
+
+    Input records carry explicit effective intervals, a snapshot_id and a
+    provisions mapping of exact locators to text. This does not extract a
+    rule from prose or infer transition law from a judgment/publication date.
+    The rule's declared jurisdiction, stages and matter scope are preserved;
+    its applicability interval is intersected with the selected source.
+    """
+    source, error = select_indexed_source(
+        records, rank=rank, title=title, at_day=at_day, version_id=version_id,
+    )
+    if error:
+        raise ValueError(error)
+    if not source.get("snapshot_id") or not source.get("version_id"):
+        raise ValueError("SOURCE_VERSION_IDENTITY_MISSING")
+    text = source.get("provisions", {}).get(provision_id)
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError("SOURCE_PROVISION_MISSING")
+    if rule.validity is None:
+        raise ValueError("RULE_SCOPE_UNBOUND")
+    jurisdiction, stages, matters, lo, hi = rule.validity
+    lo = max(source["effective_from"], lo) if lo is not None else source["effective_from"]
+    ends = [end for end in (hi, source.get("effective_to")) if end is not None]
+    hi = min(ends) if ends else None
+    if at_day < lo or (hi is not None and at_day > hi):
+        raise ValueError("RULE_OUTSIDE_BOUND_TIME")
+    return replace(
+        rule,
+        source_id=json.dumps([source["snapshot_id"], source["version_id"], provision_id],
+                             ensure_ascii=False, separators=(",", ":")),
+        validity=(jurisdiction, stages, matters, lo, hi),
+    )
 
 
 @dataclass(frozen=True)

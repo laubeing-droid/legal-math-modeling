@@ -8,6 +8,8 @@ templates fire only in selections adopting their rule.
 """
 
 import pytest
+import json
+from dataclasses import replace
 from fractions import Fraction as Q
 from unittest import TestCase
 
@@ -41,6 +43,7 @@ from theory.spec.canonical_v2.kernel import (
 
 from unified.pipeline import run_case
 from unified.process import LegalEventKind
+from theory.spec.source_contracts import HierarchyRank, bind_indexed_rule
 
 
 def _event(eid, kind_value, occurred=5, observed=6, obj="loan"):
@@ -129,6 +132,87 @@ def _loan_template(license_rule=""):
         license_rule_id=license_rule,
         source_id="evidence-rules:strong-loan",
     )
+
+
+def _indexed_loan_rule(records, day, version=None):
+    rule = LegalRuleRecord(
+        rule_id="r-indexed", kind=RuleKind.STRICT_HORN,
+        premises=(_atom("contract_signed"),), conclusion=_atom("loan"),
+        modality=Modality.OBLIGATION, source_id="unbound-model",
+    ).with_validity("MAINLAND", stage_scope=("trial",), from_day=1)
+    return bind_indexed_rule(
+        rule, records, rank=HierarchyRank.STATUTE, title="Synthetic Code",
+        at_day=day, provision_id="article-1", version_id=version,
+    )
+
+
+def _indexed_versions():
+    old = dict(rank=HierarchyRank.STATUTE, title="Synthetic Code",
+               snapshot_id="synthetic-old", version_id="v1",
+               effective_from=1, effective_to=5,
+               provisions={"article-1": "Synthetic loan rule."})
+    return [old, dict(old, snapshot_id="synthetic-new", version_id="v2",
+                      effective_from=6, effective_to=None)]
+
+
+class IndexedSourceCaseTests(TestCase):
+    def test_source_reaches_real_case_judgment_at_bound_time(self):
+        for target, version in [(1, "v1"), (5, "v1"), (6, "v2")]:
+            with self.subTest(target=target):
+                case = _case(_loan_facts())
+                case = replace(case, initial_state=replace(case.initial_state, target_day=target))
+                rule = _indexed_loan_rule(_indexed_versions(), target)
+                self.assertEqual(json.loads(rule.source_id)[1:], [version, "article-1"])
+                env = _env(rules=(rule,), templates=(_loan_template("r-indexed"),))
+                result = run_case(case, env)
+                self.assertIs(result.status, RunStatus.COMPLETE)
+                self.assertEqual(result.judgments_of("c1"), (Judgment.ESTABLISHED,))
+                self.assertTrue(all(b.selection == frozenset({"r-indexed"}) for b in result.branches))
+                self.assertTrue(check_case_run(case, env, result).ok)
+                # The independent checker rejects a tampered selection.
+                bad = replace(result, branches=tuple(replace(b, selection=frozenset()) for b in result.branches))
+                self.assertFalse(check_case_run(case, env, bad).ok)
+
+    def test_knowledge_cutoff_cannot_make_new_rule_applicable_to_old_target(self):
+        case = _case(_loan_facts())
+        case = replace(case, initial_state=replace(case.initial_state, target_day=5))
+        new_rule = _indexed_loan_rule(_indexed_versions(), 6)
+        env = _env(rules=(new_rule,), templates=(_loan_template("r-indexed"),))
+        result = run_case(case, env)
+        self.assertEqual(result.judgments_of("c1"), (Judgment.NOT_ESTABLISHED,))
+        self.assertTrue(all(not b.selection for b in result.branches))
+        self.assertTrue(check_case_run(case, env, result).ok)
+
+    def test_invalid_source_cannot_become_an_executable_rule(self):
+        for change, error in [
+            ({"title": "Synthetic Code Commentary"}, "SOURCE_IDENTITY_NOT_FOUND"),
+            ({"rank": HierarchyRank.LOCAL_REGULATION}, "SOURCE_IDENTITY_NOT_FOUND"),
+            ({"effective_from": None}, "SOURCE_INTERVAL_UNRESOLVED"),
+            ({"provisions": {}}, "SOURCE_PROVISION_MISSING"),
+            ({"provisions": {"article-1": " "}}, "SOURCE_PROVISION_MISSING"),
+            ({"snapshot_id": ""}, "SOURCE_VERSION_IDENTITY_MISSING"),
+        ]:
+            with self.subTest(change=change), self.assertRaisesRegex(ValueError, error):
+                _indexed_loan_rule([dict(_indexed_versions()[0], **change)], 5)
+
+    def test_explicit_old_version_is_rejected_on_first_new_version_day(self):
+        with self.assertRaisesRegex(ValueError, "NO_VERSION_AT_BOUND_TIME"):
+            _indexed_loan_rule(_indexed_versions(), 6, "v1")
+
+    def test_binding_intersects_scope_instead_of_widening_the_modeled_rule(self):
+        rule = _indexed_loan_rule(_indexed_versions(), 5)
+        rule = rule.with_validity("MAINLAND", stage_scope=("trial",),
+                                  matter_scope=("loan",), from_day=4, to_day=8)
+        bound = bind_indexed_rule(rule, _indexed_versions(), rank=HierarchyRank.STATUTE,
+                                  title="Synthetic Code", at_day=5, provision_id="article-1")
+        self.assertEqual(bound.validity, ("MAINLAND", ("trial",), ("loan",), 4, 5))
+        self.assertFalse(bound.applicable_at("MAINLAND", 5, "appeal"))
+        with self.assertRaisesRegex(ValueError, "RULE_OUTSIDE_BOUND_TIME"):
+            bind_indexed_rule(rule, _indexed_versions(), rank=HierarchyRank.STATUTE,
+                              title="Synthetic Code", at_day=3, provision_id="article-1")
+        with self.assertRaisesRegex(ValueError, "RULE_SCOPE_UNBOUND"):
+            bind_indexed_rule(replace(rule, validity=None), _indexed_versions(), rank=HierarchyRank.STATUTE,
+                              title="Synthetic Code", at_day=5, provision_id="article-1")
 
 
 class TemplateChannelTests(TestCase):

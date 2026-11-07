@@ -31,3 +31,33 @@ open JurisLean.Candidates.LearningSplit20261027
 
 #check JurisLean.Candidates.LearningSplit20261027.measurement_split_can_cross_one_event
 #print axioms JurisLean.Candidates.LearningSplit20261027.measurement_split_can_cross_one_event
+
+#check JurisLean.Candidates.LearningSplit20261027.count_weights_join
+#print axioms JurisLean.Candidates.LearningSplit20261027.count_weights_join
+
+#check JurisLean.Candidates.LearningSplit20261027.posterior_join_commutes
+#print axioms JurisLean.Candidates.LearningSplit20261027.posterior_join_commutes
+
+#check JurisLean.Candidates.LearningSplit20261027.malformed_counts_uninhabited
+#print axioms JurisLean.Candidates.LearningSplit20261027.malformed_counts_uninhabited
+
+#check JurisLean.Candidates.LearningSplit20261027.unbounded_count_join_counterexample
+#print axioms JurisLean.Candidates.LearningSplit20261027.unbounded_count_join_counterexample
+
+#check JurisLean.Candidates.LearningSplit20261027.successful_events_subset
+#print axioms JurisLean.Candidates.LearningSplit20261027.successful_events_subset
+
+#check JurisLean.Candidates.LearningSplit20261027.successful_events_copy
+#print axioms JurisLean.Candidates.LearningSplit20261027.successful_events_copy
+
+#check JurisLean.Candidates.LearningSplit20261027.consistent_labels_copy
+#print axioms JurisLean.Candidates.LearningSplit20261027.consistent_labels_copy
+
+#check JurisLean.Candidates.LearningSplit20261027.event_posterior_replay_stable
+#print axioms JurisLean.Candidates.LearningSplit20261027.event_posterior_replay_stable
+
+#check JurisLean.Candidates.LearningSplit20261027.conflicting_event_labels_refused
+#print axioms JurisLean.Candidates.LearningSplit20261027.conflicting_event_labels_refused
+
+#check JurisLean.Candidates.LearningSplit20261027.accepted_event_posterior_is_existing_beta_readout
+#print axioms JurisLean.Candidates.LearningSplit20261027.accepted_event_posterior_is_existing_beta_readout

@@ -14,7 +14,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, FrozenSet, Optional, Tuple
+from typing import Any, Dict, FrozenSet, Mapping, Optional, Sequence, Tuple
+
+from theory.spec.temporal_applicability import effective_at
 
 
 class SourceKind(str, Enum):
@@ -221,6 +223,36 @@ def select_applicable_law(jurisdiction: Optional[str], version: Optional[str]) -
     if not jurisdiction or not version:
         return "UNKNOWN"
     return f"{jurisdiction}::{version}"
+
+
+def select_indexed_source(
+    records: Sequence[Mapping[str, Any]], *, rank: HierarchyRank, title: str,
+    at_day: int, version_id: Optional[str] = None,
+) -> Tuple[Optional[Mapping[str, Any]], str]:
+    """Select an exact indexed identity within its explicit effective interval.
+
+    Carries the useful lookup rule from the archived law_source_v2 adapter
+    into the current source/temporal contracts. No directory name or title
+    substring determines authority. `at_day` is the caller's bound legal
+    applicability time, not automatically today's date or judgment date.
+    Overlapping versions are unresolved unless an exact version is supplied.
+    """
+
+    candidates = [record for record in records
+                  if record["rank"] == rank and record["title"] == title
+                  and (version_id is None or record["version_id"] == version_id)]
+    if not candidates:
+        return None, "SOURCE_IDENTITY_NOT_FOUND"
+    if any(record.get("effective_from") is None or
+           (record.get("effective_to") is not None and
+            record["effective_to"] < record["effective_from"]) for record in candidates):
+        return None, "SOURCE_INTERVAL_UNRESOLVED"
+    eligible = [record for record in candidates if effective_at(record, at_day)]
+    if not eligible:
+        return None, "NO_VERSION_AT_BOUND_TIME"
+    if len(eligible) != 1:
+        return None, "AMBIGUOUS_SOURCE_VERSION"
+    return eligible[0], ""
 
 
 @dataclass(frozen=True)

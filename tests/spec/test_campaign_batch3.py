@@ -5,6 +5,9 @@ P-096..P-103, P-105..P-107, P-114, P-117, P-121/122/124..P-132)."""
 from __future__ import annotations
 
 from decimal import Decimal
+from dataclasses import replace
+from fractions import Fraction
+from itertools import permutations
 
 import pytest
 
@@ -51,11 +54,14 @@ from theory.spec.negotiation_contracts import (
     tactic_permitted,
 )
 from theory.spec.computation_contracts import (
+    Appropriation,
     ContractState,
     DebtItem,
     InterestSegment,
     SimilarityToolOutput,
     TaxBracket,
+    TypedDebt,
+    allocate_grounded,
     allocate_payment,
     compute_damage_item,
     deduction_implies_probability_one,
@@ -90,6 +96,84 @@ from theory.spec.delivery_contracts import (
 )
 
 D = Decimal
+
+
+def _typed_debt(key, amount, **changes):
+    # Synthetic common-party obligations; no corpus or case text is consumed.
+    values = dict(debt_id=key, kind="loan", amount=Fraction(amount), debtor="D", creditor="C",
+                  obligation=key, is_due=True, due_day=10, security=Fraction(0), burden=Fraction(1))
+    values.update(changes)
+    return TypedDebt(**values)
+
+
+def test_grounded_designation_and_statutory_order_actually_diverge():
+    debts = [_typed_debt("a", 40), _typed_debt("b", 60, burden=Fraction(9))]
+    chosen = allocate_grounded(Fraction(35), debts, Appropriation("debtor_designation", ("a", "b")))
+    statutory = allocate_grounded(Fraction(35), debts, Appropriation("statute_560_2", burden_basis="fixture"))
+    assert chosen.allocation == {"a": 35, "b": 0}
+    assert statutory.allocation == {"a": 0, "b": 35}
+    assert chosen.allowed and statutory.allowed
+
+
+def test_grounded_fractional_tie_is_exact_and_permutation_invariant():
+    debts = [_typed_debt("a", 1), _typed_debt("b", 2), _typed_debt("c", 3)]
+    basis = Appropriation("statute_560_2", burden_basis="fixture", due_day_basis="fixture")
+    for order in permutations(debts):
+        result = allocate_grounded(Fraction(1, 2), order, basis)
+        assert result.allowed
+        assert result.allocation == {"a": Fraction(1, 12), "b": Fraction(1, 6), "c": Fraction(1, 4)}
+        assert sum(result.allocation.values()) + result.remainder == Fraction(1, 2)
+
+
+def test_grounded_cascade_restarts_after_top_group_is_paid():
+    debts = [_typed_debt("a", 10), _typed_debt("b", 20, burden=Fraction(9)),
+             _typed_debt("future", 50, is_due=False)]
+    basis = Appropriation("statute_560_2", burden_basis="fixture")
+    for amount in (0, 1, 20, 25, 30, 35, 90):
+        result = allocate_grounded(Fraction(amount), debts, basis)
+        assert result.allowed
+        assert sum(result.allocation.values()) + result.remainder == amount
+        assert all(0 <= result.allocation[d.debt_id] <= d.amount for d in debts)
+    assert allocate_grounded(Fraction(35), debts, basis).allocation == {"a": 10, "b": 20, "future": 5}
+
+
+@pytest.mark.parametrize("field,value,reason", [
+    ("security", None, "SECURITY_UNKNOWN"),
+    ("burden", None, "BURDEN_BASIS_MISSING"),
+    ("due_day", None, "DUE_DAY_MISSING"),
+    ("creditor", "other", "PARTIES_MISMATCH"),
+    ("obligation", "", "PARTIES_OR_OBLIGATION_MISSING"),
+    ("kind", "interest", "KIND_PRECONDITION_FAILED"),
+])
+def test_grounded_missing_or_mismatched_inputs_do_not_pick_an_arbitrary_order(field, value, reason):
+    debts = [_typed_debt("a", 1), replace(_typed_debt("b", 2), **{field: value})]
+    result = allocate_grounded(Fraction(1), debts,
+        Appropriation("statute_560_2", burden_basis="fixture", due_day_basis="fixture"))
+    assert not result.allowed and result.reason == reason
+    assert sum(result.allocation.values()) == 0
+
+
+def test_grounded_duplicate_designation_cannot_overwrite_a_payment():
+    debts = [_typed_debt("a", 10), _typed_debt("b", 10)]
+    result = allocate_grounded(Fraction(15), debts, Appropriation("debtor_designation", ("a", "a", "b")))
+    assert not result.allowed and result.reason == "ORDER_NOT_A_PERMUTATION"
+
+
+def test_561_uses_the_existing_allocator_on_one_obligation():
+    debts = [_typed_debt("p", 100, kind="principal", obligation="o"),
+             _typed_debt("i", 20, kind="interest", obligation="o"),
+             _typed_debt("c", 5, kind="cost_of_realisation", obligation="o")]
+    result = allocate_grounded(Fraction(30), debts, Appropriation("statute_561"))
+    assert result.allowed and result.allocation == {"c": 5, "i": 20, "p": 5}
+    assert result.residual == {"p": 95, "i": 0, "c": 0}
+    bad = [replace(debts[0], obligation="another"), *debts[1:]]
+    assert not allocate_grounded(Fraction(30), bad, Appropriation("statute_561")).allowed
+
+
+def test_full_repayment_needs_no_unknown_priority_comparison():
+    debts = [_typed_debt("a", 1, security=None, burden=None), _typed_debt("b", 2, due_day=None)]
+    result = allocate_grounded(Fraction(4), debts, Appropriation("statute_560_2"))
+    assert result.allowed and result.allocation == {"a": 1, "b": 2} and result.remainder == 1
 
 # --- P-057 类比 ---
 

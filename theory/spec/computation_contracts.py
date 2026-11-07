@@ -16,10 +16,11 @@ capped at candidate grade and never asserts structural equivalence.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from decimal import Decimal
 from enum import Enum
-from typing import Dict, FrozenSet, Optional, Tuple
+from fractions import Fraction
+from typing import Dict, FrozenSet, Optional, Sequence, Tuple
 
 D = Decimal
 
@@ -46,18 +47,18 @@ def segmented_interest(principal: D, segments: Tuple[InterestSegment, ...]) -> D
 @dataclass(frozen=True)
 class DebtItem:
     debt_id: str
-    amount: D
+    amount: D | Fraction
     order: int
 
 
 def allocate_payment(
-    payment: D, debts: Tuple[DebtItem, ...]
-) -> Tuple[Dict[str, D], D]:
+    payment: D | Fraction, debts: Tuple[DebtItem, ...]
+) -> Tuple[Dict[str, D | Fraction], D | Fraction]:
     """P-097 B15: order-based allocation; total allocated never exceeds the
     payment; the remainder is carried, never invented."""
 
     remaining = payment
-    allocation: Dict[str, D] = {}
+    allocation: Dict[str, D | Fraction] = {}
     for debt in sorted(debts, key=lambda d: d.order):
         if remaining <= 0:
             allocation[debt.debt_id] = D(0)
@@ -66,6 +67,132 @@ def allocate_payment(
         allocation[debt.debt_id] = applied
         remaining -= applied
     return allocation, remaining
+
+
+@dataclass(frozen=True)
+class TypedDebt:
+    """An amount in one declared unit, with the parties and obligation identified."""
+
+    debt_id: str
+    kind: str
+    amount: Fraction
+    debtor: str
+    creditor: str
+    obligation: str
+    is_due: bool = False
+    due_day: Optional[int] = None
+    security: Optional[Fraction] = None  # None is unknown; zero is unsecured.
+    burden: Optional[Fraction] = None
+
+
+@dataclass(frozen=True)
+class Appropriation:
+    basis: str
+    order: Tuple[str, ...] = ()
+    burden_basis: str = ""
+    due_day_basis: str = ""
+
+
+@dataclass(frozen=True)
+class AllocationResult:
+    allowed: bool
+    reason: str
+    allocation: Dict[str, Fraction] = field(default_factory=dict)
+    residual: Dict[str, Fraction] = field(default_factory=dict)
+    remainder: Fraction = Fraction(0)
+
+
+def allocate_grounded(
+    payment: Fraction, debts: Sequence[TypedDebt], basis: Appropriation
+) -> AllocationResult:
+    """P-097: derive ordering before consuming the existing ordered allocator.
+
+    Absorbed from the uncommitted 2026-10-15 appropriation candidate. The
+    560(2) cascade uses declared security/burden/date comparisons; 561 uses
+    costs, interest, principal within one identified obligation. Amounts use
+    exact rational shares: rounding to currency units is not inferred here.
+    Statutory source: Civil Code 560/561, https://enipc.court.gov.cn/zh-cn/news/view-371.html
+    """
+
+    payment = Fraction(payment)
+    amounts = {d.debt_id: Fraction(d.amount) for d in debts}
+    zero = {d.debt_id: Fraction(0) for d in debts}
+
+    def refused(reason: str) -> AllocationResult:
+        return AllocationResult(False, reason, zero, amounts, payment)
+
+    if basis.basis not in {"party_agreement", "debtor_designation", "statute_560_2", "statute_561"}:
+        return refused("NO_BASIS" if basis.basis == "none" else "UNKNOWN_BASIS")
+    if not debts:
+        return refused("EMPTY_ROSTER")
+    if len(amounts) != len(debts) or any(not d.debt_id for d in debts):
+        return refused("DUPLICATE_OR_EMPTY_DEBT_ID")
+    if payment < 0 or any(amount < 0 for amount in amounts.values()):
+        return refused("NEGATIVE_AMOUNT")
+    if any(d.security is not None and d.security < 0 for d in debts):
+        return refused("NEGATIVE_SECURITY")
+    if any(not d.debtor or not d.creditor or not d.obligation for d in debts):
+        return refused("PARTIES_OR_OBLIGATION_MISSING")
+    if len({(d.debtor, d.creditor) for d in debts}) != 1:
+        return refused("PARTIES_MISMATCH")
+    kinds = {d.kind for d in debts}
+    if "" in kinds:
+        return refused("KIND_MISSING")
+    if basis.basis in {"debtor_designation", "statute_560_2"} and len(kinds) != 1:
+        return refused("KIND_PRECONDITION_FAILED")
+
+    if basis.basis in {"party_agreement", "debtor_designation", "statute_561"}:
+        if basis.basis == "statute_561":
+            rank = {"cost_of_realisation": 0, "interest": 1, "principal": 2}
+            if not kinds <= rank.keys() or len({d.obligation for d in debts}) != 1:
+                return refused("OBLIGATION_OR_KIND_MISMATCH")
+            if len(kinds) != len(debts):
+                return refused("UNRESOLVED_SAME_RANK")
+            ordered = sorted(debts, key=lambda d: rank[d.kind])
+        else:
+            if len(basis.order) != len(debts) or set(basis.order) != set(amounts):
+                return refused("ORDER_NOT_A_PERMUTATION")
+            by_id = {d.debt_id: d for d in debts}
+            ordered = [by_id[key] for key in basis.order]
+        allocated, remaining = allocate_payment(
+            payment, tuple(DebtItem(d.debt_id, amounts[d.debt_id], i) for i, d in enumerate(ordered))
+        )
+        allocation = {key: Fraction(value) for key, value in allocated.items()}
+    else:
+        allocation = dict(zero)
+        remaining = payment
+        total_due = sum(amounts.values(), Fraction(0))
+        if total_due <= payment:
+            return AllocationResult(True, basis.basis, amounts, zero, payment - total_due)
+        roster = [d for d in debts if amounts[d.debt_id] > 0]
+        while remaining > 0 and roster:
+            pool = [d for d in roster if d.is_due] or roster
+            if len(pool) > 1:
+                if any(d.security is None for d in pool):
+                    return refused("SECURITY_UNKNOWN")
+                least = min(d.security for d in pool)
+                pool = [d for d in pool if d.security == least]
+            if len(pool) > 1:
+                if not basis.burden_basis.strip() or any(d.burden is None for d in pool):
+                    return refused("BURDEN_BASIS_MISSING")
+                heaviest = max(d.burden for d in pool)
+                pool = [d for d in pool if d.burden == heaviest]
+            if len(pool) > 1:
+                if not basis.due_day_basis.strip() or any(d.due_day is None for d in pool):
+                    return refused("DUE_DAY_MISSING")
+                earliest = min(d.due_day for d in pool)
+                pool = [d for d in pool if d.due_day == earliest]
+            total = sum((amounts[d.debt_id] for d in pool), Fraction(0))
+            applied = min(remaining, total)
+            for debt in pool:
+                allocation[debt.debt_id] = applied * amounts[debt.debt_id] / total
+            remaining -= applied
+            paid_group = {d.debt_id for d in pool}
+            roster = [d for d in roster if d.debt_id not in paid_group]
+    return AllocationResult(
+        True, basis.basis, allocation,
+        {key: amount - allocation[key] for key, amount in amounts.items()}, Fraction(remaining),
+    )
 
 
 def reduce_penalty(amount: D, benchmark: Tuple[D, D], excessive: bool) -> D:

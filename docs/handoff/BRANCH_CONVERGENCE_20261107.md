@@ -43,3 +43,5 @@
 新独立驱动分别检查八个测量分组目标和十一个有限例子/连接目标。GitHub Actions [changed-module 42378218776](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42378218776) 在源码提交 `96480727c4e31f54dd1f0c9e126b7e0323590a4d` 编译四个新增模块及其依赖成功；job `128420130485` 的原始输出逐个列出十九个目标的类型和标准公理依赖。通过后接入根入口，再对合并结果运行完整主线流程，当前完整验证状态以该提交的 Actions 为准。
 
 工作目录收束前，逐工作区保全未提交、未跟踪和忽略文件，并为五个原 Git 数据库保全提交历史。归档在项目工作区的独立收束备份目录，原件在归档校验完成之前不删除。
+
+旧证据仍比对原始 subject 的源码。压缩合并后删除来源分支会使普通全历史 checkout 缺失这些对象；完整 CI 从既有 verification.json 读取原始提交，按精确 SHA 取回缺失对象到 `refs/verification/subjects/*`，不恢复开发分支，不改写旧回执。全新克隆已验证 PR 历史及改写前提交均可取回，90 个原始验证 subject 都有对应对象。

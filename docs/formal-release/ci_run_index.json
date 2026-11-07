@@ -41104,6 +41104,68 @@
       "status": "completed",
       "updated_at": "2026-11-05T21:44:35Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-11-07T13:42:53Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "integrate/retained-branches-20261107",
+      "head_sha": "96480727c4e31f54dd1f0c9e126b7e0323590a4d",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42378218776",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/handoff/BRANCH_CONVERGENCE_20261107.md:43"
+      ],
+      "run_id": 42378218776,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-11-07T13:45:41Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

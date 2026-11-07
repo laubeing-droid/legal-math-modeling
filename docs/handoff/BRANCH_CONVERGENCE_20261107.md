@@ -85,3 +85,5 @@
 DOI 请求与元数据字段按 [Crossref REST API 文档](https://github.com/CrossRef/rest-api-doc) 接入；Crossref 未收录或网络不可用记为未核实，不宣称 DOI 无效。DOI 名称按 [DOI Handbook](https://www.doi.org/doi-handbook/html/) 仅折叠 ASCII 大小写；普通文献字段的比较保留 Unicode 内容，不能因中文被清空而误报一致。作者缩写、标题变体或期刊缩写存在差异时明确要求复核。
 
 测试全部使用合成文献、合成法源和合成案件。完整 Python、reference、Lean 与证书结果绑定本次 PR 和合并提交的 Actions；本轮未新增或修改 Lean 命题。旧探针淘汰的理由是已核实的实现错误或已被当前入口替代，不是把外部语料未运行写成通过。
+
+基线代码反例已实跑：`target_day=5, as_of_day=10`，有效期 1–5 的许可规则在旧入口被漏选，结果从应成立变成不成立；有效期从 6 开始的规则则被错选，反向导致成立。本轮两种结果均纠正，独立检查器确认新结果并拒绝篡改选择。`RETAINED_SOURCE_LOCK.json` 仅更新 `pipeline.py` 的当前 Git blob 指纹，沿用既有有意修正后的重锁规则；原源码和原指纹保留在上述基线提交，没有改写历史证明回执。

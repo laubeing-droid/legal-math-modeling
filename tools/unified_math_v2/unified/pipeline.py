@@ -71,7 +71,9 @@ def enumerate_norm_selections(
     """Stable selections over the validity-passing candidates; exclusion
     edges come from ``priority_over`` declarations (plan 3.1)."""
 
-    day = case.initial_state.as_of_day
+    # Applicability is bound to the target being judged. The knowledge cutoff
+    # only controls what evidence is visible; it cannot choose a newer law.
+    day = case.initial_state.target_day
     stages = {s for _p, s in case.initial_state.stages}
     stage = next(iter(stages)) if len(stages) == 1 else ""
     candidates = frozenset(

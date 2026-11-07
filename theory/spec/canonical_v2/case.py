@@ -551,7 +551,9 @@ class LedgerEntry:
 class ProcessState:
     """§9.1 state s=(R,E,Γ,Prc,Ledger) with the actual event prefix and the
     two time axes.  K is NOT stored here: it is rebuilt from the visible
-    projection of E (J.4.1 ProcessState contract)."""
+    projection of E (J.4.1 ProcessState contract). target_day is the bound
+    time for the modeled applicability question; as_of_day is the knowledge
+    cutoff. Neither field infers statutory transition exceptions."""
 
     r: NormState
     evidence: Tuple[EvidenceRecord, ...] = ()

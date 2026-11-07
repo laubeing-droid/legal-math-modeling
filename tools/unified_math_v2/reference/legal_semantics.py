@@ -54,7 +54,7 @@ def _claim_key(predicate: str, polar: Polar, subject: str = "") -> str:
 
 
 def _inline_candidates(case: CaseInput, env: LegalEnvironment):
-    day = case.initial_state.as_of_day
+    day = case.initial_state.target_day
     jurisdiction = env.jurisdiction.route.value
     case_stages = {s for _p, s in case.initial_state.stages}
     stage = next(iter(case_stages)) if len(case_stages) == 1 else ""

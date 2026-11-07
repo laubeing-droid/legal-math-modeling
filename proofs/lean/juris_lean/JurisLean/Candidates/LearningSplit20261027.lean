@@ -159,7 +159,7 @@ theorem malformed_counts_uninhabited :
 -- The missing invariant in the old Nat pair really changes the negative count.
 theorem unbounded_count_join_counterexample :
     ((2 + 5 - (3 + 0) : Nat) : ℚ) ≠
-      ((2 - 3 : Nat) : ℚ) + ((5 - 0 : Nat) : ℚ) := by decide
+      ((2 - 3 : Nat) : ℚ) + ((5 - 0 : Nat) : ℚ) := by norm_num
 
 def successfulEvents (rows : List SplitObservation) : Finset Nat :=
   ((rows.filter fun row => row.label).map fun row => row.event).toFinset

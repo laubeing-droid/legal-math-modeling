@@ -11,12 +11,55 @@ from theory.spec.source_bundle import (
     check_source_bundle,
 )
 from theory.spec.source_path import build_source_path, check_source_path
+from theory.spec.source_contracts import HierarchyRank, select_indexed_source
 from theory.spec.temporal_applicability import (
     build_version_record,
     check_supersession_chain,
     check_temporal_applicability,
     effective_at,
 )
+
+
+def test_indexed_identity_does_not_accept_title_substrings_or_other_ranks():
+    national = dict(rank=HierarchyRank.STATUTE, title="Synthetic Code", version_id="v1", effective_from=10)
+    local = dict(national, rank=HierarchyRank.LOCAL_REGULATION)
+    records = [local, dict(national, title="Synthetic Code Commentary"), national]
+    assert select_indexed_source(records, rank=HierarchyRank.STATUTE,
+                                 title="Synthetic Code", at_day=10) == (national, "")
+    assert select_indexed_source(records, rank=HierarchyRank.STATUTE,
+                                 title="Synthetic", at_day=10)[1] == "SOURCE_IDENTITY_NOT_FOUND"
+
+
+def test_indexed_versions_use_bound_time_including_the_repeal_boundary():
+    old = dict(rank=HierarchyRank.STATUTE, title="Synthetic Code", version_id="v1",
+               effective_from=10, effective_to=19)
+    new = dict(old, version_id="v2", effective_from=20, effective_to=None)
+    for day, expected in [(9, None), (10, old), (19, old), (20, new), (100, new)]:
+        chosen, _ = select_indexed_source([new, old], rank=HierarchyRank.STATUTE,
+                                          title="Synthetic Code", at_day=day)
+        assert chosen == expected
+    # A later query still resolves the old version at the bound historical day.
+    assert select_indexed_source([new, old], rank=HierarchyRank.STATUTE,
+        title="Synthetic Code", at_day=15, version_id="v1")[0] == old
+    assert select_indexed_source([new, old], rank=HierarchyRank.STATUTE,
+        title="Synthetic Code", at_day=20, version_id="v1")[1] == "NO_VERSION_AT_BOUND_TIME"
+
+
+def test_indexed_version_ambiguity_does_not_depend_on_input_order():
+    a = dict(rank=HierarchyRank.STATUTE, title="Synthetic Code", version_id="a", effective_from=10)
+    b = dict(a, version_id="b")
+    for rows in ([a, b], [b, a]):
+        assert select_indexed_source(rows, rank=HierarchyRank.STATUTE,
+            title="Synthetic Code", at_day=11)[1] == "AMBIGUOUS_SOURCE_VERSION"
+        assert select_indexed_source(rows, rank=HierarchyRank.STATUTE,
+            title="Synthetic Code", at_day=11, version_id="b") == (b, "")
+
+
+@pytest.mark.parametrize("interval", [{}, {"effective_from": 20, "effective_to": 10}])
+def test_indexed_version_never_substitutes_filename_date_for_unknown_effectivity(interval):
+    record = dict(rank=HierarchyRank.STATUTE, title="Synthetic Code", version_id="v1", **interval)
+    assert select_indexed_source([record], rank=HierarchyRank.STATUTE,
+        title="Synthetic Code", at_day=30)[1] == "SOURCE_INTERVAL_UNRESOLVED"
 
 
 def _valid_bundle() -> dict:

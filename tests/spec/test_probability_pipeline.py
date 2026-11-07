@@ -165,6 +165,37 @@ def test_row_time_order_is_enforced_fail_closed() -> None:
         estimate_retrieved_cohort(event=broken, rows=_cohort(2, 2), repo_root=ROOT)
 
 
+def test_replayed_observation_changes_neither_counts_nor_actual_interval() -> None:
+    rows = _cohort(2, 1, synthetic=True)
+    before = estimate_retrieved_cohort(event=_event(), rows=rows, repo_root=ROOT)
+    replayed = estimate_retrieved_cohort(
+        event=_event(), rows=rows + [rows[0]], repo_root=ROOT
+    )
+    assert replayed == before
+    distinct = estimate_retrieved_cohort(
+        event=_event(), rows=rows + [RetrievedOutcome("new", True, True, True)], repo_root=ROOT
+    )
+    assert distinct.observed_total == 4 and distinct.successes == 3
+    assert (distinct.interval_low, distinct.interval_high) != (before.interval_low, before.interval_high)
+
+
+@pytest.mark.parametrize("copy", [
+    RetrievedOutcome("win_0", True, False, True),
+    RetrievedOutcome("win_0", False, True, True),
+    RetrievedOutcome("win_0", True, True, False),
+])
+def test_conflicting_copy_cannot_select_an_outcome_by_list_order(copy) -> None:
+    original = RetrievedOutcome("win_0", True, True, True)
+    for rows in ([original, copy], [copy, original]):
+        with pytest.raises(ValueError, match="CONFLICTING_OBSERVATION"):
+            estimate_retrieved_cohort(event=_event(), rows=rows, repo_root=ROOT)
+
+
+def test_blank_observation_identity_is_not_a_deduplication_key() -> None:
+    with pytest.raises(ValueError, match="OBSERVATION_ID_MISSING"):
+        observed_frequency([RetrievedOutcome(" ", True, True, True)])
+
+
 # --- PR-03 ---
 
 

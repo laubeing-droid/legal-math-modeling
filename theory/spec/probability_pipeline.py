@@ -129,11 +129,29 @@ class ProbabilityEstimate:
 def observed_frequency(rows: Sequence[RetrievedOutcome]) -> CohortFrequency:
     """Population is exactly the retrieved observed rows."""
 
-    observed = [row for row in rows if row.observed]
+    observed = [row for row in distinct_outcomes(rows) if row.observed]
     return CohortFrequency(
         successes=sum(1 for row in observed if row.success),
         observed_total=len(observed),
     )
+
+
+def distinct_outcomes(rows: Sequence[RetrievedOutcome]) -> Tuple[RetrievedOutcome, ...]:
+    """Count one outcome per resolved case identity; contradictory copies refuse.
+
+    This carries the archived observation-ledger replay rule into the actual
+    retrieved-cohort consumer. All fields, including observation/synthetic
+    status, must agree before a repeated identity can be discarded.
+    """
+
+    unique: Dict[str, RetrievedOutcome] = {}
+    for row in rows:
+        if not row.case_id.strip():
+            raise ValueError("OBSERVATION_ID_MISSING")
+        if row.case_id in unique and unique[row.case_id] != row:
+            raise ValueError(f"CONFLICTING_OBSERVATION:{row.case_id}")
+        unique[row.case_id] = row
+    return tuple(unique.values())
 
 
 def load_win_model_module(repo_root: Path):
@@ -177,7 +195,7 @@ def call_existing_latent_rate_interval(
             source="retrieved_cohort",
             synthetic=row.synthetic,
         )
-        for row in rows
+        for row in distinct_outcomes(rows)
         if row.observed
     )
     if not train_rows:

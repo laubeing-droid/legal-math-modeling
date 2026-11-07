@@ -1,4 +1,5 @@
 import JurisLean.Candidates.LearningEventSplit20261027
+import JurisLean.Seams.Probability
 
 /-!
 Measurement grouping from the retained branch, on the current event/measurement/
@@ -112,5 +113,114 @@ theorem measurement_split_can_cross_one_event :
     leakedTrain.event =
       ({leakedTrain with measurement := 11, record := 21} : SplitObservation).event := by
   decide
+
+/-! The archived S3/S7 count bridge is consumed here by the existing event rows.
+Repeated records do not add events or posterior mass. Conflicting labels for
+one event are rejected before producing a posterior. -/
+
+structure WellFormedCounts where
+  successes : Nat
+  trials : Nat
+  bounded : successes ≤ trials
+
+def countWeights (o : WellFormedCounts) : Fin 2 → ℚ :=
+  fun i => if i.val = 0 then o.successes else (o.trials - o.successes : Nat)
+
+def joinCounts (a b : WellFormedCounts) : WellFormedCounts :=
+  ⟨a.successes + b.successes, a.trials + b.trials, Nat.add_le_add a.bounded b.bounded⟩
+
+theorem count_weights_join (a b : WellFormedCounts) :
+    countWeights (joinCounts a b) = fun i => countWeights a i + countWeights b i := by
+  funext i
+  fin_cases i
+  · show ((a.successes + b.successes : Nat) : ℚ) = (a.successes : ℚ) + (b.successes : ℚ)
+    exact Nat.cast_add _ _
+  · show ((a.trials + b.trials - (a.successes + b.successes) : Nat) : ℚ) =
+      ((a.trials - a.successes : Nat) : ℚ) + ((b.trials - b.successes : Nat) : ℚ)
+    have subtraction : a.trials + b.trials - (a.successes + b.successes) =
+        (a.trials - a.successes) + (b.trials - b.successes) := by
+      have ha := a.bounded
+      have hb := b.bounded
+      omega
+    rw [subtraction]
+    exact Nat.cast_add _ _
+
+theorem posterior_join_commutes (a b : WellFormedCounts) (prior : Fin 2 → ℚ) :
+    JurisLean.FullMath.Probability.dirWeights prior (countWeights (joinCounts a b)) =
+      JurisLean.FullMath.Probability.dirWeights prior (fun i => countWeights a i + countWeights b i) :=
+  congrArg (JurisLean.FullMath.Probability.dirWeights prior) (count_weights_join a b)
+
+theorem malformed_counts_uninhabited :
+    ¬ ∃ o : WellFormedCounts, o.successes = 3 ∧ o.trials = 2 := by
+  rintro ⟨o, hs, ht⟩
+  have h := o.bounded
+  omega
+
+-- The missing invariant in the old Nat pair really changes the negative count.
+theorem unbounded_count_join_counterexample :
+    ((2 + 5 - (3 + 0) : Nat) : ℚ) ≠
+      ((2 - 3 : Nat) : ℚ) + ((5 - 0 : Nat) : ℚ) := by norm_num
+
+def successfulEvents (rows : List SplitObservation) : Finset Nat :=
+  ((rows.filter fun row => row.label).map fun row => row.event).toFinset
+
+theorem successful_events_subset (rows : List SplitObservation) :
+    successfulEvents rows ⊆ JurisLean.Candidates.LearningEventSplit20261027.eventUnits rows := by
+  intro event member
+  obtain ⟨row, inRows, same⟩ := List.mem_map.mp (List.mem_toFinset.mp member)
+  exact List.mem_toFinset.mpr (List.mem_map.mpr ⟨row, (List.mem_filter.mp inRows).1, same⟩)
+
+def eventCounts (rows : List SplitObservation) : WellFormedCounts :=
+  ⟨(successfulEvents rows).card,
+   (JurisLean.Candidates.LearningEventSplit20261027.eventUnits rows).card,
+   Finset.card_le_card (successful_events_subset rows)⟩
+
+def consistentEventLabels (rows : List SplitObservation) : Bool :=
+  rows.all fun a => rows.all fun b => decide (a.event = b.event → a.label = b.label)
+
+def eventPosterior (prior : Fin 2 → ℚ) (rows : List SplitObservation) : Option (Fin 2 → ℚ) :=
+  if consistentEventLabels rows then
+    some (JurisLean.FullMath.Probability.dirWeights prior (countWeights (eventCounts rows)))
+  else none
+
+theorem successful_events_copy (rows : List SplitObservation) :
+    successfulEvents (rows ++ rows) = successfulEvents rows := by
+  ext event
+  simp [successfulEvents]
+
+theorem consistent_labels_copy (rows : List SplitObservation) :
+    consistentEventLabels (rows ++ rows) = consistentEventLabels rows := by
+  simp [consistentEventLabels, List.all_append]
+
+theorem event_posterior_replay_stable (prior : Fin 2 → ℚ) (rows : List SplitObservation) :
+    eventPosterior prior (rows ++ rows) = eventPosterior prior rows := by
+  have events :=
+    (JurisLean.Candidates.LearningEventSplit20261027.u01_3_duplicate_records_do_not_add_events rows).1
+  simp [eventPosterior, consistent_labels_copy, eventCounts, countWeights,
+    successful_events_copy, events]
+
+theorem conflicting_event_labels_refused (prior : Fin 2 → ℚ) :
+    eventPosterior prior [leakedTrain, {leakedTrain with label := !leakedTrain.label}] = none := by
+  simp [eventPosterior, consistentEventLabels, leakedTrain]
+
+def eventBetaModel (model : JurisLean.Seams.Probability.BetaGenModel)
+    (rows : List SplitObservation) : JurisLean.Seams.Probability.BetaGenModel :=
+  { shape := model.shape
+    counts := countWeights (eventCounts rows)
+    hshape := model.hshape
+    hcounts := by
+      intro i
+      fin_cases i
+      · exact Nat.cast_nonneg _
+      · exact Nat.cast_nonneg _
+    hpos := model.hpos }
+
+theorem accepted_event_posterior_is_existing_beta_readout
+    (model : JurisLean.Seams.Probability.BetaGenModel) (rows : List SplitObservation)
+    (consistent : consistentEventLabels rows = true) :
+    eventPosterior model.shape rows =
+      some (JurisLean.Seams.Probability.posteriorReadout (eventBetaModel model rows)) := by
+  simp [eventPosterior, consistent, eventBetaModel,
+    JurisLean.Seams.Probability.posteriorReadout]
 
 end JurisLean.Candidates.LearningSplit20261027

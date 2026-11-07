@@ -45,3 +45,23 @@
 工作目录收束前，逐工作区保全未提交、未跟踪和忽略文件，并为五个原 Git 数据库保全提交历史。归档在项目工作区的独立收束备份目录，原件在归档校验完成之前不删除。
 
 旧证据仍比对原始 subject 的源码。压缩合并后删除来源分支会使普通全历史 checkout 缺失这些对象；完整 CI 从既有 verification.json 读取原始提交，按精确 SHA 取回缺失对象到 `refs/verification/subjects/*`，不恢复开发分支，不改写旧回执。全新克隆已验证 PR 历史及改写前提交均可取回，90 个原始验证 subject 都有对应对象。
+
+## 未提交材料的实质承接（2026-11-07 至 11-08）
+
+本阶段基线是 main `23e6dcbb6242f790d1740244c84473c32d880688`。原九个工作目录归档共 4,712 个文件；逐文件记录原路径、Git blob、主线匹配、承接或去留理由。审查覆盖候选源码、测试、五份待应用 diff、未提交 CI 索引、嵌入脚本的证明片段，以及历史回执。完整逐项清单留在工作区的收束核查目录。
+
+| 原未提交成果 | 当前实际承接与修正 |
+|---|---|
+| appropriation_grounded / P-097 测试 | `theory/spec/computation_contracts.py` 的 `allocate_grounded` 接收有主体和义务身份的债项，在确定约定、指定或法定次序后消费既有 `allocate_payment`。560 的同序债项按精确有理比例分配，修复旧整数余数法对小额分数付款的失真；561 限于同一义务。未知担保、比较依据缺失、重复顺序不能形成分配。对应现有 batch3 测试。 |
+| observation_ledger / S3S7_Bridge / S7_WellFormed_Carrier | `theory/spec/probability_pipeline.py` 在实际频率统计和既有 `win_model.fit` 入口统一按事件身份去重；同身份不同观测字段直接拒绝。`LearningSplit20261027.lean` 复用现有事件行，证明有效计数加法、后验桥、重放不变与冲突拒绝，并把事件后验连到既有 `Seams.Probability.BetaGenModel` 的读数。 |
+| law_source_v2 的确定部分 | `theory/spec/source_contracts.py` 的 `select_indexed_source` 按层级、全名、可选版本和显式适用时点选源，实际调用已有 `temporal_applicability.effective_at`；拒绝缺失/倒置区间及重叠版本。外部抽取、案件链不随纯选择逻辑一起推定完成。 |
+
+有效计数载体不是另起一套后验模型：`accepted_event_posterior_is_existing_beta_readout` 明确比较同一批事件的计数后验与既有 Beta 模型读数。新增十项目标均纳入原有 `LearningSplitAudit20261027`，与原八项分组目标一起检查。云端 [changed-module 42388046568](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42388046568) 在源码提交 `c177f29dd6f53dd186beef823534da23af209083` 编译及十八个公理目标检查通过。三个相关 Python 测试文件共 107 项合成测试通过；完整流程结果由本次 PR 及合并提交的 CI 绑定。
+
+以下内容没有回灌：S0 候选的 w4 同时要求终止位为真和为假，w7 改变的 eventTag 又未被终止函数读取；逐槽可观察不等于联合表示覆盖。旧 GapStatements 的后验命题直接返回其同一前提。旧 S2 “条文实例待登记”仍能通过非空检查。有效泛型回缩、E01 区间消费则已由当前 `Final20261021/Representation.lean`、`SourceRepresentation20261027.lean` 和 `FullMath/Probability/E01Contract.lean` 承接。
+
+五份 release-scope-proposal diff 所涉及的全部旧 inventory 路径都在当前清单中；预览的 238 个 import 均在当前根入口的传递闭包内；旧 401 个 CI run 已全部进入当前索引，概念账 C14 原文仍保留。旧未提交索引的 399 个 run 也已全部承接。派生数字由现有生成器重算，不应用旧数字补丁。
+
+保留未闭合的外部法条/案件探针原件：旧脚本将判决日、失效日和适用时点混用，外部 r33 与法条库虽在本机存在，完整案件语义尚未接入本项目。旧 DOI 工具会漏掉首个 BibTeX 条目，且短词表相似度不足以确定文献身份，留作待修原件。旧 RSI 人工流程锁仅作历史参考，不作为新的数学债务或发布门槛。主线原有关债流程的用户决定保持不变。
+
+历史证据按内容去重后保留，提取副本与原 artifact 内成员逐字节相同者只留原 artifact。七个 Git 历史包合成一个后在空仓库实际恢复，174 个引用一致，120 个不同旧头全部覆盖，并通过完整性检查。旧包和旧目录仅在本次主线承接及完整验证通过后清理。

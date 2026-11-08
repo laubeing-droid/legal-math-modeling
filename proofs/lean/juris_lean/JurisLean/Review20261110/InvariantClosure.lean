@@ -43,7 +43,7 @@ theorem ae_invariant_path (μ₀ : Measure (H × Θ)) [IsProbabilityMeasure μ�
   have marginal : ∀ᵐ s ∂(pathLaw D μ₀).map (fun path => path n), s ∈ I := by
     rw [pathLaw_marginal]
     exact ae_invariant_iterations D μ₀ I hI initial closed n
-  exact (ae_map_iff (measurable_pi_apply n).aemeasurable hI).mp marginal
+  exact (ae_map_iff (measurable_pi_apply n).aemeasurable (p := fun s => s ∈ I) hI).mp marginal
 
 def counterModel : Dynamics Bool Unit Bool Unit Unit where
   policy := Kernel.const (Bool × Unit) RepaymentExample.fair

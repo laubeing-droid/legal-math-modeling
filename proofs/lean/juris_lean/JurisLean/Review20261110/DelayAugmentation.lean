@@ -12,6 +12,9 @@ noncomputable section
 abbrev Queue (d : Nat) := Fin (d+1) → Option Bool
 abbrev DelayedHistory (d : Nat) := (List (Bool × Bool) × Queue d) × Option Bool
 
+local instance : MeasurableSpace (List (Bool × Bool)) := ⊤
+local instance (d : Nat) : MeasurableSpace (Queue d) := ⊤
+
 def shift (d : Nat) (q : Queue d) (incoming : Option Bool) : Queue d :=
   fun i => if hi : i.val < d then q ⟨i.val+1, by omega⟩ else incoming
 
@@ -23,7 +26,10 @@ theorem queueAt_entry (d : Nat) (incoming : Nat → Option Bool) (t : Nat) (i : 
     queueAt d incoming t i =
       if d+1 ≤ t+i.val then incoming (t+i.val-(d+1)) else none := by
   induction t generalizing i with
-  | zero => simp [queueAt, show ¬ d+1 ≤ 0+i.val by omega]
+  | zero =>
+      have hi : ¬ d+1 ≤ 0+i.val := by omega
+      rw [if_neg hi]
+      rfl
   | succ t ih =>
       simp only [queueAt, shift]
       split
@@ -41,7 +47,7 @@ theorem queueAt_entry (d : Nat) (incoming : Nat → Option Bool) (t : Nat) (i : 
 theorem completes_after_delay (d : Nat) (incoming : Nat → Option Bool) (t : Nat) :
     queueAt d incoming (t+(d+1)) 0 = incoming t := by
   rw [queueAt_entry]
-  have eligible : d+1 ≤ t+(d+1)+(0 : Fin (d+1)).val := by simp; omega
+  have eligible : d+1 ≤ t+(d+1)+(0 : Fin (d+1)).val := by omega
   rw [if_pos eligible]
   congr 1
   simp

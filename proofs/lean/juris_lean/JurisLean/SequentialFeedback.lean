@@ -1,4 +1,5 @@
 import Mathlib
+import JurisLean.ContractionCondition
 
 /-!
 Sequential feedback gains for one response-measurement-learning loop.
@@ -120,21 +121,73 @@ theorem example_fixed_point : exampleStep (1/2, 1/2) = (1/2, 1/2) := by
   rw [example_step_formula]
   norm_num
 
+/-- The same two state coordinates in the existing weighted-distance interface. -/
+def pairVector (p : ℝ × ℝ) : Fin 2 → ℝ := fun i => if i = 0 then p.1 else p.2
+
+noncomputable def exampleVectorStep (v : Fin 2 → ℝ) : Fin 2 → ℝ :=
+  pairVector (exampleStep (v 0, v 1))
+
+noncomputable def exampleMatrix (i j : Fin 2) : ℝ :=
+  if j = 0 then (if i = 0 then 1/4 else 1/8) else 1/2
+
+theorem exampleVectorStep_pairVector (p : ℝ × ℝ) :
+    exampleVectorStep (pairVector p) = pairVector (exampleStep p) := by
+  simp [exampleVectorStep, pairVector]
+
+/-- The composite map supplies the old theorem's coordinate premise. -/
+theorem example_coordinate_lipschitz : CoordinateLipschitz exampleVectorStep exampleMatrix := by
+  intro v w i
+  have h₀ := abs_le.mp (le_refl |v 0 - w 0|)
+  have h₁ := abs_le.mp (le_refl |v 1 - w 1|)
+  fin_cases i <;>
+    norm_num [exampleVectorStep, pairVector, example_step_formula,
+      exampleMatrix, Fin.sum_univ_two] <;>
+    apply abs_le.mpr <;> constructor <;> linarith [h₀.1, h₀.2, h₁.1, h₁.2]
+
+theorem example_matrix_coupling : LipschitzCoupling exampleMatrix (fun _ => 1) (3/4) := by
+  intro i
+  fin_cases i <;> norm_num [exampleMatrix, Fin.sum_univ_two]
+
+/-- Actual consumption of the existing cross-matrix contraction theorem. -/
+theorem example_weighted_contraction (v w : Fin 2 → ℝ) :
+    weightedSupDist (fun _ => 1) (exampleVectorStep v) (exampleVectorStep w) ≤
+      (3/4 : ℝ) * weightedSupDist (fun _ => 1) v w := by
+  apply lipschitz_coupling_implies_weighted_contraction
+    exampleVectorStep exampleMatrix (fun _ => 1) (3/4)
+  · intro i
+    norm_num
+  · intro i j
+    fin_cases i <;> fin_cases j <;> norm_num [exampleMatrix]
+  · exact example_matrix_coupling
+  · exact example_coordinate_lipschitz
+
+theorem weighted_pairVector_eq (p q : ℝ × ℝ) :
+    weightedSupDist (fun _ => 1) (pairVector p) (pairVector q) =
+      max |p.1 - q.1| |p.2 - q.2| := by
+  apply le_antisymm
+  · unfold weightedSupDist
+    apply Finset.sup'_le
+    intro i _
+    fin_cases i
+    · simpa [pairVector] using le_max_left |p.1 - q.1| |p.2 - q.2|
+    · simpa [pairVector] using le_max_right |p.1 - q.1| |p.2 - q.2|
+  · apply max_le
+    · have h := Finset.le_sup'
+        (fun i : Fin 2 => |pairVector p i - pairVector q i| / (1 : ℝ))
+        (Finset.mem_univ (0 : Fin 2))
+      simpa [pairVector, weightedSupDist] using h
+    · have h := Finset.le_sup'
+        (fun i : Fin 2 => |pairVector p i - pairVector q i| / (1 : ℝ))
+        (Finset.mem_univ (1 : Fin 2))
+      simpa [pairVector, weightedSupDist] using h
+
 theorem example_error_bound (x t : ℝ) :
     max |(exampleStep (x,t)).1 - 1/2| |(exampleStep (x,t)).2 - 1/2| ≤
       (3/4 : ℝ) * max |x - 1/2| |t - 1/2| := by
-  let D := max |x - 1/2| |t - 1/2|
-  have hx : |x - 1/2| ≤ D := le_max_left _ _
-  have ht : |t - 1/2| ≤ D := le_max_right _ _
-  have hD : 0 ≤ D := le_trans (abs_nonneg _) hx
-  have xb := abs_le.mp hx
-  have tb := abs_le.mp ht
-  rw [example_step_formula]
-  apply max_le
-  · apply abs_le.mpr
-    constructor <;> dsimp <;> linarith [xb.1, xb.2, tb.1, tb.2]
-  · apply abs_le.mpr
-    constructor <;> dsimp <;> linarith [xb.1, xb.2, tb.1, tb.2]
+  have h := example_weighted_contraction (pairVector (x,t)) (pairVector (1/2,1/2))
+  rw [exampleVectorStep_pairVector, exampleVectorStep_pairVector, example_fixed_point,
+    weighted_pairVector_eq, weighted_pairVector_eq] at h
+  exact h
 
 noncomputable def iterateExample : Nat → ℝ × ℝ → ℝ × ℝ
   | 0, p => p

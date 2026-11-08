@@ -105,7 +105,7 @@ def toFiniteRecord (v : PersonalRecord T Obs Action) :
 theorem toFiniteRecord_event (v : PersonalRecord T Obs Action) (i : Fin (stage v)) :
     (toFiniteRecord v).2.val[i.val]'(by
       simpa [toFiniteRecord, stage] using i.isLt) = (v.2.2 i, v.2.1 i.succ) := by
-  simp [toFiniteRecord]
+  simp [toFiniteRecord, stage]
 
 /-- No original observation, action, or stage is lost in the conversion. -/
 theorem toFiniteRecord_injective : Function.Injective
@@ -127,6 +127,34 @@ theorem toFiniteRecord_injective : Function.Injective
   cases ha
   cases ho
   rfl
+
+/-- Recover the vector representation from the actual complete list record. -/
+def fromFiniteRecord (r : LegalMath.FiniteHorizon.PersonalRecord T Obs Action) :
+    PersonalRecord T Obs Action :=
+  ⟨⟨r.2.val.length, Nat.lt_succ_of_le r.2.property⟩,
+    (Fin.cases r.1 (fun i => (r.2.val.get i).2), fun i => (r.2.val.get i).1)⟩
+
+@[simp] theorem to_fromFiniteRecord
+    (r : LegalMath.FiniteHorizon.PersonalRecord T Obs Action) :
+    toFiniteRecord (fromFiniteRecord r) = r := by
+  apply Prod.ext
+  · rfl
+  · apply Subtype.ext
+    change List.ofFn (fun i : Fin r.2.val.length =>
+      ((r.2.val.get i).1, (r.2.val.get i).2)) = r.2.val
+    exact List.ofFn_get r.2.val
+
+@[simp] theorem from_toFiniteRecord (v : PersonalRecord T Obs Action) :
+    fromFiniteRecord (toFiniteRecord v) = v :=
+  toFiniteRecord_injective (to_fromFiniteRecord (toFiniteRecord v))
+
+/-- The two records are equivalent with all stage and event coordinates preserved. -/
+def recordEquiv : PersonalRecord T Obs Action ≃
+    LegalMath.FiniteHorizon.PersonalRecord T Obs Action where
+  toFun := toFiniteRecord
+  invFun := fromFiniteRecord
+  left_inv := from_toFiniteRecord
+  right_inv := to_fromFiniteRecord
 
 /-- At the horizon both representations offer Unit; before it both offer Action. -/
 theorem action_type_preserved (v : PersonalRecord T Obs Action) :

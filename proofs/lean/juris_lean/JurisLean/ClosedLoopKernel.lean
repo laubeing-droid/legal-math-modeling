@@ -116,7 +116,9 @@ theorem step_lintegral (s : H × Θ) (f : H × Θ → ℝ≥0∞) (hf : Measurab
       Kernel.lintegral_id_prod (f := fun z => f (update D z))
         (hf.comp (measurable_update D)) (joint D) s
     _ = _ := Kernel.lintegral_compProd' D.policy D.outcome s
-      (hf.comp ((measurable_update D).comp (measurable_const.prodMk measurable_id)))
+      (f := fun a o => f (update D (s, (a, o))))
+      (show Measurable (fun z : A × O => f (update D (s, z))) from
+        hf.comp ((measurable_update D).comp (measurable_const.prodMk measurable_id)))
 
 /-- Both marginal equalities retain the SAME `retained D`; no independence is asserted. -/
 theorem history_marginal :
@@ -171,23 +173,23 @@ theorem chain_reads_current (n : ℕ) (h : Prefix H Θ n) :
 
 /-- Finite composition retains the whole prefix, not only the latest state. -/
 theorem finite_prefix_compose (a b c : ℕ) (hab : a ≤ b) (hbc : b ≤ c) :
-    Kernel.partialTraj (chain D) b c ∘ₖ Kernel.partialTraj (chain D) a b =
-      Kernel.partialTraj (chain D) a c :=
-  Kernel.partialTraj_comp_partialTraj (κ := chain D) hab hbc
+    Kernel.partialTraj (X := fun _ => H × Θ) (chain D) b c ∘ₖ Kernel.partialTraj (X := fun _ => H × Θ) (chain D) a b =
+      Kernel.partialTraj (X := fun _ => H × Θ) (chain D) a c :=
+  Kernel.partialTraj_comp_partialTraj (X := fun _ => H × Θ) (κ := chain D) hab hbc
 
 instance finite_prefix_markov (a b : ℕ) :
-    IsMarkovKernel (Kernel.partialTraj (chain D) a b) := inferInstance
+    IsMarkovKernel (Kernel.partialTraj (X := fun _ => H × Θ) (chain D) a b) := inferInstance
 
 theorem full_path_prefix (a b : ℕ) :
-    (Kernel.traj (chain D) a).map (frestrictLe b) = Kernel.partialTraj (chain D) a b :=
-  Kernel.traj_map_frestrictLe (κ := chain D) a b
+    (Kernel.traj (X := fun _ => H × Θ) (chain D) a).map (frestrictLe b) = Kernel.partialTraj (X := fun _ => H × Θ) (chain D) a b :=
+  Kernel.traj_map_frestrictLe (X := fun _ => H × Θ) (κ := chain D) a b
 
 theorem full_path_unique (a : ℕ) (η : Kernel (Prefix H Θ a) (ℕ → H × Θ))
-    (hη : ∀ b, η.map (frestrictLe b) = Kernel.partialTraj (chain D) a b) :
-    η = Kernel.traj (chain D) a := Kernel.eq_traj (κ := chain D) η hη
+    (hη : ∀ b, η.map (frestrictLe b) = Kernel.partialTraj (X := fun _ => H × Θ) (chain D) a b) :
+    η = Kernel.traj (X := fun _ => H × Θ) (chain D) a := Kernel.eq_traj (X := fun _ => H × Θ) (κ := chain D) η hη
 
 def pathLaw (μ₀ : Measure (H × Θ)) : Measure (ℕ → H × Θ) :=
-  Kernel.trajMeasure μ₀ (chain D)
+  Kernel.trajMeasure (X := fun _ => H × Θ) μ₀ (chain D)
 
 instance pathLaw_probability (μ₀ : Measure (H × Θ)) [IsProbabilityMeasure μ₀] :
     IsProbabilityMeasure (pathLaw D μ₀) := by unfold pathLaw; infer_instance
@@ -196,7 +198,7 @@ theorem complete_prefix_joint (μ₀ : Measure (H × Θ)) [IsProbabilityMeasure 
     (pathLaw D μ₀).map (frestrictLe n) ⊗ₘ chain D n =
       (pathLaw D μ₀).map (fun x => (frestrictLe n x, x (n + 1))) :=
   Kernel.map_frestrictLe_trajMeasure_compProd_eq_map_trajMeasure
-    (κ := chain D) (μ₀ := μ₀) (a := n)
+    (X := fun _ => H × Θ) (κ := chain D) (μ₀ := μ₀) (a := n)
 
 theorem complete_prefix_projection (μ₀ : Measure (H × Θ))
     [IsProbabilityMeasure μ₀] (n : ℕ) :

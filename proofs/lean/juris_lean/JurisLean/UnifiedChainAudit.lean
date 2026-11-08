@@ -1,6 +1,6 @@
 import JurisLean.UnifiedFeedbackBridge
 import JurisLean.BoundedRecall
-import JurisLean.FiniteHorizonAdequacy
+import JurisLean.FiniteGameFeedbackBridge
 
 #print axioms LegalMath20261108.ClosedLoop.step_normalized
 #print axioms LegalMath20261108.ClosedLoop.step_lintegral
@@ -22,3 +22,14 @@ import JurisLean.FiniteHorizonAdequacy
 
 #print axioms LegalMath20261108.BoundedRecall.toFiniteRecord_injective
 #print axioms LegalMath20261108.BoundedRecall.action_type_preserved
+
+#print axioms LegalMath20261108.BoundedRecall.to_fromFiniteRecord
+#print axioms LegalMath20261108.BoundedRecall.from_toFiniteRecord
+#print axioms LegalMath20261108.SequentialFeedback.example_weighted_contraction
+#print axioms LegalMath20261109.FiniteGameFeedback.privateParameter_observe
+#print axioms LegalMath20261109.FiniteGameFeedback.nativeStep_replay
+#print axioms LegalMath20261109.FiniteGameFeedback.nativeLaw_replay
+#print axioms LegalMath20261109.FiniteGameFeedback.kuhn_joint_history_learning
+#print axioms LegalMath20261109.FiniteGameFeedback.mixedLaw_replay
+#print axioms LegalMath20261109.FiniteGameFeedback.native_path_marginal
+#print axioms LegalMath20261109.FiniteGameFeedback.native_mean_geometric_bound

@@ -55,7 +55,8 @@ def WellFormed (h : History A O) : Prop := (h.map Occurrence.token).Nodup
 theorem append_wellFormed (h : History A O) (a : A) (o : O) (valid : WellFormed h) :
     WellFormed (append h a o) := by
   have fresh := fresh_not_mem h
-  simpa [WellFormed, append, List.map_append, List.nodup_append, valid] using fresh
+  have hv : (h.map Occurrence.token).Nodup := valid
+  simpa [WellFormed, append, List.map_append, List.nodup_append, hv] using fresh
 
 def recordCount {R K : Type*} [DecidableEq R] [DecidableEq K]
     (token : R → K) (records : Finset R) : Nat := (records.image token).card

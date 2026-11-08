@@ -1,3 +1,5 @@
 import JurisLean.UnifiedChainAudit
 import JurisLean.Review20261110.OccurrenceHistory
 import JurisLean.Review20261110.ObservationBridge
+import JurisLean.Review20261110.InvariantClosure
+import JurisLean.Review20261110.DelayAugmentation

@@ -35,6 +35,7 @@ lemma same_outcome_distance (s t : State) (y : Bool) :
       (t.2/4 + RepaymentExample.bit y/2 + 1/8) = (s.2-t.2)/4 := by ring
   rw [e, abs_div]
   norm_num
+  ring
 
 lemma arbitrary_outcome_distance (s t : State) (y z : Bool) :
     dstar (after s y) (after t z) ≤ |s.2-t.2| + 3 := by
@@ -66,9 +67,7 @@ def w1 (s t : State) : ℝ :=
 lemma coupling_marginals (p q r : ℝ) :
     (1-p-q+r)+(q-r)=1-p ∧ (p-r)+r=p ∧
     (1-p-q+r)+(p-r)=1-q ∧ (q-r)+r=q := by
-  constructor <;> try ring
-  constructor <;> try ring
-  constructor <;> ring
+  refine ⟨?_, ?_, ?_, ?_⟩ <;> ring
 
 lemma monotone_admissible (s t : State) :
     admissible (probability s) (probability t) (min (probability s) (probability t)) := by
@@ -138,6 +137,29 @@ theorem w1_contraction (s t : State) (hs : s ∈ square) (ht : t ∈ square) :
 theorem actual_kernel_atoms (s : State) :
     step model s = ENNReal.ofReal (1-probability s) • Measure.dirac (after s false) +
       ENNReal.ofReal (probability s) • Measure.dirac (after s true) := step_two_atoms s
+
+/-- Standard primal cost on arbitrary probability laws, distinct from the
+finite matrix calculation above. These are explicit targets, not hypotheses
+fed to the already proved finite estimate. Status: partial (Mathlib gap). -/
+def couplingMeasures (μ ν : Measure State) : Set (Measure (State × State)) :=
+  {ρ | ρ.map Prod.fst = μ ∧ ρ.map Prod.snd = ν}
+
+def distributionW1 (μ ν : Measure State) : ℝ≥0∞ :=
+  sInf ((fun ρ : Measure (State × State) =>
+    ∫⁻ z, ENNReal.ofReal (dstar z.1 z.2) ∂ρ) '' couplingMeasures μ ν)
+
+def twoAtomIdentificationTarget : Prop :=
+  ∀ s t : State, ENNReal.ofReal (w1 s t) = distributionW1 (step model s) (step model t)
+
+def generalW1LiftTarget : Prop :=
+  ∀ μ ν : Measure State, IsProbabilityMeasure μ → IsProbabilityMeasure ν →
+    μ square = 1 → ν square = 1 →
+    distributionW1 (step model ∘ₘ μ) (step model ∘ₘ ν) ≤
+      (3/4 : ℝ≥0∞) * distributionW1 μ ν
+
+def uniqueInvariantLawTarget : Prop :=
+  ∃! μ : Measure State,
+    IsProbabilityMeasure μ ∧ μ square = 1 ∧ step model ∘ₘ μ = μ
 
 #print axioms dstar_triangle
 #print axioms coupling_marginals

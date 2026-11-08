@@ -107,7 +107,9 @@ theorem completion_at_time (d : Nat) (x₀ θ : ℝ) (events : List (Bool × Boo
     (update (delayedModel d x₀)
       ((((events, queueAt d incoming (t+(d+1))), none), θ), (a,y))).2 =
         learnDelayed θ (incoming t) := by
-  rw [completion_update_eq, completes_after_delay]
+  rw [completion_update_eq]
+  change learnDelayed θ (queueAt d incoming (t+(d+1)) 0) = _
+  rw [completes_after_delay]
 
 /-- Dropping pending information loses the Markov update; this does not deny
 that the original general Dynamics can already retain it in a full history. -/

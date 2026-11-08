@@ -12,6 +12,7 @@ noncomputable section
 abbrev Queue (d : Nat) := Fin (d+1) → Option Bool
 abbrev DelayedHistory (d : Nat) := (List (Bool × Bool) × Queue d) × Option Bool
 
+local instance : MeasurableSpace (Option Bool) := ⊤
 local instance : MeasurableSpace (List (Bool × Bool)) := ⊤
 local instance (d : Nat) : MeasurableSpace (Queue d) := ⊤
 

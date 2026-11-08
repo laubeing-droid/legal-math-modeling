@@ -49,9 +49,17 @@ noncomputable def nativeLawPure
 theorem stepDist_nativeStep (β : BehavioralPlan T ι Obs Action)
     (ss : List (History T ι State Action)) :
     G.core.stepDist β ss = G.nativeStep β (G.core.lastState ss) := by
-  simp only [ObsModelCore.stepDist, ObsModelCore.jointActionDist,
-    ObsModelCore.castJointAction, projectStates_eq]
-  rfl
+  have transport
+      (v w : (i : ι) → PersonalRecord T (Obs i) (Action i)) (e : v = w)
+      (k : ((i : ι) → ActionAt (w i)) → PMF (History T ι State Action)) :
+      (pmfPi (fun i => β i (v i))).bind
+          (fun a => k (fun i => (congrFun e i) ▸ a i)) =
+        (pmfPi (fun i => β i (w i))).bind k := by
+    cases e
+    rfl
+  exact transport (fun i => G.core.projectStates i ss)
+    (fun i => G.observe i (G.core.lastState ss))
+    (funext (fun i => G.projectStates_eq i ss)) (G.step (G.core.lastState ss))
 
 /-- The absorbing extension retains the entire history in the direct semantics. -/
 theorem nativeStep_terminal (β : BehavioralPlan T ι Obs Action)

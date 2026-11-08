@@ -42,6 +42,10 @@ theorem req_pureStep (i : ι) (π₀ : G.core.PureProfile)
       Req (G.core.projectStates i ss) πᵢ ∧
         πᵢ (G.core.projectStates i ss) = π₀ i (G.core.projectStates i ss) := by
   rw [G.pureStep_eq] at hpos
+  have heq := congrArg
+    (fun r : PersonalRecord T (Obs i) (Action i) => πᵢ r = π₀ i r)
+    (G.projectStates_eq i ss)
+  rw [heq]
   simpa only [projectStates_eq] using
     G.req_step i (G.core.lastState ss) t
       (fun j => π₀ j (G.observe j (G.core.lastState ss))) hpos πᵢ
@@ -59,7 +63,7 @@ theorem update_action_iff (i : ι) (π₀ : G.core.PureProfile)
     by_cases hj : j = i
     · subst j
       simpa using h
-    · simp [Function.update_noteq hj]
+    · simp [Function.update_of_ne hj]
 
 /-- Endpoint recall exactly determines support under any one-player replacement,
 including terminal endpoints and arbitrarily many absorbing steps. -/
@@ -111,8 +115,6 @@ noncomputable instance coreInfoStateFintype (i : ι) : Fintype (G.core.InfoState
 theorem behavioral_to_mixed (β : G.core.BehavioralProfile) :
     ∀ n, G.core.runDist n β =
       (G.core.behavioralToMixedJoint β).bind (G.core.runDistPure n) := by
-  letI : ∀ i, Fintype (G.core.InfoState i) := fun i =>
-    inferInstanceAs (Fintype (PersonalRecord T (Obs i) (Action i)))
   intro n
   exact ObsModelCore.kuhn_behavioral_to_mixed (O := G.core)
     G.noNontrivialInfoStateRepeat β n
@@ -135,8 +137,6 @@ theorem mixed_to_behavioral (μ : ∀ i, PMF (G.core.LocalStrategy i)) :
     ∃ β : G.core.BehavioralProfile, ∀ n,
       G.core.runDist n β = (pmfPi μ).bind (G.core.runDistPure n) := by
   classical
-  letI : ∀ i, Fintype (G.core.InfoState i) := fun i =>
-    inferInstanceAs (Fintype (PersonalRecord T (Obs i) (Action i)))
   let fallback : G.core.BehavioralProfile :=
     fun i r => PMF.pure (Classical.arbitrary _)
   refine ⟨ObsModelCore.mixedToBehavioralProfileWithFallback (O := G.core) μ fallback, ?_⟩

@@ -88,7 +88,8 @@ theorem actual_step_law (initial : JurisLean.Candidates.BusinessFeedbackLoop2026
   ext s hs
   rw [step_apply _ _ hs, joint, Kernel.compProd_apply]
   · simp [model, Kernel.deterministic_apply, response, encode,
-      actual_post_commutes, Measure.dirac_apply' _ hs]
+      update, historyOut, parameterOut, feedback, replay_append,
+      Set.indicator_apply, Measure.dirac_apply' _ hs]
   · exact ((measurable_update (model initial catalog pick)).comp
       (measurable_const.prodMk measurable_id)) hs
 
@@ -117,7 +118,7 @@ theorem actual_law_preserves_invariant (initial : JurisLean.Candidates.BusinessF
     ∀ᵐ s ∂step (model initial catalog pick) (encode initial catalog h),
       legalInvariant initial catalog s := by
   rw [actual_step_law]
-  exact ae_dirac_iff.mpr (replay_invariant initial catalog valid bounded _)
+  simpa using (replay_invariant initial catalog valid bounded (h ++ [pick h]))
 
 /-- Any finite original sequence is representable without changing its inputs. -/
 theorem finite_sequence_catalog (commands : List (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m)) (initial : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m) :
@@ -156,7 +157,7 @@ theorem accepted_measurement_sources (state : JurisLean.Candidates.BusinessFeedb
           input.rows = .measured out := by simpa [JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported, hc] using accepted
       have bound := measurement_reads_actual_state_and_rows _ _ _ _ _ _ _ hm
       have sources := accepted_rows_are_external_and_current _ _ _ _ _ _ _ hm
-      exact ⟨post, hc, bound.1, sources.1, sources.2⟩
+      exact ⟨post, rfl, bound.1, sources.1, sources.2⟩
 
 def adviceView (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m) : Result (List (PolicyObservation m)) := state.policyRows
 
@@ -184,7 +185,11 @@ theorem accepted_advice_is_visible_and_permitted (context : Gamma) (input : Juri
   have measured : adviseMeasured context input.plan rows input.design input.designs
       input.permission input.permissions = .known out := by
     rw [hr] at accepted
-    simpa [JurisLean.Candidates.BusinessFeedbackLoop20261027.adviseRecorded, hd1, hd2, ht] using accepted
+    have timely : input.design.acquiredAt.ticks ≤ context.knowledgeCutoff.ticks ∧
+        input.design.acquiredAt.ticks ≤ context.recordCutoff.ticks ∧
+        (∀ row ∈ rows, row.measured.observedAt.ticks ≤ context.knowledgeCutoff.ticks ∧
+          row.measured.observedAt.ticks ≤ context.recordCutoff.ticks) := ⟨hd1, hd2, ht⟩
+    simpa only [JurisLean.Candidates.BusinessFeedbackLoop20261027.adviseRecorded, if_pos timely] using accepted
   have auth := advice_consumes_actual_measured_values_and_allowed_policy _ _ _ _ _ _ _ _ measured
   exact ⟨rows, hr, ho, hd1, hd2, ht, auth.2.2.1, auth.2.2.2.2.2.1, auth.2.2.2.2.2.2⟩
 

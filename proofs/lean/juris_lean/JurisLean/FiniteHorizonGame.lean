@@ -75,9 +75,10 @@ theorem observe_advance (i : ι) (h : History T ι State Action) (ht : h.val.len
     G.observe i (G.advance h ht a s) =
       append (G.observe i h) (by simpa using ht) (a i)
         (G.signal i (h.val ++ [(a, s)]) s) := by
-  apply Prod.ext rfl
-  apply Subtype.ext
-  simp [observe, advance, append, localLog_append, localLog]
+  apply Prod.ext
+  · rfl
+  · apply Subtype.ext
+    simp [observe, advance, append, localLog_append, localLog]
 
 def rawAction (h : History T ι State Action) (ht : h.val.length < T)
     (a : (i : ι) → ActionAt (G.observe i h)) : JointAction ι Action :=

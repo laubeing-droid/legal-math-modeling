@@ -46,9 +46,10 @@ def takeRecord (r : PersonalRecord T Obs Action) (n : Nat) :
 
 @[simp] theorem prefix_self (r : PersonalRecord T Obs Action) :
     takeRecord r (stage r) = r := by
-  apply Prod.ext rfl
-  apply Subtype.ext
-  simp [takeRecord, stage]
+  apply Prod.ext
+  · rfl
+  · apply Subtype.ext
+    simp [takeRecord, stage]
 
 def append (r : PersonalRecord T Obs Action) (h : stage r < T)
     (a : Action) (o : Obs) : PersonalRecord T Obs Action :=
@@ -65,9 +66,10 @@ def append (r : PersonalRecord T Obs Action) (h : stage r < T)
 theorem prefix_append (r : PersonalRecord T Obs Action) (h : stage r < T)
     (a : Action) (o : Obs) (n : Nat) (hn : n ≤ stage r) :
     takeRecord (append r h a o) n = takeRecord r n := by
-  apply Prod.ext rfl
-  apply Subtype.ext
-  exact List.take_append_of_le_length hn
+  apply Prod.ext
+  · rfl
+  · apply Subtype.ext
+    exact List.take_append_of_le_length hn
 
 @[simp] theorem prefix_append_self (r : PersonalRecord T Obs Action)
     (h : stage r < T) (a : Action) (o : Obs) :
@@ -133,11 +135,28 @@ theorem toAction_injective (r : PersonalRecord T Obs Action) (h : stage r < T) :
 abbrev LocalPlan (T : Nat) (Obs Action : Type) :=
   (r : PersonalRecord T Obs Action) → ActionAt r
 
+theorem toAction_plan_congr (π : LocalPlan T Obs Action)
+    {r s : PersonalRecord T Obs Action} (hrs : r = s)
+    (hr : stage r < T) (hs : stage s < T) :
+    toAction r hr (π r) = toAction s hs (π s) := by
+  subst s
+  rfl
+
+theorem toAction_eq_iff (r : PersonalRecord T Obs Action) (h : stage r < T)
+    (x : ActionAt r) (a : Action) :
+    toAction r h x = a ↔ x = ofAction r h a := by
+  constructor
+  · intro heq
+    apply toAction_injective r h
+    simpa using heq
+  · intro heq
+    rw [heq, toAction_ofAction]
+
 def Req (r : PersonalRecord T Obs Action) (π : LocalPlan T Obs Action) : Prop :=
   ∀ (n : Nat) (hn : n < stage r),
-    π (takeRecord r n) = ofAction (takeRecord r n)
+    toAction (takeRecord r n)
       (by rw [prefix_stage]; have := stage_le r; omega)
-      (r.2.val[n]'hn).1
+      (π (takeRecord r n)) = (r.2.val[n]'hn).1
 
 @[simp] theorem Req_initial (o : Obs) (π : LocalPlan T Obs Action) :
     Req (initialRecord T o) π := by
@@ -147,23 +166,50 @@ def Req (r : PersonalRecord T Obs Action) (π : LocalPlan T Obs Action) : Prop :
 theorem Req_append (r : PersonalRecord T Obs Action) (h : stage r < T)
     (a : Action) (o : Obs) (π : LocalPlan T Obs Action) :
     Req (append r h a o) π ↔ Req r π ∧ π r = ofAction r h a := by
+  have hr (n : Nat) : stage (takeRecord r n) < T := by
+    rw [prefix_stage]
+    omega
+  have ha (n : Nat) (hn : n ≤ stage r) :
+      stage (takeRecord (append r h a o) n) < T := by
+    rw [prefix_stage, append_stage]
+    omega
   constructor
   · intro hreq
     constructor
     · intro n hn
       have hh := hreq n (by rw [append_stage]; omega)
-      simpa only [prefix_append r h a o n (Nat.le_of_lt hn),
-        append_get_old r h a o n hn] using hh
+      calc
+        _ = toAction (takeRecord (append r h a o) n) (ha n (Nat.le_of_lt hn))
+            (π (takeRecord (append r h a o) n)) :=
+          toAction_plan_congr π
+            (prefix_append r h a o n (Nat.le_of_lt hn)).symm
+            (hr n) (ha n (Nat.le_of_lt hn))
+        _ = _ := hh
+        _ = _ := congrArg Prod.fst (append_get_old r h a o n hn)
     · have hh := hreq (stage r) (by rw [append_stage]; omega)
-      simpa only [prefix_append_self, append_get_last] using hh
+      apply (toAction_eq_iff r h (π r) a).mp
+      calc
+        _ = toAction (takeRecord (append r h a o) (stage r)) (ha _ (Nat.le_refl _))
+            (π (takeRecord (append r h a o) (stage r))) :=
+          toAction_plan_congr π (prefix_append_self r h a o).symm h (ha _ (Nat.le_refl _))
+        _ = _ := hh
+        _ = a := congrArg Prod.fst (append_get_last r h a o)
   · rintro ⟨hreq, hlast⟩ n hn
     have hn' : n < stage r + 1 := by simpa using hn
     by_cases hlt : n < stage r
-    · simpa only [prefix_append r h a o n (Nat.le_of_lt hlt),
-        append_get_old r h a o n hlt] using hreq n hlt
+    · calc
+        _ = toAction (takeRecord r n) (hr n) (π (takeRecord r n)) :=
+          toAction_plan_congr π (prefix_append r h a o n (Nat.le_of_lt hlt))
+            (ha n (Nat.le_of_lt hlt)) (hr n)
+        _ = _ := hreq n hlt
+        _ = _ := congrArg Prod.fst (append_get_old r h a o n hlt).symm
     · have heq : n = stage r := by omega
       subst n
-      simpa only [prefix_append_self, append_get_last] using hlast
+      calc
+        _ = toAction r h (π r) :=
+          toAction_plan_congr π (prefix_append_self r h a o) (ha _ (Nat.le_refl _)) h
+        _ = a := (toAction_eq_iff r h (π r) a).mpr hlast
+        _ = _ := congrArg Prod.fst (append_get_last r h a o).symm
 
 end LegalMath.FiniteHorizon
 

@@ -89,7 +89,7 @@ theorem actual_step_law (initial : JurisLean.Candidates.BusinessFeedbackLoop2026
   rw [step_apply _ _ hs, joint, Kernel.compProd_apply]
   · simp [model, Kernel.deterministic_apply, response, encode,
       update, historyOut, parameterOut, feedback, replay_append,
-      Set.indicator_apply, Measure.dirac_apply' _ hs]
+      Set.indicator_apply, Measure.dirac_apply' _ hs] <;> rfl
   · exact ((measurable_update (model initial catalog pick)).comp
       (measurable_const.prodMk measurable_id)) hs
 

@@ -67,6 +67,20 @@ theorem risk_excess (s : ℚ × ℚ) (z : ℚ × ℚ) :
 def fitted {n : Nat} (first : ℚ × ℚ) (rest : List (ℚ × ℚ)) (data : Fin n → Bool) : ℚ × ℚ :=
   fitNonempty loss first rest data
 
+def realizedRadius {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ) (rest : List (ℚ × ℚ))
+    (data : Fin n → Bool) : ℝ :=
+  (first :: rest).toFinset.sup' ⟨first, by simp⟩
+    (fun z => |risk s z - (empiricalScore loss data z : ℝ)|)
+
+theorem realizedRadius_uniform {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ)
+    (rest : List (ℚ × ℚ)) (data : Fin n → Bool) (z : ℚ × ℚ) (hz : z ∈ first :: rest) :
+    |risk s z-(empiricalScore loss data z : ℝ)| ≤ realizedRadius s first rest data :=
+  Finset.le_sup' _ (List.mem_toFinset.mpr hz)
+
+theorem realizedRadius_nonneg {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ)
+    (rest : List (ℚ × ℚ)) (data : Fin n → Bool) : 0 ≤ realizedRadius s first rest data :=
+  le_trans (abs_nonneg _) (realizedRadius_uniform s first rest data first (by simp))
+
 /-- The selected parameters really come from the original empirical fitter. -/
 theorem actual_fit_prediction_bound {n : Nat} (hn : 0 < n) (s : ℚ × ℚ)
     (hs : 0 ≤ s.1 ∧ s.1 ≤ 1 ∧ 0 ≤ s.2 ∧ s.2 ≤ 1)
@@ -167,6 +181,58 @@ theorem actual_iid_risk_event {Ω : Type*} [MeasurableSpace Ω] {n : Nat}
     (fun z _ y => loss_range z y) δ hd0 hd1
   simpa only [List.mem_toFinset, risk, empiricalScore_cast, empiricalMean, abs_sub_comm] using old
 
+/-- The statistical event is actually consumed by the decision theorem. -/
+theorem actual_iid_training_to_legal_decision {Ω : Type*} [MeasurableSpace Ω] {n : Nat}
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (hn : 0 < n) (s : ℚ × ℚ)
+    (hs : 0 ≤ s.1 ∧ s.1 ≤ 1 ∧ 0 ≤ s.2 ∧ s.2 ≤ 1)
+    (first : ℚ × ℚ) (rest : List (ℚ × ℚ)) (oracle : ideal s ∈ first :: rest)
+    (sample : Fin n → Ω → Bool) (hsm : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ)
+    (law : ∀ i, IdentDistrib (sample i) id μ (coin (embed s)))
+    (δ : ℝ) (hd0 : 0 < δ) (hd1 : δ < 1) (E C : ℝ) (hE : 0 ≤ E) (hC : 0 ≤ C)
+    (radius : 2 * finiteRadius n (first :: rest).toFinset.card δ ≤ E^2)
+    (flows : Bool → Bool → PayFlow) (role : Role)
+    (sensitivity : ∀ a, |reward flows role a true-reward flows role a false| ≤ C) :
+    1-δ ≤ μ.real {w | ∀ a, value (embed s) flows role a ≤ value (embed s) flows role
+      (greedy (forecast (fitted first rest (fun i => sample i w))) flows role) + 2*C*E} := by
+  apply le_trans (actual_iid_risk_event μ hn s first rest sample hsm independent law δ hd0 hd1)
+  apply measureReal_mono (μ := μ) (h₂ := measure_ne_top μ _)
+  intro w hw
+  exact (actual_training_to_legal_decision hn s hs first rest (fun i => sample i w) oracle
+    _ E C hE hC radius hw flows role sensitivity).2
+
+def cashSensitivity (flows : Bool → Bool → PayFlow) (role : Role) : ℝ :=
+  max |reward flows role false true-reward flows role false false|
+    |reward flows role true true-reward flows role true false|
+
+theorem cashSensitivity_nonneg (flows : Bool → Bool → PayFlow) (role : Role) :
+    0 ≤ cashSensitivity flows role := le_trans (abs_nonneg _) (le_max_left _ _)
+
+theorem cashSensitivity_bounds (flows : Bool → Bool → PayFlow) (role : Role) (a : Bool) :
+    |reward flows role a true-reward flows role a false| ≤ cashSensitivity flows role := by
+  cases a
+  · exact le_max_left _ _
+  · exact le_max_right _ _
+
+/-- All error constants are now computed from sample size, confidence and the
+same two action-dependent consequence flows. -/
+theorem computed_iid_decision_bound {Ω : Type*} [MeasurableSpace Ω] {n : Nat}
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (hn : 0 < n) (s : ℚ × ℚ)
+    (hs : 0 ≤ s.1 ∧ s.1 ≤ 1 ∧ 0 ≤ s.2 ∧ s.2 ≤ 1)
+    (first : ℚ × ℚ) (rest : List (ℚ × ℚ)) (oracle : ideal s ∈ first :: rest)
+    (sample : Fin n → Ω → Bool) (hsm : ∀ i, Measurable (sample i))
+    (independent : iIndepFun sample μ)
+    (law : ∀ i, IdentDistrib (sample i) id μ (coin (embed s)))
+    (δ : ℝ) (hd0 : 0 < δ) (hd1 : δ < 1)
+    (flows : Bool → Bool → PayFlow) (role : Role) :
+    1-δ ≤ μ.real {w | ∀ a, value (embed s) flows role a ≤ value (embed s) flows role
+      (greedy (forecast (fitted first rest (fun i => sample i w))) flows role) +
+        2*cashSensitivity flows role * Real.sqrt (2*finiteRadius n (first :: rest).toFinset.card δ)} := by
+  apply actual_iid_training_to_legal_decision μ hn s hs first rest oracle sample hsm independent law
+    δ hd0 hd1 _ _ (Real.sqrt_nonneg _) (cashSensitivity_nonneg flows role) _ flows role
+    (cashSensitivity_bounds flows role)
+  rw [Real.sq_sqrt (by unfold finiteRadius; positivity)]
+
 #print axioms original_network_represents_response
 #print axioms risk_excess
 #print axioms actual_fit_prediction_bound
@@ -174,6 +240,9 @@ theorem actual_iid_risk_event {Ω : Type*} [MeasurableSpace Ω] {n : Nat}
 #print axioms decision_regret
 #print axioms actual_training_to_legal_decision
 #print axioms actual_iid_risk_event
+#print axioms actual_iid_training_to_legal_decision
+#print axioms computed_iid_decision_bound
+#print axioms realizedRadius_uniform
 
 end
 end LegalMath20261109.TrainedDecision

@@ -1,3 +1,4 @@
+import JurisLean.OriginalModelClosure
 import JurisLean.BusinessProcessRealization
 import JurisLean.TrainedDecisionRealization
 import JurisLean.UnifiedFeedbackBridge

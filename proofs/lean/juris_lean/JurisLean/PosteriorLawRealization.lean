@@ -63,8 +63,8 @@ def positiveHistory (s : ℚ × ℚ) : 0 < matMass (historyModel s) () := by
 theorem history_predictive (s : ℚ × ℚ) (y : Bool) :
     posteriorPredictive (historyModel s) () (positiveHistory s) y =
       if y then probabilityQ s else 1 - probabilityQ s := by
-  cases y <;> simp [posteriorPredictive, matPosterior, history_mass,
-    historyModel, sum_bool_split]
+  simp only [posteriorPredictive, matPosterior, history_mass]
+  cases y <;> simp [historyModel, sum_bool_split]
 
 def xi (s : ℚ × ℚ) : Bool × Unit × Bool → ℚ :=
   posterior (legalJoint (historyModel s)) (materialEvent ())
@@ -108,10 +108,8 @@ theorem actual_payoff_from_same_xi (s : ℚ × ℚ) (flows : Bool → Bool → P
     value (embed s) flows role a =
       ∑ y : Bool, reward flows role a y * ((∑ w, ∑ mt, xi s (w, mt, y) : ℚ) : ℝ) := by
   change (∫ y, reward flows role a y ∂coin (embed s)) = _
-  rw [integral_coin, sum_bool_split, xi_outcome_marginal, xi_outcome_marginal]
-  simp only [Bool.false_eq_true, if_false, if_true, Rat.cast_sub, Rat.cast_one,
-    probabilityQ_embed, expBern]
-  ring
+  rw [integral_coin]
+  simp [Fintype.univ_bool, xi_outcome_marginal, probabilityQ_embed, expBern] <;> ring
 
 theorem payoff_preserves_cash_encoding (role : Role) (fl : PayFlow) :
     (legalReading role { fl with entries := flipTags fl.entries } : ℝ) =

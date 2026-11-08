@@ -372,7 +372,7 @@ theorem fair_nativeStep_fullReplay {T : Nat} (s₀ : NumericState)
       (fun a => (coinPMF (replay s₀ h)).map (fun y =>
         ClosedLoop.update UnifiedFeedbackBridge.historyModel
           (fullReplay s₀ h, (toAction r hr a, y))))]
-    simp [fairPolicy, parameterPolicy, dif_pos hr, PMF.bind_map, PMF.map_bind,
+    simp [fairPolicy, parameterPolicy, ht, PMF.bind_map, PMF.map_bind,
       PMF.map_comp, Function.comp_def, toAction_ofAction, eventPMF, fullReplay,
       ClosedLoop.forgetLog, r]
   rw [hdist]

@@ -37,7 +37,7 @@ theorem snapshot_bounds {m : Nat} (s : JurisLean.Candidates.BusinessFeedbackLoop
   have hp : 0 ≤ max 0 (min 1 (predictLoaded s.learning.service query)) ∧
       max 0 (min 1 (predictLoaded s.learning.service query)) ≤ (1 : ℚ) :=
     ⟨le_max_left _ _, max_le (by norm_num) (min_le_left _ _)⟩
-  cases row.measured.label <;> simp [snapshot, hp]
+  cases hy : row.measured.label <;> simp [snapshot, hp, hy]
 
 def recordedData {m : Nat} (s : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m) :
     Fin s.observationHistory.length → Bool :=

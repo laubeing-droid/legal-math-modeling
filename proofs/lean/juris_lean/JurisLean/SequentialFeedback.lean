@@ -5,7 +5,7 @@ import JurisLean.ContractionCondition
 Sequential feedback gains for one response-measurement-learning loop.
 This file derives the cross coefficients of the actual composite map. It does
 not reprove Banach's theorem or assume that every legal process is contractive.
-Status: source reviewed only; CI_NOT_RUN. No local Lean execution.
+Build and axiom evidence is recorded for the isolated branch in the engineering appendix.
 -/
 
 namespace LegalMath20261108.SequentialFeedback

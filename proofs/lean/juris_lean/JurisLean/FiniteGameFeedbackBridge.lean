@@ -263,6 +263,155 @@ theorem native_mean_geometric_bound (T : Nat) (s₀ : NumericState)
     UnifiedFeedbackBridge.law_mean_geometric_bound (Measure.dirac s₀)
       (by simpa using hs₀) n
 
+
+/-! Exact full-history identification for the original fair policy. -/
+
+abbrev FullState := (List (Bool × Bool) × ℝ) × ℝ
+local instance fullLogMeasurable : MeasurableSpace (List (Bool × Bool)) := ⊤
+
+/-- Retain every action/outcome event as well as both actual numeric coordinates. -/
+def fullReplay {T : Nat} (s₀ : NumericState) (h : BitHistory T) : FullState :=
+  ((h.val.map (fun e => (e.1 (), e.2)), (replay s₀ h).1), (replay s₀ h).2)
+
+theorem fullReplay_advance {T : Nat} (s₀ : NumericState) (h : BitHistory T)
+    (ht : h.val.length < T) (a : Unit → Bool) (y : Bool) :
+    fullReplay s₀ ((game T s₀).advance h ht a y) =
+      ClosedLoop.update UnifiedFeedbackBridge.historyModel
+        (fullReplay s₀ h, (a (), y)) := by
+  change (((((game T s₀).advance h ht a y).val.map (fun e => (e.1 (), e.2))),
+      (replay s₀ ((game T s₀).advance h ht a y)).1),
+      (replay s₀ ((game T s₀).advance h ht a y)).2) =
+    ((h.val.map (fun e => (e.1 (), e.2)) ++ [(a (), y)],
+      (ClosedLoop.update UnifiedFeedbackBridge.model (replay s₀ h, (a (), y))).1),
+      (ClosedLoop.update UnifiedFeedbackBridge.model (replay s₀ h, (a (), y))).2)
+  rw [replay_advance]
+  simp [Game.advance]
+
+/-- The joint action/outcome draw of the original model, with no coordinate resampling. -/
+def eventPMF (s : FullState) : PMF (Bool × Bool) :=
+  ClosedLoop.RepaymentExample.fair.toPMF.bind fun a =>
+    (coinPMF (ClosedLoop.forgetLog s)).map (fun y => (a, y))
+
+theorem eventPMF_toMeasure_joint (s : FullState) :
+    (eventPMF s).toMeasure = ClosedLoop.joint UnifiedFeedbackBridge.historyModel s := by
+  have hj : ClosedLoop.joint UnifiedFeedbackBridge.historyModel s =
+      ClosedLoop.joint UnifiedFeedbackBridge.model (ClosedLoop.forgetLog s) :=
+    ClosedLoop.history_joint UnifiedFeedbackBridge.model
+      UnifiedFeedbackBridge.measurable_bool_log_append s
+  ext B hB
+  rw [eventPMF, PMF.toMeasure_bind_apply _ _ hB, tsum_fintype,
+    hj, ClosedLoop.joint, Kernel.compProd_apply hB, lintegral_fintype]
+  apply Finset.sum_congr rfl
+  intro a _
+  rw [PMF.toMeasure_map_apply _ _ _ (show Measurable (fun y : Bool => (a, y)) from
+    Measurable.of_discrete) hB, coinPMF_toMeasure]
+  change ClosedLoop.RepaymentExample.fair {a} *
+      UnifiedFeedbackBridge.coin (ClosedLoop.forgetLog s) ((fun y => (a, y)) ⁻¹' B) =
+    UnifiedFeedbackBridge.coin (ClosedLoop.forgetLog s) ((fun y => (a, y)) ⁻¹' B) *
+      ClosedLoop.RepaymentExample.fair {a}
+  exact mul_comm _ _
+
+theorem eventPMF_update_step (s : FullState) :
+    ((eventPMF s).map (fun z =>
+      ClosedLoop.update UnifiedFeedbackBridge.historyModel (s, z))).toMeasure =
+        ClosedLoop.step UnifiedFeedbackBridge.historyModel s := by
+  ext B hB
+  rw [PMF.toMeasure_map_apply _ _ _ (show Measurable (fun z : Bool × Bool =>
+      ClosedLoop.update UnifiedFeedbackBridge.historyModel (s, z)) from
+        Measurable.of_discrete) hB, eventPMF_toMeasure_joint,
+    ClosedLoop.step_apply UnifiedFeedbackBridge.historyModel s hB]
+
+/-- The game and the lifted closed loop have exactly the same full-record step.
+This assertion is specific to the original fair policy, unlike numeric marginals. -/
+theorem fair_nativeStep_fullReplay {T : Nat} (s₀ : NumericState)
+    (h : BitHistory T) (ht : h.val.length < T) :
+    (((game T s₀).nativeStep (fairPolicy T s₀) h).map (fullReplay s₀)).toMeasure =
+      ClosedLoop.step UnifiedFeedbackBridge.historyModel (fullReplay s₀ h) := by
+  let r := (game T s₀).observe () h
+  have hr : stage r < T := by simpa [r] using ht
+  have hk (a : (game T s₀).core.JointActionAt h) :
+      (((game T s₀).step h a).map (fullReplay s₀)) =
+        (coinPMF (replay s₀ h)).map (fun y =>
+          ClosedLoop.update UnifiedFeedbackBridge.historyModel
+            (fullReplay s₀ h, (toAction r hr (a ()), y))) := by
+    simp only [Game.step, dif_pos ht, game, PMF.map_comp]
+    congr 1
+    funext y
+    exact fullReplay_advance s₀ h ht _ y
+  have hdist :
+      ((game T s₀).nativeStep (fairPolicy T s₀) h).map (fullReplay s₀) =
+        (eventPMF (fullReplay s₀ h)).map
+          (fun z => ClosedLoop.update UnifiedFeedbackBridge.historyModel (fullReplay s₀ h, z)) := by
+    unfold Game.nativeStep
+    rw [PMF.map_bind]
+    simp_rw [hk]
+    rw [Math.PMFProduct.pmfPi_bind_eval _ ()]
+    simp [fairPolicy, parameterPolicy, dif_pos hr, PMF.bind_map, PMF.map_bind,
+      PMF.map_comp, Function.comp_def, toAction_ofAction, eventPMF, fullReplay,
+      ClosedLoop.forgetLog, r]
+  rw [hdist]
+  exact eventPMF_update_step _
+
+private theorem fair_next_full_measure {T : Nat} (s₀ : NumericState)
+    (p : PMF (BitHistory T)) (hp : ∀ h, p h ≠ 0 → h.val.length < T) :
+    ((p.bind ((game T s₀).nativeStep (fairPolicy T s₀))).map (fullReplay s₀)).toMeasure =
+      ClosedLoop.step UnifiedFeedbackBridge.historyModel ∘ₘ
+        (p.map (fullReplay s₀)).toMeasure := by
+  ext B hB
+  rw [PMF.map_bind, PMF.toMeasure_bind_apply _ _ hB,
+    ← PMF.toMeasure_map p (show Measurable (fullReplay s₀) from Measurable.of_discrete),
+    Measure.bind_apply hB (ClosedLoop.step UnifiedFeedbackBridge.historyModel).aemeasurable,
+    lintegral_map (Kernel.measurable_coe _ hB)
+      (show Measurable (fullReplay s₀) from Measurable.of_discrete),
+    lintegral_fintype, tsum_fintype]
+  apply Finset.sum_congr rfl
+  intro h _
+  rw [PMF.toMeasure_apply_singleton p h (measurableSet_singleton h)]
+  by_cases hh : p h = 0
+  · simp [hh]
+  · rw [fair_nativeStep_fullReplay s₀ h (hp h hh)]
+    exact mul_comm _ _
+
+/-- Equality of the complete recorded history and learned state, not merely
+equality after discarding the sampled actions. -/
+theorem fair_nativeLaw_fullReplay (T : Nat) (s₀ : NumericState) (n : Nat) : n ≤ T →
+    (((game T s₀).nativeLaw (fairPolicy T s₀) n).map (fullReplay s₀)).toMeasure =
+      ClosedLoop.iterationLaw UnifiedFeedbackBridge.historyModel
+        (Measure.dirac (fullReplay s₀ (game T s₀).initialHistory)) n := by
+  induction n with
+  | zero =>
+      intro _
+      simp [Game.nativeLaw, PMF.pure_map, PMF.toMeasure_pure, ClosedLoop.iterationLaw]
+  | succ n ih =>
+      intro hn
+      change ((((game T s₀).nativeLaw (fairPolicy T s₀) n).bind
+        ((game T s₀).nativeStep (fairPolicy T s₀))).map (fullReplay s₀)).toMeasure =
+          ClosedLoop.step UnifiedFeedbackBridge.historyModel ∘ₘ
+            ClosedLoop.iterationLaw UnifiedFeedbackBridge.historyModel
+              (Measure.dirac (fullReplay s₀ (game T s₀).initialHistory)) n
+      rw [fair_next_full_measure s₀ _ (fun h hh => by
+        have htime := nativeLaw_time s₀ (fairPolicy T s₀) n h hh
+        omega), ih (by omega)]
+
+theorem fair_nativeLaw_full_path (T : Nat) (s₀ : NumericState)
+    (n : Nat) (hn : n ≤ T) :
+    (((game T s₀).nativeLaw (fairPolicy T s₀) n).map (fullReplay s₀)).toMeasure =
+      (ClosedLoop.pathLaw UnifiedFeedbackBridge.historyModel
+        (Measure.dirac (fullReplay s₀ (game T s₀).initialHistory))).map (fun x => x n) := by
+  rw [fair_nativeLaw_fullReplay T s₀ n hn, ClosedLoop.pathLaw_marginal]
+
+/-- The mixed strategy obtained from the original fair policy preserves the
+same full event-log/learning law of the original lifted closed loop. -/
+theorem fair_mixedLaw_fullReplay (T : Nat) (s₀ : NumericState)
+    (n : Nat) (hn : n ≤ T) :
+    ((((game T s₀).core.behavioralToMixedJoint (fairPolicy T s₀)).bind
+      (fun π => (game T s₀).nativeLawPure π n)).map (fullReplay s₀)).toMeasure =
+      ClosedLoop.iterationLaw UnifiedFeedbackBridge.historyModel
+        (Measure.dirac (fullReplay s₀ (game T s₀).initialHistory)) n := by
+  rw [← (game T s₀).native_behavioral_to_mixed (fairPolicy T s₀) n]
+  exact fair_nativeLaw_fullReplay T s₀ n hn
+
+
 end
 end LegalMath20261109.FiniteGameFeedback
 
@@ -273,4 +422,8 @@ end LegalMath20261109.FiniteGameFeedback
 #print axioms LegalMath20261109.FiniteGameFeedback.kuhn_joint_history_learning
 #print axioms LegalMath20261109.FiniteGameFeedback.native_path_marginal
 #print axioms LegalMath20261109.FiniteGameFeedback.native_mean_geometric_bound
+#print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeStep_fullReplay
+#print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeLaw_fullReplay
+#print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeLaw_full_path
+#print axioms LegalMath20261109.FiniteGameFeedback.fair_mixedLaw_fullReplay
 

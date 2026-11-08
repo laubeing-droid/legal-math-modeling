@@ -4,7 +4,7 @@ import Mathlib
 # A joint law for action, actual feedback, history and personal learning
 
 Pinned Mathlib: c5ea00351c28e24afc9f0f84379aa41082b1188f.
-Static source/API review only; Lean/Lake/Elan have NOT been run for this file.
+Build and axiom evidence is recorded for the isolated branch in the engineering appendix.
 
 The outcome kernel may depend on BOTH the current state and the sampled action.
 The same outcome updates history and personal parameters. `retained` pairs the

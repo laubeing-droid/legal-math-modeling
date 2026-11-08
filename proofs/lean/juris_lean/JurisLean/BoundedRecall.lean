@@ -10,7 +10,8 @@ global current/start/push equations of the existing identity core, and the
 terminal action type. It does not instantiate the stochastic machine,
 LocalSupportSignatureFull, or either complete Kuhn theorem.
 
-Static source review only. Lean/Lake/Elan and CI have not been run.
+The vector carrier is connected below by an explicit equivalence to the
+complete finite-horizon game record. Build evidence is kept in the engineering appendix.
 -/
 
 namespace LegalMath20261108.BoundedRecall

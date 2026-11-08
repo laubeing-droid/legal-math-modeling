@@ -5,7 +5,7 @@ import JurisLean.SequentialFeedback
 # The stochastic feedback kernel has the existing sequential mean dynamics
 
 Pinned Mathlib: c5ea00351c28e24afc9f0f84379aa41082b1188f.
-Static source/API review only; Lean/Lake/Elan have NOT been run (CI_NOT_RUN).
+Build and axiom evidence is recorded for the isolated branch in the engineering appendix.
 
 In a fixed legal context both Bool actions are permitted; the outcome records
 whether a response arrived by the observation deadline. The same outcome Y
@@ -108,7 +108,8 @@ theorem step_two_atoms (s : State) :
   ext B hB
   rw [step_apply model s hB, joint, Kernel.compProd_apply]
   · change (∫⁻ _a : Bool, coin s ((after s) ⁻¹' B) ∂model.policy s) = _
-    simp [coin, Measure.add_apply, smul_eq_mul]
+    rw [lintegral_const, measure_univ, mul_one]
+    simp [coin, Measure.add_apply, smul_eq_mul, Set.indicator_apply]
   · exact ((measurable_update model).comp (measurable_const.prodMk measurable_id)) hB
 
 lemma after_in_square (s : State) (hs : s ∈ square) (y : Bool) : after s y ∈ square := by
@@ -192,9 +193,15 @@ lemma integral_affine (μ : Measure State) [IsProbabilityMeasure μ]
     (hμ : ∀ᵐ s ∂μ, s ∈ square) (a b c : ℝ) :
     ∫ s, a * s.1 + b * s.2 + c ∂μ = a * (mean μ).1 + b * (mean μ).2 + c := by
   obtain ⟨hx, ht⟩ := coordinates_integrable μ hμ
-  rw [integral_add ((hx.const_mul a).add (ht.const_mul b)) (integrable_const c),
-    integral_add (hx.const_mul a) (ht.const_mul b)]
-  simp [mean, integral_const_mul]
+  calc
+    _ = (∫ s, a * s.1 + b * s.2 ∂μ) + (∫ _s : State, c ∂μ) :=
+      integral_add (f := fun s => a * s.1 + b * s.2) (g := fun _ => c)
+        ((hx.const_mul a).add (ht.const_mul b)) (integrable_const c)
+    _ = (∫ s, a * s.1 ∂μ) + (∫ s, b * s.2 ∂μ) + (∫ _s : State, c ∂μ) :=
+      congrArg (fun r : ℝ => r + (∫ _s : State, c ∂μ))
+        (integral_add (f := fun s => a * s.1) (g := fun s => b * s.2)
+          (hx.const_mul a) (ht.const_mul b))
+    _ = _ := by simp [mean, integral_const_mul]
 
 theorem mean_next (μ : Measure State) [IsProbabilityMeasure μ]
     (hμ : ∀ᵐ s ∂μ, s ∈ square) :
@@ -211,6 +218,8 @@ theorem mean_next (μ : Measure State) [IsProbabilityMeasure μ]
       _ = ∫ s, (1/4 : ℝ) * s.1 + (1/2 : ℝ) * s.2 + 1/8 ∂μ := by
         apply integral_congr_ae
         exact Filter.Eventually.of_forall (fun s => by
+          rcases s with ⟨x, t⟩
+          dsimp only
           rw [example_step_formula]
           dsimp
           ring)
@@ -227,6 +236,8 @@ theorem mean_next (μ : Measure State) [IsProbabilityMeasure μ]
       _ = ∫ s, (1/8 : ℝ) * s.1 + (1/2 : ℝ) * s.2 + 3/16 ∂μ := by
         apply integral_congr_ae
         exact Filter.Eventually.of_forall (fun s => by
+          rcases s with ⟨x, t⟩
+          dsimp only
           rw [example_step_formula]
           dsimp
           ring)

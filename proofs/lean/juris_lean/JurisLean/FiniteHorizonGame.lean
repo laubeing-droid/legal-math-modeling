@@ -21,7 +21,7 @@ abbrev History (T : Nat) (ι State : Type) (Action : ι → Type) :=
 /-- The given transition law can depend on the complete bounded history. -/
 structure Game (T : Nat) (ι State : Type) (Obs Action : ι → Type) where
   initial : State
-  signal : (i : ι) → State → Obs i
+  signal : (i : ι) → List (JointAction ι Action × State) → State → Obs i
   transition : History T ι State Action → JointAction ι Action → PMF State
 
 namespace Game
@@ -31,16 +31,36 @@ variable (G : Game T ι State Obs Action)
 
 def initialHistory (G : Game T ι State Obs Action) : History T ι State Action := ⟨[], by simp⟩
 
+/-- Reconstruct each original observation from its own history prefix. -/
+def localLog (i : ι) (past : List (JointAction ι Action × State)) :
+    List (JointAction ι Action × State) → List (Action i × Obs i)
+  | [] => []
+  | x :: xs => (x.1 i, G.signal i (past ++ [x]) x.2) ::
+      G.localLog i (past ++ [x]) xs
+
+@[simp] theorem localLog_length (i : ι) (past xs : List (JointAction ι Action × State)) :
+    (G.localLog i past xs).length = xs.length := by
+  induction xs generalizing past with
+  | nil => rfl
+  | cons x xs ih => simp [localLog, ih]
+
+theorem localLog_append (i : ι) (past xs ys : List (JointAction ι Action × State)) :
+    G.localLog i past (xs ++ ys) =
+      G.localLog i past xs ++ G.localLog i (past ++ xs) ys := by
+  induction xs generalizing past with
+  | nil => simp [localLog]
+  | cons x xs ih => simp [localLog, ih, List.append_assoc]
+
 def observe (i : ι) (h : History T ι State Action) :
     PersonalRecord T (Obs i) (Action i) :=
-  (G.signal i G.initial, ⟨h.val.map (fun x => (x.1 i, G.signal i x.2)), by
+  (G.signal i [] G.initial, ⟨G.localLog i [] h.val, by
     simpa using h.property⟩)
 
 @[simp] theorem observe_stage (i : ι) (h : History T ι State Action) :
     stage (G.observe i h) = h.val.length := by simp [observe, stage]
 
 @[simp] theorem observe_initial (i : ι) :
-    G.observe i G.initialHistory = initialRecord T (G.signal i G.initial) := rfl
+    G.observe i G.initialHistory = initialRecord T (G.signal i [] G.initial) := rfl
 
 def advance (G : Game T ι State Obs Action) (h : History T ι State Action) (ht : h.val.length < T)
     (a : JointAction ι Action) (s : State) : History T ι State Action :=
@@ -53,10 +73,11 @@ def advance (G : Game T ι State Obs Action) (h : History T ι State Action) (ht
 theorem observe_advance (i : ι) (h : History T ι State Action) (ht : h.val.length < T)
     (a : JointAction ι Action) (s : State) :
     G.observe i (G.advance h ht a s) =
-      append (G.observe i h) (by simpa using ht) (a i) (G.signal i s) := by
+      append (G.observe i h) (by simpa using ht) (a i)
+        (G.signal i (h.val ++ [(a, s)]) s) := by
   apply Prod.ext rfl
   apply Subtype.ext
-  simp [observe, advance, append]
+  simp [observe, advance, append, localLog_append, localLog]
 
 def rawAction (h : History T ι State Action) (ht : h.val.length < T)
     (a : (i : ι) → ActionAt (G.observe i h)) : JointAction ι Action :=
@@ -101,7 +122,7 @@ theorem step_active_support (h : History T ι State Action) (ht : h.val.length <
         G.advance h ht (G.rawAction h ht a) s = t := by
   change G.step h a t ≠ 0 ↔ _
   simp only [step, dif_pos ht]
-  exact PMF.mem_support_map_iff
+  exact PMF.mem_support_map_iff _ _ _
 
 /-- The recorded joint action is forced by any supported source/target pair. -/
 theorem stepActionDeterminism : G.core.StepActionDeterminism := by
@@ -123,13 +144,13 @@ def current (h : History T ι State Action) : State :=
 
 @[simp] theorem current_advance (h : History T ι State Action) (ht : h.val.length < T)
     (a : JointAction ι Action) (s : State) : G.current (G.advance h ht a s) = s := by
-  simp [current, advance, List.getLast?_append]
+  simp [current, advance, List.getLast?_append_of_ne_nil _ (show [(a, s)] ≠ [] by simp)]
 
 theorem step_environment (h : History T ι State Action) (ht : h.val.length < T)
     (a : G.core.JointActionAt h) :
     (G.core.step h a).map G.current = G.transition h (G.rawAction h ht a) := by
   change (G.step h a).map G.current = _
-  simp only [step, dif_pos ht, PMF.map_map]
+  simp only [step, dif_pos ht, PMF.map_comp]
   simpa only [Function.comp_def, current_advance] using
     (PMF.map_id (G.transition h (G.rawAction h ht a)))
 

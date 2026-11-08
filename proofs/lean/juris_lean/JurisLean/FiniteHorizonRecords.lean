@@ -33,7 +33,7 @@ def initialRecord (T : Nat) (o : Obs) : PersonalRecord T Obs Action :=
 @[simp] theorem initial_stage (o : Obs) :
     stage (initialRecord (Action := Action) T o) = 0 := rfl
 
-def prefix (r : PersonalRecord T Obs Action) (n : Nat) :
+def takeRecord (r : PersonalRecord T Obs Action) (n : Nat) :
     PersonalRecord T Obs Action :=
   (r.1, ⟨r.2.val.take n, by
     have hr := r.2.property
@@ -41,14 +41,14 @@ def prefix (r : PersonalRecord T Obs Action) (n : Nat) :
     omega⟩)
 
 @[simp] theorem prefix_stage (r : PersonalRecord T Obs Action) (n : Nat) :
-    stage (prefix r n) = min n (stage r) := by
-  simp [prefix, stage]
+    stage (takeRecord r n) = min n (stage r) := by
+  simp [takeRecord, stage]
 
 @[simp] theorem prefix_self (r : PersonalRecord T Obs Action) :
-    prefix r (stage r) = r := by
+    takeRecord r (stage r) = r := by
   apply Prod.ext rfl
   apply Subtype.ext
-  simp [prefix, stage]
+  simp [takeRecord, stage]
 
 def append (r : PersonalRecord T Obs Action) (h : stage r < T)
     (a : Action) (o : Obs) : PersonalRecord T Obs Action :=
@@ -64,14 +64,14 @@ def append (r : PersonalRecord T Obs Action) (h : stage r < T)
 
 theorem prefix_append (r : PersonalRecord T Obs Action) (h : stage r < T)
     (a : Action) (o : Obs) (n : Nat) (hn : n ≤ stage r) :
-    prefix (append r h a o) n = prefix r n := by
+    takeRecord (append r h a o) n = takeRecord r n := by
   apply Prod.ext rfl
   apply Subtype.ext
   exact List.take_append_of_le_length hn
 
 @[simp] theorem prefix_append_self (r : PersonalRecord T Obs Action)
     (h : stage r < T) (a : Action) (o : Obs) :
-    prefix (append r h a o) (stage r) = r := by
+    takeRecord (append r h a o) (stage r) = r := by
   rw [prefix_append r h a o _ (Nat.le_refl _), prefix_self]
 
 theorem append_get_old (r : PersonalRecord T Obs Action) (h : stage r < T)
@@ -79,7 +79,7 @@ theorem append_get_old (r : PersonalRecord T Obs Action) (h : stage r < T)
     (append r h a o).2.val[n]'(by simpa [stage] using
       (show n < stage (append r h a o) by rw [append_stage]; omega)) =
       r.2.val[n]'hn := by
-  simp [append, List.getElem_append, show n < r.2.val.length from hn]
+  exact List.getElem_append_left hn
 
 @[simp] theorem append_get_last (r : PersonalRecord T Obs Action)
     (h : stage r < T) (a : Action) (o : Obs) :
@@ -87,7 +87,7 @@ theorem append_get_old (r : PersonalRecord T Obs Action) (h : stage r < T)
       simpa [stage] using
         (show stage r < stage (append r h a o) by rw [append_stage]; omega)) =
       (a, o) := by
-  simp [append, stage]
+  simp [append, stage, List.getElem_append]
 
 def ActionAt (r : PersonalRecord T Obs Action) : Type :=
   if stage r < T then Action else Unit
@@ -135,7 +135,7 @@ abbrev LocalPlan (T : Nat) (Obs Action : Type) :=
 
 def Req (r : PersonalRecord T Obs Action) (π : LocalPlan T Obs Action) : Prop :=
   ∀ (n : Nat) (hn : n < stage r),
-    π (prefix r n) = ofAction (prefix r n)
+    π (takeRecord r n) = ofAction (takeRecord r n)
       (by rw [prefix_stage]; have := stage_le r; omega)
       (r.2.val[n]'hn).1
 

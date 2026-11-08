@@ -35,10 +35,11 @@ noncomputable def nativeStep (β : BehavioralPlan T ι Obs Action)
   (pmfPi (fun i => β i (G.observe i h))).bind (G.step h)
 
 /-- Direct iteration of the given game, without a core state-trace runner. -/
-noncomputable def nativeLaw (β : BehavioralPlan T ι Obs Action) :
+noncomputable def nativeLaw (G : Game T ι State Obs Action)
+    (β : BehavioralPlan T ι Obs Action) :
     Nat → PMF (History T ι State Action)
   | 0 => PMF.pure G.initialHistory
-  | n + 1 => (G.nativeLaw β n).bind (G.nativeStep β)
+  | n + 1 => (nativeLaw G β n).bind (G.nativeStep β)
 
 noncomputable def nativeLawPure
     (π : (i : ι) → LocalPlan T (Obs i) (Action i)) (n : Nat) :

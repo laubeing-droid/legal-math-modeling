@@ -1,0 +1,21 @@
+import JurisLean.UnifiedFeedbackBridge
+import JurisLean.BoundedRecall
+import JurisLean.FiniteHorizonAdequacy
+
+#print axioms LegalMath20261108.ClosedLoop.step_normalized
+#print axioms LegalMath20261108.ClosedLoop.step_lintegral
+#print axioms LegalMath20261108.ClosedLoop.history_marginal
+#print axioms LegalMath20261108.ClosedLoop.learning_marginal
+#print axioms LegalMath20261108.ClosedLoop.nextAction_apply
+#print axioms LegalMath20261108.ClosedLoop.full_path_unique
+#print axioms LegalMath20261108.ClosedLoop.complete_prefix_joint
+#print axioms LegalMath20261108.ClosedLoop.RepaymentExample.crossed_pair_mass_zero
+#print axioms LegalMath20261108.ClosedLoop.RepaymentExample.next_policy_values
+#print axioms LegalMath20261108.SequentialFeedback.sequential_gain
+#print axioms LegalMath20261108.SequentialFeedback.sequential_max_bound
+#print axioms LegalMath20261108.SequentialFeedback.example_geometric_bound
+#print axioms LegalMath20261108.UnifiedFeedbackBridge.step_two_atoms
+#print axioms LegalMath20261108.UnifiedFeedbackBridge.mean_law
+#print axioms LegalMath20261108.UnifiedFeedbackBridge.law_mean_geometric_bound
+#print axioms LegalMath20261108.BoundedRecall.core_carrier_finite
+#print axioms LegalMath20261108.BoundedRecall.terminal_action_subsingleton

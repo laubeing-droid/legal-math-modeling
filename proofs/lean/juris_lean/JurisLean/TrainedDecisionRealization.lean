@@ -48,7 +48,14 @@ def loss (z : ℚ × ℚ) (y : Bool) : ℚ := (forecast z - if y then 1 else 0)^
 theorem loss_range (z : ℚ × ℚ) (y : Bool) : (loss z y : ℝ) ∈ Set.Icc (0 : ℝ) 1 := by
   have h0 : (0 : ℝ) ≤ (forecast z : ℝ) := by exact_mod_cast (forecast_bounds z).1
   have h1 : (forecast z : ℝ) ≤ 1 := by exact_mod_cast (forecast_bounds z).2
-  cases y <;> constructor <;> norm_num [loss] <;> nlinarith
+  have product := mul_nonneg h0 (sub_nonneg.mpr h1)
+  cases y
+  · have eq : (loss z false : ℝ) = (forecast z : ℝ)^2 := by norm_num [loss]
+    rw [eq]
+    exact ⟨sq_nonneg _, by nlinarith⟩
+  · have eq : (loss z true : ℝ) = ((forecast z : ℝ)-1)^2 := by norm_num [loss]
+    rw [eq]
+    exact ⟨sq_nonneg _, by nlinarith⟩
 
 def risk (s : ℚ × ℚ) (z : ℚ × ℚ) : ℝ := ∫ y, (loss z y : ℝ) ∂coin (embed s)
 
@@ -74,8 +81,10 @@ def realizedRadius {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ) (rest : List 
 
 theorem realizedRadius_uniform {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ)
     (rest : List (ℚ × ℚ)) (data : Fin n → Bool) (z : ℚ × ℚ) (hz : z ∈ first :: rest) :
-    |risk s z-(empiricalScore loss data z : ℝ)| ≤ realizedRadius s first rest data :=
-  Finset.le_sup' _ (List.mem_toFinset.mpr hz)
+    |risk s z-(empiricalScore loss data z : ℝ)| ≤ realizedRadius s first rest data := by
+  unfold realizedRadius
+  exact Finset.le_sup' (fun z => |risk s z-(empiricalScore loss data z : ℝ)|)
+    (List.mem_toFinset.mpr hz)
 
 theorem realizedRadius_nonneg {n : Nat} (s : ℚ × ℚ) (first : ℚ × ℚ)
     (rest : List (ℚ × ℚ)) (data : Fin n → Bool) : 0 ≤ realizedRadius s first rest data :=
@@ -91,8 +100,8 @@ theorem actual_fit_prediction_bound {n : Nat} (hn : 0 < n) (s : ℚ × ℚ)
     proposed_empirical_fit loss (first :: rest) data = some (fitted first rest data) ∧
       |(forecast (fitted first rest data) : ℝ) - probability (embed s)| ≤ E := by
   have fit := u01_1_actual_empirical_fit_minimizes loss first rest data hn
-  have hc := (abs_le.mp (uniform _ fit.2.1)).1
-  have ho := (abs_le.mp (uniform _ oracle)).2
+  have hc := (abs_le.mp (uniform _ fit.2.1)).2
+  have ho := (abs_le.mp (uniform _ oracle)).1
   have best : (empiricalScore loss data (fitted first rest data) : ℝ) ≤
       (empiricalScore loss data (ideal s) : ℝ) := by
     exact_mod_cast fit.2.2 _ oracle

@@ -71,7 +71,10 @@ private theorem localLog_eq_map (T : Nat) (s₀ : NumericState)
     (game T s₀).localLog () past xs = xs.map (fun e => (e.1 (), e.2)) := by
   induction xs generalizing past with
   | nil => rfl
-  | cons x xs ih => simp [Game.localLog, game, ih]
+  | cons x xs ih =>
+      change (x.1 (), x.2) :: (game T s₀).localLog () (past ++ [x]) xs =
+        (x.1 (), x.2) :: xs.map (fun e => (e.1 (), e.2))
+      exact congrArg (List.cons (x.1 (), x.2)) (ih (past ++ [x]))
 
 private theorem replay_snd (xs : List ((Unit → Bool) × Bool)) (s₀ : NumericState) :
     (xs.foldl (fun s e => UnifiedFeedbackBridge.after s e.2) s₀).2 =
@@ -122,11 +125,12 @@ private theorem after_measurable (s : NumericState) :
 theorem coin_update_step (s : NumericState) :
     ((coinPMF s).map (UnifiedFeedbackBridge.after s)).toMeasure =
       ClosedLoop.step UnifiedFeedbackBridge.model s := by
+  classical
   ext B hB
   rw [PMF.toMeasure_map_apply _ _ _ (after_measurable s) hB, coinPMF_toMeasure,
     UnifiedFeedbackBridge.step_two_atoms]
   simp [UnifiedFeedbackBridge.coin, Measure.add_apply, smul_eq_mul,
-    hB, (after_measurable s) hB]
+    hB, (after_measurable s) hB, Set.indicator_apply]
 
 /-- The full-history machine executes the same numeric update kernel.
 Actions disappear from this projection only because the given model's outcome
@@ -163,10 +167,13 @@ theorem nativeLaw_time {T : Nat} (s₀ : NumericState) (β : BitPlan T)
   | succ n ih =>
       change h ∈ (((game T s₀).nativeLaw β n).bind
         ((game T s₀).nativeStep β)).support at hh
-      obtain ⟨p, hp, ht⟩ := (PMF.mem_support_bind_iff h).mp hh
+      obtain ⟨p, hp, ht⟩ := (PMF.mem_support_bind_iff ((game T s₀).nativeLaw β n)
+        ((game T s₀).nativeStep β) h).mp hh
       change h ∈ ((Math.PMFProduct.pmfPi (fun i => β i ((game T s₀).observe i p))).bind
         ((game T s₀).step p)).support at ht
-      obtain ⟨a, _, ha⟩ := (PMF.mem_support_bind_iff h).mp ht
+      obtain ⟨a, _, ha⟩ := (PMF.mem_support_bind_iff
+        (Math.PMFProduct.pmfPi (fun i => β i ((game T s₀).observe i p)))
+        ((game T s₀).step p) h).mp ht
       have htime := (game T s₀).step_time p h a ha
       have hprev := ih p hp
       rw [hprev] at htime
@@ -177,8 +184,8 @@ private theorem native_next_measure {T : Nat} (s₀ : NumericState) (β : BitPla
     ((p.bind ((game T s₀).nativeStep β)).map (replay s₀)).toMeasure =
       ClosedLoop.step UnifiedFeedbackBridge.model ∘ₘ (p.map (replay s₀)).toMeasure := by
   ext B hB
-  rw [PMF.map_bind, PMF.toMeasure_bind_apply _ _ hB,
-    ← PMF.toMeasure_map p (show Measurable (replay s₀) from Measurable.of_discrete),
+  rw [PMF.map_bind, PMF.toMeasure_bind_apply _ _ B hB,
+    ← PMF.toMeasure_map (f := replay s₀) p (show Measurable (replay s₀) from Measurable.of_discrete),
     Measure.bind_apply hB (ClosedLoop.step UnifiedFeedbackBridge.model).aemeasurable,
     lintegral_map (Kernel.measurable_coe _ hB) (show Measurable (replay s₀) from Measurable.of_discrete),
     lintegral_fintype, tsum_fintype]
@@ -280,11 +287,12 @@ theorem fullReplay_injective {T : Nat} (s₀ : NumericState) :
   apply Subtype.ext
   have hi : Function.Injective (fun e : (Unit → Bool) × Bool => (e.1 (), e.2)) := by
     intro a b hab
+    change (a.1 (), a.2) = (b.1 (), b.2) at hab
     apply Prod.ext
     · funext u
       cases u
-      exact congrArg Prod.fst hab
-    · exact congrArg Prod.snd hab
+      exact congrArg (fun z : Bool × Bool => z.1) hab
+    · exact congrArg (fun z : Bool × Bool => z.2) hab
   exact (List.map_injective_iff.mpr hi) (congrArg (fun s : FullState => s.1.1) heq)
 
 theorem fullReplay_advance {T : Nat} (s₀ : NumericState) (h : BitHistory T)
@@ -313,7 +321,7 @@ theorem eventPMF_toMeasure_joint (s : FullState) :
     ClosedLoop.history_joint UnifiedFeedbackBridge.model
       UnifiedFeedbackBridge.measurable_bool_log_append s
   ext B hB
-  rw [eventPMF, PMF.toMeasure_bind_apply _ _ hB, tsum_fintype,
+  rw [eventPMF, PMF.toMeasure_bind_apply _ _ B hB, tsum_fintype,
     hj, ClosedLoop.joint, Kernel.compProd_apply hB, lintegral_fintype]
   apply Finset.sum_congr rfl
   intro a _
@@ -359,7 +367,11 @@ theorem fair_nativeStep_fullReplay {T : Nat} (s₀ : NumericState)
     unfold Game.nativeStep
     rw [PMF.map_bind]
     simp_rw [hk]
-    rw [Math.PMFProduct.pmfPi_bind_eval _ ()]
+    rw [Math.PMFProduct.pmfPi_bind_eval
+      (fun i => fairPolicy T s₀ i ((game T s₀).observe i h)) ()
+      (fun a => (coinPMF (replay s₀ h)).map (fun y =>
+        ClosedLoop.update UnifiedFeedbackBridge.historyModel
+          (fullReplay s₀ h, (toAction r hr a, y))))]
     simp [fairPolicy, parameterPolicy, dif_pos hr, PMF.bind_map, PMF.map_bind,
       PMF.map_comp, Function.comp_def, toAction_ofAction, eventPMF, fullReplay,
       ClosedLoop.forgetLog, r]
@@ -372,8 +384,8 @@ private theorem fair_next_full_measure {T : Nat} (s₀ : NumericState)
       ClosedLoop.step UnifiedFeedbackBridge.historyModel ∘ₘ
         (p.map (fullReplay s₀)).toMeasure := by
   ext B hB
-  rw [PMF.map_bind, PMF.toMeasure_bind_apply _ _ hB,
-    ← PMF.toMeasure_map p (show Measurable (fullReplay s₀) from Measurable.of_discrete),
+  rw [PMF.map_bind, PMF.toMeasure_bind_apply _ _ B hB,
+    ← PMF.toMeasure_map (f := fullReplay s₀) p (show Measurable (fullReplay s₀) from Measurable.of_discrete),
     Measure.bind_apply hB (ClosedLoop.step UnifiedFeedbackBridge.historyModel).aemeasurable,
     lintegral_map (Kernel.measurable_coe _ hB)
       (show Measurable (fullReplay s₀) from Measurable.of_discrete),

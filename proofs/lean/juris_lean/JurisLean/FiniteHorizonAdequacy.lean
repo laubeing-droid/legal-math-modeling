@@ -67,7 +67,9 @@ theorem nativeStep_terminal (β : BehavioralPlan T ι Obs Action)
     (h : History T ι State Action) (ht : ¬h.val.length < T) :
     G.nativeStep β h = PMF.pure h := by
   unfold nativeStep
-  simp only [step, dif_neg ht]
+  have hstep : G.step h = fun _ => PMF.pure h :=
+    funext (fun a => G.step_terminal h ht a)
+  rw [hstep]
   exact PMF.bind_const _ _
 
 /-- The endpoint of the core trace has exactly the directly iterated history law.
@@ -86,7 +88,9 @@ theorem runDist_nativeLaw (β : BehavioralPlan T ι Obs Action) (n : Nat) :
       congr 1
       funext ss
       simp only [PMF.map_comp, Function.comp_def,
-        ObsModelCore.lastState_append_singleton, PMF.map_id]
+        ObsModelCore.lastState_append_singleton]
+      change (G.core.stepDist β ss).map id = G.nativeStep β (G.core.lastState ss)
+      rw [PMF.map_id]
       exact G.stepDist_nativeStep β ss
 
 theorem runDistPure_nativeLaw
@@ -166,10 +170,10 @@ def quietAction : JointAction (Fin 2) (fun _ => Bool) := fun _ => false
 def bits (b : Bool) : Fin 2 → Bool := fun i => if i = 0 then false else b
 
 def afterPrivateBit (b : Bool) : History 2 (Fin 2) (Fin 2 → Bool) (fun _ => Bool) :=
-  ⟨[(quietAction, bits b)], by decide⟩
+  ⟨[(quietAction, bits b)], by simp⟩
 
 def terminalPrivateBit (b : Bool) : History 2 (Fin 2) (Fin 2 → Bool) (fun _ => Bool) :=
-  ⟨[(quietAction, bits b), (quietAction, quietAction)], by decide⟩
+  ⟨[(quietAction, bits b), (quietAction, quietAction)], by simp⟩
 
 /-- The first player cannot see the other player's bit. -/
 theorem private_information_hidden :

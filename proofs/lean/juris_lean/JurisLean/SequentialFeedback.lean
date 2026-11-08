@@ -45,11 +45,11 @@ theorem sequential_gain
         hU p.2 _ q.2 _
       _ ≤ d * dist p.2 q.2 +
           c * (m * dist (response p.1 p.2) (response q.1 q.2)) :=
-        add_le_add_left (mul_le_mul_of_nonneg_left (hM _ _) hc) _
+        add_le_add (le_refl _) (mul_le_mul_of_nonneg_left (hM _ _) hc)
       _ ≤ d * dist p.2 q.2 +
           c * (m * (a * dist p.1 q.1 + b * dist p.2 q.2)) :=
-        add_le_add_left (mul_le_mul_of_nonneg_left
-          (mul_le_mul_of_nonneg_left (hR _ _ _ _) hm) hc) _
+        add_le_add (le_refl _) (mul_le_mul_of_nonneg_left
+          (mul_le_mul_of_nonneg_left (hR _ _ _ _) hm) hc)
       _ = _ := by ring
 
 /-- A row-sum specialization of the existing weighted matrix criterion. -/
@@ -91,11 +91,11 @@ theorem sequential_max_bound
 end Metric
 
 /-- A nonconstant, mutually coupled mean-response example. -/
-def responseExample (x t : ℝ) : ℝ := x / 4 + t / 2 + 1 / 8
+noncomputable def responseExample (x t : ℝ) : ℝ := x / 4 + t / 2 + 1 / 8
 
-def learnExample (t y : ℝ) : ℝ := t / 4 + y / 2 + 1 / 8
+noncomputable def learnExample (t y : ℝ) : ℝ := t / 4 + y / 2 + 1 / 8
 
-def exampleStep : ℝ × ℝ → ℝ × ℝ := advance responseExample id learnExample
+noncomputable def exampleStep : ℝ × ℝ → ℝ × ℝ := advance responseExample id learnExample
 
 theorem example_step_formula (x t : ℝ) :
     exampleStep (x,t) = (x / 4 + t / 2 + 1 / 8, x / 8 + t / 2 + 3 / 16) := by
@@ -136,7 +136,7 @@ theorem example_error_bound (x t : ℝ) :
   · apply abs_le.mpr
     constructor <;> dsimp <;> linarith [xb.1, xb.2, tb.1, tb.2]
 
-def iterateExample : Nat → ℝ × ℝ → ℝ × ℝ
+noncomputable def iterateExample : Nat → ℝ × ℝ → ℝ × ℝ
   | 0, p => p
   | n + 1, p => exampleStep (iterateExample n p)
 

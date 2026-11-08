@@ -110,10 +110,13 @@ theorem step_apply (s : H × Θ) {B : Set (H × Θ)} (hB : MeasurableSet B) :
 theorem step_lintegral (s : H × Θ) (f : H × Θ → ℝ≥0∞) (hf : Measurable f) :
     ∫⁻ t, f t ∂step D s =
       ∫⁻ a, ∫⁻ o, f (update D (s, (a, o))) ∂D.outcome (s, a) ∂D.policy s := by
-  rw [step, Kernel.lintegral_map _ (measurable_update D) s hf, retained,
-    Kernel.lintegral_id_prod (hf.comp (measurable_update D)) (joint D) s]
-  exact Kernel.lintegral_compProd' D.policy D.outcome s
-    (hf.comp ((measurable_update D).comp (measurable_const.prodMk measurable_id)))
+  rw [step, Kernel.lintegral_map _ (measurable_update D) s hf, retained]
+  calc
+    _ = ∫⁻ z, f (update D (s, z)) ∂joint D s :=
+      Kernel.lintegral_id_prod (f := fun z => f (update D z))
+        (hf.comp (measurable_update D)) (joint D) s
+    _ = _ := Kernel.lintegral_compProd' D.policy D.outcome s
+      (hf.comp ((measurable_update D).comp (measurable_const.prodMk measurable_id)))
 
 /-- Both marginal equalities retain the SAME `retained D`; no independence is asserted. -/
 theorem history_marginal :
@@ -156,8 +159,8 @@ No global finiteness of histories or private parameters is required. -/
 abbrev Prefix (H Θ : Type*) (n : ℕ) := Π _i : Finset.Iic n, H × Θ
 
 def chain (n : ℕ) : Kernel (Prefix H Θ n) (H × Θ) :=
-  (step D).comap (fun h => h ⟨n, Finset.mem_Iic.mpr le_rfl⟩)
-    (measurable_pi_apply ⟨n, Finset.mem_Iic.mpr le_rfl⟩)
+  (step D).comap (fun h : Prefix H Θ n => h ⟨n, Finset.mem_Iic.mpr le_rfl⟩)
+    (measurable_pi_apply (⟨n, Finset.mem_Iic.mpr le_rfl⟩ : Finset.Iic n))
 
 instance chain_markov (n : ℕ) : IsMarkovKernel (chain D n) := by
   unfold chain

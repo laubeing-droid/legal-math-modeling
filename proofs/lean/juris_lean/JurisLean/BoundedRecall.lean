@@ -1,4 +1,5 @@
 import Mathlib
+import JurisLean.FiniteHorizonRecords
 import JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel
 
 /-!
@@ -83,5 +84,56 @@ instance [Nonempty Action] (v : PersonalRecord T Obs Action) :
 theorem terminal_action_subsingleton (v : PersonalRecord T Obs Action)
     (ht : stage v = T) : Subsingleton (ActionAt v) := by
   simpa [ActionAt, ht] using (inferInstance : Subsingleton Unit)
+
+
+/-- Convert the original vector record to the full list record used by the
+finite-horizon game. Every action and its following observation is retained. -/
+def toFiniteRecord (v : PersonalRecord T Obs Action) :
+    LegalMath.FiniteHorizon.PersonalRecord T Obs Action :=
+  (v.2.1 0, ⟨List.ofFn (fun i : Fin v.1.val => (v.2.2 i, v.2.1 i.succ)), by
+    simpa using stage_le v⟩)
+
+@[simp] theorem toFiniteRecord_stage (v : PersonalRecord T Obs Action) :
+    LegalMath.FiniteHorizon.stage (toFiniteRecord v) = stage v := by
+  simp [LegalMath.FiniteHorizon.stage, toFiniteRecord, stage]
+
+@[simp] theorem toFiniteRecord_initial (o : Obs) :
+    toFiniteRecord (initialRecord (Action := Action) T o) =
+      LegalMath.FiniteHorizon.initialRecord T o := by
+  simp [toFiniteRecord, initialRecord, LegalMath.FiniteHorizon.initialRecord]
+
+theorem toFiniteRecord_event (v : PersonalRecord T Obs Action) (i : Fin (stage v)) :
+    (toFiniteRecord v).2.val[i.val]'(by
+      simpa [toFiniteRecord, stage] using i.isLt) = (v.2.2 i, v.2.1 i.succ) := by
+  simp [toFiniteRecord]
+
+/-- No original observation, action, or stage is lost in the conversion. -/
+theorem toFiniteRecord_injective : Function.Injective
+    (toFiniteRecord : PersonalRecord T Obs Action → _) := by
+  intro v w h
+  rcases v with ⟨t, os, actions⟩
+  rcases w with ⟨u, ps, other⟩
+  have htu : t = u := Fin.ext (by
+    simpa [toFiniteRecord, LegalMath.FiniteHorizon.stage, stage] using
+      congrArg LegalMath.FiniteHorizon.stage h)
+  cases htu
+  have hzero : os 0 = ps 0 := congrArg Prod.fst h
+  have hpairs : (fun i : Fin t.val => (actions i, os i.succ)) =
+      (fun i : Fin t.val => (other i, ps i.succ)) :=
+    List.ofFn_injective (congrArg (fun r => r.2.val) h)
+  have ha : actions = other := funext (fun i => congrArg Prod.fst (congrFun hpairs i))
+  have ho : os = ps := funext (fun i =>
+    Fin.cases hzero (fun j => congrArg Prod.snd (congrFun hpairs j)) i)
+  cases ha
+  cases ho
+  rfl
+
+/-- At the horizon both representations offer Unit; before it both offer Action. -/
+theorem action_type_preserved (v : PersonalRecord T Obs Action) :
+    ActionAt v = LegalMath.FiniteHorizon.ActionAt (toFiniteRecord v) := by
+  unfold ActionAt LegalMath.FiniteHorizon.ActionAt
+  rw [toFiniteRecord_stage]
+  have hv := stage_le v
+  split_ifs <;> first | rfl | omega
 
 end LegalMath20261108.BoundedRecall

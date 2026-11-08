@@ -19,3 +19,6 @@ import JurisLean.FiniteHorizonAdequacy
 #print axioms LegalMath20261108.UnifiedFeedbackBridge.law_mean_geometric_bound
 #print axioms LegalMath20261108.BoundedRecall.core_carrier_finite
 #print axioms LegalMath20261108.BoundedRecall.terminal_action_subsingleton
+
+#print axioms LegalMath20261108.BoundedRecall.toFiniteRecord_injective
+#print axioms LegalMath20261108.BoundedRecall.action_type_preserved

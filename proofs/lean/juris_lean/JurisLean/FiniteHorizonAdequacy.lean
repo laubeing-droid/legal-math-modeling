@@ -76,7 +76,7 @@ theorem runDist_nativeLaw (β : BehavioralPlan T ι Obs Action) (n : Nat) :
   induction n with
   | zero =>
       simp [ObsModelCore.runDist, Math.TraceRun.traceRun, nativeLaw,
-        ObsModelCore.lastState, core]
+        PMF.pure_map, ObsModelCore.lastState, core]
   | succ n ih =>
       change ((G.core.runDist n β).bind (fun ss =>
         (G.core.stepDist β ss).map (fun t => ss ++ [t]))).map G.core.lastState =

@@ -43,12 +43,11 @@ theorem req_pureStep (i : ι) (π₀ : G.core.PureProfile)
         πᵢ (G.core.projectStates i ss) = π₀ i (G.core.projectStates i ss) := by
   rw [G.pureStep_eq] at hpos
   have heq := congrArg
-    (fun r : PersonalRecord T (Obs i) (Action i) => πᵢ r = π₀ i r)
+    (fun r : PersonalRecord T (Obs i) (Action i) => Req r πᵢ ∧ πᵢ r = π₀ i r)
     (G.projectStates_eq i ss)
-  rw [heq]
-  simpa only [projectStates_eq] using
-    G.req_step i (G.core.lastState ss) t
-      (fun j => π₀ j (G.observe j (G.core.lastState ss))) hpos πᵢ
+  exact (G.req_step i (G.core.lastState ss) t
+    (fun j => π₀ j (G.observe j (G.core.lastState ss))) hpos πᵢ).trans
+      ⟨fun hp => heq.symm ▸ hp, fun hp => heq ▸ hp⟩
 
 /-- A one-player replacement changes one coordinate of the required joint action. -/
 theorem update_action_iff (i : ι) (π₀ : G.core.PureProfile)

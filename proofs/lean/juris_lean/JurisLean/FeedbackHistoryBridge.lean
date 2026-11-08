@@ -57,6 +57,7 @@ theorem pathLaw_initial (μ₀ : Measure (H × Θ)) :
       Kernel.traj_map_frestrictLe, Kernel.partialTraj_self, Measure.id_comp]
   have h := congrArg (fun ν : Measure (Prefix H Θ 0) =>
     ν.map (fun x => x ⟨0, Finset.mem_Iic.mpr le_rfl⟩)) hzero
+  dsimp only at h
   rw [Measure.map_map (by fun_prop) (by fun_prop),
     Measure.map_map (by fun_prop) (by fun_prop)] at h
   change (pathLaw D μ₀).map (fun x => x 0) = μ₀.map id at h
@@ -67,6 +68,7 @@ theorem pathLaw_next (μ₀ : Measure (H × Θ)) [IsProbabilityMeasure μ₀] (n
       step D ∘ₘ (pathLaw D μ₀).map (fun x => x n) := by
   have h := congrArg (fun ν : Measure (Prefix H Θ n × (H × Θ)) => ν.map Prod.snd)
     (complete_prefix_joint D μ₀ n)
+  dsimp only at h
   change ((pathLaw D μ₀).map (frestrictLe n) ⊗ₘ chain D n).snd = _ at h
   rw [Measure.snd_compProd, Measure.map_map measurable_snd (by fun_prop)] at h
   have hk : chain D n ∘ₘ (pathLaw D μ₀).map (frestrictLe n) =
@@ -114,7 +116,8 @@ instance history_policy_markov : IsMarkovKernel (withEventHistory D hlog).policy
   infer_instance
 
 instance history_outcome_markov : IsMarkovKernel (withEventHistory D hlog).outcome := by
-  change IsMarkovKernel (D.outcome.comap (fun z => (forgetLog z.1, z.2)) _)
+  change IsMarkovKernel (D.outcome.comap
+    (fun z : ((List (A × O) × H) × Θ) × A => (forgetLog z.1, z.2)) _)
   infer_instance
 
 theorem history_update_projection (s : (List (A × O) × H) × Θ) (z : A × O) :
@@ -166,8 +169,11 @@ theorem history_path_marginal (μ₀ : Measure ((List (A × O) × H) × Θ))
     [IsProbabilityMeasure μ₀] (n : ℕ) :
     (pathLaw (withEventHistory D hlog) μ₀).map (fun x => forgetLog (x n)) =
       iterationLaw D (μ₀.map forgetLog) n := by
-  rw [← Measure.map_map measurable_forgetLog (measurable_pi_apply n),
-    pathLaw_marginal, history_iteration_projection]
+  calc
+    _ = ((pathLaw (withEventHistory D hlog) μ₀).map (fun x => x n)).map forgetLog :=
+      (Measure.map_map measurable_forgetLog (measurable_pi_apply n)).symm
+    _ = iterationLaw D (μ₀.map forgetLog) n := by
+      rw [pathLaw_marginal, history_iteration_projection]
 
 end EventHistory
 end

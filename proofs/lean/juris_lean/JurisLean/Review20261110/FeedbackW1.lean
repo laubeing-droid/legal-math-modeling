@@ -10,6 +10,7 @@ Source only; CI_NOT_RUN until the subject-bound run is recorded.
 namespace LegalMath20261110.FeedbackW1
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 open LegalMath20261108.ClosedLoop LegalMath20261108.SequentialFeedback
 open LegalMath20261108.UnifiedFeedbackBridge
 

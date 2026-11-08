@@ -68,6 +68,7 @@ theorem transport_theorem (D : TransportData B C S) (κ : Kernel B C) (I : B →
 open LegalMath20261108.ClosedLoop
 open LegalMath20261109.BusinessProcess
 open LegalMath20261110.InvariantClosure
+open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.AdaptiveRoundLedger20261027
 open JurisLean.Candidates.MeasuredPolicy20261027
 
@@ -134,6 +135,21 @@ theorem original_record_count_once (records : Finset (PolicyObservation m)) (row
       OccurrenceHistory.recordCount (fun r : PolicyObservation m => r.measured.dictionary.event) records :=
   OccurrenceHistory.record_count_once _ records row seen
 
+/-- The observation theorem is consumed by the original prepared-feedback
+update, with the actual private learner and actually available observation. -/
+theorem original_feedback_no_leak
+    (input : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (x x' : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m × Result (PolicyObservation m))
+    (same : (x.1.learning,x.2) = (x'.1.learning,x'.2)) :
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState x.1.learning
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved x.1.learning input x.2) =
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState x'.1.learning
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved x'.1.learning input x'.2) :=
+  ObservationBridge.factored_no_leak
+    (fun z : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m × Result (PolicyObservation m) => (z.1.learning,z.2))
+    (fun z : RoundState m × Result (PolicyObservation m) => JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState z.1
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareObserved z.1 input z.2)) x x' same
+
 /-- The general path theorem is consumed by the actual original business lift. -/
 theorem original_business_legal_path
     (initial : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
@@ -174,6 +190,7 @@ theorem original_business_legal_path
 #print axioms O3_proved
 #print axioms O4_proved
 #print axioms O5_proved
+#print axioms original_feedback_no_leak
 #print axioms original_record_count_once
 #print axioms original_business_legal_path
 

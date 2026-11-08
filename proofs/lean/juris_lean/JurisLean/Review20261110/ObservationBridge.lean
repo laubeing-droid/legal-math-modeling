@@ -19,6 +19,19 @@ theorem doob_dynkin {X Y Z : Type*} [mY : MeasurableSpace Y]
     have hm : Measurable[mY.comap obs] obs := fun s hs => ⟨s, hs, rfl⟩
     exact hg.comp hm
 
+/-- Equal usable inputs give equal outputs for any explicitly factored map. -/
+theorem factored_no_leak {X V R : Type*} (obs : X → V) (read : V → R)
+    (x x' : X) (same : obs x = obs x') : read (obs x) = read (obs x') :=
+  congrArg read same
+
+theorem measurable_no_leak {X Y Z : Type*} [mY : MeasurableSpace Y]
+    [MeasurableSpace Z] [StandardBorelSpace Z] [Nonempty Z]
+    (obs : X → Y) (f : X → Z) (hf : Measurable[mY.comap obs] f)
+    (x x' : X) (same : obs x = obs x') : f x = f x' := by
+  obtain ⟨g,hg,eq⟩ := (doob_dynkin obs f).mp hf
+  rw [eq]
+  exact factored_no_leak obs g x x' same
+
 /-- Obs includes the entire usable input. Raw hidden outcomes have no extra
 channel into the measurement. The physical outcome kernel is unrestricted. -/
 structure ObsDynamics (H Θ A O M V : Type*)
@@ -55,6 +68,8 @@ theorem leak_has_no_factor : ¬ ∃ f : Bool → Bool, ∀ h, leakingMeasure h =
   simp only [usableView, leakingMeasure] at h0 h1
   exact Bool.false_ne_true (h0.trans h1.symm)
 
+#print axioms factored_no_leak
+#print axioms measurable_no_leak
 #print axioms doob_dynkin
 #print axioms no_leak
 #print axioms leak_counterexample

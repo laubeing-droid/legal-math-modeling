@@ -194,3 +194,17 @@ theorem private_bits_kuhn
 
 end Examples
 end LegalMath.FiniteHorizon
+
+#print axioms LegalMath.FiniteHorizon.Game.stepActionDeterminism
+#print axioms LegalMath.FiniteHorizon.Game.noNontrivialInfoStateRepeat
+#print axioms LegalMath.FiniteHorizon.Game.support_iff_req
+#print axioms LegalMath.FiniteHorizon.Game.localSupportSignatureFull
+#print axioms LegalMath.FiniteHorizon.Game.behavioral_to_mixed
+#print axioms LegalMath.FiniteHorizon.Game.mixed_to_behavioral
+#print axioms LegalMath.FiniteHorizon.Game.runDist_nativeLaw
+#print axioms LegalMath.FiniteHorizon.Game.native_behavioral_to_mixed
+#print axioms LegalMath.FiniteHorizon.Game.native_mixed_to_behavioral
+#print axioms LegalMath.FiniteHorizon.Examples.private_information_hidden
+#print axioms LegalMath.FiniteHorizon.Examples.terminal_private_record_retained
+#print axioms LegalMath.FiniteHorizon.Examples.private_bits_supported
+#print axioms LegalMath.FiniteHorizon.Examples.private_bits_kuhn

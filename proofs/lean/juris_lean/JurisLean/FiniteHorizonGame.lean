@@ -32,11 +32,12 @@ variable (G : Game T ι State Obs Action)
 def initialHistory (G : Game T ι State Obs Action) : History T ι State Action := ⟨[], by simp⟩
 
 /-- Reconstruct each original observation from its own history prefix. -/
-def localLog (i : ι) (past : List (JointAction ι Action × State)) :
+def localLog (G : Game T ι State Obs Action) (i : ι)
+    (past : List (JointAction ι Action × State)) :
     List (JointAction ι Action × State) → List (Action i × Obs i)
   | [] => []
   | x :: xs => (x.1 i, G.signal i (past ++ [x]) x.2) ::
-      G.localLog i (past ++ [x]) xs
+      localLog G i (past ++ [x]) xs
 
 @[simp] theorem localLog_length (i : ι) (past xs : List (JointAction ι Action × State)) :
     (G.localLog i past xs).length = xs.length := by
@@ -136,8 +137,8 @@ theorem stepActionDeterminism : G.core.StepActionDeterminism := by
     apply G.rawAction_injective h ht
     exact congrArg Prod.fst hp
   · funext i
-    letI := terminal_action_subsingleton (G.observe i h) (by simpa using ht)
-    exact Subsingleton.elim _ _
+    exact @Subsingleton.elim (ActionAt (G.observe i h))
+      (terminal_action_subsingleton (G.observe i h) (by simpa using ht)) (a i) (b i)
 
 /-- Forget only the recorded action; the next environment law is unchanged. -/
 def current (h : History T ι State Action) : State :=
@@ -165,6 +166,12 @@ theorem stepMassInvariant : G.core.StepMassInvariant :=
 theorem stepSupportFactorization : G.core.StepSupportFactorization :=
   G.stepActionDeterminism.toSupportFactorization
 
+private theorem transport_application {α : Type} {P : α → Type}
+    (f : (x : α) → P x) {x y : α} (h : x = y) :
+    (h ▸ f x : P y) = f y := by
+  cases h
+  rfl
+
 /-- Erase the core's transports by selecting actions at the actual personal record. -/
 theorem pureStep_eq (π : G.core.PureProfile) (ss : List (History T ι State Action)) :
     G.core.pureStep π ss = G.step (G.core.lastState ss)
@@ -172,8 +179,7 @@ theorem pureStep_eq (π : G.core.PureProfile) (ss : List (History T ι State Act
   rw [ObsModelCore.pureStep_eq]
   congr 1
   funext i
-  simp only [projectStates_eq]
-  rfl
+  exact transport_application (π i) (G.core.currentObs_projectStates i ss)
 
 /-- Every supported step advances the clock until T and then absorbs. -/
 theorem step_time (h t : History T ι State Action) (a : G.core.JointActionAt h)

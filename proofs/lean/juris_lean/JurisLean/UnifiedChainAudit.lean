@@ -1,3 +1,5 @@
+import JurisLean.BusinessProcessRealization
+import JurisLean.TrainedDecisionRealization
 import JurisLean.UnifiedFeedbackBridge
 import JurisLean.BoundedRecall
 import JurisLean.FiniteGameFeedbackBridge

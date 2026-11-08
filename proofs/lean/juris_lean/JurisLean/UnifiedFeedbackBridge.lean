@@ -105,6 +105,7 @@ theorem after_formula (s : State) (y : Bool) :
 theorem step_two_atoms (s : State) :
     step model s = ENNReal.ofReal (1 - probability s) • Measure.dirac (after s false) +
       ENNReal.ofReal (probability s) • Measure.dirac (after s true) := by
+  classical
   ext B hB
   rw [step_apply model s hB, joint, Kernel.compProd_apply]
   · change (∫⁻ _a : Bool, coin s ((after s) ⁻¹' B) ∂model.policy s) = _
@@ -195,11 +196,11 @@ lemma integral_affine (μ : Measure State) [IsProbabilityMeasure μ]
   obtain ⟨hx, ht⟩ := coordinates_integrable μ hμ
   calc
     _ = (∫ s, a * s.1 + b * s.2 ∂μ) + (∫ _s : State, c ∂μ) :=
-      integral_add (f := fun s => a * s.1 + b * s.2) (g := fun _ => c)
+      integral_add (f := fun s : State => a * s.1 + b * s.2) (g := fun _ : State => c)
         ((hx.const_mul a).add (ht.const_mul b)) (integrable_const c)
     _ = (∫ s, a * s.1 ∂μ) + (∫ s, b * s.2 ∂μ) + (∫ _s : State, c ∂μ) :=
       congrArg (fun r : ℝ => r + (∫ _s : State, c ∂μ))
-        (integral_add (f := fun s => a * s.1) (g := fun s => b * s.2)
+        (integral_add (f := fun s : State => a * s.1) (g := fun s : State => b * s.2)
           (hx.const_mul a) (ht.const_mul b))
     _ = _ := by simp [mean, integral_const_mul]
 

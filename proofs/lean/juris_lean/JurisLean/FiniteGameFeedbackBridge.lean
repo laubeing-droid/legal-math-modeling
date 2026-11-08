@@ -273,6 +273,20 @@ local instance fullLogMeasurable : MeasurableSpace (List (Bool × Bool)) := ⊤
 def fullReplay {T : Nat} (s₀ : NumericState) (h : BitHistory T) : FullState :=
   ((h.val.map (fun e => (e.1 (), e.2)), (replay s₀ h).1), (replay s₀ h).2)
 
+/-- Evaluating the sole player's action loses no information from the event log. -/
+theorem fullReplay_injective {T : Nat} (s₀ : NumericState) :
+    Function.Injective (fullReplay (T := T) s₀) := by
+  intro h k heq
+  apply Subtype.ext
+  have hi : Function.Injective (fun e : (Unit → Bool) × Bool => (e.1 (), e.2)) := by
+    intro a b hab
+    apply Prod.ext
+    · funext u
+      cases u
+      exact congrArg Prod.fst hab
+    · exact congrArg Prod.snd hab
+  exact (List.map_injective_iff.mpr hi) (congrArg (fun s : FullState => s.1.1) heq)
+
 theorem fullReplay_advance {T : Nat} (s₀ : NumericState) (h : BitHistory T)
     (ht : h.val.length < T) (a : Unit → Bool) (y : Bool) :
     fullReplay s₀ ((game T s₀).advance h ht a y) =
@@ -423,6 +437,7 @@ end LegalMath20261109.FiniteGameFeedback
 #print axioms LegalMath20261109.FiniteGameFeedback.native_path_marginal
 #print axioms LegalMath20261109.FiniteGameFeedback.native_mean_geometric_bound
 #print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeStep_fullReplay
+#print axioms LegalMath20261109.FiniteGameFeedback.fullReplay_injective
 #print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeLaw_fullReplay
 #print axioms LegalMath20261109.FiniteGameFeedback.fair_nativeLaw_full_path
 #print axioms LegalMath20261109.FiniteGameFeedback.fair_mixedLaw_fullReplay

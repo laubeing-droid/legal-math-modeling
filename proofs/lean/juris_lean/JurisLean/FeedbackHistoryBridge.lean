@@ -117,7 +117,8 @@ instance history_policy_markov : IsMarkovKernel (withEventHistory D hlog).policy
 
 instance history_outcome_markov : IsMarkovKernel (withEventHistory D hlog).outcome := by
   change IsMarkovKernel (D.outcome.comap
-    (fun z : ((List (A × O) × H) × Θ) × A => (forgetLog z.1, z.2)) _)
+    (fun z : ((List (A × O) × H) × Θ) × A => (forgetLog z.1, z.2))
+    ((measurable_forgetLog.comp measurable_fst).prodMk measurable_snd))
   infer_instance
 
 theorem history_update_projection (s : (List (A × O) × H) × Θ) (z : A × O) :

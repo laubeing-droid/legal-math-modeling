@@ -109,7 +109,8 @@ theorem actual_payoff_from_same_xi (s : ℚ × ℚ) (flows : Bool → Bool → P
       ∑ y : Bool, reward flows role a y * ((∑ w, ∑ mt, xi s (w, mt, y) : ℚ) : ℝ) := by
   change (∫ y, reward flows role a y ∂coin (embed s)) = _
   rw [integral_coin]
-  simp [Fintype.univ_bool, xi_outcome_marginal, probabilityQ_embed, expBern] <;> ring
+  simp_rw [xi_outcome_marginal]
+  simp [Fintype.univ_bool, probabilityQ_embed, expBern] <;> ring
 
 theorem payoff_preserves_cash_encoding (role : Role) (fl : PayFlow) :
     (legalReading role { fl with entries := flipTags fl.entries } : ℝ) =

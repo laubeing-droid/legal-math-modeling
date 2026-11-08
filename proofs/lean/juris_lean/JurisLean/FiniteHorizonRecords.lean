@@ -212,4 +212,3 @@ theorem Req_append (r : PersonalRecord T Obs Action) (h : stage r < T)
         _ = _ := congrArg Prod.fst (append_get_last r h a o).symm
 
 end LegalMath.FiniteHorizon
-

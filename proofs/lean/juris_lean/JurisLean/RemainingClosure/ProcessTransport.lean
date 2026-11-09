@@ -84,15 +84,15 @@ This uses joint prefixes, and cannot be replaced by equality of one-time margina
 theorem path_measure_ext (μ ν : Measure (ℕ → S)) [IsFiniteMeasure ν]
     (hprefix : ∀ n, μ.map (frestrictLe n) = ν.map (frestrictLe n)) : μ = ν := by
   let P : (I : Finset ℕ) → Measure (I → S) := fun I => ν.map I.restrict
-  have hP : IsProjectiveMeasureFamily P := by
+  have hP : IsProjectiveMeasureFamily (α := fun _ : ℕ => S) P := by
     intro I J hJI
     change ν.map J.restrict = (ν.map I.restrict).map (Finset.restrict₂ hJI)
     rw [Measure.map_map (by fun_prop) (by fun_prop)]
     rfl
   letI : ∀ I, IsFiniteMeasure (P I) := fun _ => inferInstance
-  have hν : IsProjectiveLimit ν P := fun _ => rfl
-  have hμ : IsProjectiveLimit μ P :=
-    (isProjectiveLimit_nat_iff hP μ).mpr (fun n => hprefix n)
+  have hν : IsProjectiveLimit (α := fun _ : ℕ => S) ν P := fun _ => rfl
+  have hμ : IsProjectiveLimit (α := fun _ : ℕ => S) μ P :=
+    (isProjectiveLimit_nat_iff (X := fun _ : ℕ => S) hP μ).mpr (fun n => hprefix n)
   exact hμ.unique hν
 
 end PrefixMaps
@@ -115,6 +115,7 @@ theorem compProd_map_semiconjugacy
   apply lintegral_congr
   intro s
   have h := congrArg (fun η : Measure V => η (Prod.mk (f s) ⁻¹' B)) (hstep s)
+  change ((K s).map g) (Prod.mk (f s) ⁻¹' B) = L (f s) (Prod.mk (f s) ⁻¹' B) at h
   rw [Measure.map_apply hg (measurable_prodMk_left hB)] at h
   exact h
 
@@ -145,8 +146,13 @@ lemma prefixLaw_zero (μ : Measure (H × Θ)) :
     change p i = p 0
     have eq0 : (i : ℕ) = 0 := Nat.eq_zero_of_le_zero (Finset.mem_Iic.mp i.property)
     rw [eq0]
-  rw [prefixLaw,hr,← Measure.map_map (measurable_constantPrefix 0)
-    (measurable_pi_apply 0),pathLaw_initial]
+  rw [prefixLaw,hr]
+  calc
+    (pathLaw D μ).map (constantPrefix 0 ∘ (fun p : ℕ → H × Θ => p 0)) =
+        ((pathLaw D μ).map (fun p => p 0)).map (constantPrefix 0) :=
+      (Measure.map_map (measurable_constantPrefix (S := H × Θ) 0)
+        (measurable_pi_apply 0)).symm
+    _ = μ.map (constantPrefix 0) := by rw [pathLaw_initial]
 
 /-- Recursion of the full prefix law, obtained from the original actual
 prefix/next-state joint measure rather than a marginal recursion. -/
@@ -154,6 +160,7 @@ lemma prefixLaw_succ (μ : Measure (H × Θ)) [IsProbabilityMeasure μ] (n : ℕ
     (prefixLaw D μ n ⊗ₘ chain D n).map (gluePrefix n) = prefixLaw D μ (n+1) := by
   have h := congrArg (fun η : Measure (Prefix H Θ n × (H × Θ)) =>
     η.map (gluePrefix n)) (complete_prefix_joint D μ n)
+  dsimp only at h
   rw [Measure.map_map (measurable_gluePrefix n) (by fun_prop)] at h
   have glue : gluePrefix n ∘ (fun p : ℕ → H × Θ => (frestrictLe n p,p (n+1))) =
       frestrictLe (n+1) := funext (gluePrefix_restrict n)
@@ -282,5 +289,7 @@ end NumericConsumer
 #print axioms full_event_history_readout_transport
 #print axioms response_full_path_joint_law
 #print axioms response_finite_prefix_joint_law
+
+end
 
 end LegalMath20261110.RemainingClosure.ProcessTransport

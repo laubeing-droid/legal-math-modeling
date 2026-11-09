@@ -201,6 +201,39 @@ theorem token_history_roundtrip {a b : Situation} (h : History a b) :
     runHistory a (Tokens.forget (Tokens.encode (commands h))) = ⟨b,h⟩ := by
   rw [Tokens.decode_encode,runHistory_commands]
 
+/-- Across all roots, an empty operation list is not a complete history code:
+the initial state is retained explicitly, including every zero-step identity. -/
+abbrev GlobalHistory := Sigma (fun a : Situation => Sigma (fun b : Situation => History a b))
+abbrev GlobalCode := Situation × LegalMath20261110.OccurrenceHistory.History PackedCommand Unit
+
+def encodeGlobal (h : GlobalHistory) : GlobalCode := (h.1,Tokens.encode (commands h.2.2))
+
+def decodeGlobal (code : GlobalCode) : GlobalHistory :=
+  ⟨code.1,runHistory code.1 (Tokens.forget code.2)⟩
+
+theorem decodeGlobal_encodeGlobal (h : GlobalHistory) : decodeGlobal (encodeGlobal h) = h := by
+  rcases h with ⟨a,b,h⟩
+  simp only [decodeGlobal,encodeGlobal,Tokens.decode_encode,runHistory_commands]
+
+theorem encodeGlobal_decodeGlobal (code : GlobalCode) (canonical : Tokens.Canonical code.2) :
+    encodeGlobal (decodeGlobal code) = code := by
+  rcases code with ⟨a,tokens⟩
+  change (a,Tokens.encode (commands (runHistory a (Tokens.forget tokens)).2)) = (a,tokens)
+  rw [commands_runHistory,Tokens.encode_decode tokens canonical]
+
+theorem encodeGlobal_injective : Function.Injective encodeGlobal := by
+  intro x y equal
+  have decoded := congrArg decodeGlobal equal
+  simpa only [decodeGlobal_encodeGlobal] using decoded
+
+theorem zero_step_keeps_initial (s : Situation) :
+    encodeGlobal ⟨s,s,History.nil s⟩ = (s,[]) := rfl
+
+theorem zero_step_roots_distinct {s t : Situation} (different : s ≠ t) :
+    encodeGlobal ⟨s,s,History.nil s⟩ ≠ encodeGlobal ⟨t,t,History.nil t⟩ := by
+  intro same
+  exact different (congrArg Prod.fst same)
+
 theorem replay_commands {a b : Situation} (h : History a b) :
     replay a (commands h) = b := by
   induction h with
@@ -317,6 +350,11 @@ end Business
 #print axioms CN.commands_runHistory
 #print axioms CN.commands_injective
 #print axioms CN.token_history_roundtrip
+#print axioms CN.decodeGlobal_encodeGlobal
+#print axioms CN.encodeGlobal_decodeGlobal
+#print axioms CN.encodeGlobal_injective
+#print axioms CN.zero_step_keeps_initial
+#print axioms CN.zero_step_roots_distinct
 
 #print axioms CN.replay_commands
 #print axioms CN.complete_history_roundtrip

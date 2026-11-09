@@ -366,6 +366,8 @@ theorem correlation_is_not_independent_product :
 
 end
 
+noncomputable section
+
 section GuardedLearningSelection
 
 variable {I : Type} [Fintype I] [DecidableEq I]
@@ -521,7 +523,8 @@ end GuardedLearningSelection
 
 section PrivateLearningSelectionConsumer
 
-variable [Fintype ι] [DecidableEq ι] [∀ i, Fintype (Obs i)] [∀ i, Fintype (Action i)]
+variable {T : Nat} {ι State : Type} {Obs Action Parameter : ι → Type}
+  [Fintype ι] [DecidableEq ι] [∀ i, Fintype (Obs i)] [∀ i, Fintype (Action i)]
 
 /-- The fixed evaluation game is the same original finite-horizon experiment:
 its candidate programs retain private updates and its readout retains history,
@@ -533,6 +536,7 @@ theorem private_learning_selection_joint_converges
     (K : ι → ℕ)
     (choose : (i : ι) → Fin (K i) → PersonalRecord T (Obs i) (Action i) → Parameter i → Action i)
     (payoff : History T ι State Action → ι → ℝ)
+    (C : ι → ℝ) (bounded : ∀ i h, |payoff h i| ≤ C i)
     (completed : ℕ → History T ι State Action)
     (estimate : (i : ι) → Parameter i → ((j : ι) → Fin (K j)) → ℝ)
     (η δ : ℝ) (Φ : ((i : ι) → Fin (K i)) → ℝ)
@@ -552,6 +556,8 @@ theorem private_learning_selection_joint_converges
     (initial : (i : ι) → Fin (K i)) :
     let v := fun n σ i => estimate i (privateParameters G L (completed n) i) σ
     ∃ N, N ≤ potentialRank Φ initial ∧
+      (∀ (σ : (i : ι) → Fin (K i)) i, Summable (fun h =>
+        (G.nativeLawPure (fun j => localLearningPlan (L j) (choose j (σ j))) T h).toReal * payoff h i)) ∧
       (candidateGame G L K choose payoff).IsNash (guardedPath v η initial N) ∧
       (∀ i r, stage r < T → permitted i r (choose i (guardedPath v η initial N i) r
         (privateParameter (L i) r))) ∧
@@ -568,7 +574,9 @@ theorem private_learning_selection_joint_converges
   obtain ⟨N,bound,nash,stable⟩ := guarded_learning_selection_converges
     (fun σ i => (candidateGame G L K choose payoff).eu σ i) v η δ accurate gap
       separated Φ hp initial
-  refine ⟨N,bound,nash,?_,?_⟩
+  refine ⟨N,bound,?_,nash,?_,?_⟩
+  · intro σ i
+    exact Math.Probability.expect_summable_of_bounded _ _ (bounded i)
   · intro i r active
     exact legalPrograms i _ r active
   · intro n hn t ht
@@ -596,6 +604,8 @@ theorem simultaneous_best_replies_can_cycle :
     cases x <;> cases y <;> cases a <;> norm_num [simultaneousReply,coordinationPayoff]
 
 end PrivateLearningSelectionConsumer
+
+end
 
 #print axioms guarded_learning_selection_converges
 #print axioms private_learning_selection_joint_converges

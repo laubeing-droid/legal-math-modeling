@@ -1,5 +1,7 @@
 import JurisLean.RemainingClosure.W1Atoms
 
+set_option autoImplicit false
+
 /-! The constant 3/4 is attained by the actual primal law distance, not only
 by an upper bound on a chosen coupling. Source only; CI_NOT_RUN. -/
 namespace LegalMath.RemainingClosure.W1Sharp
@@ -39,7 +41,8 @@ theorem witness_matrix_cost : w1 leftState rightState = 3/4 := by
 
 theorem witness_primal_cost :
     distributionW1 (step model leftState) (step model rightState) = (3/4:ℝ≥0∞) := by
-  rw [← twoAtomIdentification leftState rightState,witness_matrix_cost]
+  rw [← twoAtomIdentification leftState rightState,witness_matrix_cost,
+    ENNReal.ofReal_div_of_pos (by norm_num : (0:ℝ) < 4)]
   norm_num
 
 /-- No smaller nonnegative uniform law-contraction constant can work. -/

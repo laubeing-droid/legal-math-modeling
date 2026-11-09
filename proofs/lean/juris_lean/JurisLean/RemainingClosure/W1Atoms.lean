@@ -1,5 +1,7 @@
 import JurisLean.RemainingClosure.W1Transport
 
+set_option autoImplicit false
+
 /-!
 Both directions of the finite-matrix/measure-coupling identification. An
 arbitrary coupling is forced onto the four actual atoms by its marginals;

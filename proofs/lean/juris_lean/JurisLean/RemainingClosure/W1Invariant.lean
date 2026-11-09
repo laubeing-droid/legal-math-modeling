@@ -1,5 +1,7 @@
 import JurisLean.RemainingClosure.W1Laws
 
+set_option autoImplicit false
+
 /-!
 Existence of an invariant law for the actual feedback kernel. Weak compactness
 produces a subsequential limit. The proved W1 contraction makes successive
@@ -9,7 +11,7 @@ No W1 completeness API or invariant-law premise is assumed. CI_NOT_RUN.
 namespace LegalMath.RemainingClosure.W1Invariant
 
 open MeasureTheory ProbabilityTheory Filter Set
-open scoped ENNReal Topology
+open scoped ENNReal NNReal Topology BoundedContinuousFunction
 open LegalMath20261108.ClosedLoop LegalMath20261108.SequentialFeedback
 open LegalMath20261108.UnifiedFeedbackBridge
 open LegalMath20261110.FeedbackW1

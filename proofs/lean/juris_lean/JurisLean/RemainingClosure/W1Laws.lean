@@ -3,6 +3,8 @@ import Mathlib.MeasureTheory.Measure.Prokhorov
 import Mathlib.MeasureTheory.Measure.LevyProkhorovMetric
 import Mathlib.MeasureTheory.Measure.Portmanteau
 
+set_option autoImplicit false
+
 /-!
 The primal cost separates probability laws. Compactness here is weak
 compactness supplied by the pinned library, not an assumed W1-completeness
@@ -11,7 +13,7 @@ theorem. The actual two-atom feedback operator is Feller. Source: CI_NOT_RUN.
 namespace LegalMath.RemainingClosure.W1Laws
 
 open MeasureTheory ProbabilityTheory Filter Set
-open scoped ENNReal Topology
+open scoped ENNReal NNReal Topology BoundedContinuousFunction
 open LegalMath20261108.ClosedLoop LegalMath20261108.SequentialFeedback
 open LegalMath20261108.UnifiedFeedbackBridge
 open LegalMath20261110.FeedbackW1
@@ -103,7 +105,7 @@ lemma lipschitz_dstar_bound (f : State → ℝ) {L : ℝ≥0} (hf : LipschitzWit
 
 theorem distributionW1_separates (μ ν : ProbabilityMeasure State)
     (hz : distributionW1 (μ:Measure State) (ν:Measure State) = 0) : μ = ν := by
-  apply tendsto_nhds_unique (f := fun _n : ℕ => μ) tendsto_const_nhds
+  apply tendsto_nhds_unique (l := atTop) (f := fun _n : ℕ => μ) tendsto_const_nhds
   apply tendsto_iff_forall_lipschitz_integral_tendsto.mpr
   intro f hbounded ⟨L,hL⟩
   let g : State →ᵇ ℝ := ⟨⟨f,hL.continuous⟩,hbounded⟩
@@ -188,7 +190,7 @@ theorem invariant_unique (μ ν : ProbabilityMeasure State)
     have nonneg := ENNReal.toReal_nonneg (a := distributionW1 (μ:Measure State) (ν:Measure State))
     linarith
   apply distributionW1_separates μ ν
-  exact (ENNReal.toReal_eq_zero_iff.mp zero).resolve_right hf
+  exact ((ENNReal.toReal_eq_zero_iff _).mp zero).resolve_right hf
 
 #print axioms distribution_test_bound
 #print axioms distributionW1_separates

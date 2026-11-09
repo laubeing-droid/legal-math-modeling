@@ -1,5 +1,7 @@
 import JurisLean.Review20261110.FeedbackW1
 
+set_option autoImplicit false
+
 /-!
 Measure couplings for the already defined feedback kernel. The finite cost,
 the actual kernel, and the primal distance are reused without changing them.

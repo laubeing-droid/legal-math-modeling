@@ -1132,6 +1132,7 @@ lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
     Bool.false_eq_true,↓reduceIte]
   rw [allowed]
   norm_num [learnedTable,input,Engines.material,fitInput,fitted,Examples.request,toyRequest]
+  rfl
 
 /-- The actual public native-fit/report/learn episode updates the projection
 by the original afterQ. The fitted-table equality was proved by the ERM, not
@@ -1532,7 +1533,7 @@ theorem every_finite_prefix (state : ℚ × ℚ) (outcomes : List Bool) (n : Nat
   refine ⟨run_ready _ (initial_ready state) _,?_⟩
   rw [run_read _ (initial_ready state),initial_read]
 
-/-- This menu changes the ACTUAL original Perform payload. The fixed legal
+/- This menu changes the ACTUAL original Perform payload. The fixed legal
 context already permits nonnegative same-tag performance; the utility below is
 its actual transferred cash (including the original surplus semantics). -/
 namespace Menu
@@ -1693,10 +1694,10 @@ theorem actual_episode (s : Situation) (ready : LegalReady s) (a y : Bool) :
 theorem episode_replay (s : Situation) (ready : LegalReady s) (a y : Bool) :
     FullEventLog.CN.replay s (commands s a y) = episode s a y := by
   change (preparationCommands s y ++
-    [⟨_,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩]).foldl FullEventLog.CN.advance s = _
+    ([⟨Unit,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩] : List PackedCommand)).foldl FullEventLog.CN.advance s = _
   rw [List.foldl_append]
   change FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y))
-    ⟨_,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩ = _
+    (⟨Unit,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩ : PackedCommand) = _
   rw [preparation_replay s ready.norms y]
   rfl
 
@@ -1758,7 +1759,8 @@ theorem score_formula (s : Situation) : score s false = 1 ∧ score s true = 2*p
 
 theorem actual_native_choice (s : Situation) :
     Native.Decision.legalBest (score s) (fun _ => true) [false,true] = some (choose s) := by
-  simp [Native.Decision.legalBest,Native.Decision.best,choose]
+  by_cases selected : score s false ≤ score s true <;>
+    simp [Native.Decision.legalBest,Native.Decision.best,choose,selected]
 
 theorem chosen_maximizes_actual_cash (s : Situation) :
     ∀ action : Bool, score s action ≤ score s (choose s) := by
@@ -1805,7 +1807,9 @@ theorem expected_actual_cash (s : Situation) (ready : LegalReady s) (a : Bool) :
       ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),a) := by
   rw [expected_amount s a]
   apply integral_congr_ae
-  exact Filter.Eventually.of_forall (fun y => by rw [realizedPayoff_eq_amount s ready a y])
+  exact Filter.Eventually.of_forall (fun y => by
+    change (amount a y : ℝ) = (realizedPayoff s a y : ℝ)
+    rw [realizedPayoff_eq_amount s ready a y])
 
 /-- The original best theorem therefore compares actual command post cash,
 not arbitrary surrogate numbers. Both source commands succeed by the already
@@ -1834,13 +1838,13 @@ theorem actual_reachable_learning_changes_choice :
 
 /-- Finite full logs replay the previous COMPLETE actual CN post. -/
 def run (s : Situation) (log : List (Bool × Bool)) : Situation :=
-  log.foldl (fun current step => episode current step.1 step.2) s
+  log.foldl (fun current entry => episode current entry.1 entry.2) s
 
 lemma run_ready (s : Situation) (ready : LegalReady s) (log : List (Bool × Bool)) :
     LegalReady (run s log) := by
   induction log generalizing s with
   | nil => exact ready
-  | cons step rest ih => exact ih _ (episode_ready s ready step.1 step.2)
+  | cons entry rest ih => exact ih _ (episode_ready s ready entry.1 entry.2)
 
 lemma run_append (s : Situation) (log : List (Bool × Bool)) (a y : Bool) :
     run s (log ++ [(a,y)]) = episode (run s log) a y := by
@@ -1849,21 +1853,20 @@ lemma run_append (s : Situation) (log : List (Bool × Bool)) (a y : Bool) :
 /-- This is the full operation list, not only a final numeric summary. -/
 def fullCommands (s : Situation) : List (Bool × Bool) → List PackedCommand
   | [] => []
-  | step :: rest => commands s step.1 step.2 ++ fullCommands (episode s step.1 step.2) rest
+  | entry :: rest => commands s entry.1 entry.2 ++ fullCommands (episode s entry.1 entry.2) rest
 
 lemma full_replay (s : Situation) (ready : LegalReady s) (log : List (Bool × Bool)) :
     FullEventLog.CN.replay s (fullCommands s log) = run s log := by
   induction log generalizing s with
   | nil => rfl
-  | cons step rest ih =>
-      unfold fullCommands
-      change (commands s step.1 step.2 ++ fullCommands (episode s step.1 step.2) rest).foldl
-        FullEventLog.CN.advance s = _
+  | cons entry rest ih =>
+      change (commands s entry.1 entry.2 ++ fullCommands (episode s entry.1 entry.2) rest).foldl
+        FullEventLog.CN.advance s = run (episode s entry.1 entry.2) rest
       rw [List.foldl_append]
-      change FullEventLog.CN.replay (FullEventLog.CN.replay s (commands s step.1 step.2))
-        (fullCommands (episode s step.1 step.2) rest) = _
-      rw [episode_replay s ready step.1 step.2]
-      exact ih _ (episode_ready s ready step.1 step.2)
+      change FullEventLog.CN.replay (FullEventLog.CN.replay s (commands s entry.1 entry.2))
+        (fullCommands (episode s entry.1 entry.2) rest) = _
+      rw [episode_replay s ready entry.1 entry.2]
+      exact ih _ (episode_ready s ready entry.1 entry.2)
 
 /-- All final fields and the dependent History itself are retained through the
 already proved fresh-operation-token code. -/
@@ -1892,8 +1895,10 @@ lemma projection_append (state : ℚ × ℚ) (log : Log) (shadow : RealState) (a
     projection state (log ++ [(a,y)],shadow) =
       LegalMath20261108.UnifiedFeedbackBridge.after (projection state (log,shadow)) y := by
   change embed (read (run (initial state) (log ++ [(a,y)]))) = _
-  rw [run_append,episode_read _ (actual_ready state log) a y,afterQ_embed]
-  rfl
+  rw [run_append]
+  change embed (read (episode (actual state log) a y)) =
+    LegalMath20261108.UnifiedFeedbackBridge.after (embed (read (actual state log))) y
+  rw [episode_read _ (actual_ready state log) a y,afterQ_embed]
 
 def responseKernel (state : ℚ × ℚ) : Kernel ((Log × RealState) × Bool) Bool where
   toFun := fun z => LegalMath20261108.UnifiedFeedbackBridge.coin (projection state z.1)
@@ -1919,7 +1924,7 @@ def sourceModel (state : ℚ × ℚ) : Dynamics Log RealState Bool Bool RealStat
   measurable_learn := measurable_snd
 
 instance sourceModel_policy_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).policy := by
-  change IsMarkovKernel (Kernel.deterministic _ _)
+  dsimp only [sourceModel]
   infer_instance
 
 instance sourceModel_outcome_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).outcome := by

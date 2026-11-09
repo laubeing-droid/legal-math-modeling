@@ -1061,6 +1061,7 @@ lemma prepared_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
   rw [fetched]
   norm_num [prepared,input,Engines.material,EngineExamples.context,raw,observedAtom,receipt,
     Examples.request,toyRequest,version]
+  rfl
 
 lemma prepared_lookup (s : Situation) (y : Bool) :
     (prepared s y).engineInputs.filter (fun item => item.id == materialId s) = [input s y] := by
@@ -1087,7 +1088,9 @@ lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
         engineResults := ⟨input s y,.known (fitted (read s) y)⟩ :: (prepared s y).engineResults} := by
   change (runBoundEngine (prepared s y) EngineExamples.context (materialId s)).legal.after = _
   unfold runBoundEngine
-  rw [prepared_lookup s y,prepared_allowed s ready y]
+  rw [prepared_lookup s y]
+  dsimp only
+  rw [prepared_allowed s ready y]
   simp [callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
 
 lemma fitPost_norm (s : Situation) (ready : ModelReady s) (y : Bool) :
@@ -1120,7 +1123,10 @@ lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
       Examples.request,toyRequest,raw,observedAtom,receipt,toyNorm,norm,fitPost_cell s ready y,version]
   change (learnReport (fitPost s y) (Examples.request .learnModel) (materialId s)).after = _
   unfold learnReport
-  rw [fresh,found,allowed]
+  rw [fresh,found]
+  simp only [Examples.request,toyRequest,beq_self_eq_true,Bool.not_true,Bool.false_or,
+    Bool.false_eq_true,↓reduceIte]
+  rw [allowed]
   norm_num [learnedTable,input,Engines.material,fitInput,fitted,Examples.request,toyRequest]
 
 /-- The actual public native-fit/report/learn episode updates the projection
@@ -1271,7 +1277,8 @@ lemma performance_selected_rule (s : Situation) (ready : LegalReady s) :
 
 lemma performance_selected_template (s : Situation) (ready : LegalReady s) :
     selectedTemplates s performanceLaw = [performanceMethod] := by
-  simpa only [selectedTemplates,templateMatches,templateGate,selectedRules,ready.templates,ready.norms] using
+  have norms : s.core.state.N = EngineExamples.cashStart.core.state.N := ready.norms
+  simpa only [selectedTemplates,templateMatches,templateGate,selectedRules,ready.templates,norms] using
     (show selectedTemplates EngineExamples.cashStart performanceLaw = [performanceMethod] from rfl)
 
 lemma current_admitted_view (s : Situation) (ready : LegalReady s) :
@@ -1322,8 +1329,8 @@ lemma cash_source_known (source : Situation) (account : Native.Cash.State)
 lemma new_cash_not_ledger (s : Situation) :
     s.core.state.ledger.any (fun entry => entry.event.value == (cashId s).value) = false := by
   apply Bool.eq_false_iff.mpr
-  intro exists
-  obtain ⟨entry,member,equal⟩ := List.any_eq_true.mp exists
+  intro found
+  obtain ⟨entry,member,equal⟩ := List.any_eq_true.mp found
   have same : entry.event.value = (cashId s).value := by simpa using equal
   apply freshId_not_mem (s.core.state.F.map (fun event => event.id.value) ++
     s.core.state.ledger.map (fun entry => entry.event.value))
@@ -1363,9 +1370,163 @@ lemma performPayment_actual (source : Situation) (ready : LegalReady source)
   have unused : (learned source true).core.state.ledger.any (fun entry =>
       entry.event.value == (payment source).cashId.value) = false := by
     simpa only [learned_ledger source ready.norms true,payment] using new_cash_not_ledger source
+  have native := cash_source_known source account conservation consistent tag
+  simp only [payment,EngineExamples.payment,Examples.request,toyRequest,toyScope]
+    at fresh admittedSource event unused native
   simp [performPayment,automationAllowed,fresh,sameAccount,relation,payer,payee,
-    current.relations,admittedSource,event,unused,cash_source_known source account conservation consistent tag,
+    current.relations,admittedSource,event,unused,native,
     payment,EngineExamples.payment,Examples.request,toyRequest,toyScope,toyRelation,cashPost]
+
+
+lemma cashPost_ready (s : Situation) (ready : LegalReady s) (source : Situation)
+    (account : Native.Cash.State)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    LegalReady (cashPost s source account) := by
+  refine ⟨ready.norms,ready.relations,ready.constraints,ready.templates,ready.disputes,
+    ready.source,ready.sourceKey,?_⟩
+  refine ⟨Native.Cash.performance account (payment source),?_,relation,payer,payee,tag,?_,?_⟩
+  · simp [cashPost,EffectIR.adjust,EffectIR.payment,EffectIR.write]
+  · exact Native.Cash.u09_1_quantity_conservation account (payment source) conservation
+      (by norm_num [payment,EngineExamples.payment])
+  · exact Native.Cash.performance_cash_consistent account (payment source) consistent
+
+lemma cashPost_world_check (s : Situation) (ready : LegalReady s)
+    (source : Situation) (account : Native.Cash.State) :
+    legalWorldCheck (cashPost s source account)
+      (rebasedWorld (cashPost s source account) (actualWorld s)) = true := by
+  have facts : (cashPost s source account).core.state.F.all (fun event =>
+      (rebasedWorld (cashPost s source account) (actualWorld s)).fact event.atom) = true := by
+    apply List.all_eq_true.mpr
+    intro event member
+    exact actualWorld_facts s event member
+  have relations : (cashPost s source account).core.state.L = [toyRelation] := ready.relations
+  have constraints : (cashPost s source account).core.state.constraints = [] := ready.constraints
+  simp only [legalWorldCheck,facts,constraints,List.all_nil,Bool.true_and,
+    relations,List.all_cons,List.all_nil,Bool.and_true]
+  cases quantity : knownReduction (cashPost s source account) toyRelation with
+  | none => simp [rebasedWorld,actualWorld,ready.relations,relations,quantity]
+  | some q => simp [rebasedWorld,actualWorld,ready.relations,relations,quantity]
+
+lemma performPaired_actual (source : Situation) (ready : LegalReady source)
+    (account : Native.Cash.State) (accountAt : source.accounts ⟨6⟩ = some account)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    performPaired (learned source true) (Examples.request .perform) .human ⟨6⟩ (payment source) =
+      ⟨cashPost (learned source true) source account,.success ()⟩ := by
+  have current := learned_legal_ready source ready true
+  have group : reductionGroup (learned source true) (Examples.request .perform) ⟨6⟩ = .success [] := by
+    simp [reductionGroup,current.constraints]
+  have sameAccount : (learned source true).accounts ⟨6⟩ = some account := by
+    rw [learned_formula source ready.norms true,fitPost_formula source ready.norms true]
+    exact accountAt
+  unfold performPaired
+  rw [group,sameAccount,performPayment_actual source ready account accountAt relation payer payee tag conservation consistent]
+  simp [Law.continueWith,cashPost,EffectIR.adjust,EffectIR.payment,EffectIR.write,reduceTargets,quiet]
+
+def paymentCall (s : Situation) : Law.Call :=
+  {Examples.call .perform with world := actualWorld (learned s true)}
+
+/-- Success of the existing public Perform wrapper is a conclusion. Its
+source-world, source-bound permission and cash guards were all derived above. -/
+theorem actual_payment (source : Situation) (ready : LegalReady source) :
+    ∃ account, source.accounts ⟨6⟩ = some account ∧
+      (executeCommand (learned source true) (.perform (paymentCall source) ⟨6⟩ (payment source))) =
+        ⟨cashPost (learned source true) source account,.success ()⟩ ∧
+      LegalReady (cashPost (learned source true) source account) := by
+  obtain ⟨account,atAccount,relation,payer,payee,tag,conservation,consistent⟩ := ready.account
+  have current := learned_legal_ready source ready true
+  refine ⟨account,atAccount,?_,cashPost_ready _ current source account relation payer payee tag conservation consistent⟩
+  change performCall (learned source true) (paymentCall source) ⟨6⟩ (payment source) = _
+  unfold performCall
+  simp only [paymentCall,Examples.call]
+  rw [actual_permission (learned source true) current]
+  simp only [Law.continueWith,quiet]
+  rw [performPaired_actual source ready account atAccount relation payer payee tag conservation consistent]
+  simp only [Law.atomic,checkPost]
+  rw [cashPost_world_check (learned source true) current source account]
+  rfl
+
+/-- This is a compositional episode over the previous full CN post, never a
+reset to a fixture. Only initialization below starts from cashStart. -/
+def episode (s : Situation) (y : Bool) : Situation :=
+  if y then
+    (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after
+  else learned s false
+
+def episodeCommands (s : Situation) (y : Bool) : List PackedCommand :=
+  preparationCommands s y ++ if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []
+
+theorem episode_replay (s : Situation) (ready : LegalReady s) (y : Bool) :
+    FullEventLog.CN.replay s (episodeCommands s y) = episode s y := by
+  change (preparationCommands s y ++
+    if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []).foldl
+      FullEventLog.CN.advance s = _
+  rw [List.foldl_append]
+  change (if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []).foldl
+    FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y)) = _
+  rw [preparation_replay s ready.norms y]
+  cases y <;> rfl
+
+theorem episode_read (s : Situation) (ready : LegalReady s) (y : Bool) :
+    read (episode s y) = afterQ (read s) y := by
+  cases y with
+  | false => exact learned_read s ready.norms false
+  | true =>
+      obtain ⟨account,atAccount,actual,closed⟩ := actual_payment s ready
+      change read (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after = _
+      rw [actual]
+      change read (learned s true) = _
+      exact learned_read s ready.norms true
+
+theorem episode_ready (s : Situation) (ready : LegalReady s) (y : Bool) : LegalReady (episode s y) := by
+  cases y with
+  | false => exact learned_legal_ready s ready false
+  | true =>
+      obtain ⟨account,atAccount,actual,closed⟩ := actual_payment s ready
+      change LegalReady (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after
+      rw [actual]
+      exact closed
+
+theorem episode_keeps_events (s : Situation) (ready : LegalReady s) (y : Bool) :
+    (episode s y).core.state.F = s.core.state.F ++ [event s y] := by
+  cases y with
+  | false => exact learned_events s ready.norms false
+  | true =>
+      obtain ⟨account,atAccount,actual,closed⟩ := actual_payment s ready
+      change (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after.core.state.F = _
+      rw [actual]
+      change (learned s true).core.state.F = _
+      exact learned_events s ready.norms true
+
+def run (s : Situation) (outcomes : List Bool) : Situation := outcomes.foldl episode s
+
+def rationalRun (state : ℚ × ℚ) (outcomes : List Bool) : ℚ × ℚ := outcomes.foldl afterQ state
+
+theorem run_ready (s : Situation) (ready : LegalReady s) (outcomes : List Bool) :
+    LegalReady (run s outcomes) := by
+  induction outcomes generalizing s with
+  | nil => exact ready
+  | cons y rest ih => exact ih (episode s y) (episode_ready s ready y)
+
+/-- Arbitrary finite prefixes inherit the same actual private update. All
+source states, reports, F and ledger data remain in the threaded source run. -/
+theorem run_read (s : Situation) (ready : LegalReady s) (outcomes : List Bool) :
+    read (run s outcomes) = rationalRun (read s) outcomes := by
+  induction outcomes generalizing s with
+  | nil => rfl
+  | cons y rest ih =>
+      change read (run (episode s y) rest) = rationalRun (afterQ (read s) y) rest
+      rw [ih (episode s y) (episode_ready s ready y),episode_read s ready y]
+
+theorem every_finite_prefix (state : ℚ × ℚ) (outcomes : List Bool) (n : Nat) :
+    LegalReady (run (initial state) (outcomes.take n)) ∧
+    embed (read (run (initial state) (outcomes.take n))) =
+      embed (rationalRun state (outcomes.take n)) := by
+  refine ⟨run_ready _ (initial_ready state) _,?_⟩
+  rw [run_read _ (initial_ready state),initial_read]
 
 end Numeric
 
@@ -1452,6 +1613,17 @@ end Numeric
 #print axioms Numeric.cash_source_known
 #print axioms Numeric.learned_payment_event
 #print axioms Numeric.performPayment_actual
+
+#print axioms Numeric.cashPost_ready
+#print axioms Numeric.performPaired_actual
+#print axioms Numeric.actual_payment
+#print axioms Numeric.episode_replay
+#print axioms Numeric.episode_read
+#print axioms Numeric.episode_ready
+#print axioms Numeric.episode_keeps_events
+#print axioms Numeric.run_ready
+#print axioms Numeric.run_read
+#print axioms Numeric.every_finite_prefix
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

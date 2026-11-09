@@ -350,7 +350,7 @@ theorem correlation_is_not_independent_product :
     have atOffDiagonal := congrArg (fun distribution : PMF (Bool × Bool) => distribution (false,true)) same
     change sharedSignal (false,true) = independentSignals (false,true) at atOffDiagonal
     rw [correlated,separate] at atOffDiagonal
-    norm_num at atOffDiagonal
+    exact (ENNReal.inv_ne_zero.mpr (by norm_num : (4:ℝ≥0∞) ≠ ∞)) atOffDiagonal.symm
 
 #print axioms private_parameters_advance
 #print axioms next_decision_uses_actual_personal_update

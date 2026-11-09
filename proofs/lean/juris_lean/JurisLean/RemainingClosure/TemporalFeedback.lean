@@ -195,6 +195,7 @@ theorem controlled_next_choice_reads_completed_feedback (x₀ θ : ℝ)
         learnBatch θ (batchLabels (completedAt (h.1+1) (submitted h a y))))) := by
   simp [observedTimedModel,timedModel,Kernel.deterministic_apply,update,
     historyOut,parameterOut,feedback]
+  rfl
 
 def thresholdChoice (due : Option Int) (s : VisibleTimedHistory × ℝ) : TimedAction :=
   (decide ((1/2:ℝ) < s.2),due)
@@ -206,7 +207,11 @@ lemma measurable_thresholdChoice (due : Option Int) : Measurable (thresholdChoic
       measurable_const measurable_const
   convert hm using 1
   funext s
-  by_cases h : (1/2:ℝ) < s.2 <;> simp [thresholdChoice,h]
+  change (decide ((1/2:ℝ) < s.2),due) =
+    if (1/2:ℝ) < s.2 then (true,due) else (false,due)
+  by_cases h : (1/2:ℝ) < s.2
+  · simp only [h,decide_true,ite_true]
+  · simp only [h,decide_false,ite_false]
 
 /-- This controlled instance actually changes its next choice after a
 completed actual outcome, while pending labels stay outside its observation. -/

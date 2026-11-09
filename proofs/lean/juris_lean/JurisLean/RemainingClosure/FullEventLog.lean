@@ -138,6 +138,69 @@ def commands {a b : Situation} : History a b → List PackedCommand
   | .nil _ => []
   | .snoc h c => commands h ++ [⟨_,c⟩]
 
+
+/-- Rebuild actual dependent History data, including every intermediate source
+post and the complete typed command. Endpoint equality alone is insufficient. -/
+def extendHistory {a b : Situation} (h : History a b) (command : PackedCommand) :
+    Sigma (fun z : Situation => History a z) :=
+  ⟨(executeCommand b command.2).after,h.snoc command.2⟩
+
+def runHistoryFrom {a b : Situation} (h : History a b) :
+    List PackedCommand → Sigma (fun z : Situation => History a z)
+  | [] => ⟨b,h⟩
+  | command :: rest => runHistoryFrom (h.snoc command.2) rest
+
+def runHistory (initial : Situation) (xs : List PackedCommand) :
+    Sigma (fun z : Situation => History initial z) := runHistoryFrom (.nil initial) xs
+
+theorem commands_runHistoryFrom {a : Situation} (xs : List PackedCommand) :
+    ∀ {b : Situation} (h : History a b),
+      commands (runHistoryFrom h xs).2 = commands h ++ xs := by
+  induction xs with
+  | nil => intro b h; simp [runHistoryFrom]
+  | cons command rest ih =>
+      intro b h
+      rcases command with ⟨α,c⟩
+      change commands (runHistoryFrom (h.snoc c) rest).2 = commands h ++ ⟨α,c⟩ :: rest
+      rw [ih]
+      simp [commands,List.append_assoc]
+
+theorem runHistoryFrom_snoc {a : Situation} (xs : List PackedCommand) (command : PackedCommand) :
+    ∀ {b : Situation} (h : History a b),
+      runHistoryFrom h (xs ++ [command]) = extendHistory (runHistoryFrom h xs).2 command := by
+  induction xs with
+  | nil => intro b h; rfl
+  | cons first rest ih =>
+      intro b h
+      exact ih (h.snoc first.2)
+
+theorem runHistory_commands {a b : Situation} (h : History a b) :
+    runHistory a (commands h) = ⟨b,h⟩ := by
+  induction h with
+  | nil => rfl
+  | snoc h c ih =>
+      change runHistoryFrom (History.nil a) (commands h ++ [⟨_,c⟩]) = _
+      rw [runHistoryFrom_snoc]
+      change extendHistory (runHistory a (commands h)).2 ⟨_,c⟩ = _
+      rw [ih]
+      rfl
+
+theorem commands_runHistory (initial : Situation) (xs : List PackedCommand) :
+    commands (runHistory initial xs).2 = xs := by
+  simpa only [runHistory,commands,List.nil_append] using
+    commands_runHistoryFrom xs (History.nil initial)
+
+theorem commands_injective (initial : Situation) :
+    Function.Injective (fun h : Sigma (fun b : Situation => History initial b) => commands h.2) := by
+  intro x y equal
+  have rebuilt := congrArg (runHistory initial) equal
+  rw [runHistory_commands,runHistory_commands] at rebuilt
+  exact rebuilt
+
+theorem token_history_roundtrip {a b : Situation} (h : History a b) :
+    runHistory a (Tokens.forget (Tokens.encode (commands h))) = ⟨b,h⟩ := by
+  rw [Tokens.decode_encode,runHistory_commands]
+
 theorem replay_commands {a b : Situation} (h : History a b) :
     replay a (commands h) = b := by
   induction h with
@@ -248,6 +311,13 @@ end Business
 #print axioms Tokens.every_readout_preserved
 #print axioms Tokens.reports_roundtrip
 #print axioms Tokens.general_reports_need_not_be_single_valued
+#print axioms CN.commands_runHistoryFrom
+#print axioms CN.runHistoryFrom_snoc
+#print axioms CN.runHistory_commands
+#print axioms CN.commands_runHistory
+#print axioms CN.commands_injective
+#print axioms CN.token_history_roundtrip
+
 #print axioms CN.replay_commands
 #print axioms CN.complete_history_roundtrip
 #print axioms CN.complete_history_all_readouts

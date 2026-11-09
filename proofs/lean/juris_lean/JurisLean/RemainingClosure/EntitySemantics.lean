@@ -356,12 +356,19 @@ theorem actual_stored_decision_formula :
     (formulaFourEffects bound query).performance = [] := by decide
 
 def compoundMethod : IssuedTemplate :=
-  ⟨Examples.request .addTemplate, {Examples.template with clauses :=
-    Examples.template.clauses.filter (fun clause => containsAtom clause.1 compensationLaw.guard)}⟩
+  ⟨Examples.request .addTemplate, {Examples.template with clauses := (Examples.template.clauses.filter (fun clause => containsAtom clause.1 compensationLaw.guard))}⟩
 
-def compoundQuery : EntityQuery :=
-  {query with call := Examples.call .decide, law := compensationLaw,
-    method := compoundMethod, world := canonicalWorld compensated.after toyWorld}
+def compoundQuery : EntityQuery where
+  call := Examples.call .decide
+  atom := toyAtom
+  document := query.document
+  person := query.person
+  scope := toyScope
+  time := query.time
+  bindingKind := query.bindingKind
+  law := compensationLaw
+  method := compoundMethod
+  world := canonicalWorld compensated.after toyWorld
 
 /-- A real compound institutional question (including negation) consumes the
 general bridge. Its formula is derived from the actual selected rule. -/
@@ -371,8 +378,8 @@ theorem compound_institution_same_question :
     (formulaSixJudgments compensated.after compoundQuery).justified = .known .established ∧
     evalFormula (compoundQuery.world.assessment compoundQuery.law compoundQuery.method)
       compoundQuery.law.guard = .established := by
-  have laws : selectedRules compensated.after.core compoundQuery.call.request = [compoundQuery.law] := by decide
-  have methods : selectedTemplates compensated.after compoundQuery.law = [compoundQuery.method] := by decide
+  have laws : selectedRules compensated.after.core compoundQuery.call.request = [compoundQuery.law] := by rfl
+  have methods : selectedTemplates compensated.after compoundQuery.law = [compoundQuery.method] := by rfl
   have identity : (compoundQuery.call.policy.scope != compoundQuery.law.scope ||
       compoundQuery.call.policy.source.id != compoundQuery.law.source.id ||
       compoundQuery.call.policy.source.version != compoundQuery.law.source.version) = false := by decide

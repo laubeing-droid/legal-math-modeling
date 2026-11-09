@@ -7,6 +7,8 @@ Interpretation-indexed decisions. The interpretation type is unrestricted;
 only the permitted command menu is finite, as in v4 section 6.4. A prior is an
 explicit, separate input. Source only; CI_NOT_RUN until subject-bound evidence.
 -/
+set_option autoImplicit false
+
 namespace LegalMath20261110.RemainingClosure.InterpretationChoice
 
 open MeasureTheory ProbabilityTheory
@@ -86,8 +88,8 @@ theorem finite_menu_argmax (score : A → ℝ) (base : A) (menu : List A) :
   refine ⟨best_mem score base menu, ?_⟩
   intro a ha
   rw [← best_value score base menu]
-  rcases List.mem_cons.mp ha with rfl | ha
-  · exact best_ge_base score base menu
+  rcases List.mem_cons.mp ha with same | ha
+  · simpa only [same] using best_ge_base score base menu
   · exact best_ge_member score base menu a ha
 
 /-- Empty compatible interpretation sets and empty legal menus have named exits. -/
@@ -136,11 +138,28 @@ theorem unbounded_menu_has_named_exit [Nonempty Λ]
     (V : H → A → Λ → ℝ) (h : H) (base : A) (menu : List A)
     (unbounded : ¬ ∀ a ∈ base :: menu, BddBelow (valueSet V h a)) :
     recommend V h (base :: menu) = .unboundedValue := by
-  simp [recommend, unbounded]
+  have hn : Nonempty Λ := inferInstance
+  simp [recommend, hn, unbounded]
 
 lemma robust_le_branch (V : H → A → Λ → ℝ) (h : H) (a : A)
     (bounded : BddBelow (valueSet V h a)) (l : Λ) : robustValue V h a ≤ V h a l :=
   ciInf_le bounded l
+
+/-- Compactness and continuity justify writing min instead of inf, even for
+uncountably many interpretations; they are not needed for finite-menu argmax. -/
+theorem compact_interpretation_min_attained [TopologicalSpace Λ] [CompactSpace Λ]
+    [Nonempty Λ] (V : H → A → Λ → ℝ) (h : H) (a : A)
+    (continuous : Continuous (V h a)) :
+    ∃ l : Λ, V h a l = robustValue V h a ∧ ∀ other, V h a l ≤ V h a other := by
+  obtain ⟨l,hl,hmin⟩ := isCompact_univ.exists_isMinOn Set.univ_nonempty continuous.continuousOn
+  have bounded : BddBelow (Set.range (V h a)) := by
+    refine ⟨V h a l, ?_⟩
+    rintro value ⟨other,rfl⟩
+    exact hmin (Set.mem_univ other)
+  refine ⟨l,le_antisymm ?_ (robust_le_branch V h a bounded l), ?_⟩
+  · exact le_ciInf (fun other => hmin (Set.mem_univ other))
+  · intro other
+    exact hmin (Set.mem_univ other)
 
 /-- Uniform errors survive the robust criterion; no exchange of max and expectation. -/
 theorem robust_error_transport [Nonempty Λ] (V W : H → A → Λ → ℝ)
@@ -256,6 +275,23 @@ theorem robust_le_bayes [Nonempty Λ] (prior : Measure Λ) [IsProbabilityMeasure
     (Filter.Eventually.of_forall (fun l => robust_le_branch V h a hb l))
   simpa [bayesValue] using inequality
 
+/-- A common maximizer in every interpretation is optimal for either given
+criterion. This supplies a substantive agreement condition, not an implicit prior. -/
+theorem common_branch_optimizer [Nonempty Λ] (prior : Measure Λ)
+    [IsProbabilityMeasure prior] (V : H → A → Λ → ℝ) (h : H)
+    (menu : List A) (winner : A) (member : winner ∈ menu)
+    (bounded : ∀ a ∈ menu, BddBelow (valueSet V h a))
+    (integrable : ∀ a ∈ menu, Integrable (V h a) prior)
+    (optimal : ∀ l a, a ∈ menu → V h a l ≤ V h winner l) :
+    ∀ a ∈ menu,
+      robustValue V h a ≤ robustValue V h winner ∧
+      bayesValue prior V h a ≤ bayesValue prior V h winner := by
+  intro a ha
+  constructor
+  · exact ciInf_mono (bounded a ha) (fun l => optimal l a ha)
+  · exact integral_mono_ae (integrable a ha) (integrable winner member)
+      (Filter.Eventually.of_forall (fun l => optimal l a ha))
+
 theorem measurable_bayes [MeasurableSpace H] (prior : Measure Λ) [SFinite prior]
     (V : H → A → Λ → ℝ) (a : A)
     (hm : StronglyMeasurable (fun z : H × Λ => V z.1 a z.2)) :
@@ -310,7 +346,7 @@ theorem nonmeasurable_winning_region_counterexample [MeasurableSpace H]
         cases hc : choose h with
         | false =>
             have bad := optimal h true
-            simp [winningScore, hs, hc] at bad
+            norm_num [winningScore, hs, hc] at bad
         | true => rfl
       simp [winner, hs]
     · have winner : choose h = false := by
@@ -318,7 +354,7 @@ theorem nonmeasurable_winning_region_counterexample [MeasurableSpace H]
         | false => rfl
         | true =>
             have bad := optimal h false
-            simp [winningScore, hs, hc] at bad
+            norm_num [winningScore, hs, hc] at bad
       simp [winner, hs]
   exact nonmeasurable (equality ▸ hm (measurableSet_singleton true))
 

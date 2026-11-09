@@ -8,12 +8,14 @@ and a sufficient convergence theorem for commuting strict contractions. A
 switch of individually contracting maps can still oscillate. Source only;
 CI_NOT_RUN until the exact subject build and axiom artifact are recorded.
 -/
+set_option autoImplicit false
+
 namespace LegalMath20261110.RemainingClosure.RuleEvolution
 
 open MeasureTheory ProbabilityTheory Filter
 open LegalMath20261108.ClosedLoop
 open LegalMath20261110.InvariantClosure
-open scoped ENNReal Topology
+open scoped ENNReal NNReal Topology
 
 noncomputable section
 
@@ -58,6 +60,7 @@ lemma clock_step_apply (K : Nat → Kernel S S) [∀ n, IsMarkovKernel (K n)]
   rw [step_apply _ _ hB, joint, Kernel.compProd_apply]
   · simp [clockedDynamics, indexedKernel, Kernel.const_apply, Kernel.comap_apply,
       update, historyOut, parameterOut, feedback]
+    rfl
   · exact ((measurable_update (clockedDynamics K)).comp
       (measurable_const.prodMk measurable_id)) hB
 
@@ -108,8 +111,10 @@ lemma clock_time_iterations (K : Nat → Kernel S S) [∀ n, IsMarkovKernel (K n
     measurable_fst.fst (measurableSet_singleton m)
   induction n with
   | zero =>
-      exact ae_of_mass_one _ _ (timeMeasurable 0)
-        (by simp [iterationLaw, Measure.dirac_apply' _ (timeMeasurable 0)])
+      change ∀ᵐ z ∂(Measure.dirac ((0,s₀),())), z.1.1 = 0
+      apply ae_of_mass_one _ _ (timeMeasurable 0)
+      rw [Measure.dirac_apply' _ (timeMeasurable 0)]
+      simp
   | succ n ih =>
       change ∀ᵐ z ∂(step (clockedDynamics K) ∘ₘ
         iterationLaw (clockedDynamics K) (Measure.dirac ((0,s₀),())) n), z.1.1 = n+1
@@ -232,7 +237,7 @@ theorem actual_refresh_keeps_authority_and_history (grants : List Authorization.
     | true =>
         simp [Pipeline.refresh, same, auth] at published
         cases published
-        exact ⟨auth,rfl,rfl,rfl,rfl⟩
+        exact ⟨rfl,rfl,rfl,rfl,rfl⟩
   · simp [Pipeline.refresh, same] at published
 
 /-- A successful rule refresh consumes the original authorization theorem and

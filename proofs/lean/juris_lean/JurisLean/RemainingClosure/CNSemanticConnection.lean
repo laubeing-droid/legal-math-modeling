@@ -2,6 +2,8 @@ import JurisLean.RemainingClosure.FullEventLog
 import JurisLean.CN.Completion20261105.WorldSemantics
 import JurisLean.CN.Completion20261105.Examples
 import JurisLean.CN.Completion20261105.EngineExamples
+import JurisLean.Candidates.CompilerProvenance20261027
+import JurisLean.Candidates.CompilerOriginalBoundaries20261031
 
 /-!
 Actual CN commands realize the existing ClosedLoop.Dynamics on their complete
@@ -12,6 +14,7 @@ same replay. Source only; CI_NOT_RUN until subject-bound evidence exists.
 namespace LegalMath.RemainingClosure.CNSemanticConnection
 
 open MeasureTheory ProbabilityTheory
+open scoped ENNReal
 open LegalMath20261108.ClosedLoop
 open JurisLean.KernelV3
 open JurisLean.CN.Revision20261101
@@ -118,8 +121,9 @@ theorem next_action_reads_actual_post (initial : Situation) (catalog : Fin k →
       ∫⁻ a, policy (h ++ [a],
         (executeCommand (replay initial catalog h) (catalog a).2).after.core.state.A.theta) B
         ∂policy (encode initial catalog h) := by
-  rw [nextAction, Kernel.comp_apply' _ _ _ hB,
-    actual_step_lintegral initial catalog policy h _ (Kernel.measurable_coe policy hB)]
+  rw [nextAction, Kernel.comp_apply' _ _ _ hB]
+  change (∫⁻ s, policy s B ∂step (model initial catalog policy) (encode initial catalog h)) = _
+  rw [actual_step_lintegral initial catalog policy h _ (Kernel.measurable_coe policy hB)]
   simp only [encode, replay_append]
 
 /-- Every legal/quantity/learning readout is transported from the SAME actual
@@ -132,9 +136,11 @@ theorem readout_kernel_transport {V : Type*} [MeasurableSpace V]
       (fun s => read (replay initial catalog s.1)) =
     (policy (encode initial catalog h)).map
       (fun a => read (executeCommand (replay initial catalog h) (catalog a).2).after) := by
-  rw [actual_step_law, Measure.map_map
-    ((Measurable.of_discrete (f := fun h : List (Fin k) => read (replay initial catalog h))).comp measurable_fst)
-    Measurable.of_discrete]
+  rw [actual_step_law]
+  have outer : Measurable (fun s : List (Fin k) × Private => read (replay initial catalog s.1)) :=
+    (Measurable.of_discrete (f := fun h : List (Fin k) => read (replay initial catalog h))).comp measurable_fst
+  rw [Measure.map_map (g := fun s : List (Fin k) × Private => read (replay initial catalog s.1))
+    (f := fun a : Fin k => encode initial catalog (h ++ [a])) outer Measurable.of_discrete]
   congr 1
   funext a
   simp [encode, replay_append]
@@ -196,11 +202,13 @@ def recordedDecision (s : Situation) (q : EntityQuery) : Option DecisionRecord :
   s.core.state.decisions.find? (fun d =>
     d.document == q.document && d.request.scope == q.scope)
 
-def bindingReadout (s : Situation) (q : EntityQuery) : Bool :=
-  s.core.state.bindings.any (fun b => match b with
-    | .decide d => d.decision.document == q.document && d.kind == q.bindingKind &&
-        withinBinding d.index q.person q.scope q.time
-    | .other _ => false)
+def bindingReadout (s : Situation) (q : EntityQuery) : Answer Bool :=
+  match s.core.state.bindings.filterMap (fun b => match b with
+    | .decide d => if d.decision.document == q.document && d.kind == q.bindingKind then
+        some d.index else none
+    | .other _ => none) with
+  | [] => .unknown .inputUnchecked
+  | indices => .success (indices.any (fun i => withinBinding i q.person q.scope q.time))
 
 /-- Different value types preserve the six distinctions of v4 section 2.3. -/
 structure SixJudgments where
@@ -209,7 +217,7 @@ structure SixJudgments where
   justified : Check Judgment
   recognized : Option Judgment
   valid : Option Bool
-  binding : Bool
+  binding : Answer Bool
 
 def sixJudgments (s : Situation) (q : EntityQuery) : SixJudgments :=
   ⟨q.world.nature.fact q.atom,
@@ -223,15 +231,17 @@ def sixJudgments (s : Situation) (q : EntityQuery) : SixJudgments :=
 coordinates, computed from the same source object and legal-world reading. -/
 structure FourEffects where
   validity : Option Bool
-  finality : Bool
+  finality : Answer Bool
   correctness : Option Bool
   performance : List Performance
 
 def fourEffects (s : Situation) (q : EntityQuery) : FourEffects :=
   ⟨(recordedDecision s q).map (fun d => d.valid),
    bindingReadout s {q with bindingKind := .resJudicata},
-   (recordedDecision s q).map (fun d =>
-     d.judgment == evalFormula (q.world.assessment q.law q.method) (.atom q.atom)),
+   (recordedDecision s q).bind (fun d =>
+     match evalFormula (q.world.assessment q.law q.method) (.atom q.atom) with
+     | .undetermined => none
+     | expected => some (d.judgment == expected)),
    s.core.state.ledger.filter (fun entry => entry.request.scope == q.scope)⟩
 
 def legalPermission (s : Situation) (q : EntityQuery) : Prop :=
@@ -658,6 +668,187 @@ theorem rsi_loaded_report_table {m : Nat} (s : Situation) (c : EngineContext)
 
 end Engines
 
+
+namespace CompilerBridge
+open JurisLean.Candidates.Final20261021.Compiler
+
+/-- Negative literals are explicit values, never failure to derive a positive. -/
+abbrev SignedFormula := Formula × Bool
+abbrev CRule := JurisLean.Candidates.Final20261021.Compiler.Rule Nat
+
+def signedHolds (v : Atom → Judgment) (literal : SignedFormula) : Prop :=
+  evalFormula v literal.1 = if literal.2 then .established else .notEstablished
+
+theorem explicit_negative_iff (v : Atom → Judgment) (f : Formula) :
+    signedHolds v (f,false) ↔ evalFormula v (.neg f) = .established := by
+  cases h : evalFormula v f <;> simp [signedHolds,evalFormula,h,notJ]
+
+theorem missing_support_is_not_negation (a : Atom) :
+    ¬ signedHolds (fun _ => .undetermined) (.atom a,true) ∧
+    ¬ signedHolds (fun _ => .undetermined) (.atom a,false) := by
+  simp [signedHolds,evalFormula]
+
+lemma signed_refines (v z : Atom → Judgment) (literal : SignedFormula)
+    (refines : ∀ a, Refines (v a) (z a)) (seed : signedHolds v literal) :
+    signedHolds z literal := by
+  rcases literal with ⟨f,polarity⟩
+  have formula := formula_refines v z f refines
+  cases polarity <;> dsimp [signedHolds] at seed ⊢
+  all_goals
+    rw [seed] at formula
+    rcases formula with impossible | equal
+    · cases impossible
+    · exact equal.symm
+
+/-- Original question 03.3 supplies valid rules and supported initial facts as
+separate semantic premises. The existing finite compiler establishes its own
+closed/least derivation result, then the SAME CN assessments interpret it. -/
+theorem finite_closure_same_cn_world
+    (s : Situation) (law : JurisLean.CN.Revision20261101.Rule) (method : IssuedTemplate)
+    (lawIn : law ∈ s.core.state.N.rules) (methodIn : method ∈ selectedTemplates s law)
+    (decode : Nat → SignedFormula) (rules : List CRule) (facts : List Nat) (fuel : Nat)
+    (enough : (finiteCarrier rules facts).card ≤ fuel)
+    (initialSupport : ∀ a ∈ facts, signedHolds (atomAssessment s law method) (decode a))
+    (rulesValid : ∀ world, semanticCompatible s world → ∀ r ∈ rules,
+      (∀ a ∈ r.premises, signedHolds (world.assessment law method) (decode a)) →
+      signedHolds (world.assessment law method) (decode r.conclusion)) :
+    ∃ known, proposed_checked_rule_input rules fuel facts = .known known ∧
+      (∀ q, q ∈ known ↔ ∀ truth, Models (· ∈ facts) (· ∈ rules) truth → truth q) ∧
+      ∀ world, semanticCompatible s world → ∀ q ∈ known,
+        signedHolds (world.assessment law method) (decode q) := by
+  obtain ⟨known,run,complete⟩ := u03_2_bounded_executable_closure_complete rules facts fuel enough
+  refine ⟨known,run,?_,?_⟩
+  · intro q
+    exact (complete q).trans (u03_2_relative_completeness (· ∈ facts) (· ∈ rules) q)
+  · intro world compatible q member
+    apply u03_1_relative_soundness (truth := fun a =>
+      signedHolds (world.assessment law method) (decode a)) _ ((complete q).mp member)
+    refine ⟨?_,rulesValid world compatible⟩
+    intro a ha
+    exact signed_refines _ _ (decode a)
+      (fun atom => compatible.2 law lawIn method methodIn atom) (initialSupport a ha)
+
+/-- The existing checked DAG is also consumed with the same CN interpretation.
+Its leaf/source and rule obligations are the original 03.5 obligations; the
+accepted checker supplies the actual leaves, derivation and acyclic order. -/
+theorem provenance_same_cn_world
+    (s : Situation) (law : JurisLean.CN.Revision20261101.Rule) (method : IssuedTemplate)
+    (lawIn : law ∈ s.core.state.N.rules) (methodIn : method ∈ selectedTemplates s law)
+    (decode : Nat → SignedFormula)
+    (ctx : JurisLean.Candidates.Final20261021.Gamma)
+    (catalog : List JurisLean.Candidates.CompilerProvenance20261027.RuleUse)
+    (leafCheck : JurisLean.Candidates.Final20261021.Gamma →
+      JurisLean.Candidates.CompilerProvenance20261027.Leaf → Bool)
+    (ruleGate : JurisLean.Candidates.Final20261021.Gamma →
+      JurisLean.Candidates.CompilerProvenance20261027.RuleUse → Bool)
+    (nodes : List JurisLean.Candidates.CompilerProvenance20261027.Node) (root query : Nat)
+    (out : JurisLean.Candidates.CompilerProvenance20261027.Evidence)
+    (sourceSupport : ∀ leaf, leaf.interpretationVersion = ctx.interpretation →
+      leafCheck ctx leaf = true → signedHolds (atomAssessment s law method) (decode leaf.atom))
+    (rulesValid : ∀ world, semanticCompatible s world →
+      ∀ r ∈ JurisLean.Candidates.CompilerProvenance20261027.activeRules ctx catalog ruleGate,
+      (∀ a ∈ r.premises, signedHolds (world.assessment law method) (decode a)) →
+      signedHolds (world.assessment law method) (decode r.conclusion))
+    (accepted : JurisLean.Candidates.CompilerProvenance20261027.proposed_provenance_input
+      ctx catalog leafCheck ruleGate nodes root query = .known out) :
+    (∀ i, ¬ Relation.TransGen (JurisLean.Candidates.CompilerProvenance20261027.Edge nodes) i i) ∧
+    (query ∈ JurisLean.Candidates.CompilerProvenance20261027.closureFromEvidence ctx catalog ruleGate out) ∧
+    ∀ world, semanticCompatible s world →
+      signedHolds (world.assessment law method) (decode query) := by
+  refine ⟨JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic
+    ctx catalog leafCheck ruleGate nodes root query out accepted,
+    JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure
+      ctx catalog leafCheck ruleGate nodes root query out accepted,?_⟩
+  intro world compatible
+  apply JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition
+    ctx catalog leafCheck ruleGate nodes root query out
+    (fun a => signedHolds (world.assessment law method) (decode a)) _
+    (rulesValid world compatible) accepted
+  intro leaf version checked
+  exact signed_refines _ _ (decode leaf.atom)
+    (fun atom => compatible.2 law lawIn method methodIn atom)
+    (sourceSupport leaf version checked)
+
+/-- The strict MustFacts counterexample already used the actual old finite
+closure evaluator. It is reused with its exact statement, not reproved. -/
+theorem must_facts_strict_counterexample :
+    let rules : List CRule := [⟨[1],3⟩,⟨[2],3⟩]
+    proposed_robust_queries rules [[1],[2]] [3] = .known [3] ∧
+      3 ∉ proposed_rule_input rules (finiteCarrier rules []).card [] :=
+  u03_1_robust_query_strictly_beyond_common_facts
+
+namespace Actual
+open Examples
+
+def method : IssuedTemplate :=
+  ⟨request .addTemplate,{template with clauses := [(toyAtom,.support toyAtom)]}⟩
+
+def queryFormula : Formula := .both (.atom toyAtom) (.atom toyAtom)
+
+def decode (n : Nat) : SignedFormula :=
+  if n = 0 then (.atom toyAtom,true)
+  else if n = 1 then (queryFormula,true)
+  else (.atom toyAtom,false)
+
+def rules : List CRule := [⟨[0],1⟩]
+
+theorem current_law : confirmation ∈ normal.core.state.N.rules := by decide
+
+theorem current_method : method ∈ selectedTemplates normal confirmation := by decide
+
+theorem current_admitted_seed : signedHolds (atomAssessment normal confirmation method) (decode 0) := by
+  decide
+
+theorem current_rule_valid (world : SemanticWorld) :
+    ∀ r ∈ rules,
+      (∀ a ∈ r.premises, signedHolds (world.assessment confirmation method) (decode a)) →
+      signedHolds (world.assessment confirmation method) (decode r.conclusion) := by
+  intro r member premises
+  have ruleEq : r = ⟨[0],1⟩ := List.mem_singleton.mp member
+  subst r
+  have seed := premises 0 (by simp)
+  change evalFormula (world.assessment confirmation method) (.atom toyAtom) = .established at seed
+  change evalFormula (world.assessment confirmation method) queryFormula = .established
+  simp [queryFormula,evalFormula,seed,andJ]
+
+theorem current_nonempty : ∃ world, semanticCompatible normal world := by
+  have successful : (executeCommand normal (.legal (call .decide))).answer = .success () := by decide
+  obtain ⟨law,t,member,ready⟩ := actual_legal_step_semantic_ready normal
+    (call .decide).request (call .decide).policy (call .decide).mode (call .decide).world successful
+  exact ready.1
+
+/-- A real current CN admitted view consumes the old finite closure and returns
+the matching source query answer through the common feedback realization. -/
+theorem admitted_closure_feedback :
+    (representedReply normal (.burdenEvidence (call .decide) queryFormula)).answer = .success .established ∧
+    (∃ world, semanticCompatible normal world) ∧
+    ∃ known, proposed_checked_rule_input rules (finiteCarrier rules [0]).card [0] = .known known ∧
+      (∀ q, q ∈ known ↔ ∀ truth, Models (· ∈ ([0] : List Nat)) (· ∈ rules) truth → truth q) ∧
+      1 ∈ known ∧
+      ∀ world, semanticCompatible normal world →
+        evalFormula (world.assessment confirmation method) queryFormula = .established := by
+  constructor
+  · decide
+  · refine ⟨current_nonempty,?_⟩
+    obtain ⟨known,run,least,sound⟩ := finite_closure_same_cn_world normal confirmation method
+      current_law current_method decode rules [0] (finiteCarrier rules [0]).card le_rfl
+      (by intro a ha; have eq : a = 0 := List.mem_singleton.mp ha; subst a; exact current_admitted_seed)
+      (fun world _ => current_rule_valid world)
+    have derived : Derives (· ∈ ([0] : List Nat)) (· ∈ rules) 1 := by
+      apply Derives.fire (⟨[0],1⟩ : CRule) (by simp [rules])
+      intro a member
+      have eq : a = 0 := List.mem_singleton.mp member
+      subst a
+      exact Derives.fact 0 (by simp)
+    have inKnown : 1 ∈ known := (least 1).mpr
+      ((u03_2_relative_completeness (· ∈ ([0] : List Nat)) (· ∈ rules) 1).mp derived)
+    refine ⟨known,run,least,inKnown,?_⟩
+    intro world compatible
+    exact sound world compatible 1 inKnown
+
+end Actual
+end CompilerBridge
+
 #print axioms replay_append
 #print axioms finite_sequence_catalog
 #print axioms actual_post_commutes
@@ -699,6 +890,15 @@ end Engines
 #print axioms Engines.rsi_feedback
 #print axioms Engines.fit_to_private_feedback
 #print axioms Engines.rsi_loaded_report_table
+
+#print axioms CompilerBridge.explicit_negative_iff
+#print axioms CompilerBridge.missing_support_is_not_negation
+#print axioms CompilerBridge.finite_closure_same_cn_world
+#print axioms CompilerBridge.provenance_same_cn_world
+#print axioms CompilerBridge.must_facts_strict_counterexample
+#print axioms CompilerBridge.Actual.current_admitted_seed
+#print axioms CompilerBridge.Actual.current_nonempty
+#print axioms CompilerBridge.Actual.admitted_closure_feedback
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

@@ -1,2 +1,3 @@
 import JurisLean.RemainingClosure.W1Laws
 import JurisLean.RemainingClosure.W1Sharp
+import JurisLean.RemainingClosure.W1Invariant

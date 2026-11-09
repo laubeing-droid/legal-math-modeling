@@ -149,7 +149,8 @@ theorem twoAtomIdentification : twoAtomIdentificationTarget := by
     obtain ⟨r,hr,rfl⟩ := all_couplings_are_matrices s t ρ hρ
     dsimp only
     rw [couplingAt_cost s t r hr]
-    exact iInf_le _ ⟨r,hr⟩
+    exact iInf_le (fun q : {r : ℝ // admissible (probability s) (probability t) r} =>
+      ENNReal.ofReal (cost s t q)) ⟨r,hr⟩
   · refine le_iInf fun r => ?_
     exact (distributionW1_le_cost _ (couplingAt_mem s t r r.property)).trans_eq
       (couplingAt_cost s t r r.property)

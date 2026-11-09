@@ -1,4 +1,5 @@
 import JurisLean.Review20261110.DelayAugmentation
+import JurisLean.BusinessProcessRealization
 import JurisLean.Candidates.EventFeedbackConsumer20261027
 import JurisLean.Candidates.BusinessFeedbackLoop20261027
 
@@ -7,6 +8,8 @@ Variable due times, pending outcomes and correction-aware feedback. Int time
 uses the existing Instant.ticks domain. A missing completion is Option.none,
 never a negative label. Source only; CI_NOT_RUN pending subject-bound evidence.
 -/
+set_option autoImplicit false
+
 namespace LegalMath20261110.RemainingClosure.TemporalFeedback
 
 open MeasureTheory ProbabilityTheory
@@ -69,7 +72,8 @@ def timedModel (x₀ : ℝ) (choose : TimedHistory → TimedAction) :
   policy := Kernel.deterministic (fun s => choose s.1)
     (Measurable.of_discrete.comp measurable_fst)
   outcome := model.outcome.comap (fun z => (numeric x₀ z.1,z.2.1))
-    (((measurable_numeric x₀).comp measurable_fst).prodMk measurable_snd.fst)
+    (((measurable_numeric x₀).comp measurable_fst).prodMk
+      ((Measurable.of_discrete (f := fun a : TimedAction => a.1)).comp measurable_snd))
   append := appendTimed
   measure := fun h _ _ => batchLabels h.2.2.2
   learn := learnBatch
@@ -105,7 +109,9 @@ lemma completed_eq_nil (now : Int) (jobs : List Job)
   | cons job rest ih =>
       have hj := pending job (by simp)
       have hr := ih (fun j h => pending j (by simp [h]))
-      simp [completedAt, hj, hr]
+      change (job :: rest).filter (readyAt now) = []
+      rw [List.filter_cons,hj]
+      exact hr
 
 theorem uncompleted_events_do_not_update (x₀ θ : ℝ)
     (choose : TimedHistory → TimedAction) (h : TimedHistory) (a : TimedAction) (y : Bool)
@@ -177,6 +183,50 @@ theorem actual_negative_requires_closed_window (post : Ledger.Handle) (d : Measu
         receipt actual label
       exact ⟨facts.1,facts.2.1⟩
 
+/-- Pending windows enter the original business continuation without creating
+an observation or an additional training sample. Older valid queue entries
+remain eligible; this theorem does not suppress unrelated completed feedback. -/
+theorem pending_continuation_adds_no_observation {m : Nat}
+    (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+    (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+    (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+    (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (reason : MeasurementFailure)
+    (pending : JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported
+      state.business measurement = .unknown reason) :
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness
+      state measurement policy feedback).post.observationHistory = state.observationHistory := by
+  simp [JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness, pending,
+    JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement,
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.enqueueObserved]
+
+theorem pending_episode_keeps_learner_when_queue_empty {W : Type} {m : Nat}
+    (state : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+    (action : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+    (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+    (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+    (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (reason : MeasurementFailure)
+    (pending : JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state action).post.business
+      measurement = .unknown reason)
+    (emptyQueue : state.feedbackQueue = []) :
+    (JurisLean.Candidates.BusinessFeedbackLoop20261027.episode
+      state action measurement policy feedback).continuation.post.learning = state.learning := by
+  have frame : (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state action).post.learning =
+      state.learning := by
+    cases hc : state.business.current <;>
+      simp [JurisLean.Candidates.BusinessFeedbackLoop20261027.act,hc]
+  have queue : (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state action).post.feedbackQueue = [] := by
+    cases hc : state.business.current <;>
+      simp [JurisLean.Candidates.BusinessFeedbackLoop20261027.act,hc,emptyQueue]
+  simpa [JurisLean.Candidates.BusinessFeedbackLoop20261027.episode,
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness,pending,
+    JurisLean.Candidates.MeasuredPolicy20261027.consumeMeasurement,
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.enqueueObserved,queue,
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.prepareQueued,
+    JurisLean.Candidates.BusinessFeedbackLoop20261027.preparedState] using frame
+
 /-- The original correction implementation retains the earlier record, one
 current cell per event, and supplies the actual poststore to the next fit. -/
 theorem actual_revision_and_refit {m : Nat} (s : Store m) (now : Instant)
@@ -185,7 +235,7 @@ theorem actual_revision_and_refit {m : Nat} (s : Store m) (now : Instant)
     (found : lookup s edit.supersedes.event = some edit.supersedes)
     (valid : correctionValid s now edit = true)
     (allowed : correctionAuthorized s now permits edit = true)
-    (protocol : LearningProtocol) (loss : ℚ → Bool → ℚ) (models : List (List ℚ))
+    (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Bool → ℚ) (models : List (List ℚ))
     (out : TrainingCandidate m)
     (fitted : fitFromStore (correct s now permits edit).post protocol loss models = .known out) :
     (correct s now permits edit).post.history = s.history ++ [.corrected edit] ∧
@@ -200,6 +250,43 @@ theorem actual_revision_and_refit {m : Nat} (s : Store m) (now : Instant)
     protocol loss models out fitted
   exact ⟨correction.2, oneCell, correction.1, fit.1, fit.2.2.1,
     training_contains_no_repeated_event _ oneCell⟩
+
+section RealizedPending
+open JurisLean.Candidates.AdaptiveRoundLedger20261027
+open LegalMath20261109.BusinessProcess
+
+variable {W : Type} {m k : Nat}
+local instance : MeasurableSpace (JurisLean.Candidates.BusinessFeedbackLoop20261027.State m) := ⊤
+local instance : MeasurableSpace (RoundState m) := ⊤
+local instance : MeasurableSpace (Fin k) := ⊤
+local instance : MeasurableSpace (List (Fin k)) := ⊤
+
+/-- A delayed actual business episode is a step of the already proved common
+chain. The unchanged learner is derived from its real pending measurement. -/
+theorem pending_episode_on_original_chain
+    (initial : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+    (catalog : Fin k → JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m)
+    (pick : List (Fin k) → Fin k) (h : List (Fin k)) (a : Fin k)
+    (action : JurisLean.Candidates.BusinessFeedbackLoop20261027.ActionInput W m)
+    (measurement : JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m)
+    (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+    (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (command : catalog a = .episode action measurement policy feedback)
+    (reason : MeasurementFailure)
+    (pending : JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.act (replay initial catalog h) action).post.business
+      measurement = .unknown reason)
+    (emptyQueue : (replay initial catalog h).feedbackQueue = []) :
+    update (model initial catalog pick)
+      (encode initial catalog h,
+        (a,JurisLean.Candidates.BusinessFeedbackLoop20261027.step (replay initial catalog h) (catalog a))) =
+        encode initial catalog (h ++ [a]) ∧
+      (replay initial catalog (h ++ [a])).learning = (replay initial catalog h).learning := by
+  refine ⟨actual_post_commutes initial catalog pick h a, ?_⟩
+  rw [replay_append,command]
+  exact pending_episode_keeps_learner_when_queue_empty _ action measurement policy feedback reason pending emptyQueue
+
+end RealizedPending
 
 end ActualBusiness
 

@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 6158,
-  "theorem_declarations_in_package": 7047
+  "carriers_in_package": 6287,
+  "theorem_declarations_in_package": 7325
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -122,6 +122,7 @@
   "JurisLean.CN.Revision20261101.World": 5,
   "JurisLean.Candidates.AdaptiveRoundLedger20261027": 9,
   "JurisLean.Candidates.BernoulliMeanInstance20261031": 5,
+  "JurisLean.Candidates.BusinessFeedbackLoop20261027": 5,
   "JurisLean.Candidates.CausalSelection20261027": 5,
   "JurisLean.Candidates.ExactProbability20261027": 6,
   "JurisLean.Candidates.Final20261021.Acceptance": 10,
@@ -145,7 +146,7 @@
   "JurisLean.Candidates.Final20261021.Trace": 8,
   "JurisLean.Candidates.LearningBoundary20261027": 5,
   "JurisLean.Candidates.LearningDependence20261027": 5,
-  "JurisLean.Candidates.LearningERM20261027": 5,
+  "JurisLean.Candidates.LearningERM20261027": 6,
   "JurisLean.Candidates.LearningFiniteClass20261027": 8,
   "JurisLean.Candidates.LearningRisk20261027": 5,
   "JurisLean.Candidates.MeasuredPolicy20261027": 5,
@@ -156,7 +157,7 @@
   "JurisLean.External.GameTheory.Math.PMFProduct": 7,
   "JurisLean.External.GameTheory.Math.Probability": 17,
   "JurisLean.External.GameTheory.Math.ProbabilityMassFunction": 8,
-  "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel": 5,
+  "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel": 6,
   "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial": 5,
   "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM": 8,
   "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family": 6,
@@ -166,7 +167,7 @@
   "JurisLean.FullMath.Logic.ArgumentConstruction": 5,
   "JurisLean.FullMath.Numeric.Intervals": 6,
   "JurisLean.FullMath.Numeric.Quantities": 6,
-  "JurisLean.FullMath.Probability.Brier": 5,
+  "JurisLean.FullMath.Probability.Brier": 6,
   "JurisLean.FullMath.Probability.Conditioning": 6,
   "JurisLean.FullMath.Probability.DirichletPosterior": 5,
   "JurisLean.Genealogy.Part1": 5,
@@ -185,12 +186,14 @@
   "JurisLean.Seams.Probability": 7,
   "JurisLean.Seams.SourceNorms": 9,
   "JurisLean.Seams.Temporal": 5,
+  "JurisLean.Seams.UnifiedNeedlesS3b": 5,
   "JurisLean.Seams.UnifiedQuantLedger": 7,
   "JurisLean.TaintNoninterference": 5,
+  "JurisLean.UnifiedFeedbackBridge": 6,
   "JurisLean.WeightedSupNorm": 6,
   "Lean.Elab.Command": 5,
   "Lean.Util.CollectAxioms": 5,
-  "Mathlib": 48,
+  "Mathlib": 53,
   "Mathlib.Data.Fin.Basic": 5,
   "Mathlib.Data.Finset.Basic": 23,
   "Mathlib.Data.Fintype.Basic": 7,
@@ -201,6 +204,6 @@
   "Mathlib.Probability.ProbabilityMassFunction.Integrals": 6,
   "Mathlib.Tactic": 78
  },
- "package_files": 622,
+ "package_files": 644,
  "schema_version": "kernel-reuse-v1"
 }

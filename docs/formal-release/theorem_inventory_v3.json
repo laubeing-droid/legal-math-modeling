@@ -439,6 +439,7 @@
     "JurisLean.Candidates.CausalSelection20261027",
     "JurisLean.Candidates.CompilerOriginalBoundariesAudit20261031",
     "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.FormalTail20261024",
     "JurisLean.Candidates.HarnessOriginalInstancesAudit20261031",
     "JurisLean.Candidates.Original07_3RowInterpretationAudit20261102",
     "JurisLean.Candidates.Original07_4ObservationInstanceAudit20261102",
@@ -569,6 +570,25 @@
     "JurisLean.Mandate.ZeroSumSion",
     "JurisLean.Mandate.ZeroSumValue",
     "JurisLean.ReceiptAuthority",
+    "JurisLean.RemainingClosure.Audit",
+    "JurisLean.RemainingClosure.CNSemanticConnection",
+    "JurisLean.RemainingClosure.CouplingLift",
+    "JurisLean.RemainingClosure.EntitySemantics",
+    "JurisLean.RemainingClosure.EvidenceConditioning",
+    "JurisLean.RemainingClosure.FullEventLog",
+    "JurisLean.RemainingClosure.InterpretationChoice",
+    "JurisLean.RemainingClosure.MultiAgentFeedback",
+    "JurisLean.RemainingClosure.PolicyIndependentFeedback",
+    "JurisLean.RemainingClosure.ProcessTransport",
+    "JurisLean.RemainingClosure.RuleEvolution",
+    "JurisLean.RemainingClosure.TemporalFeedback",
+    "JurisLean.RemainingClosure.UnifiedClosure",
+    "JurisLean.RemainingClosure.W1Atoms",
+    "JurisLean.RemainingClosure.W1Audit",
+    "JurisLean.RemainingClosure.W1Invariant",
+    "JurisLean.RemainingClosure.W1Laws",
+    "JurisLean.RemainingClosure.W1Sharp",
+    "JurisLean.RemainingClosure.W1Transport",
     "JurisLean.Review20261110.Audit",
     "JurisLean.Seams.AdjudicationBridge",
     "JurisLean.Seams.BoundaryBridge5",
@@ -946,6 +966,80 @@
     "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
     "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
     "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    "JurisLean.Candidates.FormalTail20261024.half_pow_pos",
+    "JurisLean.Candidates.FormalTail20261024.half_pow_shrinks",
+    "JurisLean.Candidates.FormalTail20261024.halve_iterate_one",
+    "JurisLean.Candidates.FormalTail20261024.negate_iterate_even",
+    "JurisLean.Candidates.FormalTail20261024.negate_iterate_odd",
+    "JurisLean.Candidates.FormalTail20261024.u02_3_common_idle_and_zero_coverage_not_support_coverage",
+    "JurisLean.Candidates.FormalTail20261024.u02_3_finite_enumeration_not_generator_support_coverage",
+    "JurisLean.Candidates.FormalTail20261024.u03_1_computed_sound_not_dag_connected_to_executable_closure",
+    "JurisLean.Candidates.FormalTail20261024.u03_1_relative_soundness_not_provenance_dag_to_finite_closure",
+    "JurisLean.Candidates.FormalTail20261024.u03_1_robust_countermodel_not_connected_to_finite_closure",
+    "JurisLean.Candidates.FormalTail20261024.u03_2_checked_closure_complete_not_list_carrier_bound",
+    "JurisLean.Candidates.FormalTail20261024.u03_2_incomplete_fuel_not_carrier_fuel_bound",
+    "JurisLean.Candidates.FormalTail20261024.u03_2_relative_completeness_not_verified_fuel_bound",
+    "JurisLean.Candidates.FormalTail20261024.u04_3_arbitrarily_small_not_intercept_coordinate_solved",
+    "JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_improves_not_uniqueness",
+    "JurisLean.Candidates.FormalTail20261024.u04_3_unpenalized_positive_not_penalized_minimizer_existence",
+    "JurisLean.Candidates.FormalTail20261024.u05_2_bernoulli_brier_not_conditional_expectation_decomposition",
+    "JurisLean.Candidates.FormalTail20261024.u05_2_selected_risk_not_simultaneous_threshold_or_rare_group",
+    "JurisLean.Candidates.FormalTail20261024.u06_3_decision_respects_allowed_not_general_uncertainty_comparison",
+    "JurisLean.Candidates.FormalTail20261024.u06_3_eval_exists_unique_not_interval_multiplication_enclosure",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_at_least_one_includes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_below_zero_excludes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_at_least_one_is_full",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_below_zero_is_empty",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_above_one_excludes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_at_most_zero_includes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_above_one_is_empty",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_at_most_zero_is_full",
+    "JurisLean.Candidates.FormalTail20261024.u07_1_encode_nonsurjective_not_full_decode_acceptance",
+    "JurisLean.Candidates.FormalTail20261024.u07_1_retraction_not_full_observation_decoding_acceptance",
+    "JurisLean.Candidates.FormalTail20261024.u07_1_separation_monotone_not_history_decoding",
+    "JurisLean.Candidates.FormalTail20261024.u07_2_common_fiber_not_semantic_compatibility",
+    "JurisLean.Candidates.FormalTail20261024.u07_2_incompatible_fiber_not_layer_compatibility",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_late_append_uses_selection_stable",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_late_record_disguised_as_then_known_changes_applicability",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_mutable_current_status_disagrees_with_cutoff",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_recorded_after_cutoff_not_visible",
+    "JurisLean.Candidates.FormalTail20261024.u08_2_current_singleton_does_not_exhaust_reachable",
+    "JurisLean.Candidates.FormalTail20261024.u08_2_nonempty_observation_preserves_chosen_answer",
+    "JurisLean.Candidates.FormalTail20261024.u08_3_four_states_do_not_exhaust_dependency_policies",
+    "JurisLean.Candidates.FormalTail20261024.u08_3_judgment_not_compatibility_world_classification",
+    "JurisLean.Candidates.FormalTail20261024.u08_3_opposition_preserves_support_not_full_reflection",
+    "JurisLean.Candidates.FormalTail20261024.u09_1_at_most_once_not_product_protocol_refinement",
+    "JurisLean.Candidates.FormalTail20261024.u09_1_conservation_not_receipt_revision_order",
+    "JurisLean.Candidates.FormalTail20261024.u09_1_receipt_coherent_not_cash_uniqueness",
+    "JurisLean.Candidates.FormalTail20261024.u09_3_greedy_prefix_misses_second_claim",
+    "JurisLean.Candidates.FormalTail20261024.u09_3_same_institution_accrual_is_not_cash_effect",
+    "JurisLean.Candidates.FormalTail20261024.u10_2_executor_and_trace_not_full_mixed_operation_coverage",
+    "JurisLean.Candidates.FormalTail20261024.u10_2_post_invariant_not_gamma_frame_or_service_refinement",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_business_observation_faithful",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_one_real_step_zero_abstract_is_not_progress",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_observation_is_not_progress",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_prohibits_strict_progress",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_ranked_path_is_identity",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_cubic_reaches_zero_but_expands",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_halving_damps_toward_zero",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_negation_orbit_oscillates",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_one_minus_theta_oscillates",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_shift_has_no_fixed_point",
+    "JurisLean.Candidates.FormalTail20261024.u13_1_lawful_stat_input_change_changes_estimate",
+    "JurisLean.Candidates.FormalTail20261024.u13_1_personal_update_preserves_rule_service",
+    "JurisLean.Candidates.FormalTail20261024.u13_2_condition_does_not_train_not_persistent_storage_refinement",
+    "JurisLean.Candidates.FormalTail20261024.u13_2_frames_do_not_imply_authorized_rule_load",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_common_cause_copy_exceeds_independent_variance",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_zero_N_rejects_positive_hypothesis",
+    "JurisLean.Candidates.FormalTail20261024.u15_1_finite_state_strict_improve_length_bound",
+    "JurisLean.Candidates.FormalTail20261024.u15_1_no_parameter_successor_has_no_fixed_point",
+    "JurisLean.Candidates.FormalTail20261024.u15_1_telescoping_consumes_cumulative_improvement",
+    "JurisLean.Candidates.FormalTail20261024.u15_2_finite_obs_agree_not_global",
+    "JurisLean.Candidates.FormalTail20261024.u15_2_full_agreement_preserves_risk",
+    "JurisLean.Candidates.FormalTail20261024.u15_2_key_point_regression_changes_exact_risk",
+    "JurisLean.Candidates.FormalTail20261024.u15_3_second_round_consumer_is_not_evidence_ladder",
+    "JurisLean.Candidates.FormalTail20261024.u15_3_two_point_risks_do_not_complete_five_evidence_levels",
     "JurisLean.Candidates.GroupedConformalInstance20261031.group_conditional_split_conformal_coverage",
     "JurisLean.Candidates.HarnessOriginalInstances20261031.checked_trace_does_not_supply_primitive_truth",
     "JurisLean.Candidates.HarnessOriginalInstances20261031.finite_gate_has_nonempty_safe_instance",
@@ -4207,6 +4301,289 @@
     "LegalMath.FiniteHorizon.Game.runDist_nativeLaw",
     "LegalMath.FiniteHorizon.Game.stepActionDeterminism",
     "LegalMath.FiniteHorizon.Game.support_iff_req",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.admitted_closure_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_admitted_seed",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_law",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_method",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_nonempty",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_rule_valid",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.explicit_negative_iff",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.finite_closure_same_cn_world",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.missing_support_is_not_negation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.must_facts_strict_counterexample",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.provenance_same_cn_world",
+    "LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.signed_refines",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.actual_head_is_found",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.bargain_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.behavior_actual_selected",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.behavior_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.cash_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.causal_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.exact_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.fit_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.fit_to_private_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.probability_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.retained_call",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.rsi_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Engines.rsi_loaded_report_table",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.acquisition_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.actual_institution_frame",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.actual_kernel_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.actual_retained_report",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.agency_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.bankruptcy_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.common_model_realization",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.compensation_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.complete_replay",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.connected",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.evidence_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.failure_exits_continue",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.following_policy_reads_actual_post",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.interpretation_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.jurisdiction_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.lifecycle_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.measurable_reading",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.offense_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.old_evidence_preserved",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.proposal_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.resJudicata_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.InstitutionalContinuation.rights_continuation",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.acquisition_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.agency_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.bankruptcy_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.compensation_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.evidence_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.formation_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.interpretation_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.jurisdiction_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.lifecycle_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.offense_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.proposal_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.resJudicata_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Institutions.rights_feedback",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.LegalReady.fit",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.actual_cash_payoff",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.actual_episode",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.actual_native_choice",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.actual_reachable_learning_changes_choice",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.actual_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.amount_nonnegative",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.calibrated_actual_table",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.chosen_maximizes_actual_cash",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.complete_source_path_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.complete_source_prefix_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.episode_events",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.episode_read",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.episode_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.episode_replay",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.event_present",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.expected_actual_cash",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.expected_amount",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.full_history_decoded",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.full_replay",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.learning_changes_actual_choice",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.measurable_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.native_choice_maximizes_actual_expected_cash",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.native_source",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.next_choice_reads_loaded_table",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.paired_performance",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.post_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.post_world",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.projection_append",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.public_performance",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.raw_performance",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.realizedPayoff_eq_amount",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.run_append",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.run_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.score_formula",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.score_from_same_xi",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.source_kernel_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.source_private_is_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.source_response_from_same_xi",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.Menu.source_update_commutes",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.actualWorld_facts",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.actual_payment",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.actual_permission",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.admitted_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.cashPost_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.cashPost_world_check",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.cash_source_known",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.current_admitted_view",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.episode_keeps_events",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.episode_read",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.episode_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.episode_replay",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.every_finite_prefix",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitPost_cell",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitPost_formula",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitPost_norm",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitReady_of_modelReady",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fit_fresh_admit",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fit_fresh_learn",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitted_numeric_projection",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fitted_original_after",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.freshId_not_mem",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.fresh_request",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.initial_read",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.initial_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_events",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_formula",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_ledger",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_legal_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_modelReady",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_payment_event",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_read",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.learned_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.native_fit_output",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_cash_not_event",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_cash_not_ledger",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_material_absent",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_material_filter_empty",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_material_not_key",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.new_material_not_registered",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performPaired_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performPayment_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performance_agreement",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performance_assessed",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performance_selected_rule",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.performance_selected_template",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.physical_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.preparation_replay",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.prepared_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.prepared_allowed",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.prepared_lookup",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.recorded_actual",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.run_read",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.run_ready",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.source_admitted",
+    "LegalMath.RemainingClosure.CNSemanticConnection.Numeric.world_check",
+    "LegalMath.RemainingClosure.CNSemanticConnection.actual_learning_frame",
+    "LegalMath.RemainingClosure.CNSemanticConnection.actual_legal_step_worlds",
+    "LegalMath.RemainingClosure.CNSemanticConnection.actual_post_commutes",
+    "LegalMath.RemainingClosure.CNSemanticConnection.actual_step_law",
+    "LegalMath.RemainingClosure.CNSemanticConnection.actual_step_lintegral",
+    "LegalMath.RemainingClosure.CNSemanticConnection.encode_injective",
+    "LegalMath.RemainingClosure.CNSemanticConnection.finite_sequence_catalog",
+    "LegalMath.RemainingClosure.CNSemanticConnection.learnReport_entity_frame",
+    "LegalMath.RemainingClosure.CNSemanticConnection.learn_retained_actual_table",
+    "LegalMath.RemainingClosure.CNSemanticConnection.legal_entity_feedback_law",
+    "LegalMath.RemainingClosure.CNSemanticConnection.measurable_joint_legal_readout",
+    "LegalMath.RemainingClosure.CNSemanticConnection.next_action_reads_actual_post",
+    "LegalMath.RemainingClosure.CNSemanticConnection.readout_kernel_transport",
+    "LegalMath.RemainingClosure.CNSemanticConnection.replay_append",
+    "LegalMath.RemainingClosure.CNSemanticConnection.representedReply_eq",
+    "LegalMath.RemainingClosure.CouplingLift.actual_feedback_lift",
+    "LegalMath.RemainingClosure.CouplingLift.contraction_of_point_coupling",
+    "LegalMath.RemainingClosure.CouplingLift.lifted_map",
+    "LegalMath.RemainingClosure.CouplingLift.primal_eq_iInf",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.actual_proof_and_world_agree",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.actual_stored_decision_formula",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.bare_query_counterexample",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.compound_institution_same_question",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.query_is_coherent",
+    "LegalMath.RemainingClosure.EntitySemantics.Actual.same_scope_is_not_same_question",
+    "LegalMath.RemainingClosure.EntitySemantics.actual_formula_checker_assessment",
+    "LegalMath.RemainingClosure.EntitySemantics.actual_judgment_refines_same_world",
+    "LegalMath.RemainingClosure.EntitySemantics.correctness_uses_same_assessment",
+    "LegalMath.RemainingClosure.EntitySemantics.determinate_assessment_eq",
+    "LegalMath.RemainingClosure.EntitySemantics.formula_entity_feedback_law",
+    "LegalMath.RemainingClosure.EntitySemantics.formula_learnReport_legal_readouts",
+    "LegalMath.RemainingClosure.EntitySemantics.learnReport_legal_readouts",
+    "LegalMath.RemainingClosure.EntitySemantics.learnReport_preserves_coherent_query",
+    "LegalMath.RemainingClosure.EntitySemantics.matched_decision_has_same_source",
+    "LegalMath.RemainingClosure.EntitySemantics.private_table_preserves_coherence",
+    "LegalMath.RemainingClosure.EntitySemantics.proofAt_known_assessment",
+    "LegalMath.RemainingClosure.EntitySemantics.selected_formula_refines_supported_world",
+    "LegalMath.RemainingClosure.EntitySemantics.selected_law_is_actual",
+    "LegalMath.RemainingClosure.EntitySemantics.selected_method_is_actual",
+    "LegalMath.RemainingClosure.FullEventLog.Business.complete_business_log_conservation",
+    "LegalMath.RemainingClosure.FullEventLog.Business.copied_payment_record_counts_once",
+    "LegalMath.RemainingClosure.FullEventLog.Business.measurements_not_collapsed",
+    "LegalMath.RemainingClosure.FullEventLog.Business.u00_event_identity",
+    "LegalMath.RemainingClosure.FullEventLog.CN.commands_injective",
+    "LegalMath.RemainingClosure.FullEventLog.CN.commands_runHistory",
+    "LegalMath.RemainingClosure.FullEventLog.CN.commands_runHistoryFrom",
+    "LegalMath.RemainingClosure.FullEventLog.CN.complete_history_all_readouts",
+    "LegalMath.RemainingClosure.FullEventLog.CN.complete_history_roundtrip",
+    "LegalMath.RemainingClosure.FullEventLog.CN.decodeGlobal_encodeGlobal",
+    "LegalMath.RemainingClosure.FullEventLog.CN.encodeGlobal_decodeGlobal",
+    "LegalMath.RemainingClosure.FullEventLog.CN.encodeGlobal_injective",
+    "LegalMath.RemainingClosure.FullEventLog.CN.new_occurrence_adds_one",
+    "LegalMath.RemainingClosure.FullEventLog.CN.occurrence_replay_preserves_events",
+    "LegalMath.RemainingClosure.FullEventLog.CN.record_only_counterexample",
+    "LegalMath.RemainingClosure.FullEventLog.CN.record_only_physical_event_count",
+    "LegalMath.RemainingClosure.FullEventLog.CN.replay_commands",
+    "LegalMath.RemainingClosure.FullEventLog.CN.runHistoryFrom_snoc",
+    "LegalMath.RemainingClosure.FullEventLog.CN.runHistory_commands",
+    "LegalMath.RemainingClosure.FullEventLog.CN.token_history_roundtrip",
+    "LegalMath.RemainingClosure.FullEventLog.CN.zero_step_keeps_initial",
+    "LegalMath.RemainingClosure.FullEventLog.CN.zero_step_roots_distinct",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.decode_encode",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encodeFrom_wellFormed",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encode_append",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encode_decode",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encode_injective",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encode_length",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.encode_wellFormed",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.every_readout_preserved",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.forget_append",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.forget_encodeFrom",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.fresh_operation_step",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.general_reports_need_not_be_single_valued",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.reports_pair_roundtrip",
+    "LegalMath.RemainingClosure.FullEventLog.Tokens.reports_roundtrip",
+    "LegalMath.RemainingClosure.PolicyIndependentFeedback.learned_policy_law_contraction",
+    "LegalMath.RemainingClosure.PolicyIndependentFeedback.step_atoms",
+    "LegalMath.RemainingClosure.PolicyIndependentFeedback.step_independent_of_policy",
+    "LegalMath.RemainingClosure.PolicyIndependentFeedback.update_same",
+    "LegalMath.RemainingClosure.UnifiedClosure.actual_projected_law",
+    "LegalMath.RemainingClosure.UnifiedClosure.actual_source_law_contracts",
+    "LegalMath.RemainingClosure.W1Atoms.after_distinct",
+    "LegalMath.RemainingClosure.W1Atoms.all_couplings_are_matrices",
+    "LegalMath.RemainingClosure.W1Atoms.coupling_four_atoms",
+    "LegalMath.RemainingClosure.W1Atoms.coupling_probability",
+    "LegalMath.RemainingClosure.W1Atoms.finite_cost_iInf",
+    "LegalMath.RemainingClosure.W1Atoms.step_supported_atoms",
+    "LegalMath.RemainingClosure.W1Atoms.twoAtomIdentification",
+    "LegalMath.RemainingClosure.W1Invariant.invariant_exists",
+    "LegalMath.RemainingClosure.W1Invariant.orbit_supported",
+    "LegalMath.RemainingClosure.W1Invariant.successive_distance",
+    "LegalMath.RemainingClosure.W1Invariant.successive_integrals",
+    "LegalMath.RemainingClosure.W1Invariant.test_gap",
+    "LegalMath.RemainingClosure.W1Invariant.uniqueInvariantLaw",
+    "LegalMath.RemainingClosure.W1Laws.P_supported",
+    "LegalMath.RemainingClosure.W1Laws.continuous_P",
+    "LegalMath.RemainingClosure.W1Laws.continuous_probability",
+    "LegalMath.RemainingClosure.W1Laws.coupling_probability",
+    "LegalMath.RemainingClosure.W1Laws.coupling_test_bound",
+    "LegalMath.RemainingClosure.W1Laws.dist_le_dstar",
+    "LegalMath.RemainingClosure.W1Laws.distributionW1_le_five",
+    "LegalMath.RemainingClosure.W1Laws.distributionW1_separates",
+    "LegalMath.RemainingClosure.W1Laws.distribution_test_bound",
+    "LegalMath.RemainingClosure.W1Laws.dstar_le_five",
+    "LegalMath.RemainingClosure.W1Laws.integral_P",
+    "LegalMath.RemainingClosure.W1Laws.invariant_unique",
+    "LegalMath.RemainingClosure.W1Laws.lipschitz_dstar_bound",
+    "LegalMath.RemainingClosure.W1Laws.supportedLaws_compact",
+    "LegalMath.RemainingClosure.W1Sharp.contraction_constant_sharp",
+    "LegalMath.RemainingClosure.W1Sharp.left_in_square",
+    "LegalMath.RemainingClosure.W1Sharp.right_in_square",
+    "LegalMath.RemainingClosure.W1Sharp.witness_distance",
+    "LegalMath.RemainingClosure.W1Sharp.witness_matrix_cost",
+    "LegalMath.RemainingClosure.W1Sharp.witness_primal_cost",
+    "LegalMath.RemainingClosure.W1Transport.couplingAt_cost",
+    "LegalMath.RemainingClosure.W1Transport.couplingAt_fst",
+    "LegalMath.RemainingClosure.W1Transport.couplingAt_mem",
+    "LegalMath.RemainingClosure.W1Transport.couplingAt_snd",
+    "LegalMath.RemainingClosure.W1Transport.coupling_supported",
+    "LegalMath.RemainingClosure.W1Transport.distributionW1_eq_iInf",
+    "LegalMath.RemainingClosure.W1Transport.distributionW1_le_cost",
+    "LegalMath.RemainingClosure.W1Transport.generalW1Lift",
+    "LegalMath.RemainingClosure.W1Transport.measurable_dstar",
+    "LegalMath.RemainingClosure.W1Transport.transported_cost",
+    "LegalMath.RemainingClosure.W1Transport.transported_fst",
+    "LegalMath.RemainingClosure.W1Transport.transported_snd",
+    "LegalMath.RemainingClosure.W1Transport.weight_nonneg",
     "LegalMath20261108.BoundedRecall.action_type_preserved",
     "LegalMath20261108.BoundedRecall.core_carrier_finite",
     "LegalMath20261108.BoundedRecall.from_toFiniteRecord",
@@ -4317,6 +4694,140 @@
     "LegalMath20261110.OccurrenceHistory.append_wellFormed",
     "LegalMath20261110.OccurrenceHistory.fresh_not_mem",
     "LegalMath20261110.OccurrenceHistory.record_count_once",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.actual_zero_likelihood_is_pending",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.excluded_material_stays_unusable",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.excluded_report_cannot_reenter_learning",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.null_observation_not_identified",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.positive_event_conditioning",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.positive_mass_updates",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.positive_observation_fiber",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.regular_conditional_exists",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.regular_conditional_unique_ae",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.unresolved_evidence_query_keeps_pending",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.zero_mass_keeps_prior",
+    "LegalMath20261110.RemainingClosure.EvidenceConditioning.zero_mass_normalization_is_not_probability",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.active_interpretation_menu",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.active_robust_business_closed_loop",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.active_robust_glb",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.arbitrary_interpretations_finite_menu",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.best_ge_base",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.best_ge_member",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.best_mem",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.best_value",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.choice_keeps_actual_update",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.common_branch_optimizer",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.compact_interpretation_min_attained",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.criteria_coincide_on_interpretation_independence",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.empty_active_interpretations_exit",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.empty_interpretations_exit",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.empty_menu_exit",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.finite_menu_argmax",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.measurable_active_choice_on_discrete_history",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.measurable_bayes",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.measurable_best",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.measurable_countable_robust",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.measurable_separable_robust",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.minimax_and_expectation_do_not_commute",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.next_choice_reads_actual_post",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.nonmeasurable_winning_region_counterexample",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.open_interval_has_no_maximizer",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.robust_business_closed_loop",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.robust_error_transport",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.robust_le_bayes",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.robust_le_branch",
+    "LegalMath20261110.RemainingClosure.InterpretationChoice.unbounded_menu_has_named_exit",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.actual_private_policy_is_permitted",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.core_direct_learning_adequacy",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.correlation_is_not_independent_product",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.equal_personal_records_no_leak",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.finite_learning_equilibrium_and_kuhn",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.guardedStep_decreases_rank",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.guardedStep_of_nash",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.guarded_gain_is_real",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.guarded_learning_selection_converges",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.kuhn_preserves_joint_history_learning_payoff",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.learningPolicy_raw",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.menuChoice_permitted",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.menuChoice_support",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.native_step_joint_learning",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.next_decision_uses_actual_personal_update",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.potentialRank_decreases",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.privateParameter_append",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.private_learning_selection_joint_converges",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.private_parameters_advance",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.profitable_move_is_detected",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.same_actual_joint_post",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.simultaneous_best_replies_can_cycle",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.strict_rank_trace",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.two_player_learning_instance",
+    "LegalMath20261110.RemainingClosure.MultiAgentFeedback.two_player_learning_kuhn",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.compProd_map_semiconjugacy",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.complete_prefix_transport",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.full_event_history_path_transport",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.full_event_history_readout_transport",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.gluePrefix_restrict",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.mapPath_restrict",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.mapPrefix_glue",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.measurable_constantPrefix",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.measurable_gluePrefix",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.measurable_mapPath",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.measurable_mapPrefix",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.pathLaw_transport",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.pathLaw_transport_initial",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.path_measure_ext",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.prefixLaw_succ",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.prefixLaw_zero",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.response_finite_prefix_joint_law",
+    "LegalMath20261110.RemainingClosure.ProcessTransport.response_full_path_joint_law",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.actual_refresh_keeps_authority_and_history",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.actual_refresh_transports_invariant",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.arbitrary_switching_need_not_converge",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.clock_step_apply",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.clock_step_closed",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.clock_time_iterations",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.clocked_path_invariant",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.commuting_changes_have_unique_attractor",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.current_evaluation_uses_actual_refreshed_environment",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.every_alternating_change_is_strictly_contracting",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.evolve_fixed",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.measurable_clockInvariant",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.nonautonomous_forgetting",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.nonautonomous_markov",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.nonautonomous_path_invariant",
+    "LegalMath20261110.RemainingClosure.RuleEvolution.old_cutoff_survives_later_refresh",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.actual_arrival_commutes",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.actual_joint_arrival_law",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.actual_joint_arrival_readout_law",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.actual_private_post_is_original_source_step",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.arbitrary_arrival_markov",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.arrival_preserves_actual_business",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.completed_request_leaves_pending_queue",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.next_policy_uses_actual_arrival_post",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.replay_append",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.revision_consumes_actual_corrected_store",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.GeneralArrival.unknown_request_remains_pending",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.actual_negative_requires_closed_window",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.actual_revision_and_refit",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.actual_unclosed_window_is_pending",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.completed_eq_nil",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.completed_feedback_changes_controlled_choice",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.completion_update_eq",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.controlled_next_choice_reads_completed_feedback",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.due_time_exact",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.measurable_learnBatch",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.measurable_numeric",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.measurable_thresholdChoice",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.measurable_visibleTimedHistory",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.no_fabricated_zero_label",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.noncompletion_stays_pending",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.ordered_occurrences_retained",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.pending_continuation_adds_no_observation",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.pending_episode_keeps_learner_when_queue_empty",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.pending_episode_on_original_chain",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.pending_is_needed",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.uncompleted_events_do_not_update",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.variable_delay_markov",
+    "LegalMath20261110.RemainingClosure.TemporalFeedback.visible_policy_no_leak",
     "Math.Coupling.hasCoupling_proj_iff_map_eq",
     "Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint",
     "Math.Optimization.LocalGlobal.isFixedPoint_of_eq",
@@ -4782,8 +5293,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "040911320841054779dbf00c210b9e1885545c6cd21374c4bc8379a7f6e34b1e",
-   "size_bytes": 321018,
+   "sha256": "c02a19e636d37c5194d1d90f41027bb47ec194d37bd288e12018f4292a2d0558",
+   "size_bytes": 367811,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -51057,6 +51568,3077 @@
   {
    "declarations": [],
    "imports": [
+    "JurisLean.RemainingClosure.CNSemanticConnection",
+    "JurisLean.RemainingClosure.CouplingLift",
+    "JurisLean.RemainingClosure.EntitySemantics",
+    "JurisLean.RemainingClosure.EvidenceConditioning",
+    "JurisLean.RemainingClosure.FullEventLog",
+    "JurisLean.RemainingClosure.InterpretationChoice",
+    "JurisLean.RemainingClosure.MultiAgentFeedback",
+    "JurisLean.RemainingClosure.PolicyIndependentFeedback",
+    "JurisLean.RemainingClosure.ProcessTransport",
+    "JurisLean.RemainingClosure.RuleEvolution",
+    "JurisLean.RemainingClosure.TemporalFeedback",
+    "JurisLean.RemainingClosure.UnifiedClosure",
+    "JurisLean.RemainingClosure.W1Audit"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/Audit.lean",
+   "print_axioms_targets": [],
+   "sha256": "0fe2e002fecc788fa1ed64c30ae21ff8ea33e7f2db4e43e48a1e7eb2ecd3e2e2",
+   "size_bytes": 663,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "replay_append"
+    },
+    {
+     "kind": "def",
+     "name": "encode"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_sequence_catalog"
+    },
+    {
+     "kind": "def",
+     "name": "model"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_post_commutes"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_step_lintegral"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_step_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_action_reads_actual_post"
+    },
+    {
+     "kind": "theorem",
+     "name": "readout_kernel_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_legal_step_worlds"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_learning_frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "learn_retained_actual_table"
+    },
+    {
+     "kind": "structure",
+     "name": "EntityQuery"
+    },
+    {
+     "kind": "def",
+     "name": "recordedDecision"
+    },
+    {
+     "kind": "def",
+     "name": "bindingReadout"
+    },
+    {
+     "kind": "structure",
+     "name": "SixJudgments"
+    },
+    {
+     "kind": "def",
+     "name": "sixJudgments"
+    },
+    {
+     "kind": "structure",
+     "name": "FourEffects"
+    },
+    {
+     "kind": "def",
+     "name": "fourEffects"
+    },
+    {
+     "kind": "def",
+     "name": "legalPermission"
+    },
+    {
+     "kind": "def",
+     "name": "jointLegalReadout"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_joint_legal_readout"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_entity_feedback_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "learnReport_entity_frame"
+    },
+    {
+     "kind": "def",
+     "name": "representedReply"
+    },
+    {
+     "kind": "theorem",
+     "name": "representedReply_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "formation_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "lifecycle_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "agency_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "jurisdiction_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "evidence_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "acquisition_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "offense_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "feedbackAccepted"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcy_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "compensation_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "rights_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "feedbackInterpreted"
+    },
+    {
+     "kind": "theorem",
+     "name": "interpretation_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "feedbackBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "resJudicata_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "proposal_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "material"
+    },
+    {
+     "kind": "theorem",
+     "name": "retained_call"
+    },
+    {
+     "kind": "theorem",
+     "name": "fit_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "probability_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "causal_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "bargain_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "cash_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "exact_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "behavior_actual_selected"
+    },
+    {
+     "kind": "theorem",
+     "name": "behavior_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "rsi_feedback"
+    },
+    {
+     "kind": "lemma",
+     "name": "actual_head_is_found"
+    },
+    {
+     "kind": "theorem",
+     "name": "fit_to_private_feedback"
+    },
+    {
+     "kind": "theorem",
+     "name": "rsi_loaded_report_table"
+    },
+    {
+     "kind": "def",
+     "name": "signedHolds"
+    },
+    {
+     "kind": "theorem",
+     "name": "explicit_negative_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_support_is_not_negation"
+    },
+    {
+     "kind": "lemma",
+     "name": "signed_refines"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_closure_same_cn_world"
+    },
+    {
+     "kind": "theorem",
+     "name": "provenance_same_cn_world"
+    },
+    {
+     "kind": "theorem",
+     "name": "must_facts_strict_counterexample"
+    },
+    {
+     "kind": "def",
+     "name": "method"
+    },
+    {
+     "kind": "def",
+     "name": "queryFormula"
+    },
+    {
+     "kind": "def",
+     "name": "decode"
+    },
+    {
+     "kind": "def",
+     "name": "rules"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_method"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_admitted_seed"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_rule_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "admitted_closure_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "read"
+    },
+    {
+     "kind": "def",
+     "name": "candidate"
+    },
+    {
+     "kind": "def",
+     "name": "models"
+    },
+    {
+     "kind": "def",
+     "name": "labelLoss"
+    },
+    {
+     "kind": "def",
+     "name": "sample"
+    },
+    {
+     "kind": "def",
+     "name": "fitted"
+    },
+    {
+     "kind": "def",
+     "name": "fitInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "native_fit_output"
+    },
+    {
+     "kind": "theorem",
+     "name": "fitted_numeric_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "fitted_original_after"
+    },
+    {
+     "kind": "def",
+     "name": "freshId"
+    },
+    {
+     "kind": "lemma",
+     "name": "freshId_not_mem"
+    },
+    {
+     "kind": "def",
+     "name": "materialId"
+    },
+    {
+     "kind": "def",
+     "name": "cashId"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_material_not_key"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_material_absent"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_material_not_registered"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_cash_not_event"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_material_filter_empty"
+    },
+    {
+     "kind": "def",
+     "name": "ModelReady"
+    },
+    {
+     "kind": "def",
+     "name": "FitReady"
+    },
+    {
+     "kind": "lemma",
+     "name": "fitReady_of_modelReady"
+    },
+    {
+     "kind": "lemma",
+     "name": "fit_fresh_admit"
+    },
+    {
+     "kind": "lemma",
+     "name": "fit_fresh_learn"
+    },
+    {
+     "kind": "lemma",
+     "name": "fresh_request"
+    },
+    {
+     "kind": "def",
+     "name": "observedAtom"
+    },
+    {
+     "kind": "def",
+     "name": "event"
+    },
+    {
+     "kind": "def",
+     "name": "raw"
+    },
+    {
+     "kind": "def",
+     "name": "receipt"
+    },
+    {
+     "kind": "def",
+     "name": "input"
+    },
+    {
+     "kind": "def",
+     "name": "physical"
+    },
+    {
+     "kind": "def",
+     "name": "recorded"
+    },
+    {
+     "kind": "def",
+     "name": "admitted"
+    },
+    {
+     "kind": "def",
+     "name": "prepared"
+    },
+    {
+     "kind": "lemma",
+     "name": "physical_actual"
+    },
+    {
+     "kind": "lemma",
+     "name": "recorded_actual"
+    },
+    {
+     "kind": "lemma",
+     "name": "admitted_actual"
+    },
+    {
+     "kind": "lemma",
+     "name": "prepared_actual"
+    },
+    {
+     "kind": "lemma",
+     "name": "prepared_lookup"
+    },
+    {
+     "kind": "lemma",
+     "name": "prepared_allowed"
+    },
+    {
+     "kind": "def",
+     "name": "fitPost"
+    },
+    {
+     "kind": "def",
+     "name": "learned"
+    },
+    {
+     "kind": "lemma",
+     "name": "fitPost_formula"
+    },
+    {
+     "kind": "lemma",
+     "name": "fitPost_norm"
+    },
+    {
+     "kind": "lemma",
+     "name": "fitPost_cell"
+    },
+    {
+     "kind": "lemma",
+     "name": "learned_formula"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_read"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_modelReady"
+    },
+    {
+     "kind": "def",
+     "name": "preparationCommands"
+    },
+    {
+     "kind": "theorem",
+     "name": "preparation_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_events"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_ledger"
+    },
+    {
+     "kind": "structure",
+     "name": "LegalReady"
+    },
+    {
+     "kind": "lemma",
+     "name": "LegalReady.fit"
+    },
+    {
+     "kind": "def",
+     "name": "initial"
+    },
+    {
+     "kind": "theorem",
+     "name": "initial_read"
+    },
+    {
+     "kind": "theorem",
+     "name": "initial_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_legal_ready"
+    },
+    {
+     "kind": "def",
+     "name": "actualWorld"
+    },
+    {
+     "kind": "lemma",
+     "name": "actualWorld_facts"
+    },
+    {
+     "kind": "lemma",
+     "name": "world_check"
+    },
+    {
+     "kind": "lemma",
+     "name": "source_admitted"
+    },
+    {
+     "kind": "def",
+     "name": "performanceLaw"
+    },
+    {
+     "kind": "def",
+     "name": "performanceMethod"
+    },
+    {
+     "kind": "lemma",
+     "name": "performance_selected_rule"
+    },
+    {
+     "kind": "lemma",
+     "name": "performance_selected_template"
+    },
+    {
+     "kind": "lemma",
+     "name": "current_admitted_view"
+    },
+    {
+     "kind": "lemma",
+     "name": "performance_assessed"
+    },
+    {
+     "kind": "lemma",
+     "name": "performance_agreement"
+    },
+    {
+     "kind": "lemma",
+     "name": "actual_permission"
+    },
+    {
+     "kind": "def",
+     "name": "payment"
+    },
+    {
+     "kind": "lemma",
+     "name": "cash_source_known"
+    },
+    {
+     "kind": "lemma",
+     "name": "new_cash_not_ledger"
+    },
+    {
+     "kind": "lemma",
+     "name": "learned_payment_event"
+    },
+    {
+     "kind": "def",
+     "name": "cashPost"
+    },
+    {
+     "kind": "lemma",
+     "name": "performPayment_actual"
+    },
+    {
+     "kind": "lemma",
+     "name": "cashPost_ready"
+    },
+    {
+     "kind": "lemma",
+     "name": "cashPost_world_check"
+    },
+    {
+     "kind": "lemma",
+     "name": "performPaired_actual"
+    },
+    {
+     "kind": "def",
+     "name": "paymentCall"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_payment"
+    },
+    {
+     "kind": "def",
+     "name": "episode"
+    },
+    {
+     "kind": "def",
+     "name": "episodeCommands"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_read"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_keeps_events"
+    },
+    {
+     "kind": "def",
+     "name": "run"
+    },
+    {
+     "kind": "def",
+     "name": "rationalRun"
+    },
+    {
+     "kind": "theorem",
+     "name": "run_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "run_read"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_finite_prefix"
+    },
+    {
+     "kind": "def",
+     "name": "amount"
+    },
+    {
+     "kind": "lemma",
+     "name": "amount_nonnegative"
+    },
+    {
+     "kind": "def",
+     "name": "payload"
+    },
+    {
+     "kind": "def",
+     "name": "post"
+    },
+    {
+     "kind": "lemma",
+     "name": "native_source"
+    },
+    {
+     "kind": "lemma",
+     "name": "event_present"
+    },
+    {
+     "kind": "lemma",
+     "name": "post_ready"
+    },
+    {
+     "kind": "lemma",
+     "name": "post_world"
+    },
+    {
+     "kind": "lemma",
+     "name": "raw_performance"
+    },
+    {
+     "kind": "lemma",
+     "name": "paired_performance"
+    },
+    {
+     "kind": "def",
+     "name": "context"
+    },
+    {
+     "kind": "theorem",
+     "name": "public_performance"
+    },
+    {
+     "kind": "def",
+     "name": "episode"
+    },
+    {
+     "kind": "def",
+     "name": "commands"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_episode"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_read"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_ready"
+    },
+    {
+     "kind": "theorem",
+     "name": "episode_events"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_cash_payoff"
+    },
+    {
+     "kind": "def",
+     "name": "score"
+    },
+    {
+     "kind": "def",
+     "name": "choose"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_formula"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_native_choice"
+    },
+    {
+     "kind": "theorem",
+     "name": "chosen_maximizes_actual_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_from_same_xi"
+    },
+    {
+     "kind": "theorem",
+     "name": "learning_changes_actual_choice"
+    },
+    {
+     "kind": "theorem",
+     "name": "expected_amount"
+    },
+    {
+     "kind": "def",
+     "name": "paidRead"
+    },
+    {
+     "kind": "def",
+     "name": "realizedPayoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "realizedPayoff_eq_amount"
+    },
+    {
+     "kind": "theorem",
+     "name": "expected_actual_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "native_choice_maximizes_actual_expected_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_reachable_learning_changes_choice"
+    },
+    {
+     "kind": "def",
+     "name": "run"
+    },
+    {
+     "kind": "lemma",
+     "name": "run_ready"
+    },
+    {
+     "kind": "lemma",
+     "name": "run_append"
+    },
+    {
+     "kind": "def",
+     "name": "fullCommands"
+    },
+    {
+     "kind": "lemma",
+     "name": "full_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_history_decoded"
+    },
+    {
+     "kind": "def",
+     "name": "actual"
+    },
+    {
+     "kind": "def",
+     "name": "projection"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_projection"
+    },
+    {
+     "kind": "lemma",
+     "name": "actual_ready"
+    },
+    {
+     "kind": "lemma",
+     "name": "projection_append"
+    },
+    {
+     "kind": "def",
+     "name": "responseKernel"
+    },
+    {
+     "kind": "def",
+     "name": "sourceModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_update_commutes"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_private_is_actual"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_choice_reads_loaded_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_kernel_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_source_path_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_source_prefix_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_response_from_same_xi"
+    },
+    {
+     "kind": "theorem",
+     "name": "calibrated_actual_table"
+    },
+    {
+     "kind": "structure",
+     "name": "InstitutionFrame"
+    },
+    {
+     "kind": "lemma",
+     "name": "actual_institution_frame"
+    },
+    {
+     "kind": "lemma",
+     "name": "old_evidence_preserved"
+    },
+    {
+     "kind": "lemma",
+     "name": "actual_retained_report"
+    },
+    {
+     "kind": "def",
+     "name": "reading"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_reading"
+    },
+    {
+     "kind": "def",
+     "name": "learningKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_kernel_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "following_policy_reads_actual_post"
+    },
+    {
+     "kind": "def",
+     "name": "afterCommand"
+    },
+    {
+     "kind": "def",
+     "name": "completeCommands"
+    },
+    {
+     "kind": "lemma",
+     "name": "complete_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "common_model_realization"
+    },
+    {
+     "kind": "def",
+     "name": "Connected"
+    },
+    {
+     "kind": "lemma",
+     "name": "connected"
+    },
+    {
+     "kind": "theorem",
+     "name": "lifecycle_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "agency_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "jurisdictionPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "jurisdiction_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "evidence_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "acquisitionPost"
+    },
+    {
+     "kind": "def",
+     "name": "badFaithPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "acquisition_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "offensePost"
+    },
+    {
+     "kind": "def",
+     "name": "missingOffensePost"
+    },
+    {
+     "kind": "theorem",
+     "name": "offense_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcy_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "missingCompensationPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "compensation_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "rightsPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "rights_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "interpretation_continuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "resJudicata_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "proposalPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "proposal_continuation"
+    },
+    {
+     "kind": "def",
+     "name": "lateLifecyclePost"
+    },
+    {
+     "kind": "def",
+     "name": "overScopeAgencyPost"
+    },
+    {
+     "kind": "def",
+     "name": "exclusiveJurisdictionPost"
+    },
+    {
+     "kind": "def",
+     "name": "lostAcquisitionPost"
+    },
+    {
+     "kind": "theorem",
+     "name": "failure_exits_continue"
+    }
+   ],
+   "imports": [
+    "JurisLean.CN.Completion20261105.EngineExamples",
+    "JurisLean.CN.Completion20261105.Examples",
+    "JurisLean.CN.Completion20261105.WorldSemantics",
+    "JurisLean.Candidates.CompilerOriginalBoundaries20261031",
+    "JurisLean.Candidates.CompilerProvenance20261027",
+    "JurisLean.RemainingClosure.FullEventLog",
+    "JurisLean.RemainingClosure.ProcessTransport"
+   ],
+   "lemma_count": 58,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/CNSemanticConnection.lean",
+   "print_axioms_targets": [
+    "CompilerBridge.Actual.admitted_closure_feedback",
+    "CompilerBridge.Actual.current_admitted_seed",
+    "CompilerBridge.Actual.current_nonempty",
+    "CompilerBridge.explicit_negative_iff",
+    "CompilerBridge.finite_closure_same_cn_world",
+    "CompilerBridge.missing_support_is_not_negation",
+    "CompilerBridge.must_facts_strict_counterexample",
+    "CompilerBridge.provenance_same_cn_world",
+    "Engines.bargain_feedback",
+    "Engines.behavior_actual_selected",
+    "Engines.behavior_feedback",
+    "Engines.cash_feedback",
+    "Engines.causal_feedback",
+    "Engines.exact_feedback",
+    "Engines.fit_feedback",
+    "Engines.fit_to_private_feedback",
+    "Engines.probability_feedback",
+    "Engines.retained_call",
+    "Engines.rsi_feedback",
+    "Engines.rsi_loaded_report_table",
+    "InstitutionalContinuation.acquisition_continuation",
+    "InstitutionalContinuation.actual_institution_frame",
+    "InstitutionalContinuation.actual_kernel_projection",
+    "InstitutionalContinuation.actual_retained_report",
+    "InstitutionalContinuation.agency_continuation",
+    "InstitutionalContinuation.bankruptcy_continuation",
+    "InstitutionalContinuation.common_model_realization",
+    "InstitutionalContinuation.compensation_continuation",
+    "InstitutionalContinuation.complete_replay",
+    "InstitutionalContinuation.connected",
+    "InstitutionalContinuation.evidence_continuation",
+    "InstitutionalContinuation.failure_exits_continue",
+    "InstitutionalContinuation.following_policy_reads_actual_post",
+    "InstitutionalContinuation.interpretation_continuation",
+    "InstitutionalContinuation.jurisdiction_continuation",
+    "InstitutionalContinuation.lifecycle_continuation",
+    "InstitutionalContinuation.offense_continuation",
+    "InstitutionalContinuation.old_evidence_preserved",
+    "InstitutionalContinuation.proposal_continuation",
+    "InstitutionalContinuation.resJudicata_continuation",
+    "InstitutionalContinuation.rights_continuation",
+    "Institutions.acquisition_feedback",
+    "Institutions.agency_feedback",
+    "Institutions.bankruptcy_feedback",
+    "Institutions.compensation_feedback",
+    "Institutions.evidence_feedback",
+    "Institutions.formation_feedback",
+    "Institutions.interpretation_feedback",
+    "Institutions.jurisdiction_feedback",
+    "Institutions.lifecycle_feedback",
+    "Institutions.offense_feedback",
+    "Institutions.proposal_feedback",
+    "Institutions.resJudicata_feedback",
+    "Institutions.rights_feedback",
+    "Numeric.Menu.actual_cash_payoff",
+    "Numeric.Menu.actual_episode",
+    "Numeric.Menu.actual_native_choice",
+    "Numeric.Menu.actual_reachable_learning_changes_choice",
+    "Numeric.Menu.calibrated_actual_table",
+    "Numeric.Menu.chosen_maximizes_actual_cash",
+    "Numeric.Menu.complete_source_path_projection",
+    "Numeric.Menu.complete_source_prefix_projection",
+    "Numeric.Menu.episode_events",
+    "Numeric.Menu.episode_read",
+    "Numeric.Menu.episode_ready",
+    "Numeric.Menu.episode_replay",
+    "Numeric.Menu.event_present",
+    "Numeric.Menu.expected_actual_cash",
+    "Numeric.Menu.expected_amount",
+    "Numeric.Menu.full_history_decoded",
+    "Numeric.Menu.full_replay",
+    "Numeric.Menu.learning_changes_actual_choice",
+    "Numeric.Menu.native_choice_maximizes_actual_expected_cash",
+    "Numeric.Menu.native_source",
+    "Numeric.Menu.next_choice_reads_loaded_table",
+    "Numeric.Menu.post_ready",
+    "Numeric.Menu.projection_append",
+    "Numeric.Menu.public_performance",
+    "Numeric.Menu.raw_performance",
+    "Numeric.Menu.realizedPayoff_eq_amount",
+    "Numeric.Menu.run_append",
+    "Numeric.Menu.run_ready",
+    "Numeric.Menu.score_from_same_xi",
+    "Numeric.Menu.source_kernel_projection",
+    "Numeric.Menu.source_private_is_actual",
+    "Numeric.Menu.source_response_from_same_xi",
+    "Numeric.Menu.source_update_commutes",
+    "Numeric.actual_payment",
+    "Numeric.actual_permission",
+    "Numeric.admitted_actual",
+    "Numeric.cashPost_ready",
+    "Numeric.cash_source_known",
+    "Numeric.episode_keeps_events",
+    "Numeric.episode_read",
+    "Numeric.episode_ready",
+    "Numeric.episode_replay",
+    "Numeric.every_finite_prefix",
+    "Numeric.fitPost_formula",
+    "Numeric.fitted_numeric_projection",
+    "Numeric.fitted_original_after",
+    "Numeric.initial_read",
+    "Numeric.initial_ready",
+    "Numeric.learned_events",
+    "Numeric.learned_formula",
+    "Numeric.learned_ledger",
+    "Numeric.learned_legal_ready",
+    "Numeric.learned_modelReady",
+    "Numeric.learned_payment_event",
+    "Numeric.learned_read",
+    "Numeric.learned_ready",
+    "Numeric.native_fit_output",
+    "Numeric.new_material_absent",
+    "Numeric.performPaired_actual",
+    "Numeric.performPayment_actual",
+    "Numeric.performance_assessed",
+    "Numeric.performance_selected_rule",
+    "Numeric.performance_selected_template",
+    "Numeric.physical_actual",
+    "Numeric.preparation_replay",
+    "Numeric.prepared_actual",
+    "Numeric.prepared_allowed",
+    "Numeric.prepared_lookup",
+    "Numeric.recorded_actual",
+    "Numeric.run_read",
+    "Numeric.run_ready",
+    "Numeric.source_admitted",
+    "Numeric.world_check",
+    "actual_learning_frame",
+    "actual_legal_step_worlds",
+    "actual_post_commutes",
+    "actual_step_law",
+    "actual_step_lintegral",
+    "encode_injective",
+    "finite_sequence_catalog",
+    "learnReport_entity_frame",
+    "learn_retained_actual_table",
+    "legal_entity_feedback_law",
+    "measurable_joint_legal_readout",
+    "next_action_reads_actual_post",
+    "readout_kernel_transport",
+    "replay_append",
+    "representedReply_eq"
+   ],
+   "sha256": "c46b239b02cf4c5971add07af2918cc2ede83a50b882879fca47f2929accb00f",
+   "size_bytes": 140107,
+   "theorem_count": 113,
+   "theorem_count_bol_convention": 113
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "couplings"
+    },
+    {
+     "kind": "def",
+     "name": "primal"
+    },
+    {
+     "kind": "lemma",
+     "name": "primal_eq_iInf"
+    },
+    {
+     "kind": "lemma",
+     "name": "lifted_map"
+    },
+    {
+     "kind": "theorem",
+     "name": "contraction_of_point_coupling"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_feedback_lift"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Transport"
+   ],
+   "lemma_count": 2,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/CouplingLift.lean",
+   "print_axioms_targets": [
+    "actual_feedback_lift",
+    "contraction_of_point_coupling"
+   ],
+   "sha256": "32a21221b952ec8ca67d2cb73ec3da1e768eeb0b3cbfaa12cdb22bb13c07ec7b",
+   "size_bytes": 5909,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "CoherentQuery"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_law_is_actual"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_method_is_actual"
+    },
+    {
+     "kind": "theorem",
+     "name": "proofAt_known_assessment"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_judgment_refines_same_world"
+    },
+    {
+     "kind": "theorem",
+     "name": "determinate_assessment_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "correctness_uses_same_assessment"
+    },
+    {
+     "kind": "theorem",
+     "name": "private_table_preserves_coherence"
+    },
+    {
+     "kind": "theorem",
+     "name": "learnReport_preserves_coherent_query"
+    },
+    {
+     "kind": "theorem",
+     "name": "learnReport_legal_readouts"
+    },
+    {
+     "kind": "def",
+     "name": "naturalFormula"
+    },
+    {
+     "kind": "def",
+     "name": "matchedDecision"
+    },
+    {
+     "kind": "theorem",
+     "name": "matched_decision_has_same_source"
+    },
+    {
+     "kind": "def",
+     "name": "formulaBindingReadout"
+    },
+    {
+     "kind": "def",
+     "name": "formulaSixJudgments"
+    },
+    {
+     "kind": "def",
+     "name": "formulaFourEffects"
+    },
+    {
+     "kind": "theorem",
+     "name": "formula_learnReport_legal_readouts"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_formula_checker_assessment"
+    },
+    {
+     "kind": "theorem",
+     "name": "selected_formula_refines_supported_world"
+    },
+    {
+     "kind": "theorem",
+     "name": "formula_entity_feedback_law"
+    },
+    {
+     "kind": "def",
+     "name": "query"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_is_coherent"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_proof_and_world_agree"
+    },
+    {
+     "kind": "def",
+     "name": "mismatched"
+    },
+    {
+     "kind": "theorem",
+     "name": "bare_query_counterexample"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_scope_is_not_same_question"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_stored_decision_formula"
+    },
+    {
+     "kind": "def",
+     "name": "compoundMethod"
+    },
+    {
+     "kind": "def",
+     "name": "compoundQuery"
+    },
+    {
+     "kind": "theorem",
+     "name": "compound_institution_same_question"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.CNSemanticConnection"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/EntitySemantics.lean",
+   "print_axioms_targets": [
+    "Actual.actual_proof_and_world_agree",
+    "Actual.actual_stored_decision_formula",
+    "Actual.bare_query_counterexample",
+    "Actual.compound_institution_same_question",
+    "Actual.query_is_coherent",
+    "Actual.same_scope_is_not_same_question",
+    "actual_formula_checker_assessment",
+    "actual_judgment_refines_same_world",
+    "correctness_uses_same_assessment",
+    "determinate_assessment_eq",
+    "formula_entity_feedback_law",
+    "formula_learnReport_legal_readouts",
+    "learnReport_legal_readouts",
+    "learnReport_preserves_coherent_query",
+    "matched_decision_has_same_source",
+    "private_table_preserves_coherence",
+    "proofAt_known_assessment",
+    "selected_formula_refines_supported_world",
+    "selected_law_is_actual",
+    "selected_method_is_actual"
+   ],
+   "sha256": "51a7a8cfb63f09be3b78ef2415af0bbaeb0d09641034d3cc1baf1137fbbc617a",
+   "size_bytes": 20117,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "positive_event_conditioning"
+    },
+    {
+     "kind": "theorem",
+     "name": "regular_conditional_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "regular_conditional_unique_ae"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_observation_fiber"
+    },
+    {
+     "kind": "inductive",
+     "name": "UpdateStatus"
+    },
+    {
+     "kind": "def",
+     "name": "conditionOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_mass_keeps_prior"
+    },
+    {
+     "kind": "theorem",
+     "name": "positive_mass_updates"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_mass_normalization_is_not_probability"
+    },
+    {
+     "kind": "def",
+     "name": "nullVersion₀"
+    },
+    {
+     "kind": "def",
+     "name": "nullVersion₁"
+    },
+    {
+     "kind": "theorem",
+     "name": "null_observation_not_identified"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_zero_likelihood_is_pending"
+    },
+    {
+     "kind": "theorem",
+     "name": "excluded_material_stays_unusable"
+    },
+    {
+     "kind": "theorem",
+     "name": "excluded_report_cannot_reenter_learning"
+    },
+    {
+     "kind": "theorem",
+     "name": "unresolved_evidence_query_keeps_pending"
+    }
+   ],
+   "imports": [
+    "JurisLean.CN.Completion20261105.Execution",
+    "Mathlib.Probability.ConditionalProbability",
+    "Mathlib.Probability.Kernel.Disintegration.Unique"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/EvidenceConditioning.lean",
+   "print_axioms_targets": [
+    "actual_zero_likelihood_is_pending",
+    "excluded_material_stays_unusable",
+    "excluded_report_cannot_reenter_learning",
+    "null_observation_not_identified",
+    "positive_event_conditioning",
+    "positive_observation_fiber",
+    "regular_conditional_exists",
+    "regular_conditional_unique_ae",
+    "zero_mass_keeps_prior"
+   ],
+   "sha256": "57f3bb5b63f36a1241b32ce409c2184dcb16f8c8a1d6f71acab801bbedaf848a",
+   "size_bytes": 8498,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "forget"
+    },
+    {
+     "kind": "def",
+     "name": "encodeFrom"
+    },
+    {
+     "kind": "def",
+     "name": "encode"
+    },
+    {
+     "kind": "theorem",
+     "name": "forget_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "forget_encodeFrom"
+    },
+    {
+     "kind": "theorem",
+     "name": "decode_encode"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_injective"
+    },
+    {
+     "kind": "def",
+     "name": "Canonical"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_decode"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "encodeFrom_wellFormed"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_wellFormed"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "fresh_operation_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_readout_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "encodedReports"
+    },
+    {
+     "kind": "theorem",
+     "name": "reports_pair_roundtrip"
+    },
+    {
+     "kind": "theorem",
+     "name": "reports_roundtrip"
+    },
+    {
+     "kind": "theorem",
+     "name": "general_reports_need_not_be_single_valued"
+    },
+    {
+     "kind": "def",
+     "name": "advance"
+    },
+    {
+     "kind": "def",
+     "name": "replay"
+    },
+    {
+     "kind": "def",
+     "name": "commands"
+    },
+    {
+     "kind": "def",
+     "name": "extendHistory"
+    },
+    {
+     "kind": "def",
+     "name": "runHistoryFrom"
+    },
+    {
+     "kind": "def",
+     "name": "runHistory"
+    },
+    {
+     "kind": "theorem",
+     "name": "commands_runHistoryFrom"
+    },
+    {
+     "kind": "theorem",
+     "name": "runHistoryFrom_snoc"
+    },
+    {
+     "kind": "theorem",
+     "name": "runHistory_commands"
+    },
+    {
+     "kind": "theorem",
+     "name": "commands_runHistory"
+    },
+    {
+     "kind": "theorem",
+     "name": "commands_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "token_history_roundtrip"
+    },
+    {
+     "kind": "def",
+     "name": "encodeGlobal"
+    },
+    {
+     "kind": "def",
+     "name": "decodeGlobal"
+    },
+    {
+     "kind": "theorem",
+     "name": "decodeGlobal_encodeGlobal"
+    },
+    {
+     "kind": "theorem",
+     "name": "encodeGlobal_decodeGlobal"
+    },
+    {
+     "kind": "theorem",
+     "name": "encodeGlobal_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_step_keeps_initial"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_step_roots_distinct"
+    },
+    {
+     "kind": "theorem",
+     "name": "replay_commands"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_history_roundtrip"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_history_all_readouts"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_only_counterexample"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_only_physical_event_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "occurrence_replay_preserves_events"
+    },
+    {
+     "kind": "theorem",
+     "name": "new_occurrence_adds_one"
+    },
+    {
+     "kind": "def",
+     "name": "eventKey"
+    },
+    {
+     "kind": "theorem",
+     "name": "u00_event_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "copied_payment_record_counts_once"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurements_not_collapsed"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_business_log_conservation"
+    }
+   ],
+   "imports": [
+    "JurisLean.CN.Completion20261105.Execution",
+    "JurisLean.Candidates.U00MeasuredRSIEntry20261031",
+    "JurisLean.Review20261110.BusinessTransport"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/FullEventLog.lean",
+   "print_axioms_targets": [
+    "Business.complete_business_log_conservation",
+    "Business.copied_payment_record_counts_once",
+    "Business.measurements_not_collapsed",
+    "Business.u00_event_identity",
+    "CN.commands_injective",
+    "CN.commands_runHistory",
+    "CN.commands_runHistoryFrom",
+    "CN.complete_history_all_readouts",
+    "CN.complete_history_roundtrip",
+    "CN.decodeGlobal_encodeGlobal",
+    "CN.encodeGlobal_decodeGlobal",
+    "CN.encodeGlobal_injective",
+    "CN.new_occurrence_adds_one",
+    "CN.occurrence_replay_preserves_events",
+    "CN.record_only_counterexample",
+    "CN.replay_commands",
+    "CN.runHistoryFrom_snoc",
+    "CN.runHistory_commands",
+    "CN.token_history_roundtrip",
+    "CN.zero_step_keeps_initial",
+    "CN.zero_step_roots_distinct",
+    "Tokens.decode_encode",
+    "Tokens.encode_decode",
+    "Tokens.encode_injective",
+    "Tokens.encode_wellFormed",
+    "Tokens.every_readout_preserved",
+    "Tokens.fresh_operation_step",
+    "Tokens.general_reports_need_not_be_single_valued",
+    "Tokens.reports_roundtrip"
+   ],
+   "sha256": "d84cb111b0ffef15779ee1b7aed0901c3c5d1f57b21221335991d3cbf026128f",
+   "size_bytes": 16412,
+   "theorem_count": 36,
+   "theorem_count_bol_convention": 36
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "valueSet"
+    },
+    {
+     "kind": "def",
+     "name": "robustValue"
+    },
+    {
+     "kind": "def",
+     "name": "best"
+    },
+    {
+     "kind": "lemma",
+     "name": "best_value"
+    },
+    {
+     "kind": "lemma",
+     "name": "best_mem"
+    },
+    {
+     "kind": "lemma",
+     "name": "best_ge_base"
+    },
+    {
+     "kind": "lemma",
+     "name": "best_ge_member"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_menu_argmax"
+    },
+    {
+     "kind": "inductive",
+     "name": "Recommendation"
+    },
+    {
+     "kind": "def",
+     "name": "recommend"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_interpretations_exit"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_menu_exit"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_interpretations_finite_menu"
+    },
+    {
+     "kind": "theorem",
+     "name": "unbounded_menu_has_named_exit"
+    },
+    {
+     "kind": "lemma",
+     "name": "robust_le_branch"
+    },
+    {
+     "kind": "theorem",
+     "name": "compact_interpretation_min_attained"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_error_transport"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_best"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_countable_robust"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_separable_robust"
+    },
+    {
+     "kind": "def",
+     "name": "withChoice"
+    },
+    {
+     "kind": "theorem",
+     "name": "choice_keeps_actual_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_choice_reads_actual_post"
+    },
+    {
+     "kind": "def",
+     "name": "bayesValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_le_bayes"
+    },
+    {
+     "kind": "theorem",
+     "name": "common_branch_optimizer"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_bayes"
+    },
+    {
+     "kind": "theorem",
+     "name": "criteria_coincide_on_interpretation_independence"
+    },
+    {
+     "kind": "def",
+     "name": "diagonalValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "minimax_and_expectation_do_not_commute"
+    },
+    {
+     "kind": "theorem",
+     "name": "open_interval_has_no_maximizer"
+    },
+    {
+     "kind": "def",
+     "name": "winningScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonmeasurable_winning_region_counterexample"
+    },
+    {
+     "kind": "def",
+     "name": "activeValueSet"
+    },
+    {
+     "kind": "def",
+     "name": "activeRobustValue"
+    },
+    {
+     "kind": "def",
+     "name": "recommendActive"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_active_interpretations_exit"
+    },
+    {
+     "kind": "lemma",
+     "name": "active_robust_glb"
+    },
+    {
+     "kind": "theorem",
+     "name": "active_interpretation_menu"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_active_choice_on_discrete_history"
+    },
+    {
+     "kind": "def",
+     "name": "businessValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_business_closed_loop"
+    },
+    {
+     "kind": "theorem",
+     "name": "active_robust_business_closed_loop"
+    }
+   ],
+   "imports": [
+    "JurisLean.BusinessProcessRealization",
+    "JurisLean.Review20261110.ObservationBridge",
+    "Mathlib.Topology.Order.IsLUB"
+   ],
+   "lemma_count": 7,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/InterpretationChoice.lean",
+   "print_axioms_targets": [
+    "arbitrary_interpretations_finite_menu",
+    "measurable_separable_robust",
+    "minimax_and_expectation_do_not_commute",
+    "next_choice_reads_actual_post",
+    "robust_business_closed_loop",
+    "robust_error_transport",
+    "robust_le_bayes"
+   ],
+   "sha256": "34413caae05bc05f9df89ec394993c70a6f77c6f356f6edb9182da74c7d9e3ae",
+   "size_bytes": 22491,
+   "theorem_count": 23,
+   "theorem_count_bol_convention": 23
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "PrivateLearning"
+    },
+    {
+     "kind": "def",
+     "name": "privateParameter"
+    },
+    {
+     "kind": "lemma",
+     "name": "privateParameter_append"
+    },
+    {
+     "kind": "def",
+     "name": "privateParameters"
+    },
+    {
+     "kind": "theorem",
+     "name": "private_parameters_advance"
+    },
+    {
+     "kind": "def",
+     "name": "learningPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "learningPolicy_raw"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_decision_uses_actual_personal_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "equal_personal_records_no_leak"
+    },
+    {
+     "kind": "def",
+     "name": "unifiedReadout"
+    },
+    {
+     "kind": "def",
+     "name": "learnedPost"
+    },
+    {
+     "kind": "lemma",
+     "name": "same_actual_joint_post"
+    },
+    {
+     "kind": "theorem",
+     "name": "native_step_joint_learning"
+    },
+    {
+     "kind": "theorem",
+     "name": "core_direct_learning_adequacy"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_preserves_joint_history_learning_payoff"
+    },
+    {
+     "kind": "def",
+     "name": "localLearningPlan"
+    },
+    {
+     "kind": "def",
+     "name": "candidateGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_learning_equilibrium_and_kuhn"
+    },
+    {
+     "kind": "def",
+     "name": "bitLearning"
+    },
+    {
+     "kind": "def",
+     "name": "privateBitChoice"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_player_learning_instance"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_player_learning_kuhn"
+    },
+    {
+     "kind": "def",
+     "name": "menuChoice"
+    },
+    {
+     "kind": "theorem",
+     "name": "menuChoice_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "menuChoice_permitted"
+    },
+    {
+     "kind": "def",
+     "name": "menuLearningPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_private_policy_is_permitted"
+    },
+    {
+     "kind": "def",
+     "name": "fairBit"
+    },
+    {
+     "kind": "def",
+     "name": "sharedSignal"
+    },
+    {
+     "kind": "def",
+     "name": "independentSignals"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlation_is_not_independent_product"
+    },
+    {
+     "kind": "def",
+     "name": "HasNoGain"
+    },
+    {
+     "kind": "def",
+     "name": "EstimatedGain"
+    },
+    {
+     "kind": "def",
+     "name": "guardedStep"
+    },
+    {
+     "kind": "def",
+     "name": "guardedPath"
+    },
+    {
+     "kind": "lemma",
+     "name": "guarded_gain_is_real"
+    },
+    {
+     "kind": "lemma",
+     "name": "profitable_move_is_detected"
+    },
+    {
+     "kind": "lemma",
+     "name": "guardedStep_of_nash"
+    },
+    {
+     "kind": "def",
+     "name": "potentialRank"
+    },
+    {
+     "kind": "lemma",
+     "name": "potentialRank_decreases"
+    },
+    {
+     "kind": "lemma",
+     "name": "guardedStep_decreases_rank"
+    },
+    {
+     "kind": "lemma",
+     "name": "strict_rank_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "guarded_learning_selection_converges"
+    },
+    {
+     "kind": "theorem",
+     "name": "private_learning_selection_joint_converges"
+    },
+    {
+     "kind": "def",
+     "name": "simultaneousReply"
+    },
+    {
+     "kind": "def",
+     "name": "coordinationPayoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "simultaneous_best_replies_can_cycle"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.FormalTail20261024",
+    "JurisLean.External.GameTheory.Core.GameProperties",
+    "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
+    "JurisLean.FiniteHorizonAdequacy"
+   ],
+   "lemma_count": 8,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/MultiAgentFeedback.lean",
+   "print_axioms_targets": [
+    "core_direct_learning_adequacy",
+    "correlation_is_not_independent_product",
+    "finite_learning_equilibrium_and_kuhn",
+    "guarded_learning_selection_converges",
+    "kuhn_preserves_joint_history_learning_payoff",
+    "menuChoice_permitted",
+    "native_step_joint_learning",
+    "next_decision_uses_actual_personal_update",
+    "private_learning_selection_joint_converges",
+    "private_parameters_advance",
+    "simultaneous_best_replies_can_cycle"
+   ],
+   "sha256": "5e83ea3756ff0ae05efb1307f2fc352d4acb6119a1f9f5f25d6aba8aab30bbec",
+   "size_bytes": 32003,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "withPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "update_same"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_atoms"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_independent_of_policy"
+    },
+    {
+     "kind": "theorem",
+     "name": "learned_policy_law_contraction"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Transport"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/PolicyIndependentFeedback.lean",
+   "print_axioms_targets": [
+    "learned_policy_law_contraction",
+    "step_independent_of_policy",
+    "update_same"
+   ],
+   "sha256": "51097b0a1684812517081ce7f77edb0ce3ddbb027e11002fbe5a78b112da6c60",
+   "size_bytes": 2885,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "mapPrefix"
+    },
+    {
+     "kind": "def",
+     "name": "mapPath"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_mapPrefix"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_mapPath"
+    },
+    {
+     "kind": "def",
+     "name": "constantPrefix"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_constantPrefix"
+    },
+    {
+     "kind": "def",
+     "name": "gluePrefix"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_gluePrefix"
+    },
+    {
+     "kind": "lemma",
+     "name": "gluePrefix_restrict"
+    },
+    {
+     "kind": "lemma",
+     "name": "mapPrefix_glue"
+    },
+    {
+     "kind": "lemma",
+     "name": "mapPath_restrict"
+    },
+    {
+     "kind": "theorem",
+     "name": "path_measure_ext"
+    },
+    {
+     "kind": "theorem",
+     "name": "compProd_map_semiconjugacy"
+    },
+    {
+     "kind": "def",
+     "name": "prefixLaw"
+    },
+    {
+     "kind": "lemma",
+     "name": "prefixLaw_zero"
+    },
+    {
+     "kind": "lemma",
+     "name": "prefixLaw_succ"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_prefix_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "pathLaw_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "pathLaw_transport_initial"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_event_history_path_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_event_history_readout_transport"
+    },
+    {
+     "kind": "theorem",
+     "name": "response_full_path_joint_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "response_finite_prefix_joint_law"
+    }
+   ],
+   "imports": [
+    "JurisLean.FeedbackHistoryBridge"
+   ],
+   "lemma_count": 9,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/ProcessTransport.lean",
+   "print_axioms_targets": [
+    "compProd_map_semiconjugacy",
+    "complete_prefix_transport",
+    "full_event_history_path_transport",
+    "full_event_history_readout_transport",
+    "pathLaw_transport",
+    "path_measure_ext",
+    "response_finite_prefix_joint_law",
+    "response_full_path_joint_law"
+   ],
+   "sha256": "8d9b928fdafd2015fe07e3478865836b3eee4a9ad814e4f3dd39d8bffa2c3891",
+   "size_bytes": 13316,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "indexedKernel"
+    },
+    {
+     "kind": "def",
+     "name": "clockedDynamics"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonautonomous_markov"
+    },
+    {
+     "kind": "lemma",
+     "name": "clock_step_apply"
+    },
+    {
+     "kind": "def",
+     "name": "clockInvariant"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_clockInvariant"
+    },
+    {
+     "kind": "lemma",
+     "name": "clock_step_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "clocked_path_invariant"
+    },
+    {
+     "kind": "lemma",
+     "name": "clock_time_iterations"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonautonomous_path_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "evolve"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonautonomous_forgetting"
+    },
+    {
+     "kind": "lemma",
+     "name": "evolve_fixed"
+    },
+    {
+     "kind": "theorem",
+     "name": "commuting_changes_have_unique_attractor"
+    },
+    {
+     "kind": "def",
+     "name": "alternating"
+    },
+    {
+     "kind": "def",
+     "name": "alternatingChange"
+    },
+    {
+     "kind": "theorem",
+     "name": "every_alternating_change_is_strictly_contracting"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_switching_need_not_converge"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_refresh_keeps_authority_and_history"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_refresh_transports_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "old_cutoff_survives_later_refresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "current_evaluation_uses_actual_refreshed_environment"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.U10_1RefreshRuleProtocol20261030",
+    "JurisLean.Review20261110.InvariantClosure",
+    "Mathlib.Topology.MetricSpace.Contracting"
+   ],
+   "lemma_count": 5,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/RuleEvolution.lean",
+   "print_axioms_targets": [
+    "actual_refresh_transports_invariant",
+    "arbitrary_switching_need_not_converge",
+    "commuting_changes_have_unique_attractor",
+    "current_evaluation_uses_actual_refreshed_environment",
+    "nonautonomous_forgetting",
+    "nonautonomous_markov",
+    "nonautonomous_path_invariant",
+    "old_cutoff_survives_later_refresh"
+   ],
+   "sha256": "632cac68ee0d01919b1bd657cb2a1e15b64233fa4a391653ba6598a79e0d2269",
+   "size_bytes": 13703,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "readyAt"
+    },
+    {
+     "kind": "def",
+     "name": "completedAt"
+    },
+    {
+     "kind": "def",
+     "name": "waitingAt"
+    },
+    {
+     "kind": "def",
+     "name": "submitted"
+    },
+    {
+     "kind": "def",
+     "name": "appendTimed"
+    },
+    {
+     "kind": "def",
+     "name": "batchLabels"
+    },
+    {
+     "kind": "def",
+     "name": "learnBatch"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_learnBatch"
+    },
+    {
+     "kind": "def",
+     "name": "numeric"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_numeric"
+    },
+    {
+     "kind": "def",
+     "name": "timedModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "variable_delay_markov"
+    },
+    {
+     "kind": "theorem",
+     "name": "ordered_occurrences_retained"
+    },
+    {
+     "kind": "theorem",
+     "name": "completion_update_eq"
+    },
+    {
+     "kind": "lemma",
+     "name": "completed_eq_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "uncompleted_events_do_not_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_fabricated_zero_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "noncompletion_stays_pending"
+    },
+    {
+     "kind": "theorem",
+     "name": "due_time_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "pending_is_needed"
+    },
+    {
+     "kind": "def",
+     "name": "visibleTimedHistory"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_visibleTimedHistory"
+    },
+    {
+     "kind": "def",
+     "name": "observedTimedModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "visible_policy_no_leak"
+    },
+    {
+     "kind": "theorem",
+     "name": "controlled_next_choice_reads_completed_feedback"
+    },
+    {
+     "kind": "def",
+     "name": "thresholdChoice"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_thresholdChoice"
+    },
+    {
+     "kind": "theorem",
+     "name": "completed_feedback_changes_controlled_choice"
+    },
+    {
+     "kind": "def",
+     "name": "businessCompletion"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_unclosed_window_is_pending"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_negative_requires_closed_window"
+    },
+    {
+     "kind": "theorem",
+     "name": "pending_continuation_adds_no_observation"
+    },
+    {
+     "kind": "theorem",
+     "name": "pending_episode_keeps_learner_when_queue_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_revision_and_refit"
+    },
+    {
+     "kind": "theorem",
+     "name": "pending_episode_on_original_chain"
+    },
+    {
+     "kind": "inductive",
+     "name": "Arrival"
+    },
+    {
+     "kind": "def",
+     "name": "pendingView"
+    },
+    {
+     "kind": "def",
+     "name": "dueQueue"
+    },
+    {
+     "kind": "def",
+     "name": "applyArrival"
+    },
+    {
+     "kind": "def",
+     "name": "applyCommand"
+    },
+    {
+     "kind": "def",
+     "name": "sourceStep"
+    },
+    {
+     "kind": "def",
+     "name": "replay"
+    },
+    {
+     "kind": "lemma",
+     "name": "replay_append"
+    },
+    {
+     "kind": "def",
+     "name": "encode"
+    },
+    {
+     "kind": "def",
+     "name": "arrivalModel"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrary_arrival_markov"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_arrival_commutes"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_private_post_is_original_source_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_joint_arrival_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_joint_arrival_readout_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "next_policy_uses_actual_arrival_post"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_request_remains_pending"
+    },
+    {
+     "kind": "theorem",
+     "name": "completed_request_leaves_pending_queue"
+    },
+    {
+     "kind": "theorem",
+     "name": "arrival_preserves_actual_business"
+    },
+    {
+     "kind": "theorem",
+     "name": "revision_consumes_actual_corrected_store"
+    }
+   ],
+   "imports": [
+    "JurisLean.BusinessProcessRealization",
+    "JurisLean.Candidates.BusinessFeedbackLoop20261027",
+    "JurisLean.Candidates.EventFeedbackConsumer20261027",
+    "JurisLean.Review20261110.DelayAugmentation"
+   ],
+   "lemma_count": 6,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/TemporalFeedback.lean",
+   "print_axioms_targets": [
+    "actual_arrival_commutes",
+    "actual_joint_arrival_law",
+    "actual_negative_requires_closed_window",
+    "actual_revision_and_refit",
+    "arbitrary_arrival_markov",
+    "arrival_preserves_actual_business",
+    "completed_request_leaves_pending_queue",
+    "completion_update_eq",
+    "next_policy_uses_actual_arrival_post",
+    "no_fabricated_zero_label",
+    "noncompletion_stays_pending",
+    "revision_consumes_actual_corrected_store",
+    "uncompleted_events_do_not_update",
+    "unknown_request_remains_pending",
+    "variable_delay_markov"
+   ],
+   "sha256": "803ac439e1f843f0256c8ee6e896c23fcaeee3b810b416ac24fc878410f2973c",
+   "size_bytes": 35530,
+   "theorem_count": 27,
+   "theorem_count_bol_convention": 27
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "actual_projected_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_source_law_contracts"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.CNSemanticConnection",
+    "JurisLean.RemainingClosure.W1Audit"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/UnifiedClosure.lean",
+   "print_axioms_targets": [
+    "actual_projected_law",
+    "actual_source_law_contracts"
+   ],
+   "sha256": "c90418684e0add7a7f191327b76e22342a8fca065bd7fd7acd4331dc9f56799a",
+   "size_bytes": 2878,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "lemma",
+     "name": "after_distinct"
+    },
+    {
+     "kind": "def",
+     "name": "atomSet"
+    },
+    {
+     "kind": "lemma",
+     "name": "step_supported_atoms"
+    },
+    {
+     "kind": "lemma",
+     "name": "coupling_probability"
+    },
+    {
+     "kind": "lemma",
+     "name": "coupling_four_atoms"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_couplings_are_matrices"
+    },
+    {
+     "kind": "lemma",
+     "name": "finite_cost_iInf"
+    },
+    {
+     "kind": "theorem",
+     "name": "twoAtomIdentification"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Transport"
+   ],
+   "lemma_count": 5,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Atoms.lean",
+   "print_axioms_targets": [
+    "all_couplings_are_matrices",
+    "coupling_four_atoms",
+    "twoAtomIdentification"
+   ],
+   "sha256": "9451d58c2fe2b99be10610b106f62d45bbe05cc2301ea4428dad74545ae808f1",
+   "size_bytes": 8052,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Invariant",
+    "JurisLean.RemainingClosure.W1Laws",
+    "JurisLean.RemainingClosure.W1Sharp"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Audit.lean",
+   "print_axioms_targets": [],
+   "sha256": "e6c1587717e496a88d6bc6f7d1dbb7b695ec71c4eb197e6ecb9329c35db12588",
+   "size_bytes": 129,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "orbit"
+    },
+    {
+     "kind": "lemma",
+     "name": "orbit_supported"
+    },
+    {
+     "kind": "theorem",
+     "name": "successive_distance"
+    },
+    {
+     "kind": "lemma",
+     "name": "test_gap"
+    },
+    {
+     "kind": "theorem",
+     "name": "successive_integrals"
+    },
+    {
+     "kind": "theorem",
+     "name": "invariant_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "uniqueInvariantLaw"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Laws"
+   ],
+   "lemma_count": 2,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Invariant.lean",
+   "print_axioms_targets": [
+    "invariant_exists",
+    "successive_distance",
+    "successive_integrals",
+    "uniqueInvariantLaw"
+   ],
+   "sha256": "f7fff42450335f6e72d8382c3823d4c3a6a1adebc318ccc8b97cbd4e993ebb75",
+   "size_bytes": 5092,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "lemma",
+     "name": "coupling_probability"
+    },
+    {
+     "kind": "lemma",
+     "name": "dstar_le_five"
+    },
+    {
+     "kind": "lemma",
+     "name": "dist_le_dstar"
+    },
+    {
+     "kind": "theorem",
+     "name": "distributionW1_le_five"
+    },
+    {
+     "kind": "lemma",
+     "name": "coupling_test_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "distribution_test_bound"
+    },
+    {
+     "kind": "lemma",
+     "name": "lipschitz_dstar_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "distributionW1_separates"
+    },
+    {
+     "kind": "def",
+     "name": "P"
+    },
+    {
+     "kind": "lemma",
+     "name": "continuous_probability"
+    },
+    {
+     "kind": "def",
+     "name": "probabilityBCF"
+    },
+    {
+     "kind": "def",
+     "name": "afterContinuous"
+    },
+    {
+     "kind": "def",
+     "name": "transfer"
+    },
+    {
+     "kind": "lemma",
+     "name": "integral_P"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_P"
+    },
+    {
+     "kind": "def",
+     "name": "supportedLaws"
+    },
+    {
+     "kind": "theorem",
+     "name": "supportedLaws_compact"
+    },
+    {
+     "kind": "theorem",
+     "name": "P_supported"
+    },
+    {
+     "kind": "theorem",
+     "name": "invariant_unique"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Atoms",
+    "Mathlib.MeasureTheory.Measure.LevyProkhorovMetric",
+    "Mathlib.MeasureTheory.Measure.Portmanteau",
+    "Mathlib.MeasureTheory.Measure.Prokhorov"
+   ],
+   "lemma_count": 7,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Laws.lean",
+   "print_axioms_targets": [
+    "continuous_P",
+    "distributionW1_separates",
+    "distribution_test_bound",
+    "invariant_unique",
+    "supportedLaws_compact"
+   ],
+   "sha256": "aa33bb62e40965df2ec7983f03bb4305be000e664dc0199493142eacc64ddeea",
+   "size_bytes": 10177,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "leftState"
+    },
+    {
+     "kind": "def",
+     "name": "rightState"
+    },
+    {
+     "kind": "lemma",
+     "name": "left_in_square"
+    },
+    {
+     "kind": "lemma",
+     "name": "right_in_square"
+    },
+    {
+     "kind": "lemma",
+     "name": "witness_distance"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_matrix_cost"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_primal_cost"
+    },
+    {
+     "kind": "theorem",
+     "name": "contraction_constant_sharp"
+    }
+   ],
+   "imports": [
+    "JurisLean.RemainingClosure.W1Atoms"
+   ],
+   "lemma_count": 3,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Sharp.lean",
+   "print_axioms_targets": [
+    "contraction_constant_sharp",
+    "witness_matrix_cost",
+    "witness_primal_cost"
+   ],
+   "sha256": "3ab921d14c9b080caf16c4ab1c334a25914699b39c846e39f3ee09fbb2697519",
+   "size_bytes": 2526,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "couplingAt"
+    },
+    {
+     "kind": "lemma",
+     "name": "weight_nonneg"
+    },
+    {
+     "kind": "lemma",
+     "name": "couplingAt_fst"
+    },
+    {
+     "kind": "lemma",
+     "name": "couplingAt_snd"
+    },
+    {
+     "kind": "lemma",
+     "name": "couplingAt_mem"
+    },
+    {
+     "kind": "lemma",
+     "name": "couplingAt_cost"
+    },
+    {
+     "kind": "def",
+     "name": "monotoneCoupling"
+    },
+    {
+     "kind": "lemma",
+     "name": "measurable_dstar"
+    },
+    {
+     "kind": "lemma",
+     "name": "distributionW1_le_cost"
+    },
+    {
+     "kind": "lemma",
+     "name": "transported_fst"
+    },
+    {
+     "kind": "lemma",
+     "name": "transported_snd"
+    },
+    {
+     "kind": "lemma",
+     "name": "coupling_supported"
+    },
+    {
+     "kind": "lemma",
+     "name": "transported_cost"
+    },
+    {
+     "kind": "lemma",
+     "name": "distributionW1_eq_iInf"
+    },
+    {
+     "kind": "theorem",
+     "name": "generalW1Lift"
+    }
+   ],
+   "imports": [
+    "JurisLean.Review20261110.FeedbackW1"
+   ],
+   "lemma_count": 12,
+   "path": "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Transport.lean",
+   "print_axioms_targets": [
+    "couplingAt_cost",
+    "couplingAt_fst",
+    "couplingAt_snd",
+    "generalW1Lift",
+    "transported_cost"
+   ],
+   "sha256": "65e1d818c8c2fb9878030725e9b817d38e92bf8f6a7bd1516451ab977f5e1afd",
+   "size_bytes": 10606,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [],
+   "imports": [
     "JurisLean.Review20261110.BusinessTransport",
     "JurisLean.Review20261110.DelayAugmentation",
     "JurisLean.Review20261110.FeedbackW1",
@@ -72795,6 +76377,7 @@
     "JurisLean.PermissionConflict",
     "JurisLean.ProposalEnvelopeSpec",
     "JurisLean.ProposalNoninterference",
+    "JurisLean.RemainingClosure.Audit",
     "JurisLean.Review20261110.Audit",
     "JurisLean.SMTWitness",
     "JurisLean.SafetyTheorems",
@@ -72867,8 +76450,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "528a28f1e9cc0f1b7d8d2e3c2e81608c8565173b1ee366b318a7cb52b331bdf0",
-   "size_bytes": 18540,
+   "sha256": "ce740149dab022a2bb37fee6d417c8ef0732408ecbf9bd0d8be3e8d69bbf0d59",
+   "size_bytes": 18580,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -73040,22 +76623,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 7328,
-   "file_count": 659,
-   "lemma_count": 178,
-   "print_axioms_command_count": 6834,
-   "print_axioms_distinct_targets": 6080,
-   "theorem_count": 7150,
-   "theorem_count_bol_convention": 7017
+   "counted_declaration_count": 7745,
+   "file_count": 678,
+   "lemma_count": 302,
+   "print_axioms_command_count": 7601,
+   "print_axioms_distinct_targets": 6774,
+   "theorem_count": 7443,
+   "theorem_count_bol_convention": 7310
   },
   "juris_lean_package": {
-   "counted_declaration_count": 7309,
-   "file_count": 644,
-   "lemma_count": 171,
-   "print_axioms_command_count": 6834,
-   "print_axioms_distinct_targets": 6080,
-   "theorem_count": 7138,
-   "theorem_count_bol_convention": 7005
+   "counted_declaration_count": 7726,
+   "file_count": 663,
+   "lemma_count": 295,
+   "print_axioms_command_count": 7601,
+   "print_axioms_distinct_targets": 6774,
+   "theorem_count": 7431,
+   "theorem_count_bol_convention": 7298
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -73596,6 +77179,25 @@
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
    "proofs/lean/juris_lean/JurisLean/ReceiptAuthority.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/CNSemanticConnection.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/CouplingLift.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/EntitySemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/EvidenceConditioning.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/FullEventLog.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/InterpretationChoice.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/MultiAgentFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/PolicyIndependentFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/ProcessTransport.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/RuleEvolution.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/TemporalFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/UnifiedClosure.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Atoms.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Invariant.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Laws.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Sharp.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Transport.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/Audit.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/BusinessTransport.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/DelayAugmentation.lean",
@@ -74253,6 +77855,25 @@
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
    "proofs/lean/juris_lean/JurisLean/ReceiptAuthority.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/CNSemanticConnection.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/CouplingLift.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/EntitySemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/EvidenceConditioning.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/FullEventLog.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/InterpretationChoice.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/MultiAgentFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/PolicyIndependentFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/ProcessTransport.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/RuleEvolution.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/TemporalFeedback.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/UnifiedClosure.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Atoms.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Invariant.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Laws.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Sharp.lean",
+   "proofs/lean/juris_lean/JurisLean/RemainingClosure/W1Transport.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/Audit.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/BusinessTransport.lean",
    "proofs/lean/juris_lean/JurisLean/Review20261110/DelayAugmentation.lean",
@@ -74415,17 +78036,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "82726dcab191c6c8eb7cb8cbde54bd76a7362218a370bdd21046a402a7d5c8a9",
+ "source_inventory_digest": "2bc2f7c5cc09a1a908daae60001dd1e485f133861b89c3ff34f9f7fccb80131d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "review-20261110",
-  "commit": "3252df0c1df09c9ec6ab4e0014444ed80c73f9f3",
-  "tree": "3b068d8abf03988b54e4efb49d264922d036f79a"
+  "branch": "proof/remaining-math-closure-20261109",
+  "commit": "8f7d5646b3c69f4afd4569018a34b522d8ce2cfd",
+  "tree": "bfd92a77475a1b6c0afaa038e9bfbf7b983cdefb"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 659,
+  "files_total": 678,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

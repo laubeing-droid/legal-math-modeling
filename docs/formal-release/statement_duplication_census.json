@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 7389,
-  "duplicated_statement_types": 69,
+  "distinct_statement_types": 7805,
+  "duplicated_statement_types": 70,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -467,6 +467,18 @@
         "path": "Seams/InstitutionalEffects.lean"
       }
     ],
+    ": generalW1LiftTarget": [
+      {
+        "carrier": "root/other/actual_feedback_lift",
+        "line": 94,
+        "path": "RemainingClosure/CouplingLift.lean"
+      },
+      {
+        "carrier": "root/other/generalW1Lift",
+        "line": 195,
+        "path": "RemainingClosure/W1Transport.lean"
+      }
+    ],
     ": instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input": [
       {
         "carrier": "root/other/case_data_does_not_imply_gate_input",
@@ -876,12 +888,12 @@
       }
     ]
   },
-  "files_scanned": 644,
+  "files_scanned": 663,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 158,
-  "inventory_package_theorems": 7309,
-  "private_protected_headers_read": 308,
+  "headers_missed_by_scanner": 160,
+  "inventory_package_theorems": 7726,
+  "private_protected_headers_read": 310,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 7459
+  "statements_read": 7876
 }

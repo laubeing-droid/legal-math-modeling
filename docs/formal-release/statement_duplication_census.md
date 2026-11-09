@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 644
-- theorem/lemma headers read: 7459
-- distinct statement types: 7389
-- statement types declared more than once: 69
+- files scanned: 663
+- theorem/lemma headers read: 7876
+- distinct statement types: 7805
+- statement types declared more than once: 70
 - of those spanning module families: 3
 
 ## Across module families (3)
@@ -16,7 +16,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 
-## Within the package (69)
+## Within the package (70)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -53,9 +53,9 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
 - `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:650` (root/other/instanceM_collapse)
 - `: forms (ledgerFormedDemo ++ [terminatedRecord "J3" relationOther]) relationDemo` — `Seams/UnifiedNeedlesS5.lean:123` (root/other/distinct_payload_effect_witness_left), `Seams/InstitutionalEffects.lean:513` (root/other/termination_of_other_keeps_projection_witness)
+- `: generalW1LiftTarget` — `RemainingClosure/CouplingLift.lean:94` (root/other/actual_feedback_lift), `RemainingClosure/W1Transport.lean:195` (root/other/generalW1Lift)
 - `: instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input` — `Seams/StatuteChain.lean:831` (root/other/case_data_does_not_imply_gate_input), `Seams/StatuteChain.lean:824` (root/other/chain_art90_two_readings_coherent)
 - `: jurisdiction ⟨true, true, false, false, false, false, true, true⟩ = none` — `CN/Revision20261101/Rights.lean:122` (root/other/appearance_cannot_override_exclusive), `CN/Completion20261105/InstitutionRules.lean:204` (root/other/twelve_appearance_cannot_override_exclusive)
 - `: pArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDerivable cycle2Policy pArg ∧ ¬ finalUndetermined cycle2Policy pArg ∧ qArg ∈ (DungAAF.labelling cycle2).2.2 ∧ Fin` — `Seams/AdjudicationBridge.lean:714` (root/other/argument_undec_not_final_undetermined), `Seams/UnifiedNeedlesS2.lean:114` (root/other/argument_undec_not_final_undetermined)
 - `: reviewRoute .law105 ≠ reviewRoute .admin105` — `CN/Revision20261101/Ops.lean:261` (root/other/article105_routes_differ), `CN/Completion20261105/InstitutionRules.lean:487` (root/other/twelve_routes_differ)
-- `: support (admittedView withdrawn.E [⟨9⟩]) toyAtom = .undetermined` — `CN/Completion20261105/InstitutionRules.lean:241` (root/other/twelve_withdraw_support_gone), `CN/Revision20261101/World.lean:428` (root/other/withdrawal_removes_support)
-- …29 more in the JSON
+- …30 more in the JSON

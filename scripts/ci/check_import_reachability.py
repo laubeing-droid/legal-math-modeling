@@ -267,15 +267,11 @@ PENDING_CI_MODULES: dict[str, str] = {
     # booking can only ever follow the commit. SanctionInterest and StatuteChain get their lines
     # in the same commit that puts their files in the tree, not before.
     #
-    # Formal-tail candidates (2026-10-24). The module is booked in the same commit
-    # as its file. It is not a release-root import: AGENTS forbids root entry
-    # before the module's own changed-module CI run, and the declarations are
-    # not on the tip-pin axiom audit. They do not close OPEN_FORMAL_TAIL rows.
-    "JurisLean.Candidates.FormalTail20261024": (
-        "formal-tail candidate declarations; not tip-pin audited; "
-        "not a clause close; waiting for its own changed-module CI run "
-        "before any release-root import"
-    ),
+    # FormalTail20261024 was promoted after its unchanged source was built by
+    # run 42562826141 and all 74 public declarations were named and axiom-audited
+    # at subject 8f7d5646 / run 42564951266. The new multiplayer convergence proof
+    # consumes its finite strict-improvement bound. Historical debt flags and
+    # the original theorem contracts are not changed by this root promotion.
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

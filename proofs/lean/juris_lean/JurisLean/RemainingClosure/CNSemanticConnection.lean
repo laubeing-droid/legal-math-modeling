@@ -1025,17 +1025,21 @@ lemma physical_actual (s : Situation) (y : Bool) :
 
 lemma recorded_actual (s : Situation) (y : Bool) :
     (executeCommand (physical s y) (.record (materialId s) (raw s y))).after = recorded s y := by
-  simp [executeCommand,recordMaterial,physical,new_material_absent,recorded]
+  simp [executeCommand,recordMaterial,physical,new_material_absent,recorded,rawOf]
 
 lemma admitted_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
     (executeCommand (recorded s y) (.admitEvidence (Examples.request .admitEvidence)
       .human (materialId s) (raw s y) (receipt s y))).after = admitted s y := by
   have fresh : freshRequest (recorded s y) (Examples.request .admitEvidence) = true :=
     fresh_request s ready .admitEvidence
-  simp [executeCommand,admission,automationAllowed,fresh,
-    recorded,physical,CaseState.setCell,Situation.withCore,setEvidence,
-    raw,receipt,Examples.request,toyRequest,toyNorm,EffectIR.adjust,EffectIR.admission,
-    EffectIR.write,admitted]
+  have pending : (recorded s y).core.state.E (materialId s) = .pending (raw s y) := by
+    simp [recorded,CaseState.setCell,Situation.withCore,setEvidence]
+  change (admission (recorded s y) (Examples.request .admitEvidence)
+    .human (materialId s) (raw s y) (receipt s y)).after = _
+  unfold admission
+  rw [fresh,pending]
+  norm_num [automationAllowed,raw,observedAtom,receipt,Examples.request,toyRequest,toyNorm,
+    EffectIR.adjust,EffectIR.admission,EffectIR.write,admitted]
 
 lemma prepared_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
     (executeCommand (admitted s y) (.registerEngine (Examples.request .learnModel) (input s y))).after =
@@ -1043,9 +1047,19 @@ lemma prepared_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
   have fresh : freshRequest (admitted s y) (Examples.request .learnModel) = true :=
     fresh_request s ready .learnModel
   have version : s.core.state.N.version = 1 := by rw [ready]; rfl
-  simp [executeCommand,registerEngineMaterial,fresh,prepared,admitted,recorded,physical,
-    input,Engines.material,EngineExamples.context,raw,receipt,
-    CaseState.setCell,Situation.withCore,setEvidence,new_material_not_registered,
+  have cell : (admitted s y).core.state.E (materialId s) = .accepted (raw s y) (receipt s y) := by
+    simp [admitted,CaseState.setCell,Situation.withCore,setEvidence]
+  have unused : (admitted s y).engineInputs.any (fun old => old.id == (input s y).id) = false :=
+    new_material_not_registered s
+  change (registerEngineMaterial (admitted s y) (Examples.request .learnModel) (input s y)).after = _
+  unfold registerEngineMaterial
+  rw [fresh,unused]
+  have fetched : rawOf ((admitted s y).core.state.E (input s y).id) = some (raw s y) := by
+    change rawOf ((admitted s y).core.state.E (materialId s)) = _
+    rw [cell]
+    rfl
+  rw [fetched]
+  norm_num [prepared,input,Engines.material,EngineExamples.context,raw,observedAtom,receipt,
     Examples.request,toyRequest,version]
 
 lemma prepared_lookup (s : Situation) (y : Bool) :
@@ -1056,7 +1070,7 @@ lemma prepared_allowed (s : Situation) (ready : ModelReady s) (y : Bool) :
     engineMaterialAllowed (prepared s y) EngineExamples.context (input s y) = true := by
   have version : s.core.state.N.version = 1 := by rw [ready]; rfl
   simp [engineMaterialAllowed,prepared,admitted,recorded,physical,input,Engines.material,
-    EngineExamples.context,CaseState.setCell,Situation.withCore,setEvidence,raw,receipt,version]
+    EngineExamples.context,CaseState.setCell,Situation.withCore,setEvidence,raw,observedAtom,receipt,toyNorm,version]
 
 def fitPost (s : Situation) (y : Bool) : Situation :=
   (executeCommand (prepared s y) (.engine EngineExamples.context (materialId s))).after
@@ -1071,8 +1085,10 @@ lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
             "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample"
             (⟨0⟩,⟨EngineExamples.protocol.failureBudget⟩))).after with
         engineResults := ⟨input s y,.known (fitted (read s) y)⟩ :: (prepared s y).engineResults} := by
-  simp [fitPost,executeCommand,runBoundEngine,prepared_lookup,prepared_allowed s ready y,
-    callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
+  change (runBoundEngine (prepared s y) EngineExamples.context (materialId s)).legal.after = _
+  unfold runBoundEngine
+  rw [prepared_lookup s y,prepared_allowed s ready y]
+  simp [callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
 
 lemma fitPost_norm (s : Situation) (ready : ModelReady s) (y : Bool) :
     (fitPost s y).core.state.N = s.core.state.N := by
@@ -1101,9 +1117,11 @@ lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
   have allowed : engineMaterialAllowed (fitPost s y)
       ⟨(Examples.request .learnModel).scope,(input s y).target⟩ (input s y) = true := by
     simp [engineMaterialAllowed,input,Engines.material,EngineExamples.context,
-      Examples.request,toyRequest,raw,receipt,norm,fitPost_cell s ready y,version]
-  simp [learned,executeCommand,learnReport,found,allowed,learnedTable,input,
-    Engines.material,fitInput,fitted,norm,fresh,Examples.request,toyRequest]
+      Examples.request,toyRequest,raw,observedAtom,receipt,toyNorm,norm,fitPost_cell s ready y,version]
+  change (learnReport (fitPost s y) (Examples.request .learnModel) (materialId s)).after = _
+  unfold learnReport
+  rw [fresh,found,allowed]
+  norm_num [learnedTable,input,Engines.material,fitInput,fitted,Examples.request,toyRequest]
 
 /-- The actual public native-fit/report/learn episode updates the projection
 by the original afterQ. The fitted-table equality was proved by the ERM, not
@@ -1111,7 +1129,7 @@ assumed as an input. -/
 theorem learned_read (s : Situation) (ready : ModelReady s) (y : Bool) :
     read (learned s y) = afterQ (read s) y := by
   rw [learned_formula s ready y]
-  simp [read,candidate]
+  simp [read,candidate,Situation.withCore,CaseState.putState]
 
 theorem learned_ready (s : Situation) (ready : ModelReady s) (y : Bool) : ModelReady (learned s y) := by
   change (learned s y).core.state.N = _
@@ -1150,6 +1168,204 @@ theorem learned_ledger (s : Situation) (ready : ModelReady s) (y : Bool) :
   change (fitPost s y).core.state.ledger = _
   rw [fitPost_formula s ready y]
   rfl
+
+
+/-- One fixed legal context, with the ACTUAL changing account. Its debt value
+is not frozen: the accepted native account can allocate and retain surplus. -/
+structure LegalReady (s : Situation) : Prop where
+  norms : ModelReady s
+  relations : s.core.state.L = [toyRelation]
+  constraints : s.core.state.constraints = []
+  templates : s.templates = EngineExamples.cashStart.templates
+  disputes : s.disputes = []
+  source : s.core.state.E ⟨9⟩ = .accepted toyRaw toyReceipt
+  sourceKey : (⟨9⟩ : Ref .material) ∈ s.core.keys
+  account : ∃ account, s.accounts ⟨6⟩ = some account ∧
+    account.debt.relation = ⟨6⟩ ∧ account.debt.obligor = ⟨8⟩ ∧ account.debt.creditor = ⟨7⟩ ∧
+    account.debt.amount.tag = EngineExamples.amountTag ∧
+    Native.Cash.Conserves account ∧ Native.Cash.CashConsistent account
+
+def initial (state : ℚ × ℚ) : Situation :=
+  let base := EngineExamples.cashStart
+  base.withCore (base.core.putState {base.core.state with
+    A := {base.core.state.A with theta := [state.1,state.2]}} rfl)
+
+theorem initial_read (state : ℚ × ℚ) : read (initial state) = state := by
+  simp [initial,read,Situation.withCore,CaseState.putState]
+
+theorem initial_ready (state : ℚ × ℚ) : LegalReady (initial state) := by
+  refine ⟨rfl,rfl,rfl,rfl,rfl,rfl,?_,?_⟩
+  · change (⟨9⟩ : Ref .material) ∈ EngineExamples.cashStart.core.keys
+    decide
+  · refine ⟨EngineExamples.cashBefore,rfl,rfl,rfl,rfl,rfl,?_,?_⟩
+    · norm_num [JurisLean.Candidates.Final20261021.Ledger.Conserves,
+        JurisLean.Candidates.Final20261021.Ledger.balance,EngineExamples.cashBefore]
+    · rfl
+
+theorem learned_legal_ready (s : Situation) (ready : LegalReady s) (y : Bool) :
+    LegalReady (learned s y) := by
+  have different : materialId s ≠ (⟨9⟩ : Ref .material) := by
+    intro equal
+    apply new_material_not_key s
+    rw [equal]
+    exact ready.sourceKey
+  refine ⟨learned_ready s ready.norms y,?_,?_,?_,?_,?_,?_,?_⟩
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    exact ready.relations
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    exact ready.constraints
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    exact ready.templates
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    exact ready.disputes
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    simpa [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
+      prepared,admitted,recorded,physical,Situation.withCore,CaseState.putState,
+      CaseState.setCell,setEvidence,Ne.symm different] using ready.source
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    change (⟨9⟩ : Ref .material) ∈ materialId s :: materialId s :: s.core.keys
+    exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _ ready.sourceKey)
+  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+    exact ready.account
+
+/-- F and the primary ledger remain actual historical fields. The world used
+by the existing legal checker reads those facts and actual account reductions. -/
+def actualWorld (s : Situation) : PossibleWorld :=
+  rebasedWorld s {toyWorld with
+    fact := fun atom => s.core.state.F.any (fun event => event.atom == atom)
+    active := fun _ => true}
+
+lemma actualWorld_facts (s : Situation) (event : Occurrence) (member : event ∈ s.core.state.F) :
+    (actualWorld s).fact event.atom = true := by
+  apply List.any_eq_true.mpr
+  exact ⟨event,member,by simp⟩
+
+lemma world_check (s : Situation) (ready : LegalReady s) :
+    legalWorldCheck s (actualWorld s) = true := by
+  have facts : s.core.state.F.all (fun event => (actualWorld s).fact event.atom) = true :=
+    List.all_eq_true.mpr (fun event member => actualWorld_facts s event member)
+  simp only [legalWorldCheck,facts,ready.constraints,List.all_nil,Bool.true_and,
+    ready.relations,List.all_cons,List.all_nil,Bool.and_true]
+  cases quantity : knownReduction s toyRelation with
+  | none => simp [actualWorld,rebasedWorld,ready.relations,quantity]
+  | some q => simp [actualWorld,rebasedWorld,ready.relations,quantity]
+
+lemma source_admitted (s : Situation) (ready : LegalReady s) :
+    admittedSource s ⟨EngineExamples.payment.source.value⟩ toyScope = true := by
+  apply List.any_eq_true.mpr
+  refine ⟨⟨9⟩,ready.sourceKey,?_⟩
+  rw [ready.source]
+  rfl
+
+
+def performanceLaw : JurisLean.CN.Revision20261101.Rule :=
+  {Examples.confirmation with effect := .performance}
+
+def performanceMethod : IssuedTemplate := CompilerBridge.Actual.method
+
+lemma performance_selected_rule (s : Situation) (ready : LegalReady s) :
+    selectedRules s.core (Examples.request .perform) = [performanceLaw] := by
+  unfold selectedRules
+  rw [ready.norms]
+  rfl
+
+lemma performance_selected_template (s : Situation) (ready : LegalReady s) :
+    selectedTemplates s performanceLaw = [performanceMethod] := by
+  simpa only [selectedTemplates,templateMatches,templateGate,selectedRules,ready.templates,ready.norms] using
+    (show selectedTemplates EngineExamples.cashStart performanceLaw = [performanceMethod] from rfl)
+
+lemma current_admitted_view (s : Situation) (ready : LegalReady s) :
+    admittedView s.core.state.E performanceLaw.materials = [⟨⟨9⟩,toyRaw,toyReceipt⟩] := by
+  simp [performanceLaw,Examples.confirmation,toyRule,admittedView,admittedAt,ready.source]
+
+lemma performance_assessed (s : Situation) (ready : LegalReady s) :
+    assessed s performanceLaw performanceMethod.body = .known .established := by
+  unfold assessed
+  rw [current_admitted_view s ready]
+  rfl
+
+lemma performance_agreement (s : Situation) (ready : LegalReady s) :
+    policyAgreement s performanceLaw Examples.policy .established = true := by
+  unfold policyAgreement
+  rw [current_admitted_view s ready]
+  rfl
+
+/-- Permission is derived from the actual unchanged norm and admitted source;
+no Ready or successful-Permission ticket is assumed. -/
+lemma actual_permission (s : Situation) (ready : LegalReady s) :
+    permissionDispatch s (Examples.request .perform) Examples.policy .human (actualWorld s) =
+      quiet s (.success ()) := by
+  have auth : authorized s.core.state.N (Examples.request .perform) = true := by
+    rw [ready.norms]
+    decide
+  have request : permissionRequestGate s (Examples.request .perform) performanceLaw Examples.policy = true := by
+    unfold permissionRequestGate
+    rw [ready.norms]
+    rfl
+  simp [permissionDispatch,automationAllowed,auth,activeConflict,ready.disputes,
+    performance_selected_rule s ready,performance_selected_template s ready,
+    permissionLaw,request,world_check s ready,performance_assessed s ready,
+    performance_agreement s ready]
+
+def payment (s : Situation) : Native.PaymentPayload :=
+  {EngineExamples.payment with cashId := cashId s}
+
+lemma cash_source_known (source : Situation) (account : Native.Cash.State)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account)
+    (tag : account.debt.amount.tag = EngineExamples.amountTag) :
+    cashSource account (payment source) = .known (Native.Cash.performance account (payment source)) := by
+  unfold cashSource
+  have amount : 0 ≤ (payment source).amount.value := by norm_num [payment,EngineExamples.payment]
+  have same : (payment source).amount.tag = account.debt.amount.tag := by rw [tag]; rfl
+  rw [if_pos ⟨conservation,consistent,amount,same⟩]
+
+lemma new_cash_not_ledger (s : Situation) :
+    s.core.state.ledger.any (fun entry => entry.event.value == (cashId s).value) = false := by
+  apply Bool.eq_false_iff.mpr
+  intro exists
+  obtain ⟨entry,member,equal⟩ := List.any_eq_true.mp exists
+  have same : entry.event.value = (cashId s).value := by simpa using equal
+  apply freshId_not_mem (s.core.state.F.map (fun event => event.id.value) ++
+    s.core.state.ledger.map (fun entry => entry.event.value))
+  exact List.mem_append_right _ (List.mem_map.mpr ⟨entry,member,same⟩)
+
+lemma learned_payment_event (s : Situation) (ready : ModelReady s) :
+    (learned s true).core.state.F.any (fun event =>
+      event.id.value == (payment s).cashId.value && event.atom.scope == toyScope &&
+      event.actor.value == (payment s).payer.value) = true := by
+  rw [learned_events s ready true]
+  apply List.any_eq_true.mpr
+  exact ⟨event s true,List.mem_append_right _ (by simp),by simp [event,observedAtom,payment,EngineExamples.payment]⟩
+
+def cashPost (s : Situation) (source : Situation) (account : Native.Cash.State) : Situation :=
+  let after := Native.Cash.performance account (payment source)
+  let entry : Performance :=
+    ⟨⟨(payment source).cashId.value⟩,⟨6⟩,⟨after.allocated-account.allocated⟩,Examples.request .perform⟩
+  EffectIR.adjust (EffectIR.payment entry ⟨6⟩ after) s
+
+/-- The actual Perform edge commits the same source cash once, under its
+existing guards, using the original conserved account and current event. -/
+lemma performPayment_actual (source : Situation) (ready : LegalReady source)
+    (account : Native.Cash.State) (accountAt : source.accounts ⟨6⟩ = some account)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    performPayment (learned source true) (Examples.request .perform) .human ⟨6⟩ (payment source) =
+      ⟨cashPost (learned source true) source account,.success ()⟩ := by
+  have sameAccount : (learned source true).accounts ⟨6⟩ = some account := by
+    rw [learned_formula source ready.norms true,fitPost_formula source ready.norms true]
+    exact accountAt
+  have current := learned_legal_ready source ready true
+  have fresh := fresh_request (learned source true) current.norms .perform
+  have admittedSource : admittedSource (learned source true) ⟨(payment source).source.value⟩ toyScope = true :=
+    source_admitted (learned source true) current
+  have event := learned_payment_event source ready.norms
+  have unused : (learned source true).core.state.ledger.any (fun entry =>
+      entry.event.value == (payment source).cashId.value) = false := by
+    simpa only [learned_ledger source ready.norms true,payment] using new_cash_not_ledger source
+  simp [performPayment,automationAllowed,fresh,sameAccount,relation,payer,payee,
+    current.relations,admittedSource,event,unused,cash_source_known source account conservation consistent tag,
+    payment,EngineExamples.payment,Examples.request,toyRequest,toyScope,toyRelation,cashPost]
 
 end Numeric
 
@@ -1222,6 +1438,20 @@ end Numeric
 #print axioms Numeric.preparation_replay
 #print axioms Numeric.learned_events
 #print axioms Numeric.learned_ledger
+
+#print axioms Numeric.initial_read
+#print axioms Numeric.initial_ready
+#print axioms Numeric.learned_legal_ready
+#print axioms Numeric.world_check
+#print axioms Numeric.source_admitted
+
+#print axioms Numeric.performance_selected_rule
+#print axioms Numeric.performance_selected_template
+#print axioms Numeric.performance_assessed
+#print axioms Numeric.actual_permission
+#print axioms Numeric.cash_source_known
+#print axioms Numeric.learned_payment_event
+#print axioms Numeric.performPayment_actual
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

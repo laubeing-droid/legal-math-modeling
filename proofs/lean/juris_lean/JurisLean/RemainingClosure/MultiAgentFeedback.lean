@@ -203,6 +203,12 @@ theorem finite_learning_equilibrium_and_kuhn (G : Game T ι State Obs Action)
             G.nativeLawPure (fun i => localLearningPlan (L i) (choose i (candidates i))) n)).map
               (unifiedReadout G L payoff) := by
   letI : ∀ i, Nonempty (Fin (K i)) := fun i => ⟨⟨0,positive i⟩⟩
+  letI : ∀ i, Finite ((candidateGame G L K choose payoff).Strategy i) := fun i => by
+    change Finite (Fin (K i))
+    infer_instance
+  letI : ∀ i, Nonempty ((candidateGame G L K choose payoff).Strategy i) := fun i => by
+    change Nonempty (Fin (K i))
+    infer_instance
   obtain ⟨μ,hNash⟩ := (candidateGame G L K choose payoff).mixed_nash_exists_of_bounded bounded
   obtain ⟨β,hβ⟩ := G.native_mixed_to_behavioral
     (fun i => (μ i).map (fun candidate => localLearningPlan (L i) (choose i candidate)))
@@ -244,7 +250,8 @@ theorem two_player_learning_instance :
       Examples.afterPrivateBit,Examples.bits,Game.observe,Game.localLog]
   · simp [privateParameters,privateParameter,bitLearning,Examples.privateBits,
       Examples.afterPrivateBit,Examples.bits,Game.observe,Game.localLog]
-  · rw [learningPolicy_raw]
+  · rw [learningPolicy_raw (fun _ : Fin 2 => bitLearning) privateBitChoice (1 : Fin 2)
+      (Examples.privateBits.observe 1 (Examples.afterPrivateBit true)) (by simp [Examples.afterPrivateBit])]
     simp [privateBitChoice,privateParameter,bitLearning,Examples.privateBits,
       Examples.afterPrivateBit,Examples.bits,Game.observe,Game.localLog]
 
@@ -323,9 +330,16 @@ theorem correlation_is_not_independent_product :
   have separate : independentSignals (false,true) = (1/4 : ℝ≥0∞) := by
     norm_num [independentSignals,fairBit,PMF.bind_apply,PMF.map_apply,
       tsum_fintype,univ,PMF.bernoulli_apply]
+    rw [← ENNReal.mul_inv (a := (2:ℝ≥0∞)) (b := 2)
+      (Or.inl (by norm_num)) (Or.inl (by norm_num))]
+    norm_num
   refine ⟨?_,?_,?_,?_,correlated,separate,?_⟩
-  · simp [sharedSignal,PMF.map_comp]
-  · simp [sharedSignal,PMF.map_comp]
+  · rw [sharedSignal,PMF.map_comp]
+    change fairBit.map id = fairBit
+    exact PMF.map_id fairBit
+  · rw [sharedSignal,PMF.map_comp]
+    change fairBit.map id = fairBit
+    exact PMF.map_id fairBit
   · ext b
     cases b <;> norm_num [independentSignals,fairBit,PMF.map_bind,PMF.map_comp,
       PMF.bind_apply,PMF.map_apply,tsum_fintype,univ,PMF.bernoulli_apply]
@@ -334,6 +348,7 @@ theorem correlation_is_not_independent_product :
       PMF.bind_apply,PMF.map_apply,tsum_fintype,univ,PMF.bernoulli_apply]
   · intro same
     have atOffDiagonal := congrArg (fun distribution : PMF (Bool × Bool) => distribution (false,true)) same
+    change sharedSignal (false,true) = independentSignals (false,true) at atOffDiagonal
     rw [correlated,separate] at atOffDiagonal
     norm_num at atOffDiagonal
 

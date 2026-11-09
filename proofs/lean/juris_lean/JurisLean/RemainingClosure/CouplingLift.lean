@@ -21,6 +21,10 @@ def couplings (μ ν : Measure S) : Set (Measure (S × S)) :=
 def primal (cost : S × S → ℝ≥0∞) (μ ν : Measure S) : ℝ≥0∞ :=
   sInf ((fun ρ => ∫⁻ z, cost z ∂ρ) '' couplings μ ν)
 
+lemma primal_eq_iInf (cost : S × S → ℝ≥0∞) (μ ν : Measure S) :
+    primal cost μ ν = ⨅ ρ ∈ couplings μ ν, ∫⁻ z, cost z ∂ρ := by
+  simp only [primal,sInf_image]
+
 lemma lifted_map (K : Kernel S S) (Γ : Kernel (S × S) (S × S))
     (f g : S × S → S) (hf : Measurable f) (hg : Measurable g)
     (commute : ∀ z, (Γ z).map f=K (g z)) (ρ : Measure (S × S)) :
@@ -60,7 +64,10 @@ theorem contraction_of_point_coupling (K : Kernel S S)
       rw [hρ.2]
       exact (mem_ae_iff_prob_eq_one hI).mpr hν
     calc
-      _ ≤ ∫⁻ z, cost z ∂(Γ ∘ₘ ρ) := sInf_le ⟨Γ ∘ₘ ρ,output,rfl⟩
+      _ ≤ ∫⁻ z, cost z ∂(Γ ∘ₘ ρ) := by
+        change sInf ((fun m : Measure (S × S) => ∫⁻ z, cost z ∂m) ''
+          couplings (K ∘ₘ μ) (K ∘ₘ ν)) ≤ _
+        exact sInf_le ⟨Γ ∘ₘ ρ,output,rfl⟩
       _ = ∫⁻ z, ∫⁻ z', cost z' ∂Γ z ∂ρ :=
         Measure.lintegral_bind Γ.aemeasurable hcost.aemeasurable
       _ ≤ ∫⁻ z, (q:ℝ≥0∞)*cost z ∂ρ := by
@@ -72,7 +79,7 @@ theorem contraction_of_point_coupling (K : Kernel S S)
   · have hp : μ.prod ν ∈ couplings μ ν := by constructor <;> simp
     simpa only [hq,ENNReal.coe_zero,zero_mul] using each (μ.prod ν) hp
   · have hq' : (q:ℝ≥0∞) ≠ 0 := by exact_mod_cast hq
-    rw [primal, sInf_image, ENNReal.mul_iInf_of_ne hq' ENNReal.coe_ne_top]
+    rw [primal_eq_iInf cost μ ν, ENNReal.mul_iInf_of_ne hq' ENNReal.coe_ne_top]
     refine le_iInf fun ρ => ?_
     rw [ENNReal.mul_iInf_of_ne hq' ENNReal.coe_ne_top]
     exact le_iInf fun hρ => each ρ hρ
@@ -88,6 +95,13 @@ theorem actual_feedback_lift : generalW1LiftTarget := by
   intro μ ν hμp hνp hμ hν
   letI : IsProbabilityMeasure μ := hμp
   letI : IsProbabilityMeasure ν := hνp
+  have ratio : ((3/4:ℝ≥0):ℝ≥0∞) = (3/4:ℝ≥0∞) := by
+    rw [ENNReal.coe_div (by norm_num : (4:ℝ≥0) ≠ 0)]
+    norm_num
+  rw [← ratio]
+  change primal (fun z => ENNReal.ofReal (dstar z.1 z.2))
+      (step model ∘ₘ μ) (step model ∘ₘ ν) ≤
+    ((3/4:ℝ≥0):ℝ≥0∞)*primal (fun z => ENNReal.ofReal (dstar z.1 z.2)) μ ν
   apply contraction_of_point_coupling (step model) monotoneCoupling
     (fun z => ENNReal.ofReal (dstar z.1 z.2))
     (ENNReal.measurable_ofReal.comp measurable_dstar) square measurable_square (3/4)

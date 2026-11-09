@@ -28,6 +28,7 @@ abbrev Job := Nat × (Option Int × Bool)
 abbrev TimedHistory := Int × (List Job × (List (TimedAction × Bool) × List Job))
 
 local instance : MeasurableSpace TimedHistory := ⊤
+local instance : MeasurableSpace TimedAction := ⊤
 local instance : MeasurableSpace (List Bool) := ⊤
 
 def readyAt (now : Int) (job : Job) : Bool :=
@@ -151,6 +152,8 @@ theorem pending_is_needed (x₀ : ℝ) (choose : TimedHistory → TimedAction) :
 abbrev VisibleTimedHistory :=
   Int × (List (Nat × Option Int) × List (TimedAction × Option Bool))
 
+local instance : MeasurableSpace VisibleTimedHistory := ⊤
+
 def visibleTimedHistory (h : TimedHistory) : VisibleTimedHistory :=
   (h.1, (h.2.1.map (fun job => (job.1,job.2.1)),
     h.2.2.1.zipIdx.map (fun entry =>
@@ -197,10 +200,13 @@ def thresholdChoice (due : Option Int) (s : VisibleTimedHistory × ℝ) : TimedA
   (decide ((1/2:ℝ) < s.2),due)
 
 lemma measurable_thresholdChoice (due : Option Int) : Measurable (thresholdChoice due) := by
-  have bit : Measurable (fun s : VisibleTimedHistory × ℝ => decide ((1/2:ℝ) < s.2)) := by
-    exact Measurable.ite (measurableSet_lt measurable_const measurable_snd)
+  have hm : Measurable (fun s : VisibleTimedHistory × ℝ =>
+      if (1/2:ℝ) < s.2 then ((true,due) : TimedAction) else (false,due)) :=
+    Measurable.ite (measurableSet_lt measurable_const measurable_snd)
       measurable_const measurable_const
-  exact bit.prodMk measurable_const
+  convert hm using 1
+  funext s
+  by_cases h : (1/2:ℝ) < s.2 <;> simp [thresholdChoice,h]
 
 /-- This controlled instance actually changes its next choice after a
 completed actual outcome, while pending labels stay outside its observation. -/
@@ -357,6 +363,268 @@ theorem pending_episode_on_original_chain
 end RealizedPending
 
 end ActualBusiness
+
+namespace GeneralArrival
+
+open JurisLean.Candidates.Final20261021
+open JurisLean.Candidates.AdaptiveRoundLedger20261027
+open JurisLean.Candidates.EventFeedbackConsumer20261027
+open JurisLean.Candidates.ValidatedFeedbackLoad20261027
+open JurisLean.Candidates.ProtectedFeedback20261027
+
+abbrev BusinessState (m : Nat) := JurisLean.Candidates.BusinessFeedbackLoop20261027.State m
+abbrev MeasurementRequest (m : Nat) := JurisLean.Candidates.BusinessFeedbackLoop20261027.MeasurementInput m
+/-- Actual business and learner, with the unresolved measurement view. The
+full immutable request/revision history remains in the common occurrence log. -/
+abbrev Source (m : Nat) := BusinessState m × List (MeasurementRequest m)
+abbrev ArrivalLog := List (Nat × Nat)
+
+/-- Reports may arrive later, never arrive, or revise the same measurement.
+No completion time is selected when the original physical event occurs. -/
+inductive Arrival (m : Nat)
+  | observe (measurement : MeasurementRequest m)
+      (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+      (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+  | revise (now : Instant) (permits : List (CorrectionPermit m)) (change : Change m)
+      (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+      (validation : ValidationPlan)
+
+def pendingView {m : Nat} (queue : List (MeasurementRequest m)) (state : BusinessState m)
+    (request : MeasurementRequest m) : List (MeasurementRequest m) :=
+  let others := queue.filter (fun old => decide (old.dictionary.unit ≠ request.dictionary.unit))
+  match JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported state.business request with
+  | .unknown _ => others ++ [request]
+  | .measured _ => others
+
+def dueQueue {m : Nat} (state : Source m) : List (MeasurementId × Instant) :=
+  state.2.map (fun request => (request.dictionary.unit,request.dictionary.windowEnd))
+
+def applyArrival {m : Nat} (state : Source m) : Arrival m → Source m
+  | .observe measurement policy feedback =>
+      ((JurisLean.Candidates.BusinessFeedbackLoop20261027.continueBusiness
+        state.1 measurement policy feedback).post,
+        pendingView state.2 state.1 measurement)
+  | .revise now permits change protocol validation =>
+      ({state.1 with learning := beginAdaptiveRound state.1.learning now permits change protocol validation},
+        state.2)
+
+/-- A physical business command is executed once. An episode's own pending
+window is retained in the same queue as externally arriving later reports. -/
+def applyCommand {W : Type} {m : Nat} (state : Source m) :
+    Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m) → Source m
+  | none => state
+  | some command =>
+      (JurisLean.Candidates.BusinessFeedbackLoop20261027.step state.1 command,
+        match command with
+        | .episode action measurement _ _ =>
+            pendingView state.2
+              (JurisLean.Candidates.BusinessFeedbackLoop20261027.act state.1 action).post measurement
+        | _ => state.2)
+
+def sourceStep {W : Type} {m : Nat}
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (state : Source m) (action report : Nat) : Source m :=
+  applyArrival (applyCommand state (commands action)) (reports report)
+
+def replay {W : Type} {m : Nat} (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (history : ArrivalLog) : Source m :=
+  history.foldl (fun state event => sourceStep commands reports state event.1 event.2) initial
+
+lemma replay_append {W : Type} {m : Nat} (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (history : ArrivalLog) (action report : Nat) :
+    replay initial commands reports (history ++ [(action,report)]) =
+      sourceStep commands reports (replay initial commands reports history) action report := by
+  simp [replay,List.foldl_append]
+
+variable {W : Type} {m : Nat}
+local instance : MeasurableSpace ArrivalLog := ⊤
+local instance : MeasurableSpace (RoundState m) := ⊤
+
+def encode (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (history : ArrivalLog) : ArrivalLog × RoundState m :=
+  (history,(replay initial commands reports history).1.learning)
+
+/-- The arrival kernel is arbitrary and may depend on the entire current
+history and action. This includes outcome-dependent random delays, repeated
+unknown reports, and later corrections of the original event. -/
+def arrivalModel (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m)
+    (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat) :
+    Dynamics ArrivalLog (RoundState m) Nat Nat (RoundState m) where
+  policy := policy
+  outcome := arrival
+  append := fun history action report => history ++ [(action,report)]
+  measure := fun history _ _ => (replay initial commands reports history).1.learning
+  learn := fun _ actual => actual
+  measurable_append := Measurable.of_discrete
+  measurable_measure := (Measurable.of_discrete (f := fun history : ArrivalLog =>
+    (replay initial commands reports history).1.learning)).comp measurable_fst
+  measurable_learn := measurable_snd
+
+instance (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat) [IsMarkovKernel policy] :
+    IsMarkovKernel (arrivalModel initial commands reports policy arrival).policy := by
+  change IsMarkovKernel policy
+  infer_instance
+
+instance (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat) [IsMarkovKernel arrival] :
+    IsMarkovKernel (arrivalModel initial commands reports policy arrival).outcome := by
+  change IsMarkovKernel arrival
+  infer_instance
+
+theorem arbitrary_arrival_markov (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    [IsMarkovKernel policy] [IsMarkovKernel arrival] :
+    IsMarkovKernel (step (arrivalModel initial commands reports policy arrival)) := inferInstance
+
+theorem actual_arrival_commutes (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    (history : ArrivalLog) (action report : Nat) :
+    update (arrivalModel initial commands reports policy arrival)
+      (encode initial commands reports history,(action,report)) =
+      encode initial commands reports (history ++ [(action,report)]) := rfl
+
+theorem actual_private_post_is_original_source_step (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    (history : ArrivalLog) (action report : Nat) :
+    (update (arrivalModel initial commands reports policy arrival)
+      (encode initial commands reports history,(action,report))).2 =
+      (sourceStep commands reports (replay initial commands reports history) action report).1.learning := by
+  change (replay initial commands reports (history ++ [(action,report)])).1.learning = _
+  rw [replay_append]
+
+/-- The same joint action/report draw drives the actual legacy poststate and
+its actual current learner, for arbitrary (not prescheduled) arrival laws. -/
+theorem actual_joint_arrival_law (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    [IsMarkovKernel policy] [IsMarkovKernel arrival] (history : ArrivalLog) :
+    step (arrivalModel initial commands reports policy arrival) (encode initial commands reports history) =
+      (joint (arrivalModel initial commands reports policy arrival)
+        (encode initial commands reports history)).map
+          (fun event => encode initial commands reports (history ++ [event])) := by
+  ext B hB
+  rw [step_apply _ _ hB,Measure.map_apply Measurable.of_discrete hB]
+  rfl
+
+theorem actual_joint_arrival_readout_law {V : Type*} [MeasurableSpace V]
+    (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    [IsMarkovKernel policy] [IsMarkovKernel arrival] (history : ArrivalLog) (read : Source m → V) :
+    (step (arrivalModel initial commands reports policy arrival) (encode initial commands reports history)).map
+        (fun current => read (replay initial commands reports current.1)) =
+      (joint (arrivalModel initial commands reports policy arrival)
+        (encode initial commands reports history)).map (fun event =>
+          read (sourceStep commands reports (replay initial commands reports history) event.1 event.2)) := by
+  have hr : Measurable (fun current : ArrivalLog × RoundState m =>
+      read (replay initial commands reports current.1)) :=
+    (Measurable.of_discrete (f := fun log : ArrivalLog =>
+      read (replay initial commands reports log))).comp measurable_fst
+  rw [actual_joint_arrival_law,Measure.map_map hr Measurable.of_discrete]
+  congr 1
+  funext event
+  dsimp [Function.comp_def,encode]
+  rw [replay_append]
+
+theorem next_policy_uses_actual_arrival_post (initial : Source m)
+    (commands : Nat → Option (JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m))
+    (reports : Nat → Arrival m) (policy : Kernel (ArrivalLog × RoundState m) Nat)
+    (arrival : Kernel ((ArrivalLog × RoundState m) × Nat) Nat)
+    [IsMarkovKernel policy] [IsMarkovKernel arrival] (history : ArrivalLog)
+    (B : Set Nat) (hB : MeasurableSet B) :
+    nextAction (arrivalModel initial commands reports policy arrival) (encode initial commands reports history) B =
+      ∫⁻ action, ∫⁻ report, policy
+        (encode initial commands reports (history ++ [(action,report)])) B
+          ∂arrival (encode initial commands reports history,action)
+          ∂policy (encode initial commands reports history) :=
+  nextAction_apply (arrivalModel initial commands reports policy arrival)
+    (encode initial commands reports history) hB
+
+/-- An unclosed request remains in the due-time queue; its due time alone
+never turns missing evidence into a false outcome. -/
+theorem unknown_request_remains_pending (state : Source m) (request : MeasurementRequest m)
+    (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+    (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (reason : JurisLean.Candidates.BusinessMeasurement20261027.MeasurementFailure)
+    (pending : JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported
+      state.1.business request = .unknown reason) :
+    request ∈ (applyArrival state (.observe request policy feedback)).2 ∧
+      (request.dictionary.unit,request.dictionary.windowEnd) ∈
+        dueQueue (applyArrival state (.observe request policy feedback)) ∧
+      (applyArrival state (.observe request policy feedback)).1.observationHistory =
+        state.1.observationHistory := by
+  have member : request ∈ (applyArrival state (.observe request policy feedback)).2 := by
+    simp [applyArrival,pendingView,pending]
+  exact ⟨member,List.mem_map.mpr ⟨request,member,rfl⟩,
+    pending_continuation_adds_no_observation state.1 request policy feedback reason pending⟩
+
+theorem completed_request_leaves_pending_queue (state : Source m) (request : MeasurementRequest m)
+    (policy : JurisLean.Candidates.BusinessFeedbackLoop20261027.PolicyInput m)
+    (feedback : JurisLean.Candidates.BusinessFeedbackLoop20261027.FeedbackInput m)
+    (out : JurisLean.Candidates.BusinessMeasurement20261027.BehaviorMeasurement)
+    (completed : JurisLean.Candidates.BusinessFeedbackLoop20261027.measureReported
+      state.1.business request = .measured out) :
+    ∀ old ∈ (applyArrival state (.observe request policy feedback)).2,
+      old.dictionary.unit ≠ request.dictionary.unit := by
+  intro old member
+  have filtered : old ∈ state.2.filter
+      (fun item => decide (item.dictionary.unit ≠ request.dictionary.unit)) := by
+    simpa [applyArrival,pendingView,completed] using member
+  exact of_decide_eq_true (List.mem_filter.mp filtered).2
+
+/-- Later reports and corrections do not repeat a physical business action. -/
+theorem arrival_preserves_actual_business (state : Source m) (report : Arrival m) :
+    (applyArrival state report).1.business = state.1.business := by
+  cases report with
+  | observe measurement policy feedback => rfl
+  | revise now permits change protocol validation => rfl
+
+/-- The general arrival language uses the exact original correction/fit path.
+It records the real postjournal before a later assessment can load a model. -/
+theorem revision_consumes_actual_corrected_store (state : Source m)
+    (now : Instant) (permits : List (CorrectionPermit m)) (change : Change m)
+    (protocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+    (validation : ValidationPlan)
+    (idle : state.1.learning.pending.isSome = false)
+    (within : state.1.learning.records.length < state.1.learning.horizon)
+    (lossSame : protocol.lossVersion = state.1.learning.service.lossVersion) :
+    (applyArrival state (.revise now permits change protocol validation)).1.learning.service.journal =
+      (applyChange now permits state.1.learning.service.journal change).post ∧
+    readLoaded (applyArrival state (.revise now permits change protocol validation)).1.learning.service =
+      readLoaded state.1.learning.service := by
+  have actual := next_candidate_consumes_current_loaded_and_actual_post state.1.learning.service
+    now permits change protocol state.1.learning.learner.proposals lossSame
+  simpa [applyArrival,beginAdaptiveRound,idle,not_le.mpr within] using actual.2.2.2
+
+#print axioms arbitrary_arrival_markov
+#print axioms actual_arrival_commutes
+#print axioms actual_joint_arrival_law
+#print axioms next_policy_uses_actual_arrival_post
+#print axioms unknown_request_remains_pending
+#print axioms completed_request_leaves_pending_queue
+#print axioms arrival_preserves_actual_business
+#print axioms revision_consumes_actual_corrected_store
+
+end GeneralArrival
 
 #print axioms variable_delay_markov
 #print axioms completion_update_eq

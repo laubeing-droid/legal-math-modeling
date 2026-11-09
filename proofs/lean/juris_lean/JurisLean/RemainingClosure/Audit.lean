@@ -1,8 +1,4 @@
-import JurisLean.RemainingClosure.W1Transport
-import JurisLean.RemainingClosure.W1Atoms
-import JurisLean.RemainingClosure.W1Laws
-import JurisLean.RemainingClosure.W1Sharp
-import JurisLean.RemainingClosure.W1Invariant
+import JurisLean.RemainingClosure.W1Audit
 import JurisLean.RemainingClosure.InterpretationChoice
 import JurisLean.RemainingClosure.FullEventLog
 import JurisLean.RemainingClosure.CNSemanticConnection
@@ -11,3 +7,4 @@ import JurisLean.RemainingClosure.RuleEvolution
 import JurisLean.RemainingClosure.EvidenceConditioning
 import JurisLean.RemainingClosure.MultiAgentFeedback
 import JurisLean.RemainingClosure.CouplingLift
+import JurisLean.RemainingClosure.PolicyIndependentFeedback

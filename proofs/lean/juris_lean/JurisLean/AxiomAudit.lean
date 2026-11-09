@@ -278,6 +278,8 @@ import JurisLean.RemainingClosure.W1Laws
 import JurisLean.RemainingClosure.W1Sharp
 import JurisLean.RemainingClosure.W1Transport
 
+import JurisLean.Candidates.FormalTail20261024
+
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_iff
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_common_member_is_feasible
 #print axioms JurisLean.Candidates.U06_6OriginalRiskEvaluation20261102.riskPolicies_mem_each_expected_loss_le
@@ -1578,6 +1580,11 @@ open HornSystem
     These declarations are elaborated by the all-module CI plan but were
     absent from the release audit surface; the block is generated from the
     declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms JurisLean.Candidates.FormalTail20261024.half_pow_pos
+#print axioms JurisLean.Candidates.FormalTail20261024.half_pow_shrinks
+#print axioms JurisLean.Candidates.FormalTail20261024.halve_iterate_one
+#print axioms JurisLean.Candidates.FormalTail20261024.negate_iterate_even
+#print axioms JurisLean.Candidates.FormalTail20261024.negate_iterate_odd
 #print axioms LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.admitted_closure_feedback
 #print axioms LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_admitted_seed
 #print axioms LegalMath.RemainingClosure.CNSemanticConnection.CompilerBridge.Actual.current_law

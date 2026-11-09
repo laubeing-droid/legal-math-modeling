@@ -1,4 +1,5 @@
 import JurisLean.RemainingClosure.FullEventLog
+import JurisLean.RemainingClosure.ProcessTransport
 import JurisLean.CN.Completion20261105.WorldSemantics
 import JurisLean.CN.Completion20261105.Examples
 import JurisLean.CN.Completion20261105.EngineExamples
@@ -1092,6 +1093,7 @@ lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
   dsimp only
   rw [prepared_allowed s ready y]
   simp [callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
+  rfl
 
 lemma fitPost_norm (s : Situation) (ready : ModelReady s) (y : Bool) :
     (fitPost s y).core.state.N = s.core.state.N := by
@@ -1124,7 +1126,9 @@ lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
   change (learnReport (fitPost s y) (Examples.request .learnModel) (materialId s)).after = _
   unfold learnReport
   rw [fresh,found]
-  simp only [Examples.request,toyRequest,beq_self_eq_true,Bool.not_true,Bool.false_or,
+  have act : (Act.learnModel != Act.learnModel) = false := by decide
+  change engineMaterialAllowed (fitPost s y) ⟨toyScope,(input s y).target⟩ (input s y) = true at allowed
+  simp only [Examples.request,toyRequest,act,beq_self_eq_true,Bool.not_true,Bool.false_or,
     Bool.false_eq_true,↓reduceIte]
   rw [allowed]
   norm_num [learnedTable,input,Engines.material,fitInput,fitted,Examples.request,toyRequest]
@@ -1457,15 +1461,15 @@ def episode (s : Situation) (y : Bool) : Situation :=
   else learned s false
 
 def episodeCommands (s : Situation) (y : Bool) : List PackedCommand :=
-  preparationCommands s y ++ if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []
+  preparationCommands s y ++ if y then ([⟨Unit,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] : List PackedCommand) else []
 
 theorem episode_replay (s : Situation) (ready : LegalReady s) (y : Bool) :
     FullEventLog.CN.replay s (episodeCommands s y) = episode s y := by
   change (preparationCommands s y ++
-    if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []).foldl
+    if y then ([⟨Unit,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] : List PackedCommand) else []).foldl
       FullEventLog.CN.advance s = _
   rw [List.foldl_append]
-  change (if y then [⟨_,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] else []).foldl
+  change (if y then ([⟨Unit,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] : List PackedCommand) else []).foldl
     FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y)) = _
   rw [preparation_replay s ready.norms y]
   cases y <;> rfl
@@ -1527,6 +1531,467 @@ theorem every_finite_prefix (state : ℚ × ℚ) (outcomes : List Bool) (n : Nat
       embed (rationalRun state (outcomes.take n)) := by
   refine ⟨run_ready _ (initial_ready state) _,?_⟩
   rw [run_read _ (initial_ready state),initial_read]
+
+/-- This menu changes the ACTUAL original Perform payload. The fixed legal
+context already permits nonnegative same-tag performance; the utility below is
+its actual transferred cash (including the original surplus semantics). -/
+namespace Menu
+
+def amount (action outcome : Bool) : ℚ :=
+  if action then if outcome then 2 else 0 else 1
+
+lemma amount_nonnegative (action outcome : Bool) : 0 ≤ amount action outcome := by
+  cases action <;> cases outcome <;> norm_num [amount]
+
+def payload (source : Situation) (quantity : ℚ) : Native.PaymentPayload :=
+  {payment source with amount := {(payment source).amount with value := quantity}}
+
+def post (s source : Situation) (quantity : ℚ) (account : Native.Cash.State) : Situation :=
+  let after := Native.Cash.performance account (payload source quantity)
+  let entry : Performance :=
+    ⟨⟨(payload source quantity).cashId.value⟩,⟨6⟩,⟨after.allocated-account.allocated⟩,Examples.request .perform⟩
+  EffectIR.adjust (EffectIR.payment entry ⟨6⟩ after) s
+
+lemma native_source (source : Situation) (quantity : ℚ) (nonnegative : 0 ≤ quantity)
+    (account : Native.Cash.State) (conservation : Native.Cash.Conserves account)
+    (consistent : Native.Cash.CashConsistent account)
+    (tag : account.debt.amount.tag = EngineExamples.amountTag) :
+    cashSource account (payload source quantity) =
+      .known (Native.Cash.performance account (payload source quantity)) := by
+  unfold cashSource
+  have value : 0 ≤ (payload source quantity).amount.value := nonnegative
+  have same : (payload source quantity).amount.tag = account.debt.amount.tag := by rw [tag]; rfl
+  rw [if_pos ⟨conservation,consistent,value,same⟩]
+
+lemma event_present (s : Situation) (ready : ModelReady s) (y : Bool) (quantity : ℚ) :
+    (learned s y).core.state.F.any (fun event =>
+      event.id.value == (payload s quantity).cashId.value && event.atom.scope == toyScope &&
+      event.actor.value == (payload s quantity).payer.value) = true := by
+  rw [learned_events s ready y]
+  apply List.any_eq_true.mpr
+  refine ⟨event s y,List.mem_append_right _ (by simp),?_⟩
+  cases y <;> simp [event,observedAtom,payload,payment,EngineExamples.payment]
+
+lemma post_ready (s : Situation) (ready : LegalReady s) (source : Situation)
+    (quantity : ℚ) (nonnegative : 0 ≤ quantity) (account : Native.Cash.State)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    LegalReady (post s source quantity account) := by
+  refine ⟨ready.norms,ready.relations,ready.constraints,ready.templates,ready.disputes,
+    ready.source,ready.sourceKey,?_⟩
+  refine ⟨Native.Cash.performance account (payload source quantity),?_,relation,payer,payee,tag,?_,?_⟩
+  · simp [post,EffectIR.adjust,EffectIR.payment,EffectIR.write]
+  · exact Native.Cash.u09_1_quantity_conservation account (payload source quantity) conservation nonnegative
+  · exact Native.Cash.performance_cash_consistent account (payload source quantity) consistent
+
+lemma post_world (s : Situation) (ready : LegalReady s) (source : Situation)
+    (quantity : ℚ) (account : Native.Cash.State) :
+    legalWorldCheck (post s source quantity account)
+      (rebasedWorld (post s source quantity account) (actualWorld s)) = true := by
+  have facts : (post s source quantity account).core.state.F.all (fun event =>
+      (rebasedWorld (post s source quantity account) (actualWorld s)).fact event.atom) = true := by
+    apply List.all_eq_true.mpr
+    intro event member
+    exact actualWorld_facts s event member
+  have relations : (post s source quantity account).core.state.L = [toyRelation] := ready.relations
+  have constraints : (post s source quantity account).core.state.constraints = [] := ready.constraints
+  simp only [legalWorldCheck,facts,constraints,List.all_nil,Bool.true_and,
+    relations,List.all_cons,List.all_nil,Bool.and_true]
+  cases reduction : knownReduction (post s source quantity account) toyRelation with
+  | none => simp [rebasedWorld,actualWorld,ready.relations,relations,reduction]
+  | some q => simp [rebasedWorld,actualWorld,ready.relations,relations,reduction]
+
+lemma raw_performance (source : Situation) (ready : LegalReady source) (y : Bool)
+    (quantity : ℚ) (nonnegative : 0 ≤ quantity) (account : Native.Cash.State)
+    (accountAt : source.accounts ⟨6⟩ = some account)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    performPayment (learned source y) (Examples.request .perform) .human ⟨6⟩ (payload source quantity) =
+      ⟨post (learned source y) source quantity account,.success ()⟩ := by
+  have sameAccount : (learned source y).accounts ⟨6⟩ = some account := by
+    rw [learned_formula source ready.norms y,fitPost_formula source ready.norms y]
+    exact accountAt
+  have current := learned_legal_ready source ready y
+  have fresh := fresh_request (learned source y) current.norms .perform
+  have admitted : admittedSource (learned source y) ⟨(payload source quantity).source.value⟩ toyScope = true :=
+    source_admitted (learned source y) current
+  have event := event_present source ready.norms y quantity
+  have unused : (learned source y).core.state.ledger.any (fun entry =>
+      entry.event.value == (payload source quantity).cashId.value) = false := by
+    simpa only [learned_ledger source ready.norms y,payload,payment] using new_cash_not_ledger source
+  have native := native_source source quantity nonnegative account conservation consistent tag
+  simp only [payload,payment,EngineExamples.payment,Examples.request,toyRequest,toyScope]
+    at fresh admitted event unused native
+  simp [performPayment,automationAllowed,fresh,sameAccount,relation,payer,payee,
+    current.relations,admitted,event,unused,native,
+    payload,payment,EngineExamples.payment,Examples.request,toyRequest,toyScope,toyRelation,post]
+
+lemma paired_performance (source : Situation) (ready : LegalReady source) (y : Bool)
+    (quantity : ℚ) (nonnegative : 0 ≤ quantity) (account : Native.Cash.State)
+    (accountAt : source.accounts ⟨6⟩ = some account)
+    (relation : account.debt.relation = ⟨6⟩) (payer : account.debt.obligor = ⟨8⟩)
+    (payee : account.debt.creditor = ⟨7⟩) (tag : account.debt.amount.tag = EngineExamples.amountTag)
+    (conservation : Native.Cash.Conserves account) (consistent : Native.Cash.CashConsistent account) :
+    performPaired (learned source y) (Examples.request .perform) .human ⟨6⟩ (payload source quantity) =
+      ⟨post (learned source y) source quantity account,.success ()⟩ := by
+  have current := learned_legal_ready source ready y
+  have group : reductionGroup (learned source y) (Examples.request .perform) ⟨6⟩ = .success [] := by
+    simp [reductionGroup,current.constraints]
+  have sameAccount : (learned source y).accounts ⟨6⟩ = some account := by
+    rw [learned_formula source ready.norms y,fitPost_formula source ready.norms y]
+    exact accountAt
+  unfold performPaired
+  rw [group,sameAccount,raw_performance source ready y quantity nonnegative account accountAt
+    relation payer payee tag conservation consistent]
+  simp [Law.continueWith,post,EffectIR.adjust,EffectIR.payment,EffectIR.write,reduceTargets,quiet]
+
+def context (s : Situation) (y : Bool) : Law.Call :=
+  {Examples.call .perform with world := actualWorld (learned s y)}
+
+/-- Nonnegative amounts are not a success assumption. All public permission,
+source, version, physical-event, freshness and conservation guards are derived. -/
+theorem public_performance (source : Situation) (ready : LegalReady source)
+    (y : Bool) (quantity : ℚ) (nonnegative : 0 ≤ quantity) :
+    ∃ account, source.accounts ⟨6⟩ = some account ∧
+      executeCommand (learned source y) (.perform (context source y) ⟨6⟩ (payload source quantity)) =
+        ⟨post (learned source y) source quantity account,.success ()⟩ ∧
+      LegalReady (post (learned source y) source quantity account) := by
+  obtain ⟨account,atAccount,relation,payer,payee,tag,conservation,consistent⟩ := ready.account
+  have current := learned_legal_ready source ready y
+  refine ⟨account,atAccount,?_,post_ready _ current source quantity nonnegative account
+    relation payer payee tag conservation consistent⟩
+  change performCall (learned source y) (context source y) ⟨6⟩ (payload source quantity) = _
+  unfold performCall
+  simp only [context,Examples.call]
+  rw [actual_permission (learned source y) current]
+  simp only [Law.continueWith,quiet]
+  rw [paired_performance source ready y quantity nonnegative account atAccount
+    relation payer payee tag conservation consistent]
+  simp only [Law.atomic,checkPost]
+  rw [post_world (learned source y) current source quantity account]
+  rfl
+
+def episode (s : Situation) (action y : Bool) : Situation :=
+  (executeCommand (learned s y)
+    (.perform (context s y) ⟨6⟩ (payload s (amount action y)))).after
+
+def commands (s : Situation) (action y : Bool) : List PackedCommand :=
+  preparationCommands s y ++
+    [⟨_,.perform (context s y) ⟨6⟩ (payload s (amount action y))⟩]
+
+theorem actual_episode (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    ∃ account, s.accounts ⟨6⟩ = some account ∧
+      episode s a y = post (learned s y) s (amount a y) account ∧
+      LegalReady (episode s a y) := by
+  obtain ⟨account,atAccount,actual,closed⟩ :=
+    public_performance s ready y (amount a y) (amount_nonnegative a y)
+  refine ⟨account,atAccount,?_,?_⟩ <;> simp only [episode,actual]
+  exact closed
+
+theorem episode_replay (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    FullEventLog.CN.replay s (commands s a y) = episode s a y := by
+  change (preparationCommands s y ++
+    [⟨_,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩]).foldl FullEventLog.CN.advance s = _
+  rw [List.foldl_append]
+  change FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y))
+    ⟨_,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩ = _
+  rw [preparation_replay s ready.norms y]
+  rfl
+
+theorem episode_read (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    read (episode s a y) = afterQ (read s) y := by
+  obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
+  rw [actual]
+  change read (learned s y) = _
+  exact learned_read s ready.norms y
+
+theorem episode_ready (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    LegalReady (episode s a y) := by
+  obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
+  exact closed
+
+theorem episode_events (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    (episode s a y).core.state.F = s.core.state.F ++ [event s y] := by
+  obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
+  rw [actual]
+  change (learned s y).core.state.F = _
+  exact learned_events s ready.norms y
+
+/-- The same actual source transfer supplies the utility. Allocated debt and
+surplus remain separate; this is NOT the allocation quantity after saturation. -/
+theorem actual_cash_payoff (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    ∃ before after, s.accounts ⟨6⟩ = some before ∧
+      (episode s a y).accounts ⟨6⟩ = some after ∧
+      after = Native.Cash.performance before (payload s (amount a y)) ∧
+      after.paid-before.paid = amount a y ∧
+      Native.Cash.Conserves after ∧ Native.Cash.CashConsistent after := by
+  obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
+  refine ⟨account,Native.Cash.performance account (payload s (amount a y)),atAccount,?_,rfl,?_,?_,?_⟩
+  · rw [actual]
+    simp [post,EffectIR.adjust,EffectIR.payment,EffectIR.write]
+  · change (account.paid + amount a y)-account.paid = amount a y
+    ring
+  · obtain ⟨after,atAfter,rest⟩ := closed.account
+    have eq : after = Native.Cash.performance account (payload s (amount a y)) := by
+      apply Option.some.inj
+      rw [←atAfter,actual]
+      simp [post,EffectIR.adjust,EffectIR.payment,EffectIR.write]
+    simpa [eq] using rest.2.2.2.2.1
+  · obtain ⟨after,atAfter,rest⟩ := closed.account
+    have eq : after = Native.Cash.performance account (payload s (amount a y)) := by
+      apply Option.some.inj
+      rw [←atAfter,actual]
+      simp [post,EffectIR.adjust,EffectIR.payment,EffectIR.write]
+    simpa [eq] using rest.2.2.2.2.2
+
+/-- Expected cash uses the very same Xi marginal as the physical response and
+private update; there is no independently selected utility distribution. -/
+def score (s : Situation) (action : Bool) : ℚ :=
+  (1-probabilityQ (read s))*amount action false + probabilityQ (read s)*amount action true
+
+def choose (s : Situation) : Bool := if score s false ≤ score s true then true else false
+
+theorem score_formula (s : Situation) : score s false = 1 ∧ score s true = 2*probabilityQ (read s) := by
+  constructor <;> simp [score,amount] <;> ring
+
+theorem actual_native_choice (s : Situation) :
+    Native.Decision.legalBest (score s) (fun _ => true) [false,true] = some (choose s) := by
+  simp [Native.Decision.legalBest,Native.Decision.best,choose]
+
+theorem chosen_maximizes_actual_cash (s : Situation) :
+    ∀ action : Bool, score s action ≤ score s (choose s) := by
+  have old := Native.Decision.legal_best_sound (score s) (fun _ => true) [false,true]
+    (choose s) (actual_native_choice s)
+  intro action
+  exact old.2.2 action (by cases action <;> simp) rfl
+
+theorem score_from_same_xi (s : Situation) (a : Bool) :
+    score s a = ∑ y : Bool, amount a y *
+      (∑ world, ∑ material, LegalMath20261109.PosteriorLaw.xi (read s) (world,material,y)) := by
+  simp_rw [LegalMath20261109.PosteriorLaw.xi_outcome_marginal]
+  simp [score,Fintype.univ_bool] <;> ring
+
+theorem learning_changes_actual_choice :
+    choose (initial (0,0)) = false ∧ choose (initial (1,1)) = true := by
+  norm_num [choose,score,amount,initial_read,probabilityQ,responseQ]
+
+/-- Exact expected ACTUAL transfer, not a made-up score attached to a command. -/
+theorem expected_actual_cash (s : Situation) (a : Bool) :
+    (score s a : ℝ) = ∫ y, (amount a y : ℝ)
+      ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),a) := by
+  change (score s a : ℝ) = ∫ y, (amount a y : ℝ)
+    ∂LegalMath20261108.UnifiedFeedbackBridge.coin (embed (read s))
+  rw [LegalMath20261109.PosteriorLaw.integral_coin]
+  simp only [score,Rat.cast_add,Rat.cast_mul,Rat.cast_sub,Rat.cast_one,probabilityQ_embed]
+  rfl
+
+/-- Finite full logs replay the previous COMPLETE actual CN post. -/
+def run (s : Situation) (log : List (Bool × Bool)) : Situation :=
+  log.foldl (fun current step => episode current step.1 step.2) s
+
+lemma run_ready (s : Situation) (ready : LegalReady s) (log : List (Bool × Bool)) :
+    LegalReady (run s log) := by
+  induction log generalizing s with
+  | nil => exact ready
+  | cons step rest ih => exact ih _ (episode_ready s ready step.1 step.2)
+
+lemma run_append (s : Situation) (log : List (Bool × Bool)) (a y : Bool) :
+    run s (log ++ [(a,y)]) = episode (run s log) a y := by
+  simp [run,List.foldl_append]
+
+/-- This is the full operation list, not only a final numeric summary. -/
+def fullCommands (s : Situation) : List (Bool × Bool) → List PackedCommand
+  | [] => []
+  | step :: rest => commands s step.1 step.2 ++ fullCommands (episode s step.1 step.2) rest
+
+lemma full_replay (s : Situation) (ready : LegalReady s) (log : List (Bool × Bool)) :
+    FullEventLog.CN.replay s (fullCommands s log) = run s log := by
+  induction log generalizing s with
+  | nil => rfl
+  | cons step rest ih =>
+      unfold fullCommands
+      change (commands s step.1 step.2 ++ fullCommands (episode s step.1 step.2) rest).foldl
+        FullEventLog.CN.advance s = _
+      rw [List.foldl_append]
+      change FullEventLog.CN.replay (FullEventLog.CN.replay s (commands s step.1 step.2))
+        (fullCommands (episode s step.1 step.2) rest) = _
+      rw [episode_replay s ready step.1 step.2]
+      exact ih _ (episode_ready s ready step.1 step.2)
+
+/-- All final fields and the dependent History itself are retained through the
+already proved fresh-operation-token code. -/
+theorem full_history_decoded (s : Situation) (log : List (Bool × Bool)) :
+    FullEventLog.CN.runHistory s
+      (FullEventLog.Tokens.forget (FullEventLog.Tokens.encode (fullCommands s log))) =
+      FullEventLog.CN.runHistory s (fullCommands s log) := by
+  rw [FullEventLog.Tokens.decode_encode]
+
+abbrev Log := List (Bool × Bool)
+abbrev RealState := LegalMath20261108.UnifiedFeedbackBridge.State
+local instance : MeasurableSpace Log := ⊤
+
+def actual (state : ℚ × ℚ) (log : Log) : Situation := run (initial state) log
+
+def projection (state : ℚ × ℚ) (source : Log × RealState) : RealState :=
+  embed (read (actual state source.1))
+
+lemma measurable_projection (state : ℚ × ℚ) : Measurable (projection state) :=
+  (Measurable.of_discrete (f := fun log : Log => embed (read (actual state log)))).comp measurable_fst
+
+lemma actual_ready (state : ℚ × ℚ) (log : Log) : LegalReady (actual state log) :=
+  run_ready _ (initial_ready state) log
+
+lemma projection_append (state : ℚ × ℚ) (log : Log) (shadow : RealState) (a y : Bool) :
+    projection state (log ++ [(a,y)],shadow) =
+      LegalMath20261108.UnifiedFeedbackBridge.after (projection state (log,shadow)) y := by
+  change embed (read (run (initial state) (log ++ [(a,y)]))) = _
+  rw [run_append,episode_read _ (actual_ready state log) a y,afterQ_embed]
+  rfl
+
+def responseKernel (state : ℚ × ℚ) : Kernel ((Log × RealState) × Bool) Bool where
+  toFun := fun z => LegalMath20261108.UnifiedFeedbackBridge.coin (projection state z.1)
+  measurable' := LegalMath20261108.UnifiedFeedbackBridge.measurable_coin.comp
+    ((measurable_projection state).comp measurable_fst)
+
+instance responseKernel_markov (state : ℚ × ℚ) : IsMarkovKernel (responseKernel state) where
+  isProbabilityMeasure z := LegalMath20261108.UnifiedFeedbackBridge.coin_probability _
+
+/-- In this actual parameter instance, the full log determines the entire legal
+post. The real shadow is written from the ACTUALLY learned table and is proved
+consistent along the reachable path below; it is not an independent learner. -/
+def sourceModel (state : ℚ × ℚ) : Dynamics Log RealState Bool Bool RealState where
+  policy := Kernel.deterministic (fun z => choose (actual state z.1))
+    ((Measurable.of_discrete (f := fun log : Log => choose (actual state log))).comp measurable_fst)
+  outcome := responseKernel state
+  append := fun log a y => log ++ [(a,y)]
+  measure := fun log _ _ => embed (read (actual state log))
+  learn := fun _ table => table
+  measurable_append := Measurable.of_discrete
+  measurable_measure :=
+    (Measurable.of_discrete (f := fun log : Log => embed (read (actual state log)))).comp measurable_fst
+  measurable_learn := measurable_snd
+
+instance sourceModel_policy_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).policy := by
+  change IsMarkovKernel (Kernel.deterministic _ _)
+  infer_instance
+
+instance sourceModel_outcome_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).outcome := by
+  change IsMarkovKernel (responseKernel state)
+  infer_instance
+
+/-- The actual sampled action changes the original command and cash, while
+exactly the SAME Y is learned by the retained native Brier minimizer. -/
+theorem source_update_commutes (state : ℚ × ℚ) (s : Log × RealState) (a y : Bool) :
+    projection state (update (sourceModel state) (s,(a,y))) =
+      LegalMath20261108.UnifiedFeedbackBridge.after (projection state s) y := by
+  exact projection_append state s.1 s.2 a y
+
+theorem source_private_is_actual (state : ℚ × ℚ) (s : Log × RealState) (a y : Bool) :
+    (update (sourceModel state) (s,(a,y))).2 =
+      projection state (update (sourceModel state) (s,(a,y))) := rfl
+
+/-- Concrete next choice reads the new retained/loaded table; the old native
+legalBest theorem is applied to the very cash score used by the next command. -/
+theorem next_choice_reads_loaded_table (state : ℚ × ℚ) (s : Log × RealState) (a y : Bool) :
+    (sourceModel state).policy (update (sourceModel state) (s,(a,y))) =
+      Measure.dirac (choose (episode (actual state s.1) a y)) ∧
+    Native.Decision.legalBest (score (episode (actual state s.1) a y))
+      (fun _ => true) [false,true] = some (choose (episode (actual state s.1) a y)) := by
+  have replayed : actual state (s.1 ++ [(a,y)]) = episode (actual state s.1) a y :=
+    run_append _ s.1 a y
+  constructor
+  · change Measure.dirac (choose (actual state (s.1 ++ [(a,y)]))) = _
+    rw [replayed]
+  · exact actual_native_choice _
+
+/-- This transports the actual CN transition, not a declared TransportData
+commutation field. It holds on every log, with every rational initial table. -/
+theorem source_kernel_projection (state : ℚ × ℚ) (s : Log × RealState) :
+    (step (sourceModel state) s).map (projection state) =
+      step LegalMath20261108.UnifiedFeedbackBridge.model (projection state s) := by
+  classical
+  ext B hB
+  rw [Measure.map_apply (measurable_projection state) hB,
+    step_apply (sourceModel state) s ((measurable_projection state) hB),joint,Kernel.compProd_apply]
+  · change (∫⁻ action : Bool,
+      LegalMath20261108.UnifiedFeedbackBridge.coin (projection state s)
+        ((fun y => projection state (update (sourceModel state) (s,(action,y)))) ⁻¹' B)
+        ∂(sourceModel state).policy s) = _
+    simp_rw [source_update_commutes]
+    rw [lintegral_const,measure_univ,mul_one,
+      LegalMath20261108.UnifiedFeedbackBridge.step_two_atoms]
+    simp [LegalMath20261108.UnifiedFeedbackBridge.coin,Measure.add_apply,smul_eq_mul,Set.indicator_apply]
+  · exact ((measurable_update (sourceModel state)).comp
+      (measurable_const.prodMk measurable_id)) ((measurable_projection state) hB)
+
+/-- All time correlations, not just each time marginal, use the original
+numeric process. The source action log retains its actual adaptive choices;
+it is not relabelled as the original independent fair-action log. -/
+theorem complete_source_path_projection (state : ℚ × ℚ)
+    (μ : Measure (Log × RealState)) [IsProbabilityMeasure μ] :
+    (pathLaw (sourceModel state) μ).map
+      (LegalMath20261110.RemainingClosure.ProcessTransport.mapPath (projection state)) =
+      pathLaw LegalMath20261108.UnifiedFeedbackBridge.model (μ.map (projection state)) :=
+  LegalMath20261110.RemainingClosure.ProcessTransport.pathLaw_transport (sourceModel state)
+    LegalMath20261108.UnifiedFeedbackBridge.model (projection state)
+    (measurable_projection state) (source_kernel_projection state) μ
+
+/-- Each complete finite prefix is transported jointly, with all preceding
+actual commands/cash/source states replayed rather than reset. -/
+theorem complete_source_prefix_projection (state : ℚ × ℚ)
+    (μ : Measure (Log × RealState)) [IsProbabilityMeasure μ] (n : Nat) :
+    (LegalMath20261110.RemainingClosure.ProcessTransport.prefixLaw (sourceModel state) μ n).map
+      (LegalMath20261110.RemainingClosure.ProcessTransport.mapPrefix (projection state) n) =
+      LegalMath20261110.RemainingClosure.ProcessTransport.prefixLaw
+        LegalMath20261108.UnifiedFeedbackBridge.model (μ.map (projection state)) n :=
+  LegalMath20261110.RemainingClosure.ProcessTransport.complete_prefix_transport (sourceModel state)
+    LegalMath20261108.UnifiedFeedbackBridge.model (projection state)
+    (measurable_projection state) (source_kernel_projection state) μ n
+
+/-- The actual physical law is exactly the old Xi marginal, now at the actual
+current CN replay and its loaded table. External A-IDENT is not inferred. -/
+theorem source_response_from_same_xi (state : ℚ × ℚ) (s : Log × RealState) (a : Bool) :
+    (sourceModel state).outcome (s,a) =
+      ENNReal.ofReal ((∑ world, ∑ material,
+        LegalMath20261109.PosteriorLaw.xi (read (actual state s.1)) (world,material,false) : ℚ) : ℝ) •
+        Measure.dirac false +
+      ENNReal.ofReal ((∑ world, ∑ material,
+        LegalMath20261109.PosteriorLaw.xi (read (actual state s.1)) (world,material,true) : ℚ) : ℝ) •
+        Measure.dirac true := by
+  exact LegalMath20261109.PosteriorLaw.actual_Q_from_xi (read (actual state s.1)) a
+
+/-- A declared matching statistical certificate remains conditional. This
+consumer binds it to this same actual ERM-selected/retained/loaded CN table;
+no sample risk or in-distribution claim is fabricated by fitting one label. -/
+theorem calibrated_actual_table (s : Situation) (ready : ModelReady s) (y : Bool)
+    (query : Fin 2) (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration)
+    (riskLimit : ℚ)
+    (scope : certificate.protocol = EngineExamples.protocol)
+    (table : certificate.table = (fitted (read s) y).table)
+    (boundScope : certificate.bounds.contract = EngineExamples.protocol.fit)
+    (coverage : 0 < certificate.bounds.lowerCoverage)
+    (nonnegative : 0 ≤ certificate.bounds.upperRisk)
+    (acceptable : certificate.bounds.upperRisk ≤ riskLimit) :
+    JurisLean.Candidates.LearningConsumer20261027.fitThenCalibrationGate
+      EngineExamples.protocol EngineExamples.protocol labelLoss (models (read s)) (sample y)
+      query certificate riskLimit true =
+      .known ⟨EngineExamples.protocol,(learned s y).core.state.A.theta.getD query.val 0,certificate.bounds⟩ ∧
+    ∀ model ∈ models (read s),
+      empiricalScore (JurisLean.Candidates.LearningConsumer20261027.tableLoss labelLoss) (sample y)
+        (fitted (read s) y).table ≤
+      empiricalScore (JurisLean.Candidates.LearningConsumer20261027.tableLoss labelLoss) (sample y) model := by
+  have old := JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer
+    EngineExamples.protocol labelLoss (models (read s)) (sample y) query certificate riskLimit
+    (fitted (read s) y) (native_fit_output (read s) y) scope table boundScope coverage nonnegative acceptable
+  constructor
+  · convert old.1 using 1
+    rw [learned_formula s ready y]
+    rfl
+  · exact old.2.2
+
+end Menu
 
 end Numeric
 
@@ -1624,6 +2089,35 @@ end Numeric
 #print axioms Numeric.run_ready
 #print axioms Numeric.run_read
 #print axioms Numeric.every_finite_prefix
+#print axioms Numeric.Menu.native_source
+#print axioms Numeric.Menu.event_present
+#print axioms Numeric.Menu.post_ready
+#print axioms Numeric.Menu.raw_performance
+#print axioms Numeric.Menu.public_performance
+#print axioms Numeric.Menu.actual_episode
+#print axioms Numeric.Menu.episode_replay
+#print axioms Numeric.Menu.episode_read
+#print axioms Numeric.Menu.episode_ready
+#print axioms Numeric.Menu.episode_events
+#print axioms Numeric.Menu.actual_cash_payoff
+#print axioms Numeric.Menu.actual_native_choice
+#print axioms Numeric.Menu.chosen_maximizes_actual_cash
+#print axioms Numeric.Menu.score_from_same_xi
+#print axioms Numeric.Menu.learning_changes_actual_choice
+#print axioms Numeric.Menu.expected_actual_cash
+#print axioms Numeric.Menu.run_ready
+#print axioms Numeric.Menu.run_append
+#print axioms Numeric.Menu.full_replay
+#print axioms Numeric.Menu.full_history_decoded
+#print axioms Numeric.Menu.projection_append
+#print axioms Numeric.Menu.source_update_commutes
+#print axioms Numeric.Menu.source_private_is_actual
+#print axioms Numeric.Menu.next_choice_reads_loaded_table
+#print axioms Numeric.Menu.source_kernel_projection
+#print axioms Numeric.Menu.complete_source_path_projection
+#print axioms Numeric.Menu.complete_source_prefix_projection
+#print axioms Numeric.Menu.source_response_from_same_xi
+#print axioms Numeric.Menu.calibrated_actual_table
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

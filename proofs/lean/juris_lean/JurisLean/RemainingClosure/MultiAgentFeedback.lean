@@ -1,9 +1,11 @@
 import JurisLean.FiniteHorizonAdequacy
 import JurisLean.External.GameTheory.Theorems.NashExistenceMixed
+import JurisLean.External.GameTheory.Core.GameProperties
+import JurisLean.Candidates.FormalTail20261024
 
 /-!
 Finite-horizon multiplayer learning on the original complete game history.
-Every private parameter is reconstructed from that player's fair personal
+Every private parameter is reconstructed from that player's complete personal
 record, then used by its next decision. The old general Kuhn and direct-law
 adequacy theorems are consumers of this policy, not replaced by a new game.
 Source only; CI_NOT_RUN until subject-bound build and axiom artifacts exist.
@@ -350,7 +352,8 @@ theorem correlation_is_not_independent_product :
     have atOffDiagonal := congrArg (fun distribution : PMF (Bool × Bool) => distribution (false,true)) same
     change sharedSignal (false,true) = independentSignals (false,true) at atOffDiagonal
     rw [correlated,separate] at atOffDiagonal
-    exact (ENNReal.inv_ne_zero.mpr (by norm_num : (4:ℝ≥0∞) ≠ ∞)) atOffDiagonal.symm
+    exact (ENNReal.inv_ne_zero.mpr (by norm_num : (4:ℝ≥0∞) ≠ ∞))
+      (by simpa only [one_div] using atOffDiagonal.symm)
 
 #print axioms private_parameters_advance
 #print axioms next_decision_uses_actual_personal_update
@@ -362,4 +365,240 @@ theorem correlation_is_not_independent_product :
 #print axioms correlation_is_not_independent_product
 
 end
+
+section GuardedLearningSelection
+
+variable {I : Type} [Fintype I] [DecidableEq I]
+  {S : I → Type} [∀ i, Fintype (S i)]
+
+/-- The conclusion of Nash, used with the original game's exact expected utility. -/
+def HasNoGain (u : ((i : I) → S i) → I → ℝ) (σ : (i : I) → S i) : Prop :=
+  ∀ i a, u (Function.update σ i a) i ≤ u σ i
+
+def EstimatedGain (v : ((i : I) → S i) → I → ℝ) (η : ℝ)
+    (σ : (i : I) → S i) : Prop :=
+  ∃ move : Sigma S, 2*η < v (Function.update σ move.1 move.2) move.1 - v σ move.1
+
+/-- One player changes only when its estimated gain exceeds the two-error guard. -/
+def guardedStep (v : ((i : I) → S i) → I → ℝ) (η : ℝ)
+    (σ : (i : I) → S i) : (i : I) → S i := by
+  classical
+  exact if h : EstimatedGain v η σ then
+    Function.update σ (Classical.choose h).1 (Classical.choose h).2 else σ
+
+def guardedPath (v : ℕ → ((i : I) → S i) → I → ℝ) (η : ℝ)
+    (initial : (i : I) → S i) : ℕ → (i : I) → S i
+  | 0 => initial
+  | n+1 => guardedStep (v n) η (guardedPath v η initial n)
+
+lemma guarded_gain_is_real (u v : ((i : I) → S i) → I → ℝ) (η : ℝ)
+    (accurate : ∀ σ i, |u σ i - v σ i| ≤ η)
+    (σ : (i : I) → S i) (move : Sigma S)
+    (gain : 2*η < v (Function.update σ move.1 move.2) move.1 - v σ move.1) :
+    u σ move.1 < u (Function.update σ move.1 move.2) move.1 := by
+  have ha := (abs_le.mp (accurate (Function.update σ move.1 move.2) move.1)).1
+  have hb := (abs_le.mp (accurate σ move.1)).2
+  linarith
+
+lemma profitable_move_is_detected (u v : ((i : I) → S i) → I → ℝ) (η δ : ℝ)
+    (accurate : ∀ σ i, |u σ i - v σ i| ≤ η)
+    (gap : ∀ σ i a, u σ i < u (Function.update σ i a) i →
+      δ ≤ u (Function.update σ i a) i - u σ i)
+    (separated : 4*η < δ) (σ : (i : I) → S i) (notNash : ¬ HasNoGain u σ) :
+    EstimatedGain v η σ := by
+  classical
+  have profitable : ∃ i a, u σ i < u (Function.update σ i a) i := by
+    simpa only [HasNoGain,not_forall,not_le] using notNash
+  obtain ⟨i,a,ha⟩ := profitable
+  refine ⟨⟨i,a⟩,?_⟩
+  have hd := gap σ i a ha
+  have hc := (abs_le.mp (accurate σ i)).1
+  have ht := (abs_le.mp (accurate (Function.update σ i a) i)).2
+  linarith
+
+lemma guardedStep_of_nash (u v : ((i : I) → S i) → I → ℝ) (η : ℝ)
+    (accurate : ∀ σ i, |u σ i - v σ i| ≤ η)
+    (σ : (i : I) → S i) (nash : HasNoGain u σ) : guardedStep v η σ = σ := by
+  classical
+  have absent : ¬ EstimatedGain v η σ := by
+    rintro ⟨move,gain⟩
+    exact not_lt_of_ge (nash move.1 move.2) (guarded_gain_is_real u v η accurate σ move gain)
+  simp only [guardedStep,dif_neg absent]
+
+/-- Finite potential values induce a natural rank without assuming termination. -/
+def potentialRank (Φ : ((i : I) → S i) → ℝ) (σ : (i : I) → S i) : ℕ := by
+  classical
+  exact (Finset.univ.filter (fun τ => Φ σ < Φ τ)).card
+
+lemma potentialRank_decreases (Φ : ((i : I) → S i) → ℝ)
+    (σ τ : (i : I) → S i) (improves : Φ σ < Φ τ) :
+    potentialRank Φ τ < potentialRank Φ σ := by
+  classical
+  unfold potentialRank
+  apply Finset.card_lt_card
+  refine Finset.ssubset_iff_subset_ne.mpr ⟨?_,?_⟩
+  · intro x hx
+    simp only [Finset.mem_filter,Finset.mem_univ,true_and] at hx ⊢
+    exact lt_trans improves hx
+  · intro same
+    have member : τ ∈ Finset.univ.filter (fun x => Φ σ < Φ x) := by simp [improves]
+    rw [← same] at member
+    simpa using member
+
+lemma guardedStep_decreases_rank (u : ((i : I) → S i) → I → ℝ)
+    (v : ((i : I) → S i) → I → ℝ) (η δ : ℝ)
+    (accurate : ∀ σ i, |u σ i - v σ i| ≤ η)
+    (gap : ∀ σ i a, u σ i < u (Function.update σ i a) i →
+      δ ≤ u (Function.update σ i a) i - u σ i)
+    (separated : 4*η < δ)
+    (Φ : ((i : I) → S i) → ℝ)
+    (potential : ∀ σ i a, u σ i < u (Function.update σ i a) i →
+      Φ σ < Φ (Function.update σ i a))
+    (σ : (i : I) → S i) (notNash : ¬ HasNoGain u σ) :
+    potentialRank Φ (guardedStep v η σ) < potentialRank Φ σ := by
+  classical
+  have available := profitable_move_is_detected u v η δ accurate gap separated σ notNash
+  have actual := guarded_gain_is_real u v η accurate σ (Classical.choose available)
+    (Classical.choose_spec available)
+  rw [guardedStep,dif_pos available]
+  exact potentialRank_decreases Φ σ _ (potential σ _ _ actual)
+
+/-- Consume the pre-existing finite strict-improvement trace, not a new
+axiomatized termination principle. -/
+lemma strict_rank_trace {P : Type} (rank : P → ℕ) (path : ℕ → P) (start len : ℕ)
+    (drop : ∀ j, j < len → rank (path (start+j+1)) < rank (path (start+j))) :
+    JurisLean.Candidates.FormalTail20261024.FinStrictImprove rank
+      (path start) len (path (start+len)) := by
+  induction len generalizing start with
+  | zero => simpa using JurisLean.Candidates.FormalTail20261024.FinStrictImprove.nil (rank := rank) (path start)
+  | succ len ih =>
+      have first := drop 0 (Nat.zero_lt_succ len)
+      have tail := ih (start+1) (fun j hj => by
+        have h := drop (j+1) (by omega)
+        simpa [Nat.add_assoc,Nat.add_comm,Nat.add_left_comm] using h)
+      simpa [Nat.add_assoc,Nat.add_comm,Nat.add_left_comm] using
+        JurisLean.Candidates.FormalTail20261024.FinStrictImprove.cons
+          (by simpa using first) tail
+
+/-- Uniformly accurate private estimates, a positive true gain gap and an
+ordinal potential force this defined asynchronous selection to terminate at
+Nash. Neither convergence nor Nash is a premise. -/
+theorem guarded_learning_selection_converges
+    (u : ((i : I) → S i) → I → ℝ) (v : ℕ → ((i : I) → S i) → I → ℝ) (η δ : ℝ)
+    (accurate : ∀ n σ i, |u σ i - v n σ i| ≤ η)
+    (gap : ∀ σ i a, u σ i < u (Function.update σ i a) i →
+      δ ≤ u (Function.update σ i a) i - u σ i)
+    (separated : 4*η < δ)
+    (Φ : ((i : I) → S i) → ℝ)
+    (potential : ∀ σ i a, u σ i < u (Function.update σ i a) i →
+      Φ σ < Φ (Function.update σ i a)) (initial : (i : I) → S i) :
+    ∃ N, N ≤ potentialRank Φ initial ∧ HasNoGain u (guardedPath v η initial N) ∧
+      ∀ n, N ≤ n → guardedPath v η initial n = guardedPath v η initial N := by
+  classical
+  have reaches : ∃ N, N ≤ potentialRank Φ initial ∧ HasNoGain u (guardedPath v η initial N) := by
+    by_contra never
+    push_neg at never
+    have trace := strict_rank_trace (potentialRank Φ) (guardedPath v η initial) 0
+      (potentialRank Φ initial + 1) (fun j hj => by
+        have non := never j (by omega)
+        simpa [guardedPath] using guardedStep_decreases_rank u (v j) η δ
+          (accurate j) gap separated Φ potential (guardedPath v η initial j) non)
+    have length := JurisLean.Candidates.FormalTail20261024.u15_1_finite_state_strict_improve_length_bound
+      (potentialRank Φ) trace
+    change potentialRank Φ initial + 1 ≤ potentialRank Φ initial at length
+    omega
+  obtain ⟨N,bound,nash⟩ := reaches
+  refine ⟨N,bound,nash,?_⟩
+  intro n hn
+  induction n,hn using Nat.le_induction with
+  | base => rfl
+  | succ n hn ih =>
+      change guardedStep (v n) η (guardedPath v η initial n) = _
+      rw [ih]
+      exact guardedStep_of_nash u (v n) η (accurate n) _ nash
+
+end GuardedLearningSelection
+
+section PrivateLearningSelectionConsumer
+
+variable [Fintype ι] [DecidableEq ι] [∀ i, Fintype (Obs i)] [∀ i, Fintype (Action i)]
+
+/-- The fixed evaluation game is the same original finite-horizon experiment:
+its candidate programs retain private updates and its readout retains history,
+all private parameters and the same actual payoff. Stabilizing its candidate
+profile never resets the continuing legal system or freezes private parameters. -/
+theorem private_learning_selection_joint_converges
+    (G : Game T ι State Obs Action)
+    (L : (i : ι) → PrivateLearning (Obs i) (Action i) (Parameter i))
+    (K : ι → ℕ)
+    (choose : (i : ι) → Fin (K i) → PersonalRecord T (Obs i) (Action i) → Parameter i → Action i)
+    (payoff : History T ι State Action → ι → ℝ)
+    (completed : ℕ → History T ι State Action)
+    (estimate : (i : ι) → Parameter i → ((j : ι) → Fin (K j)) → ℝ)
+    (η δ : ℝ) (Φ : ((i : ι) → Fin (K i)) → ℝ)
+    (accurate : ∀ n σ i,
+      |(candidateGame G L K choose payoff).eu σ i -
+        estimate i (privateParameters G L (completed n) i) σ| ≤ η)
+    (gap : ∀ σ i a,
+      (candidateGame G L K choose payoff).eu σ i <
+        (candidateGame G L K choose payoff).eu (Function.update σ i a) i →
+      δ ≤ (candidateGame G L K choose payoff).eu (Function.update σ i a) i -
+        (candidateGame G L K choose payoff).eu σ i)
+    (separated : 4*η < δ)
+    (potential : (candidateGame G L K choose payoff).IsOrdinalPotential Φ)
+    (permitted : (i : ι) → PersonalRecord T (Obs i) (Action i) → Action i → Prop)
+    (legalPrograms : ∀ i k r, stage r < T →
+      permitted i r (choose i k r (privateParameter (L i) r)))
+    (initial : (i : ι) → Fin (K i)) :
+    let v := fun n σ i => estimate i (privateParameters G L (completed n) i) σ
+    ∃ N, N ≤ potentialRank Φ initial ∧
+      (candidateGame G L K choose payoff).IsNash (guardedPath v η initial N) ∧
+      (∀ i r, stage r < T → permitted i r (choose i (guardedPath v η initial N i) r
+        (privateParameter (L i) r))) ∧
+      ∀ n, N ≤ n → ∀ t, t ≤ T →
+        (G.nativeLawPure (fun i => localLearningPlan (L i)
+          (choose i (guardedPath v η initial n i))) t).map (unifiedReadout G L payoff) =
+        (G.nativeLawPure (fun i => localLearningPlan (L i)
+          (choose i (guardedPath v η initial N i))) t).map (unifiedReadout G L payoff) := by
+  let v := fun n σ i => estimate i (privateParameters G L (completed n) i) σ
+  have hp : ∀ σ i a,
+      (candidateGame G L K choose payoff).eu σ i <
+        (candidateGame G L K choose payoff).eu (Function.update σ i a) i →
+      Φ σ < Φ (Function.update σ i a) := fun σ i a h => (potential i σ a).mp h
+  obtain ⟨N,bound,nash,stable⟩ := guarded_learning_selection_converges
+    (fun σ i => (candidateGame G L K choose payoff).eu σ i) v η δ accurate gap
+      separated Φ hp initial
+  refine ⟨N,bound,nash,?_,?_⟩
+  · intro i r active
+    exact legalPrograms i _ r active
+  · intro n hn t ht
+    rw [stable n hn]
+
+/-- A minimal two-player coordination counterexample: simultaneous current
+best replies cycle. Strict potential descent requires the stated asynchronous
+one-player revision, not arbitrary learning dynamics. -/
+def simultaneousReply (s : Bool × Bool) : Bool × Bool := (s.2,s.1)
+
+def coordinationPayoff (s : Bool × Bool) : ℝ := if s.1 = s.2 then 1 else 0
+
+theorem simultaneous_best_replies_can_cycle :
+    simultaneousReply (false,true) = (true,false) ∧
+    simultaneousReply (true,false) = (false,true) ∧
+    (false,true) ≠ (true,false) ∧
+    (∀ s : Bool × Bool, ∀ a : Bool,
+      coordinationPayoff (a,s.2) ≤ coordinationPayoff ((simultaneousReply s).1,s.2)) ∧
+    (∀ s : Bool × Bool, ∀ a : Bool,
+      coordinationPayoff (s.1,a) ≤ coordinationPayoff (s.1,(simultaneousReply s).2)) := by
+  refine ⟨rfl,rfl,by decide,?_,?_⟩
+  · rintro ⟨x,y⟩ a
+    cases x <;> cases y <;> cases a <;> norm_num [simultaneousReply,coordinationPayoff]
+  · rintro ⟨x,y⟩ a
+    cases x <;> cases y <;> cases a <;> norm_num [simultaneousReply,coordinationPayoff]
+
+end PrivateLearningSelectionConsumer
+
+#print axioms guarded_learning_selection_converges
+#print axioms private_learning_selection_joint_converges
+#print axioms simultaneous_best_replies_can_cycle
+
 end LegalMath20261110.RemainingClosure.MultiAgentFeedback

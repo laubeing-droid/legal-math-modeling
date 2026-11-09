@@ -145,7 +145,10 @@ def test_the_surface_names_no_comment_text():
         real |= {
             d["name"]
             for d in declarations(path.read_text(encoding="utf-8"), namespace=True)
-            if d["keyword"] in ("theorem", "lemma")
+            # Constructed proof-bearing definitions are valid #print axioms targets too
+            # (e.g. FiniteHorizon.Game.localSupportSignatureFull). This checks
+            # declaration existence, not whether a target is a proved proposition.
+            if d["keyword"] in ("theorem", "lemma", "def")
         }
     # Only qualified names are checkable this way: the hand-written lines predating
     # the generator name theorems by their short form, which Lean resolves through

@@ -85,7 +85,7 @@ O1、O2、O3 是表示／结果／行动定义，O4 是交换证明；O5 应写�
 
 | 审阅判断 | 当前核查结论 | 证据 |
 |---|---|---|
-| CI验收只有两个 JSON，无运行结果 | 不成立 | `20261109/CI验收/verification.json` 绑定 e9f30a0b、run 42529770001、artifact 13635834965；有 run.json、raw/changed-module.log、module-plan.json、axiom-audit.json、source-verification.json。 |
+| CI验收只有两个 JSON，无运行结果 | 不成立 | `20261109/CI验收/verification.json` 绑定 e9f30a0b、run 42529770001、Artifact CI, ID `13635834965`；有 run.json、raw/changed-module.log、module-plan.json、axiom-audit.json、source-verification.json。 |
 | driver 29/53，缺 24 个公理目标 | 不成立 | driver 本身 29 行这一旧计数成立，但导入模块也打印。旧运行日志及 `expected-axiom-targets.json` 逐名对照为 53/53；当前第二轮为 82/82，含依赖共 110 个目标。 |
 | 无 importer，所以没有经过构建 | 推论不成立 | 独立 driver 已被 `module-plan.json` 明确指定为构建目标；job 128881173894（旧）和 run 42533582478（新）有实际构建与 artifact。独立 driver 不要求另一个 importer 才可执行。 |
 | 根模块不 import 新模块 | 事实成立，适用范围需修 | 当前根未 import 该 driver，因此不能只用根 build 主张覆盖；现有主张基于具名 driver 的构建及依赖。最终合并方案将在通过新增模块构建后处理根覆盖。 |

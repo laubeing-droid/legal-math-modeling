@@ -49,9 +49,13 @@ lemma couplingAt_snd (s t : State) (r : ℝ)
   rw [couplingAt, step_two_atoms]
   simp only [Measure.map_add _ _ measurable_snd, Measure.map_smul,
     Measure.map_dirac' measurable_snd, Prod.snd]
-  rw [add_right_comm (_ + _) _, add_assoc, ← add_smul, ← add_smul,
-    ← ENNReal.ofReal_add h00 h10, ← ENNReal.ofReal_add h01 h11]
-  congr 2 <;> ring
+  trans (ENNReal.ofReal (1-probability s-probability t+r) +
+      ENNReal.ofReal (probability s-r)) • Measure.dirac (after t false) +
+    (ENNReal.ofReal (probability t-r) + ENNReal.ofReal r) • Measure.dirac (after t true)
+  · simp only [add_smul]
+    ac_rfl
+  · rw [← ENNReal.ofReal_add h00 h10, ← ENNReal.ofReal_add h01 h11]
+    congr 2 <;> ring
 
 lemma couplingAt_mem (s t : State) (r : ℝ)
     (hr : admissible (probability s) (probability t) r) :
@@ -93,7 +97,7 @@ def monotoneCoupling : Kernel (State × State) (State × State) where
     intro B hB
     have hd (b c : Bool) : Measurable (fun z : State × State =>
         Measure.dirac (after z.1 b, after z.2 c) B) :=
-      (Measure.measurable_coe hB).comp (measurable_dirac.comp (ha b c))
+      (Measure.measurable_coe hB).comp (Measure.measurable_dirac.comp (ha b c))
     simp only [Measure.add_apply, Measure.smul_apply, smul_eq_mul]
     exact ((((ENNReal.measurable_ofReal.comp
       (((measurable_const.sub h1).sub h2).add (h1.min h2))).mul (hd false false)).add
@@ -162,9 +166,12 @@ lemma transported_cost {μ ν : Measure State} [IsProbabilityMeasure μ]
     {ρ : Measure (State × State)} (hρ : ρ ∈ couplingMeasures μ ν) :
     (∫⁻ z, ENNReal.ofReal (dstar z.1 z.2) ∂(monotoneCoupling ∘ₘ ρ)) ≤
       (3/4 : ℝ≥0∞) * (∫⁻ z, ENNReal.ofReal (dstar z.1 z.2) ∂ρ) := by
-  rw [Measure.lintegral_bind monotoneCoupling.aemeasurable
-    (ENNReal.measurable_ofReal.comp measurable_dstar).aemeasurable]
   calc
+    _ = ∫⁻ z, ∫⁻ z', ENNReal.ofReal (dstar z'.1 z'.2) ∂monotoneCoupling z ∂ρ :=
+      Measure.lintegral_bind monotoneCoupling.aemeasurable
+        (show AEMeasurable (fun z : State × State => ENNReal.ofReal (dstar z.1 z.2))
+          (monotoneCoupling ∘ₘ ρ) from
+          (ENNReal.measurable_ofReal.comp measurable_dstar).aemeasurable)
     _ ≤ ∫⁻ z, (3/4 : ℝ≥0∞) * ENNReal.ofReal (dstar z.1 z.2) ∂ρ := by
       apply lintegral_mono_ae
       filter_upwards [coupling_supported hμ hν hρ] with z hz
@@ -188,9 +195,9 @@ theorem generalW1Lift : generalW1LiftTarget := by
   letI : IsProbabilityMeasure μ := hμprob
   letI : IsProbabilityMeasure ν := hνprob
   rw [distributionW1_eq_iInf μ ν,
-    ENNReal.mul_iInf_of_ne (by norm_num) (by norm_num)]
+    ENNReal.mul_iInf_of_ne (by norm_num) (ENNReal.div_ne_top (by norm_num) (by norm_num))]
   refine le_iInf fun ρ => ?_
-  rw [ENNReal.mul_iInf_of_ne (by norm_num) (by norm_num)]
+  rw [ENNReal.mul_iInf_of_ne (by norm_num) (ENNReal.div_ne_top (by norm_num) (by norm_num))]
   refine le_iInf fun hρ => ?_
   have ht : monotoneCoupling ∘ₘ ρ ∈
       couplingMeasures (step model ∘ₘ μ) (step model ∘ₘ ν) := by

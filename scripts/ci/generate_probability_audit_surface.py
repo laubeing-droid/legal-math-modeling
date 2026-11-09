@@ -51,6 +51,8 @@ BOUNDARY_MARKER = "Generated boundary-carrier audit surface"
 SURFACES = (
     (PROB_MARKER, ("FullMath/Probability",), ("BusinessRoot/Analytics.lean",)),
     (MANDATE_MARKER, ("Mandate",), ()),
+    # Remaining-closure modules earned their independent module build before promotion.
+    ("Generated remaining-closure audit surface", ("RemainingClosure",), ()),
     # The seventh-round seam wave (JurisLean/Seams/) reaches the audit surface the same
     # way the mandate and external carriers did: a module first earns its own CI module
     # build, then its declarations get named here so a later full-release round reads

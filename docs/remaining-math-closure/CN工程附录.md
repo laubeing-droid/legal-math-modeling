@@ -59,9 +59,9 @@
 | 实际存入的既判拘束 | `resJudicata_continuation` |
 | 原候选输出、无裁断/拘束 | `proposal_continuation` |
 
-`FitReady` 仅列source实际读取的版本1、admitEvidence授权和learnModel授权，所有具名实例由真实post的守卫实算证明。`Numeric.ModelReady` 对cashStart整个N的强要求只保留给原付款Menu；`fitReady_of_modelReady`让它复用增强后的准备引理，没有拿它限制全部制度。`actual_institution_frame`保留全部制度外层字段、N/L/账本/裁断/拘束等；`old_evidence_preserved`逐cell保持已有key，E/F新条目保留。
+`FitReady` 仅列source实际读取的版本1、admitEvidence授权和learnModel授权，所有具名实例由真实post的守卫实算证明。`Numeric.ModelReady` 对cashStart整个N的强要求只保留给原付款Menu；`fitReady_of_modelReady`让它复用增强后的准备引理，没有拿它限制全部制度。`learned_ready`保留一般FitReady域，`learned_modelReady : ModelReady s → ModelReady (learned s y)`另行保留原完整N相等的强后态命题；二者均已在同一模块实编。`actual_institution_frame`保留全部制度外层字段、N/L/账本/裁断/拘束等；`old_evidence_preserved`逐cell保持已有key，E/F新条目保留。
 
-`actual_retained_report`读取同一新后态实际报告。`actual_kernel_projection`由同一次Y的旧native_fit_output和实际learned_read推导原数值核，未把待证交换放进前提；`following_policy_reads_actual_post`把后续给定法律策略复合到此实际新后态，其自身许可支持及信息因子化条件仍保留。`complete_replay`、`common_model_realization`将“先制度原命令，再实际完整学习命令”放回同一个CN.model原历史。全部这些新目标仍需同SHA CI；此表不声称每个制度都获准执行performance菜单。
+`actual_retained_report`读取同一新后态实际报告。`actual_kernel_projection`由同一次Y的旧native_fit_output和实际learned_read推导原数值核，未把待证交换放进前提；`following_policy_reads_actual_post`把后续给定法律策略复合到此实际新后态，其自身许可支持及信息因子化条件仍保留。`complete_replay`、`common_model_realization`将“先制度原命令，再实际完整学习命令”放回同一个CN.model原历史。这些CN目标在下文绑定的提交上已经整模块构建和公理审计；本轮总状态及完整CI另列第8节。此表不声称每个制度都获准执行performance菜单。
 
 上述是原已有制度参数实例的逐项连接及一般目录运输，不声称凭它们穷尽所有制度的全部具体规则输入。任意一般实例继续采用同一个命令解释器、既有制度表达式和规范参数。
 
@@ -80,7 +80,7 @@
 
 ## 5. 十五题：原能力如何被实际消费
 
-下表旧定位的 `文件.lean::声明` 表示源码文件与准确声明名（不是另造Lean命名空间），行号以所列main基线为准。以下题名逐字沿用审稿第一层 B.3（第349—363行），题单正文起点分别为Q01:97、Q02:97、Q03:109、Q04:87、Q05:85、Q06:87、Q07:269、Q08:99、Q09:143、Q10:99、Q11:91、Q12:93、Q13:93、Q14:87、Q15:87。逐项给消费关系，不能把出现文件名等同于本次新证。旧部分已有独立证明时保留，不重新证明。条件未消失。新源构建/完整 CI 未绑定前，本表的新连接统一为 `not_run`。
+下表旧定位的 `文件.lean::声明` 表示源码文件与准确声明名（不是另造Lean命名空间），行号以所列main基线为准。以下题名逐字沿用审稿第一层 B.3（第349—363行），题单正文起点分别为Q01:97、Q02:97、Q03:109、Q04:87、Q05:85、Q06:87、Q07:269、Q08:99、Q09:143、Q10:99、Q11:91、Q12:93、Q13:93、Q14:87、Q15:87。逐项给消费关系，不能把出现文件名等同于本次新证。旧部分已有独立证明时保留，不重新证明。条件未消失。本表CN源连接的单模块结果为第8节所列 `pass`；F14新增一般公式、跨模块批次及整库权威CI仍分别以其各自原始结果验收。
 
 | 原题 | 实际消费关系 | 本次所补及保留条件 |
 |---|---|---|
@@ -126,11 +126,16 @@
 
 ## 8. 验证记录
 
-| 对象 | 当前记录 | 状态 |
-|---|---|---|
-| FullEventLog完整token/reports与业务消费 | 既有模块已构建；dependent History双向式已实编；新全局初态pair补正源SHA256 `d84cb111b0ffef15779ee1b7aed0901c3c5d1f57b21221335991d3cbf026128f` 已交根代理，等同提交模块/公理结果 | not_run |
-| CNSemanticConnection旧制度/引擎/CompilerBridge | 既有轮次已实际编译并仅标准公理；不替代本次最终源码验证 | partial |
-| 新 Numeric/Menu 全链 | 源SHA256 `4b14475a4e5df7075eaf381206834ceb9241570468963cad3c25238c7496370c` 已冻结交接；新目标等待权威实编与公理审计 | not_run |
-| 整库权威CI | 根代理统一执行；最终subject/run/artifact必须与实际交付源码相同 | not_run |
+本节是单模块回执。F13、全日志及该CN文件全部新证明为 `pass`；同轮总批次仍为 `partial`，失败在根模块 `EntitySemantics` 的5处语法/不可判等问题；仓库规定的完整权威CI为 `not_run`。根代理继续修复并执行后续整体验收。
 
-最终subject SHA、run id、artifact及完整目标逐名命中由总回执记录，只有相同最终源码的权威结果可更新本表。目标清单、源码头注、旧main绿色CI都不代替本次新命题的验证结果。
+| 对象 | 同提交验证结果 | 状态 |
+|---|---|---|
+| FullEventLog完整token/reports、全局root与dependent History双向、业务消费 | 源SHA256 `d84cb111b0ffef15779ee1b7aed0901c3c5d1f57b21221335991d3cbf026128f`；同轮原日志:2368显示整模块构建，global三条双向/单射目标:2395—2403给标准公理 | pass |
+| CNSemanticConnection全部新定理，含FitReady、强learned_modelReady、12个真实continuation及失败出口 | 源SHA256 `c46b239b02cf4c5971add07af2918cc2ede83a50b882879fca47f2929accb00f`；原日志:2555显示整模块构建；本文件142个#print目标142/142命中，仅`propext`、`Classical.choice`、`Quot.sound`或更少，无其他公理 | pass |
+| F13实际原核/后续policy/完整命令重放 | `actual_kernel_projection`、`following_policy_reads_actual_post`、`complete_replay`、`common_model_realization`、全部12个具名continuation、`failure_exits_continue`均在上述整模块中构建；强`learned_modelReady`原日志:2802—2804、F13核/策略:2988—2993、12实例:3003起及失败出口:3039—3041均有标准公理回执 | pass |
+| 同轮跨模块批次 | `EntitySemantics`原日志:3051起仍5错误；不能把CN单模块结果写成整批通过 | partial |
+| 整库权威CI及最终同版本总回执 | 由根代理在其余错误修复后执行；本轮模块计划scope为`CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE` | not_run |
+
+绑定提交：`f863522a76a0e1dea1640af33418faa1b757b7e6`。GitHub Actions：[run 42562004392](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/42562004392)。本机原始artifact日志：`D:\Codex\1.法律工作区\legal-math-modeling工作区\20261110\剩余目标验证\module-f863522a\changed-module.log`；同目录`module-plan.json`保存此次计划范围。该run整体为失败，以上`pass`严格指表中已实际构建并有公理日志的模块和目标。
+
+最后整体验收必须绑定最终提交、run及artifact。这里没有把目标JSON、源码头注或旧main绿色CI当成本次新命题的验证结果。

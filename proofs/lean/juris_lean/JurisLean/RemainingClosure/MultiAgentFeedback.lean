@@ -572,6 +572,7 @@ theorem private_learning_selection_joint_converges
         (candidateGame G L K choose payoff).eu (Function.update σ i a) i →
       Φ σ < Φ (Function.update σ i a) := fun σ i a h => (potential i σ a).mp h
   obtain ⟨N,bound,nash,stable⟩ := guarded_learning_selection_converges
+    (I := ι) (S := fun i => Fin (K i))
     (fun σ i => (candidateGame G L K choose payoff).eu σ i) v η δ accurate gap
       separated Φ hp initial
   refine ⟨N,bound,?_,nash,?_,?_⟩

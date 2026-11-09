@@ -86,7 +86,8 @@ theorem path_measure_ext (μ ν : Measure (ℕ → S)) [IsFiniteMeasure ν]
   let P : (I : Finset ℕ) → Measure (I → S) := fun I => ν.map I.restrict
   have hP : IsProjectiveMeasureFamily (α := fun _ : ℕ => S) P := by
     intro I J hJI
-    change ν.map J.restrict = (ν.map I.restrict).map (Finset.restrict₂ hJI)
+    change ν.map J.restrict = (ν.map I.restrict).map
+      (fun p : I → S => fun j : J => p ⟨j,hJI j.property⟩)
     rw [Measure.map_map (by fun_prop) (by fun_prop)]
     rfl
   letI : ∀ I, IsFiniteMeasure (P I) := fun _ => inferInstance

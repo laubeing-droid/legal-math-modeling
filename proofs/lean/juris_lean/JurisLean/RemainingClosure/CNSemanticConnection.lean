@@ -1777,8 +1777,8 @@ theorem learning_changes_actual_choice :
     choose (initial (0,0)) = false ∧ choose (initial (1,1)) = true := by
   norm_num [choose,score,amount,initial_read,probabilityQ,responseQ]
 
-/-- Exact expected ACTUAL transfer, not a made-up score attached to a command. -/
-theorem expected_actual_cash (s : Situation) (a : Bool) :
+/-- Two-point expansion of the original same-world response law. -/
+theorem expected_amount (s : Situation) (a : Bool) :
     (score s a : ℝ) = ∫ y, (amount a y : ℝ)
       ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),a) := by
   change (score s a : ℝ) = ∫ y, (amount a y : ℝ)
@@ -1786,6 +1786,51 @@ theorem expected_actual_cash (s : Situation) (a : Bool) :
   rw [LegalMath20261109.PosteriorLaw.integral_coin]
   simp only [score,Rat.cast_add,Rat.cast_mul,Rat.cast_sub,Rat.cast_one,probabilityQ_embed]
   rfl
+
+def paidRead (s : Situation) : ℚ := ((s.accounts ⟨6⟩).map (fun account => account.paid)).getD 0
+
+def realizedPayoff (s : Situation) (a y : Bool) : ℚ := paidRead (episode s a y)-paidRead s
+
+/-- The payoff is decoded from the actual CN post account. The original
+performance theorem derives its value; it is not defined to equal the menu. -/
+theorem realizedPayoff_eq_amount (s : Situation) (ready : LegalReady s) (a y : Bool) :
+    realizedPayoff s a y = amount a y := by
+  obtain ⟨before,after,atBefore,atAfter,source,delta,conservation,consistent⟩ := actual_cash_payoff s ready a y
+  simpa [realizedPayoff,paidRead,atBefore,atAfter] using delta
+
+/-- Score is exactly the expected cash change decoded from the same ACTUAL
+CN command post, with its same-world outcome distribution. -/
+theorem expected_actual_cash (s : Situation) (ready : LegalReady s) (a : Bool) :
+    (score s a : ℝ) = ∫ y, (realizedPayoff s a y : ℝ)
+      ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),a) := by
+  rw [expected_amount s a]
+  apply integral_congr_ae
+  exact Filter.Eventually.of_forall (fun y => by rw [realizedPayoff_eq_amount s ready a y])
+
+/-- The original best theorem therefore compares actual command post cash,
+not arbitrary surrogate numbers. Both source commands succeed by the already
+proved public guard/permission/conservation construction. -/
+theorem native_choice_maximizes_actual_expected_cash (s : Situation) (ready : LegalReady s) (a : Bool) :
+    (∫ y, (realizedPayoff s a y : ℝ)
+      ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),a)) ≤
+    ∫ y, (realizedPayoff s (choose s) y : ℝ)
+      ∂LegalMath20261108.UnifiedFeedbackBridge.model.outcome (embed (read s),choose s) := by
+  rw [←expected_actual_cash s ready a,←expected_actual_cash s ready (choose s)]
+  exact_mod_cast chosen_maximizes_actual_cash s a
+
+/-- A reachable, non-reset episode changes the next actual payment command:
+Y=true is retained, natively fitted, learned and paid under action false. -/
+theorem actual_reachable_learning_changes_choice :
+    choose (initial (0,0)) = false ∧
+    read (episode (initial (0,0)) false true) = (1,5/8) ∧
+    LegalReady (episode (initial (0,0)) false true) ∧
+    choose (episode (initial (0,0)) false true) = true := by
+  have reading : read (episode (initial (0,0)) false true) = (1,5/8) := by
+    rw [episode_read _ (initial_ready (0,0)) false true,initial_read]
+    norm_num [afterQ]
+  refine ⟨?_,reading,episode_ready _ (initial_ready (0,0)) false true,?_⟩
+  · norm_num [choose,score,amount,initial_read,probabilityQ,responseQ]
+  · norm_num [choose,score,amount,reading,probabilityQ,responseQ]
 
 /-- Finite full logs replay the previous COMPLETE actual CN post. -/
 def run (s : Situation) (log : List (Bool × Bool)) : Situation :=
@@ -2105,6 +2150,10 @@ end Numeric
 #print axioms Numeric.Menu.score_from_same_xi
 #print axioms Numeric.Menu.learning_changes_actual_choice
 #print axioms Numeric.Menu.expected_actual_cash
+#print axioms Numeric.Menu.expected_amount
+#print axioms Numeric.Menu.realizedPayoff_eq_amount
+#print axioms Numeric.Menu.native_choice_maximizes_actual_expected_cash
+#print axioms Numeric.Menu.actual_reachable_learning_changes_choice
 #print axioms Numeric.Menu.run_ready
 #print axioms Numeric.Menu.run_append
 #print axioms Numeric.Menu.full_replay

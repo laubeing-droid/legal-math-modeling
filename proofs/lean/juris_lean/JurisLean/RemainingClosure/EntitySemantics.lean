@@ -17,8 +17,9 @@ open LegalMath.RemainingClosure.CNSemanticConnection
 
 noncomputable section
 
-/-- These are source/selection conditions on the given legal question, not
-soundness, truth, correctness, or success assumptions. -/
+/-- Source/selection conditions and the original semantic model class.
+The latter is reused as defined in WorldSemantics; it is not a new derivation
+of world soundness. This atomic specialization identifies the actual question. -/
 structure CoherentQuery (s : Situation) (q : EntityQuery) : Prop where
   ruleSelection : selectedRules s.core q.call.request = [q.law]
   methodSelection : selectedTemplates s q.law = [q.method]
@@ -28,6 +29,7 @@ structure CoherentQuery (s : Situation) (q : EntityQuery) : Prop where
   scopeIdentity : q.scope = q.call.request.scope
   lawScope : q.law.scope = q.scope
   atomScope : q.atom.scope = q.scope
+  questionIdentity : q.law.guard = .atom q.atom
   natureIdentity : q.call.world = q.world.nature
   compatible : semanticCompatible s q.world
   decisionIdentity : ∀ d, recordedDecision s q = some d →
@@ -105,7 +107,7 @@ theorem private_table_preserves_coherence (s : Situation) (q : EntityQuery)
     CoherentQuery (s.withCore (s.core.putState
       {s.core.state with A := {s.core.state.A with theta := table}} rfl)) q := by
   exact ⟨h.ruleSelection, h.methodSelection, h.policyIdentity, h.scopeIdentity,
-    h.lawScope, h.atomScope, h.natureIdentity, h.compatible, h.decisionIdentity⟩
+    h.lawScope, h.atomScope, h.questionIdentity, h.natureIdentity, h.compatible, h.decisionIdentity⟩
 
 /-- Consumes the actual retained-report learning command, including all
 failure branches. Private learning cannot change the legal interpretation. -/
@@ -136,6 +138,100 @@ theorem learnReport_legal_readouts (s : Situation) (q : EntityQuery)
       · split <;> exact ⟨rfl,rfl⟩
       · exact ⟨rfl,rfl⟩
 
+/- General formulas use the actual selected rule's guard. They do not infer
+question identity from scope, and are not restricted to single-atom rules. -/
+def naturalFormula (w : PossibleWorld) : Formula → Bool
+  | .atom a => w.fact a
+  | .both a b => naturalFormula w a && naturalFormula w b
+  | .either a b => naturalFormula w a || naturalFormula w b
+  | .neg a => !naturalFormula w a
+
+def formulaSixJudgments (s : Situation) (q : EntityQuery) : SixJudgments :=
+  ⟨naturalFormula q.world.nature q.law.guard,
+    evalFormula (support (admittedView s.core.state.E q.law.materials)) q.law.guard,
+    proofAt s q.call q.law.guard,
+    (recordedDecision s q).map (fun d => d.judgment),
+    (recordedDecision s q).map (fun d => d.valid), bindingReadout s q⟩
+
+def formulaFourEffects (s : Situation) (q : EntityQuery) : FourEffects :=
+  ⟨(recordedDecision s q).map (fun d => d.valid),
+    bindingReadout s {q with bindingKind := .resJudicata},
+    (recordedDecision s q).bind (fun d =>
+      match evalFormula (q.world.assessment q.law q.method) q.law.guard with
+      | .undetermined => none
+      | expected => some (d.judgment == expected)),
+    s.core.state.ledger.filter (fun entry => entry.request.scope == q.scope)⟩
+
+/-- The new bridge proves actual checker/selected-template agreement. It
+requires no supported-world refinement or semanticCompatible premise. -/
+theorem actual_formula_checker_assessment (s : Situation) (q : EntityQuery)
+    (ruleSelection : selectedRules s.core q.call.request = [q.law])
+    (methodSelection : selectedTemplates s q.law = [q.method])
+    (policyIdentity : (q.call.policy.scope != q.law.scope ||
+      q.call.policy.source.id != q.law.source.id ||
+      q.call.policy.source.version != q.law.source.version) = false)
+    (j : Judgment) (known : proofAt s q.call q.law.guard = .known j) :
+    evalFormula (atomAssessment s q.law q.method) q.law.guard = j := by
+  unfold proofAt at known
+  rw [ruleSelection] at known
+  simp only [policyIdentity, Bool.false_eq_true, if_false] at known
+  rw [methodSelection] at known
+  cases evaluated : evalProofFormula q.method.body
+      (admittedView s.core.state.E q.law.materials) q.law.guard with
+  | unknown reason => simp [evaluated] at known
+  | known actual =>
+    simp only [evaluated] at known
+    have same : actual = j := by
+      split at known
+      · exact Check.known.inj known
+      · cases known
+    unfold atomAssessment
+    rw [← collapse_formula, evaluated, same]
+    rfl
+
+/-- The old semantic model class is explicit and separate from the proved
+checker bridge. Formula refinement is reused on the SAME selected question. -/
+theorem selected_formula_refines_supported_world (s : Situation) (q : EntityQuery)
+    (ruleSelection : selectedRules s.core q.call.request = [q.law])
+    (methodSelection : selectedTemplates s q.law = [q.method])
+    (policyIdentity : (q.call.policy.scope != q.law.scope ||
+      q.call.policy.source.id != q.law.source.id ||
+      q.call.policy.source.version != q.law.source.version) = false)
+    (compatible : semanticCompatible s q.world)
+    (j : Judgment) (known : proofAt s q.call q.law.guard = .known j) :
+    Refines j (evalFormula (q.world.assessment q.law q.method) q.law.guard) := by
+  have lawIn : q.law ∈ s.core.state.N.rules := by
+    have member : q.law ∈ selectedRules s.core q.call.request := by simp [ruleSelection]
+    exact (List.mem_filter.mp member).1
+  have methodIn : q.method ∈ selectedTemplates s q.law := by simp [methodSelection]
+  have transported := formula_refines (atomAssessment s q.law q.method)
+    (q.world.assessment q.law q.method) q.law.guard
+    (compatible.2 q.law lawIn q.method methodIn)
+  rw [actual_formula_checker_assessment s q ruleSelection methodSelection policyIdentity j known]
+    at transported
+  exact transported
+
+local instance {k : Nat} : MeasurableSpace (Fin k) := ⊤
+local instance {k : Nat} : MeasurableSpace (List (Fin k)) := ⊤
+local instance : MeasurableSpace Private := ⊤
+
+/-- The whole formula's legal readouts and actual learned table are a joint
+readout of the SAME original CN next-state kernel. -/
+theorem formula_entity_feedback_law {k : Nat}
+    [MeasurableSpace SixJudgments] [MeasurableSpace FourEffects]
+    (initial : Situation) (catalog : Fin k → PackedCommand) (q : EntityQuery)
+    (policy : ProbabilityTheory.Kernel (List (Fin k) × Private) (Fin k))
+    [ProbabilityTheory.IsMarkovKernel policy] (h : List (Fin k)) :
+    (LegalMath20261108.ClosedLoop.step (model initial catalog policy) (encode initial catalog h)).map
+      (fun z => (formulaSixJudgments (replay initial catalog z.1) q,
+        formulaFourEffects (replay initial catalog z.1) q,
+        (replay initial catalog z.1).core.state.A.theta)) =
+      (policy (encode initial catalog h)).map (fun a =>
+        let post := (executeCommand (replay initial catalog h) (catalog a).2).after
+        (formulaSixJudgments post q, formulaFourEffects post q, post.core.state.A.theta)) :=
+  readout_kernel_transport initial catalog policy
+    (fun post => (formulaSixJudgments post q, formulaFourEffects post q, post.core.state.A.theta)) h
+
 namespace Actual
 open Examples
 
@@ -151,13 +247,14 @@ def query : EntityQuery where
   method := CompilerBridge.Actual.method
   world := canonicalWorld bound toyWorld
 
-/-- The witness is a real stored decision/binding post, not a handwritten
-assessment made equal to the desired conclusion. -/
+/-- A real stored decision/binding post realizes the original canonical
+semantic model, with actual rule/method/source selection. -/
 theorem query_is_coherent : CoherentQuery bound query := by
   constructor
   · rfl
   · rfl
   · decide
+  · rfl
   · rfl
   · rfl
   · rfl
@@ -193,6 +290,45 @@ theorem bare_query_counterexample :
   have impossible := actual_judgment_refines_same_world bound mismatched coherent .established checked
   simp [Refines, mismatched] at impossible
 
+theorem same_scope_is_not_same_question :
+    faithAtom.scope = query.scope ∧ ¬ CoherentQuery bound {query with atom := faithAtom} := by
+  refine ⟨rfl, ?_⟩
+  intro coherent
+  have different : confirmation.guard ≠ .atom faithAtom := by decide
+  exact different coherent.questionIdentity
+
+def compoundMethod : IssuedTemplate :=
+  ⟨Examples.request .addTemplate, {Examples.template with clauses :=
+    Examples.template.clauses.filter (fun clause => containsAtom clause.1 compensationLaw.guard)}⟩
+
+def compoundQuery : EntityQuery :=
+  {query with call := Examples.call .decide, law := compensationLaw,
+    method := compoundMethod, world := canonicalWorld compensated.after toyWorld}
+
+/-- A real compound institutional question (including negation) consumes the
+general bridge. Its formula is derived from the actual selected rule. -/
+theorem compound_institution_same_question :
+    selectedRules compensated.after.core compoundQuery.call.request = [compoundQuery.law] ∧
+    selectedTemplates compensated.after compoundQuery.law = [compoundQuery.method] ∧
+    (formulaSixJudgments compensated.after compoundQuery).justified = .known .established ∧
+    evalFormula (compoundQuery.world.assessment compoundQuery.law compoundQuery.method)
+      compoundQuery.law.guard = .established := by
+  have laws : selectedRules compensated.after.core compoundQuery.call.request = [compoundQuery.law] := by decide
+  have methods : selectedTemplates compensated.after compoundQuery.law = [compoundQuery.method] := by decide
+  have identity : (compoundQuery.call.policy.scope != compoundQuery.law.scope ||
+      compoundQuery.call.policy.source.id != compoundQuery.law.source.id ||
+      compoundQuery.call.policy.source.version != compoundQuery.law.source.version) = false := by decide
+  have checked : proofAt compensated.after compoundQuery.call compoundQuery.law.guard = .known .established := by decide
+  have compatible : semanticCompatible compensated.after compoundQuery.world :=
+    canonicalWorld_compatible compensated.after toyWorld
+      (legalWorldCheck_sound compensated.after toyWorld (by decide))
+  have semantic := selected_formula_refines_supported_world compensated.after compoundQuery
+    laws methods identity compatible .established checked
+  refine ⟨laws, methods, checked, ?_⟩
+  rcases semantic with unknown | same
+  · cases unknown
+  · exact same.symm
+
 end Actual
 
 #print axioms selected_law_is_actual
@@ -204,9 +340,14 @@ end Actual
 #print axioms private_table_preserves_coherence
 #print axioms learnReport_preserves_coherent_query
 #print axioms learnReport_legal_readouts
+#print axioms actual_formula_checker_assessment
+#print axioms selected_formula_refines_supported_world
+#print axioms formula_entity_feedback_law
 #print axioms Actual.query_is_coherent
 #print axioms Actual.actual_proof_and_world_agree
 #print axioms Actual.bare_query_counterexample
+#print axioms Actual.same_scope_is_not_same_question
+#print axioms Actual.compound_institution_same_question
 
 end
 end LegalMath.RemainingClosure.EntitySemantics

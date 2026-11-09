@@ -42,6 +42,27 @@
 | 既判力 | `resJudicata_feedback` | `Examples.resJudicata_actual` | 实际索引的人/事/时点界限 |
 | DeepInfer消费 | `proposal_feedback` | `Examples.proposal_actual` | 候选不等于裁断/拘束 |
 
+上表 `Institutions.*_feedback` 只证明单命令一般CN历史运输，本身未连接原数值/原业务学习核。独立复核已指出该差别；本次新增 `InstitutionalContinuation`，逐制度实际后态调用下列真正后续学习连接，不能再拿上表单步见证单独填F13 pass。
+
+| 实际制度后态 | 新同源消费者 |
+|---|---|
+| 形成和撤销（含空L） | `lifecycle_continuation` |
+| 委托后的新增grant | `agency_continuation` |
+| 真实普通/专属管辖结果 | `jurisdiction_continuation`、`failure_exits_continue` |
+| 原pending/admitted/withdrawn材料状态 | `evidence_continuation` |
+| 善意、恶意、遗失物真实出口 | `acquisition_continuation`、`failure_exits_continue` |
+| 具名人与事件及缺事件出口 | `offense_continuation` |
+| 真实受理/中止与他债务人区分 | `bankruptcy_continuation` |
+| 真实刑事赔偿轨道及缺前提出口 | `compensation_continuation` |
+| 真实权利冲突后态 | `rights_continuation` |
+| 实际存入的表达式解释 | `interpretation_continuation` |
+| 实际存入的既判拘束 | `resJudicata_continuation` |
+| 原候选输出、无裁断/拘束 | `proposal_continuation` |
+
+`FitReady` 仅列source实际读取的版本1、admitEvidence授权和learnModel授权，所有具名实例由真实post的守卫实算证明。`Numeric.ModelReady` 对cashStart整个N的强要求只保留给原付款Menu；`fitReady_of_modelReady`让它复用增强后的准备引理，没有拿它限制全部制度。`actual_institution_frame`保留全部制度外层字段、N/L/账本/裁断/拘束等；`old_evidence_preserved`逐cell保持已有key，E/F新条目保留。
+
+`actual_retained_report`读取同一新后态实际报告。`actual_kernel_projection`由同一次Y的旧native_fit_output和实际learned_read推导原数值核，未把待证交换放进前提；`following_policy_reads_actual_post`把后续给定法律策略复合到此实际新后态，其自身许可支持及信息因子化条件仍保留。`complete_replay`、`common_model_realization`将“先制度原命令，再实际完整学习命令”放回同一个CN.model原历史。全部这些新目标仍需同SHA CI；此表不声称每个制度都获准执行performance菜单。
+
 上述是原已有制度参数实例的逐项连接及一般目录运输，不声称凭它们穷尽所有制度的全部具体规则输入。任意一般实例继续采用同一个命令解释器、既有制度表达式和规范参数。
 
 ## 4. 八引擎的具体消费而非名字对齐
@@ -69,7 +90,7 @@
 | 04 概率统计与共同空间识别 | 原同世界后验 → `PosteriorLawRealization.lean::actual_Q_from_xi`；CN实际 `prob` 结果留存 | 不把归一化当外部 A-IDENT；新 `Menu.source_response_from_same_xi`/`score_from_same_xi` 把实际响应和现金评分绑定 `PosteriorLawRealization.lean::actual_Q_from_xi`（:82）、`PosteriorLawRealization.lean::xi_outcome_marginal`（:74）的同一旧 Ξ；外部 A-IDENT仍是独立原条件 |
 | 05 校准域外检测与风险保证 | 旧 `BusinessFeedbackLoop20261027.lean::act` 实际调用 `runLoaded` → `loadedProbability` → `produceInterval` → `chooseLoaded` → `executeDecision`；`known_probability_binds_actual_loaded_and_sample`、`loaded_run_choice_uses_current_model` 消费同一实际表与样本；`frozen_family_probability_confidence` 消费有限样本同分布独立置信证明 | 新 `Menu.calibrated_actual_table` 又把原 `u01_6_successful_pipeline_uses_actual_empirical_minimizer` 应用到这个真实 CN native-fit/retained/learned 表；证书协议、同表、覆盖、支持、风险原条件保留；未宣称一标签样本无条件总体校准 |
 | 06 概率决策信息价值与策略 | 原 `legalBest` 实际最大值 → `bargain_feedback`；原有限期Kuhn及记录/收益链保持 | 本次不把单步议价当完整多期博弈；n≤T、fair、独立乘积、单玩家桥四限定保留 |
-| 07 法律对象共同模型与表示 | CN完整 core F/E/N/L/A/accounts → 同一有序replay → 六判断/四效果/私人参数联合法律读数 | `legal_entity_feedback_law`不取数值余额商，保留完整命令载荷和端点 |
+| 07 法律对象共同模型与表示 | CN完整 core F/E/N/L/A/accounts → 同一有序replay → 六判断/四效果/私人参数联合法律读数 | 原任意EntityQuery读数运输与同一法律查询一致性分别验；根新 `EntitySemantics.CoherentQuery` 要求实际选中rule/template、同范围、相容世界及nature匹配，并给出真实canonical消费者，不能靠多字段同名；`legal_entity_feedback_law`保留完整命令载荷和端点 |
 | 08 规范时间证据与程序终局 | 当前norm/template/admitted proof → `actual_legal_step_worlds`/现有 `WorldSemantics.lean::actual_legal_step_semantic_ready` → 实际制度决定 → 存储拘束/范围/时间查询 | `actual_legal_step_worlds`及十二具体消费；无索引仍unknown，不能自动false |
 | 09 关系效果数量账本与履行 | 同一实际付款 → 原Native Cash守恒 → CN实际account/ledger与制度效果 → 共同readout | 现金消费者与原FinancialMerge保持；新 `Menu.actual_cash_payoff`/`episode_read` 对同一个实际后态接现金和数值投影，`full_replay`/完整prefix运输顺接以前全部履行 |
 | 10 授权变更与多步法律轨迹 | `AuthorizationClosureAudit20261104.lean::checked_permissions_exact_positive_semantics`（:366）/`rooted_refresh_is_actual_authorized_step`（:397）→ 同一旧提交命令的真Trace.Step → full history replay | `FullEventLog.Business.complete_business_log_conservation`消费旧全串提交/刷新；CN的 `complete_history_roundtrip`/`encodeGlobal_injective` 与一般核运输保留同一完整操作载荷；信任根/范围/时限/旧授权不由学习生成，未知图不产生许可 |
@@ -109,7 +130,7 @@
 |---|---|---|
 | FullEventLog完整token/reports与业务消费 | 既有模块已构建；dependent History双向式已实编；新全局初态pair补正源SHA256 `d84cb111b0ffef15779ee1b7aed0901c3c5d1f57b21221335991d3cbf026128f` 已交根代理，等同提交模块/公理结果 | not_run |
 | CNSemanticConnection旧制度/引擎/CompilerBridge | 既有轮次已实际编译并仅标准公理；不替代本次最终源码验证 | partial |
-| 新 Numeric/Menu 全链 | 源SHA256 `a1f5f83db8ade9fa86e8bf56d158a7eeb41c6183c87a0b970358e5665584cf15` 已冻结交接；新目标等待权威实编与公理审计 | not_run |
+| 新 Numeric/Menu 全链 | 源SHA256 `4b14475a4e5df7075eaf381206834ceb9241570468963cad3c25238c7496370c` 已冻结交接；新目标等待权威实编与公理审计 | not_run |
 | 整库权威CI | 根代理统一执行；最终subject/run/artifact必须与实际交付源码相同 | not_run |
 
 最终subject SHA、run id、artifact及完整目标逐名命中由总回执记录，只有相同最终源码的权威结果可更新本表。目标清单、源码头注、旧main绿色CI都不代替本次新命题的验证结果。

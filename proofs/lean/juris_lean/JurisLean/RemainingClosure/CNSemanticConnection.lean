@@ -986,6 +986,34 @@ lemma new_material_filter_empty (s : Situation) :
 part. Preservation below proves it for every reachable prefix. -/
 def ModelReady (s : Situation) : Prop := s.core.state.N = EngineExamples.cashStart.core.state.N
 
+/-- Exactly the native preparation guards. Neither the rule list, the rest
+of the grants, legal relations nor any institution state is fixed here. -/
+def FitReady (s : Situation) : Prop :=
+  s.core.state.N.version = 1 ∧
+  authorized s.core.state.N (Examples.request .admitEvidence) = true ∧
+  authorized s.core.state.N (Examples.request .learnModel) = true
+
+instance fitReady_decidable (s : Situation) : Decidable (FitReady s) := by
+  unfold FitReady
+  infer_instance
+
+lemma fitReady_of_modelReady {s : Situation} (ready : ModelReady s) : FitReady s := by
+  unfold FitReady
+  rw [ready]
+  decide
+
+lemma fit_fresh_admit (s : Situation) (ready : FitReady s) :
+    freshRequest s (Examples.request .admitEvidence) = true := by
+  unfold freshRequest
+  rw [ready.2.1,ready.1]
+  rfl
+
+lemma fit_fresh_learn (s : Situation) (ready : FitReady s) :
+    freshRequest s (Examples.request .learnModel) = true := by
+  unfold freshRequest
+  rw [ready.2.2,ready.1]
+  rfl
+
 lemma fresh_request (s : Situation) (ready : ModelReady s) (act : Act) :
     freshRequest s (Examples.request act) = true := by
   unfold freshRequest
@@ -1028,11 +1056,11 @@ lemma recorded_actual (s : Situation) (y : Bool) :
     (executeCommand (physical s y) (.record (materialId s) (raw s y))).after = recorded s y := by
   simp [executeCommand,recordMaterial,physical,new_material_absent,recorded,rawOf]
 
-lemma admitted_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma admitted_actual (s : Situation) (ready : FitReady s) (y : Bool) :
     (executeCommand (recorded s y) (.admitEvidence (Examples.request .admitEvidence)
       .human (materialId s) (raw s y) (receipt s y))).after = admitted s y := by
   have fresh : freshRequest (recorded s y) (Examples.request .admitEvidence) = true :=
-    fresh_request s ready .admitEvidence
+    fit_fresh_admit s ready
   have pending : (recorded s y).core.state.E (materialId s) = .pending (raw s y) := by
     simp [recorded,CaseState.setCell,Situation.withCore,setEvidence]
   change (admission (recorded s y) (Examples.request .admitEvidence)
@@ -1042,12 +1070,12 @@ lemma admitted_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
   norm_num [automationAllowed,raw,observedAtom,receipt,Examples.request,toyRequest,toyNorm,
     EffectIR.adjust,EffectIR.admission,EffectIR.write,admitted]
 
-lemma prepared_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma prepared_actual (s : Situation) (ready : FitReady s) (y : Bool) :
     (executeCommand (admitted s y) (.registerEngine (Examples.request .learnModel) (input s y))).after =
       prepared s y := by
   have fresh : freshRequest (admitted s y) (Examples.request .learnModel) = true :=
-    fresh_request s ready .learnModel
-  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+    fit_fresh_learn s ready
+  have version : s.core.state.N.version = 1 := ready.1
   have cell : (admitted s y).core.state.E (materialId s) = .accepted (raw s y) (receipt s y) := by
     simp [admitted,CaseState.setCell,Situation.withCore,setEvidence]
   have unused : (admitted s y).engineInputs.any (fun old => old.id == (input s y).id) = false :=
@@ -1068,9 +1096,9 @@ lemma prepared_lookup (s : Situation) (y : Bool) :
     (prepared s y).engineInputs.filter (fun item => item.id == materialId s) = [input s y] := by
   simp [prepared,input,Engines.material,new_material_filter_empty]
 
-lemma prepared_allowed (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma prepared_allowed (s : Situation) (ready : FitReady s) (y : Bool) :
     engineMaterialAllowed (prepared s y) EngineExamples.context (input s y) = true := by
-  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+  have version : s.core.state.N.version = 1 := ready.1
   simp [engineMaterialAllowed,prepared,admitted,recorded,physical,input,Engines.material,
     EngineExamples.context,CaseState.setCell,Situation.withCore,setEvidence,raw,observedAtom,receipt,toyNorm,version]
 
@@ -1080,7 +1108,7 @@ def fitPost (s : Situation) (y : Bool) : Situation :=
 def learned (s : Situation) (y : Bool) : Situation :=
   (executeCommand (fitPost s y) (.learnReport (Examples.request .learnModel) (materialId s))).after
 
-lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma fitPost_formula (s : Situation) (ready : FitReady s) (y : Bool) :
     fitPost s y =
       { (Law.proposeEngine (prepared s y)
           (engineOutput (prepared s y) EngineExamples.context .fit
@@ -1095,30 +1123,30 @@ lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
   simp [callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
   rfl
 
-lemma fitPost_norm (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma fitPost_norm (s : Situation) (ready : FitReady s) (y : Bool) :
     (fitPost s y).core.state.N = s.core.state.N := by
   rw [fitPost_formula s ready y]
   rfl
 
-lemma fitPost_cell (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma fitPost_cell (s : Situation) (ready : FitReady s) (y : Bool) :
     (fitPost s y).core.state.E (materialId s) = .accepted (raw s y) (receipt s y) := by
   rw [fitPost_formula s ready y]
   simp [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
     prepared,admitted,recorded,physical,CaseState.setCell,Situation.withCore,setEvidence]
 
-lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
+lemma learned_formula (s : Situation) (ready : FitReady s) (y : Bool) :
     learned s y = (fitPost s y).withCore ((fitPost s y).core.putState
       {(fitPost s y).core.state with
         A := {(fitPost s y).core.state.A with theta := candidate (read s) y}} rfl) := by
   have norm := fitPost_norm s ready y
   have fresh : freshRequest (fitPost s y) (Examples.request .learnModel) = true := by
-    simpa only [freshRequest,norm] using fresh_request s ready .learnModel
+    simpa only [freshRequest,norm] using fit_fresh_learn s ready
   have head : (fitPost s y).engineResults.head? = some ⟨input s y,.known (fitted (read s) y)⟩ := by
     rw [fitPost_formula s ready y]
     rfl
   have found := Engines.actual_head_is_found (fitPost s y) (materialId s)
     ⟨input s y,.known (fitted (read s) y)⟩ head rfl
-  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+  have version : s.core.state.N.version = 1 := ready.1
   have allowed : engineMaterialAllowed (fitPost s y)
       ⟨(Examples.request .learnModel).scope,(input s y).target⟩ (input s y) = true := by
     simp [engineMaterialAllowed,input,Engines.material,EngineExamples.context,
@@ -1137,12 +1165,12 @@ lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
 /-- The actual public native-fit/report/learn episode updates the projection
 by the original afterQ. The fitted-table equality was proved by the ERM, not
 assumed as an input. -/
-theorem learned_read (s : Situation) (ready : ModelReady s) (y : Bool) :
+theorem learned_read (s : Situation) (ready : FitReady s) (y : Bool) :
     read (learned s y) = afterQ (read s) y := by
   rw [learned_formula s ready y]
   simp [read,candidate,Situation.withCore,CaseState.putState]
 
-theorem learned_ready (s : Situation) (ready : ModelReady s) (y : Bool) : ModelReady (learned s y) := by
+theorem learned_ready (s : Situation) (ready : FitReady s) (y : Bool) : FitReady (learned s y) := by
   change (learned s y).core.state.N = _
   rw [learned_formula s ready y]
   change (fitPost s y).core.state.N = _
@@ -1158,7 +1186,7 @@ def preparationCommands (s : Situation) (y : Bool) : List PackedCommand :=
    ⟨_,.engine EngineExamples.context (materialId s)⟩,
    ⟨_,.learnReport (Examples.request .learnModel) (materialId s)⟩]
 
-theorem preparation_replay (s : Situation) (ready : ModelReady s) (y : Bool) :
+theorem preparation_replay (s : Situation) (ready : FitReady s) (y : Bool) :
     FullEventLog.CN.replay s (preparationCommands s y) = learned s y := by
   simp only [FullEventLog.CN.replay,preparationCommands,List.foldl_cons,List.foldl_nil,
     FullEventLog.CN.advance]
@@ -1166,14 +1194,14 @@ theorem preparation_replay (s : Situation) (ready : ModelReady s) (y : Bool) :
   rfl
 
 /-- No occurrence, ledger entry, or previous source report is reset. -/
-theorem learned_events (s : Situation) (ready : ModelReady s) (y : Bool) :
+theorem learned_events (s : Situation) (ready : FitReady s) (y : Bool) :
     (learned s y).core.state.F = s.core.state.F ++ [event s y] := by
   rw [learned_formula s ready y]
   change (fitPost s y).core.state.F = _
   rw [fitPost_formula s ready y]
   rfl
 
-theorem learned_ledger (s : Situation) (ready : ModelReady s) (y : Bool) :
+theorem learned_ledger (s : Situation) (ready : FitReady s) (y : Bool) :
     (learned s y).core.state.ledger = s.core.state.ledger := by
   rw [learned_formula s ready y]
   change (fitPost s y).core.state.ledger = _
@@ -1195,6 +1223,9 @@ structure LegalReady (s : Situation) : Prop where
     account.debt.relation = ⟨6⟩ ∧ account.debt.obligor = ⟨8⟩ ∧ account.debt.creditor = ⟨7⟩ ∧
     account.debt.amount.tag = EngineExamples.amountTag ∧
     Native.Cash.Conserves account ∧ Native.Cash.CashConsistent account
+
+lemma LegalReady.fit {s : Situation} (ready : LegalReady s) : FitReady s :=
+  fitReady_of_modelReady ready.norms
 
 def initial (state : ℚ × ℚ) : Situation :=
   let base := EngineExamples.cashStart
@@ -1220,23 +1251,26 @@ theorem learned_legal_ready (s : Situation) (ready : LegalReady s) (y : Bool) :
     apply new_material_not_key s
     rw [equal]
     exact ready.sourceKey
-  refine ⟨learned_ready s ready.norms y,?_,?_,?_,?_,?_,?_,?_⟩
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  have norm : (learned s y).core.state.N = s.core.state.N := by
+    rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
+    rfl
+  refine ⟨norm.trans ready.norms,?_,?_,?_,?_,?_,?_,?_⟩
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     exact ready.relations
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     exact ready.constraints
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     exact ready.templates
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     exact ready.disputes
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     simpa [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
       prepared,admitted,recorded,physical,Situation.withCore,CaseState.putState,
       CaseState.setCell,setEvidence,Ne.symm different] using ready.source
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     change (⟨9⟩ : Ref .material) ∈ materialId s :: materialId s :: s.core.keys
     exact List.mem_cons_of_mem _ (List.mem_cons_of_mem _ ready.sourceKey)
-  · rw [learned_formula s ready.norms y,fitPost_formula s ready.norms y]
+  · rw [learned_formula s ready.fit y,fitPost_formula s ready.fit y]
     exact ready.account
 
 /-- F and the primary ledger remain actual historical fields. The world used
@@ -1341,7 +1375,7 @@ lemma new_cash_not_ledger (s : Situation) :
     s.core.state.ledger.map (fun entry => entry.event.value))
   exact List.mem_append_right _ (List.mem_map.mpr ⟨entry,member,same⟩)
 
-lemma learned_payment_event (s : Situation) (ready : ModelReady s) :
+lemma learned_payment_event (s : Situation) (ready : FitReady s) :
     (learned s true).core.state.F.any (fun event =>
       event.id.value == (payment s).cashId.value && event.atom.scope == toyScope &&
       event.actor.value == (payment s).payer.value) = true := by
@@ -1365,16 +1399,16 @@ lemma performPayment_actual (source : Situation) (ready : LegalReady source)
     performPayment (learned source true) (Examples.request .perform) .human ⟨6⟩ (payment source) =
       ⟨cashPost (learned source true) source account,.success ()⟩ := by
   have sameAccount : (learned source true).accounts ⟨6⟩ = some account := by
-    rw [learned_formula source ready.norms true,fitPost_formula source ready.norms true]
+    rw [learned_formula source ready.fit true,fitPost_formula source ready.fit true]
     exact accountAt
   have current := learned_legal_ready source ready true
   have fresh := fresh_request (learned source true) current.norms .perform
   have admittedSource : admittedSource (learned source true) ⟨(payment source).source.value⟩ toyScope = true :=
     source_admitted (learned source true) current
-  have event := learned_payment_event source ready.norms
+  have event := learned_payment_event source ready.fit
   have unused : (learned source true).core.state.ledger.any (fun entry =>
       entry.event.value == (payment source).cashId.value) = false := by
-    simpa only [learned_ledger source ready.norms true,payment] using new_cash_not_ledger source
+    simpa only [learned_ledger source ready.fit true,payment] using new_cash_not_ledger source
   have native := cash_source_known source account conservation consistent tag
   simp only [payment,EngineExamples.payment,Examples.request,toyRequest,toyScope]
     at fresh admittedSource event unused native
@@ -1425,7 +1459,7 @@ lemma performPaired_actual (source : Situation) (ready : LegalReady source)
   have group : reductionGroup (learned source true) (Examples.request .perform) ⟨6⟩ = .success [] := by
     simp [reductionGroup,current.constraints]
   have sameAccount : (learned source true).accounts ⟨6⟩ = some account := by
-    rw [learned_formula source ready.norms true,fitPost_formula source ready.norms true]
+    rw [learned_formula source ready.fit true,fitPost_formula source ready.fit true]
     exact accountAt
   unfold performPaired
   rw [group,sameAccount,performPayment_actual source ready account accountAt relation payer payee tag conservation consistent]
@@ -1472,19 +1506,19 @@ theorem episode_replay (s : Situation) (ready : LegalReady s) (y : Bool) :
   rw [List.foldl_append]
   change (if y then ([⟨Unit,.perform (paymentCall s) ⟨6⟩ (payment s)⟩] : List PackedCommand) else []).foldl
     FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y)) = _
-  rw [preparation_replay s ready.norms y]
+  rw [preparation_replay s ready.fit y]
   cases y <;> rfl
 
 theorem episode_read (s : Situation) (ready : LegalReady s) (y : Bool) :
     read (episode s y) = afterQ (read s) y := by
   cases y with
-  | false => exact learned_read s ready.norms false
+  | false => exact learned_read s ready.fit false
   | true =>
       obtain ⟨account,atAccount,actual,closed⟩ := actual_payment s ready
       change read (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after = _
       rw [actual]
       change read (learned s true) = _
-      exact learned_read s ready.norms true
+      exact learned_read s ready.fit true
 
 theorem episode_ready (s : Situation) (ready : LegalReady s) (y : Bool) : LegalReady (episode s y) := by
   cases y with
@@ -1498,13 +1532,13 @@ theorem episode_ready (s : Situation) (ready : LegalReady s) (y : Bool) : LegalR
 theorem episode_keeps_events (s : Situation) (ready : LegalReady s) (y : Bool) :
     (episode s y).core.state.F = s.core.state.F ++ [event s y] := by
   cases y with
-  | false => exact learned_events s ready.norms false
+  | false => exact learned_events s ready.fit false
   | true =>
       obtain ⟨account,atAccount,actual,closed⟩ := actual_payment s ready
       change (executeCommand (learned s true) (.perform (paymentCall s) ⟨6⟩ (payment s))).after.core.state.F = _
       rw [actual]
       change (learned s true).core.state.F = _
-      exact learned_events s ready.norms true
+      exact learned_events s ready.fit true
 
 def run (s : Situation) (outcomes : List Bool) : Situation := outcomes.foldl episode s
 
@@ -1564,7 +1598,7 @@ lemma native_source (source : Situation) (quantity : ℚ) (nonnegative : 0 ≤ q
   have same : (payload source quantity).amount.tag = account.debt.amount.tag := by rw [tag]; rfl
   rw [if_pos ⟨conservation,consistent,value,same⟩]
 
-lemma event_present (s : Situation) (ready : ModelReady s) (y : Bool) (quantity : ℚ) :
+lemma event_present (s : Situation) (ready : FitReady s) (y : Bool) (quantity : ℚ) :
     (learned s y).core.state.F.any (fun event =>
       event.id.value == (payload s quantity).cashId.value && event.atom.scope == toyScope &&
       event.actor.value == (payload s quantity).payer.value) = true := by
@@ -1612,16 +1646,16 @@ lemma raw_performance (source : Situation) (ready : LegalReady source) (y : Bool
     performPayment (learned source y) (Examples.request .perform) .human ⟨6⟩ (payload source quantity) =
       ⟨post (learned source y) source quantity account,.success ()⟩ := by
   have sameAccount : (learned source y).accounts ⟨6⟩ = some account := by
-    rw [learned_formula source ready.norms y,fitPost_formula source ready.norms y]
+    rw [learned_formula source ready.fit y,fitPost_formula source ready.fit y]
     exact accountAt
   have current := learned_legal_ready source ready y
   have fresh := fresh_request (learned source y) current.norms .perform
   have admitted : admittedSource (learned source y) ⟨(payload source quantity).source.value⟩ toyScope = true :=
     source_admitted (learned source y) current
-  have event := event_present source ready.norms y quantity
+  have event := event_present source ready.fit y quantity
   have unused : (learned source y).core.state.ledger.any (fun entry =>
       entry.event.value == (payload source quantity).cashId.value) = false := by
-    simpa only [learned_ledger source ready.norms y,payload,payment] using new_cash_not_ledger source
+    simpa only [learned_ledger source ready.fit y,payload,payment] using new_cash_not_ledger source
   have native := native_source source quantity nonnegative account conservation consistent tag
   simp only [payload,payment,EngineExamples.payment,Examples.request,toyRequest,toyScope]
     at fresh admitted event unused native
@@ -1641,7 +1675,7 @@ lemma paired_performance (source : Situation) (ready : LegalReady source) (y : B
   have group : reductionGroup (learned source y) (Examples.request .perform) ⟨6⟩ = .success [] := by
     simp [reductionGroup,current.constraints]
   have sameAccount : (learned source y).accounts ⟨6⟩ = some account := by
-    rw [learned_formula source ready.norms y,fitPost_formula source ready.norms y]
+    rw [learned_formula source ready.fit y,fitPost_formula source ready.fit y]
     exact accountAt
   unfold performPaired
   rw [group,sameAccount,raw_performance source ready y quantity nonnegative account accountAt
@@ -1698,7 +1732,7 @@ theorem episode_replay (s : Situation) (ready : LegalReady s) (a y : Bool) :
   rw [List.foldl_append]
   change FullEventLog.CN.advance (FullEventLog.CN.replay s (preparationCommands s y))
     (⟨Unit,.perform (context s y) ⟨6⟩ (payload s (amount a y))⟩ : PackedCommand) = _
-  rw [preparation_replay s ready.norms y]
+  rw [preparation_replay s ready.fit y]
   rfl
 
 theorem episode_read (s : Situation) (ready : LegalReady s) (a y : Bool) :
@@ -1706,7 +1740,7 @@ theorem episode_read (s : Situation) (ready : LegalReady s) (a y : Bool) :
   obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
   rw [actual]
   change read (learned s y) = _
-  exact learned_read s ready.norms y
+  exact learned_read s ready.fit y
 
 theorem episode_ready (s : Situation) (ready : LegalReady s) (a y : Bool) :
     LegalReady (episode s a y) := by
@@ -1718,7 +1752,7 @@ theorem episode_events (s : Situation) (ready : LegalReady s) (a y : Bool) :
   obtain ⟨account,atAccount,actual,closed⟩ := actual_episode s ready a y
   rw [actual]
   change (learned s y).core.state.F = _
-  exact learned_events s ready.norms y
+  exact learned_events s ready.fit y
 
 /-- The same actual source transfer supplies the utility. Allocated debt and
 surplus remain separate; this is NOT the allocation quantity after saturation. -/
@@ -2016,7 +2050,7 @@ theorem source_response_from_same_xi (state : ℚ × ℚ) (s : Log × RealState)
 /-- A declared matching statistical certificate remains conditional. This
 consumer binds it to this same actual ERM-selected/retained/loaded CN table;
 no sample risk or in-distribution claim is fabricated by fitting one label. -/
-theorem calibrated_actual_table (s : Situation) (ready : ModelReady s) (y : Bool)
+theorem calibrated_actual_table (s : Situation) (ready : FitReady s) (y : Bool)
     (query : Fin 2) (certificate : JurisLean.Candidates.LearningConsumer20261027.TableCalibration)
     (riskLimit : ℚ)
     (scope : certificate.protocol = EngineExamples.protocol)
@@ -2045,6 +2079,305 @@ theorem calibrated_actual_table (s : Situation) (ready : ModelReady s) (y : Bool
 end Menu
 
 end Numeric
+
+namespace InstitutionalContinuation
+open Numeric
+open InstitutionRules Examples
+
+/-- The structural institution state is preserved by this actual observation,
+preparation and private-learning continuation. New F/E/candidates/reports are
+retained separately; old evidence cells are proved below, not globally erased. -/
+structure InstitutionFrame (before after : Situation) : Prop where
+  norms : after.core.state.N = before.core.state.N
+  relations : after.core.state.L = before.core.state.L
+  life : after.life = before.life
+  agencies : after.agencies = before.agencies
+  stayed : after.stayed = before.stayed
+  bankruptcy : after.bankruptcyCases = before.bankruptcyCases
+  tracks : after.tracks = before.tracks
+  meanings : after.meanings = before.meanings
+  decisions : after.core.state.decisions = before.core.state.decisions
+  bindings : after.core.state.bindings = before.core.state.bindings
+  ledger : after.core.state.ledger = before.core.state.ledger
+  accounts : after.accounts = before.accounts
+  templates : after.templates = before.templates
+  executions : after.executions = before.executions
+  interest : after.interest = before.interest
+  cutoffs : after.cutoffs = before.cutoffs
+  paused : after.paused = before.paused
+  actRelations : after.actRelations = before.actRelations
+  choices : after.choices = before.choices
+  uses : after.uses = before.uses
+  disputes : after.disputes = before.disputes
+  participations : after.participations = before.participations
+  causalClauses : after.causalClauses = before.causalClauses
+  offenseSlots : after.offenseSlots = before.offenseSlots
+  decisionSources : after.decisionSources = before.decisionSources
+  equalReductionRules : after.equalReductionRules = before.equalReductionRules
+  constraints : after.core.state.constraints = before.core.state.constraints
+  clocks : after.core.state.clocks = before.core.state.clocks
+  proceedings : after.core.state.proceedings = before.core.state.proceedings
+  interpretations : after.core.state.interpretations = before.core.state.interpretations
+  refusals : after.core.state.refusals = before.core.state.refusals
+
+lemma actual_institution_frame (s : Situation) (ready : FitReady s) (y : Bool) :
+    InstitutionFrame s (learned s y) := by
+  constructor <;> rw [learned_formula s ready y,fitPost_formula s ready y] <;> rfl
+
+lemma old_evidence_preserved (s : Situation) (ready : FitReady s) (y : Bool)
+    (i : Ref .material) (old : i ∈ s.core.keys) :
+    (learned s y).core.state.E i = s.core.state.E i := by
+  have distinct : i ≠ materialId s := by
+    intro equal
+    apply new_material_not_key s
+    simpa [equal] using old
+  rw [learned_formula s ready y,fitPost_formula s ready y]
+  simp [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
+    prepared,admitted,recorded,physical,CaseState.setCell,CaseState.putState,
+    Situation.withCore,setEvidence,distinct,Ne.symm distinct]
+
+lemma actual_retained_report (s : Situation) (ready : FitReady s) (y : Bool) :
+    (learned s y).engineResults.head? = some ⟨input s y,.known (fitted (read s) y)⟩ := by
+  rw [learned_formula s ready y,fitPost_formula s ready y]
+  rfl
+
+local instance : MeasurableSpace Situation := ⊤
+
+def reading (s : Situation) : LegalMath20261108.UnifiedFeedbackBridge.State := embed (read s)
+
+lemma measurable_reading : Measurable reading := by
+  intro target measurable
+  trivial
+
+/-- A genuine common-response kernel on full CN states. Every outcome is
+observed, admitted, fitted, retained and learned in that SAME old state. -/
+def learningKernel : Kernel Situation Situation where
+  toFun s := (LegalMath20261108.UnifiedFeedbackBridge.coin (reading s)).map (learned s)
+  measurable' := by
+    intro target measurable
+    trivial
+
+instance learningKernel_markov : IsMarkovKernel learningKernel where
+  isProbabilityMeasure s := by
+    change IsProbabilityMeasure
+      ((LegalMath20261108.UnifiedFeedbackBridge.coin (reading s)).map (learned s))
+    exact Measure.isProbabilityMeasure_map (Measurable.of_discrete : Measurable (learned s)).aemeasurable
+
+/-- The commuting equation is calculated from the old native minimizer and
+actual source commands, under only their checked permissions/version guards. -/
+theorem actual_kernel_projection (s : Situation) (ready : FitReady s) :
+    (learningKernel s).map reading =
+      step LegalMath20261108.UnifiedFeedbackBridge.model (reading s) := by
+  change ((LegalMath20261108.UnifiedFeedbackBridge.coin (reading s)).map (learned s)).map reading = _
+  rw [Measure.map_map measurable_reading (Measurable.of_discrete : Measurable (learned s))]
+  have functions : reading ∘ learned s = LegalMath20261108.UnifiedFeedbackBridge.after (reading s) := by
+    funext y
+    change embed (read (learned s y)) = _
+    rw [learned_read s ready y,afterQ_embed]
+    rfl
+  rw [functions]
+  ext B hB
+  rw [Measure.map_apply Measurable.of_discrete hB,LegalMath20261108.UnifiedFeedbackBridge.step_two_atoms]
+  simp [LegalMath20261108.UnifiedFeedbackBridge.coin,Measure.add_apply,smul_eq_mul,Set.indicator_apply]
+
+/-- The following supplied legal policy receives the ACTUAL learned CN post,
+including unchanged institution state and the loaded new private table. Its
+own permission support and observation factorization remain its original
+conditions; a numerical menu does not authorize unrelated institutions. -/
+theorem following_policy_reads_actual_post {A : Type*} [MeasurableSpace A]
+    (policy : Kernel Situation A) [IsMarkovKernel policy] (s : Situation)
+    {B : Set A} (hB : MeasurableSet B) :
+    (policy ∘ₖ learningKernel) s B =
+      ∫⁻ y, policy (learned s y) B
+        ∂LegalMath20261108.UnifiedFeedbackBridge.coin (reading s) := by
+  rw [Kernel.comp_apply' policy learningKernel s hB]
+  change (∫⁻ post, policy post B
+    ∂(LegalMath20261108.UnifiedFeedbackBridge.coin (reading s)).map (learned s)) = _
+  rw [lintegral_map (Kernel.measurable_coe policy hB) Measurable.of_discrete]
+
+def afterCommand {α : Type} (s : Situation) (c : Command α) : Situation := (executeCommand s c).after
+
+def completeCommands {α : Type} (s : Situation) (c : Command α) (y : Bool) : List PackedCommand :=
+  ⟨α,c⟩ :: preparationCommands (afterCommand s c) y
+
+lemma complete_replay {α : Type} (s : Situation) (c : Command α)
+    (ready : FitReady (afterCommand s c)) (y : Bool) :
+    FullEventLog.CN.replay s (completeCommands s c y) = learned (afterCommand s c) y := by
+  change FullEventLog.CN.replay (afterCommand s c) (preparationCommands (afterCommand s c) y) = _
+  exact preparation_replay _ ready y
+
+/-- The same complete original command list is a genuine old CN.model history;
+its private coordinate is the actual post-institution native learned table. -/
+theorem common_model_realization {α : Type} (s : Situation) (c : Command α)
+    (ready : FitReady (afterCommand s c)) (y : Bool) :
+    encode s (fun i : Fin (completeCommands s c y).length => (completeCommands s c y).get i)
+      (List.finRange (completeCommands s c y).length) =
+    (List.finRange (completeCommands s c y).length,(learned (afterCommand s c) y).core.state.A.theta) := by
+  unfold encode
+  rw [finite_sequence_catalog,complete_replay s c ready y]
+
+/-- All concrete branches below derive their guard witnesses. Failed or
+conflicting original legal results remain part of the same completed history. -/
+def Connected (s : Situation) : Prop :=
+  FitReady s ∧
+  (∀ y, InstitutionFrame s (learned s y) ∧ FitReady (learned s y) ∧
+    (learned s y).engineResults.head? = some ⟨input s y,.known (fitted (read s) y)⟩ ∧
+    reading (learned s y) = LegalMath20261108.UnifiedFeedbackBridge.after (reading s) y) ∧
+  (learningKernel s).map reading = step LegalMath20261108.UnifiedFeedbackBridge.model (reading s)
+
+lemma connected (s : Situation) (ready : FitReady s) : Connected s := by
+  refine ⟨ready,?_,actual_kernel_projection s ready⟩
+  intro y
+  refine ⟨actual_institution_frame s ready y,learned_ready s ready y,actual_retained_report s ready y,?_⟩
+  change embed (read (learned s y)) = _
+  rw [learned_read s ready y,afterQ_embed]
+  rfl
+
+/-- Lifecycle uses its real formation and revoked posts, including empty L. -/
+theorem lifecycle_continuation (y : Bool) :
+    Connected formedCase ∧ Connected revokedCase.after ∧
+    (learned formedCase y).core.state.L = [toyRelation] ∧
+    (learned revokedCase.after y).core.state.L = [] ∧
+    (learned revokedCase.after y).core.state.F = revokedCase.after.core.state.F ++ [event revokedCase.after y] := by
+  have formedReady : FitReady formedCase := by decide
+  have revokedReady : FitReady revokedCase.after := by decide
+  refine ⟨connected _ formedReady,connected _ revokedReady,?_,?_,learned_events _ revokedReady y⟩
+  · rw [(actual_institution_frame _ formedReady y).relations]
+    exact actual_nonjudicial_formation.1
+  · rw [(actual_institution_frame _ revokedReady y).relations]
+    exact lifecycle_actual.2.2.2.2.1
+
+theorem agency_continuation (y : Bool) :
+    Connected delegated.after ∧
+    (learned delegated.after y).core.state.N.grants.contains child = true ∧
+    ((learned delegated.after y).agencies toyScope.object).map Agency.principalCapacity = some true := by
+  have ready : FitReady delegated.after := by decide
+  refine ⟨connected _ ready,?_,?_⟩
+  · rw [(actual_institution_frame _ ready y).norms]
+    exact agency_actual.1
+  · rw [(actual_institution_frame _ ready y).agencies]
+    exact agency_actual.2
+
+def jurisdictionPost : Situation := afterCommand normal
+  (.institution (.jurisdiction true ⟨true,false,false,false,false,false,false,true⟩))
+
+theorem jurisdiction_continuation :
+    (executeCommand normal (.institution (.jurisdiction true
+      ⟨true,false,false,false,false,false,false,true⟩))).answer = .success (some .ordinary) ∧
+    Connected jurisdictionPost := by
+  exact ⟨jurisdiction_actual.1,connected _ (by decide)⟩
+
+theorem evidence_continuation : Connected normal ∧ Connected (recordedCase confirmation .evidence) ∧
+    Connected withdrawnCase ∧ rawOf (withdrawnCase.core.state.E ⟨9⟩) = some toyRaw := by
+  exact ⟨connected _ (by decide),connected _ (by decide),connected _ (by decide),evidence_actual.2.2.2.1⟩
+
+def acquisitionPost : Situation := afterCommand acquisitionStart
+  (.acquisitionEvidence (call .decide) parties .ordinary311 faithAtom priceAtom publicityAtom)
+def badFaithPost : Situation := afterCommand badFaithStart
+  (.acquisitionEvidence (call .decide) parties .ordinary311 faithAtom priceAtom publicityAtom)
+
+theorem acquisition_continuation :
+    (executeCommand acquisitionStart (.acquisitionEvidence (call .decide) parties .ordinary311
+      faithAtom priceAtom publicityAtom)).answer = .success .established ∧
+    Connected acquisitionPost ∧ Connected badFaithPost := by
+  exact ⟨acquisition_actual.1,connected _ (by decide),connected _ (by decide)⟩
+
+def offensePost : Situation := afterCommand (offenseStart aYi)
+  (.offenseEvidence (call .decide) aYi ev1 q1 toyAtom toyAtom)
+def missingOffensePost : Situation := afterCommand (offenseStart aYi)
+  (.offenseEvidence (call .decide) aYi ev2 q1 toyAtom toyAtom)
+
+theorem offense_continuation :
+    (executeCommand (offenseStart aYi) (.offenseEvidence (call .decide) aYi ev1 q1
+      toyAtom toyAtom)).answer = .success toyScope.question ∧
+    Connected offensePost ∧ Connected missingOffensePost := by
+  exact ⟨offense_actual.1,connected _ (by decide),connected _ (by decide)⟩
+
+theorem bankruptcy_continuation (y : Bool) :
+    Connected accepted ∧ (learned accepted y).stayed = [procD.id] ∧
+    (learned accepted y).bankruptcyCases aD = some 0 ∧
+    (learned accepted y).bankruptcyCases aO = none := by
+  have ready : FitReady accepted := by decide
+  refine ⟨connected _ ready,?_,?_,?_⟩
+  · rw [(actual_institution_frame _ ready y).stayed]; exact bankruptcy_actual.1
+  · rw [(actual_institution_frame _ ready y).bankruptcy]; exact bankruptcy_actual.2.1
+  · rw [(actual_institution_frame _ ready y).bankruptcy]; exact bankruptcy_actual.2.2.1
+
+def missingCompensationPost : Situation := afterCommand noTermination
+  (.institution (.compensation (call .decide) compensationLaw.guard .criminal ⟨62⟩))
+
+theorem compensation_continuation (y : Bool) :
+    Connected compensated.after ∧ Connected missingCompensationPost ∧
+    (learned compensated.after y).tracks.stateCompensation = [(.criminal,⟨62⟩)] ∧
+    (learned compensated.after y).tracks.civil = [] := by
+  have ready : FitReady compensated.after := by decide
+  refine ⟨connected _ ready,connected _ (by decide),?_,?_⟩
+  · rw [(actual_institution_frame _ ready y).tracks]; exact compensation_actual.1
+  · rw [(actual_institution_frame _ ready y).tracks]; exact compensation_actual.2.1
+
+def rightsPost : Situation := afterCommand normal (.institution .rightsConflict)
+
+theorem rights_continuation (y : Bool) :
+    (executeCommand normal (.institution .rightsConflict)).answer = .conflict .competentReview ∧
+    Connected rightsPost ∧ (learned rightsPost y).core.state.L = normal.core.state.L := by
+  have ready : FitReady rightsPost := by decide
+  refine ⟨rights_actual.1,connected _ ready,?_⟩
+  rw [(actual_institution_frame _ ready y).relations]
+  exact rights_actual.2
+
+theorem interpretation_continuation (y : Bool) :
+    Connected interpreted ∧ (learned interpreted y).meanings = interpreted.meanings ∧
+    (executeCommand interpreted (.contractQuery (call .decide) toyScope.object)).answer = .success .established := by
+  have ready : FitReady interpreted := by decide
+  exact ⟨connected _ ready,(actual_institution_frame _ ready y).meanings,interpretation_actual.1⟩
+
+theorem resJudicata_continuation (y : Bool) :
+    Connected bound ∧ (learned bound y).core.state.bindings = bound.core.state.bindings ∧
+    (executeCommand bound (.storedResJudicata ⟨70⟩ ⟨12⟩ toyScope 5)).answer = .success true ∧
+    (executeCommand bound (.storedResJudicata ⟨70⟩ ⟨99⟩ toyScope 5)).answer = .success false := by
+  have ready : FitReady bound := by decide
+  exact ⟨connected _ ready,(actual_institution_frame _ ready y).bindings,
+    resJudicata_actual.1,resJudicata_actual.2.1⟩
+
+def proposalPost : Situation := afterCommand normal (.institution (.propose fitOut))
+
+theorem proposal_continuation (y : Bool) :
+    Connected proposalPost ∧ (learned proposalPost y).core.state.decisions = [] ∧
+    (learned proposalPost y).core.state.bindings.isEmpty = true := by
+  have ready : FitReady proposalPost := by decide
+  refine ⟨connected _ ready,?_,?_⟩
+  · rw [(actual_institution_frame _ ready y).decisions]; exact proposal_actual.2.1
+  · rw [(actual_institution_frame _ ready y).bindings]; exact proposal_actual.2.2
+
+def lateLifecyclePost : Situation := afterCommand revokeStart
+  (.institution (.revoke (call .constitute) (.atom toyAtom) toyScope.object {revokeGuard with atTime := 100}))
+def overScopeAgencyPost : Situation := afterCommand agencyStart
+  (.institution (.delegate (call .constitute) (.atom toyAtom) toyScope.object {child with stop := 100}))
+def exclusiveJurisdictionPost : Situation := afterCommand normal
+  (.institution (.jurisdiction true ⟨true,true,false,false,false,false,true,true⟩))
+def lostAcquisitionPost : Situation := afterCommand acquisitionStart
+  (.acquisitionEvidence (call .decide) parties .lost312 faithAtom priceAtom publicityAtom)
+
+/-- The old failure/conflict cases also continue from their ACTUAL posts.
+Continuing private learning never retroactively changes their original answer. -/
+theorem failure_exits_continue :
+    Connected lateLifecyclePost ∧ Connected overScopeAgencyPost ∧
+    Connected exclusiveJurisdictionPost ∧ Connected lostAcquisitionPost ∧
+    (executeCommand revokeStart (.institution (.revoke (call .constitute) (.atom toyAtom)
+      toyScope.object {revokeGuard with atTime := 100}))).after.core.state.L = revokeStart.core.state.L ∧
+    (executeCommand agencyStart (.institution (.delegate (call .constitute) (.atom toyAtom)
+      toyScope.object {child with stop := 100}))).after.core.state.N.grants = agencyStart.core.state.N.grants ∧
+    (executeCommand normal (.institution (.jurisdiction true
+      ⟨true,true,false,false,false,false,true,true⟩))).answer = .success none ∧
+    (executeCommand acquisitionStart (.acquisitionEvidence (call .decide) parties .lost312
+      faithAtom priceAtom publicityAtom)).answer = .unknown .systemNotJudge ∧
+    (executeCommand noTermination (.institution (.compensation (call .decide)
+      compensationLaw.guard .criminal ⟨62⟩))).answer = .unknown .inputUnchecked := by
+  exact ⟨connected _ (by decide),connected _ (by decide),connected _ (by decide),connected _ (by decide),
+    lifecycle_failure_preserves_effect,agency_over_scope_rejected,jurisdiction_actual.2,
+    acquisition_actual.2.2,compensation_missing_prerequisite_not_automatic⟩
+
+end InstitutionalContinuation
 
 #print axioms replay_append
 #print axioms finite_sequence_catalog
@@ -2173,6 +2506,27 @@ end Numeric
 #print axioms Numeric.Menu.complete_source_prefix_projection
 #print axioms Numeric.Menu.source_response_from_same_xi
 #print axioms Numeric.Menu.calibrated_actual_table
+#print axioms InstitutionalContinuation.actual_institution_frame
+#print axioms InstitutionalContinuation.old_evidence_preserved
+#print axioms InstitutionalContinuation.actual_retained_report
+#print axioms InstitutionalContinuation.actual_kernel_projection
+#print axioms InstitutionalContinuation.following_policy_reads_actual_post
+#print axioms InstitutionalContinuation.complete_replay
+#print axioms InstitutionalContinuation.common_model_realization
+#print axioms InstitutionalContinuation.connected
+#print axioms InstitutionalContinuation.lifecycle_continuation
+#print axioms InstitutionalContinuation.agency_continuation
+#print axioms InstitutionalContinuation.jurisdiction_continuation
+#print axioms InstitutionalContinuation.evidence_continuation
+#print axioms InstitutionalContinuation.acquisition_continuation
+#print axioms InstitutionalContinuation.offense_continuation
+#print axioms InstitutionalContinuation.bankruptcy_continuation
+#print axioms InstitutionalContinuation.compensation_continuation
+#print axioms InstitutionalContinuation.rights_continuation
+#print axioms InstitutionalContinuation.interpretation_continuation
+#print axioms InstitutionalContinuation.resJudicata_continuation
+#print axioms InstitutionalContinuation.proposal_continuation
+#print axioms InstitutionalContinuation.failure_exits_continue
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

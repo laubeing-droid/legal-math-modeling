@@ -139,7 +139,7 @@ def commands {a b : Situation} : History a b → List PackedCommand
 theorem replay_commands {a b : Situation} (h : History a b) :
     replay a (commands h) = b := by
   induction h with
-  | nil s => rfl
+  | nil => rfl
   | snoc h c ih =>
       simpa [commands, replay, List.foldl_append, advance] using
         congrArg (fun s => (executeCommand s c).after) ih
@@ -227,7 +227,7 @@ theorem complete_business_log_conservation {W : Type} {m : Nat}
     JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant
       ((Tokens.forget (Tokens.encode actions)).foldl
         JurisLean.Candidates.BusinessFeedbackLoop20261027.step initial) ∧
-    (((Tokens.forget (Tokens.encode actions)).foldl
+    ((Tokens.forget (Tokens.encode actions)).foldl
         JurisLean.Candidates.BusinessFeedbackLoop20261027.step initial).learning.limit =
       initial.learning.limit ∧
     roundSpent ((Tokens.forget (Tokens.encode actions)).foldl

@@ -85,7 +85,7 @@ theorem finite_menu_argmax (score : A → ℝ) (base : A) (menu : List A) :
       ∀ a ∈ base :: menu, score a ≤ score (best score base menu).1 := by
   refine ⟨best_mem score base menu, ?_⟩
   intro a ha
-  rw [← best_value]
+  rw [← best_value score base menu]
   rcases List.mem_cons.mp ha with rfl | ha
   · exact best_ge_base score base menu
   · exact best_ge_member score base menu a ha
@@ -97,8 +97,9 @@ inductive Recommendation (A : Type*)
   | unboundedValue
   | selected (action : A)
 
-def recommend (V : H → A → Λ → ℝ) (h : H) (menu : List A) : Recommendation A :=
-  if Nonempty Λ then
+def recommend (V : H → A → Λ → ℝ) (h : H) (menu : List A) : Recommendation A := by
+  classical
+  exact if Nonempty Λ then
     match menu with
     | [] => .noAllowedAction
     | base :: rest =>
@@ -202,8 +203,8 @@ def withChoice {Θ O M : Type*} [MeasurableSpace Θ] [MeasurableSpace O]
     [MeasurableSpace M] (D : Dynamics H Θ A O M)
     (score : (H × Θ) → A → ℝ) (base : A) (menu : List A)
     (hs : ∀ a, Measurable (fun s => score s a)) : Dynamics H Θ A O M :=
-  { D with policy := Kernel.deterministic
-      (fun s => (best (score s) base menu).1) (measurable_best score base menu hs).fst }
+  { D with policy := (Kernel.deterministic
+      (fun s => (best (score s) base menu).1) ((measurable_best score base menu hs).fst)) }
 
 instance choice_policy_markov {Θ O M : Type*} [MeasurableSpace Θ] [MeasurableSpace O]
     [MeasurableSpace M] (D : Dynamics H Θ A O M)
@@ -290,14 +291,16 @@ theorem open_interval_has_no_maximizer (a : Set.Ioo (0 : ℝ) 1) :
   · dsimp
     linarith [a.property.2]
 
+def winningScore (S : Set H) (h : H) (a : Bool) : ℝ := by
+  classical
+  exact if h ∈ S then (if a then 1 else 0) else (if a then 0 else 1)
+
 /-- Without measurable inputs an everywhere optimal selector need not be
 measurable. The unique winning action would reveal a nonmeasurable set. -/
 theorem nonmeasurable_winning_region_counterexample [MeasurableSpace H]
     (S : Set H) (nonmeasurable : ¬ MeasurableSet S) :
     ¬ ∃ choose : H → Bool, Measurable choose ∧
-      ∀ h a,
-        (if h ∈ S then (if a then (1:ℝ) else 0) else (if a then 0 else 1)) ≤
-        (if h ∈ S then (if choose h then 1 else 0) else (if choose h then 0 else 1)) := by
+      ∀ h (a : Bool), winningScore S h a ≤ winningScore S h (choose h) := by
   classical
   rintro ⟨choose, hm, optimal⟩
   have equality : choose ⁻¹' {true} = S := by
@@ -307,7 +310,7 @@ theorem nonmeasurable_winning_region_counterexample [MeasurableSpace H]
         cases hc : choose h with
         | false =>
             have bad := optimal h true
-            simp [hs, hc] at bad
+            simp [winningScore, hs, hc] at bad
         | true => rfl
       simp [winner, hs]
     · have winner : choose h = false := by
@@ -315,9 +318,60 @@ theorem nonmeasurable_winning_region_counterexample [MeasurableSpace H]
         | false => rfl
         | true =>
             have bad := optimal h false
-            simp [hs, hc] at bad
+            simp [winningScore, hs, hc] at bad
       simp [winner, hs]
   exact nonmeasurable (equality ▸ hm (measurableSet_singleton true))
+
+/-- The admissible interpretation set may itself depend on the same history. -/
+def activeValueSet (V : H → A → Λ → ℝ) (active : H → Set Λ) (h : H) (a : A) : Set ℝ :=
+  V h a '' active h
+
+def activeRobustValue (V : H → A → Λ → ℝ) (active : H → Set Λ) (h : H) (a : A) : ℝ :=
+  sInf (activeValueSet V active h a)
+
+def recommendActive (V : H → A → Λ → ℝ) (active : H → Set Λ)
+    (h : H) (menu : List A) : Recommendation A := by
+  classical
+  exact if (active h).Nonempty then
+    match menu with
+    | [] => .noAllowedAction
+    | base :: rest =>
+        if ∀ a ∈ base :: rest, BddBelow (activeValueSet V active h a) then
+          .selected (best (activeRobustValue V active h) base rest).1
+        else .unboundedValue
+  else .incompatible
+
+theorem empty_active_interpretations_exit (V : H → A → Λ → ℝ) (active : H → Set Λ)
+    (h : H) (menu : List A) (empty : active h = ∅) :
+    recommendActive V active h menu = .incompatible := by simp [recommendActive, empty]
+
+lemma active_robust_glb (V : H → A → Λ → ℝ) (active : H → Set Λ) (h : H) (a : A)
+    (nonempty : (active h).Nonempty) (bounded : BddBelow (activeValueSet V active h a)) :
+    IsGLB (activeValueSet V active h a) (activeRobustValue V active h a) :=
+  isGLB_csInf (nonempty.image (V h a)) bounded
+
+theorem active_interpretation_menu (V : H → A → Λ → ℝ) (active : H → Set Λ)
+    (h : H) (base : A) (menu : List A) (nonempty : (active h).Nonempty)
+    (bounded : ∀ a ∈ base :: menu, BddBelow (activeValueSet V active h a)) :
+    ∃ a ∈ base :: menu,
+      IsGLB (activeValueSet V active h a) (activeRobustValue V active h a) ∧
+      ∀ b ∈ base :: menu,
+        IsGLB (activeValueSet V active h b) (activeRobustValue V active h b) ∧
+        activeRobustValue V active h b ≤ activeRobustValue V active h a := by
+  refine ⟨_, (finite_menu_argmax (activeRobustValue V active h) base menu).1, ?_, ?_⟩
+  · exact active_robust_glb V active h _ nonempty
+      (bounded _ (finite_menu_argmax _ base menu).1)
+  · intro b hb
+    exact ⟨active_robust_glb V active h b nonempty (bounded b hb),
+      (finite_menu_argmax _ base menu).2 b hb⟩
+
+/-- In countable full histories the selector is measurable even when the
+interpretation set is infinite and changes with history. -/
+theorem measurable_active_choice_on_discrete_history [MeasurableSpace H]
+    [DiscreteMeasurableSpace H] [MeasurableSpace A]
+    (V : H → A → Λ → ℝ) (active : H → Set Λ) (base : A) (menu : List A) :
+    Measurable (fun h => (best (activeRobustValue V active h) base menu).1) :=
+  Measurable.of_discrete
 
 section ActualBusiness
 open JurisLean.Candidates.Final20261021
@@ -362,6 +416,35 @@ theorem robust_business_closed_loop [Nonempty Λ]
     (finite_menu_argmax _ base menu).1, ?_, ?_⟩
   · intro a ha
     exact ⟨isGLB_ciInf (valuesBounded h a ha), (finite_menu_argmax _ base menu).2 a ha⟩
+  · exact replay_invariant initial catalog valid bounded _
+
+/-- Full business histories support changing, arbitrary interpretation sets;
+the chosen command still consumes the original actual poststate and learner. -/
+theorem active_robust_business_closed_loop
+    (initial : JurisLean.Candidates.BusinessFeedbackLoop20261027.State m)
+    (catalog : Fin k → JurisLean.Candidates.BusinessFeedbackLoop20261027.Command W m)
+    (utility : Λ → JurisLean.Candidates.BusinessFeedbackLoop20261027.State m → ℝ)
+    (active : List (Fin k) → Set Λ) (base : Fin k) (menu : List (Fin k))
+    (nonempty : ∀ h, (active h).Nonempty)
+    (valuesBounded : ∀ history a, a ∈ base :: menu →
+      BddBelow (activeValueSet (businessValue initial catalog utility) active history a))
+    (valid : JurisLean.Candidates.BusinessFeedbackLoop20261027.KnownBusinessInvariant initial)
+    (bounded : roundSpent initial.learning ≤ initial.learning.limit) (h : List (Fin k)) :
+    let score := activeRobustValue (businessValue initial catalog utility) active
+    let pick := fun history => (best (score history) base menu).1
+    step (model initial catalog pick) (encode initial catalog h) =
+        Measure.dirac (encode initial catalog (h ++ [pick h])) ∧
+      pick h ∈ base :: menu ∧
+      (∀ a ∈ base :: menu,
+        IsGLB (activeValueSet (businessValue initial catalog utility) active h a) (score h a) ∧
+        score h a ≤ score h (pick h)) ∧
+      legalInvariant initial catalog (encode initial catalog (h ++ [pick h])) := by
+  dsimp only
+  refine ⟨actual_step_law initial catalog _ h,
+    (finite_menu_argmax _ base menu).1, ?_, ?_⟩
+  · intro a ha
+    exact ⟨active_robust_glb _ _ h a (nonempty h) (valuesBounded h a ha),
+      (finite_menu_argmax _ base menu).2 a ha⟩
   · exact replay_invariant initial catalog valid bounded _
 
 end ActualBusiness

@@ -1,3 +1,7 @@
 import JurisLean.RemainingClosure.W1Transport
+import JurisLean.RemainingClosure.W1Atoms
 import JurisLean.RemainingClosure.InterpretationChoice
 import JurisLean.RemainingClosure.FullEventLog
+import JurisLean.RemainingClosure.CNSemanticConnection
+import JurisLean.RemainingClosure.TemporalFeedback
+import JurisLean.RemainingClosure.RuleEvolution

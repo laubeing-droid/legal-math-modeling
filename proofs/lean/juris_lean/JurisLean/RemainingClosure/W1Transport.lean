@@ -182,7 +182,7 @@ lemma transported_cost {μ ν : Measure State} [IsProbabilityMeasure μ]
       simpa only [ENNReal.ofReal_mul (by norm_num : (0:ℝ) ≤ 3/4),
         ENNReal.ofReal_div_of_pos (by norm_num : (0:ℝ) < 4),
         ENNReal.ofReal_ofNat] using hc
-    _ = _ := lintegral_const_mul _ _
+    _ = _ := lintegral_const_mul _ (ENNReal.measurable_ofReal.comp measurable_dstar)
 
 lemma distributionW1_eq_iInf (μ ν : Measure State) :
     distributionW1 μ ν = ⨅ ρ ∈ couplingMeasures μ ν,

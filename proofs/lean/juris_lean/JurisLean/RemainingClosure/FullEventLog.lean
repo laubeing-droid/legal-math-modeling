@@ -2,6 +2,8 @@ import JurisLean.Review20261110.BusinessTransport
 import JurisLean.CN.Completion20261105.Execution
 import JurisLean.Candidates.U00MeasuredRSIEntry20261031
 
+set_option autoImplicit false
+
 /-!
 Lossless operation logs and event/measurement/record identities are distinct.
 The v4 reports relation may be empty or multivalued; no event is manufactured

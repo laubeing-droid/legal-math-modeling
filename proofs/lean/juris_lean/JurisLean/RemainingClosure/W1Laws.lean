@@ -112,7 +112,7 @@ theorem distributionW1_separates (μ ν : ProbabilityMeasure State)
   have hi := distribution_test_bound (μ := (μ:Measure State)) (ν := (ν:Measure State))
     g ((L:ℝ)+1) (by positivity) (lipschitz_dstar_bound f hL)
   rw [hz,mul_zero] at hi
-  have hzero := ENNReal.ofReal_eq_zero.mp (le_antisymm hi (zero_le _))
+  have hzero := ENNReal.ofReal_eq_zero.mp (le_antisymm hi bot_le)
   have heq : (∫ s, f s ∂(μ:Measure State)) = ∫ s, f s ∂(ν:Measure State) := by
     apply sub_eq_zero.mp
     exact abs_eq_zero.mp (le_antisymm hzero (abs_nonneg _))
@@ -145,7 +145,10 @@ lemma integral_P (μ : ProbabilityMeasure State) (f : State →ᵇ ℝ) :
   change (∫ s, f s ∂(step model ∘ₘ (μ:Measure State))) = _
   rw [integral_next (μ:Measure State) f (f.integrable _)]
   apply integral_congr_ae
-  exact Filter.Eventually.of_forall fun s => by rw [integral_step]; rfl
+  exact Filter.Eventually.of_forall fun s => by
+    change (∫ t, f t ∂step model s) = transfer f s
+    rw [integral_step]
+    rfl
 
 theorem continuous_P : Continuous P := by
   apply ProbabilityMeasure.continuous_iff_forall_continuous_integral.mpr

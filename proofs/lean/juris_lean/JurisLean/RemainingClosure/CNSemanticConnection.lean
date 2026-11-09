@@ -5,6 +5,8 @@ import JurisLean.CN.Completion20261105.EngineExamples
 import JurisLean.Candidates.CompilerProvenance20261027
 import JurisLean.Candidates.CompilerOriginalBoundaries20261031
 
+set_option autoImplicit false
+
 /-!
 Actual CN commands realize the existing ClosedLoop.Dynamics on their complete
 ordered histories. The policy is any declared measurable kernel and reads the
@@ -105,13 +107,22 @@ theorem actual_step_law (initial : Situation) (catalog : Fin k → PackedCommand
     step (model initial catalog policy) (encode initial catalog h) =
       (policy (encode initial catalog h)).map (fun a => encode initial catalog (h ++ [a])) := by
   ext B hB
-  rw [← lintegral_indicator_one hB,
-    actual_step_lintegral initial catalog policy h _ (measurable_const.indicator hB),
-    Measure.map_apply Measurable.of_discrete hB]
-  simpa [Set.indicator_apply] using
-    (lintegral_indicator_one
-      ((Measurable.of_discrete : Measurable (fun a : Fin k => encode initial catalog (h ++ [a]))) hB)
-      (μ := policy (encode initial catalog h)))
+  have indicator : Measurable (B.indicator (1 : (List (Fin k) × Private) → ℝ≥0∞)) :=
+    (measurable_const : Measurable (fun _ : List (Fin k) × Private => (1 : ℝ≥0∞))).indicator hB
+  have transported := actual_step_lintegral initial catalog policy h (B.indicator 1) indicator
+  calc
+    step (model initial catalog policy) (encode initial catalog h) B =
+        ∫⁻ s, B.indicator 1 s ∂step (model initial catalog policy) (encode initial catalog h) :=
+      (lintegral_indicator_one hB).symm
+    _ = ∫⁻ a, B.indicator 1 (encode initial catalog (h ++ [a]))
+        ∂policy (encode initial catalog h) := transported
+    _ = (policy (encode initial catalog h)).map
+        (fun a => encode initial catalog (h ++ [a])) B := by
+      rw [Measure.map_apply Measurable.of_discrete hB]
+      simpa only [Set.indicator_apply] using
+        (lintegral_indicator_one
+          ((Measurable.of_discrete : Measurable (fun a : Fin k => encode initial catalog (h ++ [a]))) hB)
+          (μ := policy (encode initial catalog h)))
 
 /-- The next command law reads the actual post-history AND actual learned table. -/
 theorem next_action_reads_actual_post (initial : Situation) (catalog : Fin k → PackedCommand)
@@ -792,12 +803,17 @@ def decode (n : Nat) : SignedFormula :=
 
 def rules : List CRule := [⟨[0],1⟩]
 
-theorem current_law : confirmation ∈ normal.core.state.N.rules := by decide
+theorem current_law : confirmation ∈ normal.core.state.N.rules := by
+  change confirmation ∈ [confirmation]
+  exact List.mem_singleton_self _
 
-theorem current_method : method ∈ selectedTemplates normal confirmation := by decide
+theorem current_method : method ∈ selectedTemplates normal confirmation := by
+  change method ∈ [method]
+  exact List.mem_singleton_self _
 
 theorem current_admitted_seed : signedHolds (atomAssessment normal confirmation method) (decode 0) := by
-  decide
+  change atomAssessment normal confirmation method toyAtom = .established
+  rfl
 
 theorem current_rule_valid (world : SemanticWorld) :
     ∀ r ∈ rules,
@@ -807,7 +823,7 @@ theorem current_rule_valid (world : SemanticWorld) :
   have ruleEq : r = ⟨[0],1⟩ := List.mem_singleton.mp member
   subst r
   have seed := premises 0 (by simp)
-  change evalFormula (world.assessment confirmation method) (.atom toyAtom) = .established at seed
+  change world.assessment confirmation method toyAtom = .established at seed
   change evalFormula (world.assessment confirmation method) queryFormula = .established
   simp [queryFormula,evalFormula,seed,andJ]
 
@@ -848,6 +864,294 @@ theorem admitted_closure_feedback :
 
 end Actual
 end CompilerBridge
+
+
+namespace Numeric
+open JurisLean.Candidates.LearningERM20261027
+open LegalMath20261109.PosteriorLaw
+
+/-- The projection reads the ACTUALLY loaded native table. -/
+def read (s : Situation) : ℚ × ℚ :=
+  (s.core.state.A.theta.getD 0 0,s.core.state.A.theta.getD 1 0)
+
+def candidate (s : ℚ × ℚ) (y : Bool) : List ℚ :=
+  [(afterQ s y).1,(afterQ s y).2]
+
+def models (s : ℚ × ℚ) : List (List ℚ) := [candidate s false,candidate s true]
+
+def labelLoss (q : ℚ) (y : Bool) : ℚ := (q - if y then 1 else 0)^2
+
+def sample (y : Bool) : Fin 1 → Fin 2 × Bool := fun _ => (0,y)
+
+def fitted (s : ℚ × ℚ) (y : Bool) : Native.Fit.FittedTable :=
+  ⟨EngineExamples.protocol,candidate s y,1,0⟩
+
+def fitInput (s : ℚ × ℚ) (y : Bool) : EngineCall :=
+  .fit 2 1 EngineExamples.protocol labelLoss (models s) (sample y)
+
+/-- Two candidates are supplied BEFORE seeing Y. Their first coordinates are
+0 and 1; the actual Brier sample selects the matching zero-risk candidate. The
+second coordinate is the original update, not an assumed fitted-table result. -/
+theorem native_fit_output (s : ℚ × ℚ) (y : Bool) :
+    Native.Fit.fitTable EngineExamples.protocol labelLoss (models s) (sample y) =
+      .known (fitted s y) := by
+  cases y <;> norm_num [Native.Fit.fitTable,models,candidate,afterQ,sample,labelLoss,
+    EngineExamples.protocol,Native.Fit.tableLoss,proposed_empirical_fit,fitNonempty,
+    selectMinimum,empiricalScore,fitted,Fin.sum_univ_succ]
+
+theorem fitted_numeric_projection (s : ℚ × ℚ) (y : Bool) :
+    ((fitted s y).table.getD 0 0,(fitted s y).table.getD 1 0) = afterQ s y := by
+  simp [fitted,candidate]
+
+/-- Old semantic identities are consumed at the actual learned-table readout. -/
+theorem fitted_original_after (s : ℚ × ℚ) (y : Bool) :
+    embed ((fitted s y).table.getD 0 0,(fitted s y).table.getD 1 0) =
+      LegalMath20261108.UnifiedFeedbackBridge.after (embed s) y := by
+  rw [fitted_numeric_projection,afterQ_embed]
+
+private def identityRegistry (keys : List Nat) :
+    LegalMath20261110.OccurrenceHistory.History Unit Unit :=
+  keys.map (fun id => ⟨id,(),()⟩)
+
+def freshId (keys : List Nat) : Nat :=
+  LegalMath20261110.OccurrenceHistory.fresh (identityRegistry keys)
+
+lemma freshId_not_mem (keys : List Nat) : freshId keys ∉ keys := by
+  have fresh := LegalMath20261110.OccurrenceHistory.fresh_not_mem (identityRegistry keys)
+  simpa [freshId,identityRegistry,List.map_map] using fresh
+
+def materialId (s : Situation) : Ref .material :=
+  ⟨freshId (s.core.keys.map (fun id => id.value) ++ s.engineInputs.map (fun input => input.id.value))⟩
+
+def cashId (s : Situation) : JurisLean.Candidates.Final20261021.EventId :=
+  ⟨freshId (s.core.state.F.map (fun event => event.id.value) ++
+    s.core.state.ledger.map (fun entry => entry.event.value))⟩
+
+lemma new_material_not_key (s : Situation) : materialId s ∉ s.core.keys := by
+  intro member
+  apply freshId_not_mem (s.core.keys.map (fun id => id.value) ++
+    s.engineInputs.map (fun input => input.id.value))
+  exact List.mem_append_left _ (List.mem_map.mpr ⟨materialId s,member,rfl⟩)
+
+lemma new_material_absent (s : Situation) : s.core.state.E (materialId s) = .absent :=
+  s.core.closed (materialId s) (new_material_not_key s)
+
+lemma new_material_not_registered (s : Situation) :
+    s.engineInputs.any (fun input => input.id == materialId s) = false := by
+  apply Bool.eq_false_iff.mpr
+  intro found
+  obtain ⟨input,member,equal⟩ := List.any_eq_true.mp found
+  have h : input.id = materialId s := by simpa using equal
+  apply freshId_not_mem (s.core.keys.map (fun id => id.value) ++
+    s.engineInputs.map (fun input => input.id.value))
+  apply List.mem_append_right
+  exact List.mem_map.mpr ⟨input,member,congrArg Ref.value h⟩
+
+
+private lemma event_find_none (events : List Occurrence) (id : Ref .event)
+    (fresh : id.value ∉ events.map (fun event => event.id.value)) :
+    events.find? (fun event => event.id == id) = none := by
+  induction events with
+  | nil => rfl
+  | cons event rest ih =>
+      have different : event.id ≠ id := by
+        intro equal
+        apply fresh
+        simp [equal]
+      have remaining : id.value ∉ rest.map (fun item => item.id.value) := by
+        intro member
+        apply fresh
+        exact List.mem_cons_of_mem _ member
+      simp [different,ih remaining]
+
+lemma new_cash_not_event (s : Situation) :
+    s.core.state.F.find? (fun event => event.id == (⟨(cashId s).value⟩ : Ref .event)) = none := by
+  apply event_find_none
+  intro member
+  apply freshId_not_mem (s.core.state.F.map (fun event => event.id.value) ++
+    s.core.state.ledger.map (fun entry => entry.event.value))
+  exact List.mem_append_left _ member
+
+lemma new_material_filter_empty (s : Situation) :
+    s.engineInputs.filter (fun input => input.id == materialId s) = [] := by
+  apply List.filter_eq_nil_iff.mpr
+  intro input member equal
+  have found : s.engineInputs.any (fun input => input.id == materialId s) = true :=
+    List.any_eq_true.mpr ⟨input,member,equal⟩
+  rw [new_material_not_registered] at found
+  cases found
+
+/-- Only the fixed declared authorization context is needed for the fit/learn
+part. Preservation below proves it for every reachable prefix. -/
+def ModelReady (s : Situation) : Prop := s.core.state.N = EngineExamples.cashStart.core.state.N
+
+lemma fresh_request (s : Situation) (ready : ModelReady s) (act : Act) :
+    freshRequest s (Examples.request act) = true := by
+  unfold freshRequest
+  rw [ready]
+  cases act <;> decide
+
+def observedAtom (s : Situation) : Atom :=
+  ⟨toyScope,⟨2*(cashId s).value⟩⟩
+
+def event (s : Situation) (y : Bool) : Occurrence :=
+  ⟨⟨(cashId s).value⟩,⟨8⟩,
+    if y then observedAtom s else ⟨toyScope,⟨2*(cashId s).value+1⟩⟩,0⟩
+
+def raw (s : Situation) (y : Bool) : Raw (materialId s) :=
+  ⟨observedAtom s,y,⟨(materialId s).value⟩,0⟩
+
+def receipt (s : Situation) (y : Bool) : Receipt (raw s y) :=
+  ⟨⟨(materialId s).value⟩,⟨12⟩,toyNorm,true,true,true,by decide⟩
+
+def input (s : Situation) (y : Bool) : EngineMaterial :=
+  Engines.material s EngineExamples.context (materialId s) ⟨(materialId s).value⟩ (fitInput (read s) y)
+
+def physical (s : Situation) (y : Bool) : Situation :=
+  {s with core := {s.core with state := {s.core.state with F := s.core.state.F ++ [event s y]}}}
+
+def recorded (s : Situation) (y : Bool) : Situation :=
+  (physical s y).withCore ((physical s y).core.setCell (materialId s) (.pending (raw s y)))
+
+def admitted (s : Situation) (y : Bool) : Situation :=
+  (recorded s y).withCore ((recorded s y).core.setCell (materialId s) (.accepted (raw s y) (receipt s y)))
+
+def prepared (s : Situation) (y : Bool) : Situation :=
+  {admitted s y with engineInputs := input s y :: s.engineInputs}
+
+lemma physical_actual (s : Situation) (y : Bool) :
+    (executeCommand s (.occur (event s y))).after = physical s y := by
+  simp [executeCommand,occurrence,event,new_cash_not_event,physical,EffectIR.adjust,EffectIR.write]
+
+lemma recorded_actual (s : Situation) (y : Bool) :
+    (executeCommand (physical s y) (.record (materialId s) (raw s y))).after = recorded s y := by
+  simp [executeCommand,recordMaterial,physical,new_material_absent,recorded]
+
+lemma admitted_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (executeCommand (recorded s y) (.admitEvidence (Examples.request .admitEvidence)
+      .human (materialId s) (raw s y) (receipt s y))).after = admitted s y := by
+  have fresh : freshRequest (recorded s y) (Examples.request .admitEvidence) = true :=
+    fresh_request s ready .admitEvidence
+  simp [executeCommand,admission,automationAllowed,fresh,
+    recorded,physical,CaseState.setCell,Situation.withCore,setEvidence,
+    raw,receipt,Examples.request,toyRequest,toyNorm,EffectIR.adjust,EffectIR.admission,
+    EffectIR.write,admitted]
+
+lemma prepared_actual (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (executeCommand (admitted s y) (.registerEngine (Examples.request .learnModel) (input s y))).after =
+      prepared s y := by
+  have fresh : freshRequest (admitted s y) (Examples.request .learnModel) = true :=
+    fresh_request s ready .learnModel
+  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+  simp [executeCommand,registerEngineMaterial,fresh,prepared,admitted,recorded,physical,
+    input,Engines.material,EngineExamples.context,raw,receipt,
+    CaseState.setCell,Situation.withCore,setEvidence,new_material_not_registered,
+    Examples.request,toyRequest,version]
+
+lemma prepared_lookup (s : Situation) (y : Bool) :
+    (prepared s y).engineInputs.filter (fun item => item.id == materialId s) = [input s y] := by
+  simp [prepared,input,Engines.material,new_material_filter_empty]
+
+lemma prepared_allowed (s : Situation) (ready : ModelReady s) (y : Bool) :
+    engineMaterialAllowed (prepared s y) EngineExamples.context (input s y) = true := by
+  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+  simp [engineMaterialAllowed,prepared,admitted,recorded,physical,input,Engines.material,
+    EngineExamples.context,CaseState.setCell,Situation.withCore,setEvidence,raw,receipt,version]
+
+def fitPost (s : Situation) (y : Bool) : Situation :=
+  (executeCommand (prepared s y) (.engine EngineExamples.context (materialId s))).after
+
+def learned (s : Situation) (y : Bool) : Situation :=
+  (executeCommand (fitPost s y) (.learnReport (Examples.request .learnModel) (materialId s))).after
+
+lemma fitPost_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
+    fitPost s y =
+      { (Law.proposeEngine (prepared s y)
+          (engineOutput (prepared s y) EngineExamples.context .fit
+            "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample"
+            (⟨0⟩,⟨EngineExamples.protocol.failureBudget⟩))).after with
+        engineResults := ⟨input s y,.known (fitted (read s) y)⟩ :: (prepared s y).engineResults} := by
+  simp [fitPost,executeCommand,runBoundEngine,prepared_lookup,prepared_allowed s ready y,
+    callEngine,input,Engines.material,fitInput,consumeFit,relayNative,native_fit_output,fitted]
+
+lemma fitPost_norm (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (fitPost s y).core.state.N = s.core.state.N := by
+  rw [fitPost_formula s ready y]
+  rfl
+
+lemma fitPost_cell (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (fitPost s y).core.state.E (materialId s) = .accepted (raw s y) (receipt s y) := by
+  rw [fitPost_formula s ready y]
+  simp [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
+    prepared,admitted,recorded,physical,CaseState.setCell,Situation.withCore,setEvidence]
+
+lemma learned_formula (s : Situation) (ready : ModelReady s) (y : Bool) :
+    learned s y = (fitPost s y).withCore ((fitPost s y).core.putState
+      {(fitPost s y).core.state with
+        A := {(fitPost s y).core.state.A with theta := candidate (read s) y}} rfl) := by
+  have norm := fitPost_norm s ready y
+  have fresh : freshRequest (fitPost s y) (Examples.request .learnModel) = true := by
+    simpa only [freshRequest,norm] using fresh_request s ready .learnModel
+  have head : (fitPost s y).engineResults.head? = some ⟨input s y,.known (fitted (read s) y)⟩ := by
+    rw [fitPost_formula s ready y]
+    rfl
+  have found := Engines.actual_head_is_found (fitPost s y) (materialId s)
+    ⟨input s y,.known (fitted (read s) y)⟩ head rfl
+  have version : s.core.state.N.version = 1 := by rw [ready]; rfl
+  have allowed : engineMaterialAllowed (fitPost s y)
+      ⟨(Examples.request .learnModel).scope,(input s y).target⟩ (input s y) = true := by
+    simp [engineMaterialAllowed,input,Engines.material,EngineExamples.context,
+      Examples.request,toyRequest,raw,receipt,norm,fitPost_cell s ready y,version]
+  simp [learned,executeCommand,learnReport,found,allowed,learnedTable,input,
+    Engines.material,fitInput,fitted,norm,fresh,Examples.request,toyRequest]
+
+/-- The actual public native-fit/report/learn episode updates the projection
+by the original afterQ. The fitted-table equality was proved by the ERM, not
+assumed as an input. -/
+theorem learned_read (s : Situation) (ready : ModelReady s) (y : Bool) :
+    read (learned s y) = afterQ (read s) y := by
+  rw [learned_formula s ready y]
+  simp [read,candidate]
+
+theorem learned_ready (s : Situation) (ready : ModelReady s) (y : Bool) : ModelReady (learned s y) := by
+  change (learned s y).core.state.N = _
+  rw [learned_formula s ready y]
+  change (fitPost s y).core.state.N = _
+  rw [fitPost_norm s ready y]
+  exact ready
+
+/-- All six source commands, including the actual observed Y, are retained. -/
+def preparationCommands (s : Situation) (y : Bool) : List PackedCommand :=
+  [⟨_,.occur (event s y)⟩,
+   ⟨_,.record (materialId s) (raw s y)⟩,
+   ⟨_,.admitEvidence (Examples.request .admitEvidence) .human (materialId s) (raw s y) (receipt s y)⟩,
+   ⟨_,.registerEngine (Examples.request .learnModel) (input s y)⟩,
+   ⟨_,.engine EngineExamples.context (materialId s)⟩,
+   ⟨_,.learnReport (Examples.request .learnModel) (materialId s)⟩]
+
+theorem preparation_replay (s : Situation) (ready : ModelReady s) (y : Bool) :
+    FullEventLog.CN.replay s (preparationCommands s y) = learned s y := by
+  simp only [FullEventLog.CN.replay,preparationCommands,List.foldl_cons,List.foldl_nil,
+    FullEventLog.CN.advance]
+  rw [physical_actual,recorded_actual,admitted_actual s ready y,prepared_actual s ready y]
+  rfl
+
+/-- No occurrence, ledger entry, or previous source report is reset. -/
+theorem learned_events (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (learned s y).core.state.F = s.core.state.F ++ [event s y] := by
+  rw [learned_formula s ready y]
+  change (fitPost s y).core.state.F = _
+  rw [fitPost_formula s ready y]
+  rfl
+
+theorem learned_ledger (s : Situation) (ready : ModelReady s) (y : Bool) :
+    (learned s y).core.state.ledger = s.core.state.ledger := by
+  rw [learned_formula s ready y]
+  change (fitPost s y).core.state.ledger = _
+  rw [fitPost_formula s ready y]
+  rfl
+
+end Numeric
 
 #print axioms replay_append
 #print axioms finite_sequence_catalog
@@ -899,6 +1203,25 @@ end CompilerBridge
 #print axioms CompilerBridge.Actual.current_admitted_seed
 #print axioms CompilerBridge.Actual.current_nonempty
 #print axioms CompilerBridge.Actual.admitted_closure_feedback
+
+#print axioms Numeric.native_fit_output
+#print axioms Numeric.fitted_numeric_projection
+#print axioms Numeric.fitted_original_after
+#print axioms Numeric.new_material_absent
+
+#print axioms Numeric.physical_actual
+#print axioms Numeric.recorded_actual
+#print axioms Numeric.admitted_actual
+#print axioms Numeric.prepared_actual
+#print axioms Numeric.prepared_lookup
+#print axioms Numeric.prepared_allowed
+#print axioms Numeric.fitPost_formula
+#print axioms Numeric.learned_formula
+#print axioms Numeric.learned_read
+#print axioms Numeric.learned_ready
+#print axioms Numeric.preparation_replay
+#print axioms Numeric.learned_events
+#print axioms Numeric.learned_ledger
 
 end
 end LegalMath.RemainingClosure.CNSemanticConnection

@@ -9,3 +9,5 @@ import JurisLean.RemainingClosure.CNSemanticConnection
 import JurisLean.RemainingClosure.TemporalFeedback
 import JurisLean.RemainingClosure.RuleEvolution
 import JurisLean.RemainingClosure.EvidenceConditioning
+import JurisLean.RemainingClosure.MultiAgentFeedback
+import JurisLean.RemainingClosure.CouplingLift

@@ -28,7 +28,6 @@ abbrev Job := Nat × (Option Int × Bool)
 abbrev TimedHistory := Int × (List Job × (List (TimedAction × Bool) × List Job))
 
 local instance : MeasurableSpace TimedHistory := ⊤
-local instance : MeasurableSpace TimedAction := ⊤
 local instance : MeasurableSpace (List Bool) := ⊤
 
 def readyAt (now : Int) (job : Job) : Bool :=
@@ -147,6 +146,75 @@ theorem pending_is_needed (x₀ : ℝ) (choose : TimedHistory → TimedAction) :
   · rfl
   · norm_num [completion_update_eq, submitted, completedAt, readyAt, batchLabels,
       learnBatch, learnExample, RepaymentExample.bit]
+
+/-- The observable view hides the labels of all still-pending occurrences. -/
+abbrev VisibleTimedHistory :=
+  Int × (List (Nat × Option Int) × List (TimedAction × Option Bool))
+
+def visibleTimedHistory (h : TimedHistory) : VisibleTimedHistory :=
+  (h.1, (h.2.1.map (fun job => (job.1,job.2.1)),
+    h.2.2.1.zipIdx.map (fun entry =>
+      (entry.1.1, if h.2.1.any (fun job => job.1 == entry.2) then none else some entry.1.2))))
+
+lemma measurable_visibleTimedHistory : Measurable visibleTimedHistory := Measurable.of_discrete
+
+/-- Controlled policies read the visible record and the current private
+parameter. The physical outcome kernel is unchanged. -/
+def observedTimedModel (x₀ : ℝ) (choose : VisibleTimedHistory × ℝ → TimedAction)
+    (hc : Measurable choose) : Dynamics TimedHistory ℝ TimedAction Bool (List Bool) :=
+  { timedModel x₀ (fun _ => (false,none)) with policy :=
+      (Kernel.deterministic (fun s => choose (visibleTimedHistory s.1,s.2))
+        (hc.comp ((measurable_visibleTimedHistory.comp measurable_fst).prodMk measurable_snd))) }
+
+instance (x₀ : ℝ) (choose : VisibleTimedHistory × ℝ → TimedAction)
+    (hc : Measurable choose) : IsMarkovKernel (observedTimedModel x₀ choose hc).policy := by
+  dsimp [observedTimedModel]
+  infer_instance
+
+instance (x₀ : ℝ) (choose : VisibleTimedHistory × ℝ → TimedAction)
+    (hc : Measurable choose) : IsMarkovKernel (observedTimedModel x₀ choose hc).outcome := by
+  change IsMarkovKernel (timedModel x₀ (fun _ => (false,none))).outcome
+  infer_instance
+
+theorem visible_policy_no_leak (x₀ : ℝ) (choose : VisibleTimedHistory × ℝ → TimedAction)
+    (hc : Measurable choose) (h t : TimedHistory) (θ : ℝ)
+    (same : visibleTimedHistory h = visibleTimedHistory t) :
+    (observedTimedModel x₀ choose hc).policy (h,θ) =
+      (observedTimedModel x₀ choose hc).policy (t,θ) := by
+  simp [observedTimedModel,Kernel.deterministic_apply,same]
+
+theorem controlled_next_choice_reads_completed_feedback (x₀ θ : ℝ)
+    (choose : VisibleTimedHistory × ℝ → TimedAction) (hc : Measurable choose)
+    (h : TimedHistory) (a : TimedAction) (y : Bool) :
+    (observedTimedModel x₀ choose hc).policy
+      (update (observedTimedModel x₀ choose hc) ((h,θ),(a,y))) =
+      Measure.dirac (choose (visibleTimedHistory (appendTimed h a y),
+        learnBatch θ (batchLabels (completedAt (h.1+1) (submitted h a y))))) := by
+  simp [observedTimedModel,timedModel,Kernel.deterministic_apply,update,
+    historyOut,parameterOut,feedback]
+
+def thresholdChoice (due : Option Int) (s : VisibleTimedHistory × ℝ) : TimedAction :=
+  (decide ((1/2:ℝ) < s.2),due)
+
+lemma measurable_thresholdChoice (due : Option Int) : Measurable (thresholdChoice due) := by
+  have bit : Measurable (fun s : VisibleTimedHistory × ℝ => decide ((1/2:ℝ) < s.2)) := by
+    exact Measurable.ite (measurableSet_lt measurable_const measurable_snd)
+      measurable_const measurable_const
+  exact bit.prodMk measurable_const
+
+/-- This controlled instance actually changes its next choice after a
+completed actual outcome, while pending labels stay outside its observation. -/
+theorem completed_feedback_changes_controlled_choice (x₀ : ℝ) :
+    thresholdChoice (some 1) (visibleTimedHistory (0,([],([],[]))),0) = (false,some 1) ∧
+    (observedTimedModel x₀ (thresholdChoice (some 1)) (measurable_thresholdChoice (some 1))).policy
+      (update (observedTimedModel x₀ (thresholdChoice (some 1)) (measurable_thresholdChoice (some 1)))
+        ((((0,([],([],[]))),0)),((false,some 1),true))) =
+      Measure.dirac (true,some 1) := by
+  constructor
+  · norm_num [thresholdChoice]
+  · rw [controlled_next_choice_reads_completed_feedback]
+    norm_num [thresholdChoice,submitted,completedAt,readyAt,batchLabels,learnBatch,
+      learnExample,RepaymentExample.bit]
 
 section ActualBusiness
 open JurisLean.Candidates.Final20261021

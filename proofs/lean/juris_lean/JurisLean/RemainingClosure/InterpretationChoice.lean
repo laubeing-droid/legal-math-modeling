@@ -139,7 +139,9 @@ theorem unbounded_menu_has_named_exit [Nonempty Λ]
     (unbounded : ¬ ∀ a ∈ base :: menu, BddBelow (valueSet V h a)) :
     recommend V h (base :: menu) = .unboundedValue := by
   have hn : Nonempty Λ := inferInstance
-  simp [recommend, hn, unbounded]
+  unfold recommend
+  rw [if_pos hn]
+  exact if_neg unbounded
 
 lemma robust_le_branch (V : H → A → Λ → ℝ) (h : H) (a : A)
     (bounded : BddBelow (valueSet V h a)) (l : Λ) : robustValue V h a ≤ V h a l :=

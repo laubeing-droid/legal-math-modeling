@@ -89,9 +89,11 @@ theorem null_observation_not_identified :
   · ext B hB
     rw [Measure.dirac_compProd_apply hB]
     simp [nullVersion₀, Kernel.const_apply, Measure.dirac_apply' _ hB]
+    rfl
   · ext B hB
     rw [Measure.dirac_compProd_apply hB]
     simp [nullVersion₁, Kernel.deterministic_apply, Measure.dirac_apply' _ hB]
+    rfl
   · intro same
     have value := congrArg (fun ν : Measure Bool => ν {true}) same
     simp [nullVersion₀,nullVersion₁,Kernel.const_apply,Kernel.deterministic_apply] at value

@@ -1,6 +1,6 @@
 # Codex 独立复核与文档修改记录
 
-本文件保留 P0 的独立裁决和 P1 的逐项修改。最终运行回执按用户指定写在工作区 `20261109DeepSeek/Codex回执_20261110.md`；本轮新模块的实测证据在 `../formal-release/evidence/review20261110-module/verification.json`，全量根构建另以最终 subject 的 GitHub Actions artifact 验收。
+本文件保留 P0（879ce728 基线）的独立裁决和 P1 的逐项修改。根入口在后续修订中已加入审阅 driver，并把全部新目标列入完整公理审计；下文 C8 的“当前根未 import”描述的是 P0 时点，最终运行结果以指定回执为准。最终运行回执按用户指定写在工作区 `20261109DeepSeek/Codex回执_20261110.md`；本轮新模块的实测证据在 `../formal-release/evidence/review20261110-module/verification.json`，全量根构建另以最终 subject 的 GitHub Actions artifact 验收。
 
 ## §1 复核表
 

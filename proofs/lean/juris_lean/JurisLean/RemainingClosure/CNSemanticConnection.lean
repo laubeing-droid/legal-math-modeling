@@ -1923,9 +1923,10 @@ def sourceModel (state : ℚ × ℚ) : Dynamics Log RealState Bool Bool RealStat
     (Measurable.of_discrete (f := fun log : Log => embed (read (actual state log)))).comp measurable_fst
   measurable_learn := measurable_snd
 
-instance sourceModel_policy_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).policy := by
-  dsimp only [sourceModel]
-  infer_instance
+instance sourceModel_policy_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).policy where
+  isProbabilityMeasure s := by
+    change IsProbabilityMeasure (Measure.dirac (choose (actual state s.1)))
+    infer_instance
 
 instance sourceModel_outcome_markov (state : ℚ × ℚ) : IsMarkovKernel (sourceModel state).outcome := by
   change IsMarkovKernel (responseKernel state)

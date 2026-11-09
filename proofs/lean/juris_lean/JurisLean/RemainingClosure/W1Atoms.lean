@@ -28,7 +28,7 @@ def atomSet (s : State) : Finset State := by
 lemma step_supported_atoms (s : State) : ∀ᵐ u ∂step model s, u ∈ atomSet s := by
   classical
   rw [step_two_atoms, ae_add_measure_iff]
-  exact ⟨ae_smul_measure (by simp [atomSet]) _, ae_smul_measure (by simp [atomSet]) _⟩
+  exact ⟨Measure.ae_smul_measure (by simp [atomSet]) _, Measure.ae_smul_measure (by simp [atomSet]) _⟩
 
 lemma coupling_probability (s t : State) (ρ : Measure (State × State))
     (hρ : ρ ∈ couplingMeasures (step model s) (step model t)) : IsProbabilityMeasure ρ :=
@@ -147,6 +147,7 @@ theorem twoAtomIdentification : twoAtomIdentificationTarget := by
   · apply le_sInf
     rintro v ⟨ρ,hρ,rfl⟩
     obtain ⟨r,hr,rfl⟩ := all_couplings_are_matrices s t ρ hρ
+    dsimp only
     rw [couplingAt_cost s t r hr]
     exact iInf_le _ ⟨r,hr⟩
   · refine le_iInf fun r => ?_

@@ -146,21 +146,70 @@ def naturalFormula (w : PossibleWorld) : Formula → Bool
   | .either a b => naturalFormula w a || naturalFormula w b
   | .neg a => !naturalFormula w a
 
+/-- A document/scope match alone must not compare decisions about a different
+norm or version. Inconsistent source identities keep the unknown exit. -/
+def matchedDecision (s : Situation) (q : EntityQuery) : Option DecisionRecord :=
+  (recordedDecision s q).filter (fun d => d.request.rule == q.call.request.rule &&
+    d.request.version == q.call.request.version && d.request.scope == q.scope &&
+    d.request.scope == q.call.request.scope)
+
+theorem matched_decision_has_same_source (s : Situation) (q : EntityQuery) (d : DecisionRecord)
+    (found : matchedDecision s q = some d) :
+    d.request.rule = q.call.request.rule ∧ d.request.version = q.call.request.version ∧
+      d.request.scope = q.scope ∧ d.request.scope = q.call.request.scope := by
+  cases recorded : recordedDecision s q with
+  | none => simp [matchedDecision, recorded] at found
+  | some row =>
+    simp only [matchedDecision, recorded] at found
+    change (if row.request.rule == q.call.request.rule &&
+      row.request.version == q.call.request.version && row.request.scope == q.scope &&
+      row.request.scope == q.call.request.scope then some row else none) = some d at found
+    split at found
+    · rename_i accepted
+      have same : row = d := Option.some.inj found
+      subst d
+      simpa only [Bool.and_eq_true, beq_iff_eq, and_assoc] using accepted
+    · cases found
+
+def formulaBindingReadout (s : Situation) (q : EntityQuery) : Answer Bool :=
+  match s.core.state.bindings.filterMap (fun b => match b with
+    | .decide d => if d.decision.document == q.document && d.kind == q.bindingKind &&
+        d.decision.request.rule == q.call.request.rule &&
+        d.decision.request.version == q.call.request.version &&
+        d.decision.request.scope == q.scope &&
+        d.decision.request.scope == q.call.request.scope then some d.index else none
+    | .other _ => none) with
+  | [] => .unknown .inputUnchecked
+  | indices => .success (indices.any (fun i => withinBinding i q.person q.scope q.time))
+
 def formulaSixJudgments (s : Situation) (q : EntityQuery) : SixJudgments :=
   ⟨naturalFormula q.world.nature q.law.guard,
     evalFormula (support (admittedView s.core.state.E q.law.materials)) q.law.guard,
     proofAt s q.call q.law.guard,
-    (recordedDecision s q).map (fun d => d.judgment),
-    (recordedDecision s q).map (fun d => d.valid), bindingReadout s q⟩
+    (matchedDecision s q).map (fun d => d.judgment),
+    (matchedDecision s q).map (fun d => d.valid), formulaBindingReadout s q⟩
 
 def formulaFourEffects (s : Situation) (q : EntityQuery) : FourEffects :=
-  ⟨(recordedDecision s q).map (fun d => d.valid),
-    bindingReadout s {q with bindingKind := .resJudicata},
-    (recordedDecision s q).bind (fun d =>
+  ⟨(matchedDecision s q).map (fun d => d.valid),
+    formulaBindingReadout s {q with bindingKind := .resJudicata},
+    (matchedDecision s q).bind (fun d =>
       match evalFormula (q.world.assessment q.law q.method) q.law.guard with
       | .undetermined => none
       | expected => some (d.judgment == expected)),
     s.core.state.ledger.filter (fun entry => entry.request.scope == q.scope)⟩
+
+theorem formula_learnReport_legal_readouts (s : Situation) (q : EntityQuery)
+    (r : Request) (id : Ref .material) :
+    formulaSixJudgments (learnReport s r id).after q = formulaSixJudgments s q ∧
+      formulaFourEffects (learnReport s r id).after q = formulaFourEffects s q := by
+  unfold learnReport
+  split
+  · exact ⟨rfl,rfl⟩
+  · split
+    · exact ⟨rfl,rfl⟩
+    · split
+      · split <;> exact ⟨rfl,rfl⟩
+      · exact ⟨rfl,rfl⟩
 
 /-- The new bridge proves actual checker/selected-template agreement. It
 requires no supported-world refinement or semanticCompatible premise. -/
@@ -297,6 +346,15 @@ theorem same_scope_is_not_same_question :
   have different : confirmation.guard ≠ .atom faithAtom := by decide
   exact different coherent.questionIdentity
 
+/-- The actual stored decision is matched to its complete rule question;
+validity, binding, correctness and performance are distinct actual readouts. -/
+theorem actual_stored_decision_formula :
+    (formulaSixJudgments bound query).recognized = some .established ∧
+    (formulaFourEffects bound query).validity = some true ∧
+    (formulaFourEffects bound query).finality = .success true ∧
+    (formulaFourEffects bound query).correctness = some true ∧
+    (formulaFourEffects bound query).performance = [] := by decide
+
 def compoundMethod : IssuedTemplate :=
   ⟨Examples.request .addTemplate, {Examples.template with clauses :=
     Examples.template.clauses.filter (fun clause => containsAtom clause.1 compensationLaw.guard)}⟩
@@ -340,6 +398,8 @@ end Actual
 #print axioms private_table_preserves_coherence
 #print axioms learnReport_preserves_coherent_query
 #print axioms learnReport_legal_readouts
+#print axioms matched_decision_has_same_source
+#print axioms formula_learnReport_legal_readouts
 #print axioms actual_formula_checker_assessment
 #print axioms selected_formula_refines_supported_world
 #print axioms formula_entity_feedback_law
@@ -347,6 +407,7 @@ end Actual
 #print axioms Actual.actual_proof_and_world_agree
 #print axioms Actual.bare_query_counterexample
 #print axioms Actual.same_scope_is_not_same_question
+#print axioms Actual.actual_stored_decision_formula
 #print axioms Actual.compound_institution_same_question
 
 end

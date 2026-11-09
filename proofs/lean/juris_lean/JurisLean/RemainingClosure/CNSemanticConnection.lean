@@ -1171,10 +1171,20 @@ theorem learned_read (s : Situation) (ready : FitReady s) (y : Bool) :
   simp [read,candidate,Situation.withCore,CaseState.putState]
 
 theorem learned_ready (s : Situation) (ready : FitReady s) (y : Bool) : FitReady (learned s y) := by
+  have norm : (learned s y).core.state.N = s.core.state.N := by
+    rw [learned_formula s ready y]
+    change (fitPost s y).core.state.N = s.core.state.N
+    exact fitPost_norm s ready y
+  simpa only [FitReady,norm] using ready
+
+/-- The former strong norm equality remains a separate retained theorem;
+the broader preparation domain does not delete that original capability. -/
+theorem learned_modelReady (s : Situation) (ready : ModelReady s) (y : Bool) : ModelReady (learned s y) := by
+  have guards := fitReady_of_modelReady ready
   change (learned s y).core.state.N = _
-  rw [learned_formula s ready y]
+  rw [learned_formula s guards y]
   change (fitPost s y).core.state.N = _
-  rw [fitPost_norm s ready y]
+  rw [fitPost_norm s guards y]
   exact ready
 
 /-- All six source commands, including the actual observed Y, are retained. -/
@@ -2082,6 +2092,7 @@ end Numeric
 
 namespace InstitutionalContinuation
 open Numeric
+open LegalMath20261109.PosteriorLaw
 open InstitutionRules Examples
 
 /-- The structural institution state is preserved by this actual observation,
@@ -2133,8 +2144,8 @@ lemma old_evidence_preserved (s : Situation) (ready : FitReady s) (y : Bool)
     simpa [equal] using old
   rw [learned_formula s ready y,fitPost_formula s ready y]
   simp [Law.proposeEngine,EffectIR.adjust,EffectIR.proposal,EffectIR.write,
-    prepared,admitted,recorded,physical,CaseState.setCell,CaseState.putState,
-    Situation.withCore,setEvidence,distinct,Ne.symm distinct]
+    Numeric.prepared,Numeric.admitted,Numeric.recorded,Numeric.physical,CaseState.setCell,CaseState.putState,
+    Situation.withCore,JurisLean.CN.Revision20261101.setEvidence,distinct,Ne.symm distinct]
 
 lemma actual_retained_report (s : Situation) (ready : FitReady s) (y : Bool) :
     (learned s y).engineResults.head? = some ⟨input s y,.known (fitted (read s) y)⟩ := by
@@ -2179,6 +2190,7 @@ theorem actual_kernel_projection (s : Situation) (ready : FitReady s) :
   ext B hB
   rw [Measure.map_apply Measurable.of_discrete hB,LegalMath20261108.UnifiedFeedbackBridge.step_two_atoms]
   simp [LegalMath20261108.UnifiedFeedbackBridge.coin,Measure.add_apply,smul_eq_mul,Set.indicator_apply]
+  rfl
 
 /-- The following supplied legal policy receives the ACTUAL learned CN post,
 including unchanged institution state and the loaded new private table. Its
@@ -2200,11 +2212,15 @@ def afterCommand {α : Type} (s : Situation) (c : Command α) : Situation := (ex
 def completeCommands {α : Type} (s : Situation) (c : Command α) (y : Bool) : List PackedCommand :=
   ⟨α,c⟩ :: preparationCommands (afterCommand s c) y
 
+private lemma replay_cons (s : Situation) (c : PackedCommand) (xs : List PackedCommand) :
+    FullEventLog.CN.replay s (c :: xs) =
+      FullEventLog.CN.replay (executeCommand s c.2).after xs := rfl
+
 lemma complete_replay {α : Type} (s : Situation) (c : Command α)
     (ready : FitReady (afterCommand s c)) (y : Bool) :
     FullEventLog.CN.replay s (completeCommands s c y) = learned (afterCommand s c) y := by
-  change FullEventLog.CN.replay (afterCommand s c) (preparationCommands (afterCommand s c) y) = _
-  exact preparation_replay _ ready y
+  rw [completeCommands,replay_cons]
+  exact preparation_replay (afterCommand s c) ready y
 
 /-- The same complete original command list is a genuine old CN.model history;
 its private coordinate is the actual post-institution native learned table. -/
@@ -2445,6 +2461,7 @@ end InstitutionalContinuation
 #print axioms Numeric.learned_formula
 #print axioms Numeric.learned_read
 #print axioms Numeric.learned_ready
+#print axioms Numeric.learned_modelReady
 #print axioms Numeric.preparation_replay
 #print axioms Numeric.learned_events
 #print axioms Numeric.learned_ledger

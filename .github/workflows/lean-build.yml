@@ -176,16 +176,19 @@ jobs:
       with:
         python-version: '3.12'
     - name: Fixed toolchain, no lake update
-      run: 'set -euo pipefail
-
+      run: |-
+        set -euo pipefail
         python tools/ulm_repair/scripts/ci_driver.py pins
-
-        curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain
-        leanprover/lean4:v4.30.0
-
+        curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
+        # Same pinned official release; avoid the release redirect gateway's HTTP 504.
+        proof_lean_archive="$RUNNER_TEMP/lean-4.30.0-linux.tar.zst"
+        proof_toolchain_dir="$HOME/.elan/toolchains/leanprover--lean4---v4.30.0"
+        curl --fail --location --retry 5 --retry-delay 3 --retry-all-errors https://github.com/leanprover/lean4/releases/download/v4.30.0/lean-4.30.0-linux.tar.zst --output "$proof_lean_archive"
+        echo "4dad74141c2c119ca1aa626656be83b8e14238afba97271fd7bf1eb3f081b319  $proof_lean_archive" | sha256sum --check -
+        mkdir -p "$proof_toolchain_dir"
+        tar --zstd --extract --file "$proof_lean_archive" --strip-components=1 --directory "$proof_toolchain_dir"
+        "$HOME/.elan/bin/lean" --version
         echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-
-        '
     - name: Restore compiled dependency cache with seeds fallback
       uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
       with:
